@@ -1,0 +1,23 @@
+index.html :
+
+motogp.html :
+
+moto2.html :
+
+moto3.html :
+
+calendario.html :
+
+risulati.html :
+
+piloti.html :
+
+pilota.html : 
+
+classifica.html :
+
+albo_doro.html :
+        ? aggiungere altre categorie (350...)
+TO DO : 
+    ultimi anni, vedere classifica completa delle 3 categorie
+

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relazione Tecnica — Motomondiale 2026</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e8001d">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:#e8001d; --dark:#0a0a0a; --mid:#111; --card:#161616;
+      --border:#252525; --muted:#777; --white:#f0f0f0;
+      --gp:#ff6b35; --m2:#f7a600; --m3:#00b4d8;
+      --accent:#e8001d;
+    }
+    [data-theme="light"] {
+      --dark:#f5f5f5; --mid:#ebebeb; --card:#fff;
+      --border:#d8d8d8; --muted:#666; --white:#111;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+    /* ══ HEADER PULITO ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border); display: block;
+      transition: color .15s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--white); background: rgba(232,0,29,.1);
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:var(--dark); color:var(--white);
+      font-family:'Barlow',sans-serif;
+      line-height:1.6;
+    }
+
+    /* ── HEADER ── */ 
+
+    /* ── HERO ── */
+    .rel-hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0004 50%, #0a0a0a 100%);
+      padding: 3.5rem 2rem 3rem;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .rel-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232,0,29,.03) 38px, rgba(232,0,29,.03) 40px);
+    }
+    .rel-hero-bg {
+      position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(100px,16vw,220px);
+      color: rgba(232,0,29,.04); line-height: 1; pointer-events: none; user-select: none;
+    } 
+    .rel-hero-content { position: relative; max-width: 100%; margin: 0 auto; padding: 0 1rem; box-sizing: border-box; }
+    .rel-hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--red); margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .rel-hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--red); }
+    .rel-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      letter-spacing: .04em; line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .rel-hero h1 span { color: var(--red); }
+    .rel-hero-sub {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+      color: var(--muted); letter-spacing: .02em;
+    }
+    .rel-hero-meta {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.2rem;
+    }
+    .meta-pill {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .8rem; border-radius: 3px;
+      background: rgba(232,0,29,.12); border: 1px solid rgba(232,0,29,.25);
+      color: var(--red);
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; box-sizing: border-box; }
+    .rel-layout { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; padding: 2.5rem 0 5rem; align-items: flex-start; }
+    .rel-content { min-width: 0; width: 100%; overflow: hidden; } .rel-toc { display: none; } #toc-mobile-btn { display: block; } 
+    .rel-toc { position: sticky; top: 76px; }
+    .toc-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .toc-head { background: var(--red); padding: .65rem 1rem; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .06em; }
+    .toc-body { padding: .4rem 0; }
+    .toc-item a {
+      display: block; padding: .38rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .82rem;
+      font-weight: 700; letter-spacing: .04em; color: var(--muted);
+      text-decoration: none; border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    .toc-item a:hover { color: var(--white); border-left-color: var(--red); background: rgba(232,0,29,.05); }
+    .toc-item a.active { color: var(--white); border-left-color: var(--red); }
+    .toc-sep { font-family: 'Barlow Condensed', sans-serif; font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #333; padding: .4rem 1rem .1rem; margin-top: .2rem; }
+
+    #toc-mobile-btn { display: none; width: 100%; margin-bottom: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .07em; text-transform: uppercase; padding: .55rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--muted); cursor: pointer; text-align: left; }
+    .rel-toc.toc-open .toc-card { display: block; }
+
+    /* ── SEZIONI ── */
+    .rel-section { scroll-margin-top: 80px; margin-bottom: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px;  }
+    .rel-section-head {
+      display: flex; align-items: center; gap: .9rem;
+      padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border);
+    }
+    .sec-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; line-height: 1;
+      color: var(--red); flex-shrink: 0; min-width: 32px;
+    }
+    .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .05em; }
+    .sec-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .1rem; }
+    .rel-body { padding: 1.3rem 1.5rem; }
+    .rel-body p { font-size: .93rem; line-height: 1.7; color: #ccc; margin-bottom: .9rem; width: 100%; max-width: 100%; }
+    .rel-body p:last-child { margin-bottom: 0; }
+    .rel-body h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 1.2rem 0 .5rem; }
+    .rel-body h3:first-child { margin-top: 0; }
+    [data-theme="light"] .rel-body p { color: #444; }
+    [data-theme="light"] .rel-section { background: #fff; border-color: #d0d0d0; }
+    [data-theme="light"] .rel-toc .toc-card { background: #fff; border-color: #d0d0d0; }
+
+    /* ── TECH GRID ── */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: .8rem; margin: .8rem 0; }
+    .tech-card { background: var(--mid); border: 1px solid var(--border); border-radius: 7px; padding: .85rem 1rem; }
+    .tech-card-label { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .25rem; }
+    .tech-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: .04em; color: var(--white); }
+    .tech-card-desc { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; color: var(--muted); margin-top: .2rem; line-height: 1.35; }
+    .tech-card.hl { border-color: rgba(232,0,29,.3); }
+    .tech-card.hl .tech-card-name { color: var(--red); }
+    [data-theme="light"] .tech-card { background: #f0f0f0; border-color: #d0d0d0; }
+    [data-theme="light"] .tech-card-name { color: #111; }
+
+    /* ── STATS ROW ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); gap: .7rem; margin: .8rem 0; }
+    .stat-box { background: var(--mid); border: 1px solid var(--border); border-radius: 7px; padding: .9rem 1rem; text-align: center; }
+    .stat-box-val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--red); }
+    .stat-box-label { font-family: 'Barlow Condensed', sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .2rem; }
+    [data-theme="light"] .stat-box { background: #f0f0f0; border-color: #d0d0d0; }
+
+    /* ── FEATURE LIST ── */
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin: .7rem 0; }
+    .feat-list li { display: flex; align-items: flex-start; gap: .5rem; font-size: .9rem; line-height: 1.5; color: #ccc; min-width: 0; }
+    .feat-list li::before { content: '→'; color: var(--red); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    [data-theme="light"] .feat-list li { color: #444; }
+
+    /* ── REQ BLOCKS ── */
+    .req-block { background: rgba(232,0,29,.06); border-left: 3px solid var(--red); border-radius: 0 6px 6px 0; padding: .75rem 1rem; margin: .8rem 0; font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; letter-spacing: .02em; color: #ddd; }
+    .req-block strong { color: var(--white); font-weight: 700; }
+    .note-block { background: rgba(0,180,216,.06); border-left: 3px solid var(--m3); border-radius: 0 6px 6px 0; padding: .75rem 1rem; margin: .8rem 0; font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; color: #ccc; }
+    [data-theme="light"] .req-block { color: #333; }
+    [data-theme="light"] .req-block strong { color: #111; }
+    [data-theme="light"] .note-block { color: #333; }
+
+    /* ── CODE BLOCK ── */
+    .code-block { background: #0d0d0d; border: 1px solid #1e1e1e; border-radius: 6px; padding: .9rem 1.1rem; margin: .8rem 0; overflow-x: auto; }
+    .code-block code { font-family: 'Courier New', monospace; font-size: .8rem; color: #e0e0e0; white-space: pre; line-height: 1.6; }
+    .code-kw { color: #c678dd; }
+    .code-str { color: #98c379; }
+    .code-comment { color: #5c6370; }
+    .code-fn { color: #61afef; }
+    [data-theme="light"] .code-block { background: #1e1e1e; }
+
+    /* ── ARCH DIAGRAM ── */
+    .arch-diagram { background: var(--mid); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem; margin: .8rem 0; }
+    .arch-row { display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem; flex-wrap: wrap; }
+    .arch-row:last-child { margin-bottom: 0; }
+    .arch-box { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; padding: .45rem .9rem; border-radius: 5px; white-space: normal; word-break: break-word; }
+    .arch-box.html { background: rgba(255,107,53,.15); border: 1px solid rgba(255,107,53,.3); color: #ff6b35; }
+    .arch-box.css  { background: rgba(0,180,216,.12); border: 1px solid rgba(0,180,216,.3); color: var(--m3); }
+    .arch-box.js   { background: rgba(247,166,0,.12); border: 1px solid rgba(247,166,0,.3); color: var(--m2); }
+    .arch-box.api  { background: rgba(232,0,29,.12); border: 1px solid rgba(232,0,29,.3); color: var(--red); }
+    .arch-box.pwa  { background: rgba(100,160,255,.12); border: 1px solid rgba(100,160,255,.3); color: #64a0ff; }
+    .arch-box.data { background: rgba(150,200,100,.12); border: 1px solid rgba(150,200,100,.3); color: #96c864; }
+    .arch-arrow { color: var(--muted); font-size: .9rem; font-family: 'Barlow Condensed', sans-serif; }
+    [data-theme="light"] .arch-diagram { background: #f0f0f0; border-color: #d0d0d0; }
+
+    /* ── SCROLL TOP ── */
+    #scroll-top-btn { position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; width:44px; height:44px; border-radius:50%; background:var(--red); color:#fff; border:none; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; box-shadow:0 2px 12px rgba(232,0,29,.4); }
+    #scroll-top-btn.visible { opacity:1; pointer-events:all; }
+    #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    /* ── RESPONSIVE ── */
+
+  
+    /* Relazione: testo più leggibile */
+    .rel-hero-eyebrow { color: #ff6b6b !important; }
+    .rel-hero-eyebrow::before { background: #ff6b6b !important; }
+    .sec-num { color: #ff7070 !important; }
+    .rel-section-head { background: var(--mid); }
+
+    
+    /* ── STAMPA / SALVA PDF ── */
+    
+    /* ══ @media print ══ */
+
+    /* Responsive mobile - blocco unico */
+    html, body { overflow-x: hidden; }
+    .rel-section {  box-sizing: border-box; width: 100%; }
+    .rel-body p, .rel-body li { overflow-wrap: break-word; word-break: break-word; max-width: 100%; }
+    .code-block { overflow-x: auto; }
+    .code-block code { white-space: pre; }
+    .arch-box { white-space: normal !important; word-break: break-word; }
+    .arch-row { flex-wrap: wrap; gap: .4rem; }
+      .rel-hero h1 { font-size: clamp(1.8rem, 8vw, 3rem); }
+      .rel-hero-content { padding: 0; }
+      .container { padding: 0 .75rem; }
+      .rel-layout { padding: 1.2rem 0 2rem; }
+      .rel-layout { grid-template-columns: 1fr; }
+      .rel-toc { display: none; }
+      .rel-section-head { padding: .8rem .9rem; }
+      .rel-body { padding: .85rem .9rem; }
+      .rel-body p { font-size: .87rem; line-height: 1.65; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .meta-pill { font-size: .64rem; padding: .2rem .5rem; }
+      .rel-hero-btns { flex-direction: column; gap: .5rem; }
+      #btn-scarica-pdf, #btn-apri-pdf { width: 100%; justify-content: center; }
+      .rel-hero h1 { font-size: clamp(1.5rem, 9vw, 2.2rem); }
+      .rel-section-head { padding: .65rem .75rem; gap: .35rem; }
+      .sec-title { font-size: .9rem; }
+      .sec-num { font-size: 1.1rem; }
+      .rel-body { padding: .7rem .75rem; }
+      .rel-body p { font-size: .82rem; }
+      .code-block code { font-size: .68rem; }
+
+
+    /* ══ RESPONSIVE & OVERFLOW FIX ══ */
+    html { overflow-x: hidden; }
+    body { overflow-x: hidden; }
+
+    /* rel-content: figlio del grid, DEVE avere min-width:0 */
+    .rel-content { min-width: 0; width: 100%; overflow: hidden; }
+
+    /* Testo sempre dentro i bordi */
+    .rel-body p, .rel-body li, .rel-body h3,
+    .rel-hero-sub, .sec-title, .sec-sub {
+      overflow-wrap: break-word;
+      word-break: break-word;
+      max-width: 100%;
+    }
+
+    .rel-section { overflow: visible; box-sizing: border-box; max-width: 100%; }
+    .rel-body    { box-sizing: border-box; max-width: 100%; }
+    .code-block  { overflow-x: auto; max-width: 100%; }
+    .code-block code { white-space: pre; }
+    .arch-box    { white-space: normal !important; word-break: break-word; }
+    .arch-row    { flex-wrap: wrap; gap: .35rem; }
+    .rel-hero-meta { flex-wrap: wrap; gap: .6rem; }
+    .rel-hero-btns { flex-wrap: wrap; gap: .5rem; }
+
+    @media (max-width: 900px) {
+      .rel-layout { grid-template-columns: 1fr !important; }
+      .rel-toc    { display: none !important; }
+      #toc-mobile-btn { display: block; }
+    }
+
+    @media (max-width: 768px) {
+      .rel-hero         { padding: 2rem .9rem 1.8rem !important; overflow: hidden; }
+      .rel-hero-content { padding: 0 !important; }
+      .rel-hero h1      { font-size: clamp(1.7rem, 7.5vw, 2.8rem) !important; letter-spacing: .02em !important; }
+      .rel-hero-sub     { font-size: .88rem !important; }
+      .container        { padding: 0 .6rem !important; }
+      .rel-layout       { padding: 1rem 0 2rem !important; }
+      .rel-section-head { padding: .8rem .85rem !important; }
+      .rel-body         { padding: .8rem .85rem !important; }
+      .rel-body p       { font-size: .86rem !important; line-height: 1.65 !important; }
+      .rel-body li      { font-size: .86rem !important; }
+      .tech-grid        { grid-template-columns: 1fr !important; }
+      .stats-row        { grid-template-columns: 1fr 1fr !important; }
+      .meta-pill        { font-size: .62rem !important; padding: .18rem .45rem !important; }
+      #btn-scarica-pdf, #btn-apri-pdf {
+        width: 100% !important; justify-content: center !important; font-size: .82rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rel-hero         { padding: 1.5rem .6rem 1.3rem !important; }
+      .rel-hero h1      { font-size: clamp(1.4rem, 8.5vw, 2rem) !important; }
+      .rel-section-head { padding: .6rem .65rem !important; gap: .3rem !important; }
+      .sec-title        { font-size: .88rem !important; }
+      .sec-num          { font-size: 1rem !important; }
+      .rel-body         { padding: .65rem .65rem !important; }
+      .rel-body p       { font-size: .82rem !important; }
+      .code-block code  { font-size: .66rem !important; }
+      .container        { padding: 0 .5rem !important; }
+    }
+
+    footer {
+      background: var(--mid);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    footer .logo {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    footer .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    footer .socials a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    footer .socials a:hover {
+      color: var(--white);
+    }
+    
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+    /* Escludi elementi che non devono transitare */
+    .rider-photo, img, video, canvas, svg,
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+      transition: none !important;
+    }
+    
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">MOTO<span>2026</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="motogp.html">MotoGP</a>
+    <a href="moto2.html">Moto2</a>
+    <a href="moto3.html">Moto3</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="piloti.html">Piloti</a>
+    <a href="classifica.html">Classifica</a>
+    <a href="risultati.html">Risultati</a>
+    <a href="stagione.html">Stagione</a>
+    <a href="albo_doro.html">Albo d'oro</a>
+    <a href="guida.html">Guida</a>
+    <a href="relazione.html" class="active">Relazione</a>
+  </nav>
+  <div class="header-right">
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambia tema"><span id="theme-icon">☀️</span></button>
+    <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="motogp.html">MotoGP</a>
+  <a href="moto2.html">Moto2</a>
+  <a href="moto3.html">Moto3</a>
+  <a href="calendario.html">Calendario</a>
+  <a href="piloti.html">Piloti</a>
+  <a href="classifica.html">Classifica</a>
+  <a href="risultati.html">Risultati</a>
+  <a href="stagione.html">Stagione</a>
+  <a href="albo_doro.html">Albo d'oro</a>
+  <a href="guida.html">Guida</a>
+  <a href="relazione.html" class="active">Relazione</a>
+</div>
+
+<!-- HERO -->
+<section class="rel-hero">
+  <div class="rel-hero-bg">DOC</div>
+  <div class="rel-hero-content">
+    <div class="rel-hero-eyebrow">Documentazione Tecnica</div>
+    <h1 style="color: #ffffff;">Relazione <span>Tecnica</span></h1>
+    <p class="rel-hero-sub">Progettazione e sviluppo del sito web Motomondiale 2026 — documentazione completa per la commissione d'esame.</p>
+    <div class="rel-hero-btns" style="margin-top:1.2rem;display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;">
+      <button id="btn-scarica-pdf" onclick="scaricaPDF()" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.3rem;background:var(--red);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:.4rem;" onmouseover="this.style.background='#c4001a'" onmouseout="this.style.background='var(--red)'">⬇️ Scarica PDF</button>
+      <button id="btn-apri-pdf" onclick="apriPDF()" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.3rem;background:transparent;color:#fff;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.4rem;">↗️ Apri PDF</button>
+    </div>
+    <div class="rel-hero-meta">
+      <span class="meta-pill">HTML5 · CSS3 · JavaScript ES2022</span>
+      <span class="meta-pill">PWA · Fetch API</span>
+      <span class="meta-pill">79 piloti</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="rel-layout">
+
+    <!-- TOC -->
+    <aside class="rel-toc">
+      <button id="toc-mobile-btn" onclick="this.nextElementSibling.classList.toggle('toc-open')">📋 Indice della relazione</button>
+      <div class="toc-card">
+        <div class="toc-head">Indice</div>
+        <div class="toc-body">
+          <div class="toc-sep">Struttura</div>
+          <div class="toc-item"><a href="#s1">1. Introduzione</a></div>
+          <div class="toc-item"><a href="#s2">2. Analisi dei Requisiti</a></div>
+          <div class="toc-item"><a href="#s3">3. Progettazione</a></div>
+          <div class="toc-sep">Tecnico</div>
+          <div class="toc-item"><a href="#s4">4. Linguaggi e Tecnologie</a></div>
+          <div class="toc-item"><a href="#s5">5. Implementazione</a></div>
+          <div class="toc-sep">Finale</div>
+          <div class="toc-item"><a href="#s6">6. Sviluppi Futuri</a></div>
+          <div class="toc-item"><a href="#s7">7. Conclusioni</a></div>
+          <div class="toc-item"><a href="#s8">8. Fonti</a></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENUTO -->
+    <div class="rel-content">
+
+      <!-- 1. INTRODUZIONE -->
+      <div class="rel-section" id="s1">
+        <div class="rel-section-head">
+          <div class="sec-num">01</div>
+          <div><div class="sec-title">Introduzione</div><div class="sec-sub">Obiettivo · Contesto · Problema</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Obiettivo del progetto</h3>
+          <p>Il progetto consiste nella realizzazione di un sito web statico dedicato al Campionato Mondiale di Motociclismo 2026 (Motomondiale). L'obiettivo principale è offrire un'unica piattaforma informativa che raccolga classifiche, risultati, schede piloti e notizie per le tre categorie — MotoGP, Moto2 e Moto3 — in un'interfaccia moderna, responsiva e consultabile anche offline.</p>
+
+          <h3>Contesto</h3>
+          <p>Il sito nasce come applicazione web puramente client-side (front-end), senza necessità di un server back-end o di un database remoto. Tutti i dati sono incorporati direttamente nel codice JavaScript dei file HTML, una scelta che rende il progetto distribuibile semplicemente copiando la cartella su qualsiasi hosting statico.</p>
+
+          <h3>Problema da risolvere</h3>
+          <p>I siti ufficiali del Motomondiale sono spesso lenti, appesantiti da pubblicità e difficili da navigare su mobile. Il progetto vuole offrire un'alternativa leggera, veloce e accessibile che metta al centro l'informazione tecnica: punti, risultati sessione per sessione, palmares dei piloti e storico dell'albo d'oro dal 1949.</p>
+
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-box-val">12</div><div class="stat-box-label">Pagine HTML</div></div>
+            <div class="stat-box"><div class="stat-box-val">79</div><div class="stat-box-label">Piloti</div></div>
+            <div class="stat-box"><div class="stat-box-val">22</div><div class="stat-box-label">Round stagione</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. ANALISI DEI REQUISITI -->
+      <div class="rel-section" id="s2">
+        <div class="rel-section-head">
+          <div class="sec-num">02</div>
+          <div><div class="sec-title">Analisi dei Requisiti</div><div class="sec-sub">Funzionali · Non funzionali · HW/SW</div></div>
+        </div>
+        <div class="rel-body">
+
+          <h3>Analisi applicativa</h3>
+          <p>Il dominio applicativo è quello dell'informazione sportiva. Gli utenti sono appassionati di motociclismo che vogliono consultare rapidamente classifiche, risultati e biografie dei piloti. L'interazione avviene tramite browser su desktop, tablet e smartphone. Non è richiesta autenticazione né la creazione di account.</p>
+
+          <h3>Requisiti hardware e software</h3>
+          <div class="tech-grid">
+            <div class="tech-card">
+              <div class="tech-card-label">Client</div>
+              <div class="tech-card-name">Qualsiasi device</div>
+              <div class="tech-card-desc">PC, Mac, smartphone, tablet. Browser moderno (Chrome, Firefox, Safari, Edge).</div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-card-label">Server</div>
+              <div class="tech-card-name">Hosting statico</div>
+              <div class="tech-card-desc">Netlify, GitHub Pages, Vercel o qualsiasi server HTTP. Nessun PHP/Python/Node richiesto.</div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-card-label">Connessione</div>
+              <div class="tech-card-name">Opzionale (PWA)</div>
+              <div class="tech-card-desc">Grazie al Service Worker, il sito funziona anche offline dopo la prima visita.</div>
+            </div>
+          </div>
+
+          <h3>Requisiti funzionali</h3>
+          <ul class="feat-list">
+            <li>Il sistema deve permettere la visualizzazione delle classifiche piloti e costruttori per MotoGP, Moto2 e Moto3, aggiornate dopo ogni round.</li>
+            <li>Il sistema deve permettere la consultazione dei risultati sessione per sessione (FP, Qualifiche Q1/Q2, Sprint, Gara) per ogni round disputato.</li>
+            <li>Il sistema deve permettere di filtrare la classifica per costruttore e confrontare due piloti della stessa categoria.</li>
+            <li>Il sistema deve permettere di consultare la scheda completa di ogni pilota con palmares, storico stagioni, grafico punti per round e piloti vicini in classifica.</li>
+            <li>Il sistema deve permettere la lettura di notizie delle tre categorie con apertura in-page dell'articolo completo.</li>
+            <li>Il sistema deve permettere la ricerca di un pilota per nome in tutte le pagine tramite la scorciatoia da tastiera <kbd style="background:#222;border:1px solid #444;padding:.1rem .3rem;border-radius:3px;font-family:monospace;font-size:.85em;">/</kbd>.</li>
+          </ul>
+
+          <h3>Requisiti non funzionali</h3>
+          <div class="req-block"><strong>Prestazioni:</strong> caricamento iniziale sotto 2 secondi su connessione 4G. Nessuna richiesta di rete obbligatoria per la navigazione (tutti i dati sono embedded).</div>
+          <div class="req-block"><strong>Responsività:</strong> layout adattivo per schermi da 320px a 2560px. Breakpoint principale a 1100px (hamburger) e 768px (colonne mobili).</div>
+          <div class="req-block"><strong>Usabilità:</strong> navigazione raggiungibile con al massimo 2 click da qualsiasi pagina. Tema scuro/chiaro selezionabile con preferenza salvata.</div>
+          <div class="req-block"><strong>Offline:</strong> il Service Worker (PWA) mette in cache tutte le pagine principali alla prima visita, consentendo la consultazione senza connessione.</div>
+        </div>
+      </div>
+
+      <!-- 3. PROGETTAZIONE -->
+      <div class="rel-section" id="s3">
+        <div class="rel-section-head">
+          <div class="sec-num">03</div>
+          <div><div class="sec-title">Progettazione</div><div class="sec-sub">Architettura · Struttura · Dati</div></div>
+        </div>
+        <div class="rel-body">
+
+          <h3>Architettura generale</h3>
+          <p>Il sito segue un'architettura <strong>Single-File Component</strong> senza framework: ogni pagina HTML contiene al proprio interno il CSS specifico (nel <code>&lt;style&gt;</code>), il markup HTML semantico e il codice JavaScript (nei tag <code>&lt;script&gt;</code>). Questo approccio elimina le dipendenze esterne e rende il sito completamente autonomo.</p>
+
+          <div class="arch-diagram">
+            <div class="arch-row">
+              <span class="arch-box html">HTML5</span>
+              <span class="arch-arrow">→ struttura semantica</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-box css">CSS3</span>
+              <span class="arch-arrow">→ variabili custom, flexbox, grid, media query</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-box js">JavaScript ES2022</span>
+              <span class="arch-arrow">→ render dinamico, dati embedded, DOM manipulation</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-box api">Fetch API</span>
+              <span class="arch-arrow">→ dati live da MotoGP PulseLive (fallback su dati statici)</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-box pwa">Service Worker</span>
+              <span class="arch-arrow">→ cache offline, installazione come app (PWA)</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-box data">localStorage</span>
+              <span class="arch-arrow">→ tema, round selezionato, stato toast</span>
+            </div>
+          </div>
+
+          <h3>Struttura delle pagine</h3>
+          <ul class="feat-list">
+            <li><strong>index.html</strong> — Home: notizie, countdown prossimo GP, barra progressione stagione, top-5 classifiche, calendario.</li>
+            <li><strong>motogp/moto2/moto3.html</strong> — Pagine categoria: notizie filtrate, classifica parziale, entry list per team.</li>
+            <li><strong>piloti.html</strong> — Lista completa 79 piloti con ricerca, filtro categoria, corona 👑 sul leader.</li>
+            <li><strong>pilota.html</strong> — Scheda singolo pilota: palmares, tabella stagioni, grafico punti per round, piloti simili.</li>
+            <li><strong>classifica.html</strong> — Classifiche complete piloti + costruttori, layout 30/70, filtro costruttore, confronto piloti.</li>
+            <li><strong>risultati.html</strong> — Risultati sessione per sessione (FP1/FP2/Q1/Q2/Sprint/Gara) per i primi 3 round.</li>
+            <li><strong>calendario.html</strong> — 22 round stagionali con popup per i round futuri.</li>
+            <li><strong>stagione.html</strong> — Riepilogo statistico stagionale con sezione "piloti in forma".</li>
+            <li><strong>albo_doro.html</strong> — Albo d'oro dal 1949 con sidebar ricerca su tutte le categorie.</li>
+          </ul>
+
+          <h3>Struttura dei dati JavaScript</h3>
+          <p>I dati sono organizzati in oggetti JavaScript costanti, definiti in cima ai file che li utilizzano:</p>
+          <div class="code-block"><code><span class="code-comment">// Dati piloti — pilota.html</span>
+<span class="code-kw">const</span> RIDERS = {
+  <span class="code-str">'marco_bezzecchi'</span>: {
+    name: <span class="code-str">'Marco Bezzecchi'</span>, flag: <span class="code-str">'🇮🇹'</span>, number: 72,
+    team: <span class="code-str">'Aprilia Racing'</span>, category: <span class="code-str">'MotoGP'</span>,
+    points: 81, position: 1,
+    titoli: [<span class="code-str">'2021 Moto2 🏆'</span>],
+    vittorie: 8, podi: 28, gare: 180,
+    stagioni: [{ y:2019, cat:<span class="code-str">'Moto3'</span>, pos:3, pt:186 }, ...]
+  }, ...
+}
+
+<span class="code-comment">// Risultati gare — risultati.html</span>
+<span class="code-kw">const</span> RESULTS = {
+  r1: { gp: { race: { rows: [{ pos:1, name:<span class="code-str">'Marco Bezzecchi'</span>, ... }] } } }
+}
+
+<span class="code-comment">// Classifiche dinamiche — classifica.html</span>
+<span class="code-kw">const</span> DATA = { motogp: [...], moto2: [...], moto3: [...] };</code></div>
+        </div>
+      </div>
+
+
+      <!-- EXTRA: STRUTTURA NAVIGAZIONE -->
+      <div class="rel-section" id="s3b">
+        <div class="rel-section-head">
+          <div class="sec-num">3b</div>
+          <div><div class="sec-title">Struttura della Navigazione</div><div class="sec-sub">Header · Mobile Menu · Routing</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Sistema di navigazione multi-breakpoint</h3>
+          <p>La navigazione è gestita interamente in CSS e JavaScript vanilla. L'header è sticky (rimane fisso durante lo scroll) con z-index 200 per restare sopra a tutti gli altri elementi. Contiene tre componenti: logo, nav desktop e div header-right con toggle tema e hamburger.</p>
+
+          <div class="code-block"><code><span class="code-comment">/* Breakpoint principale: 1100px */</span>
+@media (max-width: 1100px) {
+  nav { display: none <span class="code-kw">!important</span>; }
+  .hamburger { display: flex <span class="code-kw">!important</span>; }
+}
+@media (min-width: 1101px) {
+  .hamburger { display: none <span class="code-kw">!important</span>; }
+}</code></div>
+
+          <p>Il breakpoint è stato fissato a 1100px invece del classico 768px perché il nav contiene 12 link — a 1100px i link iniziano a essere troppo compressi per essere leggibili. Sotto quella soglia appare il menu hamburger che apre un dropdown a piena larghezza con tutti i link in colonna.</p>
+
+          <h3>Routing client-side</h3>
+          <p>Non essendoci un server che gestisce le route, la navigazione tra pagine avviene tramite link HTML standard con parametri URL. La pagina <code>pilota.html</code> riceve l'identificativo del pilota tramite query string (<code>?id=marco_bezzecchi</code>) e lo legge con <code>URLSearchParams</code>:</p>
+
+          <div class="code-block"><code><span class="code-kw">const</span> riderId = <span class="code-kw">new</span> URLSearchParams(location.search).<span class="code-fn">get</span>(<span class="code-str">'id'</span>);
+<span class="code-kw">const</span> data = RIDERS[riderId];  <span class="code-comment">// lookup O(1) nell'oggetto</span></code></div>
+
+          <p>Gli slug dei piloti (es. <code>marc_marquez</code>) vengono calcolati al volo dal nome con la funzione <code>nameToSlug()</code> che normalizza gli accenti, rimuove i caratteri speciali e sostituisce gli spazi con underscore — garantendo consistenza tra la classifica e la scheda pilota.</p>
+
+          <h3>Gestione del tema scuro/chiaro</h3>
+          <p>Il tema è implementato tramite l'attributo HTML <code>data-theme="dark|light"</code> sull'elemento radice <code>&lt;html&gt;</code>. Tutte le pagine usano lo stesso set di CSS Custom Properties (<code>--dark</code>, <code>--mid</code>, <code>--card</code>, <code>--border</code>, <code>--muted</code>, <code>--white</code>) che vengono ridefinite nel selettore <code>[data-theme="light"]</code>. Questo permette di cambiare l'intero tema modificando solo 8 variabili senza JavaScript che tocchi i singoli elementi.</p>
+        </div>
+      </div>
+
+      <!-- EXTRA: PERFORMANCE -->
+      <div class="rel-section" id="s5b">
+        <div class="rel-section-head">
+          <div class="sec-num">5b</div>
+          <div><div class="sec-title">Performance e Ottimizzazione</div><div class="sec-sub">Caricamento · Immagini · Cache</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Nessuna dipendenza JavaScript esterna</h3>
+          <p>La scelta di non usare framework (React, Vue, Angular) o librerie (jQuery, Bootstrap) elimina completamente il problema del "bundle size". Un progetto React minimo scarica ~150KB di JavaScript prima ancora di mostrare un pixel; questo sito scarica solo il file HTML della pagina richiesta — tipicamente 80-200KB, inclusi tutti i dati.</p>
+
+          <h3>Ottimizzazione delle immagini</h3>
+          <ul class="feat-list">
+            <li><strong>Formato WebP</strong> — le 79 foto piloti sono in formato WebP, che offre una compressione mediamente il 30% migliore rispetto a JPEG mantenendo la stessa qualità visiva.</li>
+            <li><strong>Lazy loading</strong> — le immagini fuori dalla viewport iniziale vengono caricate solo quando necessario grazie all'attributo <code>loading="lazy"</code>.</li>
+            <li><strong>Dimensioni ottimizzate</strong> — le 22 immagini dei tracciati sono in PNG con risoluzione adeguata al contenitore (non più grande del necessario).</li>
+          </ul>
+
+          <h3>CSS Custom Properties e variabili</h3>
+          <p>L'uso di CSS Custom Properties permette al browser di calcolare i valori una sola volta e riutilizzarli in tutti gli elementi che li referenziano. Cambiare il tema richiede una singola operazione DOM (<code>setAttribute('data-theme', 'light')</code>) invece di migliaia di modifiche inline ai singoli elementi.</p>
+
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-box-val">0</div><div class="stat-box-label">Dipendenze JS esterne</div></div>
+            <div class="stat-box"><div class="stat-box-val">79</div><div class="stat-box-label">Immagini WebP piloti</div></div>
+            <div class="stat-box"><div class="stat-box-val">&lt;2s</div><div class="stat-box-label">Tempo caricamento 4G</div></div>
+            <div class="stat-box"><div class="stat-box-val">PWA</div><div class="stat-box-label">Funziona offline</div></div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 4. LINGUAGGI E TECNOLOGIE -->
+      <div class="rel-section" id="s4">
+        <div class="rel-section-head">
+          <div class="sec-num">04</div>
+          <div><div class="sec-title">Linguaggi e Tecnologie</div><div class="sec-sub">Stack · Scelte · Motivazioni</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Linguaggi di programmazione e markup</h3>
+          <div class="tech-grid">
+            <div class="tech-card hl">
+              <div class="tech-card-label">Markup</div>
+              <div class="tech-card-name">HTML5</div>
+              <div class="tech-card-desc">Struttura semantica con tag appropriati (&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;). Attributi ARIA per accessibilità.</div>
+            </div>
+            <div class="tech-card hl">
+              <div class="tech-card-label">Stile</div>
+              <div class="tech-card-name">CSS3</div>
+              <div class="tech-card-desc">Custom Properties (variabili), Flexbox, CSS Grid, Media Query, animazioni @keyframes, backdrop-filter.</div>
+            </div>
+            <div class="tech-card hl">
+              <div class="tech-card-label">Logica</div>
+              <div class="tech-card-name">JavaScript ES2022</div>
+              <div class="tech-card-desc">Vanilla JS senza framework. async/await, Fetch API, localStorage, MutationObserver, template literals.</div>
+            </div>
+          </div>
+
+          <h3>Web API e protocolli</h3>
+          <div class="tech-grid">
+            <div class="tech-card">
+              <div class="tech-card-label">Comunicazione</div>
+              <div class="tech-card-name">Fetch API</div>
+              <div class="tech-card-desc">Chiamata REST all'endpoint pubblico MotoGP PulseLive per dati live dei piloti. Fallback su dati statici se la rete non è disponibile.</div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-card-label">Offline / App</div>
+              <div class="tech-card-name">Service Worker</div>
+              <div class="tech-card-desc">Cache Strategy: Network-first con fallback su cache. Tutte le 12 pagine vengono pre-memorizzate al primo accesso.</div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-card-label">Persistenza</div>
+              <div class="tech-card-name">localStorage</div>
+              <div class="tech-card-desc">Salva: tema scuro/chiaro, ultimo round visualizzato, stato del toast scorciatoia. Nessun cookie o sessione server.</div>
+            </div>
+            <div class="tech-card">
+              <div class="tech-card-label">Protocollo</div>
+              <div class="tech-card-name">HTTPS / HTTP</div>
+              <div class="tech-card-desc">Il sito funziona su qualsiasi server che serva file statici via HTTP. Il Service Worker richiede HTTPS in produzione.</div>
+            </div>
+          </div>
+
+          <h3>API esterna: MotoGP PulseLive</h3>
+          <div class="code-block"><code><span class="code-comment">// Endpoint utilizzato in pilota.html</span>
+<span class="code-kw">const</span> API_URL = <span class="code-str">'https://api.motogp.pulselive.com/motogp/v1/riders'</span>;
+
+<span class="code-comment">// Chiamata con AbortController (timeout 7 secondi)</span>
+<span class="code-kw">async function</span> <span class="code-fn">loadRider</span>() {
+  <span class="code-kw">const</span> ctrl = <span class="code-kw">new</span> AbortController();
+  <span class="code-kw">const</span> t = setTimeout(() => ctrl.abort(), 7000);
+  <span class="code-kw">try</span> {
+    <span class="code-kw">const</span> res = <span class="code-kw">await</span> <span class="code-fn">fetch</span>(API_URL, {
+      headers: { <span class="code-str">'Accept'</span>: <span class="code-str">'application/json'</span> },
+      signal: ctrl.signal
+    });
+    <span class="code-kw">const</span> json = <span class="code-kw">await</span> res.<span class="code-fn">json</span>();
+    <span class="code-fn">renderApi</span>(json);           <span class="code-comment">// mostra dati live</span>
+  } <span class="code-kw">catch</span> (err) {
+    <span class="code-fn">renderStatic</span>(staticData);  <span class="code-comment">// fallback su dati statici</span>
+  }
+}</code></div>
+
+          <h3>Tipografia e risorse esterne</h3>
+          <ul class="feat-list">
+            <li><strong>Bebas Neue</strong> (Google Fonts) — font display per titoli, numeri e label. Scelto per il carattere sport/racing.</li>
+            <li><strong>Barlow Condensed</strong> (Google Fonts) — font compresso per la navigazione e le label secondarie. Ottima leggibilità a dimensioni ridotte.</li>
+            <li><strong>Barlow</strong> (Google Fonts) — font di testo per i paragrafi e il corpo degli articoli.</li>
+            <li><strong>Immagini</strong> — 79 foto piloti in formato WebP (ottimizzato per il web) e 22 immagini dei tracciati in PNG.</li>
+          </ul>
+
+          <h3>Motivazioni delle scelte</h3>
+          <p>La scelta di <strong>Vanilla JS senza framework</strong> (React, Vue, ecc.) è stata deliberata: per un sito di contenuti statici aggiunge complessità inutile, aumenta il bundle e riduce le performance. Con HTML/CSS/JS puri il sito carica in meno di 1 secondo e non dipende da versioni di librerie esterne che potrebbero diventare obsolete.</p>
+          <p>L'assenza di un <strong>back-end</strong> permette di ospitare il sito gratuitamente su Netlify, GitHub Pages o Vercel — servizi di hosting statico che offrono CDN globale, HTTPS automatico e deploy in 30 secondi.</p>
+
+          <div class="note-block">L'unica chiamata di rete del sito è la Fetch API verso l'endpoint PulseLive per arricchire la scheda pilota con dati live. Tutti gli altri dati — classifiche, risultati, notizie, palmares — sono incorporati nel codice e disponibili offline.</div>
+        </div>
+      </div>
+
+      <!-- 5. IMPLEMENTAZIONE -->
+      <div class="rel-section" id="s5">
+        <div class="rel-section-head">
+          <div class="sec-num">05</div>
+          <div><div class="sec-title">Implementazione</div><div class="sec-sub">Funzionalità chiave · Codice · Pattern</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Pattern architetturale: render dinamico dal JS</h3>
+          <p>Le tabelle classifiche, le schede piloti e i risultati gara non sono scritti staticamente nell'HTML ma generati da funzioni JavaScript che leggono i dati dagli oggetti <code>DATA</code>, <code>RIDERS</code> e <code>RESULTS</code> e costruiscono il markup con template literals:</p>
+          <div class="code-block"><code><span class="code-comment">// classifica.html — render riga classifica</span>
+<span class="code-kw">function</span> <span class="code-fn">renderRow</span>(r, i, maxPts) {
+  <span class="code-kw">const</span> barW = Math.<span class="code-fn">round</span>((r.pts / maxPts) * 100);
+  <span class="code-kw">return</span> <span class="code-str">`&lt;tr data-slug="${nameToSlug(r.name)}"&gt;
+    &lt;td&gt;&lt;span class="pos-num"&gt;${i+1}&lt;/span&gt;&lt;/td&gt;
+    &lt;td&gt;${r.flag}&lt;/td&gt;
+    &lt;td&gt;
+      &lt;div class="rider-name"&gt;${r.name}&lt;/div&gt;
+      &lt;div class="rider-team"&gt;${r.team}&lt;/div&gt;
+    &lt;/td&gt;
+    &lt;td&gt;${r.pts}&lt;/td&gt;
+    &lt;td&gt;&lt;div class="pts-bar" style="width:${barW}%"&gt;&lt;/div&gt;&lt;/td&gt;
+  &lt;/tr&gt;`</span>;
+}</code></div>
+
+          <h3>Confronto piloti</h3>
+          <p>La funzione <code>compareRiders()</code> in <code>classifica.html</code> genera in tempo reale una card comparativa con barra visiva proporzionale ai punti, evidenziazione del "vincitore" per ogni metrica e gestione del caso in cui i valori siano molto sbilanciati (es. 81 vs 1 — usa <code>Math.max(w, 8)</code> per la larghezza minima della barra).</p>
+
+          <h3>Calcolo costruttori</h3>
+          <p>La classifica costruttori usa i punteggi ufficiali FIM: per ogni round si prende il <strong>miglior risultato singolo</strong> per costruttore, non la somma di tutti i piloti. Per la MotoGP viene conteggiata anche la Sprint Race separatamente. I dati statici finali sono hardcodati dopo il calcolo per garantire accuratezza (es. Aprilia 101 pt dopo 3 round).</p>
+
+          <h3>Service Worker — strategia di cache</h3>
+          <div class="code-block"><code><span class="code-comment">// sw.js — Network-first, fallback su cache</span>
+self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch'</span>, e => {
+  e.<span class="code-fn">respondWith</span>(
+    caches.<span class="code-fn">match</span>(e.request).<span class="code-fn">then</span>(cached => {
+      <span class="code-kw">if</span> (cached) <span class="code-kw">return</span> cached;
+      <span class="code-kw">return</span> <span class="code-fn">fetch</span>(e.request).<span class="code-fn">then</span>(resp => {
+        caches.<span class="code-fn">open</span>(CACHE).<span class="code-fn">then</span>(c => c.<span class="code-fn">put</span>(e.request, resp.clone()));
+        <span class="code-kw">return</span> resp;
+      }).<span class="code-fn">catch</span>(() => caches.<span class="code-fn">match</span>(<span class="code-str">'index.html'</span>));
+    })
+  );
+});</code></div>
+
+          <h3>Responsività — breakpoint system</h3>
+          <ul class="feat-list">
+            <li><strong>> 1100px</strong>: nav desktop completo con tutti gli 11 link.</li>
+            <li><strong>768px–1100px</strong>: hamburger menu, layout a colonna singola per sezioni a due colonne.</li>
+            <li><strong>&lt; 768px</strong>: font scalati, padding ridotti, tabelle con colonne nascoste (<code>bar-cell</code>, <code>gap-cell</code>).</li>
+            <li><strong>&lt; 500px</strong>: grid piloti 2 colonne, hero font con <code>clamp()</code>.</li>
+          </ul>
+
+          <h3>Dark / Light mode</h3>
+          <p>Il tema è gestito tramite l'attributo <code>data-theme</code> sull'elemento <code>&lt;html&gt;</code> e un set di CSS custom properties ridefinite nel selettore <code>[data-theme="light"]</code>. La preferenza viene salvata in <code>localStorage</code> e ripristinata al caricamento da <code>initTheme()</code>.</p>
+          <h3>Funzionalità UX implementate</h3>
+          <p>Nel corso dello sviluppo sono state aggiunte diverse funzionalità di esperienza utente:</p>
+          <ul class="feat-list">
+            <li><strong>Scorciatoie da tastiera</strong> — tasti <code>M</code>, <code>2</code>, <code>3</code>, <code>C</code>, <code>R</code>, <code>P</code>, <code>H</code> e <code>/</code> con toast di conferma prima della navigazione.</li>
+            <li><strong>Bottone "Torna indietro" dinamico</strong> — implementato con <code>sessionStorage</code>: ogni click su un link interno salva la pagina corrente; alla destinazione compare "← Torna a [origine]".</li>
+            <li><strong>Animazioni fade-in scroll</strong> — <code>IntersectionObserver</code> con stagger di 60ms applicato a card, sezioni e stat-box. Zero librerie esterne.</li>
+            <li><strong>Loading skeleton</strong> in <code>piloti.html</code> — 12 card con animazione shimmer visibili durante il caricamento, rimosse automaticamente.</li>
+            <li><strong>Service Worker v3</strong> — strategia stale-while-revalidate: risponde dalla cache istantaneamente mentre aggiorna in background.</li>
+            <li><strong>Favicon SVG</strong> — icona scalabile con "M26" rosso su sfondo nero, compatibile con tutti i browser moderni.</li>
+          </ul>
+
+        </div>
+      </div>
+
+
+      <!-- EXTRA: ACCESSIBILITÀ -->
+      <div class="rel-section" id="s5c">
+        <div class="rel-section-head">
+          <div class="sec-num">5c</div>
+          <div><div class="sec-title">Accessibilità e Usabilità</div><div class="sec-sub">ARIA · Keyboard · UX</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Accessibilità da tastiera</h3>
+          <p>Tutta la navigazione del sito è raggiungibile da tastiera senza mouse. La scorciatoia <kbd style="background:var(--mid);border:1px solid var(--border);padding:.1rem .4rem;border-radius:3px;font-family:monospace;font-size:.85em;">/</kbd> apre la lista piloti da qualsiasi pagina. I bottoni interattivi hanno attributi <code>aria-label</code> per i lettori di schermo. Il toggle tema ha <code>aria-label="Cambia tema"</code>.</p>
+
+          <h3>Attributi ARIA e semantica HTML</h3>
+          <ul class="feat-list">
+            <li>Tag semantici: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code> per strutturare correttamente il documento.</li>
+            <li>Attributo <code>aria-label</code> su hamburger, theme-toggle e scroll-top-btn.</li>
+            <li>Attributo <code>alt</code> su tutte le immagini dei piloti per i lettori di schermo.</li>
+            <li>Attributo <code>lang="it"</code> sull'elemento <code>&lt;html&gt;</code> per indicare la lingua al browser.</li>
+          </ul>
+
+          <h3>Principi UX applicati</h3>
+          <p><strong>Feedback visivo immediato:</strong> ogni elemento interattivo (link, bottone, riga tabella) cambia aspetto al hover con transizioni CSS di 150ms — abbastanza veloci da sembrare istantanee, ma percettibili come risposta all'azione.</p>
+          <p><strong>Gerarchia visiva:</strong> ogni pagina ha un unico punto di focus principale (hero, titolo categoria, nome pilota) identificato da font size e peso tipografico superiori. Le informazioni secondarie usano colori più chiari (<code>var(--muted)</code>) per non competere con il contenuto principale.</p>
+          <p><strong>Consistenza:</strong> ogni pagina usa gli stessi componenti (header, footer, section-title, card) con gli stessi stili. L'utente impara il sistema una volta sola e può navigare qualsiasi pagina senza sorprese.</p>
+
+          <h3>Indicatori di stato</h3>
+          <ul class="feat-list">
+            <li><strong>Round disputati</strong> vs futuri: nel calendario, i round completati portano ai risultati, quello successivo pulsa in giallo, i futuri mostrano un popup informativo invece di navigare a una pagina vuota.</li>
+            <li><strong>Leader di classifica</strong>: il pilota con più punti di ogni categoria ha la corona 👑 sulla card in piloti.html.</li>
+            <li><strong>API live</strong>: nella scheda pilota, se la chiamata all'API MotoGP riesce, appare il badge "✓ Live API" in verde nella sidebar.</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- 6. SVILUPPI FUTURI -->
+      <div class="rel-section" id="s6">
+        <div class="rel-section-head">
+          <div class="sec-num">06</div>
+          <div><div class="sec-title">Sviluppi Futuri</div><div class="sec-sub">Miglioramenti · Scalabilità</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Back-end e dati in tempo reale</h3>
+          <p>L'evoluzione naturale del progetto prevede l'introduzione di un back-end leggero (Node.js + Express o Python Flask) che interroga le API ufficiali MotoGP dopo ogni sessione e aggiorna automaticamente un file JSON centralizzato. Questo eliminerebbe la necessità di aggiornamento manuale dei dati.</p>
+
+          <h3>Database centralizzato</h3>
+          <p>Sostituire i dati embedded nei file HTML con un unico file <code>database.json</code> letto via Fetch da tutte le pagine. Ridurrebbe drasticamente la dimensione dei file HTML (da ~18.000 a ~3.000 righe) e renderebbe gli aggiornamenti istantanei modificando un solo file.</p>
+
+          <h3>Notifiche push</h3>
+          <p>Tramite le <strong>Push API</strong> del browser (già supportata dai Service Worker PWA), si potrebbe notificare l'utente al termine di ogni sessione con il vincitore e i punti — senza app nativa.</p>
+
+          <h3>Applicazione nativa</h3>
+          <p>Il sito è già installabile come PWA (Progressive Web App) su Android e iOS. Per una vera app nativa su App Store/Google Play si potrebbe usare <strong>Capacitor</strong> (Ionic) che avvolge il codice HTML/JS esistente in un container nativo, richiede circa 1-2 giorni di configurazione aggiuntiva.</p>
+
+          <h3>Scalabilità</h3>
+          <ul class="feat-list">
+            <li>Aggiunta di nuovi round: basta estendere l'oggetto <code>RESULTS</code> con i dati del round successivo.</li>
+            <li>Supporto stagioni precedenti: una pagina <code>archivio.html</code> con filtro per anno potrebbe mostrare le classifiche storiche.</li>
+            <li>Internazionalizzazione: i file di testo sono già strutturati in modo da supportare una traduzione in inglese o spagnolo con un oggetto <code>i18n</code>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. CONCLUSIONI -->
+      <div class="rel-section" id="s7">
+        <div class="rel-section-head">
+          <div class="sec-num">07</div>
+          <div><div class="sec-title">Conclusioni</div><div class="sec-sub">Risultati · Valutazione · Criticità</div></div>
+        </div>
+        <div class="rel-body">
+          <p>Il progetto ha raggiunto tutti gli obiettivi iniziali: un sito informativo completo sul Motomondiale 2026, navigabile da qualsiasi dispositivo, con dati aggiornati ai primi tre round stagionali e funzionante anche offline grazie alla tecnologia PWA.</p>
+
+          <h3>Risultati ottenuti</h3>
+          <ul class="feat-list">
+            <li>12 pagine funzionanti con navigazione coerente e tema scuro/chiaro.</li>
+            <li>79 piloti con scheda completa, palmares e grafico punti per round.</li>
+            <li>Classifiche dinamiche con confronto piloti e filtro costruttore.</li>
+            <li>Risultati completi per 3 round (Thailandia, Brasile, USA) con tutte le sessioni.</li>
+            <li>Installabile come app su Android, iOS e desktop.</li>
+          </ul>
+
+          <h3>Criticità incontrate e soluzioni</h3>
+          <p><strong>CSS con definizioni duplicate</strong> — L'accumulo di sessioni di sviluppo aveva prodotto ridefinizioni CSS conflittuali dell'header. Risolto usando <code>!important</code> su un blocco unico di override aggiunto in coda al <code>&lt;style&gt;</code>.</p>
+          <p><strong>MutationObserver in loop</strong> — L'aggiunta delle medaglie 🥇🥈🥉 tramite un Observer che osservava il nodo che modificava ha generato un loop infinito bloccando la pagina risultati. Risolto rimuovendo l'Observer e chiamando la funzione direttamente dopo ogni render.</p>
+          <p><strong>Dati costruttori</strong> — Il calcolo automatico dei punti costruttori non corrispondeva ai valori ufficiali per via dei punteggi dimezzati al round 1 Moto2 (bandiera rossa) e delle regole FIM. Risolto con punteggi statici hardcodati post-calcolo.</p>
+
+          <h3>Valutazione complessiva</h3>
+          <p>Il progetto dimostra come sia possibile realizzare un'applicazione web complessa, performante e responsive usando esclusivamente le tecnologie base del web (HTML, CSS, JavaScript) senza dipendenze esterne, mantenendo il codice comprensibile, manutenibile e aggiornabile.</p>
+        </div>
+      </div>
+
+      <!-- 8. FONTI -->
+      <div class="rel-section" id="s8">
+        <div class="rel-section-head">
+          <div class="sec-num">08</div>
+          <div><div class="sec-title">Fonti e Bibliografia</div><div class="sec-sub">Documentazione · Siti · Strumenti</div></div>
+        </div>
+        <div class="rel-body">
+          <h3>Documentazione tecnica</h3>
+          <ul class="feat-list">
+            <li><strong>MDN Web Docs</strong> (developer.mozilla.org) — Riferimento principale per HTML5, CSS3, JavaScript ES2022, Fetch API, Service Worker, localStorage.</li>
+            <li><strong>W3C Standards</strong> (w3.org) — Specifiche HTML Living Standard e CSS.</li>
+            <li><strong>web.dev</strong> (web.dev/progressive-web-apps) — Guida alla realizzazione di Progressive Web App, manifest e Service Worker.</li>
+          </ul>
+
+          <h3>Dati sportivi</h3>
+          <ul class="feat-list">
+            <li><strong>MotoGP Official Website</strong> (motogp.com) — Risultati ufficiali, classifiche, schede piloti.</li>
+            <li><strong>MotoGP PulseLive API</strong> (api.motogp.pulselive.com) — Endpoint pubblico REST per i dati live dei piloti.</li>
+            <li><strong>Wikipedia</strong> — Dati storici palmares piloti e albo d'oro dal 1949.</li>
+          </ul>
+
+          <h3>Risorse grafiche</h3>
+          <ul class="feat-list">
+            <li><strong>Google Fonts</strong> (fonts.google.com) — Font Bebas Neue, Barlow Condensed, Barlow.</li>
+            <li><strong>Foto piloti e tracciati</strong> — Immagini in formato WebP/PNG ottimizzate per il web.</li>
+          </ul>
+
+          <h3>Strumenti di sviluppo</h3>
+          <ul class="feat-list">
+            <li><strong>Visual Studio Code</strong> — Editor di codice con Live Server per il testing locale.</li>
+            <li><strong>Chrome DevTools</strong> — Debugging, analisi performance, test responsività e Service Worker.</li>
+            <li><strong>Netlify / GitHub Pages</strong> — Piattaforme di hosting statico per la pubblicazione online.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /rel-content -->
+  </div><!-- /rel-layout -->
+</div><!-- /container -->
+
+<footer>
+      <a href="index.html" class="logo">MOTO<span style="color:var(--red)">2026</span></a>
+      <p>Risultati ufficiali — aggiornati al 23 marzo 2026</p>
+      <div class="socials">
+        <a href="#">📸 Instagram</a>
+        <a href="#">🐦 X / Twitter</a>
+        <a href="#">▶️ YouTube</a>
+        <a href="#">📘 Facebook</a>
+      </div>
+      <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+    </footer>
+
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna in cima">↑</button>
+
+<script>
+function initTheme() {
+  const s = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', s);
+  const ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = s === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// Scroll top
+window.addEventListener('scroll', () => {
+  document.getElementById('scroll-top-btn')?.classList.toggle('visible', scrollY > 400);
+});
+
+// TOC active on scroll
+const tocLinks = document.querySelectorAll('.toc-item a');
+const sections = document.querySelectorAll('.rel-section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, { passive:true });
+
+// Shortcut /
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === '/' && !e.ctrlKey) { e.preventDefault(); location.href = 'piloti.html'; }
+});
+
+// Chiudi menu mobile al click
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => document.querySelector('.mobile-menu')?.classList.remove('open'));
+});
+
+
+// ══ GENERAZIONE DOCUMENTO PDF ══
+
+// Converte innerHTML in testo sicuro per il documento generato
+function safeText(el) {
+  if (!el) return '';
+  // Sostituisce tag <code>, <strong>, <em> con testo semplice
+  // e fa escape dei caratteri HTML pericolosi
+  return el.innerHTML
+    .replace(/<strong>/gi, '<strong>').replace(/<\/strong>/gi, '</strong>')
+    .replace(/<em>/gi, '<em>').replace(/<\/em>/gi, '</em>')
+    .replace(/<code>[^<]*<\/code>/gi, function(m) {
+      return '<code>' + m.replace(/<code>/gi,'').replace(/<\/code>/gi,'') + '</code>';
+    })
+    .replace(/<(?!strong|\/strong|em|\/em|code|\/code|br)[^>]+>/gi, '') // rimuovi altri tag
+    || el.textContent || '';
+}
+
+function buildDocumentHTML() {
+  let sections = '';
+  document.querySelectorAll('.rel-section[id]').forEach(sec => {
+    const num   = (sec.querySelector('.sec-num')  || {}).textContent || '';
+    const title = (sec.querySelector('.sec-title') || {}).textContent || '';
+    const sub   = (sec.querySelector('.sec-sub')   || {}).textContent || '';
+    const body  = sec.querySelector('.rel-body');
+    if (!body || !title.trim()) return;
+
+    let content = '';
+    Array.from(body.children).forEach(function(el) {
+      var cls = el.className || '';
+      var tag = (el.tagName || '').toUpperCase();
+
+      if (tag === 'H3') {
+        content += '<h3>' + el.textContent + '</h3>\n';
+
+      } else if (tag === 'P') {
+        // Usa innerHTML sanitizzato per mantenere bold/code/em
+        var txt = el.innerHTML
+          .replace(/<strong>(.*?)<\/strong>/gi, '<strong>$1</strong>')
+          .replace(/<em>(.*?)<\/em>/gi, '<em>$1</em>')
+          .replace(/<code>(.*?)<\/code>/gi, '<code>$1</code>')
+          .replace(/<(?!strong|\/strong|em|\/em|code|\/code|br\s*\/?>)[^>]+>/gi, '');
+        content += '<p>' + txt + '</p>\n';
+
+      } else if (cls.indexOf('feat-list') >= 0) {
+        var items = Array.from(el.querySelectorAll('li'))
+          .map(function(li) { return '<li>' + li.textContent.trim() + '</li>'; }).join('');
+        content += '<ul>' + items + '</ul>\n';
+
+      } else if (cls.indexOf('req-block') >= 0 || cls.indexOf('note-block') >= 0) {
+        content += '<blockquote>' + el.textContent.trim() + '</blockquote>\n';
+
+      } else if (cls.indexOf('code-block') >= 0) {
+        var codeEl = el.querySelector('code') || el;
+        var raw = codeEl.textContent;
+        var safe = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        content += '<pre><code>' + safe + '</code></pre>\n';
+
+      } else if (cls.indexOf('stats-row') >= 0) {
+        var cells = Array.from(el.querySelectorAll('.stat-box')).map(function(b) {
+          var v = (b.querySelector('.stat-box-val')   || {}).textContent || '';
+          var l = (b.querySelector('.stat-box-label') || {}).textContent || '';
+          return '<td><strong>' + v + '</strong><br><small>' + l + '</small></td>';
+        }).join('');
+        if (cells) content += '<table><tr>' + cells + '</tr></table>\n';
+
+      } else if (cls.indexOf('tech-grid') >= 0) {
+        var cards = Array.from(el.querySelectorAll('.tech-card')).map(function(c) {
+          var n = (c.querySelector('.tech-card-name')  || {}).textContent || '';
+          var l = (c.querySelector('.tech-card-label') || {}).textContent || '';
+          var d = (c.querySelector('.tech-card-desc')  || {}).textContent || '';
+          return '<div class="ti"><strong>' + n + '</strong> <em>(' + l + ')</em><br>' + d + '</div>';
+        }).join('');
+        if (cards) content += '<div class="tg">' + cards + '</div>\n';
+
+      } else if (cls.indexOf('arch-diagram') >= 0) {
+        var rows = Array.from(el.querySelectorAll('.arch-row')).map(function(row) {
+          return row.textContent.replace(/\s+/g,' ').trim();
+        }).join('\n');
+        content += '<blockquote><pre style="background:none;color:#333;font-size:.85rem;padding:0;white-space:pre-wrap">' + rows + '</pre></blockquote>\n';
+
+      } else if (cls.indexOf('note-block') >= 0) {
+        content += '<blockquote class="note">' + el.textContent.trim() + '</blockquote>\n';
+      }
+    });
+
+    sections +=
+      '<section>' +
+      '<div class="sh"><span class="n">' + num.trim() + '</span>' +
+      '<div><h2>' + title.trim() + '</h2>' +
+      (sub.trim() ? '<div class="s">' + sub.trim() + '</div>' : '') +
+      '</div></div>' +
+      content +
+      '</section>\n';
+  });
+
+  var css = [
+    '*{box-sizing:border-box;margin:0;padding:0}',
+    'body{font-family:Georgia,serif;max-width:820px;margin:0 auto;padding:4rem 2.5rem 5rem;color:#111;line-height:1.75;font-size:15px;background:#fff}',
+    '.bar{position:fixed;top:0;left:0;right:0;background:#1a1a1a;padding:.5rem 1.5rem;display:flex;align-items:center;gap:.7rem;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.3)}',
+    '.bar span{font-family:Arial,sans-serif;font-size:.8rem;color:#aaa;flex:1}',
+    '.bar button{font-family:Arial,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:.38rem .9rem;border:none;border-radius:4px;cursor:pointer}',
+    '.bd{background:#e8001d;color:#fff}.bd:hover{background:#c4001a}',
+    '.bc{background:#444;color:#fff}.bc:hover{background:#555}',
+    '.hd{border-bottom:3px solid #e8001d;padding-bottom:1.5rem;margin-bottom:2rem}',
+    '.ey{font-family:Arial,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#e8001d;margin-bottom:.5rem}',
+    'h1{font-family:"Arial Black",Arial,sans-serif;font-size:2.4rem;letter-spacing:-.02em;line-height:1.05;margin-bottom:.4rem}',
+    'h1 em{color:#e8001d;font-style:normal}',
+    '.su{color:#555;font-size:.92rem;margin-bottom:.8rem}',
+    'section{margin-bottom:2.8rem;page-break-inside:avoid;border-bottom:1px solid #f0f0f0;padding-bottom:1rem}',
+    'section:last-child{border-bottom:none}',
+    '.sh{display:flex;align-items:flex-start;gap:.8rem;border-bottom:2px solid #e8001d;padding-bottom:.6rem;margin-bottom:1.2rem}',
+    '.n{font-family:"Arial Black",Arial,sans-serif;font-size:1.8rem;color:#e8001d;flex-shrink:0;line-height:1;font-weight:900;min-width:2.5rem}',
+    'h2{font-family:"Arial Black",Arial,sans-serif;font-size:1.2rem;letter-spacing:.01em}',
+    '.s{font-size:.68rem;font-family:Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-top:.25rem}',
+    'h3{font-family:Arial,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin:1.3rem 0 .45rem;padding-bottom:.2rem;border-bottom:1px solid #f0f0f0}',
+    'p{margin-bottom:.85rem;color:#222;word-break:break-word}',
+    'ul{margin:.4rem 0 .9rem 1.3rem}li{margin-bottom:.4rem;color:#333}',
+    'blockquote{background:#fff8f8;border-left:3px solid #e8001d;margin:.7rem 0;padding:.65rem 1rem;border-radius:0 4px 4px 0;font-size:.9rem;color:#444}',
+    'blockquote.note{background:#f0faff;border-left-color:#00b4d8}',
+    'pre{background:#1c1c1c;color:#e8e8e8;padding:1rem 1.2rem;border-radius:5px;overflow-x:auto;font-size:.75rem;line-height:1.55;margin:.7rem 0;white-space:pre}',
+    'code{font-family:"Courier New",Courier,monospace;background:#f5f5f5;padding:.1rem .3rem;border-radius:3px;font-size:.88em;color:#c00}',
+    'pre code{background:none;color:#e8e8e8;padding:0;font-size:inherit}',
+    'strong{font-weight:700;color:#000}em{font-style:italic;color:#555}',
+    'table{border-collapse:collapse;width:100%;margin:.7rem 0}',
+    'td{padding:.55rem .8rem;background:#f9f9f9;border:1px solid #e0e0e0;text-align:center;vertical-align:top}',
+    'small{font-size:.72rem;color:#666}',
+    '.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin:.6rem 0}',
+    '.ti{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:4px;padding:.65rem .9rem;font-size:.86rem}',
+    '@media print{.bar{display:none}body{padding-top:0}@page{margin:2cm 2.5cm}}',
+    '@media(max-width:600px){body{padding:4rem 1rem 3rem}h1{font-size:1.8rem}.tg{grid-template-columns:1fr}}'
+  ].join('');
+
+  return '<!DOCTYPE html><html lang="it"><head>' +
+    '<meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<title>Relazione Tecnica — Motomondiale 2026</title>' +
+    '<style>' + css + '</style>' +
+    '</head><body>' +
+    '<div class="bar">' +
+    '<span>Relazione Tecnica — Motomondiale 2026</span>' +
+    '<button class="bd" onclick="' +
+    '  var h=document.documentElement.outerHTML;' +
+    '  var uri=\'data:text/html;charset=utf-8,\'+encodeURIComponent(h);' +
+    '  var a=document.createElement(\'a\');' +
+    '  a.href=uri;' +
+    '  a.download=\'Relazione_Motomondiale2026.html\';' +
+    '  a.click();' +
+    '">⬇️ Scarica</button>' +
+    '<button class="bc" onclick="window.close()">✕ Chiudi</button>' +
+    '</div>' +
+    '<div class="hd">' +
+    '<div class="ey">Documentazione Tecnica</div>' +
+    '<h1>Relazione <em>Tecnica</em></h1>' +
+    '<p class="su">Progettazione e sviluppo del sito web Motomondiale 2026</p>' +
+    '</div>' +
+    sections +
+    '</body></html>';
+}
+
+// ── SCARICA: genera HTML e scarica direttamente nella cartella Download ──
+function scaricaPDF() {
+  var html = buildDocumentHTML();
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'Relazione_Motomondiale2026.html';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function() { URL.revokeObjectURL(url); }, 10000);
+}
+
+// ── APRI PDF ──
+function apriPDF() {
+  var html = buildDocumentHTML();
+  // Apre prima la finestra (dentro il click handler = non bloccato)
+  var w = window.open('', '_blank');
+  if (w) {
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    return;
+  }
+  // Fallback se popup bloccato: scarica il file
+  scaricaPDF();
+}
+
+
+// ── TORNA INDIETRO ──
+(function(){
+  var NAMES = {
+    'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
+    'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
+    'classifica.html':'Classifica','risultati.html':'Risultati',
+    'calendario.html':'Calendario','stagione.html':'Stagione',
+    'albo_doro.html':"Albo d\'oro",'guida.html':'Guida','relazione.html':'Relazione'
+  };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>';
+    }
+  }
+
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+
+  // Mostra subito se DOM pronto, altrimenti aspetta
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else {
+    showBackBtn();
+  }
+
+  // Intercetta TUTTI i click su link interni
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true); // useCapture=true: cattura prima del navigate
+})();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();</script>
+</body>
+

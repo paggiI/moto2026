@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Motomondiale 2026 — Notizie MotoGP · Moto2 · Moto3</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+      --gp:     #e8001d;   /* MotoGP rosso */
+      --m2:     #f7a600;   /* Moto2 giallo */
+      --m3:     #00b4d8;   /* Moto3 azzurro */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+    /* ══ HEADER PULITO ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border); display: block;
+      transition: color .15s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--white); background: rgba(232,0,29,.1);
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 520px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 60%, #2a0005 100%);
+      padding: 3rem 2rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 38px,
+        rgba(232,0,29,.04) 38px,
+        rgba(232,0,29,.04) 40px
+      );
+    }
+    .hero-number {
+      position: absolute; right: -20px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(180px, 28vw, 360px);
+      color: rgba(232,0,29,.07);
+      line-height: 1; user-select: none;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 720px; }
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase;
+      background: var(--red); color: #fff;
+      padding: .25rem .6rem; border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: .95;
+      letter-spacing: .02em;
+    }
+    .hero h1 span { color: var(--red); }
+    .hero p {
+      margin-top: 1.1rem;
+      color: #fafafa;
+      font-size: 1.05rem;
+      max-width: 480px;
+    }
+    .hero-actions { margin-top: 1.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: .7rem 1.6rem; border-radius: 3px;
+      transition: all .2s;
+      cursor: pointer; border: none;
+    }
+    .btn-red   { background: var(--red);   color: #fff; }
+    .btn-red:hover { background: #c4001a; }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid #444; }
+    .btn-outline:hover { border-color: var(--white); }
+
+    /* ── CATEGORY STRIP ── */
+    .cats {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-btn {
+      flex: 1; padding: .9rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .1em;
+      text-transform: uppercase; text-align: center;
+      background: var(--mid); color: var(--muted);
+      border: none; border-right: 1px solid var(--border);
+      cursor: pointer; transition: all .2s;
+    }
+    .cat-btn:last-child { border-right: none; }
+    .cat-btn:hover, .cat-btn.active { color: #fff; }
+    .cat-btn[data-cat="motogp"]:hover,
+    .cat-btn[data-cat="motogp"].active { background: var(--gp); }
+    .cat-btn[data-cat="moto2"]:hover,
+    .cat-btn[data-cat="moto2"].active  { background: var(--m2); color: #111; }
+    .cat-btn[data-cat="moto3"]:hover,
+    .cat-btn[data-cat="moto3"].active  { background: var(--m3); }
+
+    /* ── LAYOUT MAIN ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    main { padding: 3rem 0; }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: .06em;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── NEWS GRID ── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) {
+      .news-grid { grid-template-columns: 1fr; }
+    }
+
+    .news-featured {
+      position: relative; overflow: hidden; border-radius: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      cursor: pointer; transition: transform .25s;
+    }
+    .news-featured:hover { transform: translateY(-3px); }
+    .news-featured .img-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a0005, #2d0008);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 5rem;
+      color: rgba(232,0,29,.2);
+      overflow: hidden; position: relative;
+    }
+    .news-featured .img-placeholder::after {
+      content: 'MOTO GP';
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem; color: rgba(255,255,255,.04);
+      position: absolute; bottom: 10px; right: 10px;
+      letter-spacing: .1em;
+    }
+    .news-featured .body { padding: 1.4rem; }
+    .tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .5rem; border-radius: 2px;
+      margin-bottom: .6rem;
+    }
+    .tag-gp  { background: rgba(232,0,29,.15); color: var(--gp); }
+    .tag-m2  { background: rgba(247,166,0,.15); color: var(--m2); }
+    .tag-m3  { background: rgba(0,180,216,.15); color: var(--m3); }
+
+    .news-featured h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.4rem; line-height: 1.25;
+      color: var(--white);
+    }
+    .news-featured p { margin-top: .5rem; color: var(--muted); font-size: .9rem; }
+    .meta { margin-top: .8rem; font-size: .8rem; color: #555; }
+
+    .news-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+
+    .news-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; display: flex; gap: 0;
+      overflow: hidden; cursor: pointer; transition: border-color .2s;
+    }
+    .news-card:hover { border-color: #444; }
+    .news-card { cursor: pointer; }
+    .news-featured { cursor: pointer; }
+
+    /* ── NEWS MODAL ── */
+    .news-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.82); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .news-modal-overlay.open { display: flex; }
+    .news-modal {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; max-width: 640px; width: 100%;
+      max-height: 88vh; overflow-y: auto;
+      animation: modalIn .22s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(18px); opacity:0; } to { transform: none; opacity:1; } }
+    .nm-header {
+      padding: 1.2rem 1.4rem .8rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .nm-tag { flex-shrink: 0; }
+    .nm-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; line-height: 1.3; flex: 1; }
+    .nm-close {
+      flex-shrink: 0; background: none; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; border-radius: 4px;
+      width: 28px; height: 28px; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .nm-close:hover { border-color: var(--white); color: var(--white); }
+    .nm-body { padding: 1.2rem 1.4rem; }
+    .nm-meta { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .04em; }
+    .nm-text { font-size: .95rem; line-height: 1.75; color: #ccc; }
+    .news-card .thumb {
+      width: 90px; flex-shrink: 0;
+      background: linear-gradient(135deg, #100010, #1a001a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: rgba(255,255,255,.06);
+    }
+    .news-card .body { padding: .8rem; }
+    .news-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 1rem; line-height: 1.3;
+    }
+    .news-card .meta { font-size: .75rem; }
+
+    /* ── STANDINGS PREVIEW ── */
+    .standings-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) { .standings-row { grid-template-columns: 1fr; } }
+
+    .standings-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+    }
+    .standings-card .sc-header {
+      padding: .8rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .9rem; letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .sc-header.gp { background: var(--gp); }
+    .sc-header.m2 { background: var(--m2); color: #111; }
+    .sc-header.m3 { background: var(--m3); }
+
+    .standings-card table { width: 100%; border-collapse: collapse; }
+    .standings-card td, .standings-card th {
+      padding: .65rem 1rem;
+      font-size: 1.05rem; text-align: left;
+    }
+    .standings-card th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; font-size: .75rem;
+      color: var(--muted); border-bottom: 1px solid var(--border);
+    }
+    .standings-card tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+    .pos { color: var(--muted); width: 30px; }
+    .pts { font-weight: 700; color: var(--red); text-align: right; }
+
+    /* ── CALENDAR STRIP ── */
+    .calendar-strip {
+      display: flex; gap: 1rem; overflow-x: auto;
+      padding-bottom: .5rem; margin-bottom: 3rem;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    }
+    .race-card {
+      flex-shrink: 0; width: 160px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1rem; cursor: pointer;
+      transition: border-color .2s, transform .2s;
+    }
+    .race-card:hover { border-color: #555; transform: translateY(-2px); }
+    .race-card.next { border-color: var(--red); }
+    .race-card .rc-round {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .race-card.next .rc-round { color: var(--red); }
+    .race-card .rc-flag { font-size: 1.8rem; margin: .4rem 0; }
+    .race-card .rc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; line-height: 1.2;
+    }
+    .race-card .rc-date { font-size: .75rem; color: var(--muted); margin-top: .3rem; }
+    .race-card .rc-status {
+      margin-top: .5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .race-card.next .rc-status { color: var(--red); }
+    .race-card.done .rc-status { color: #00ff00; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mid); border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .85rem; color: var(--black);
+    }
+    footer .logo { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+    footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; }
+    footer .socials a {
+      color: var(--muted); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .85rem; letter-spacing: .06em;
+      text-transform: uppercase; transition: color .2s;
+    }
+    footer .socials a:hover { color: var(--white); }
+
+    /* ── MOBILE NAV ── */
+  
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #ffffff;
+    }
+    [data-theme="light"] body { background:#f4f4f4; color:#111; }
+    [data-theme="light"] .page-hero {
+      background:linear-gradient(135deg,#fff 0%,#ffe8e8 60%,#fff0f0 100%);
+    }
+    [data-theme="light"] .hero-number { color:rgba(232,0,29,.08); }
+    [data-theme="light"] .hero-badge { background:rgba(232,0,29,.12); color:#c4001a; border-color:rgba(232,0,29,.25); }
+    [data-theme="light"] .hero h1 { color:#ffffff; }
+    [data-theme="light"] .hero p { color:#ffffff; }
+    [data-theme="light"] .stats-bar { background:#e8e8e8; border-bottom-color:#d0d0d0; }
+    [data-theme="light"] .stat-box h3 { color:#111; }
+    [data-theme="light"] .stat-box p { color:#000000; }
+    [data-theme="light"] .race-table { background:#fff; border-color:#d0d0d0; }
+    [data-theme="light"] .race-table thead { background:#f8f8f8; }
+    [data-theme="light"] .race-table th { color:#999; }
+    [data-theme="light"] .race-table tbody tr { border-bottom-color:#f0f0f0; }
+    [data-theme="light"] .race-table tbody tr:hover { background:rgba(0,0,0,.02); }
+    [data-theme="light"] .race-table td { color:#111; }
+    [data-theme="light"] .rider-card { background:#fff; border-color:#d0d0d0; }
+    [data-theme="light"] .rider-card:hover { background:#f8f8f8 !important; border-color:#aaa; }
+    [data-theme="light"] .rider-pos { color:#111; }
+    [data-theme="light"] .rider-name { color:#111; }
+    [data-theme="light"] .rider-team { color:#999; }
+    [data-theme="light"] .rider-pts { color:#111; }
+    [data-theme="light"] .section-title { color:#111; }
+    [data-theme="light"] .section-title::after { background:#d0d0d0; }
+    [data-theme="light"] .news-card { background:#fff; border-color:#000000; }
+    [data-theme="light"] .news-card:hover { border-color:#000000; }
+    [data-theme="light"] .news-date { color:#000000; }
+    [data-theme="light"] .news-title { color:#000000; }
+    [data-theme="light"] .news-desc { color:#000000; }
+    [data-theme="light"] .nm-text { font-size: .95rem; line-height: 1.75; color: #000000; }
+    [data-theme="light"] footer { background:#e8e8e8; border-top-color:#d0d0d0; }
+    [data-theme="light"] footer p { color:#000000; }
+    [data-theme="light"] #theme-toggle { background:#fff; border-color:#d0d0d0; color:#000000; }
+    [data-theme="light"] #theme-toggle:hover { background:#f0f0f0; color:#111; }
+    [data-theme="light"] .logo { color:#111 !important; }
+
+    
+    /* ── SCROLL TO TOP ── */
+    #scroll-top-btn {
+      position:fixed; bottom:1.5rem; right:1.5rem; z-index:999;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--red); color:#fff; border:none;
+      font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s, transform .25s;
+      box-shadow:0 2px 10px rgba(232,0,29,.4);
+    }
+    #scroll-top-btn.visible { opacity:1; pointer-events:all; }
+    #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    
+    /* ── BADGE LIVE ── */
+    .live-badge {
+      display:inline-flex; align-items:center; gap:.3rem;
+      font-family:'Barlow Condensed',sans-serif; font-size:.7rem;
+      font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      padding:.2rem .6rem; border-radius:3px;
+      background:rgba(247,166,0,.15); color:#f7a600;
+      border:1px solid rgba(247,166,0,.4);
+      vertical-align:middle;
+    }
+    .live-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:#f7a600;
+      animation:livePulse 1.2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.4; transform:scale(.7); }
+    }
+
+    
+    /* COUNTDOWN PROSSIMO GP */
+    .countdown-wrap {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:1.4rem 1.6rem;
+      margin-bottom:2rem; position:relative; overflow:hidden;
+    }
+    .countdown-wrap::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--red),#f7a600);
+    }
+    .countdown-header {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:1rem; flex-wrap:wrap; gap:.5rem;
+    }
+    .countdown-label {
+      font-family:'Barlow Condensed',sans-serif; font-size:.75rem;
+      font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--red);
+    }
+    .countdown-race {
+      font-family:'Bebas Neue',sans-serif; font-size:1.4rem;
+      letter-spacing:.06em;
+    }
+    .countdown-cells {
+      display:flex; gap:.6rem; flex-wrap:wrap;
+    }
+    .cd-cell {
+      background:var(--mid); border:1px solid var(--border);
+      border-radius:6px; min-width:60px; padding:.5rem .7rem;
+      text-align:center;
+    }
+    .cd-val {
+      font-family:'Bebas Neue',sans-serif; font-size:2rem;
+      line-height:1; color:var(--balck);
+    }
+    .cd-lbl {
+      font-family:'Barlow Condensed',sans-serif; font-size:.62rem;
+      font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); margin-top:.1rem;
+    }
+
+    
+    /* Toast shortcut */
+    #shortcut-toast {
+      position:fixed; bottom:5.5rem; right:1.5rem; z-index:998;
+      background:#222; border:1px solid #444; border-radius:8px;
+      padding:.55rem 1rem; font-family:'Barlow Condensed',sans-serif;
+      font-size:.78rem; color:#aaa; letter-spacing:.04em;
+      opacity:0; transform:translateY(10px);
+      transition:opacity .3s, transform .3s;
+      pointer-events:none;
+    }
+    #shortcut-toast.show { opacity:1; transform:translateY(0); }
+
+    
+    /* Barra progressione stagione */
+    .season-progress-wrap {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:8px; padding:1rem 1.4rem; margin-bottom:1.5rem;
+    }
+    .season-progress-header {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:.6rem;
+      font-family:'Barlow Condensed',sans-serif; font-size:.78rem;
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--muted);
+    }
+    .season-progress-header span:last-child { color:var(--red); }
+    .season-progress-track {
+      height:8px; background:var(--mid); border-radius:4px; overflow:hidden;
+    }
+    .season-progress-fill {
+      height:100%; border-radius:4px;
+      background:linear-gradient(90deg, var(--red), #f7a600);
+      transition:width 1s cubic-bezier(.4,0,.2,1);
+      width:0;
+    }
+
+    
+    /* ═══════════════════════════════════
+       HEADER OVERRIDE — versione finale
+    ═══════════════════════════════════ */
+    /* ── Breakpoint: hamburger sotto 1100px ── */
+    @media (min-width: 1101px) {
+    }
+    /* Mobile menu */
+    /* Light mode */
+    [data-theme="light"] #theme-toggle { border-color: #ccc !important; color: #555 !important; }
+
+    
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+    /* Escludi elementi che non devono transitare */
+    .rider-photo, img, video, canvas, svg,
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+      transition: none !important;
+    }
+    
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo">MOTO<span>2026</span></a>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="motogp.html">MotoGP</a>
+    <a href="moto2.html">Moto2</a>
+    <a href="moto3.html">Moto3</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="piloti.html">Piloti</a>
+    <a href="classifica.html">Classifica</a>
+    <a href="risultati.html">Risultati</a>
+    <a href="stagione.html">Stagione</a>
+    <a href="albo_doro.html">Albo d'oro</a>
+    <a href="guida.html">Guida</a>
+    <a href="relazione.html">Relazione</a>
+  </nav>
+  <div class="header-right"><button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambia tema"><span id="theme-icon">☀️</span></button><div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div></div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="active">Home</a>
+  <a href="motogp.html">MotoGP</a>
+  <a href="moto2.html">Moto2</a>
+  <a href="moto3.html">Moto3</a>
+  <a href="calendario.html">Calendario</a>
+  <a href="piloti.html">Piloti</a>
+  <a href="classifica.html">Classifica</a>
+  <a href="risultati.html">Risultati</a>
+  <a href="stagione.html">Stagione</a>
+  <a href="albo_doro.html">Albo d'oro</a>
+  <a href="guida.html">Guida</a>
+  <a href="relazione.html">Relazione</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-number">26</div>
+  <div class="hero-content">
+    <span class="hero-badge">🏁 Stagione 2026</span>
+    <h1>IL MOTOMONDIALE<br><span>È QUI.</span></h1>
+    <p>Notizie in tempo reale, classifiche aggiornate e tutto ciò che succede in pista — MotoGP, Moto2 e Moto3.</p>
+    <div class="hero-actions">
+      <a href="risultati.html" class="btn btn-outline">Risultati</a>
+      <a href="calendario.html" class="btn btn-outline">Calendario 2026</a>
+      <a href="classifica.html" class="btn btn-outline">Classifica</a>
+      <a href="piloti.html" class="btn btn-outline">Piloti</a>
+      <a href="albo_doro.html" class="btn btn-outline">Albo d'oro</a>
+      <a href="stagione.html" class="btn btn-outline">Stagione</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+<main>
+
+  <!-- ULTIME NOTIZIE -->
+  <h2 class="section-title">Ultime Notizie</h2>
+
+  <div class="news-grid" id="news-container"></div>
+
+  
+
+  <!-- COUNTDOWN PROSSIMO GP -->
+  <div class="countdown-wrap" id="countdown-section">
+    <div class="countdown-header">
+      <span class="countdown-label">⏱️ Prossimo GP</span>
+      <span class="countdown-race">🇪🇸 Round 4 — GP Spagna · Jerez</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;color:var(--muted);">24–26 aprile 2026</span>
+    </div>
+    <div class="countdown-cells" id="countdown-cells">
+      <div class="cd-cell"><div class="cd-val" id="cd-d">--</div><div class="cd-lbl">Giorni</div></div>
+      <div class="cd-cell"><div class="cd-val" id="cd-h">--</div><div class="cd-lbl">Ore</div></div>
+      <div class="cd-cell"><div class="cd-val" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+      <div class="cd-cell"><div class="cd-val" id="cd-s">--</div><div class="cd-lbl">Sec</div></div>
+    </div>
+  </div>
+
+  <!-- BARRA PROGRESSIONE STAGIONE -->
+  <div class="season-progress-wrap">
+    <div class="season-progress-header">
+      <span>⚡ Stagione 2026</span>
+      <span>3 / 22 round completati</span>
+    </div>
+    <div class="season-progress-track">
+      <div class="season-progress-fill" id="season-fill"></div>
+    </div>
+  </div>
+
+<!-- CLASSIFICA PILOTI — dati reali dopo Round 3 -->
+  <h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 3 round</span></h2>
+  
+
+  <div class="standings-row">
+
+    <div class="standings-card">
+      <div class="sc-header gp">MotoGP</div>
+      <table>
+        <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
+        <tr><td class="pos">1</td><td>M. Bezzecchi</td><td class="pts">81</td></tr>
+        <tr><td class="pos">2</td><td>J. Martín</td><td class="pts">77</td></tr>
+        <tr><td class="pos">3</td><td>P. Acosta</td><td class="pts">60</td></tr>
+        <tr><td class="pos">4</td><td>F. Di Giannantonio</td><td class="pts">50</td></tr>
+        <tr><td class="pos">5</td><td>M. Márquez</td><td class="pts">45</td></tr>
+      </table>
+    </div>
+
+    <div class="standings-card">
+      <div class="sc-header m2">Moto2</div>
+      <table>
+        <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
+        <tr><td class="pos">1</td><td>M. González</td><td class="pts">39.5</td></tr>
+        <tr><td class="pos">2</td><td>I. Guevara</td><td class="pts">36</td></tr>
+        <tr><td class="pos">3</td><td>D. Holgado</td><td class="pts">33</td></tr>
+        <tr><td class="pos">4</td><td>C. Vietti</td><td class="pts">32</td></tr>
+        <tr><td class="pos">5</td><td>D. Muñoz</td><td class="pts">26</td></tr>
+      </table>
+    </div>
+
+    <div class="standings-card">
+      <div class="sc-header m3">Moto3</div>
+      <table>
+        <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
+        <tr><td class="pos">1</td><td>M. Quiles</td><td class="pts">65</td></tr>
+        <tr><td class="pos">2</td><td>A. Carpe</td><td class="pts">42</td></tr>
+        <tr><td class="pos">3</td><td>V. Perrone</td><td class="pts">38</td></tr>
+        <tr><td class="pos">4</td><td>G. Pini</td><td class="pts">36</td></tr>
+        <tr><td class="pos">5</td><td>M. Morelli</td><td class="pts">32</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CALENDARIO 2026 — completo -->
+  <h2 class="section-title">Calendario 2026</h2>
+  <div class="calendar-strip">
+    <a href="risultati.html?round=r1" class="race-card done" style="text-decoration:none;color:inherit;">
+      <div class="rc-round">Round 1</div><div class="rc-flag">🇹🇭</div>
+      <div class="rc-name">GP Thailandia</div><div class="rc-date">27 feb – 1 mar</div>
+      <div class="rc-status">✓ Risultati →</div>
+    </a>
+    <a href="risultati.html?round=r2" class="race-card done" style="text-decoration:none;color:inherit;">
+      <div class="rc-round">Round 2</div><div class="rc-flag">🇧🇷</div>
+      <div class="rc-name">GP Brasile</div><div class="rc-date">20–22 mar</div>
+      <div class="rc-status">✓ Risultati →</div>
+    </a>
+    <a href="risultati.html?round=r3" class="race-card done" style="text-decoration:none;color:inherit;">
+      <div class="rc-round">Round 3</div><div class="rc-flag">🇺🇸</div>
+      <div class="rc-name">GP USA</div><div class="rc-date">27–29 mar</div>
+      <div class="rc-status">✓ Risultati →</div>
+    </a>
+    <a href="risultati.html?round=r4" class="race-card next" style="text-decoration:none;color:inherit;">
+      <div class="rc-round">Round 4</div><div class="rc-flag">🇪🇸</div>
+      <div class="rc-name">GP Spagna</div><div class="rc-date">27–29 mar</div>
+      <div class="rc-status">⚡ Prossimo →</div>
+    </a>
+    <div class="race-card"><div class="rc-round">Round 5</div><div class="rc-flag">🇫🇷</div><div class="rc-name">GP Francia</div><div class="rc-date">8–10 mag</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 6</div><div class="rc-flag">🇪🇸</div><div class="rc-name">GP Catalunya</div><div class="rc-date">15–17 mag</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 7</div><div class="rc-flag">🇮🇹</div><div class="rc-name">GP Italia</div><div class="rc-date">29–31 mag</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 8</div><div class="rc-flag">🇭🇺</div><div class="rc-name">GP Ungheria</div><div class="rc-date">5–7 giu</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 9</div><div class="rc-flag">🇨🇿</div><div class="rc-name">GP Rep. Ceca</div><div class="rc-date">19–21 giu</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 10</div><div class="rc-flag">🇳🇱</div><div class="rc-name">GP Olanda</div><div class="rc-date">26–28 giu</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 11</div><div class="rc-flag">🇩🇪</div><div class="rc-name">GP Germania</div><div class="rc-date">10–12 lug</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 12</div><div class="rc-flag">🇬🇧</div><div class="rc-name">GP Gran Bretagna</div><div class="rc-date">7–9 ago</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 13</div><div class="rc-flag">🇪🇸</div><div class="rc-name">GP Aragona</div><div class="rc-date">28–30 ago</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 14</div><div class="rc-flag">🇮🇹</div><div class="rc-name">GP San Marino</div><div class="rc-date">11–13 set</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 15</div><div class="rc-flag">🇦🇹</div><div class="rc-name">GP Austria</div><div class="rc-date">18–20 set</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 16</div><div class="rc-flag">🇯🇵</div><div class="rc-name">GP Giappone</div><div class="rc-date">2–4 ott</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 17</div><div class="rc-flag">🇮🇩</div><div class="rc-name">GP Indonesia</div><div class="rc-date">9–11 ott</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 18</div><div class="rc-flag">🇦🇺</div><div class="rc-name">GP Australia</div><div class="rc-date">23–25 ott</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 19</div><div class="rc-flag">🇲🇾</div><div class="rc-name">GP Malesia</div><div class="rc-date">30 ott – 1 nov</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 20</div><div class="rc-flag">🇶🇦</div><div class="rc-name">GP Qatar</div><div class="rc-date">6–8 nov</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 21</div><div class="rc-flag">🇵🇹</div><div class="rc-name">GP Portogallo</div><div class="rc-date">20–22 nov</div><div class="rc-status">In programma</div></div>
+    <div class="race-card"><div class="rc-round">Round 22</div><div class="rc-flag">🇪🇸</div><div class="rc-name">GP Valencia</div><div class="rc-date">27–29 nov</div><div class="rc-status">🏆 Finale</div></div>
+  </div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="logo">MOTO<span style="color:var(--red)">2026</span></a>
+  <p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+  <div class="socials">
+    <a href="#">📸 Instagram</a>
+    <a href="#">🐦 X / Twitter</a>
+    <a href="#">▶️ YouTube</a>
+    <a href="#">📘 Facebook</a>
+  </div>
+  <p style="margin-top:1rem; font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+
+<!-- NEWS MODAL -->
+<div class="news-modal-overlay" id="newsModal" onclick="closeNewsIfOverlay(event)">
+  <div class="news-modal">
+    <div class="nm-header">
+      <div class="nm-tag"><span id="nmTag" class="tag"></span></div>
+      <div class="nm-title" id="nmTitle"></div>
+      <button class="nm-close" onclick="closeNews()">✕</button>
+    </div>
+    <div class="nm-body">
+      <div class="nm-meta" id="nmMeta"></div>
+      <div class="nm-text" id="nmText"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function setCategory(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const tagColors = { MotoGP:'tag-gp', Moto2:'tag-m2', Moto3:'tag-m3' };
+  function openNews(cat, title, meta, text) {
+    const modal = document.getElementById('newsModal');
+    document.getElementById('nmTag').textContent = cat;
+    document.getElementById('nmTag').className = 'tag ' + (tagColors[cat] || 'tag-gp');
+    document.getElementById('nmTitle').textContent = title;
+    document.getElementById('nmMeta').textContent = meta;
+    document.getElementById('nmText').innerHTML = text;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNews() {
+    document.getElementById('newsModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeNewsIfOverlay(e) {
+    if (e.target === document.getElementById('newsModal')) closeNews();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
+
+const NEWS_INDEX = [
+{cat:'Motomondiale',tagCls:'tag-gp',title:'Il 2026 in sintesi: Aprilia comanda, Moto2 nel caos, Moto3 rivoluzionata',excerpt:'MotoGP con Aprilia davanti e Ducati costretta a inseguire; Moto2 segnata da incidenti e sostituzioni; Moto3 con una rivoluzione totale di rookie già competitivi.',date:'18 apr 2026',author:'Redazione',meta:'📅 18 apr 2026 · ✍️ Redazione',body:'<p>Il 2026 è una stagione molto particolare in tutte le categorie.</p><p><strong>MotoGP:</strong> cambio di potere con Aprilia davanti e Ducati costretta a inseguire. Bezzecchi ha vinto le prime tre gare con un dominio che non si vedeva da anni. Ducati nel frattempo guarda già al 2027, con test in corso a Misano con Michele Pirro sulla moto che rispetterà il nuovo regolamento con motori 850cc e meno elettronica.</p><p><strong>Moto2:</strong> stagione influenzata da incidenti e sostituzioni. Il caso principale è Marcos Ramírez al posto di Ángel Piqueras, vittima di gravi fratture nell\'incidente di Austin. La classifica rimane aperta con soli 6,5 punti tra i primi tre dopo tre round.</p><p><strong>Moto3:</strong> rivoluzione totale con tantissimi rookie già competitivi e gare ancora più imprevedibili. Brian Uriarte, Rico Salmela, Casey O\'Gorman e molti altri debutttanti stanno ridisegnando la categoria, portando un livello generale mai visto prima.</p>'},
+{cat:'Motomondiale',tagCls:'tag-gp',title:'Bezzecchi domina i primi tre GP: il 2026 ha già un padrone',excerpt:'Bezzecchi vince tutte e tre le prime gare con Aprilia, mentre Moto2 e Moto3 regalano caos, bandiere rosse e finali mozzafiato. Il mondiale 2026 ha già un dominatore, ma le cadette sono completamente aperte.',date:'7 apr 2026',author:'Redazione',meta:'📅 7 apr 2026 · ✍️ Redazione',body:'<p>Dopo tre Gran Premi, il Motomondiale 2026 ha già mostrato una fisionomia chiara, almeno in MotoGP. Il GP di Thailandia ha aperto la stagione in modo sorprendente: sul tracciato di Buriram, Marco Bezzecchi ha dominato la gara lunga imponendo un ritmo che nessun avversario è riuscito a sostenere, mentre Aprilia si è rivelata fin dal primo weekend la moto più completa del lotto. La Sprint del sabato aveva visto la vittoria di Pedro Acosta, protagonista assoluto del weekend con velocità e maturità già da pilota da titolo, ma nella corsa principale è stato il riminese a fare la voce grossa. Ducati, attesa come grande favorita dopo anni di dominio, ha invece vissuto una giornata insolitamente difficile, con Bagnaia lontano dalle posizioni di vertice e nessuna rossa sul podio.</p>\n\n<p>Il secondo round in Brasile ha confermato e rafforzato quanto emerso a Buriram. Il weekend di Goiânia è stato segnato da condizioni estreme — asfalto deteriorato dalla pioggia intensa dei giorni precedenti e temperature altissime — che hanno portato persino a un cedimento del tracciato sul rettilineo principale, costringendo gli organizzatori a modificare il programma. Nonostante tutto, Bezzecchi ha vinto con autorità anche a Goiânia, stavolta con Jorge Martín secondo e Fabio Di Giannantonio terzo: una doppietta Aprilia che ha fatto capire quanto il progetto RS-GP26 sia cresciuto rispetto al passato. KTM con Acosta si è confermata seconda forza, mentre Ducati ha continuato a faticare sul passo gara, con Bagnaia caduto e nessun risultato all\'altezza delle aspettative.</p>\n\n<p>Il terzo atto ad Austin, sul tracciato americano del Circuit of the Americas, ha definitivamente consacrato Bezzecchi come il pilota da battere in questo 2026. Tre vittorie nelle prime tre gare, qualcosa che non capitava da diversi anni. L\'italiano ha gestito con freddezza anche un contatto con Acosta nelle fasi iniziali della gara — che gli ha danneggiato un\'ala della moto — senza perdere un grammo di competitività. Martín ha chiuso secondo, Acosta terzo. Bagnaia solo decimo, Márquez quinto dopo una rimonta non sufficiente per lottare con i migliori. Aprilia è ormai il riferimento tecnico assoluto del momento.</p>\n\n<p>In Moto2, i tre round hanno raccontato una storia completamente diversa: caos, bandiere rosse e vincitori sempre diversi. In Thailandia, Manuel González ha vinto davanti a Guevara e Holgado in una gara interrotta due volte, con punteggio ridotto a metà per il mancato raggiungimento della distanza minima. In Brasile, Daniel Holgado ha colto la sua prima vittoria stagionale in una gara più lineare. Ad Austin, Senna Agius ha trionfato dopo un maxi-incidente al via che ha coinvolto diversi piloti e mandato la gara in bandiera rossa. Tre gare, tre vincitori diversi: la Moto2 2026 è la categoria più imprevedibile dell\'anno, senza un vero dominatore e con la classifica ancora completamente aperta.</p>\n\n<p>La Moto3 ha seguito uno schema simile per equilibrio e spettacolo, ma con una caratteristica peculiare: i finali sono sempre stati decisi negli ultimi metri. In Thailandia, David Almansa ha battuto Máximo Quiles per soli tre millesimi, uno degli arrivi più ravvicinati degli ultimi anni. In Brasile, Quiles si è preso la rivincita vincendo una gara interrotta e ripartita. Ad Austin, Guido Pini ha conquistato la sua prima vittoria nel Mondiale davanti a Quiles e Carpe, in un finale da brividi con il gruppo tutto assieme. Quiles guida la classifica con distacco, ma la Moto3 è una categoria in cui basta distrarsi un attimo per perdere tutto.</p>\n\n<p>In sintesi: il mondiale 2026 si divide nettamente tra la MotoGP, dove Bezzecchi ha già stabilito una gerarchia chiara con Aprilia come riferimento tecnico assoluto, e le classi cadette, dove tutto è ancora aperto e ogni gara può rivoluzionare la classifica. Se Bezzecchi e Aprilia continueranno con questo ritmo, il titolo potrebbe essere deciso prima del previsto. Ma il campionato è lungo e gli avversari — da Martín ad Acosta, passando per un Márquez che non ha ancora espresso il suo massimo — sono pronti ad approfittare di qualsiasi sbaglio.</p>'},
+{cat:'Moto2',tagCls:'tag-m2',title:'Alonso dalla Moto3 alla Moto2: Attenzione ai possibili scenari',excerpt:'',date:'1 apr 2026',author:'',meta:'📅 01 apr 2026 · ✍️ M. Paggi',body:'Il colombiano campione Moto3 2024 affronta la sfida della Moto2 con Aspar per il suo secondo anno consecutivo nella categoria di mezzo. Ma nel 2027 si è certi di un suo passaggio nella classe regina. In che team andrà? Team Factory o Team Satellite? In che team andrà? Team Factory o Team Satellite?.<br><br><em>La situazione di Alonso era la più chiara, nel senso che aveva talmente tante possibilità che era scontato che corresse in MotoGP nel 2027. Alonso aveva la possibilità Ducati, quella Yamaha (eventualmente anche nel team factory, con Guevara già destinato a Pramac) e quella HRC con trattamento ufficiale. Già un mese fa Alonso era orientato a decidersi per HRC ma, per la tanta incertezza sul numero di moto che la casa avrebbe schierato nel 2027. Adesso che è praticamente sicuro che Honda avrà sei moto (oltre al team interno e a LCR è quasi chiuso  con Tech3) la trattativa ha avuto una accelerazione probabilmente definitiva. Alonso è orientato a scegliere HRC, ma il team deve ancora essere deciso. Sarà Tech3 o team ufficiale, ma una decisione finale su Marini e Mir non è ancora stata presa..</em>'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Bezzecchi vola ad Austin: leadership salda dopo 3 round',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ Redazione',body:'Marco Bezzecchi ha vinto per la seconda volta consecutiva ad Austin, consolidando la sua leadership nel campionato MotoGP 2026. Con 81 punti in tre gare, il pilota Aprilia comanda con 4 lunghezze su Jorge Martín.<br><br>La gara texana ha visto Bezzecchi dominare dalla partenza, controllando il ritmo e gestendo il vantaggio su Martín e Acosta. Aprilia ha monopolizzato la prima fila con entrambi i piloti, confermando un pacchetto tecnico superiore a tutti.<br><br>«Sono molto felice, la moto funziona benissimo qui. Stiamo facendo un lavoro straordinario con il team», ha dichiarato Bezzecchi nel post-gara. Con Jerez in arrivo, la Rossa di Noale punta al quarto successo stagionale.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Aprilia domina: doppietta in MotoGP per la prima volta in stagione',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ F. Conti',body:'Bezzecchi e Martín monopolizzano il podio di Austin. La RS-GP26 dimostra un bilanciamento eccezionale sul tracciato americano, mentre KTM insegue con Acosta.<br><br><em>Testo completo da aggiungere.</em>'},
+{cat:'Moto2',tagCls:'tag-m2',title:'Agius trionfa ad Austin: la Moto2 ha un nuovo protagonista',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ Redazione',body:'Senna Agius ha vinto il Gran Premio degli USA di Moto2, una gara travagliata da un maxi incidente in partenza che ha coinvolto sei piloti e richiesto l\\\'esposizione della bandiera rossa.<br><br>Nella ripartenza l\\\'australiano ha gestito perfettamente la pressione di Vietti e Guevara, portando a casa la seconda vittoria in carriera e portandosi in classifica a soli 14 punti da González.<br><br>«Sono stati gli ultimi giri più lunghi della mia vita», ha detto Agius dopo il traguardo. «Sapevo che Vietti era vicinissimo, dovevo restare concentrato ad ogni curva.»'},
+{cat:'Moto2',tagCls:'tag-m2',title:'González leader ma con González, Guevara e Holgado tutto aperto',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ T. Bianchi',body:'Dopo 3 round soli 6.5 punti separano i primi tre. La lotta per il titolo Moto2 2026 si preannuncia come la più equilibrata degli ultimi anni: nessuno sembra avere un vantaggio decisivo.<br><br><em>Testo completo da aggiungere.</em>'},
+{cat:'Moto2',tagCls:'tag-m2',title:'Maxi incidente ad Austin: Ferrández sotto esame',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ Redazione',body:'Il Gran Premio degli USA di Moto2 ha richiesto la bandiera rossa già al giro 0 a causa di un maxi incidente alla prima curva. Il principale indiziato è Alberto Ferrández, che ha perso il controllo della moto travolgendo Ángel Piqueras, Filip Salač e Collin Veijer.<br><br>Nella stessa situazione caotica, Sergio García ha centrato Daniel Muñoz e David Alonso. Fortunatamente tutti i piloti coinvolti sono rimasti incolumi, ma le moto erano troppo danneggiate per continuare.<br><br>La FIM Race Direction ha aperto un\\\'inchiesta su Ferrández, che rischia una penalità sulla griglia di partenza per il prossimo Gran Premio a Jerez. Il giovane spagnolo ha ammesso l\\\'errore nel post-gara.'},
+{cat:'Moto3',tagCls:'tag-m3',title:'Pini vince ad Austin: la Moto3 ha una nuova stella',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ Redazione',body:'Guido Pini ha vinto il Gran Premio degli USA di Moto3, la sua prima vittoria nella classe cadetta a livello mondiale. Il pilota italiano del team Leopard Racing ha trionfato davanti a Quiles e Carpe in una gara combattuta fino all\\\'ultimo metro.<br><br>Con questa vittoria Pini sale al quarto posto in classifica con 36 punti, a 29 lunghezze dal leader Quiles. Leopard Racing festeggia il suo primo successo del 2026 con un pilota che si conferma tra le sorprese della stagione.<br><br>«Non riesco ancora a crederci», ha detto Pini a caldo. «Dedico questa vittoria a tutta la squadra che lavora con me ogni giorno.»'},
+{cat:'Moto3',tagCls:'tag-m3',title:'Quiles inarrestabile: 65 punti in 3 round, fuga in classifica',excerpt:'',date:'29 mar 2026',author:'',meta:'📅 29 mar 2026 · ✍️ A. Moreno',body:'Máximo Quiles sta dominando la Moto3 2026 con una costanza impressionante: tre podi in tre gare, di cui una vittoria, per un totale di 65 punti. Secondo in classifica troviamo Álvaro Carpe con 42 punti.<br><br>La CFMOTO si conferma la moto più competitiva della categoria con due piloti (Quiles e Morelli) nei primi cinque. Un risultato storico per il costruttore cinese, che per la prima volta nella sua storia ha un serio pretendente al titolo.<br><br>Carpe, Perrone e Pini inseguono, ma la cadenza di Quiles sembra difficilmente affrontabile. Jerez, circuito spagnolo, sarà il test della verità: il valenciano ci andrà in condizione di campione.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Viñales out da Austin: spalla operata, stagione a rischio',excerpt:'',date:'28 mar 2026',author:'',meta:'📅 28 mar 2026 · ✍️ Redazione medica',body:'Maverick Viñales ha dovuto rinunciare al Gran Premio degli USA dopo aver disputato solo le FP1. Il problema alla spalla destra, operata durante la pausa invernale, non gli ha permesso di continuare nel weekend texano.<br><br>Il team KTM Tech3 è in attesa di notizie dai medici sulle condizioni del pilota spagnolo. Viñales è attualmente a zero punti in campionato e rischia di perdere ulteriore terreno in vista di Jerez, dove sarebbe fondamentale tornare a pieno regime.<br><br>Nel 2025 Viñales aveva chiuso 18° con 72 punti: un rendimento inferiore alle aspettative. Il 2026 con KTM era visto come una ripartenza, ma i problemi fisici stanno complicando i piani.'},
+{cat:'Moto3',tagCls:'tag-m3',title:'O\\\'Gorman squalificato ad Austin: infrazione tecnica in FP2',excerpt:'',date:'28 mar 2026',author:'',meta:'📅 28 mar 2026 · ✍️ Redazione',body:'L\\\'irlandese della SIC58 viene escluso dai tempi delle prove libere per un\\\'infrazione tecnica. Una penalità pesante che complica la sua rincorsa in classifica.<br><br><em>Testo completo da aggiungere.</em>'},
+{cat:'Moto3',tagCls:'tag-m3',title:'CFMOTO: la moto cinese che conquista la Moto3',excerpt:'',date:'22 mar 2026',author:'',meta:'📅 22 mar 2026 · ✍️ L. Marini',body:'La CFMOTO Moto3 sta riscrivendo la storia della classe leggera. Con Quiles leader e Morelli quinto, la moto cinese ha due piloti stabilmente nelle prime cinque posizioni dopo tre round.<br><br>Il costruttore di Hangzhou ha investito massicciamente nel programma Moto3 negli ultimi anni, e i frutti si stanno raccogliendo. Il motore della RC250R è ora paragonabile a quello della KTM RC250 per potenza e affidabilità, con vantaggi nell\\\'erogazione della coppia a bassi giri.<br><br>«Siamo qui per vincere, non per partecipare», ha dichiarato il direttore tecnico di CFMOTO. «Questo è solo l\\\'inizio.»'},
+{cat:'Moto2',tagCls:'tag-m2',title:'Foggia di nuovo in pista: il romano sostituisce Lunetta',excerpt:'',date:'20 mar 2026',author:'',meta:'📅 20 mar 2026 · ✍️ Redazione',body:'Dennis Foggia è tornato in griglia nel Gran Premio del Brasile e degli USA in sostituzione di Luca Lunetta, costretto ai box da un infortunio alla mano destra riportato in allenamento.<br><br>L\\\'ex campione del mondo Moto3 2021 deve dimostrare di poter fare il salto di qualità in Moto2 dopo risultati altalenanti negli ultimi anni. I tempi nei test privati prima del Brasile sono stati incoraggianti.<br><br>Lo SpeedRS Team non ha ancora comunicato se Foggia continuerà anche dopo il recupero di Lunetta: molto dipenderà dai risultati nelle prossime gare.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Toprak in MotoGP: il campione SBK alla prova della classe regina',excerpt:'',date:'1 mar 2026',author:'',meta:'📅 1 mar 2026 · ✍️ M. Ferrari',body:'Toprak Razgatlıoğlu è il grande esperimento della stagione 2026. Campione del Mondo Superbike nel 2021 con Yamaha e nel 2024-2025 con BMW, il turco ha fatto il grande salto nella MotoGP con il team Prima Pramac Yamaha.<br><br>I primi tre round hanno mostrato un pilota ancora in fase di adattamento (zero punti in classifica), ma con lampi di velocità impressionanti nelle prove libere. Il circuito delle Americhe non è ideale per la Yamaha, e Jerez potrebbe essere la svolta.<br><br>«Sto imparando ogni giro. La MotoGP è un altro pianeta rispetto alla Superbike, ma sono qui per imparare e poi vincere», ha dichiarato Toprak con la consueta fiducia.'},
+{cat:'Moto3',tagCls:'tag-m3',title:'Perrone e Morelli: l\\\'Argentina conquista la Moto3',excerpt:'',date:'1 mar 2026',author:'',meta:'📅 1 mar 2026 · ✍️ P. Delgado',body:'Due piloti argentini tra i primi dieci in classifica. Valentin Perrone (3°) e Marco Morelli (5°) rappresentano la nuova ondata di talenti sudamericani che stanno cambiando il volto della categoria.<br><br><em>Testo completo da aggiungere.</em>'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Marquez su Ducati ufficiale: la coppia più forte del paddock?',excerpt:'',date:'15 feb 2026',author:'',meta:'📅 15 feb 2026 · ✍️ G. Rossi',body:'La stagione 2026 ha ufficializzato la coppia più attesa degli ultimi anni: Marc Márquez e Francesco Bagnaia nel team Ducati Lenovo. Due campioni del mondo nello stesso box, con la moto più vincente degli ultimi anni.<br><br>I test invernali hanno mostrato un Márquez in grande spolvero: quinto in classifica con 45 punti dopo tre round, il campione spagnolo sta trovando il ritmo con la GP26. Bagnaia invece parte lento (25 punti, nono) ma è noto per crescere nel corso della stagione.<br><br>«Siamo qui per vincere», ha dichiarato Márquez alla presentazione. «Ducati ha la moto, noi abbiamo l\\\'esperienza. Sarà una battaglia aperta.»'}
+];
+
+function renderIndexNews() {
+  const container = document.getElementById('news-container');
+  if (!container || !NEWS_INDEX.length) return;
+  const tagColors = {MotoGP:'var(--red)',Moto2:'var(--m2)',Moto3:'var(--m3)'};
+
+  // Featured = prima notizia (MotoGP)
+  const featured = NEWS_INDEX[0];
+  // Sidebar = prima Moto2, prima Moto3, seconda MotoGP
+  const sidebar = [
+    NEWS_INDEX.find(n => n.cat === 'Moto2'),
+    NEWS_INDEX.find(n => n.cat === 'Moto3'),
+    NEWS_INDEX[1] || null,
+  ].filter(Boolean);
+
+  let html = '';
+  // Featured
+  const fi = NEWS_INDEX.indexOf(featured);
+  html += `<div class="news-featured" data-ni="${fi}" style="cursor:pointer;">
+    <div class="img-placeholder">🏍️</div>
+    <div class="body">
+      <span class="tag ${featured.tagCls}">${featured.cat}</span>
+      <h2>${featured.title}</h2>
+      <p>${featured.excerpt || ''}</p>
+      <div class="meta">📅 ${featured.date} &nbsp;·&nbsp; ✍️ ${featured.author} &nbsp;·&nbsp; <span style="color:var(--red);font-size:.8rem;">Leggi tutto →</span></div>
+    </div>
+  </div>`;
+  // Sidebar
+  html += '<div class="news-sidebar">';
+  sidebar.forEach(n => {
+    const si = NEWS_INDEX.indexOf(n);
+    const col = tagColors[n.cat] || 'var(--red)';
+    html += `<div class="news-card" data-ni="${si}" style="cursor:pointer;">
+      <div class="thumb">🏍️</div>
+      <div class="body">
+        <span class="tag ${n.tagCls}">${n.cat}</span>
+        <h3>${n.title}</h3>
+        <div class="meta">📅 ${n.date} &nbsp;·&nbsp; <span style="color:${col};font-size:.75rem;">Leggi →</span></div>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+  // Event listener tramite data-ni (evita problemi di quote nell'onclick)
+  container.querySelectorAll('[data-ni]').forEach(el => {
+    el.addEventListener('click', function() {
+      const n = NEWS_INDEX[parseInt(this.dataset.ni)];
+      if (n) openNews(n.cat, n.title, n.meta, n.body);
+    });
+  });
+}
+
+renderIndexNews();
+
+// ── DARK / LIGHT MODE ──────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// Countdown prossimo GP
+(function() {
+  const target = new Date('2026-04-24T09:00:00');
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-section').innerHTML = '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.4rem;color:var(--red);">🏁 Weekend in corso!</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const f = n => String(n).padStart(2,'0');
+    document.getElementById('cd-d').textContent = d;
+    document.getElementById('cd-h').textContent = f(h);
+    document.getElementById('cd-m').textContent = f(m);
+    document.getElementById('cd-s').textContent = f(s);
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+// Toast shortcut solo prima volta
+if (!localStorage.getItem('moto2026-shortcut-seen')) {
+  setTimeout(() => {
+    const t = document.getElementById('shortcut-toast');
+    if (t) { t.classList.add('show'); setTimeout(() => { t.classList.remove('show'); localStorage.setItem('moto2026-shortcut-seen','1'); }, 4000); }
+  }, 2500);
+}
+
+// Anima barra progressione stagione
+setTimeout(() => {
+  const fill = document.getElementById('season-fill');
+  if (fill) fill.style.width = Math.round((3/22)*100) + '%';
+}, 300);
+
+// ── TORNA INDIETRO ──
+(function(){
+  var NAMES = {
+    'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
+    'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
+    'classifica.html':'Classifica','risultati.html':'Risultati',
+    'calendario.html':'Calendario','stagione.html':'Stagione',
+    'albo_doro.html':"Albo d\'oro",'guida.html':'Guida','relazione.html':'Relazione'
+  };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>';
+    }
+  }
+
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+
+  // Mostra subito se DOM pronto, altrimenti aspetta
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else {
+    showBackBtn();
+  }
+
+  // Intercetta TUTTI i click su link interni
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true); // useCapture=true: cattura prima del navigate
+})();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();</script>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
+<div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
+</body>
+</html>

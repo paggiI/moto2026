@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida al Sito — Motomondiale 2026</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --red: #e8001d;
+      --dark: #0a0a0a;
+      --mid: #141414;
+      --card: #1a1a1a;
+      --border: #2e2e2e;
+      --muted: #888;
+      --white: #f5f5f5;
+      --gp: #ff6b35;
+      --m2: #f7a600;
+      --m3: #00b4d8;
+    }
+
+    [data-theme="light"] {
+      --dark: #f4f4f4;
+      --mid: #e8e8e8;
+      --card: #fff;
+      --border: #d0d0d0;
+      --muted: #666;
+      --white: #111;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ══ HEADER PULITO ══ */
+    header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 200 !important;
+      background: rgba(10, 10, 10, .96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important;
+      height: 60px !important;
+      flex-wrap: nowrap !important;
+      gap: .8rem !important;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important;
+      letter-spacing: .08em !important;
+      color: var(--white) !important;
+      text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+
+    .logo span {
+      color: var(--red) !important;
+    }
+
+    nav {
+      display: flex !important;
+      align-items: center !important;
+      flex: 1 !important;
+      min-width: 0 !important;
+      gap: 0 !important;
+      flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: .72rem !important;
+      letter-spacing: .06em !important;
+      text-transform: uppercase !important;
+      color: var(--muted) !important;
+      text-decoration: none !important;
+      padding: 0 .5rem !important;
+      height: 60px !important;
+      display: flex !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important;
+      transition: color .15s !important;
+    }
+
+    nav a:hover {
+      color: var(--white) !important;
+      background: rgba(255, 255, 255, .04) !important;
+    }
+
+    nav a.active {
+      color: var(--white) !important;
+      border-bottom-color: var(--red) !important;
+    }
+
+    .header-right {
+      display: flex !important;
+      align-items: center !important;
+      gap: .5rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    #theme-toggle {
+      background: transparent !important;
+      border: 1px solid var(--border) !important;
+      color: var(--muted) !important;
+      cursor: pointer !important;
+      border-radius: 6px !important;
+      padding: .3rem .5rem !important;
+      font-size: .9rem !important;
+      line-height: 1 !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .hamburger {
+      display: none !important;
+      flex-direction: column !important;
+      gap: 5px !important;
+      cursor: pointer !important;
+      padding: .3rem !important;
+    }
+
+    .hamburger span {
+      display: block !important;
+      width: 22px !important;
+      height: 2px !important;
+      background: var(--white) !important;
+      border-radius: 2px !important;
+    }
+
+    @media (max-width: 1100px) {
+      nav {
+        display: none !important;
+      }
+
+      .hamburger {
+        display: flex !important;
+      }
+    }
+
+    @media (min-width: 1101px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, .98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0;
+      z-index: 199;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open {
+      display: flex !important;
+    }
+
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: block;
+      transition: color .15s;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--white);
+      background: rgba(232, 0, 29, .1);
+    }
+
+    [data-theme="light"] header {
+      background: rgba(248, 248, 248, .97) !important;
+    }
+
+    [data-theme="light"] nav a {
+      color: #555 !important;
+    }
+
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active {
+      color: #111 !important;
+    }
+
+    [data-theme="light"] .hamburger span {
+      background: #111 !important;
+    }
+
+    [data-theme="light"] .mobile-menu {
+      background: rgba(248, 248, 248, .99) !important;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+
+    /* HERO */
+    .page-hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 60%, #2a0005 100%);
+      padding: 3rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232, 0, 29, .04) 38px, rgba(232, 0, 29, .04) 40px);
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px, 15vw, 200px);
+      color: rgba(232, 0, 29, .05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .7rem;
+    }
+
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--white);
+    }
+
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+
+    .page-hero h1 span {
+      color: var(--red);
+    }
+
+    .page-hero p {
+      margin-top: .8rem;
+      color: #aaa;
+      max-width: 560px;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    main {
+      padding: 2.5rem 0 5rem;
+    }
+
+    /* TOC sidebar + content */
+    .guide-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    @media(max-width:900px) {
+      .guide-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
+    }
+
+    /* TOC */
+    .toc {
+      position: sticky;
+      top: 80px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .toc-header {
+      background: var(--red);
+      padding: .7rem 1.1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: .06em;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: .5rem 0;
+    }
+
+    .toc li a {
+      display: block;
+      padding: .42rem 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .15s;
+      border-left: 2px solid transparent;
+    }
+
+    .toc li a:hover {
+      color: var(--white);
+      border-left-color: var(--red);
+      background: rgba(232, 0, 29, .06);
+    }
+
+    .toc li a.active {
+      color: var(--white);
+      border-left-color: var(--red);
+    }
+
+    .toc-section {
+      padding: .35rem 1.1rem .1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #444;
+      margin-top: .3rem;
+    }
+
+    /* CONTENT */
+    .guide-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      scroll-margin-top: 80px;
+    }
+
+    .guide-section-header {
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .guide-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: .05em;
+    }
+
+    .guide-section-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .1rem;
+    }
+
+    .guide-body {
+      padding: 1.2rem 1.4rem;
+    }
+
+    .guide-body p {
+      font-size: .95rem;
+      line-height: 1.65;
+      color: #ccc;
+      margin-bottom: .9rem;
+    }
+
+    .guide-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    [data-theme="light"] .guide-body p {
+      color: #444;
+    }
+
+    /* Feature list */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+      margin: 1rem 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .92rem;
+      letter-spacing: .02em;
+      line-height: 1.45;
+      color: #ccc;
+    }
+
+    [data-theme="light"] .feature-list li {
+      color: #444;
+    }
+
+    .feature-list li::before {
+      content: '';
+      flex-shrink: 0;
+    }
+
+    .fl-icon {
+      font-size: 1rem;
+      line-height: 1.45;
+      flex-shrink: 0;
+      width: 1.4rem;
+      text-align: center;
+    }
+
+    /* Tag pagina */
+    .page-tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border-radius: 3px;
+      margin-right: .3rem;
+      vertical-align: middle;
+    }
+
+    .tag-gp {
+      background: rgba(255, 107, 53, .2);
+      color: #ff6b35;
+      border: 1px solid rgba(255, 107, 53, .3);
+    }
+
+    .tag-m2 {
+      background: rgba(247, 166, 0, .2);
+      color: #f7a600;
+      border: 1px solid rgba(247, 166, 0, .3);
+    }
+
+    .tag-m3 {
+      background: rgba(0, 180, 216, .2);
+      color: #00b4d8;
+      border: 1px solid rgba(0, 180, 216, .3);
+    }
+
+    .tag-all {
+      background: rgba(232, 0, 29, .15);
+      color: #e8001d;
+      border: 1px solid rgba(232, 0, 29, .3);
+    }
+
+    /* Kbd shortcut */
+    kbd {
+      background: var(--mid);
+      border: 1px solid #444;
+      border-bottom: 2px solid #333;
+      border-radius: 4px;
+      padding: .15rem .45rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--white);
+    }
+
+    /* Tip box */
+    .tip {
+      background: rgba(247, 166, 0, .08);
+      border-left: 3px solid #f7a600;
+      border-radius: 0 6px 6px 0;
+      padding: .7rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem;
+      letter-spacing: .02em;
+      color: #ddd;
+      margin: 1rem 0;
+    }
+
+    .tip strong {
+      color: #f7a600;
+    }
+
+    [data-theme="light"] .tip {
+      color: #333;
+    }
+
+    /* Note box */
+    .note {
+      background: rgba(0, 180, 216, .08);
+      border-left: 3px solid #00b4d8;
+      border-radius: 0 6px 6px 0;
+      padding: .7rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem;
+      letter-spacing: .02em;
+      color: #ddd;
+      margin: 1rem 0;
+    }
+
+    [data-theme="light"] .note {
+      color: #333;
+    }
+
+    /* Step numerati */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin: 1rem 0;
+    }
+
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      font-size: .93rem;
+      line-height: 1.55;
+      color: #ccc;
+    }
+
+    [data-theme="light"] .steps li {
+      color: #444;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--red);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .9rem;
+      margin-top: .1rem;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.2rem 0;
+    }
+
+    /* Link interno */
+    .internal-link {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .internal-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Scroll top */
+    #scroll-top-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
+    }
+
+    #scroll-top-btn.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #scroll-top-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Theme toggle */
+    [data-theme="light"] .page-hero {
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    }
+
+    [data-theme="light"] .guide-section {
+      background: #fff;
+      border-color: #d0d0d0;
+    }
+
+    [data-theme="light"] .toc {
+      background: #fff;
+      border-color: #d0d0d0;
+    }
+
+    [data-theme="light"] .toc li a {
+      color: #666;
+    }
+
+    [data-theme="light"] .toc li a:hover {
+      color: #111;
+    }
+
+    [data-theme="light"] kbd {
+      background: #e8e8e8;
+      border-color: #ccc;
+      color: #111;
+    }
+
+    /* Highlight span */
+    .hl {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    [data-theme="light"] .hl {
+      color: #111;
+    }
+
+    /* ═══════════════════════════════════
+       HEADER OVERRIDE — versione finale
+    ═══════════════════════════════════ */
+    /* ── Breakpoint: hamburger sotto 1100px ── */
+    @media (min-width: 1101px) {}
+
+    /* Mobile menu */
+    /* Light mode */
+    [data-theme="light"] #theme-toggle {
+      border-color: #ccc !important;
+      color: #555 !important;
+    }
+    footer {
+      background: var(--mid);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    footer .logo {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    footer .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    footer .socials a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    footer .socials a:hover {
+      color: var(--white);
+    }
+  
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+    /* Escludi elementi che non devono transitare */
+    .rider-photo, img, video, canvas, svg,
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+      transition: none !important;
+    }
+    
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">MOTO<span>2026</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="motogp.html">MotoGP</a>
+      <a href="moto2.html">Moto2</a>
+      <a href="moto3.html">Moto3</a>
+      <a href="calendario.html">Calendario</a>
+      <a href="piloti.html">Piloti</a>
+      <a href="classifica.html">Classifica</a>
+      <a href="risultati.html">Risultati</a>
+      <a href="stagione.html">Stagione</a>
+      <a href="albo_doro.html">Albo d'oro</a>
+      <a href="guida.html" class="active">Guida</a>
+      <a href="relazione.html">Relazione</a>
+    </nav>
+    <div class="header-right"><button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambia tema"><span
+          id="theme-icon">☀️</span></button>
+      <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="motogp.html">MotoGP</a>
+    <a href="moto2.html">Moto2</a>
+    <a href="moto3.html">Moto3</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="piloti.html">Piloti</a>
+    <a href="classifica.html">Classifica</a>
+    <a href="risultati.html">Risultati</a>
+    <a href="stagione.html">Stagione</a>
+    <a href="albo_doro.html">Albo d'oro</a>
+    <a href="guida.html" class="active">Guida</a>
+    <a href="relazione.html">Relazione</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-bg-text">GUIDA</div>
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Guida al sito</div>
+      <h1>Guida al <span>Sito</span></h1>
+      <p>Tutto quello che puoi fare su Motomondiale 2026: pagine, funzionalità, scorciatoie e consigli per navigare al
+        meglio.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <main>
+
+      <!-- BANNER RELAZIONE -->
+      <div
+        style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.5rem;">
+        <div
+          style="display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;flex-wrap:wrap;gap:.8rem;">
+          <div>
+            <div
+              style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem;">
+              📄 Documentazione tecnica</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.05em;">Relazione Tecnica
+              del Progetto</div>
+            <div
+              style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:var(--muted);margin-top:.2rem;">
+              Analisi, progettazione, tecnologie utilizzate e sviluppi futuri — per l'esame di maturità.</div>
+          </div>
+          <a href="/relazione"
+            style="font-family:Barlow Condensed, sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.07em; text-transform:uppercase; padding:.6rem 1.4rem; background:#e60023; color:#fff; border-radius:6px; text-decoration:none; flex-shrink:0; transition:background .15s;"
+            onmouseover="this.style.background='#c4001a'" onmouseout="this.style.background='#e60023'">
+            Leggi la relazione →
+          </a>
+        </div>
+      </div>
+      <div class="guide-layout">
+
+        <!-- ─── TOC ─── -->
+        <aside class="toc">
+          <div class="toc-header">Indice</div>
+          <ul>
+            <div class="toc-section">Panoramica</div>
+            <li><a href="#intro">Cos'è questo sito</a></li>
+            <li><a href="#navigazione">Come navigare</a></li>
+
+            <div class="toc-section">Le pagine</div>
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#categorie">🏍️ MotoGP · Moto2 · Moto3</a></li>
+            <li><a href="#piloti">👥 Piloti</a></li>
+            <li><a href="#pilota">🧑 Scheda Pilota</a></li>
+            <li><a href="#classifica">📊 Classifica</a></li>
+            <li><a href="#risultati">🏁 Risultati</a></li>
+            <li><a href="#calendario">📅 Calendario</a></li>
+            <li><a href="#stagione">📈 Stagione</a></li>
+            <li><a href="#albo">🏆 Albo d'Oro</a></li>
+
+            <div class="toc-section">Extra</div>
+            <li><a href="#shortcuts">⌨️ Scorciatoie</a></li>
+            <li><a href="#tema">🌙 Tema</a></li>
+            <li><a href="#aggiornamenti">🔄 Aggiornamenti</a></li>
+          </ul>
+        </aside>
+
+        <!-- ─── CONTENT ─── -->
+        <div class="guide-content">
+
+          <!-- INTRO -->
+          <div class="guide-section" id="intro">
+            <div class="guide-section-header">
+              <div class="guide-icon">📖</div>
+              <div>
+                <div class="guide-section-title">Cos'è Motomondiale 2026</div>
+                <div class="guide-section-sub">Il sito • Cosa trovi</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p><span class="hl">Motomondiale 2026</span> è un sito di informazione e statistiche sul campionato
+                mondiale di motociclismo 2026, aggiornato manualmente dopo ogni round. Copre tutte e tre le categorie —
+                <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span
+                  class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e
+                sessione per sessione, schede complete di tutti i piloti in griglia, e molto altro.
+              </p>
+              <p>Il sito è composto da <span class="hl">11 pagine</span> collegate tra loro. Puoi partire da qualunque
+                punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due
+                click.</p>
+              <div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire
+                subito la lista piloti con il campo di ricerca attivo.</div>
+            </div>
+          </div>
+
+          <!-- NAVIGAZIONE -->
+          <div class="guide-section" id="navigazione">
+            <div class="guide-section-header">
+              <div class="guide-icon">🧭</div>
+              <div>
+                <div class="guide-section-title">Come navigare</div>
+                <div class="guide-section-sub">Header • Link • Scorciatoie</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>La barra di navigazione in alto è sempre visibile — è <span class="hl">sticky</span>, cioè rimane fissa
+                mentre scorri. Da lì raggiungi le sezioni principali del sito.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🖱️</span>
+                  <div>Su desktop, <span class="hl">click con il tasto centrale</span> (rotellina) o
+                    <kbd>Ctrl</kbd>+click su qualsiasi link apre la pagina in una nuova scheda senza perdere quella
+                    attuale.
+                  </div>
+                </li>
+                <li><span class="fl-icon">📱</span>
+                  <div>Su mobile, il menu si raggiunge dall'<span class="hl">icona ☰</span> in alto a destra.</div>
+                </li>
+                <li><span class="fl-icon">↑</span>
+                  <div>Il pulsante <span class="hl">↑</span> in basso a destra appare dopo aver scrollato e riporta in
+                    cima alla pagina.</div>
+                </li>
+                <li><span class="fl-icon">☀️</span>
+                  <div>Il pulsante <span class="hl">☀️ / 🌙</span> accanto al menu cambia tra tema scuro e chiaro. La
+                    preferenza viene ricordata.</div>
+                </li>
+              </ul>
+              <div class="note">Le pagine si collegano tra loro: dalla classifica puoi aprire la scheda di un pilota,
+                dalla scheda puoi tornare alla lista piloti, dai risultati puoi saltare al round successivo.</div>
+            </div>
+          </div>
+
+          <!-- HOME -->
+          <div class="guide-section" id="home">
+            <div class="guide-section-header">
+              <div class="guide-icon">🏠</div>
+              <div>
+                <div class="guide-section-title">Home</div>
+                <div class="guide-section-sub">index.html • Punto di partenza</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>La home è il punto di accesso principale. Mostra tutto quello che è successo di recente e quello che
+                sta per succedere.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">📰</span>
+                  <div><span class="hl">Ultime notizie</span> — articoli e aggiornamenti su MotoGP, Moto2 e Moto3.
+                    Clicca su una notizia per leggerla per intero in un pannello che si apre nella stessa pagina.</div>
+                </li>
+                <li><span class="fl-icon">⏱️</span>
+                  <div><span class="hl">Countdown prossimo GP</span> — conto alla rovescia in tempo reale (giorni, ore,
+                    minuti, secondi) fino all'inizio del prossimo weekend di gara.</div>
+                </li>
+                <li><span class="fl-icon">⚡</span>
+                  <div><span class="hl">Barra progressione stagione</span> — mostra visivamente quanti round sono stati
+                    disputati sul totale di 22 (attualmente 3/22).</div>
+                </li>
+                <li><span class="fl-icon">📊</span>
+                  <div><span class="hl">Top 5 classifiche</span> — i primi cinque piloti di ogni categoria, aggiornati
+                    dopo l'ultimo round.</div>
+                </li>
+                <li><span class="fl-icon">📅</span>
+                  <div><span class="hl">Calendario completo</span> — tutti i 22 round in una striscia orizzontale. I
+                    round completati portano ai risultati, quello successivo è evidenziato.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CATEGORIE -->
+          <div class="guide-section" id="categorie">
+            <div class="guide-section-header">
+              <div class="guide-icon">🏍️</div>
+              <div>
+                <div class="guide-section-title">MotoGP · Moto2 · Moto3</div>
+                <div class="guide-section-sub">motogp.html · moto2.html · moto3.html</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Ogni categoria ha la sua pagina dedicata con notizie, classifica parziale e link ai piloti iscritti.
+              </p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🗓️</span>
+                  <div><span class="hl">Banner prossimo GP</span> — in cima alla pagina, mostra il round successivo con
+                    data e circuito, con link diretto al calendario.</div>
+                </li>
+                <li><span class="fl-icon">📰</span>
+                  <div><span class="hl">Notizie di categoria</span> — articoli filtrati per MotoGP, Moto2 o Moto3.
+                    L'articolo in evidenza è quello più recente.</div>
+                </li>
+                <li><span class="fl-icon">📊</span>
+                  <div><span class="hl">Top 5 classifica</span> — i primi cinque piloti del momento con i punti
+                    aggiornati.</div>
+                </li>
+                <li><span class="fl-icon">👥</span>
+                  <div><span class="hl">Entry list per team</span> — tutti i team e i piloti iscritti, cliccabili per
+                    aprire la scheda del pilota.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PILOTI -->
+          <div class="guide-section" id="piloti">
+            <div class="guide-section-header">
+              <div class="guide-icon">👥</div>
+              <div>
+                <div class="guide-section-title">Lista Piloti</div>
+                <div class="guide-section-sub">piloti.html • 77 piloti in griglia</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Tutti i piloti iscritti al Mondiale 2026 in un'unica pagina: <span class="hl">22+1 in MotoGP</span>,
+                <span class="hl">28+1 in Moto2</span>, <span class="hl">26+1 in Moto3</span> (il +1 è il sostituto).
+              </p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🔍</span>
+                  <div><span class="hl">Ricerca per nome</span> — digita nella barra in alto a destra nella tab bar.
+                    Filtra in tempo reale mentre scrivi.</div>
+                </li>
+                <li><span class="fl-icon">🔴</span>
+                  <div><span class="hl">Filtro per categoria</span> — usa i tab in cima (Tutte · MotoGP · Moto2 · Moto3)
+                    per mostrare solo la classe che ti interessa.</div>
+                </li>
+                <li><span class="fl-icon">👑</span>
+                  <div><span class="hl">Corona del leader</span> — il pilota leader di classifica in ciascuna categoria
+                    ha la corona 👑 visibile sulla sua card.</div>
+                </li>
+                <li><span class="fl-icon">🔢</span>
+                  <div><span class="hl">Contatore visibile</span> — in alto a destra mostra quanti piloti sono visibili
+                    in quel momento (es. "22 / 77 piloti" quando filtra).</div>
+                </li>
+                <li><span class="fl-icon">👤</span>
+                  <div><span class="hl">Apri scheda pilota</span> — clicca su qualsiasi card per aprire la pagina
+                    dettagliata del pilota.</div>
+                </li>
+              </ul>
+              <div class="tip"><strong>💡</strong> Premi <kbd>/</kbd> da qualsiasi pagina del sito per arrivare
+                direttamente qui con il focus sul campo di ricerca.</div>
+            </div>
+          </div>
+
+          <!-- SCHEDA PILOTA -->
+          <div class="guide-section" id="pilota">
+            <div class="guide-section-header">
+              <div class="guide-icon">🧑</div>
+              <div>
+                <div class="guide-section-title">Scheda Pilota</div>
+                <div class="guide-section-sub">pilota.html • Info complete su ogni pilota</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>La scheda più ricca del sito. Ogni pilota ha la sua pagina con foto, statistiche, storico e molto
+                altro.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">📋</span>
+                  <div><span class="hl">Dati anagrafici</span> — nazionalità, data di nascita, numero di gara, team e
+                    costruttore 2026.</div>
+                </li>
+                <li><span class="fl-icon">🏆</span>
+                  <div><span class="hl">Palmares</span> — titoli mondiali vinti, con anno e categoria.</div>
+                </li>
+                <li><span class="fl-icon">📅</span>
+                  <div><span class="hl">Tabella stagioni</span> — tutta la carriera nel Mondiale con posizione finale,
+                    punti, vittorie, podi e pole per ogni anno.</div>
+                </li>
+                <li><span class="fl-icon">📊</span>
+                  <div><span class="hl">Grafico punti per round</span> — barre colorate che mostrano quanti punti ha
+                    fatto il pilota in ciascuno dei round 2026 già disputati (gara + sprint per MotoGP).</div>
+                </li>
+                <li><span class="fl-icon">👥</span>
+                  <div><span class="hl">Piloti vicini in classifica</span> — 4 piloti della stessa categoria con punti
+                    simili, cliccabili per passare da una scheda all'altra velocemente.</div>
+                </li>
+                <li><span class="fl-icon">🔗</span>
+                  <div><span class="hl">Condividi</span> — copia il link alla scheda negli appunti (su mobile usa la
+                    condivisione nativa del sistema).</div>
+                </li>
+                <li><span class="fl-icon">🖨️</span>
+                  <div><span class="hl">Stampa</span> — apre la finestra di stampa del browser con un layout ottimizzato
+                    (senza header, footer e pulsanti).</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CLASSIFICA -->
+          <div class="guide-section" id="classifica">
+            <div class="guide-section-header">
+              <div class="guide-icon">📊</div>
+              <div>
+                <div class="guide-section-title">Classifica</div>
+                <div class="guide-section-sub">classifica.html • Piloti + Costruttori</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>La pagina centrale del sito, con classifiche complete di piloti e costruttori per tutte e tre le
+                categorie.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">📑</span>
+                  <div><span class="hl">Tab categorie</span> — MotoGP · Moto2 · Moto3 · Costruttori. Clicca per passare
+                    da una all'altra.</div>
+                </li>
+                <li><span class="fl-icon">🏭</span>
+                  <div><span class="hl">Filtro costruttore</span> — nella colonna sinistra, filtra la classifica per
+                    mostrare solo i piloti di un costruttore specifico (es. solo Ducati, solo Aprilia).</div>
+                </li>
+                <li><span class="fl-icon">⚖️</span>
+                  <div><span class="hl">Confronto piloti</span> — seleziona due piloti dai menu a tendina nella colonna
+                    sinistra. Il confronto parte automaticamente appena selezioni il secondo. Mostra: posizione, punti,
+                    gap dal leader, costruttore, con <span class="hl">barra visiva comparativa</span> e highlight del
+                    "vincitore" per ogni metrica. Usa ✕ per resettare.</div>
+                </li>
+                <li><span class="fl-icon">🏭</span>
+                  <div><span class="hl">Classifica costruttori</span> — nel tab Costruttori, ogni marca ha una card con
+                    barra di progressione e l'elenco dei piloti. I punteggi sono quelli ufficiali FIM (miglior pilota
+                    per costruttore per round, non somma).</div>
+                </li>
+                <li><span class="fl-icon">✨</span>
+                  <div><span class="hl">Animazione entrata</span> — le righe della classifica appaiono con un'animazione
+                    slide-in al caricamento.</div>
+                </li>
+              </ul>
+              <div class="tip"><strong>💡</strong> Arrivando da <a href="moto2.html"
+                  class="internal-link">moto2.html</a> o <a href="moto3.html" class="internal-link">moto3.html</a>, il
+                tab giusto si apre automaticamente.</div>
+            </div>
+          </div>
+
+          <!-- RISULTATI -->
+          <div class="guide-section" id="risultati">
+            <div class="guide-section-header">
+              <div class="guide-icon">🏁</div>
+              <div>
+                <div class="guide-section-title">Risultati</div>
+                <div class="guide-section-sub">risultati.html • Sessione per sessione</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>I risultati completi di ogni sessione per ogni round disputato. È la pagina più dettagliata del sito.
+              </p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🗓️</span>
+                  <div><span class="hl">Seleziona round</span> — i pulsanti in alto (R1, R2, R3...) mostrano i round
+                    disponibili. Quello selezionato è evidenziato in rosso.</div>
+                </li>
+                <li><span class="fl-icon">🏍️</span>
+                  <div><span class="hl">Seleziona categoria</span> — tab MotoGP · Moto2 · Moto3 per ogni round.</div>
+                </li>
+                <li><span class="fl-icon">📋</span>
+                  <div><span class="hl">Sessioni</span> — FP (prove libere), Qualifiche Q1+Q2, Sprint (solo MotoGP),
+                    Gara. Clicca sulla sessione che vuoi vedere.</div>
+                </li>
+                <li><span class="fl-icon">🎖️</span>
+                  <div><span class="hl">Qualifiche con Q1→Q2</span> — in Q1, i piloti promossi a Q2 sono evidenziati in
+                    arancione con badge "→ Q2" (2 per MotoGP, 4 per Moto2/Moto3).</div>
+                </li>
+                <li><span class="fl-icon">🥇</span>
+                  <div><span class="hl">Medaglie top-3</span> — 🥇🥈🥉 appaiono automaticamente accanto alle prime tre
+                    posizioni di ogni classifica.</div>
+                </li>
+              </ul>
+              <div class="tip"><strong>💡</strong> Puoi arrivare direttamente a un round specifico cliccando dal
+                calendario o dalle card risultati nelle pagine di categoria.</div>
+            </div>
+          </div>
+
+          <!-- CALENDARIO -->
+          <div class="guide-section" id="calendario">
+            <div class="guide-section-header">
+              <div class="guide-icon">📅</div>
+              <div>
+                <div class="guide-section-title">Calendario</div>
+                <div class="guide-section-sub">calendario.html • 22 round stagionali</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>La vista completa della stagione con tutti i 22 round in una tabella. Mostra lo stato di ogni weekend.
+              </p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">✅</span>
+                  <div><span class="hl">Round completati</span> — click porta direttamente ai risultati di quel weekend.
+                  </div>
+                </li>
+                <li><span class="fl-icon">🟡</span>
+                  <div><span class="hl">Prossimo round</span> — evidenziato con sfondo giallo, il numero del round pulsa
+                    con un'animazione. È il Round 4 — GP Spagna · Jerez.</div>
+                </li>
+                <li><span class="fl-icon">🔮</span>
+                  <div><span class="hl">Round futuri</span> — click apre un popup elegante con nome del GP, data e
+                    bandiera. Non naviga a pagine vuote.</div>
+                </li>
+                <li><span class="fl-icon">📊</span>
+                  <div><span class="hl">Informazioni circuito</span> — ogni riga mostra l'anteprima del tracciato, la
+                    data e lo stato del weekend.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- STAGIONE -->
+          <div class="guide-section" id="stagione">
+            <div class="guide-section-header">
+              <div class="guide-icon">📈</div>
+              <div>
+                <div class="guide-section-title">Riepilogo Stagione</div>
+                <div class="guide-section-sub">stagione.html • Panoramica statistica</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Una vista d'insieme sulla stagione 2026 con statistiche aggregate, vincitori per round e tendenze.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🔥</span>
+                  <div><span class="hl">Piloti in forma</span> — chi ha fatto meglio nell'ultimo round (GP USA R3):
+                    Bezzecchi vincitore gara MotoGP (25 pt), Martín migliore del weekend (32 pt con sprint+gara), Agius
+                    Moto2 (25 pt), Pini Moto3 (25 pt).</div>
+                </li>
+                <li><span class="fl-icon">📊</span>
+                  <div><span class="hl">Panoramica</span> — round disputati, leader delle tre categorie, statistiche
+                    aggregate (vittorie, podi, pole) aggiornate.</div>
+                </li>
+                <li><span class="fl-icon">🏆</span>
+                  <div><span class="hl">Vincitori per round</span> — chi ha vinto ogni gara in ogni categoria, round per
+                    round.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ALBO D'ORO -->
+          <div class="guide-section" id="albo">
+            <div class="guide-section-header">
+              <div class="guide-icon">🏆</div>
+              <div>
+                <div class="guide-section-title">Albo d'Oro</div>
+                <div class="guide-section-sub">albo_doro.html • Dal 2000 al 2026</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>I campioni del Mondo di MotoGP, Moto2 e Moto3 (e 250cc/125cc) dal 2000 a oggi.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">🔍</span>
+                  <div><span class="hl">Ricerca</span> — digita un nome di pilota o un anno nel campo in cima. Le righe
+                    che non corrispondono scompaiono, quelle trovate vengono evidenziate. Usa ✕ per resettare.</div>
+                </li>
+                <li><span class="fl-icon">📋</span>
+                  <div><span class="hl">Tabelle per categoria</span> — MotoGP/500cc, 250cc/Moto2, 125cc/Moto3 in sezioni
+                    separate.</div>
+                </li>
+              </ul>
+              <div class="tip"><strong>💡</strong> Cerca "Rossi" per vedere tutti i titoli di Valentino Rossi, o "2015"
+                per vedere chi vinse quell'anno in tutte le categorie.</div>
+            </div>
+          </div>
+
+          <!-- SCORCIATOIE -->
+          <div class="guide-section" id="shortcuts">
+            <div class="guide-section-header">
+              <div class="guide-icon">⌨️</div>
+              <div>
+                <div class="guide-section-title">Scorciatoie da Tastiera</div>
+                <div class="guide-section-sub">Navigazione veloce</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Il sito supporta scorciatoie da tastiera per navigare senza mouse. Non si attivano se stai scrivendo in un campo di testo.</p>
+
+              <table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="text-align:left;padding:.5rem .7rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Tasto</th>
+                    <th style="text-align:left;padding:.5rem .7rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Azione</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>/</kbd></td>
+                    <td style="padding:.55rem .7rem;">Apre <strong>Lista Piloti</strong> con focus sulla ricerca</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>M</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>MotoGP</strong></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>2</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Moto2</strong></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>3</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Moto3</strong></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>C</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Classifica</strong></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>R</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Risultati</strong></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:.55rem .7rem;"><kbd>P</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Piloti</strong></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:.55rem .7rem;"><kbd>H</kbd></td>
+                    <td style="padding:.55rem .7rem;">Vai a <strong>Home</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="tip">
+                💡 Quando premi una scorciatoia, compare un toast <span style="background:#222;color:#fff;padding:.1rem .5rem;border-radius:20px;font-size:.82rem;">⌨️ → MotoGP</span> che conferma la navigazione prima di spostarti.
+              </div>
+            </div>
+          </div>
+
+          <!-- NUOVE FUNZIONALITÀ -->
+          <div class="guide-section" id="novita">
+            <div class="guide-section-header">
+              <div class="guide-icon">✨</div>
+              <div>
+                <div class="guide-section-title">Novità e Funzionalità Extra</div>
+                <div class="guide-section-sub">Aggiunte recenti</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <ul class="feature-list">
+                <li>
+                  <span class="fl-icon">🔙</span>
+                  <div>
+                    <strong>Bottone Torna Indietro</strong> — appare automaticamente in cima a ogni pagina con il nome della pagina da cui sei arrivato. Funziona su qualsiasi percorso di navigazione.
+                  </div>
+                </li>
+                <li>
+                  <span class="fl-icon">✨</span>
+                  <div>
+                    <strong>Animazioni fade-in</strong> — le card, le sezioni e i box entrano con un'animazione di dissolvenza leggera mentre scorri la pagina. Ogni elemento appare in sequenza sfasata.
+                  </div>
+                </li>
+                <li>
+                  <span class="fl-icon">🔍</span>
+                  <div>
+                <strong>Barra di ricerca piloti migliorata</strong> — in 
+                <a href="piloti.html" 
+                  style="color:#cc0000; text-decoration:none; font-weight:600; padding:2px 6px; border-radius:4px;">
+                  Piloti
+                </a>, la barra di ricerca è ora separata dai tab di filtro per categoria e si evidenzia in rosso quando è attiva.
+                  </div>
+                </li>
+                <li>
+                  <span class="fl-icon">⌨️</span>
+                  <div>
+                    <strong>Toast scorciatoie</strong> — ogni volta che usi una scorciatoia da tastiera appare un piccolo messaggio di conferma prima di navigare.
+                  </div>
+                </li>
+                <li>
+                  <span class="fl-icon">🌙</span>
+                  <div>
+                    <strong>Transizione tema fluida</strong> — il passaggio da tema scuro a chiaro (e viceversa) avviene ora con un'animazione morbida di 0.25 secondi invece di un cambio istantaneo.
+                  </div>
+                </li>
+                <li>
+                  <span class="fl-icon">📱</span>
+                  <div>
+                    <strong>PWA installabile</strong> — puoi installare il sito come app sul tuo telefono. Su iPhone: Safari → Condividi → Aggiungi a schermata Home. Su Android: Chrome → menu ⋮ → Installa app. Funziona anche offline dopo la prima visita.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TEMA -->
+<!-- TEMA -->
+          <div class="guide-section" id="tema">
+            <div class="guide-section-header">
+              <div class="guide-icon">🌙</div>
+              <div>
+                <div class="guide-section-title">Tema Scuro / Chiaro</div>
+                <div class="guide-section-sub">Personalizzazione visiva</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Il sito è progettato principalmente in <span class="hl">tema scuro</span>, ma supporta anche il tema
+                chiaro.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">☀️</span>
+                  <div>Clicca il pulsante <kbd>☀️</kbd> / <kbd>🌙</kbd> nell'header per passare da un tema all'altro.
+                  </div>
+                </li>
+                <li><span class="fl-icon">💾</span>
+                  <div>La preferenza viene <span class="hl">salvata nel browser</span> e ricordata alla visita
+                    successiva.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- AGGIORNAMENTI -->
+          <div class="guide-section" id="aggiornamenti">
+            <div class="guide-section-header">
+              <div class="guide-icon">🔄</div>
+              <div>
+                <div class="guide-section-title">Come vengono aggiornati i dati</div>
+                <div class="guide-section-sub">Frequenza • Fonti</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>Il sito è <span class="hl">statico</span> — non ha un backend o un database. I dati vengono aggiornati
+                manualmente dopo ogni round del campionato.</p>
+              <ul class="feature-list">
+                <li><span class="fl-icon">📅</span>
+                  <div><span class="hl">Dopo ogni gara</span> — classifiche piloti e costruttori, risultati sessioni,
+                    statistiche stagione.</div>
+                </li>
+                <li><span class="fl-icon">📰</span>
+                  <div><span class="hl">Notizie</span> — aggiunte manualmente con articoli sulle gare e aggiornamenti di
+                    paddock.</div>
+                </li>
+                <li><span class="fl-icon">ℹ️</span>
+                  <div>Attualmente i dati sono aggiornati dopo il <span class="hl">Round 3 — GP USA (Austin, 27-29 marzo
+                      2026)</span>. Il prossimo aggiornamento sarà dopo il GP Spagna · Jerez.</div>
+                </li>
+              </ul>
+              <div class="note">Il sito è un progetto amatoriale, non affiliato a Dorna Sports o al Campionato Mondiale
+                FIM.</div>
+            </div>
+          </div>
+
+        </div><!-- /guide-content -->
+      </div><!-- /guide-layout -->
+    </main>
+  </div>
+
+  <footer>
+      <a href="index.html" class="logo">MOTO<span style="color:var(--red)">2026</span></a>
+      <p>Risultati ufficiali — aggiornati al 23 marzo 2026</p>
+      <div class="socials">
+        <a href="#">📸 Instagram</a>
+        <a href="#">🐦 X / Twitter</a>
+        <a href="#">▶️ YouTube</a>
+        <a href="#">📘 Facebook</a>
+      </div>
+      <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+    </footer>
+
+  <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna in cima">↑</button>
+
+  <script>
+    // Dark/light mode
+    function initTheme() {
+      const saved = localStorage.getItem('moto2026-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      const ic = document.getElementById('theme-icon');
+      if (ic) ic.textContent = saved === 'dark' ? '☀️' : '🌙';
+    }
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('moto2026-theme', next);
+      const ic = document.getElementById('theme-icon');
+      if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+    initTheme();
+
+    // Scroll top
+    window.addEventListener('scroll', () => {
+      const b = document.getElementById('scroll-top-btn');
+      if (b) b.classList.toggle('visible', scrollY > 400);
+    });
+
+    // TOC active link on scroll
+    const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+    const sections = [...document.querySelectorAll('.guide-section[id]')];
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+      });
+      tocLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }, { passive: true });
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '/') { e.preventDefault(); window.location.href = 'piloti.html'; }
+    });
+
+    // ── TORNA INDIETRO ──
+    (function () {
+      var NAMES = {
+        'index.html': 'Home', 'motogp.html': 'MotoGP', 'moto2.html': 'Moto2',
+        'moto3.html': 'Moto3', 'piloti.html': 'Piloti', 'pilota.html': 'Pilota',
+        'classifica.html': 'Classifica', 'risultati.html': 'Risultati',
+        'calendario.html': 'Calendario', 'stagione.html': 'Stagione',
+        'albo_doro.html': "Albo d\'oro", 'guida.html': 'Guida', 'relazione.html': 'Relazione'
+      };
+      var cur = (location.pathname.split('/').pop() || 'index.html');
+      var curName = NAMES[cur] || cur;
+
+      function showBackBtn() {
+        var prev = sessionStorage.getItem('moto_from_url');
+        var prevName = sessionStorage.getItem('moto_from_name');
+        if (prev && prevName && prevName !== curName) {
+          var wrap = document.querySelector('.back-btn-wrap');
+          if (wrap) wrap.innerHTML = '<a class="back-btn" href="' + prev + '">← Torna a ' + prevName + '</a>';
+        }
+      }
+
+      function saveAndGo(href) {
+        var dest = href.split('/').pop().split('?')[0].split('#')[0];
+        if (NAMES[dest]) {
+          sessionStorage.setItem('moto_from_url', location.href);
+          sessionStorage.setItem('moto_from_name', curName);
+        }
+      }
+
+      // Mostra subito se DOM pronto, altrimenti aspetta
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showBackBtn);
+      } else {
+        showBackBtn();
+      }
+
+      // Intercetta TUTTI i click su link interni
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+        saveAndGo(href);
+      }, true); // useCapture=true: cattura prima del navigate
+    })();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();</script>
+</body>
+
+</html>
