@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Albo d'oro — Motomondiale 2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a;
+      --border:#2a2a2a; --muted:#888; --white:#f5f5f5;
+      --gp:#ff6b35; --m2:#f7a600; --m3:#00b4d8;
+      --gold:#ffd700; --silver:#c0c0c0; --bronze:#cd7f32;
+    }
+    /* ══ HEADER PULITO ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border); display: block;
+      transition: color .15s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--white); background: rgba(232,0,29,.1);
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--dark);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+    .page-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 60%,#2a0005 100%);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(232,0,29,.04) 38px,rgba(232,0,29,.04) 40px);}
+    .hero-bg{position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,18vw,240px);color:rgba(232,0,29,.06);line-height:1;pointer-events:none;user-select:none;}
+    .hero-inner{position:relative;max-width:1200px;margin:0 auto;}
+    .breadcrumb{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;}
+    .breadcrumb a{color:var(--muted);text-decoration:none;}
+    .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:.04em;line-height:1;}
+    .page-hero h1 span{color:var(--red);}
+    .page-hero p{margin-top:.8rem;color:#aaa;max-width:620px;}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+    main{padding:2.2rem 0 4rem;}
+    .tab-bar{background:var(--mid);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;}
+    .tab-btn{padding:1rem 1.6rem;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+    .tab-btn:hover{color:var(--white);}
+    .tab-btn.active-gp{color:var(--gp);border-bottom-color:var(--gp);}
+    .tab-btn.active-m2{color:var(--m2);border-bottom-color:var(--m2);}
+    .tab-btn.active-m3{color:var(--m3);border-bottom-color:var(--m3);}
+    .tab-btn.active-350{color:#9c27b0;border-bottom-color:#9c27b0;}
+    .tab-btn.active-50{color:#e67e22;border-bottom-color:#e67e22;}
+    .tab-btn.active-80{color:#27ae60;border-bottom-color:#27ae60;}
+    .tab-btn.active-sidecar{color:#16a085;border-bottom-color:#16a085;}
+    .panel{display:none;}
+    .panel.active{display:block;}
+    .section-head{display:flex;align-items:center;gap:1rem;margin:2rem 0 1rem;}
+    .section-badge{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.08em;padding:.2rem .7rem;border-radius:3px;}
+    .badge-gp{background:var(--gp);color:#fff;}
+    .badge-m2{background:var(--m2);color:#111;}
+    .badge-m3{background:var(--m3);color:#fff;}
+    .section-head h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.06em;}
+    .section-head::after{content:'';flex:1;height:1px;background:var(--border);}
+    .hall-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+    table.hall{width:100%;border-collapse:collapse;}
+    table.hall thead tr{border-bottom:1px solid var(--border);}
+    table.hall th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.7rem 1rem;text-align:left;}
+    table.hall td{padding:.8rem 1rem;border-bottom:1px solid var(--border);font-size:.92rem;}
+    table.hall tbody tr:last-child td{border-bottom:none;}
+    .year-cell{width:110px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);}
+    .champ-cell{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.02rem;}
+    .note-box{margin-bottom:1.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.90rem;}
+    footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted);}
+    footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
+    footer .socials{display:flex;justify-content:center;gap:1.2rem;margin:1rem 0;}
+    footer .socials a{color:var(--muted);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+    footer .socials a:hover{color:var(--white);}
+    @media(max-width:700px){
+      .year-cell{width:86px;}
+      table.hall th, table.hall td{padding:.6rem .7rem;}
+    }
+
+    /* LAYOUT DUE TABELLE AFFIANCATE */
+    .hall-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    @media(max-width:700px){.hall-two-col{grid-template-columns:1fr;}}
+    .hall-col-label{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.08em;color:var(--muted);padding:.5rem 1rem .4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;}
+    .hall-col-label .era-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+    .era-classic .era-dot{background:#888;}
+    .era-modern .era-dot{background:var(--gp);}
+    .era-modern-m2 .era-dot{background:var(--m2);}
+    .era-modern-m3 .era-dot{background:var(--m3);}
+    .hall-card-col{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #111;
+    }
+    [data-theme="light"] body { background:#f4f4f4; color:#111; }
+    [data-theme="light"] .page-hero {
+      background:linear-gradient(135deg,#fff 0%,#ffe8e8 60%,#fff0f0 100%);
+    }
+    [data-theme="light"] .stats-bar { background:#e8e8e8; }
+    [data-theme="light"] .race-table tbody tr:hover { background:rgba(0,0,0,.04); }
+    [data-theme="light"] .rider-card { background:#fff; }
+    [data-theme="light"] .rider-card:hover { background:#f0f0f0 !important; }
+    [data-theme="light"] .hero-bg-text { color:rgba(232,0,29,.08); }
+    [data-theme="light"] .breadcrumb, [data-theme="light"] .breadcrumb a { color:#999; }
+    [data-theme="light"] .page-hero h1 { color:#111; }
+    [data-theme="light"] .page-hero p { color:#666; }
+    [data-theme="light"] .stats-bar { border-bottom-color:#d0d0d0; }
+    [data-theme="light"] .race-table { background:#fff; border-color:#d0d0d0; }
+    [data-theme="light"] .race-table thead { background:#f8f8f8; }
+    [data-theme="light"] .race-table th { color:#999; }
+    [data-theme="light"] .race-table td { color:#111; }
+    [data-theme="light"] .rider-card { border-color:#d0d0d0; }
+    [data-theme="light"] .rider-card:hover { border-color:#aaa; }
+    [data-theme="light"] .rider-pos { color:#111; }
+    [data-theme="light"] .rider-name { color:#111; }
+    [data-theme="light"] .rider-team { color:#999; }
+    [data-theme="light"] .section-title { color:#111; }
+    [data-theme="light"] .section-title::after { background:#d0d0d0; }
+    [data-theme="light"] #theme-toggle { background:#fff; border-color:#d0d0d0; color:#666; }
+    [data-theme="light"] #theme-toggle:hover { background:#f0f0f0; color:#111; }
+
+    
+    /* ── SCROLL TO TOP ── */
+    #scroll-top-btn {
+      position:fixed; bottom:1.5rem; right:1.5rem; z-index:999;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--red); color:#fff; border:none;
+      font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s, transform .25s;
+      box-shadow:0 2px 10px rgba(232,0,29,.4);
+    }
+    #scroll-top-btn.visible { opacity:1; pointer-events:all; }
+    #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    
+    /* Ricerca albo d'oro */
+    
+    
+    
+    
+    
+    
+    [data-theme="light"] 
+
+    
+    /* Toast shortcut */
+    #shortcut-toast {
+      position:fixed; bottom:5.5rem; right:1.5rem; z-index:998;
+      background:#222; border:1px solid #444; border-radius:8px;
+      padding:.55rem 1rem; font-family:'Barlow Condensed',sans-serif;
+      font-size:.78rem; color:#aaa; letter-spacing:.04em;
+      opacity:0; transform:translateY(10px);
+      transition:opacity .3s, transform .3s;
+      pointer-events:none;
+    }
+    #shortcut-toast.show { opacity:1; transform:translateY(0); }
+
+    
+    /* ── LAYOUT SIDEBAR RICERCA ── */
+    .albo-page-layout {
+      display:flex; gap:1.5rem; align-items:flex-start;
+    }
+    .albo-sidebar {
+      flex:0 0 220px;
+      position:sticky; top:76px;
+    }
+    .albo-main-content { flex:1; min-width:0; }
+    @media(max-width:800px) {
+      .albo-page-layout { flex-direction:column; }
+      .albo-sidebar { position:static; flex:none; width:100%; }
+    }
+    /* Widget ricerca sidebar */
+    .albo-search-widget {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:8px; overflow:hidden; margin-bottom:1rem;
+    }
+    .albo-search-widget-header {
+      background:var(--red); padding:.6rem 1rem;
+      font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:.06em;
+    }
+    .albo-search-widget-body { padding:.8rem 1rem; }
+    .albo-search-new {
+      width:100%;
+      background:var(--mid); border:1px solid var(--border);
+      border-radius:5px; color:var(--white);
+      font-family:'Barlow Condensed',sans-serif; font-size:.9rem;
+      padding:.4rem .75rem; outline:none; transition:border-color .15s;
+    }
+    .albo-search-new:focus { border-color:var(--red); }
+    .albo-search-new::placeholder { color:var(--muted); }
+    .albo-search-results-count {
+      font-family:'Barlow Condensed',sans-serif; font-size:.72rem;
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--muted); margin-top:.5rem;
+    }
+    /* Reset btn */
+    #albo-reset-btn {
+      width:100%; margin-top:.5rem;
+      background:transparent; border:1px solid var(--border);
+      border-radius:5px; color:var(--muted); cursor:pointer;
+      font-family:'Barlow Condensed',sans-serif; font-weight:700;
+      font-size:.75rem; letter-spacing:.07em; text-transform:uppercase;
+      padding:.3rem; transition:all .15s; display:none;
+    }
+    #albo-reset-btn:hover { border-color:#666; color:var(--white); }
+    /* Statistiche sidebar */
+    .albo-stat-widget {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:8px; overflow:hidden;
+    }
+    .albo-stat-widget-header {
+      background:var(--mid); border-bottom:1px solid var(--border);
+      padding:.55rem 1rem;
+      font-family:'Barlow Condensed',sans-serif; font-size:.7rem;
+      font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    }
+    .albo-stat-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.5rem 1rem; border-bottom:1px solid var(--border);
+      font-family:'Barlow Condensed',sans-serif; font-size:.82rem; letter-spacing:.02em;
+    }
+    .albo-stat-row:last-child { border-bottom:none; }
+    .albo-stat-val {
+      font-family:'Bebas Neue',sans-serif; font-size:1rem; color:var(--red);
+    }
+    /* Highlight risultati trovati */
+    .hall-row-hidden { display:none !important; }
+    .hall-row-found td { background:rgba(232,0,29,.07) !important; }
+    [data-theme="light"] .albo-search-new { background:#f0f0f0; color:#111; }
+    [data-theme="light"] .albo-search-widget { background:#fff; border-color:#d0d0d0; }
+    [data-theme="light"] .albo-stat-widget { background:#fff; border-color:#d0d0d0; }
+
+    
+    /* ═══════════════════════════════════
+       HEADER OVERRIDE — versione finale
+    ═══════════════════════════════════ */
+    /* ── Breakpoint: hamburger sotto 1100px ── */
+    @media (min-width: 1101px) {
+    }
+    /* Mobile menu */
+    /* Light mode */
+    [data-theme="light"] #theme-toggle { border-color: #ccc !important; color: #555 !important; }
+
+    
+
+    
+    
+    .back-btn-wrap { margin: 0 0 .5rem; min-height: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .8rem; border-radius: 4px;
+      background: rgba(255,255,255,.07); border: 1px solid var(--border);
+      color: #aaa; text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; font-size: .76rem;
+      transition: .15s;
+    }
+    .back-btn:hover { border-color: var(--red); color: var(--white); }
+    
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+    /* Escludi elementi che non devono transitare */
+    .rider-photo, img, video, canvas, svg,
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+      transition: none !important;
+    }
+    
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Toggle tema migliorato */
+    #theme-toggle {
+      transition: transform .3s ease, background .2s !important;
+    }
+    #theme-toggle:hover { transform: rotate(20deg) scale(1.1) !important; }
+    #theme-toggle:active { transform: rotate(180deg) scale(.95) !important; }
+    
+    
+    /* ── MENU A TENDINA ── */
+    .nav-dropdown-wrap {
+      position: relative;
+    }
+    .nav-dropdown-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: border-color .15s, color .15s, background .15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.07);
+    }
+    .nav-dropdown-btn.open {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.1);
+    }
+    .nav-dropdown-btn svg {
+      transition: transform .2s;
+    }
+    .nav-dropdown-btn.open svg {
+      transform: rotate(180deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + .5rem);
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 400;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .nav-dropdown-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .nav-dropdown-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .6rem .9rem .2rem;
+    }
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem .9rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      color: var(--white);
+      text-decoration: none;
+      transition: background .12s, color .12s;
+    }
+    .nav-dropdown-item:hover {
+      background: rgba(232,0,29,.1);
+      color: var(--red);
+    }
+    .nav-dropdown-item.active { color: var(--white); background: rgba(255,255,255,.05); }
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: .3rem 0;
+    }
+    .nav-dropdown-item-icon {
+      font-size: .9rem;
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+      margin-bottom: .8rem;
+      display: none;
+    }
+    .auth-close {
+      position: absolute; top: .8rem; right: .9rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+
+    /* Stella preferiti sui piloti */
+    .fav-star {
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      opacity: .4; transition: opacity .2s, transform .2s;
+      padding: 0; line-height: 1;
+    }
+    .fav-star:hover { opacity: .8; transform: scale(1.2); }
+    .fav-star.active { opacity: 1; }
+
+    /* Sezione preferiti */
+    .favs-section {
+      background: rgba(247,166,0,.07);
+      border: 1px solid rgba(247,166,0,.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .favs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em;
+      color: #f7a600; margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .favs-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .fav-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    </style>
+</link></head>
+<body>
+<header>
+<a class="logo" href="index.html">MOTO<span>2026</span></a>
+<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a class="active" href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
+<button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
+<line x1="1" x2="13" y1="3" y2="3"></line>
+<line x1="1" x2="13" y1="7" y2="7"></line>
+<line x1="1" x2="13" y1="11" y2="11"></line>
+</svg>
+      MENU
+      <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 10 10" width="10">
+<polyline points="2,3 5,7 8,3"></polyline>
+</svg>
+</button>
+<div class="nav-dropdown-menu" id="nav-dropdown-menu"><div class="nav-dropdown-section">Home</div><a class="nav-dropdown-item" href="index.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏠</span>Home</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Categorie</div><a class="nav-dropdown-item" href="motogp.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔴</span>MotoGP</a><a class="nav-dropdown-item" href="moto2.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🟡</span>Moto2</a><a class="nav-dropdown-item" href="moto3.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔵</span>Moto3</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Campionato</div><a class="nav-dropdown-item" href="classifica.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏆</span>Classifica</a><a class="nav-dropdown-item" href="risultati.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📋</span>Risultati</a><a class="nav-dropdown-item" href="calendario.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📅</span>Calendario</a><a class="nav-dropdown-item" href="stagione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📖</span>Stagione</a><a class="nav-dropdown-item" href="stats.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📊</span>Statistiche</a><a class="nav-dropdown-item" href="circuiti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏁</span>Circuiti</a><a class="nav-dropdown-item" href="prediction.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🧠</span>Prediction</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Piloti</div><a class="nav-dropdown-item" href="piloti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">👤</span>Tutti i piloti</a><a class="nav-dropdown-item active" href="albo_doro.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🥇</span>Albo d'oro</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Team</div><a class="nav-dropdown-item" href="team.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏎️</span>Team</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Info</div><a class="nav-dropdown-item" href="guida.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">❓</span>Guida al sito</a><a class="nav-dropdown-item" href="relazione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📝</span>Relazione</a></div>
+</div>
+<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button><div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div></div>
+</header>
+<div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a class="active" href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
+<section class="page-hero">
+<div class="hero-bg">HALL</div>
+<div class="hero-inner">
+<div class="breadcrumb"><a href="index.html">Home</a> › Albo d'oro</div>
+<div class="back-btn-wrap"></div>
+<button id="backBtnCls" onclick="goBackCls()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+        ← Torna alla classifica
+      </button>
+<button id="backBtnMG" onclick="goBackMGP()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+        ← Torna alla pagina MotoGP
+      </button>
+<button id="backBtnM2" onclick="goBackM2()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+        ← Torna alla pagina Moto2
+      </button>
+<button id="backBtnM3" onclick="goBackM3()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+        ← Torna alla pagina Moto3
+      </button>
+<button id="backBtnIndx" onclick="goBackIndx()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+        ← Torna alla pagina principale
+      </button>
+<h1>ALBO D'ORO <span>DEL MOTOMONDIALE</span></h1>
+<p>Campioni del mondo delle classi storiche: MotoGP / 500cc, Moto2 / 250cc, Moto3 / 125cc, 350cc, 50cc, 80cc e Sidecar.</p>
+</div>
+</section>
+<div class="tab-bar">
+<button class="tab-btn active-gp" onclick="showPanel('motogp',this)">🏁 MotoGP</button>
+<button class="tab-btn" onclick="showPanel('moto2',this)">🟡 Moto2</button>
+<button class="tab-btn" onclick="showPanel('moto3',this)">🔵 Moto3</button>
+<button class="tab-btn" onclick="showPanel('350cc',this)" style="color:#9c27b0;">🟣 350cc</button>
+<button class="tab-btn" onclick="showPanel('50cc',this)" style="color:#e67e22;">🟠 50cc</button>
+<button class="tab-btn" onclick="showPanel('80cc',this)" style="color:#27ae60;">🟢 80cc</button>
+<button class="tab-btn" onclick="showPanel('sidecar',this)" style="color:#16a085;">🏍️ Sidecar</button>
+</div>
+<div class="container">
+<main>
+<div class="albo-page-layout">
+<!-- SIDEBAR RICERCA -->
+<aside class="albo-sidebar">
+<div class="albo-search-widget">
+<div class="albo-search-widget-header">🔍 Cerca</div>
+<div class="albo-search-widget-body">
+<input autocomplete="off" class="albo-search-new" id="albo-search-main" oninput="alboSearch(this.value)" placeholder="Nome pilota o anno..." type="text"/>
+<div class="albo-search-results-count" id="albo-count">— campioni totali</div>
+<button id="albo-reset-btn" onclick="alboReset()">✕ Cancella</button>
+</div>
+</div>
+<div class="albo-stat-widget">
+<div class="albo-stat-widget-header">📊 Statistiche</div>
+<div class="albo-stat-row"><span>MotoGP / 500cc</span><span class="albo-stat-val">77</span></div>
+<div class="albo-stat-row"><span>Moto2 / 250cc</span><span class="albo-stat-val">77</span></div>
+<div class="albo-stat-row"><span>Moto3 / 125cc</span><span class="albo-stat-val">77</span></div>
+<div class="albo-stat-row"><span>350cc (storica)</span><span class="albo-stat-val">34</span></div>
+<div class="albo-stat-row"><span>50cc (storica)</span><span class="albo-stat-val">22</span></div>
+<div class="albo-stat-row"><span>80cc (storica)</span><span class="albo-stat-val">6</span></div>
+<div class="albo-stat-row"><span>Sidecar (storica)</span><span class="albo-stat-val">48</span></div>
+<div class="albo-stat-row"><span>Anni coperti</span><span class="albo-stat-val">1949–2026</span></div>
+</div>
+</aside>
+<div class="albo-main-content">
+<div class="note-box">
+    L’albo d’oro completo del Motomondiale, che ripercorre la storia delle tre classi attraverso i suoi protagonisti: dai pionieri delle origini fino ai campioni dell’era moderna, raccontando tutte le epoche che hanno segnato questo sport.
+</div>
+<section class="panel active" id="panel-motogp">
+<div class="section-head"><span class="section-badge badge-gp">MotoGP</span><h2>500cc / MotoGP</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot"></span>500cc  <small style="color:#555;font-size:.8rem;">1949 – 2001</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">1949</td><td class="champ-cell">Leslie Graham</td></tr><tr><td class="year-cell">1950</td><td class="champ-cell">Umberto Masetti</td></tr><tr><td class="year-cell">1951</td><td class="champ-cell">Geoff Duke</td></tr><tr><td class="year-cell">1952</td><td class="champ-cell">Umberto Masetti</td></tr><tr><td class="year-cell">1953</td><td class="champ-cell">Geoff Duke</td></tr><tr><td class="year-cell">1954</td><td class="champ-cell">Geoff Duke</td></tr><tr><td class="year-cell">1955</td><td class="champ-cell">Geoff Duke</td></tr><tr><td class="year-cell">1956</td><td class="champ-cell">John Surtees</td></tr><tr><td class="year-cell">1957</td><td class="champ-cell">Libero Liberati</td></tr><tr><td class="year-cell">1958</td><td class="champ-cell">John Surtees</td></tr><tr><td class="year-cell">1959</td><td class="champ-cell">John Surtees</td></tr><tr><td class="year-cell">1960</td><td class="champ-cell">John Surtees</td></tr><tr><td class="year-cell">1961</td><td class="champ-cell">Gary Hocking</td></tr><tr><td class="year-cell">1962</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1963</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1964</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1965</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1966</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1967</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1968</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1969</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1970</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1971</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1972</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1973</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1974</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1975</td><td class="champ-cell">Giacomo Agostini</td></tr><tr><td class="year-cell">1976</td><td class="champ-cell">Barry Sheene</td></tr><tr><td class="year-cell">1977</td><td class="champ-cell">Barry Sheene</td></tr><tr><td class="year-cell">1978</td><td class="champ-cell">Kenny Roberts</td></tr><tr><td class="year-cell">1979</td><td class="champ-cell">Kenny Roberts</td></tr><tr><td class="year-cell">1980</td><td class="champ-cell">Kenny Roberts</td></tr><tr><td class="year-cell">1981</td><td class="champ-cell">Marco Lucchinelli</td></tr><tr><td class="year-cell">1982</td><td class="champ-cell">Franco Uncini</td></tr><tr><td class="year-cell">1983</td><td class="champ-cell">Freddie Spencer</td></tr><tr><td class="year-cell">1984</td><td class="champ-cell">Eddie Lawson</td></tr><tr><td class="year-cell">1985</td><td class="champ-cell">Freddie Spencer</td></tr><tr><td class="year-cell">1986</td><td class="champ-cell">Eddie Lawson</td></tr><tr><td class="year-cell">1987</td><td class="champ-cell">Wayne Gardner</td></tr><tr><td class="year-cell">1988</td><td class="champ-cell">Eddie Lawson</td></tr><tr><td class="year-cell">1989</td><td class="champ-cell">Eddie Lawson</td></tr><tr><td class="year-cell">1990</td><td class="champ-cell">Wayne Rainey</td></tr><tr><td class="year-cell">1991</td><td class="champ-cell">Wayne Rainey</td></tr><tr><td class="year-cell">1992</td><td class="champ-cell">Wayne Rainey</td></tr><tr><td class="year-cell">1993</td><td class="champ-cell">Kevin Schwantz</td></tr><tr><td class="year-cell">1994</td><td class="champ-cell">Mick Doohan</td></tr><tr><td class="year-cell">1995</td><td class="champ-cell">Mick Doohan</td></tr><tr><td class="year-cell">1996</td><td class="champ-cell">Mick Doohan</td></tr><tr><td class="year-cell">1997</td><td class="champ-cell">Mick Doohan</td></tr><tr><td class="year-cell">1998</td><td class="champ-cell">Mick Doohan</td></tr><tr><td class="year-cell">1999</td><td class="champ-cell">Àlex Crivillé</td></tr><tr><td class="year-cell">2000</td><td class="champ-cell">Kenny Roberts Jr.</td></tr><tr><td class="year-cell">2001</td><td class="champ-cell">Valentino Rossi</td></tr></tbody>
+</table>
+</div>
+<div class="hall-card-col">
+<div class="hall-col-label era-modern"><span class="era-dot"></span>MotoGP  <small style="color:#555;font-size:.8rem;">2002 – 2025</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">2002</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2003</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2004</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2005</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2006</td><td class="champ-cell">Nicky Hayden</td></tr><tr><td class="year-cell">2007</td><td class="champ-cell">Casey Stoner</td></tr><tr><td class="year-cell">2008</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2009</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2010</td><td class="champ-cell">Jorge Lorenzo</td></tr><tr><td class="year-cell">2011</td><td class="champ-cell">Casey Stoner</td></tr><tr><td class="year-cell">2012</td><td class="champ-cell">Jorge Lorenzo</td></tr><tr><td class="year-cell">2013</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2014</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2015</td><td class="champ-cell">Jorge Lorenzo</td></tr><tr><td class="year-cell">2016</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2017</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2018</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2019</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2020</td><td class="champ-cell">Joan Mir</td></tr><tr><td class="year-cell">2021</td><td class="champ-cell">Fabio Quartararo</td></tr><tr><td class="year-cell">2022</td><td class="champ-cell">Francesco Bagnaia</td></tr><tr><td class="year-cell">2023</td><td class="champ-cell">Francesco Bagnaia</td></tr><tr><td class="year-cell">2024</td><td class="champ-cell">Jorge Martín</td></tr><tr><td class="year-cell">2025</td><td class="champ-cell">Marc Márquez</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="panel" id="panel-moto2">
+<div class="section-head"><span class="section-badge badge-m2">Moto2</span><h2>250cc / Moto2</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot"></span>250cc  <small style="color:#555;font-size:.8rem;">1949 – 2009</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">1949</td><td class="champ-cell">Bruno Ruffo</td></tr><tr><td class="year-cell">1950</td><td class="champ-cell">Dario Ambrosini</td></tr><tr><td class="year-cell">1951</td><td class="champ-cell">Bruno Ruffo</td></tr><tr><td class="year-cell">1952</td><td class="champ-cell">Enrico Lorenzetti</td></tr><tr><td class="year-cell">1953</td><td class="champ-cell">Werner Haas</td></tr><tr><td class="year-cell">1954</td><td class="champ-cell">Werner Haas</td></tr><tr><td class="year-cell">1955</td><td class="champ-cell">Hermann Paul Müller</td></tr><tr><td class="year-cell">1956</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1957</td><td class="champ-cell">Cecil Sandford</td></tr><tr><td class="year-cell">1958</td><td class="champ-cell">Tarquinio Provini</td></tr><tr><td class="year-cell">1959</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1960</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1961</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1962</td><td class="champ-cell">Jim Redman</td></tr><tr><td class="year-cell">1963</td><td class="champ-cell">Jim Redman</td></tr><tr><td class="year-cell">1964</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1965</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1966</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1967</td><td class="champ-cell">Mike Hailwood</td></tr><tr><td class="year-cell">1968</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1969</td><td class="champ-cell">Kel Carruthers</td></tr><tr><td class="year-cell">1970</td><td class="champ-cell">Rodney Gould</td></tr><tr><td class="year-cell">1971</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1972</td><td class="champ-cell">Jarno Saarinen</td></tr><tr><td class="year-cell">1973</td><td class="champ-cell">Dieter Braun</td></tr><tr><td class="year-cell">1974</td><td class="champ-cell">Walter Villa</td></tr><tr><td class="year-cell">1975</td><td class="champ-cell">Walter Villa</td></tr><tr><td class="year-cell">1976</td><td class="champ-cell">Walter Villa</td></tr><tr><td class="year-cell">1977</td><td class="champ-cell">Mario Lega</td></tr><tr><td class="year-cell">1978</td><td class="champ-cell">Kork Ballington</td></tr><tr><td class="year-cell">1979</td><td class="champ-cell">Kork Ballington</td></tr><tr><td class="year-cell">1980</td><td class="champ-cell">Anton Mang</td></tr><tr><td class="year-cell">1981</td><td class="champ-cell">Anton Mang</td></tr><tr><td class="year-cell">1982</td><td class="champ-cell">Jean-Louis Tournadre</td></tr><tr><td class="year-cell">1983</td><td class="champ-cell">Carlos Lavado</td></tr><tr><td class="year-cell">1984</td><td class="champ-cell">Christian Sarron</td></tr><tr><td class="year-cell">1985</td><td class="champ-cell">Freddie Spencer</td></tr><tr><td class="year-cell">1986</td><td class="champ-cell">Carlos Lavado</td></tr><tr><td class="year-cell">1987</td><td class="champ-cell">Anton Mang</td></tr><tr><td class="year-cell">1988</td><td class="champ-cell">Sito Pons</td></tr><tr><td class="year-cell">1989</td><td class="champ-cell">Sito Pons</td></tr><tr><td class="year-cell">1990</td><td class="champ-cell">John Kocinski</td></tr><tr><td class="year-cell">1991</td><td class="champ-cell">Luca Cadalora</td></tr><tr><td class="year-cell">1992</td><td class="champ-cell">Luca Cadalora</td></tr><tr><td class="year-cell">1993</td><td class="champ-cell">Tetsuya Harada</td></tr><tr><td class="year-cell">1994</td><td class="champ-cell">Max Biaggi</td></tr><tr><td class="year-cell">1995</td><td class="champ-cell">Max Biaggi</td></tr><tr><td class="year-cell">1996</td><td class="champ-cell">Max Biaggi</td></tr><tr><td class="year-cell">1997</td><td class="champ-cell">Max Biaggi</td></tr><tr><td class="year-cell">1998</td><td class="champ-cell">Loris Capirossi</td></tr><tr><td class="year-cell">1999</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">2000</td><td class="champ-cell">Olivier Jacque</td></tr><tr><td class="year-cell">2001</td><td class="champ-cell">Daijiro Kato</td></tr><tr><td class="year-cell">2002</td><td class="champ-cell">Marco Melandri</td></tr><tr><td class="year-cell">2003</td><td class="champ-cell">Manuel Poggiali</td></tr><tr><td class="year-cell">2004</td><td class="champ-cell">Dani Pedrosa</td></tr><tr><td class="year-cell">2005</td><td class="champ-cell">Dani Pedrosa</td></tr><tr><td class="year-cell">2006</td><td class="champ-cell">Jorge Lorenzo</td></tr><tr><td class="year-cell">2007</td><td class="champ-cell">Jorge Lorenzo</td></tr><tr><td class="year-cell">2008</td><td class="champ-cell">Marco Simoncelli</td></tr><tr><td class="year-cell">2009</td><td class="champ-cell">Hiroshi Aoyama</td></tr></tbody>
+</table>
+</div>
+<div class="hall-card-col">
+<div class="hall-col-label era-modern-m2"><span class="era-dot"></span>Moto2  <small style="color:#555;font-size:.8rem;">2010 – 2025</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">2010</td><td class="champ-cell">Toni Elías</td></tr><tr><td class="year-cell">2011</td><td class="champ-cell">Stefan Bradl</td></tr><tr><td class="year-cell">2012</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2013</td><td class="champ-cell">Pol Espargaró</td></tr><tr><td class="year-cell">2014</td><td class="champ-cell">Tito Rabat</td></tr><tr><td class="year-cell">2015</td><td class="champ-cell">Johann Zarco</td></tr><tr><td class="year-cell">2016</td><td class="champ-cell">Johann Zarco</td></tr><tr><td class="year-cell">2017</td><td class="champ-cell">Franco Morbidelli</td></tr><tr><td class="year-cell">2018</td><td class="champ-cell">Francesco Bagnaia</td></tr><tr><td class="year-cell">2019</td><td class="champ-cell">Álex Márquez</td></tr><tr><td class="year-cell">2020</td><td class="champ-cell">Enea Bastianini</td></tr><tr><td class="year-cell">2021</td><td class="champ-cell">Remy Gardner</td></tr><tr><td class="year-cell">2022</td><td class="champ-cell">Augusto Fernández</td></tr><tr><td class="year-cell">2023</td><td class="champ-cell">Pedro Acosta</td></tr><tr><td class="year-cell">2024</td><td class="champ-cell">Ai Ogura</td></tr><tr><td class="year-cell">2025</td><td class="champ-cell">Diogo Moreira</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="panel" id="panel-moto3">
+<div class="section-head"><span class="section-badge badge-m3">Moto3</span><h2>125cc / Moto3</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot"></span>125cc  <small style="color:#555;font-size:.8rem;">1949 – 2011</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">1949</td><td class="champ-cell">Nello Pagani</td></tr><tr><td class="year-cell">1950</td><td class="champ-cell">Bruno Ruffo</td></tr><tr><td class="year-cell">1951</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1952</td><td class="champ-cell">Cecil Sandford</td></tr><tr><td class="year-cell">1953</td><td class="champ-cell">Werner Haas</td></tr><tr><td class="year-cell">1954</td><td class="champ-cell">Rupert Hollaus</td></tr><tr><td class="year-cell">1955</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1956</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1957</td><td class="champ-cell">Tarquinio Provini</td></tr><tr><td class="year-cell">1958</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1959</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1960</td><td class="champ-cell">Carlo Ubbiali</td></tr><tr><td class="year-cell">1961</td><td class="champ-cell">Tom Phillis</td></tr><tr><td class="year-cell">1962</td><td class="champ-cell">Luigi Taveri</td></tr><tr><td class="year-cell">1963</td><td class="champ-cell">Hugh Anderson</td></tr><tr><td class="year-cell">1964</td><td class="champ-cell">Luigi Taveri</td></tr><tr><td class="year-cell">1965</td><td class="champ-cell">Hugh Anderson</td></tr><tr><td class="year-cell">1966</td><td class="champ-cell">Luigi Taveri</td></tr><tr><td class="year-cell">1967</td><td class="champ-cell">Bill Ivy</td></tr><tr><td class="year-cell">1968</td><td class="champ-cell">Phil Read</td></tr><tr><td class="year-cell">1969</td><td class="champ-cell">Dave Simmonds</td></tr><tr><td class="year-cell">1970</td><td class="champ-cell">Dieter Braun</td></tr><tr><td class="year-cell">1971</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1972</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1973</td><td class="champ-cell">Kent Andersson</td></tr><tr><td class="year-cell">1974</td><td class="champ-cell">Kent Andersson</td></tr><tr><td class="year-cell">1975</td><td class="champ-cell">Paolo Pileri</td></tr><tr><td class="year-cell">1976</td><td class="champ-cell">Pier Paolo Bianchi</td></tr><tr><td class="year-cell">1977</td><td class="champ-cell">Pier Paolo Bianchi</td></tr><tr><td class="year-cell">1978</td><td class="champ-cell">Eugenio Lazzarini</td></tr><tr><td class="year-cell">1979</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1980</td><td class="champ-cell">Pier Paolo Bianchi</td></tr><tr><td class="year-cell">1981</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1982</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1983</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1984</td><td class="champ-cell">Ángel Nieto</td></tr><tr><td class="year-cell">1985</td><td class="champ-cell">Fausto Gresini</td></tr><tr><td class="year-cell">1986</td><td class="champ-cell">Luca Cadalora</td></tr><tr><td class="year-cell">1987</td><td class="champ-cell">Fausto Gresini</td></tr><tr><td class="year-cell">1988</td><td class="champ-cell">Jorge Martínez</td></tr><tr><td class="year-cell">1989</td><td class="champ-cell">Manuel Herreros</td></tr><tr><td class="year-cell">1990</td><td class="champ-cell">Loris Capirossi</td></tr><tr><td class="year-cell">1991</td><td class="champ-cell">Loris Capirossi</td></tr><tr><td class="year-cell">1992</td><td class="champ-cell">Alessandro Gramigni</td></tr><tr><td class="year-cell">1993</td><td class="champ-cell">Dirk Raudies</td></tr><tr><td class="year-cell">1994</td><td class="champ-cell">Kazuto Sakata</td></tr><tr><td class="year-cell">1995</td><td class="champ-cell">Haruchika Aoki</td></tr><tr><td class="year-cell">1996</td><td class="champ-cell">Haruchika Aoki</td></tr><tr><td class="year-cell">1997</td><td class="champ-cell">Valentino Rossi</td></tr><tr><td class="year-cell">1998</td><td class="champ-cell">Kazuto Sakata</td></tr><tr><td class="year-cell">1999</td><td class="champ-cell">Emilio Alzamora</td></tr><tr><td class="year-cell">2000</td><td class="champ-cell">Roberto Locatelli</td></tr><tr><td class="year-cell">2001</td><td class="champ-cell">Manuel Poggiali</td></tr><tr><td class="year-cell">2002</td><td class="champ-cell">Arnaud Vincent</td></tr><tr><td class="year-cell">2003</td><td class="champ-cell">Dani Pedrosa</td></tr><tr><td class="year-cell">2004</td><td class="champ-cell">Andrea Dovizioso</td></tr><tr><td class="year-cell">2005</td><td class="champ-cell">Thomas Lüthi</td></tr><tr><td class="year-cell">2006</td><td class="champ-cell">Álvaro Bautista</td></tr><tr><td class="year-cell">2007</td><td class="champ-cell">Gábor Talmácsi</td></tr><tr><td class="year-cell">2008</td><td class="champ-cell">Mike Di Meglio</td></tr><tr><td class="year-cell">2009</td><td class="champ-cell">Julián Simón</td></tr><tr><td class="year-cell">2010</td><td class="champ-cell">Marc Márquez</td></tr><tr><td class="year-cell">2011</td><td class="champ-cell">Nicolás Terol</td></tr></tbody>
+</table>
+</div>
+<div class="hall-card-col">
+<div class="hall-col-label era-modern-m3"><span class="era-dot"></span>Moto3  <small style="color:#555;font-size:.8rem;">2012 – 2025</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody><tr><td class="year-cell">2012</td><td class="champ-cell">Sandro Cortese</td></tr><tr><td class="year-cell">2013</td><td class="champ-cell">Maverick Viñales</td></tr><tr><td class="year-cell">2014</td><td class="champ-cell">Álex Márquez</td></tr><tr><td class="year-cell">2015</td><td class="champ-cell">Danny Kent</td></tr><tr><td class="year-cell">2016</td><td class="champ-cell">Brad Binder</td></tr><tr><td class="year-cell">2017</td><td class="champ-cell">Joan Mir</td></tr><tr><td class="year-cell">2018</td><td class="champ-cell">Jorge Martín</td></tr><tr><td class="year-cell">2019</td><td class="champ-cell">Lorenzo Dalla Porta</td></tr><tr><td class="year-cell">2020</td><td class="champ-cell">Albert Arenas</td></tr><tr><td class="year-cell">2021</td><td class="champ-cell">Pedro Acosta</td></tr><tr><td class="year-cell">2022</td><td class="champ-cell">Izan Guevara</td></tr><tr><td class="year-cell">2023</td><td class="champ-cell">Jaume Masià</td></tr><tr><td class="year-cell">2024</td><td class="champ-cell">David Alonso</td></tr><tr><td class="year-cell">2025</td><td class="champ-cell">José Antonio Rueda</td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- 350CC -->
+<section class="panel" id="panel-350cc">
+<div class="section-head"><span class="section-badge" style="background:#9c27b0;color:#fff;">350cc</span><h2>350cc</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#9c27b0;"></span>350cc  <small style="color:#555;font-size:.8rem;">1949 – 1982</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody>
+<tr><td class="year-cell">1949</td><td class="champ-cell">Freddie Frith</td></tr>
+<tr><td class="year-cell">1950</td><td class="champ-cell">Bob Foster</td></tr>
+<tr><td class="year-cell">1951</td><td class="champ-cell">Geoff Duke</td></tr>
+<tr><td class="year-cell">1952</td><td class="champ-cell">Geoff Duke</td></tr>
+<tr><td class="year-cell">1953</td><td class="champ-cell">Fergus Anderson</td></tr>
+<tr><td class="year-cell">1954</td><td class="champ-cell">Fergus Anderson</td></tr>
+<tr><td class="year-cell">1955</td><td class="champ-cell">William Lomas</td></tr>
+<tr><td class="year-cell">1956</td><td class="champ-cell">William Lomas</td></tr>
+<tr><td class="year-cell">1957</td><td class="champ-cell">Keith Campbell</td></tr>
+<tr><td class="year-cell">1958</td><td class="champ-cell">John Surtees</td></tr>
+<tr><td class="year-cell">1959</td><td class="champ-cell">John Surtees</td></tr>
+<tr><td class="year-cell">1960</td><td class="champ-cell">John Hartle</td></tr>
+<tr><td class="year-cell">1961</td><td class="champ-cell">Gary Hocking</td></tr>
+<tr><td class="year-cell">1962</td><td class="champ-cell">Jim Redman</td></tr>
+<tr><td class="year-cell">1963</td><td class="champ-cell">Jim Redman</td></tr>
+<tr><td class="year-cell">1964</td><td class="champ-cell">Jim Redman</td></tr>
+<tr><td class="year-cell">1965</td><td class="champ-cell">Jim Redman</td></tr>
+<tr><td class="year-cell">1966</td><td class="champ-cell">Mike Hailwood</td></tr>
+<tr><td class="year-cell">1967</td><td class="champ-cell">Mike Hailwood</td></tr>
+<tr><td class="year-cell">1968</td><td class="champ-cell">Bill Ivy</td></tr>
+<tr><td class="year-cell">1969</td><td class="champ-cell">Kel Carruthers</td></tr>
+<tr><td class="year-cell">1970</td><td class="champ-cell">Rodney Gould</td></tr>
+<tr><td class="year-cell">1971</td><td class="champ-cell">Phil Read</td></tr>
+<tr><td class="year-cell">1972</td><td class="champ-cell">Jarno Saarinen</td></tr>
+<tr><td class="year-cell">1973</td><td class="champ-cell">Teuvo Länsivuori</td></tr>
+<tr><td class="year-cell">1974</td><td class="champ-cell">Walter Villa</td></tr>
+<tr><td class="year-cell">1975</td><td class="champ-cell">Walter Villa</td></tr>
+<tr><td class="year-cell">1976</td><td class="champ-cell">Walter Villa</td></tr>
+<tr><td class="year-cell">1977</td><td class="champ-cell">Mario Lega</td></tr>
+<tr><td class="year-cell">1978</td><td class="champ-cell">Kork Ballington</td></tr>
+<tr><td class="year-cell">1979</td><td class="champ-cell">Kork Ballington</td></tr>
+<tr><td class="year-cell">1980</td><td class="champ-cell">Anton Mang</td></tr>
+<tr><td class="year-cell">1981</td><td class="champ-cell">Anton Mang</td></tr>
+<tr><td class="year-cell">1982</td><td class="champ-cell">Anton Mang</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hall-card-col" style="display:flex;align-items:flex-start;">
+<div style="padding:1.2rem;background:var(--mid);border-radius:8px;border:1px solid var(--border);margin-top:2.5rem;">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:#9c27b0;margin-bottom:.7rem;">📌 Categoria storica</div>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            La classe 350cc fu una delle categorie originali del Motomondiale, attiva dal 1949 al 1982. Caratterizzata da moto di media cilindrata, fu dominata da brand come MV Agusta, Honda, Yamaha e Harley-Davidson.
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            Il recordman di titoli è <strong style="color:var(--white);">Jim Redman</strong> con 4 titoli consecutivi (1962–1965), seguito da <strong style="color:var(--white);">Anton Mang</strong> (1980–1982) e <strong style="color:var(--white);">Kork Ballington</strong> (1978–1979).
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0;">
+            La categoria fu soppressa nel 1983, lasciando spazio allo sviluppo delle classi 250cc e 500cc come colonne del campionato.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 50CC -->
+<section class="panel" id="panel-50cc">
+<div class="section-head"><span class="section-badge" style="background:#e67e22;color:#fff;">50cc</span><h2>50cc</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#e67e22;"></span>50cc  <small style="color:#555;font-size:.8rem;">1962 – 1983</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody>
+<tr><td class="year-cell">1962</td><td class="champ-cell">Ernst Degner</td></tr>
+<tr><td class="year-cell">1963</td><td class="champ-cell">Hugh Anderson</td></tr>
+<tr><td class="year-cell">1964</td><td class="champ-cell">Hugh Anderson</td></tr>
+<tr><td class="year-cell">1965</td><td class="champ-cell">Ralph Bryans</td></tr>
+<tr><td class="year-cell">1966</td><td class="champ-cell">Hans-Georg Anscheidt</td></tr>
+<tr><td class="year-cell">1967</td><td class="champ-cell">Hans-Georg Anscheidt</td></tr>
+<tr><td class="year-cell">1968</td><td class="champ-cell">Hans-Georg Anscheidt</td></tr>
+<tr><td class="year-cell">1969</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1970</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1971</td><td class="champ-cell">Jan de Vries</td></tr>
+<tr><td class="year-cell">1972</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1973</td><td class="champ-cell">Jan de Vries</td></tr>
+<tr><td class="year-cell">1974</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1975</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1976</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1977</td><td class="champ-cell">Ángel Nieto</td></tr>
+<tr><td class="year-cell">1978</td><td class="champ-cell">Eugenio Lazzarini</td></tr>
+<tr><td class="year-cell">1979</td><td class="champ-cell">Eugenio Lazzarini</td></tr>
+<tr><td class="year-cell">1980</td><td class="champ-cell">Eugenio Lazzarini</td></tr>
+<tr><td class="year-cell">1981</td><td class="champ-cell">Ricardo Tormo</td></tr>
+<tr><td class="year-cell">1982</td><td class="champ-cell">Stefan Dörflinger</td></tr>
+<tr><td class="year-cell">1983</td><td class="champ-cell">Stefan Dörflinger</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hall-card-col" style="display:flex;align-items:flex-start;">
+<div style="padding:1.2rem;background:var(--mid);border-radius:8px;border:1px solid var(--border);margin-top:2.5rem;">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:#e67e22;margin-bottom:.7rem;">📌 Categoria storica</div>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            La classe 50cc fu introdotta nel 1962 come la categoria più piccola del Motomondiale. Disputata su moto monocilindriche di soli 50cc, richiedeva una tecnica raffinata per sfruttare ogni cavallo disponibile. Fu disputata fino al 1983, poi soppressa per lasciare spazio all'80cc.
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0;">
+            Il recordman assoluto di titoli è <strong style="color:var(--white);">Ángel Nieto</strong> con 7 campionati (1969–1977), seguito da <strong style="color:var(--white);">Eugenio Lazzarini</strong> con 3 (1978–1980) e <strong style="color:var(--white);">Stefan Dörflinger</strong> con 2 (1982–1983).
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 80CC -->
+<section class="panel" id="panel-80cc">
+<div class="section-head"><span class="section-badge" style="background:#27ae60;color:#fff;">80cc</span><h2>80cc</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#27ae60;"></span>80cc  <small style="color:#555;font-size:.8rem;">1984 – 1989</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody>
+<tr><td class="year-cell">1984</td><td class="champ-cell">Stefan Dörflinger</td></tr>
+<tr><td class="year-cell">1985</td><td class="champ-cell">Stefan Dörflinger</td></tr>
+<tr><td class="year-cell">1986</td><td class="champ-cell">Jorge Martínez</td></tr>
+<tr><td class="year-cell">1987</td><td class="champ-cell">Jorge Martínez</td></tr>
+<tr><td class="year-cell">1988</td><td class="champ-cell">Jorge Martínez</td></tr>
+<tr><td class="year-cell">1989</td><td class="champ-cell">Manuel Herreros</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hall-card-col" style="display:flex;align-items:flex-start;">
+<div style="padding:1.2rem;background:var(--mid);border-radius:8px;border:1px solid var(--border);margin-top:2.5rem;">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:#27ae60;margin-bottom:.7rem;">📌 Categoria storica</div>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            La classe 80cc fu introdotta nel 1984 per sostituire la soppressa 50cc. Attiva per soli sei anni (1984–1989), non ottenne mai la stessa popolarità delle sorelle maggiori. Le moto, dotate di motori a due tempi con potenze ridotte, richiedevano una guida estremamente precisa.
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0;">
+            Dominata da due piloti: <strong style="color:var(--white);">Stefan Dörflinger</strong> (1984–1985) e <strong style="color:var(--white);">Jorge Martínez "Aspar"</strong> (1986–1988), lo spagnolo che avrebbe poi fondato il celebre team Aspar che ancora oggi compete in Moto2 e Moto3.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SIDECAR -->
+<section class="panel" id="panel-sidecar">
+<div class="section-head"><span class="section-badge" style="background:#16a085;color:#fff;">Sidecar</span><h2>Sidecar</h2></div>
+<div class="hall-two-col">
+<div class="hall-card-col">
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#16a085;"></span>Sidecar  <small style="color:#555;font-size:.8rem;">1949 – 1996</small></div>
+<table class="hall">
+<thead><tr><th>Anno</th><th>Campione</th></tr></thead>
+<tbody>
+<tr><td class="year-cell">1949</td><td class="champ-cell">Eric Oliver</td></tr>
+<tr><td class="year-cell">1950</td><td class="champ-cell">Eric Oliver</td></tr>
+<tr><td class="year-cell">1951</td><td class="champ-cell">Eric Oliver</td></tr>
+<tr><td class="year-cell">1952</td><td class="champ-cell">Cyril Smith</td></tr>
+<tr><td class="year-cell">1953</td><td class="champ-cell">Eric Oliver</td></tr>
+<tr><td class="year-cell">1954</td><td class="champ-cell">Wilhelm Noll</td></tr>
+<tr><td class="year-cell">1955</td><td class="champ-cell">Willi Faust</td></tr>
+<tr><td class="year-cell">1956</td><td class="champ-cell">Wilhelm Noll</td></tr>
+<tr><td class="year-cell">1957</td><td class="champ-cell">Fritz Hillebrand</td></tr>
+<tr><td class="year-cell">1958</td><td class="champ-cell">Walter Schneider</td></tr>
+<tr><td class="year-cell">1959</td><td class="champ-cell">Walter Schneider</td></tr>
+<tr><td class="year-cell">1960</td><td class="champ-cell">Helmut Fath</td></tr>
+<tr><td class="year-cell">1961</td><td class="champ-cell">Max Deubel</td></tr>
+<tr><td class="year-cell">1962</td><td class="champ-cell">Max Deubel</td></tr>
+<tr><td class="year-cell">1963</td><td class="champ-cell">Max Deubel</td></tr>
+<tr><td class="year-cell">1964</td><td class="champ-cell">Max Deubel</td></tr>
+<tr><td class="year-cell">1965</td><td class="champ-cell">Fritz Scheidegger</td></tr>
+<tr><td class="year-cell">1966</td><td class="champ-cell">Fritz Scheidegger</td></tr>
+<tr><td class="year-cell">1967</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1968</td><td class="champ-cell">Helmut Fath</td></tr>
+<tr><td class="year-cell">1969</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1970</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1971</td><td class="champ-cell">Horst Owesle</td></tr>
+<tr><td class="year-cell">1972</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1973</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1974</td><td class="champ-cell">Klaus Enders</td></tr>
+<tr><td class="year-cell">1975</td><td class="champ-cell">Rolf Steinhausen</td></tr>
+<tr><td class="year-cell">1976</td><td class="champ-cell">Rolf Steinhausen</td></tr>
+<tr><td class="year-cell">1977</td><td class="champ-cell">George O'Dell</td></tr>
+<tr><td class="year-cell">1978</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1979</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1980</td><td class="champ-cell">Jock Taylor</td></tr>
+<tr><td class="year-cell">1981</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1982</td><td class="champ-cell">Werner Schwärzel</td></tr>
+<tr><td class="year-cell">1983</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1984</td><td class="champ-cell">Egbert Streuer</td></tr>
+<tr><td class="year-cell">1985</td><td class="champ-cell">Egbert Streuer</td></tr>
+<tr><td class="year-cell">1986</td><td class="champ-cell">Egbert Streuer</td></tr>
+<tr><td class="year-cell">1987</td><td class="champ-cell">Steve Webster</td></tr>
+<tr><td class="year-cell">1988</td><td class="champ-cell">Steve Webster</td></tr>
+<tr><td class="year-cell">1989</td><td class="champ-cell">Steve Webster</td></tr>
+<tr><td class="year-cell">1990</td><td class="champ-cell">Alain Michel</td></tr>
+<tr><td class="year-cell">1991</td><td class="champ-cell">Steve Webster</td></tr>
+<tr><td class="year-cell">1992</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1993</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1994</td><td class="champ-cell">Rolf Biland</td></tr>
+<tr><td class="year-cell">1995</td><td class="champ-cell">Darren Dixon</td></tr>
+<tr><td class="year-cell">1996</td><td class="champ-cell">Steve Webster</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hall-card-col" style="display:flex;align-items:flex-start;">
+<div style="padding:1.2rem;background:var(--mid);border-radius:8px;border:1px solid var(--border);margin-top:2.5rem;">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:#16a085;margin-bottom:.7rem;">📌 Categoria storica</div>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            Il campionato Sidecar fu parte del Motomondiale fin dalla prima edizione del 1949, disputato ininterrottamente fino al 1996 quando venne soppresso dal calendario mondiale. Le combinazioni pilota-passeggero sfidavano la fisica con macchine a tre ruote a forma di siluro.
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0 0 .8rem;">
+            Il recordman è <strong style="color:var(--white);">Rolf Biland</strong> (Svizzera) con 7 titoli mondiali (1978–1994), seguito da <strong style="color:var(--white);">Klaus Enders</strong> (Germania) con 6 titoli (1967–1974) e <strong style="color:var(--white);">Steve Webster</strong> (Gran Bretagna) con 5 (1987–1996).
+          </p>
+<p style="font-family:'Barlow',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.6;margin:0;">
+            Dal 1997 il campionato Sidecar continua come serie indipendente (FIM Sidecar World Championship) fuori dal Motomondiale, ancora oggi molto seguito in Europa centrale.
+          </p>
+</div>
+</div>
+</div>
+</section>
+</div><!-- /albo-main-content -->
+</div><!-- /albo-page-layout -->
+</main>
+</div>
+<footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Albo d'oro — Motomondiale 2026</p>
+<div class="socials">
+<a href="#">📸 Instagram</a>
+<a href="#">🐦 X / Twitter</a>
+<a href="#">▶️ YouTube</a>
+<a href="#">📘 Facebook</a>
+</div>
+<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-gp','active-m2','active-m3','active-350','active-50','active-80','active-sidecar'));
+  const map = { motogp:'active-gp', moto2:'active-m2', moto3:'active-m3', '350cc':'active-350', '50cc':'active-50', '80cc':'active-80', sidecar:'active-sidecar' };
+  if(map[name]) btn.classList.add(map[name]);
+}
+
+function goBackCls() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("classifica.html")) {
+    document.getElementById("backBtnCls").style.display = "inline-block";
+  }
+});
+
+function goBackMGP() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("motogp.html")) {
+    document.getElementById("backBtnMG").style.display = "inline-block";
+  }
+});
+
+function goBackM2() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("moto2.html")) {
+    document.getElementById("backBtnM2").style.display = "inline-block";
+  }
+});
+
+function goBackM3() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("moto3.html")) {
+    document.getElementById("backBtnM3").style.display = "inline-block";
+  }
+});
+
+function goBackIndx() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("index.html")) {
+    document.getElementById("backBtnIndx").style.display = "inline-block";
+  }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  // legge hash (#moto2, #moto3 ecc.)
+  const hash = window.location.hash.replace('#', '');
+
+  if (hash === 'moto2' || hash === 'moto3' || hash === 'motogp') {
+    const btns = document.querySelectorAll('.tab-btn');
+
+    btns.forEach(btn => {
+      const text = btn.textContent.toLowerCase();
+
+      if (
+        (hash === 'motogp' && text.includes('motogp')) ||
+        (hash === 'moto2' && text.includes('moto2')) ||
+        (hash === 'moto3' && text.includes('moto3'))
+      ) {
+        btn.click(); // simula click → attiva tab giusta
+      }
+    });
+  }
+});
+
+// ── DARK / LIGHT MODE ──────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+
+// ── RICERCA ALBO D'ORO ──
+function alboSearch(q) {
+  const query = q.toLowerCase().trim();
+  let found = 0, total = 0;
+  document.querySelectorAll('table.hall tbody tr').forEach(row => {
+    total++;
+    const text = row.textContent.toLowerCase();
+    const match = !query || text.includes(query);
+    row.classList.toggle('hall-row-hidden', !match);
+    row.classList.toggle('hall-row-found', !!(query && match));
+    if (match) found++;
+  });
+  const cnt = document.getElementById('albo-count');
+  if (cnt) cnt.textContent = query ? `${found} risultati` : `${total} campioni totali`;
+  const rst = document.getElementById('albo-reset-btn');
+  if (rst) rst.style.display = query ? 'block' : 'none';
+
+  // Se c'è ricerca, mostra tutti i panel con almeno un risultato
+  if (query) {
+    document.querySelectorAll('.panel').forEach(panel => {
+      const hasVisible = panel.querySelectorAll('table.hall tbody tr:not(.hall-row-hidden)').length > 0;
+      // Non nascondere panel, mostra sempre ma scrolla al primo risultato
+    });
+    // Scrolla alla prima riga trovata
+    const firstFound = document.querySelector('table.hall tbody tr.hall-row-found');
+    if (firstFound) firstFound.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+}
+function alboReset() {
+  const inp = document.getElementById('albo-search-main');
+  if (inp) { inp.value = ''; alboSearch(''); }
+}
+
+
+// Shortcut tastiera: '/' → vai a piloti con focus ricerca
+// 'h' → home, 'c' → classifica, 'r' → risultati, 'a' → albo d'oro
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === '/' && !e.ctrlKey) {
+    e.preventDefault();
+    window.location.href = 'piloti.html';
+  }
+});
+
+// Toast shortcut solo prima volta
+if (!localStorage.getItem('moto2026-shortcut-seen')) {
+  setTimeout(() => {
+    const t = document.getElementById('shortcut-toast');
+    if (t) { t.classList.add('show'); setTimeout(() => { t.classList.remove('show'); localStorage.setItem('moto2026-shortcut-seen','1'); }, 4000); }
+  }, 2500);
+}
+
+// Highlight righe trovate e tasto reset
+document.addEventListener('DOMContentLoaded', function() {
+  const inp = document.getElementById('albo-search-input');
+  if (!inp) return;
+
+  // Crea bottone reset
+  const btn = document.createElement('button');
+  btn.textContent = '✕';
+  btn.title = 'Cancella ricerca';
+  btn.style.cssText = 'margin-left:.4rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:.35rem .6rem;cursor:pointer;font-size:.9rem;transition:.15s;';
+  btn.onclick = () => { inp.value = ''; alboSearch(''); btn.style.display='none'; };
+  btn.style.display = 'none';
+  inp.parentElement.insertBefore(btn, inp.nextSibling);
+
+  inp.addEventListener('input', () => {
+    btn.style.display = inp.value ? 'inline-block' : 'none';
+  });
+});
+
+// Inizializza contatore
+document.addEventListener('DOMContentLoaded', () => {
+  const total = document.querySelectorAll('table.hall tbody tr').length;
+  const cnt = document.getElementById('albo-count');
+  if (cnt) cnt.textContent = total + ' campioni totali';
+});
+
+
+// ── TORNA INDIETRO ──
+(function(){
+  var NAMES = {
+    'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
+    'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
+    'classifica.html':'Classifica','risultati.html':'Risultati',
+    'calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
+    'albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'
+  };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>';
+    }
+  }
+
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+
+  // Mostra subito se DOM pronto, altrimenti aspetta
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else {
+    showBackBtn();
+  }
+
+  // Intercetta TUTTI i click su link interni
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true); // useCapture=true: cattura prima del navigate
+})();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();
+// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
+(function() {
+  // Indice statico: pagine + round
+  var PAGES = [
+    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
+    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
+    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
+    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
+    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
+    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
+    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
+    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
+    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
+    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
+    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
+    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
+    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
+    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
+    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
+    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
+    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
+  ];
+
+  var overlay   = document.getElementById('global-search-overlay');
+  var input     = document.getElementById('global-search-input');
+  var resultsEl = document.getElementById('global-search-results');
+  if (!overlay) return;
+
+  var selected = -1;
+  var currentResults = [];
+
+  function openGS() {
+    overlay.classList.add('open');
+    input.value = '';
+    renderResults([]);
+    setTimeout(function(){ input.focus(); }, 60);
+  }
+  window.closeGS = function() {
+    overlay.classList.remove('open');
+  };
+
+  function renderResults(items) {
+    currentResults = items;
+    selected = -1;
+    if (!items.length) {
+      resultsEl.innerHTML = input.value.length > 0
+        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
+        : '<div class="gs-empty">Inizia a digitare…</div>';
+      return;
+    }
+    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
+      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
+        '<div class="gs-result-icon">' + r.icon + '</div>' +
+        '<div><div class="gs-result-name">' + r.name + '</div>' +
+        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
+    }).join('');
+  }
+
+  window.searchGS = function(q) {
+    if (!q.trim()) { renderResults([]); return; }
+    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+    var res = PAGES.filter(function(p) {
+      return (p.name + ' ' + p.sub).toLowerCase()
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+        .includes(ql);
+    });
+    renderResults(res);
+  };
+
+  window.handleGSKey = function(e) {
+    var items = resultsEl.querySelectorAll('.gs-result');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selected = Math.min(selected + 1, items.length - 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selected = Math.max(selected - 1, 0);
+    } else if (e.key === 'Enter' && selected >= 0) {
+      items[selected].click(); return;
+    } else if (e.key === 'Escape') {
+      closeGS(); return;
+    }
+    items.forEach(function(el, i) {
+      el.classList.toggle('selected', i === selected);
+    });
+    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
+  };
+
+  // Apri con Ctrl+K / Cmd+K
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (overlay.classList.contains('open')) closeGS();
+      else openGS();
+    }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
+  });
+
+  // Click sull'icona 🔍 se presente
+  var searchBtn = document.getElementById('global-search-btn');
+  if (searchBtn) searchBtn.addEventListener('click', openGS);
+})();
+// ── MENU A TENDINA ──
+function toggleNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (!btn || !menu) return;
+  var isOpen = menu.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  menu.classList.toggle('open', !isOpen);
+}
+function closeNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (btn)  btn.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+}
+// Chiudi cliccando fuori
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('nav-dropdown-wrap');
+  if (wrap && !wrap.contains(e.target)) closeNavDropdown();
+});
+// Chiudi con Esc
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeNavDropdown();
+});
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      // Costruisci lista preferiti
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();</script>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
+<div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
+<style>
+input, button { pointer-events: auto !important; position: relative; z-index: 5 !important; }
+.category-btn, .filter-btn { pointer-events:auto !important; z-index:5 !important; position:relative;}
+</style>
+<div class="gs-footer">
+<span><kbd>↑</kbd><kbd>↓</kbd> naviga</span>
+<span><kbd>↵</kbd> apri</span>
+<span><kbd>Esc</kbd> chiudi</span>
+<span style="margin-left:auto;"><kbd>Ctrl</kbd>+<kbd>K</kbd> ovunque</span>
+</div>
+
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal">
+<button class="auth-close" onclick="closeAuthModal()">✕</button>
+<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+<div class="auth-error" id="auth-error"></div>
+<div class="auth-field">
+<label>Username</label>
+<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
+</div>
+<div class="auth-field">
+<label>Password</label>
+<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
+</div>
+<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+<label>Conferma password</label>
+<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
+</div>
+<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+<div class="auth-switch" id="auth-switch">
+        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+</div>
+</div>
+</div>
+</body>
+</html>

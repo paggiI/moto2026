@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<title>Autodromo Internacional de Goiania — Motomondiale 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+      --gp:     #ff6b35;   /* MotoGP rosso */
+      --m2:     #f7a600;   /* Moto2 giallo */
+      --m3:     #00b4d8;   /* Moto3 azzurro */
+    }
+    html { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; margin:0; overflow-x:hidden; }
+    /* ══ HEADER PULITO ══ */
+     header { position:sticky; top:0; z-index:200; background:rgba(10,10,10,.96); backdrop-filter:blur(12px); border-bottom:2px solid var(--red); display:flex; align-items:center; justify-content:space-between; padding:0 1.5rem; height:60px; gap:.8rem; }
+    .logo { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.08em; color:var(--black); text-decoration:none; flex-shrink:0; }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right { display:flex; align-items:center; gap:.5rem; flex-shrink:0; }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+      .nav-dropdown-wrap { display: none !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+    }
+
+    /* ── MENU A TENDINA ── */
+    .nav-dropdown-wrap {
+      position: relative;
+    }
+    .nav-dropdown-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: border-color .15s, color .15s, background .15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.07);
+    }
+    .nav-dropdown-btn.open {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.1);
+    }
+    .nav-dropdown-btn svg {
+      transition: transform .2s;
+    }
+    .nav-dropdown-btn.open svg {
+      transform: rotate(180deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + .5rem);
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 400;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .nav-dropdown-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .nav-dropdown-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .6rem .9rem .2rem;
+    }
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem .9rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      color: var(--white);
+      text-decoration: none;
+      transition: background .12s, color .12s;
+    }
+    .nav-dropdown-item:hover {
+      background: rgba(232,0,29,.1);
+      color: var(--red);
+    }
+    .nav-dropdown-item.active { color: var(--white); background: rgba(255,255,255,.05); }
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: .3rem 0;
+    }
+    .nav-dropdown-item-icon {
+      font-size: .9rem;
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--mute);
+    }
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+    }
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+      margin-bottom: .8rem;
+      display: none;
+    }
+    .auth-close {
+      position: absolute; top: .8rem; right: .9rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+    /* Toggle tema migliorato */
+    #theme-toggle {
+      transition: transform .3s ease, background .2s !important;
+    }
+    #theme-toggle:hover { transform: rotate(20deg) scale(1.1) !important; }
+    #theme-toggle:active { transform: rotate(180deg) scale(.95) !important; }
+    
+    
+    /* ── MENU A TENDINA ── */
+    .nav-drop
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Top 3 leader */
+    .top3-wrap {
+      display: flex; align-items: flex-end; gap: 1.5rem;
+      justify-content: center; margin: 2rem 0;
+    }
+    @keyframes fadeInUp { from {opacity:0;transform:translateY(10px)} to {opacity:1;transform:translateY(0)}}
+    
+
+    /* ── Page Layout ── */
+    .page-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 60%,#2a0005 100%);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+    
+    .page-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(232,0,29,.04) 38px,rgba(232,0,29,.04) 40px);}.page-hero-content{position:relative;max-width:1200px;margin:0 auto;}
+    .hero-bg-text {
+      position:absolute; right:-10px; top:50%; transform:translateY(-50%);
+      font-family:'Bebas Neue',sans-serif; font-size:clamp(80px,15vw,200px);
+      color:rgba(232,0,29,.05); line-height:1; pointer-events:none; user-select:none;
+    }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+    .hero-eyebrow {
+      font-family:'Barlow Condensed',sans-serif; font-weight:700;
+      font-size:.72rem; letter-spacing:.15em; text-transform:uppercase;
+      color:var(--red); margin-bottom:.5rem;
+      display:flex; align-items:center; gap:.5rem;
+    }
+    .hero-eyebrow::before { content:''; width:24px; height:2px; background:var(--red); }
+    .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:.04em;line-height:1;}
+    .page-hero h1 span{color:var(--red);}
+    .page-hero p{margin-top:.8rem;color:#aaa;max-width:560px;}
+    .page-hero sub { color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:.95rem; }
+    main { padding:2.5rem 0 5rem; }
+
+    .section-title {
+      font-family:'Bebas Neue',sans-serif; font-size:1.6rem;
+      letter-spacing:.06em; margin:2.5rem 0 1rem;
+      display:flex; align-items:center; gap:.8rem;
+    }
+    .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* Stat cards */
+    .stat-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+      gap:1rem; margin-bottom:2rem; }
+    .stat-card { background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:1.2rem 1rem; text-align:center; }
+    .stat-card-val { font-family:'Bebas Neue',sans-serif; font-size:2.2rem;
+      color:var(--red); line-height:1; margin-bottom:.2rem; }
+    .stat-card-lbl { font-family:'Barlow Condensed',sans-serif; font-size:.72rem;
+      letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+
+    /* Grafico */
+    .chart-wrap { background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:1.2rem 1.4rem; overflow-x:auto; margin-bottom:2rem; }
+    .chart-legend { display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:.8rem; }
+    .legend-item { display:flex; align-items:center; gap:.35rem;
+      font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; }
+    .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+    /* Costruttori */
+    .costruttore-row { display:flex; align-items:center; gap:1rem;
+      padding:.75rem 0; border-bottom:1px solid var(--border); }
+    .costruttore-row:last-child { border-bottom:none; }
+    .costruttore-name { font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
+      letter-spacing:.04em; min-width:100px; }
+    .costruttore-bar-track { flex:1; height:10px; background:var(--mid);
+      border-radius:5px; overflow:hidden; }
+    .costruttore-bar-fill { height:100%; border-radius:5px; transition:width .8s ease; }
+    .costruttore-pts { font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
+      color:var(--red); min-width:45px; text-align:right; }
+
+    /* Record */
+    .records-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+      gap:1rem; margin-bottom:2rem; }
+    .record-card { background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:1rem 1.1rem; }
+    .record-cat { font-family:'Barlow Condensed',sans-serif; font-size:.62rem;
+      font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:.3rem; }
+    .record-val { font-family:'Bebas Neue',sans-serif; font-size:1.5rem;
+      color:var(--red); line-height:1; margin-bottom:.2rem; }
+    .record-desc { font-family:'Barlow Condensed',sans-serif; font-size:.82rem; color:var(--muted); }
+
+    /* Nazioni */
+    .nations-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+      gap:.8rem; margin-bottom:2rem; }
+    .nation-card { background:var(--card); border:1px solid var(--border);
+      border-radius:8px; padding:.75rem; text-align:center; }
+    .nation-flag { font-size:1.8rem; line-height:1; margin-bottom:.3rem; }
+    .nation-wins { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; color:var(--red); }
+    .nation-name { font-family:'Barlow Condensed',sans-serif; font-size:.72rem;
+      color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+
+    /* Tabella top piloti */
+    .top-table { width:100%; border-collapse:collapse; font-family:'Barlow Condensed',sans-serif; }
+    .top-table th { font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); padding:.4rem .6rem; text-align:left; border-bottom:2px solid var(--border); }
+    .top-table td { padding:.6rem .6rem; border-bottom:1px solid rgba(255,255,255,.05);
+      font-size:.92rem; }
+    .top-table tr:last-child td { border-bottom:none; }
+    .top-table .pos { font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
+      color:var(--muted); width:30px; }
+    .top-table .pts { font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
+      color:var(--red); text-align:right; }
+
+    @media(max-width:600px) {
+      .stat-cards { grid-template-columns:1fr 1fr; }
+      .records-grid { grid-template-columns:1fr; }
+    }
+    [data-theme="light"] body { background:#f8f8f8; color:#111; }
+    [data-theme="light"] .page-hero {
+      background:linear-gradient(135deg,#fff 0%,#ffe8e8 60%,#fff0f0 100%);
+    }
+    [data-theme="light"] .chart-wrap,
+    [data-theme="light"] .stat-card,
+    [data-theme="light"] .record-card,
+    [data-theme="light"] .nation-card { background:#fff; border-color:#e0e0e0; }
+    [data-theme="light"] .costruttore-bar-track { background:#eee; }
+    [data-theme="light"] header {
+      background: rgba(248,248,248,.97) !important;
+      border-bottom-color: #d8d8d8 !important;
+    }
+    [data-theme="light"] nav a {
+      color: #555 !important;
+    }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active {
+      color: #111 !important;
+      background: rgba(0,0,0,.03) !important;
+    }
+    [data-theme="light"] .hamburger span {
+      background: #111 !important;
+    }
+    [data-theme="light"] .mobile-menu {
+      background: rgba(248,248,248,.99) !important;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    [data-theme="light"] .nav-dropdown-item {
+      color: #111;
+    }
+    [data-theme="light"] .nav-dropdown-item:hover {
+      background: rgba(232,0,29,.08);
+      color: var(--red);
+    }
+
+    [data-theme="light"] .hero {
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%);
+    }
+    [data-theme="light"] .page-hero h1 { color:#111; }
+    [data-theme="light"] .page-hero h1 span {
+      color:#e8001d;
+    }
+    [data-theme="light"] .page-hero sub,
+    [data-theme="light"] .panel-sub,
+    [data-theme="light"] .card-desc,
+    [data-theme="light"] .record-desc,
+    [data-theme="light"] .nation-name {
+      color:#555;
+    }
+    [data-theme="light"] .btn.ghost {
+      color:#111;
+      border-color:#cfcfcf;
+    }
+    [data-theme="light"] .btn.ghost:hover {
+      border-color: var(--red);
+      color:#111;
+    }
+    [data-theme="light"] .section-title,
+    [data-theme="light"] .panel-title,
+    [data-theme="light"] .record-val,
+    [data-theme="light"] .card-value {
+      color:#111;
+    }
+    [data-theme="light"] .notif-card,
+    [data-theme="light"] details.round,
+    [data-theme="light"] .card,
+    [data-theme="light"] .panel,
+    [data-theme="light"] .saved-item {
+      box-shadow:none;
+    }
+    [data-theme="light"] .user-menu {
+      color: #111;
+    }
+
+    [data-theme="light"] .user-menu * {
+      color: inherit;
+    }
+    [data-theme="light"] .user-menu-item.user-menu-fav {
+      color: #111 !important;
+    }
+    [data-theme="light"] .user-menu {
+      background: #fff;
+      border-color: #e0e0e0;
+    }
+    [data-theme="light"] .user-menu-item.logout {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--red);
+    }
+  
+    /* ── NOTIFICHE IN-APP ── */
+    #notif-container {
+      position: fixed;
+      top: 70px; right: 1rem;
+      z-index: 600;
+      display: flex; flex-direction: column; gap: .5rem;
+      max-width: 320px; width: calc(100% - 2rem);
+    }
+    .notif-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      display: flex; align-items: flex-start; gap: .6rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      animation: notifSlideIn .3s ease;
+    }
+    .notif-card.breaking { border-left-color: #f7a600; }
+    .notif-card.info { border-left-color: #60b4ff; }
+    @keyframes notifSlideIn {
+      from { opacity:0; transform:translateX(20px); }
+      to   { opacity:1; transform:translateX(0); }
+    }
+    .notif-icon { font-size: 1.1rem; flex-shrink:0; margin-top:.05rem; }
+    .notif-body { flex:1; min-width:0; }
+    .notif-title {
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:700; font-size:.85rem;
+      color:var(--white); margin-bottom:.1rem;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .notif-text {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:.78rem; color:var(--muted); line-height:1.35;
+    }
+    .notif-close {
+      background:none; border:none; color:var(--muted);
+      cursor:pointer; font-size:.9rem; padding:0; line-height:1;
+      flex-shrink:0; transition:color .15s;
+    }
+    .notif-close:hover { color:var(--white); }
+    /* Campanella nell'header */
+    .notif-bell-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer; border-radius: 6px;
+      padding: .28rem .5rem; line-height:1;
+      position: relative;
+      transition: border-color .15s, color .15s;
+    }
+    .notif-bell-btn:hover { border-color:var(--red); color:var(--white); }
+    .notif-bell-badge {
+      position:absolute; top:-4px; right:-4px;
+      background:var(--red); color:#fff;
+      border-radius:50%; width:14px; height:14px;
+      font-size:.55rem; font-family:'Barlow Condensed',sans-serif;
+      font-weight:700; display:flex; align-items:center; justify-content:center;
+    }
+
+    .back-btn-wrap { margin: 0 0 .5rem; min-height: 0; display:block; position:relative; z-index:2; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .8rem; border-radius: 4px;
+      background: rgba(255,255,255,.07); border: 1px solid var(--border);
+      color: #aaa; text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; font-size: .76rem;
+      transition: .15s;
+    }
+    .back-btn:hover { border-color: var(--red); color: var(--white); }
+
+    
+    [data-theme="light"] .page-hero {
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 58%, #efefef 100%) !important;
+    }
+    [data-theme="light"] .page-hero::before {
+      background: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232,0,29,.035) 38px, rgba(232,0,29,.035) 40px) !important;
+    }
+    [data-theme="light"] .page-hero h1,
+    [data-theme="light"] .page-hero p,
+    [data-theme="light"] .hero-eyebrow,
+    [data-theme="light"] .back-btn {
+      color: #111 !important;
+    }
+    [data-theme="light"] .back-btn {
+      background: rgba(255,255,255,.85) !important;
+      border-color: #d8d8d8 !important;
+    }
+    [data-theme="light"] .nav-dropdown-btn,
+    [data-theme="light"] .auth-btn,
+    [data-theme="light"] .user-avatar-btn,
+    [data-theme="light"] #theme-toggle {
+      color: #111 !important;
+      border-color: #d8d8d8 !important;
+      background: #fff !important;
+    }
+    [data-theme="light"] .nav-dropdown-menu,
+    [data-theme="light"] .user-menu,
+    [data-theme="light"] .mobile-menu {
+      background: rgba(255,255,255,.98) !important;
+    }
+    [data-theme="light"] .nav-dropdown-item,
+    [data-theme="light"] .user-menu-item,
+    [data-theme="light"] .mobile-menu a {
+      color: #111 !important;
+    }
+    [data-theme="light"] .user-avatar-btn {
+      background: #e8001d !important;
+      color: #fff !important;
+    }
+
+
+    /* ── CIRCUITI ── */
+    .circuit-search-wrap { margin: .5rem 0 1.5rem; }
+    .circuit-search {
+      width: 100%; max-width: 480px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: .65rem 1rem;
+      color: var(--white); font-family: 'Barlow', sans-serif; font-size: .95rem;
+      outline: none; transition: border-color .15s;
+    }
+    .circuit-search:focus { border-color: var(--red); }
+    .circuit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+      gap: 1.4rem;
+      margin-bottom: 3rem;
+    }
+    .circuit-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; transition: border-color .2s, transform .2s;
+    }
+    .circuit-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .circuit-img-wrap {
+      background: var(--mid); display: flex; align-items: center; justify-content: center;
+      height: 160px; overflow: hidden; border-bottom: 1px solid var(--border);
+      padding: 1rem; transition: background .2s;
+    }
+    .circuit-img { max-height: 100%; max-width: 100%; object-fit: contain; filter: invert(1) brightness(.85); transition: filter .2s; }
+    [data-theme="light"] .circuit-img-wrap {
+      background: #ffffff;
+      border-bottom-color: #e0e0e0;
+    }
+    [data-theme="light"] .circuit-img {
+      filter: none;
+      opacity: .92;
+    }
+    [data-theme="light"] .circuit-card {
+      background: #fff;
+      border-color: #ddd;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    [data-theme="light"] .circuit-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 16px rgba(230,0,35,.10);
+    }
+    [data-theme="light"] .circuit-stat {
+      background: #f4f4f4;
+      border: 1px solid #e8e8e8;
+    }
+    [data-theme="light"] .circuit-stat-val { color: #111; }
+    [data-theme="light"] .circuit-gp { color: var(--red); }
+    [data-theme="light"] .circuit-name { color: #111; }
+    [data-theme="light"] .circuit-history { border-top-color: #e8e8e8; color: #555; }
+    .circuit-body { padding: 1rem 1.1rem 1.2rem; }
+    .circuit-flag-name { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: .8rem; }
+    .circuit-flag { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: .1rem; }
+    .circuit-gp {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: .8rem; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--red); margin-bottom: .1rem;
+    }
+    .circuit-name {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .04em;
+      color: var(--white); line-height: 1.2;
+    }
+    .circuit-stats-row {
+      display: flex; gap: .5rem; margin-bottom: .5rem; flex-wrap: wrap;
+    }
+    .circuit-stat {
+      background: var(--mid); border-radius: 6px; padding: .4rem .7rem;
+      min-width: 56px; text-align: center;
+    }
+    .circuit-stat-record { flex: 1; min-width: 90px; }
+    .circuit-stat-val {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--white); letter-spacing: .04em;
+    }
+    .circuit-stat-lbl {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .circuit-record-info {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; color: var(--m2);
+      margin-bottom: .25rem;
+    }
+    .circuit-city {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; color: var(--muted);
+      margin-bottom: .6rem;
+    }
+    .circuit-history {
+      font-family: 'Barlow', sans-serif; font-size: .8rem; color: var(--muted);
+      line-height: 1.5; border-top: 1px solid var(--border); padding-top: .6rem; margin-top: .3rem;
+    }
+
+    @media (max-width: 600px) {
+      .circuit-img-wrap { height: 130px; }
+      .circuit-grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+      /* ── CIRCUITO PAGE ── */
+    .circ-hero-layout { display:flex; flex-direction:column; gap:1.2rem; }
+    .circ-hero-img { flex:0 0 100%; margin-bottom:1.2rem; }
+    .circ-hero-img img { width:100%; max-width:420px; filter:invert(1) brightness(.85); display:block; margin:0 auto; }
+    [data-theme="light"] .circ-hero-img img { filter:none; }
+    .circ-hero-info { flex:1; min-width:200px; }
+    .circ-quick-stats { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0; }
+    .circ-qs { background:var(--mid); border:1px solid var(--border); border-radius:6px; padding:.45rem .8rem; text-align:center; min-width:80px; }
+    .circ-qs-val { font-family:"Bebas Neue",sans-serif; font-size:1.1rem; color:var(--white); letter-spacing:.04em; }
+    .circ-qs-lbl { font-family:"Barlow Condensed",sans-serif; font-size:.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+    [data-theme="light"] .circ-qs { background:#f5f5f5; border-color:#ddd; }
+    [data-theme="light"] .circ-qs-val { color:#111; }
+    .circ-record-box { background:var(--mid); border:1px solid var(--border); border-radius:8px; padding:.8rem 1.1rem; margin:.8rem 0; display:flex; align-items:center; gap:.8rem; flex-wrap:wrap; }
+    .circ-record-time { font-family:"Bebas Neue",sans-serif; font-size:2rem; color:var(--red); letter-spacing:.06em; }
+    .circ-record-info { font-family:"Barlow Condensed",sans-serif; font-size:.9rem; color:var(--muted); line-height:1.4; }
+    .circ-record-info strong { color:var(--white); }
+    [data-theme="light"] .circ-record-box { background:#f5f5f5; border-color:#ddd; }
+    [data-theme="light"] .circ-record-info strong { color:#111; }
+    .circ-section { margin:2rem 0; }
+    .circ-section-title { font-family:"Bebas Neue",sans-serif; font-size:1.4rem; letter-spacing:.06em; color:var(--white); border-left:3px solid var(--red); padding-left:.7rem; margin-bottom:1rem; }
+    [data-theme="light"] .circ-section-title { color:#111; }
+    .circ-prose { font-family:"Barlow",sans-serif; font-size:.92rem; color:var(--muted); line-height:1.75; }
+    [data-theme="light"] .circ-prose { color:#444; }
+    .results-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+    .results-table th { font-family:"Barlow Condensed",sans-serif; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-size:.72rem; padding:.5rem .6rem; border-bottom:1px solid var(--border); text-align:left; }
+    .results-table td { padding:.55rem .6rem; border-bottom:1px solid rgba(255,255,255,.04); font-family:"Barlow",sans-serif; color:var(--white); vertical-align:top; }
+    .results-table tr:last-child td { border-bottom:none; }
+    .results-table tr:hover td { background:rgba(255,255,255,.02); }
+    .results-table .year-td { font-family:"Bebas Neue",sans-serif; font-size:1rem; color:var(--red); letter-spacing:.04em; width:56px; }
+    .cat-gp { color:var(--gp); font-weight:600; }
+    .cat-m2 { color:var(--m2); font-weight:600; }
+    .cat-m3 { color:var(--m3); font-weight:600; }
+    [data-theme="light"] .results-table td { color:#222; border-bottom-color:#eee; }
+    [data-theme="light"] .results-table th { color:#666; border-bottom-color:#ddd; }
+    [data-theme="light"] .results-table tr:hover td { background:#f8f8f8; }
+    .curiosita-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.6rem; }
+    .curiosita-list li { background:var(--mid); border:1px solid var(--border); border-radius:6px; padding:.7rem 1rem .7rem 2.4rem; font-family:"Barlow",sans-serif; font-size:.87rem; color:var(--muted); line-height:1.5; position:relative; }
+    .curiosita-list li::before { content:"\1F4A1"; position:absolute; left:.7rem; top:.65rem; font-size:.85rem; }
+    [data-theme="light"] .curiosita-list li { background:#f5f5f5; border-color:#ddd; color:#444; }
+    .circ-nav-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; background:var(--mid); border:1px solid var(--border); border-radius:6px; color:var(--muted); font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; text-decoration:none; transition:.15s; margin-top:1rem; }
+    .circ-nav-btn:hover { border-color:var(--red); color:var(--white); }
+    [data-theme="light"] .circ-nav-btn { background:#fff; border-color:#ccc; color:#444; }
+    [data-theme="light"] .circ-nav-btn:hover { border-color:var(--red); color:#111; }
+    @media(max-width:640px) {
+      .circ-hero-img { flex:0 0 100%; max-width:none; }
+      .circ-hero-img img { max-width:180px; }
+      .results-table th, .results-table td { padding:.4rem .3rem; font-size:.75rem; }
+    }
+  </style>
+<body>
+<header>
+<a class="logo" href="../index.html">MOTO<span>2026</span></a>
+<nav><a href="../index.html">Home</a><a href="../motogp.html">MotoGP</a><a href="../moto2.html">Moto2</a><a href="../moto3.html">Moto3</a><a href="../calendario.html">Calendario</a><a href="../piloti.html">Piloti</a><a href="../team.html">Team</a><a href="../classifica.html">Classifica</a><a href="../risultati.html">Risultati</a><a href="../stagione.html">Stagione</a><a href="../prediction.html">Prediction</a><a href="../stats.html">Statistiche</a><a class="active" href="../circuiti.html">Circuiti</a><a href="../albo_doro.html">Albo d'oro</a><a href="../guida.html">Guida</a><a href="../relazione.html">Relazione</a></nav>
+<div class="header-right"><button class="auth-btn" onclick="openAuthModal()">👤 Accedi</button><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
+<button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
+<line x1="1" x2="13" y1="3" y2="3"></line>
+<line x1="1" x2="13" y1="7" y2="7"></line>
+<line x1="1" x2="13" y1="11" y2="11"></line>
+</svg>
+      MENU
+      <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 10 10" width="10">
+<polyline points="2,3 5,7 8,3"></polyline>
+</svg>
+</button>
+<div class="nav-dropdown-menu" id="nav-dropdown-menu"><div class="nav-dropdown-section">Home</div><a class="nav-dropdown-item" href="../index.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏠</span>Home</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Categorie</div><a class="nav-dropdown-item" href="../motogp.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔴</span>MotoGP</a><a class="nav-dropdown-item" href="../moto2.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🟡</span>Moto2</a><a class="nav-dropdown-item" href="../moto3.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔵</span>Moto3</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Campionato</div><a class="nav-dropdown-item" href="../classifica.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏆</span>Classifica</a><a class="nav-dropdown-item" href="../risultati.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📋</span>Risultati</a><a class="nav-dropdown-item" href="../calendario.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📅</span>Calendario</a><a class="nav-dropdown-item" href="../stagione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📖</span>Stagione</a><a class="nav-dropdown-item" href="../stats.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📊</span>Statistiche</a><a class="nav-dropdown-item active" href="../circuiti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏁</span>Circuiti</a><a class="nav-dropdown-item" href="../prediction.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🧠</span>Prediction</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Piloti</div><a class="nav-dropdown-item" href="../piloti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">👤</span>Tutti i piloti</a><a class="nav-dropdown-item" href="../albo_doro.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🥇</span>Albo d'oro</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Team</div><a class="nav-dropdown-item" href="../team.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏎️</span>Team</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Info</div><a class="nav-dropdown-item" href="../guida.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">❓</span>Guida al sito</a><a class="nav-dropdown-item" href="../relazione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📝</span>Relazione</a></div>
+</div>
+<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div></div>
+</header>
+<div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../motogp.html">MotoGP</a><a href="../moto2.html">Moto2</a><a href="../moto3.html">Moto3</a><a href="../calendario.html">Calendario</a><a href="../piloti.html">Piloti</a><a href="../team.html">Team</a><a href="../classifica.html">Classifica</a><a href="../risultati.html">Risultati</a><a href="../stagione.html">Stagione</a><a href="../prediction.html">Prediction</a><a href="../stats.html">Statistiche</a><a class="active" href="../circuiti.html">Circuiti</a><a href="../albo_doro.html">Albo d'oro</a><a href="../guida.html">Guida</a><a href="../relazione.html">Relazione</a></div>
+<section class="page-hero">
+<div class="hero-bg-text">BR</div>
+<div class="container">
+<div class="hero-eyebrow">Brasile · Stagione 2026</div>
+<div class="back-btn-wrap"></div>
+<h1>Gran Premio del Brasile <span>2026</span></h1>
+<p class="hero-sub">Autodromo Internacional de Goiania · Goiania</p>
+</div>
+</section>
+<main>
+<div class="container">
+<a class="circ-nav-btn" href="../circuiti.html" style="margin-bottom:1.5rem;">← Tutti i circuiti</a>
+<div class="circ-section">
+<div class="circ-hero-layout">
+<div class="circ-hero-img">
+<img alt="Layout Autodromo Internacional de Goiania" src="../img/tracciati/brasile.png"/>
+</div>
+<div class="circ-hero-info">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--red);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.25rem;">Gran Premio del Brasile</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--white);margin-bottom:.6rem;letter-spacing:.04em;">Autodromo Internacional de Goiania</div>
+<div class="circ-quick-stats">
+<div class="circ-qs"><div class="circ-qs-val">3.806</div><div class="circ-qs-lbl">km</div></div>
+<div class="circ-qs"><div class="circ-qs-val">11</div><div class="circ-qs-lbl">Curve</div></div>
+<div class="circ-qs"><div class="circ-qs-val">1974</div><div class="circ-qs-lbl">Inaugurato</div></div>
+<div class="circ-qs"><div class="circ-qs-val">60.000</div><div class="circ-qs-lbl">Capienza</div></div>
+<div class="circ-qs" style="min-width:120px;"><div class="circ-qs-val" style="font-size:.85rem;">720 m</div><div class="circ-qs-lbl">Rettilineo</div></div>
+</div>
+<div class="circ-record-box">
+<div class="circ-record-time">1'38.103</div>
+<div class="circ-record-info">
+<div style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-family:'Barlow Condensed',sans-serif;margin-bottom:.15rem;">Record sul giro</div>
+<strong>Marc Marquez</strong><br/>
+<span style="font-size:.82rem;">Ducati GP23 · 2023</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="circ-section">
+<div class="circ-section-title">📚 Storia</div>
+<div class="circ-prose">L'Autódromo Internacional de Goiânia – Ayrton Senna, inaugurato nel 1974, è uno dei circuiti più storici del motorsport brasiliano. Ha ospitato il Gran Premio del Brasile di Formula 1 nel 1978, vinto da Carlos Reutemann su Ferrari. Per il MotoGP, Goiânia aveva già ospitato gare dal 1987 al 1989, prima che il Gran Premio si spostasse a Interlagos e poi cessasse. Dopo un'assenza di oltre trent'anni, il MotoGP è tornato in Brasile nel 2026 — e a Goiânia per la prima volta dal 1989. Il fine settimana è stato segnato da piogge intense il venerdì e da una voragine comparsa sul rettilineo principale il sabato, ma la gara si è disputata regolarmente, ridotta a 23 giri per ragioni di sicurezza del fondo stradale. Marco Bezzecchi ha vinto davanti al compagno di squadra Jorge Martín in una storica doppietta Aprilia.</div>
+</div>
+<div class="circ-section">
+<div class="circ-section-title">🔧 Caratteristiche tecniche</div>
+<div class="circ-prose">Tracciato corto e tecnico con due lunghi rettilinei che favoriscono i sorpassi in frenata. L'altitudine moderata (750 m slm) influisce sull'erogazione dei motori. Caldo e umidita del Brasile centrale sono fattori da gestire nella gara.</div>
+</div>
+<div class="circ-section">
+<div class="circ-section-title">🏆 Ultimi 1 anni di risultati — <span style="font-size:.75rem;color:var(--muted);">2026 · Round 2 · 22 marzo · Prima edizione a Goiânia dal 1989</span></div>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+<table class="results-table">
+<thead><tr><th>Anno</th><th>🔴 MotoGP</th><th>🟡 Moto2</th><th>🟢 Moto3</th></tr></thead>
+<tbody>
+  <tr>
+    <td class="year-td">2026</td>
+    <td><span class="cat-gp">Fabio Di Giannantonio</span></td>
+    <td><span class="cat-m2">Daniel Holgado</span></td>
+    <td><span class="cat-m3">Máximo Quiles</span></td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="circ-section">
+<div class="circ-section-title">💡 Lo sapevi?</div>
+<ul class="curiosita-list"><li>L'ultima gara di F1 a Goiânia risale al 1978, vinta da Carlos Reutemann su Ferrari.</li><li>Marco Bezzecchi ha vinto la prima edizione del GP del Brasile 2026 per Aprilia, con Jorge Martín 2°: storica doppietta italiana.</li><li>Il GP del Brasile era assente dal calendario dal 2004 (Rio de Janeiro) — un'attesa di 22 anni.</li><li>Máximo Quiles ha vinto in Moto3 con una spettacolare rimonta da ultimo a primo dopo la bandiera rossa.</li></ul>
+</div>
+<a class="circ-nav-btn" href="../circuiti.html" style="margin-bottom:3rem;">← Torna a tutti i circuiti</a>
+</div>
+</main>
+<footer style="background:var(--mid);border-top:1px solid var(--border);padding:2rem;text-align:center;">
+<a href="../index.html" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:var(--white);text-decoration:none;">MOTO<span style="color:var(--red)">2026</span></a>
+<p style="font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--muted);margin:.4rem 0 0;">
+    Circuiti · 22 tracciati · Stagione 2026
+  </p>
+</footer>
+<button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
+<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal">
+<button class="auth-close" onclick="closeAuthModal()">✕</button>
+<div class="auth-modal-title" id="auth-title">Accedi a <span style="color:var(--red)">Moto2026</span></div>
+<div class="auth-error" id="auth-error"></div>
+<div class="auth-field"><label>Username</label><input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/></div>
+<div class="auth-field"><label>Password</label><input id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/></div>
+<div class="auth-field" id="auth-confirm-wrap" style="display:none;"><label>Conferma password</label><input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" type="password"/></div>
+<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+<div class="auth-switch" id="auth-switch">Non hai un account? <a onclick="switchAuthMode()">Registrati</a></div>
+</div>
+</div>
+<script>
+// ── TEMA ──
+function initTheme() {
+  var t = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  var ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  var ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// ── GRAFICO PUNTI ──
+(function() {
+  var PILOTS = [
+    { name:'Bezzecchi',    color:'#ff6b35', pts:[0,25,50,81,101] },
+    { name:'Martín',       color:'#f7a600', pts:[0,20,45,77,90] },
+    { name:'DiGiann.',     color:'#a855f7', pts:[0,13,25,50,71] },
+    { name:'Acosta',       color:'#60b4ff', pts:[0,16,36,60,66] },
+    { name:'M.Márquez',    color:'#22c55e', pts:[0,10,20,45,57] },
+  ];
+  var ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸'];
+  var W=700,H=200,PT={t:10,r:50,b:40,l:45};
+  var cW=W-PT.l-PT.r, cH=H-PT.t-PT.b, maxP=110;
+  var svg = document.getElementById('points-chart');
+  var leg = document.getElementById('chart-legend');
+  if (!svg) return;
+  var out = '';
+  // Griglia
+  for (var i=0;i<=4;i++) {
+    var gy = PT.t+(i/4)*cH;
+    var gv = Math.round(maxP*(1-i/4));
+    out += '<line x1="'+PT.l+'" y1="'+gy+'" x2="'+(W-PT.r)+'" y2="'+gy+'" stroke="rgba(255,255,255,.07)" stroke-width="1"/>';
+    out += '<text x="'+(PT.l-5)+'" y="'+(gy+4)+'" text-anchor="end" fill="rgba(255,255,255,.3)" font-family="Barlow Condensed,sans-serif" font-size="10">'+gv+'</text>';
+  }
+  ROUNDS.forEach(function(r,i) {
+    var gx = PT.l+(i/(ROUNDS.length-1))*cW;
+    out += '<text x="'+gx+'" y="'+(H-PT.b+18)+'" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="Barlow Condensed,sans-serif" font-size="11">'+r+'</text>';
+  });
+  // Linee
+  PILOTS.forEach(function(p) {
+    var pts = p.pts.map(function(v,i) {
+      var x=PT.l+(i/(ROUNDS.length-1))*cW;
+      var y=PT.t+(1-v/maxP)*cH;
+      return x+','+y;
+    }).join(' ');
+    out += '<polyline points="'+pts+'" fill="none" stroke="'+p.color+'" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    p.pts.forEach(function(v,i) {
+      var x=PT.l+(i/(ROUNDS.length-1))*cW;
+      var y=PT.t+(1-v/maxP)*cH;
+      out += '<circle cx="'+x+'" cy="'+y+'" r="4" fill="'+p.color+'"><title>'+p.name+' - '+ROUNDS[i]+': '+v+' pt</title></circle>';
+    });
+    var lx=PT.l+cW, ly=PT.t+(1-p.pts[p.pts.length-1]/maxP)*cH;
+    out += '<text x="'+(lx+6)+'" y="'+(ly+4)+'" fill="'+p.color+'" font-family="Barlow Condensed,sans-serif" font-size="11" font-weight="700">'+p.pts[p.pts.length-1]+'</text>';
+    if (leg) {
+      var item=document.createElement('div'); item.className='legend-item'; item.style.color=p.color;
+      item.innerHTML='<div class="legend-dot" style="background:'+p.color+'"></div>'+p.name;
+      leg.appendChild(item);
+    }
+  });
+  svg.innerHTML = out;
+})();
+
+// ── COSTRUTTORI ──// ── COSTRUTTORI ──
+(function() {
+  var DATA=[
+    {name:'Aprilia',pts:125,color:'#af02ff'},
+    {name:'KTM',    pts:106, color:'#f97316'},
+    {name:'Ducati', pts:79, color:'#dc2626'},
+    {name:'Honda',  pts:39, color:'#ef4444'},
+    {name:'Yamaha', pts:14, color:'#0502d3'},
+  ];
+  var wrap=document.getElementById('costruttori-wrap');
+  if (!wrap) return;
+  var max=DATA[0].pts;
+  wrap.innerHTML=DATA.map(function(c) {
+    var pct=Math.round(c.pts/max*100);
+    return '<div class="costruttore-row">'+
+      '<div class="costruttore-name">'+c.name+'</div>'+
+      '<div class="costruttore-bar-track"><div class="costruttore-bar-fill" style="width:'+pct+'%;background:'+c.color+';"></div></div>'+
+      '<div class="costruttore-pts">'+c.pts+'</div>'+
+    '</div>';
+  }).join('');
+})();
+
+// ── TOP PILOTI TABELLE ──
+(function() {
+  var CATS = {
+    motogp: { id:'top-motogp', pilots:[
+      ['🇮🇹','Bezzecchi',101,'Aprilia'],
+      ['🇪🇸','Martín',90,'Aprilia'],
+      ['🇮🇹','Di Giannantonio',71,'Ducati'],
+      ['🇪🇸','Acosta',66,'KTM'],
+      ['🇪🇸','M. Márquez',57,'Ducati'],
+    ]},
+    moto2: { id:'top-moto2', pilots:[
+      ['🇪🇸','González',59.5,'Intact GP'],
+      ['🇦🇺','Agius',50,'Intact GP'],
+      ['🇪🇸','Guevara',45,'Pramac Yamaha Moto2'],
+      ['🇮🇹','Vietti',43,'SpeedRS'],
+      ['🇪🇸','Holgado',38,'Aspar CFMOTO'],
+    ]},
+    moto3: { id:'top-moto3', pilots:[
+      ['🇪🇸','Quiles',90,'Aspar CFMOTO'],
+      ['🇪🇸','Carpe',53,'Red Bull KTM Ajo'],
+      ['🇪🇸','Adrián Fernández',49,'Leopard'],
+      ['🇦🇷','Perrone',47,'Red Bull KTM Tech3'],
+      ['🇦🇷','Morelli',45,'Aspar CFMOTO'],
+    ]},
+  };
+  Object.values(CATS).forEach(function(cat) {
+    var t=document.getElementById(cat.id);
+    if (!t) return;
+    t.innerHTML='<thead><tr><th>#</th><th>Pilota</th><th>Team</th><th class="pts" style="text-align:right">Pts</th></tr></thead><tbody>'+
+      cat.pilots.map(function(p,i) {
+        return '<tr><td class="pos">'+(i+1)+'°</td>'+
+          '<td>'+p[0]+' <strong>'+p[1]+'</strong></td>'+
+          '<td style="color:var(--muted);font-size:.78rem">'+p[3]+'</td>'+
+          '<td class="pts" style="text-align:right;font-family:"Bebas Neue",sans-serif;font-size:1.1rem;color:var(--red)">'+p[2]+'</td></tr>';
+      }).join('')+'</tbody>';
+  });
+})();
+
+// ── SCROLL TO TOP ──// ── SCROLL TO TOP ──
+(function(){
+  var btn=document.getElementById('scroll-top-btn');
+  if (!btn) return;
+  window.addEventListener('scroll',function(){btn.style.display=window.scrollY>400?'flex':'none';},{passive:true});
+})();
+
+// ── MENU A TENDINA ──
+function toggleNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (!btn || !menu) return;
+  var isOpen = menu.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  menu.classList.toggle('open', !isOpen);
+}
+function closeNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (btn)  btn.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+}
+// Chiudi cliccando fuori
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('nav-dropdown-wrap');
+  if (wrap && !wrap.contains(e.target)) closeNavDropdown();
+});
+// Chiudi con Esc
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeNavDropdown();
+});
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="../piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+
+  function filterCircuits(q) {
+    q = q.toLowerCase().trim();
+    var cards = document.querySelectorAll('.circuit-card');
+    var any = false;
+    cards.forEach(function(c) {
+      var match = !q || c.dataset.search.indexOf(q) >= 0;
+      c.style.display = match ? '' : 'none';
+      if (match) any = true;
+    });
+    document.getElementById('circuit-none').style.display = any ? 'none' : '';
+  }
+
+  
+  // ── TORNA INDIETRO ──
+(function(){
+  var NAMES = { 'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2','moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota','classifica.html':'Classifica','risultati.html':'Risultati','calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction','albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione','circuito_thailandia.html':'Chang International Circuit','circuito_brasile.html':'Autodromo Internacional de Goiania','circuito_america.html':'Circuit of the Americas','circuito_jerez.html':'Circuito de Jerez - Angel Nieto','circuito_lemans.html':'Circuit Bugatti','circuito_barcellona.html':'Circuit de Barcelona-Catalunya','circuito_mugello.html':'Autodromo Internazionale del Mugello','circuito_ungheria.html':'Balaton Park Circuit','circuito_brno.html':'Automotodrom Brno','circuito_assen.html':'TT Circuit Assen','circuito_sachsenring.html':'Sachsenring','circuito_silverstone.html':'Silverstone Circuit','circuito_aragon.html':'MotorLand Aragon','circuito_misano.html':'Misano World Circuit Marco Simoncelli','circuito_austria.html':'Red Bull Ring','circuito_motegi.html':'Twin Ring Motegi','circuito_mandalika.html':'Pertamina Mandalika Street Circuit','circuito_phillipisland.html':'Phillip Island Grand Prix Circuit','circuito_sepang.html':'Sepang International Circuit','circuito_qatar.html':'Lusail International Circuit','circuito_portimao.html':'Autodromo Internacional do Algarve','circuito_valencia.html':'Circuit Ricardo Tormo' };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">\u2190 Torna a '+prevName+'</a>';
+    }
+  }
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else { showBackBtn(); }
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true);
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+
+// ── NOTIFICHE IN-APP ──
+(function() {
+  var NOTIFS = [
+    {
+      id:'n_spagna_next',
+      type:'breaking',
+      icon:'🇫🇷',
+      title:'Prossimo GP: Francia',
+      text:'Le Mans, 8-10 maggio 2026. Round 5 del Motomondiale.'
+    },
+    {
+      id:'n_bezzecchi_lead',
+      type:'default',
+      icon:'🏆',
+      title:'Bezzecchi leader mondiale',
+      text:'101 punti dopo 4 round. +11 su Martín, +30 su Di Giannantonio.'
+    },
+    {
+      id:'n_stats_new',
+      type:'info',
+      icon:'📊',
+      title:'Nuova pagina: Statistiche',
+      text:'Grafici, record e classifica costruttori. Scoprila!'
+    },
+  ];
+
+  var SEEN_KEY = 'moto2026_notifs_seen';
+  function getSeen() {
+    try { return JSON.parse(localStorage.getItem(SEEN_KEY)) || []; }
+    catch(e) { return []; }
+  }
+  function markSeen(id) {
+    var seen = getSeen();
+    if (!seen.includes(id)) {
+      seen.push(id);
+      localStorage.setItem(SEEN_KEY, JSON.stringify(seen));
+    }
+    updateBell();
+  }
+
+  function updateBell() {
+    var seen = getSeen();
+    var unseen = NOTIFS.filter(function(n){ return !seen.includes(n.id); }).length;
+    var badge = document.querySelector('.notif-bell-badge');
+    if (badge) {
+      badge.textContent = unseen;
+      badge.style.display = unseen > 0 ? 'flex' : 'none';
+    }
+  }
+
+  function showNotifs() {
+    var container = document.getElementById('notif-container');
+    if (!container) return;
+    var seen = getSeen();
+    var toShow = NOTIFS.filter(function(n){ return !seen.includes(n.id); });
+    
+    container.innerHTML = '';
+    toShow.forEach(function(n, i) {
+      var card = document.createElement('div');
+      card.className = 'notif-card ' + (n.type || '');
+      card.id = 'notif-' + n.id;
+      card.style.animationDelay = (i * 150) + 'ms';
+      card.innerHTML =
+        '<div class="notif-icon">' + n.icon + '</div>' +
+        '<div class="notif-body">' +
+          '<div class="notif-title">' + n.title + '</div>' +
+          '<div class="notif-text">' + n.text + '</div>' +
+        '</div>' +
+        '<button class="notif-close" onclick="dismissNotif(\'' + n.id + '\')" title="Chiudi">✕</button>';
+      container.appendChild(card);
+    });
+    updateBell();
+  }
+
+  window.dismissNotif = function(id) {
+    markSeen(id);
+    var card = document.getElementById('notif-' + id);
+    if (card) {
+      card.style.transition = 'opacity .25s, transform .25s';
+      card.style.opacity = '0';
+      card.style.transform = 'translateX(20px)';
+      setTimeout(function(){ card.remove(); }, 280);
+    }
+  };
+
+  // Aggiungi campanella nell'header
+  function addBell() {
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight || headerRight.querySelector('.notif-bell-btn')) return;
+    var seen = getSeen();
+    var unseen = NOTIFS.filter(function(n){ return !seen.includes(n.id); }).length;
+    var btn = document.createElement('button');
+    btn.className = 'notif-bell-btn';
+    btn.title = 'Notifiche';
+    btn.innerHTML = '🔔' +
+      '<div class="notif-bell-badge" style="display:' + (unseen>0?'flex':'none') + '">' + unseen + '</div>';
+    btn.onclick = function() {
+      var container = document.getElementById('notif-container');
+      if (!container) return;
+      // Toggle visibilità
+      if (container.style.display === 'none') {
+        container.style.display = 'flex';
+        showNotifs();
+      } else {
+        container.style.display = 'none';
+      }
+    };
+    var themeBtn = headerRight.querySelector('#theme-toggle');
+    if (themeBtn) headerRight.insertBefore(btn, themeBtn);
+    else headerRight.prepend(btn);
+  }
+
+  // Mostra notifiche dopo 1.5s dal caricamento
+  function init() {
+    addBell();
+    setTimeout(function() {
+      showNotifs();
+      // Auto-hide dopo 8 secondi
+      setTimeout(function() {
+        var container = document.getElementById('notif-container');
+        if (container) container.style.display = 'none';
+      }, 8000);
+    }, 1500);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- NOTIFICHE CONTAINER -->
+<div id="notif-container"></div>
+</body>
+</head></html>

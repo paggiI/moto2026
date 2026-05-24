@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Piloti 2026 — Motomondiale 2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --red:   #e8001d;
+      --dark:  #0a0a0a;
+      --mid:   #141414;
+      --card:  #1a1a1a;
+      --border:#2a2a2a;
+      --muted: #888;
+      --white: #f5f5f5;
+      --gp:    #ff6b35;
+      --m2:    #f7a600;
+      --m3:    #00b4d8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ══ HEADER PULITO ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border); display: block;
+      transition: color .15s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--white); background: rgba(232,0,29,.1);
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+    body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+
+    /* HEADER */ 
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg,#0a0a0a 0%,#1a0000 60%,#2a0005 100%);
+      padding: 3rem 2rem 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(232,0,29,.04) 38px,rgba(232,0,29,.04) 40px);
+    }
+    .page-hero-bg { position:absolute; right:-10px; top:50%; transform:translateY(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(120px,20vw,260px); color:rgba(232,0,29,.06); line-height:1; pointer-events:none; user-select:none; }
+    .page-hero-content { position:relative; max-width:1200px; margin:0 auto; }
+    .breadcrumb { font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:.7rem; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; } .breadcrumb a:hover { color:var(--white); }
+    .page-hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); letter-spacing:.04em; line-height:1; }
+    .page-hero h1 span { color:var(--red); }
+    .page-hero p { margin-top:.8rem; color:#aaa; max-width:500px; }
+
+    /* TAB FILTER */
+    .tab-bar { background:var(--mid); border-bottom:1px solid var(--border); display:flex; overflow-x:auto; }
+    .tab-btn {
+      padding:1rem 2rem; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+      font-size:1rem; letter-spacing:.1em; text-transform:uppercase;
+      background:none; border:none; border-bottom:3px solid transparent;
+      color:var(--muted); cursor:pointer; transition:all .2s; white-space:nowrap;
+    }
+    .tab-btn:hover { color:var(--white); }
+    .tab-btn.active-gp  { color:var(--gp); border-bottom-color:var(--gp); }
+    .tab-btn.active-m2  { color:var(--m2); border-bottom-color:var(--m2); }
+    .tab-btn.active-m3  { color:var(--m3); border-bottom-color:var(--m3); }
+    .tab-btn.active-all { color:var(--white); border-bottom-color:var(--white); }
+
+    /* CONTAINER */
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+    main { padding:2.5rem 0 4rem; }
+
+    /* CLASS SECTION */
+    .class-section { margin-bottom:3.5rem; }
+    .class-header {
+      display:flex; align-items:center; gap:1rem;
+      margin-bottom:1.5rem; padding-bottom:.8rem;
+      border-bottom:2px solid var(--border);
+    }
+    .class-badge {
+      font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:.1em;
+      padding:.3rem .8rem; border-radius:3px;
+    }
+    .badge-gp { background:var(--gp); color:#fff; }
+    .badge-m2 { background:var(--m2); color:#111; }
+    .badge-m3 { background:var(--m3); color:#fff; }
+    .class-header h2 { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:.04em; }
+    .rider-count { font-family:'Barlow Condensed',sans-serif; font-size:.85rem; color:var(--muted); margin-left:auto; }
+
+    /* TEAM BLOCK */
+    .team-block { margin-bottom:1rem; }
+    .team-header {
+      display:flex; align-items:center; gap:.8rem;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:6px 6px 0 0; padding:.8rem 1.2rem;
+      border-bottom:none;
+    }
+    .team-dot { width:20px; height:20px; border-radius:50%; flex-shrink:0; }
+    .dot-gp { background:var(--gp); }
+    .dot-m2 { background:var(--m2); }
+    .dot-m3 { background:var(--m3); }
+    .team-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:.04em; }
+
+    /* RIDER CARDS IN TEAM */
+    .riders-row {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:0; border:1px solid var(--border); border-radius:0 0 6px 6px; 
+    }
+    .rider-card {
+      background:var(--card); padding:1.1rem 1.3rem;
+      border-right:4px solid var(--border);
+      position:relative;
+      transition:background .2s;
+    }
+    .rider-card:last-child { border-right:none; }
+    .rider-card:hover { background:#222; }
+    .rider-card::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+    }
+    .rc-gp .rider-card::before { background:var(--gp); }
+    .rc-m2 .rider-card::before { background:var(--m2); }
+    .rc-m3 .rider-card::before { background:var(--m3); }
+
+    .rider-flag {
+      font-size:1.4rem;
+      margin-bottom:.3rem;
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      line-height:1;
+      flex-wrap:wrap;
+    }
+    .rider-flag .flag-emoji {
+      font-size:1.2rem;
+      line-height:1;
+      font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+    }
+    .rider-flag .flag-code {
+      font-size:.65rem;
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:700;
+      letter-spacing:.08em;
+      color:var(--muted);
+      background:#222;
+      padding:.1rem .3rem;
+      border-radius:2px;
+    }
+    .rider-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; line-height:1.2; }
+    .rider-meta { font-size:.78rem; color:var(--muted); margin-top:.3rem; font-family:'Barlow Condensed',sans-serif; }
+    .rider-card-inner { display:flex; align-items:center; gap:.8rem; }
+    .rider-card-moto { flex-shrink:0; opacity:.12; }
+    .rider-card-moto svg { width:52px; height:28px; }
+    .rider-card:hover .rider-card-moto { opacity:.22; }
+
+    /* FOOTER */
+    footer { background:var(--mid); border-top:1px solid var(--border); padding:2.5rem 1.5rem; text-align:center; font-size:.85rem; color:var(--muted); }
+    footer .logo { font-size:1.5rem; display:block; margin-bottom:.5rem; }
+    footer .socials { display:flex; justify-content:center; gap:1.2rem; margin:1rem 0; }
+    footer .socials a { color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; transition:color .2s; }
+    footer .socials a:hover { color:var(--white); }
+
+
+    /* RIDER CARD — CLICCABILE */
+    .rider-card { cursor:pointer; transition:background .15s, transform .15s; }
+    .rider-card:hover { background:#252525 !important; transform:translateY(-2px); }
+    .rc-hint { font-size:.62rem; font-family:'Barlow Condensed',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:#444; margin-top:.3rem; transition:color .15s; }
+    .rider-card:hover .rc-hint { color:var(--muted); }
+    /* HIDDEN */
+    .hidden { display:none !important; }
+  
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #111;
+    }
+    [data-theme="light"] body { background:#f4f4f4; color:#111; }
+    [data-theme="light"] .page-hero { background:linear-gradient(135deg,#fff 0%,#ffe8e8 60%,#fff0f0 100%); }
+    [data-theme="light"] .hero-bg-text { color:rgba(232,0,29,.08); }
+    [data-theme="light"] .breadcrumb, [data-theme="light"] .breadcrumb a { color:#999; }
+    [data-theme="light"] .page-hero h1 { color:#111; }
+    [data-theme="light"] .page-hero p { color:#666; }
+    [data-theme="light"] .stats-bar { background:#e8e8e8; }
+    [data-theme="light"] .rider-card { background:#fff; border-color:#d0d0d0; }
+    [data-theme="light"] .rider-card:hover { background:#f8f8f8 !important; border-color:#aaa; }
+    [data-theme="light"] .rider-pos { color:#111; }
+    [data-theme="light"] .rider-name { color:#111; }
+    [data-theme="light"] .rider-team { color:#999; }
+    [data-theme="light"] .rider-pts { color:#111; }
+    [data-theme="light"] .section-title { color:#111; }
+    [data-theme="light"] .section-title::after { background:#d0d0d0; }
+    [data-theme="light"] #theme-toggle { background:#fff; border-color:#d0d0d0; color:#666; }
+    [data-theme="light"] #theme-toggle:hover { background:#f0f0f0; color:#111; }
+
+    
+    /* ── SCROLL TO TOP ── */
+    #scroll-top-btn {
+      position:fixed; bottom:1.5rem; right:1.5rem; z-index:999;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--red); color:#fff; border:none;
+      font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s, transform .25s;
+      box-shadow:0 2px 10px rgba(232,0,29,.4);
+    }
+    #scroll-top-btn.visible { opacity:1; pointer-events:all; }
+    #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    
+    /* Badge leader classifica */
+    .rider-card[data-leader="1"] { border-color: var(--gold) !important; }
+    .leader-crown {
+      position:absolute; top:.4rem; right:.4rem;
+      font-size:.8rem; line-height:1;
+    }
+
+  
+    /* Toast shortcut */
+    #shortcut-toast {
+      position:fixed; bottom:5.5rem; right:1.5rem; z-index:998;
+      background:#222; border:1px solid #444; border-radius:8px;
+      padding:.55rem 1rem; font-family:'Barlow Condensed',sans-serif;
+      font-size:.78rem; color:#aaa; letter-spacing:.04em;
+      opacity:0; transform:translateY(10px);
+      transition:opacity .3s, transform .3s;
+      pointer-events:none;
+    }
+    #shortcut-toast.show { opacity:1; transform:translateY(0); }
+
+    
+    /* Contatore piloti visibili */
+    #rider-count-badge {
+      font-family:'Barlow Condensed',sans-serif; font-size:.78rem;
+      font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      color:var(--muted); padding:.25rem .7rem;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:20px; display:inline-block;
+      transition: color .2s;
+    }
+
+    
+    /* ═══════════════════════════════════
+       HEADER OVERRIDE — versione finale
+    ═══════════════════════════════════ */
+    /* ── Breakpoint: hamburger sotto 1100px ── */
+    @media (min-width: 1101px) {
+    }
+    /* Mobile menu */
+    /* Light mode */
+    [data-theme="light"] #theme-toggle { border-color: #ccc !important; color: #555 !important; }
+
+    
+
+    
+    
+    .back-btn-wrap { margin: 0 0 .5rem; min-height: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .8rem; border-radius: 4px;
+      background: rgba(255,255,255,.07); border: 1px solid var(--border);
+      color: #aaa; text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; font-size: .76rem;
+      transition: .15s;
+    }
+    .back-btn:hover { border-color: var(--red); color: var(--white); }
+    
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+    /* Escludi elementi che non devono transitare */
+    .rider-photo, img, video, canvas, svg,
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+      transition: none !important;
+    }
+    
+    /* Animazione fade-in scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Loading skeleton */
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    .skeleton-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem; height: 160px;
+      overflow: hidden; position: relative;
+    }
+    .skeleton-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg,
+        transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+      background-size: 400px 100%;
+      animation: shimmer 1.4s ease-in-out infinite;
+    }
+    #skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem; padding: 1.5rem 0;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Toggle tema migliorato */
+    #theme-toggle {
+      transition: transform .3s ease, background .2s !important;
+    }
+    #theme-toggle:hover { transform: rotate(20deg) scale(1.1) !important; }
+    #theme-toggle:active { transform: rotate(180deg) scale(.95) !important; }
+    
+    
+    /* ── MENU A TENDINA ── */
+    .nav-dropdown-wrap {
+      position: relative;
+    }
+    .nav-dropdown-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: border-color .15s, color .15s, background .15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.07);
+    }
+    .nav-dropdown-btn.open {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(232,0,29,.1);
+    }
+    .nav-dropdown-btn svg {
+      transition: transform .2s;
+    }
+    .nav-dropdown-btn.open svg {
+      transform: rotate(180deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + .5rem);
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 400;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .nav-dropdown-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .nav-dropdown-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .6rem .9rem .2rem;
+    }
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem .9rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      color: var(--white);
+      text-decoration: none;
+      transition: background .12s, color .12s;
+    }
+    .nav-dropdown-item:hover {
+      background: rgba(232,0,29,.1);
+      color: var(--red);
+    }
+    .nav-dropdown-item.active { color: var(--white); background: rgba(255,255,255,.05); }
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: .3rem 0;
+    }
+    .nav-dropdown-item-icon {
+      font-size: .9rem;
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .nav-dropdown-menu {
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+      margin-bottom: .8rem;
+      display: none;
+    }
+    .auth-close {
+      position: absolute; top: .8rem; right: .9rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+
+    /* Stella preferiti sui piloti */
+    .fav-star {
+      background: none; border: none;
+      font-size: 1rem; cursor: pointer;
+      opacity: .4; transition: opacity .2s, transform .2s;
+      padding: 0; height: 1,2rem;
+      
+      position: absolute;
+      top: 1.1rem;        /* Uguale al padding-top della card */
+      right:2rem;      /* Uguale al padding-right della card, così sta incolonnata col testo */
+      z-index: 999;       /* Aumentato per essere sicura al 100% che stia sopra tutto */
+    }
+    .fav-star:hover { opacity: .8; transform: scale(1.2); }
+    .fav-star.active { opacity: 1; }
+
+    /* Sezione preferiti */
+    .favs-section {
+      background: rgba(247,166,0,.07);
+      border: 1px solid rgba(247,166,0,.25);
+      border-radius: 5px;
+      padding: 2rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .favs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em;
+      color: #f7a600; margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .favs-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .fav-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    </style>
+</link></head>
+<body>
+<!-- HEADER -->
+<header>
+<a class="logo" href="index.html">MOTO<span>2026</span></a>
+<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a class="active" href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
+<button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
+<line x1="1" x2="13" y1="3" y2="3"></line>
+<line x1="1" x2="13" y1="7" y2="7"></line>
+<line x1="1" x2="13" y1="11" y2="11"></line>
+</svg>
+      MENU
+      <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 10 10" width="10">
+<polyline points="2,3 5,7 8,3"></polyline>
+</svg>
+</button>
+<div class="nav-dropdown-menu" id="nav-dropdown-menu"><div class="nav-dropdown-section">Home</div><a class="nav-dropdown-item" href="index.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏠</span>Home</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Categorie</div><a class="nav-dropdown-item" href="motogp.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔴</span>MotoGP</a><a class="nav-dropdown-item" href="moto2.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🟡</span>Moto2</a><a class="nav-dropdown-item" href="moto3.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔵</span>Moto3</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Campionato</div><a class="nav-dropdown-item" href="classifica.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏆</span>Classifica</a><a class="nav-dropdown-item" href="risultati.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📋</span>Risultati</a><a class="nav-dropdown-item" href="calendario.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📅</span>Calendario</a><a class="nav-dropdown-item" href="stagione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📖</span>Stagione</a><a class="nav-dropdown-item" href="stats.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📊</span>Statistiche</a><a class="nav-dropdown-item" href="circuiti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏁</span>Circuiti</a><a class="nav-dropdown-item" href="prediction.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🧠</span>Prediction</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Piloti</div><a class="nav-dropdown-item active" href="piloti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">👤</span>Tutti i piloti</a><a class="nav-dropdown-item" href="albo_doro.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🥇</span>Albo d'oro</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Team</div><a class="nav-dropdown-item" href="team.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏎️</span>Team</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Info</div><a class="nav-dropdown-item" href="guida.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">❓</span>Guida al sito</a><a class="nav-dropdown-item" href="relazione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📝</span>Relazione</a></div>
+</div>
+<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button><div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div></div>
+</header>
+<div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a class="active" href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
+<!-- PAGE HERO -->
+<section class="page-hero">
+<div class="page-hero-bg">RIDERS</div>
+<div class="page-hero-content">
+<div class="breadcrumb"><a href="index.html">Home</a> › Piloti</div>
+<div class="back-btn-wrap"></div>
+<button id="backBtnMG" onclick="goBackMGP()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+    ← Torna alla pagina MotoGP
+    </button>
+<button id="backBtnM2" onclick="goBackM2()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+      ← Torna alla pagina Moto2
+    </button>
+<button id="backBtnM3" onclick="goBackM3()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+      ← Torna alla pagina Moto3
+    </button>
+<button id="backBtnCld" onclick="goBackCld()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+      ← Torna al calendario
+    </button>
+<button id="backBtnIndx" onclick="goBackIndx()" style="display:none;margin-top: .8rem;padding: .4rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:.2s;">
+      ← Torna alla pagina principale
+    </button>
+<h1>PILOTI <span>2026</span></h1>
+<p>Entry list ufficiale FIM/Dorna — MotoGP, Moto2 e Moto3. Tutti i team, tutti i piloti della stagione 2026.</p>
+</div>
+</section>
+<!-- TAB BAR -->
+<div class="tab-bar">
+<button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
+<button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+4)</button>
+<button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+4)</button>
+<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+1)</button>
+</div>
+<div style="background:var(--mid);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;">
+<input id="searchPiloti" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='var(--red)'" oninput="searchRiders(this.value)" placeholder="🔍 Cerca pilota per nome..." style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;
+           color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:.95rem;
+           padding:.5rem 1rem;outline:none;transition:border-color .15s;" type="text"/>
+<div id="rider-count-badge" style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:var(--muted);white-space:nowrap;">— piloti</div>
+</div>
+<div class="container">
+<main>
+<!-- ═══════════════ MOTOGP ═══════════════ -->
+<section class="class-section" id="sec-motogp">
+<div class="class-header">
+<span class="class-badge badge-gp">MotoGP</span>
+<h2>MotoGP 2026</h2>
+<span class="rider-count">22 piloti · 11 team</span>
+</div>
+<!-- Ducati Lenovo -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Ducati Lenovo Team</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Ducati Desmosedici GP26</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Francesco Bagnaia</div><div class="rider-meta">Ducati Desmosedici GP26</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Marc Márquez</div><div class="rider-meta">Ducati Desmosedici GP26</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 6 (infortunio)<br/></div>
+</div>
+</div>
+<!-- Prima Pramac Yamaha -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Prima Pramac Yamaha MotoGP</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Yamaha YZR-M1</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Jack Miller</div><div class="rider-meta">Yamaha YZR-M1</div></div>
+<div class="rider-card"><div class="rider-flag">🇹🇷</div><div class="rider-name">Toprak Razgatlıoğlu</div><div class="rider-meta">Yamaha YZR-M1</div></div>
+</div>
+</div>
+<!-- Gresini -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">BK8 Gresini Racing MotoGP</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Ducati Desmosedici GP25</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álex Márquez</div><div class="rider-meta">Ducati Desmosedici GP25</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 7-8 (infortunio)<br/></div></div>
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Fermín Aldeguer</div>
+<div class="rider-meta">Ducati Desmosedici GP25</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 1 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da M. Pirro</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇮🇹</div>
+<div class="rider-name">Michele Pirro <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R1</span></div>
+<div class="rider-meta">Ducati Desmosedici GP25 — Sub. Aldeguer al Round 1</div>
+</div>
+</div>
+</div>
+<!-- VR46 -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Pertamina Enduro VR46 Racing Team</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Ducati Desmosedici GP25</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Franco Morbidelli</div><div class="rider-meta">Ducati Desmosedici GP25</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Fabio Di Giannantonio</div><div class="rider-meta">Ducati Desmosedici GP25</div></div>
+</div>
+</div>
+<!-- Aprilia -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Aprilia Racing</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Aprilia RS-GP26</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Martín</div><div class="rider-meta">Aprilia RS-GP26</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Marco Bezzecchi</div><div class="rider-meta">Aprilia RS-GP26</div></div>
+<div class="rider-card" style="border-left:3px solid #3ef700;">
+<div class="rider-flag">🇮🇹</div>
+<div class="rider-name">Lorenzo Savadori <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4</span></div>
+<div class="rider-meta">Aprilia Racing — WildCard al Round 4</div>
+</div>
+</div>
+</div>
+<!-- Trackhouse -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Trackhouse MotoGP Team</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Aprilia RS-GP25</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Raúl Fernández</div><div class="rider-meta">Aprilia RS-GP25</div></div>
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Ai Ogura</div><div class="rider-meta">Aprilia RS-GP25</div></div>
+</div>
+</div>
+<!-- KTM Factory -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Red Bull KTM Factory Racing</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">KTM RC16</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇿🇦</div><div class="rider-name">Brad Binder</div><div class="rider-meta">KTM RC16</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Pedro Acosta</div><div class="rider-meta">KTM RC16</div></div>
+</div>
+</div>
+<!-- KTM Tech3 -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Red Bull KTM Tech3</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">KTM RC16</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Enea Bastianini</div><div class="rider-meta">Red Bull KTM Tech3</div></div>
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Maverick Vinales</div>
+<div class="rider-meta">Red Bull KTM Tech3</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 4-5 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da J. Folger</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇩🇪</div>
+<div class="rider-name">Jonas Folger <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R5</span></div>
+<div class="rider-meta">Red Bull KTM Tech3 — Sub. Vinales al Round 5 </div>
+</div>
+</div>
+</div>
+<!-- Yamaha Factory -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Monster Energy Yamaha MotoGP Team</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Yamaha YZR-M1</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇫🇷</div><div class="rider-name">Fabio Quartararo</div><div class="rider-meta">Yamaha YZR-M1</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álex Rins</div><div class="rider-meta">Yamaha YZR-M1</div></div>
+<div class="rider-card" style="border-left:3px solid #3ef700;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Augusto Fernàndez <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4</span></div>
+<div class="rider-meta">Yamaha Racing Factory — WildCard al Round 4</div>
+</div>
+</div>
+</div>
+<!-- Honda HRC -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Honda HRC Castrol</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Honda RC213V</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Joan Mir</div><div class="rider-meta">Honda RC213V</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Luca Marini</div><div class="rider-meta">Honda RC213V</div></div>
+</div>
+</div>
+<!-- LCR Honda -->
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-gp"></div>
+<span class="team-name">Honda LCR / Castrol LCR</span>
+<span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Honda RC213V</span>
+</div>
+<div class="riders-row rc-gp">
+<div class="rider-card"><div class="rider-flag">🇫🇷</div><div class="rider-name">Johann Zarco</div><div class="rider-meta">Honda RC213V</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 7-8-9-10 (infortunio)<br/></div></div>
+<div class="rider-card"><div class="rider-flag">🇧🇷</div><div class="rider-name">Diogo Moreira</div><div class="rider-meta">Honda RC213V</div></div>
+</div>
+</div>
+</div></section>
+<!-- ═══════════════ MOTO2 ═══════════════ -->
+<section class="class-section" id="sec-moto2">
+<div class="class-header">
+<span class="class-badge badge-m2">Moto2</span>
+<h2>Moto2 2026</h2>
+<span class="rider-count">28 piloti · 14 team</span>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">OnlyFans American Racing Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇺🇸</div><div class="rider-name">Joe Roberts</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇨🇿</div><div class="rider-name">Filip Salač</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">CFMOTO Aspar Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Holgado</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇨🇴</div><div class="rider-name">David Alonso</div><div class="rider-meta">CFMOTO</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">BLU CRU Pramac Yamaha Moto2</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Izan Guevara</div><div class="rider-meta">Yamaha</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alberto Ferrandez</div><div class="rider-meta">Yamaha</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">REDS Fantic Racing</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇧🇪</div><div class="rider-name">Barry Baltus</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Tony Arbolino</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">ITALJET Gresini Moto2</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Sergio García</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alonso López</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Idemitsu Honda Team Asia</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇮🇩</div><div class="rider-name">Mario Aji</div><div class="rider-meta">Kalex</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 6 (infortunio)<br/></div></div>
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Taiyo Furusato</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Italtrans Racing Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Huertas</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Muñoz</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">LIQUI MOLY Dynavolt Intact GP</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Senna Agius</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Manuel González</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">ELF Marc VDS Racing Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Aron Canet</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇹🇷</div><div class="rider-name">Deniz Öncü</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header">
+<div class="team-dot dot-m2"></div>
+<span class="team-name">QJMOTOR – FRINSA – MSI</span>
+</div>
+<div class="riders-row rc-m2">
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Iván Ortolá</div>
+<div class="rider-meta">Kalex</div>
+</div>
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Angel Piqueras</div>
+<div class="rider-meta">Kalex</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+        ⚠️ Assente Round 4–5-6-7 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da M. Ramirez e U. Orradre</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">
+        Marcos Ramirez 
+        <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
+          SOSTITUTO R4-R5
+        </span>
+</div>
+<div class="rider-meta">Kalex — Sub. Piqueras ai Round 4-5</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">
+        Orradre U
+        <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
+          SOSTITUTO R6
+        </span>
+</div>
+<div class="rider-meta">Kalex — Sub. Piqueras al Round 6</div>
+</div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Red Bull KTM Ajo</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">José Antonio Rueda</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇳🇱</div><div class="rider-name">Collin Veijer</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Forward Factory Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alex Escrig</div><div class="rider-meta">Forward</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Navarro</div><div class="rider-meta">Forward</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 6 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da X. Zurutuza</span></div></div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">
+            Zurutuza X.
+        <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
+          SOSTITUTO R6
+        </span>
+</div>
+<div class="rider-meta">Forward — Sub. Navarro al Round 6</div>
+</div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">SpeedRS Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Celestino Vietti</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card">
+<div class="rider-flag">🇮🇹</div>
+<div class="rider-name">Luca Lunetta</div>
+<div class="rider-meta">Kalex</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 2–3 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da D. Foggia</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇮🇹</div>
+<div class="rider-name">Dennis Foggia <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R2-R3</span></div>
+<div class="rider-meta">Kalex — Sub. Lunetta ai Round 2-3</div>
+</div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Momoven Idrofoglia RW Racing Team</span></div>
+<div class="riders-row rc-m2">
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Ayumu Sasaki</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇳🇱</div><div class="rider-name">Zonta van den Goorbergh</div><div class="rider-meta">Kalex</div></div>
+</div>
+</div>
+</section>
+<!-- ═══════════════ MOTO3 ═══════════════ -->
+<section class="class-section" id="sec-moto3">
+<div class="class-header">
+<span class="class-badge badge-m3">Moto3</span>
+<h2>Moto3 2026</h2>
+<span class="rider-count">26 piloti · 13 team</span>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">BOE Motorsports</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇳🇿</div><div class="rider-name">Cormac Buchanan</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇿🇦</div><div class="rider-name">Ruche Moodley</div><div class="rider-meta">CFMOTO</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">FRINSA – MT Helmets – MSI</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Ryusei Yamanaka</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇲🇾</div><div class="rider-name">Hakim Danish</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">GRYD – MLav Racing</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Joel Kelso</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Eddie O'Shea</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Honda Team Asia</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇮🇩</div><div class="rider-name">Veda Pratama</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Zen Mitani</div><div class="rider-meta">Honda NSF250RW</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Rivacold Snipers Team</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Nicola Carraro</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jesús Ríos</div><div class="rider-meta">Honda NSF250RW</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">CIP Green Power</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Cruces</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇬🇧</div><div class="rider-name">Scott Ogden</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Liqui Moly Dynavolt Intact GP</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">David Muñoz</div>
+<div class="rider-meta">KTM</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 2–3 (infortunio)<br/>
+</div>
+</div>
+<div class="rider-card">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">David Almansa</div>
+<div class="rider-meta">KTM</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 3 — Austin (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da M. Uriarte</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Marcos Uriarte <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R2-R3</span></div>
+<div class="rider-meta">KTM — Sub. Alamnsa al Round 3</div>
+</div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Red Bull KTM Tech3</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇫🇮</div><div class="rider-name">Rico Salmela</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Valentin Perrone</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">CFMOTO Aspar Team</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Máximo Quiles</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Marco Morelli</div><div class="rider-meta">CFMOTO</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Leopard Racing</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Guido Pini</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Fernández</div><div class="rider-meta">Honda NSF250RW</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Red Bull KTM Ajo</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álvaro Carpe</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Brian Uriarte</div><div class="rider-meta">KTM</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">LEVEL UP – MTA</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Joel Esteban</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Matteo Bertelle</div><div class="rider-meta">CFMOTO</div></div>
+</div>
+</div>
+<div class="team-block">
+<div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">SIC58 Squadra Corse</span></div>
+<div class="riders-row rc-m3">
+<div class="rider-card"><div class="rider-flag">🇦🇹</div><div class="rider-name">Leo Rammerstorfer</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Casey O'Gorman</div><div class="rider-meta">Honda NSF250RW</div></div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- FOOTER -->
+<footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Entry list ufficiale FIM/Dorna — aggiornata al 23 marzo 2026</p>
+<div class="socials">
+<a href="#">📸 Instagram</a>
+<a href="#">🐦 X / Twitter</a>
+<a href="#">▶️ YouTube</a>
+<a href="#">📘 Facebook</a>
+</div>
+<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+<script>
+  // Mappa emoji bandiera → codice nazione
+  const flagToCode = {
+    '🇮🇹':'ITA','🇪🇸':'SPA','🇫🇷':'FRA','🇦🇺':'AUS','🇹🇷':'TUR','🇿🇦':'RSA',
+    '🇯🇵':'JPN','🇧🇷':'BRA','🇳🇱':'NED','🇨🇿':'CZE','🇧🇪':'BEL','🇨🇴':'COL',
+    '🇺🇸':'USA','🇦🇷':'ARG','🇫🇮':'FIN','🇲🇾':'MAL','🇮🇩':'INA','🇳🇿':'NZL',
+    '🇮🇪':'IRL','🇬🇧':'GBR','🇦🇹':'AUT','🇵🇹':'POR', '🇩🇪':'GER',  
+  };
+
+  // SVG moto semplificata
+  const motoSVG = `<svg viewBox="0 0 60 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10" cy="24" r="7" stroke="white" stroke-width="1.5"/>
+    <circle cx="50" cy="24" r="7" stroke="white" stroke-width="1.5"/>
+    <path d="M10 17 L18 10 L36 10 L44 17 L50 17" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M18 10 L22 6 L32 6 L36 10" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M28 10 L28 17" stroke="white" stroke-width="1.2"/>
+    <ellipse cx="30" cy="14" rx="6" ry="3" stroke="white" stroke-width="1"/>
+  </svg>`;
+
+  // Aggiorna tutte le rider-card con bandiera+codice e moto
+  document.querySelectorAll('.rider-card').forEach(card => {
+    const flagEl = card.querySelector('.rider-flag');
+    if (!flagEl) return;
+    const emoji = flagEl.textContent.trim();
+    const code = flagToCode[emoji] || '';
+    flagEl.innerHTML = `<span class="flag-emoji">${emoji}</span><span class="flag-code">${code}</span>`;
+
+    // Aggiungi moto in posizione assoluta in fondo a destra
+    const motoDiv = document.createElement('div');
+    motoDiv.className = 'rider-card-moto';
+    motoDiv.style.cssText = 'position:absolute;bottom:6px;right:8px;opacity:.1;pointer-events:none;';
+    motoDiv.innerHTML = motoSVG;
+    card.appendChild(motoDiv);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function filterClass(cls, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active-all','active-gp','active-m2','active-m3');
+    });
+    const map = { all:'active-all', motogp:'active-gp', moto2:'active-m2', moto3:'active-m3' };
+    btn.classList.add(map[cls]);
+
+    const sections = { motogp:'sec-motogp', moto2:'sec-moto2', moto3:'sec-moto3' };
+    if (cls === 'all') {
+      Object.values(sections).forEach(id => document.getElementById(id).classList.remove('hidden'));
+    } else {
+      Object.entries(sections).forEach(([key,id]) => {
+        document.getElementById(id).classList.toggle('hidden', key !== cls);
+      });
+    }
+    // Reset search when switching category
+    const searchEl = document.getElementById('searchPiloti');
+    if (searchEl && searchEl.value) { searchEl.value = ''; searchRiders(''); }
+  }
+
+  function searchRiders(query) {
+    const q = query.trim().toLowerCase()
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+    const cards = document.querySelectorAll('.rider-card');
+    const sections = document.querySelectorAll('.class-section');
+    if (!q) {
+      cards.forEach(c => c.style.display = '');
+      sections.forEach(s => s.classList.remove('hidden'));
+      return;
+    }
+    // Show all sections when searching
+    sections.forEach(s => s.classList.remove('hidden'));
+    // Reset tab buttons
+    document.querySelectorAll('.tab-btn').forEach(b =>
+      b.classList.remove('active-all','active-gp','active-m2','active-m3'));
+    document.querySelector('.tab-btn').classList.add('active-all');
+
+    cards.forEach(card => {
+      const nameEl = card.querySelector('.rider-name');
+      if (!nameEl) return;
+      const name = nameEl.textContent.toLowerCase()
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+      card.style.display = name.includes(q) ? '' : 'none';
+    });
+    // Hide sections that have no visible cards
+    sections.forEach(s => {
+      const visible = [...s.querySelectorAll('.rider-card')].some(c => c.style.display !== 'none');
+      s.classList.toggle('hidden', !visible);
+    });
+  }
+
+  function riderSlugify(text) {
+    // Mapping esplicito per caratteri che non decompongono con NFKD
+    const map = {'ı':'i','ğ':'g','ş':'s','ç':'c','ö':'o','ü':'u',
+                 'ñ':'n','ł':'l','đ':'d','ß':'ss','æ':'ae','ø':'o',
+                 'å':'a','č':'c','ž':'z','š':'s'};
+    let s = text || '';
+    for (const [k,v] of Object.entries(map)) s = s.split(k).join(v);
+    return s
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_|_$/g, '');
+  }
+
+  function cleanRiderName(text) {
+    return (text || '').replace(/\s+(SOSTITUTO|WILDCARD)[\s\S]*$/i, '').trim();
+  }
+
+  document.querySelectorAll('.rider-card').forEach(card => {
+    const nameEl = card.querySelector('.rider-name');
+    if (!nameEl) return;
+    const name = cleanRiderName(nameEl.textContent);
+    const slug = riderSlugify(name);
+    card.style.cursor = 'pointer';
+    card.title = 'Apri scheda pilota';
+    card.dataset.riderId = slug;
+    card.addEventListener('click', (e) => {
+      const url = 'pilota.html?id=' + slug;
+      if (e.ctrlKey || e.metaKey) { window.open(url, '_blank'); }
+      else { location.href = url; }
+    });
+    card.addEventListener('mousedown', (e) => {
+      if (e.button === 1) { e.preventDefault(); window.open('pilota.html?id=' + slug, '_blank'); }
+    });
+  });
+
+  // Ripristina tab categoria — da URL (?cat=) o sessionStorage
+  const urlCat = new URLSearchParams(window.location.search).get('cat');
+  const storedCat = sessionStorage.getItem('cls');
+  const targetCat = urlCat || storedCat;
+
+  if (targetCat && targetCat !== 'all') {
+    const catMap = { motogp: 0, moto2: 1, moto3: 2 };  // indice tra i tab NON-all
+    const btnMap = { motogp: 1, moto2: 2, moto3: 3 };  // indice assoluto (0=Tutte)
+    const btnIndex = btnMap[targetCat];
+    if (btnIndex !== undefined) {
+      const btn = document.querySelectorAll('.tab-btn')[btnIndex];
+      if (btn) filterClass(targetCat, btn);
+    }
+    if (storedCat) sessionStorage.removeItem('cls');
+    // Pulisci URL senza ricaricare la pagina
+    if (urlCat) {
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  }
+function goBackIndx() {
+  window.history.back();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const ref = document.referrer;
+
+    if (ref.includes("index.html")) {
+      document.getElementById("backBtnIndx").style.display = "inline-block";
+    }
+});
+
+function goBackMGP() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("motogp.html")) {
+    document.getElementById("backBtnMG").style.display = "inline-block";
+  }
+});
+
+function goBackM2() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("moto2.html")) {
+    document.getElementById("backBtnM2").style.display = "inline-block";
+  }
+});
+
+function goBackM3() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ref = document.referrer;
+
+  if (ref.includes("moto3.html")) {
+    document.getElementById("backBtnM3").style.display = "inline-block";
+  }
+});
+</script>
+<script>
+function goTo(url) { location.href = url; }
+function handleMouse(e, url) {
+  if (e.button === 1) { e.preventDefault(); window.open(url, '_blank'); }
+}
+
+// ── DARK / LIGHT MODE ──────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// Segna i leader di classifica cercando per nome
+(function() {
+  const leaders = [
+    'Marco Bezzecchi',   // MotoGP
+    'Manuel González',   // Moto2
+    'Máximo Quiles',     // Moto3
+  ];
+  document.querySelectorAll('.rider-card').forEach(card => {
+    const nameEl = card.querySelector('.rider-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    if (leaders.includes(name)) {
+      card.setAttribute('data-leader','1');
+      card.style.position = 'relative';
+      const crown = document.createElement('div');
+      crown.className = 'leader-crown';
+      crown.textContent = '👑';
+      card.appendChild(crown);
+    }
+  });
+})();
+
+// Shortcut tastiera: '/' → vai a piloti con focus ricerca
+// 'h' → home, 'c' → classifica, 'r' → risultati, 'a' → albo d'oro
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === '/' && !e.ctrlKey) {
+    e.preventDefault();
+    window.location.href = 'piloti.html';
+  }
+});
+
+// Toast shortcut solo prima volta
+if (!localStorage.getItem('moto2026-shortcut-seen')) {
+  setTimeout(() => {
+    const t = document.getElementById('shortcut-toast');
+    if (t) { t.classList.add('show'); setTimeout(() => { t.classList.remove('show'); localStorage.setItem('moto2026-shortcut-seen','1'); }, 4000); }
+  }, 2500);
+}
+
+function updateRiderCount() {
+  const visible = document.querySelectorAll('.rider-card:not(.rider-hidden):not([style*="display: none"])').length;
+  const total   = document.querySelectorAll('.rider-card').length;
+  const badge   = document.getElementById('rider-count-badge');
+  if (badge) badge.textContent = visible === total ? `${total} piloti` : `${visible} / ${total} piloti`;
+}
+// Hook sul filterClass
+const _origFilterClass = window.filterClass;
+window.filterClass = function(cls, btn) {
+  if (_origFilterClass) _origFilterClass(cls, btn);
+  setTimeout(updateRiderCount, 50);
+};
+const _origSearch = window.searchRiders;
+window.searchRiders = function(q) {
+  if (_origSearch) _origSearch(q);
+  setTimeout(updateRiderCount, 50);
+};
+setTimeout(updateRiderCount, 200);
+
+
+// ── TORNA INDIETRO ──
+(function(){
+  var NAMES = {
+    'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
+    'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
+    'classifica.html':'Classifica','risultati.html':'Risultati',
+    'calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
+    'albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'
+  };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>';
+    }
+  }
+
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+
+  // Mostra subito se DOM pronto, altrimenti aspetta
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else {
+    showBackBtn();
+  }
+
+  // Intercetta TUTTI i click su link interni
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true); // useCapture=true: cattura prima del navigate
+})();
+// ── SCORCIATOIE DA TASTIERA ──
+(function() {
+  var map = {
+    'm': ['motogp.html',    'MotoGP'],
+    'M': ['motogp.html',    'MotoGP'],
+    '2': ['moto2.html',     'Moto2'],
+    '3': ['moto3.html',     'Moto3'],
+    'c': ['classifica.html','Classifica'],
+    'C': ['classifica.html','Classifica'],
+    'r': ['risultati.html', 'Risultati'],
+    'R': ['risultati.html', 'Risultati'],
+    'p': ['piloti.html',    'Piloti'],
+    'P': ['piloti.html',    'Piloti'],
+    'h': ['index.html',     'Home'],
+    'H': ['index.html',     'Home']
+  };
+
+  // Toast per feedback visivo
+  function showShortcutToast(label) {
+    var t = document.createElement('div');
+    t.textContent = '⌨️  → ' + label;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
+      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function() { t.remove(); }, 900);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var entry = map[e.key];
+    if (entry) {
+      var cur = location.pathname.split('/').pop() || 'index.html';
+      if (cur !== entry[0]) {
+        showShortcutToast(entry[1]);
+        setTimeout(function() { window.location.href = entry[0]; }, 300);
+      }
+    }
+  });
+})();
+// ── FADE-IN SCROLL ──
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initFade() {
+    // Selettori da animare in tutte le pagine
+    var sel = [
+      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
+      '.career-box', '.palmares-card', '.side-card',
+      '.standings-preview', '.next-gp-banner',
+      '.team-acc', '.result-round', '.section-title',
+      '.rel-section', '.toc-card', '.tech-card',
+      '.similar-card', '.round-chart-wrap',
+      '.calendar-round', '.race-row'
+    ].join(',');
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('fade-in');
+      // Stagger: elementi vicini si animano in sequenza
+      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFade);
+  } else {
+    initFade();
+  }
+})();
+// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
+(function() {
+  // Indice statico: pagine + round
+  var PAGES = [
+    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
+    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
+    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
+    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
+    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
+    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
+    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
+    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
+    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
+    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
+    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
+    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
+    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
+    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
+    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
+    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
+    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
+  ];
+
+  var overlay   = document.getElementById('global-search-overlay');
+  var input     = document.getElementById('global-search-input');
+  var resultsEl = document.getElementById('global-search-results');
+  if (!overlay) return;
+
+  var selected = -1;
+  var currentResults = [];
+
+  function openGS() {
+    overlay.classList.add('open');
+    input.value = '';
+    renderResults([]);
+    setTimeout(function(){ input.focus(); }, 60);
+  }
+  window.closeGS = function() {
+    overlay.classList.remove('open');
+  };
+
+  function renderResults(items) {
+    currentResults = items;
+    selected = -1;
+    if (!items.length) {
+      resultsEl.innerHTML = input.value.length > 0
+        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
+        : '<div class="gs-empty">Inizia a digitare…</div>';
+      return;
+    }
+    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
+      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
+        '<div class="gs-result-icon">' + r.icon + '</div>' +
+        '<div><div class="gs-result-name">' + r.name + '</div>' +
+        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
+    }).join('');
+  }
+
+  window.searchGS = function(q) {
+    if (!q.trim()) { renderResults([]); return; }
+    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+    var res = PAGES.filter(function(p) {
+      return (p.name + ' ' + p.sub).toLowerCase()
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+        .includes(ql);
+    });
+    renderResults(res);
+  };
+
+  window.handleGSKey = function(e) {
+    var items = resultsEl.querySelectorAll('.gs-result');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selected = Math.min(selected + 1, items.length - 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selected = Math.max(selected - 1, 0);
+    } else if (e.key === 'Enter' && selected >= 0) {
+      items[selected].click(); return;
+    } else if (e.key === 'Escape') {
+      closeGS(); return;
+    }
+    items.forEach(function(el, i) {
+      el.classList.toggle('selected', i === selected);
+    });
+    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
+  };
+
+  // Apri con Ctrl+K / Cmd+K
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (overlay.classList.contains('open')) closeGS();
+      else openGS();
+    }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
+  });
+
+  // Click sull'icona 🔍 se presente
+  var searchBtn = document.getElementById('global-search-btn');
+  if (searchBtn) searchBtn.addEventListener('click', openGS);
+})();
+// ── MENU A TENDINA ──
+function toggleNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (!btn || !menu) return;
+  var isOpen = menu.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  menu.classList.toggle('open', !isOpen);
+}
+function closeNavDropdown() {
+  var btn  = document.getElementById('nav-dropdown-btn');
+  var menu = document.getElementById('nav-dropdown-menu');
+  if (btn)  btn.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+}
+// Chiudi cliccando fuori
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('nav-dropdown-wrap');
+  if (wrap && !wrap.contains(e.target)) closeNavDropdown();
+});
+// Chiudi con Esc
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeNavDropdown();
+});
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      // Costruisci lista preferiti
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+// ── STELLE PREFERITI IN PILOTI.HTML ──
+(function() {
+  // Mappa nome → id pilota (corrispondente ai dati in pilota.html)
+  var NAME_TO_ID = {
+    'Francesco Bagnaia':      'francesco_bagnaia',
+    'Marc Márquez':           'marc_marquez',
+    'Jack Miller':            'jack_miller',
+    'Toprak Razgatlıoğlu':    'toprak_razgatlioglu',
+    'Álex Márquez':           'alex_marquez',
+    'Fermín Aldeguer':        'fermin_aldeguer',
+    'Franco Morbidelli':      'franco_morbidelli',
+    'Fabio Di Giannantonio':  'fabio_di_giannantonio',
+    'Jorge Martín':           'jorge_martin',
+    'Marco Bezzecchi':        'marco_bezzecchi',
+    'Raúl Fernández':         'raul_fernandez',
+    'Ai Ogura':               'ai_ogura',
+    'Brad Binder':            'brad_binder',
+    'Pedro Acosta':           'pedro_acosta',
+    'Maverick Viñales':       'maverick_vinales',
+    'Enea Bastianini':        'enea_bastianini',
+    'Fabio Quartararo':       'fabio_quartararo',
+    'Álex Rins':              'alex_rins',
+    'Joan Mir':               'joan_mir',
+    'Luca Marini':            'luca_marini',
+    'Johann Zarco':           'johann_zarco',
+    'Diogo Moreira':          'diogo_moreira',
+    // Moto2
+    'Joe Roberts':            'joe_roberts',
+    'Filip Salač':            'filip_salac',
+    'Daniel Holgado':         'daniel_holgado',
+    'David Alonso':           'david_alonso',
+    'Izan Guevara':           'izan_guevara',
+    'Senna Agius':            'senna_agius',
+    'Manuel González':        'manuel_gonzalez',
+    'Aron Canet':             'aron_canet',
+    'Celestino Vietti':       'celestino_vietti',
+    'Tony Arbolino':          'tony_arbolino',
+    'Sergio García':          'sergio_garcia',
+    'Alonso López':           'alonso_lopez',
+    'Marcos Ramírez':         'marcos_ramirez',
+    // Moto3
+    'Máximo Quiles':          'maximo_quiles',
+    'Álvaro Carpe':           'alvaro_carpe',
+    'Valentin Perrone':       'valentin_perrone',
+    'Guido Pini':             'guido_pini',
+    'Brian Uriarte':          'brian_uriarte',
+    'Rico Salmela':           'rico_salmela',
+    'Leo Rammerstorfer':      'leo_rammerstorfer',
+    "Casey O'Gorman":         'casey_ogorman',
+  };
+
+  function getFavs() {
+    var user;
+    try { user = JSON.parse(localStorage.getItem('moto2026_current')); } catch(e) { return []; }
+    if (!user) return [];
+    try { return JSON.parse(localStorage.getItem('moto2026_favs_' + user.username)) || []; } catch(e) { return []; }
+  }
+
+  function initStars() {
+    var favs = getFavs();
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+
+    document.querySelectorAll('.rider-card').forEach(function(card) {
+      var nameEl = card.querySelector('.rider-name');
+      if (!nameEl) return;
+      // Prendi solo il testo (ignora eventuali badge span)
+      var name = nameEl.firstChild ? nameEl.firstChild.textContent.trim() : nameEl.textContent.trim();
+      var rid  = NAME_TO_ID[name];
+      if (!rid) return;
+
+      // Stella già aggiunta?
+      if (card.querySelector('.fav-star')) return;
+
+      // Rendi la card cliccabile → scheda pilota
+      card.style.cursor = 'pointer';
+      card.onclick = function(e) {
+        if (e.target.classList.contains('fav-star')) return;
+        window.location.href = 'pilota.html?id=' + rid;
+      };
+
+      // Aggiungi stella
+      var star = document.createElement('button');
+      star.className = 'fav-star' + (favIds.has(rid) ? ' active' : '');
+      star.setAttribute('data-id', rid);
+      star.title = favIds.has(rid) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+      star.textContent = '';
+      star.onclick = function(e) {
+        e.stopPropagation();
+        if (typeof toggleFav === 'function') toggleFav(rid, name);
+        else {
+          var user;
+          try { user = JSON.parse(localStorage.getItem('moto2026_current')); } catch(e) {}
+          if (!user) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
+        }
+      };
+      card.appendChild(star);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStars);
+  } else {
+    initStars();
+  }
+})();</script>
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
+<div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
+<style>
+input, button { pointer-events: auto !important; position: relative; z-index: 5 !important; }
+.category-btn, .filter-btn { pointer-events:auto !important; z-index:5 !important; position:relative;}
+</style>
+<div class="gs-footer">
+<span><kbd>↑</kbd><kbd>↓</kbd> naviga</span>
+<span><kbd>↵</kbd> apri</span>
+<span><kbd>Esc</kbd> chiudi</span>
+<span style="margin-left:auto;"><kbd>Ctrl</kbd>+<kbd>K</kbd> ovunque</span>
+</div>
+
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal">
+<button class="auth-close" onclick="closeAuthModal()">✕</button>
+<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+<div class="auth-error" id="auth-error"></div>
+<div class="auth-field">
+<label>Username</label>
+<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
+</div>
+<div class="auth-field">
+<label>Password</label>
+<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
+</div>
+<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+<label>Conferma password</label>
+<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
+</div>
+<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+<div class="auth-switch" id="auth-switch">
+        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+</div>
+</div>
+</div>
+</body>
+</html>
