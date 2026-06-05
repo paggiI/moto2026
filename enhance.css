@@ -1,0 +1,871 @@
+/*  ╔══════════════════════════════════════════════════════╗
+    ║  MOTOMONDIALE 2026 — enhance.css                     ║
+    ║  Miglioramenti grafici globali – dark & light safe   ║
+    ╚══════════════════════════════════════════════════════╝ */
+
+/* ── Google Fonts upgrade: Racing Sans One + Exo 2 ──────── */
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* ════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTY ENRICHMENT
+   ════════════════════════════════════════════════════════ */
+:root {
+  /* Glow accents */
+  --glow-red:   0 0 18px rgba(232,0,29,.35);
+  --glow-gold:  0 0 16px rgba(247,166,0,.3);
+  --glow-blue:  0 0 16px rgba(0,180,216,.3);
+
+  /* Gradient base */
+  --grad-red:   linear-gradient(135deg, #e8001d, #c4001a);
+  --grad-gold:  linear-gradient(135deg, #f7a600, #d98800);
+  --grad-hero:  linear-gradient(160deg, #0a0a0a 0%, #1a0003 55%, #280005 100%);
+
+  /* Card shadow */
+  --shadow-card: 0 4px 20px rgba(0,0,0,.45);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,.6);
+
+  /* Border radius upgrade */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+
+  /* Transition base */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --grad-hero:  linear-gradient(160deg, #f8f8f8 0%, #fff5f5 55%, #fafafa 100%);
+  --shadow-card: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,.16);
+  --glow-red:   0 0 16px rgba(232,0,29,.18);
+}
+
+/* ════════════════════════════════════════════════════════
+   2. BODY & GLOBAL
+   ════════════════════════════════════════════════════════ */
+body {
+  font-family: 'Exo 2', 'Barlow', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar            { width: 7px; height: 7px; }
+::-webkit-scrollbar-track      { background: var(--mid, #141414); }
+::-webkit-scrollbar-thumb      { background: #3a3a3a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover{ background: var(--red, #e8001d); }
+[data-theme="light"] ::-webkit-scrollbar-track { background: #e8e8e8; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #c0c0c0; }
+
+/* ════════════════════════════════════════════════════════
+   3. HEADER ENHANCEMENTS
+   ════════════════════════════════════════════════════════ */
+header {
+  border-bottom: 2px solid var(--red) !important;
+  box-shadow: 0 2px 20px rgba(232,0,29,.15) !important;
+}
+
+/* Logo glow on hover */
+.logo {
+  letter-spacing: .1em !important;
+  transition: filter .2s !important;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 8px rgba(232,0,29,.5)) !important;
+}
+.logo span {
+  /* Shimmer per il numero "2026" */
+  background: linear-gradient(90deg, #e8001d 0%, #ff4444 50%, #e8001d 100%) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: shimmer-logo 3s linear infinite;
+}
+@keyframes shimmer-logo {
+  to { background-position: 200% center; }
+}
+
+/* Nav links – indicatore active più vistoso */
+nav a.active {
+  border-bottom-width: 3px !important;
+  color: #fff !important;
+}
+nav a {
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 50%; right: 50%;
+  height: 2px;
+  background: var(--red);
+  transition: left .2s var(--ease-smooth), right .2s var(--ease-smooth);
+}
+nav a:hover::after {
+  left: 0; right: 0;
+}
+nav a.active::after {
+  display: none; /* già ha il border-bottom */
+}
+
+/* Theme toggle migliorato */
+#theme-toggle {
+  border-radius: 8px !important;
+  width: 34px !important; height: 34px !important;
+  padding: 0 !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   4. HERO SECTION
+   ════════════════════════════════════════════════════════ */
+.hero {
+  background: var(--grad-hero) !important;
+  min-height: 540px !important;
+}
+
+/* Linee decorative hero più sottili e atmosferiche */
+.hero::before {
+  background: repeating-linear-gradient(
+    -60deg,
+    transparent,
+    transparent 55px,
+    rgba(232,0,29,.03) 55px,
+    rgba(232,0,29,.03) 57px
+  ) !important;
+}
+
+/* Numero decorativo hero – più grande e con gradient */
+.hero-number {
+  background: linear-gradient(180deg, rgba(232,0,29,.1) 0%, transparent 80%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+[data-theme="light"] .hero-number {
+  background: linear-gradient(180deg, rgba(232,0,29,.12) 0%, transparent 80%);
+}
+
+/* Hero badge */
+.hero-badge {
+  border-radius: 4px !important;
+  background: var(--red) !important;
+  box-shadow: var(--glow-red) !important;
+  letter-spacing: .15em !important;
+  color: #fff !important;
+}
+[data-theme="light"] .hero-badge {
+  background: var(--red) !important;
+  color: #fff !important;
+}
+
+/* Hero H1 */
+.hero h1 {
+  font-family: 'Bebas Neue', 'Racing Sans One', sans-serif !important;
+  text-shadow: 0 2px 30px rgba(0,0,0,.4) !important;
+}
+[data-theme="light"] .hero h1 {
+  text-shadow: none !important;
+}
+
+/* Pulsanti hero */
+.btn {
+  border-radius: 4px !important;
+  font-size: .88rem !important;
+  letter-spacing: .1em !important;
+}
+.btn-red {
+  background: var(--grad-red) !important;
+  box-shadow: var(--glow-red) !important;
+}
+.btn-red:hover {
+  box-shadow: 0 0 24px rgba(232,0,29,.5) !important;
+  transform: translateY(-1px);
+}
+.btn-outline {
+  border-color: rgba(255,255,255,.25) !important;
+  backdrop-filter: blur(4px);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.6) !important;
+}
+[data-theme="light"] .btn-outline {
+  border-color: rgba(0,0,0,.2) !important;
+  color: #222 !important;
+}
+[data-theme="light"] .btn-outline:hover {
+  background: rgba(0,0,0,.05) !important;
+  border-color: rgba(0,0,0,.5) !important;
+}
+
+/* Page hero (pagine interne) */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 50px,
+    rgba(232,0,29,.025) 50px,
+    rgba(232,0,29,.025) 51px
+  );
+  pointer-events: none;
+}
+.hero-bg-text {
+  opacity: .06 !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: .04em !important;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-family: 'Exo 2', sans-serif !important;
+  font-size: .78rem !important;
+  letter-spacing: .04em !important;
+}
+.breadcrumb a {
+  color: rgba(255,255,255,.55) !important;
+  text-decoration: none !important;
+  transition: color .15s !important;
+}
+.breadcrumb a:hover { color: var(--red) !important; }
+[data-theme="light"] .breadcrumb a { color: rgba(0,0,0,.4) !important; }
+
+/* ════════════════════════════════════════════════════════
+   5. SECTION TITLES
+   ════════════════════════════════════════════════════════ */
+.section-title {
+  font-family: 'Bebas Neue', 'Racing Sans One', sans-serif !important;
+  font-size: 1.9rem !important;
+  letter-spacing: .08em !important;
+  gap: 1rem !important;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.3em;
+  background: var(--grad-red);
+  border-radius: 2px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  margin-right: -.2rem;
+}
+.section-title::after {
+  height: 1px !important;
+  background: linear-gradient(90deg, var(--border, #2a2a2a), transparent) !important;
+}
+[data-theme="light"] .section-title::after {
+  background: linear-gradient(90deg, #d0d0d0, transparent) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   6. CARDS — NEWS, STANDINGS, RACE, TOP3
+   ════════════════════════════════════════════════════════ */
+
+/* ── News cards ── */
+.news-featured,
+.news-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .25s var(--ease-smooth), box-shadow .25s var(--ease-smooth), border-color .2s !important;
+}
+.news-featured:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--red) !important;
+}
+.news-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: #555 !important;
+}
+[data-theme="light"] .news-card:hover {
+  border-color: #aaa !important;
+}
+
+/* Tag badges */
+.tag {
+  border-radius: 3px !important;
+  font-size: .7rem !important;
+  letter-spacing: .12em !important;
+  padding: .2rem .55rem !important;
+}
+
+/* ── Standings cards ── */
+.standings-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden;
+  transition: box-shadow .2s !important;
+}
+.standings-card:hover {
+  box-shadow: var(--shadow-hover) !important;
+}
+.standings-card .sc-header {
+  background: linear-gradient(90deg, rgba(232,0,29,.12) 0%, transparent 100%);
+  border-bottom-width: 2px !important;
+}
+[data-theme="light"] .standings-card .sc-header {
+  background: linear-gradient(90deg, rgba(232,0,29,.07) 0%, transparent 100%);
+}
+
+/* Podio glow – prime 3 righe classifica */
+.standings-card tr:nth-child(1) td:first-child { color: #f7a600 !important; font-weight: 800; }
+.standings-card tr:nth-child(2) td:first-child { color: #c8c8c8 !important; font-weight: 700; }
+.standings-card tr:nth-child(3) td:first-child { color: #cd7f32 !important; font-weight: 700; }
+
+/* ── Race cards ── */
+.race-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s var(--ease-smooth), box-shadow .2s, border-color .2s !important;
+  position: relative;
+  overflow: hidden;
+}
+.race-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.02) 0%, transparent 40%);
+  pointer-events: none;
+}
+.race-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+.race-card.next {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 1px rgba(232,0,29,.3), var(--shadow-card) !important;
+}
+.race-card.next::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-red);
+}
+.race-card.done { opacity: .7; }
+.race-card.done:hover { opacity: 1; }
+
+/* ── Top 3 Leader cards ── */
+.top3-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .25s var(--ease-smooth), box-shadow .25s, border-color .2s !important;
+  position: relative;
+  overflow: hidden;
+}
+.top3-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad-red);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.top3-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+.top3-card:hover::before { opacity: 1; }
+
+.top3-pts {
+  font-family: 'Bebas Neue', sans-serif !important;
+  background: var(--grad-red);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* ── Rider cards (piloti.html) ── */
+.rider-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s var(--ease-smooth), box-shadow .2s, border-color .2s !important;
+}
+.rider-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* ── Team cards ── */
+.team-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s var(--ease-smooth), box-shadow .2s !important;
+}
+.team-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* ── Circuit cards ── */
+.circuit-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s var(--ease-smooth), box-shadow .2s !important;
+  overflow: hidden;
+}
+.circuit-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--red) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   7. COUNTDOWN
+   ════════════════════════════════════════════════════════ */
+.countdown-wrap {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  background: linear-gradient(135deg, var(--card, #1a1a1a) 0%, rgba(232,0,29,.04) 100%) !important;
+}
+.countdown-wrap::before {
+  background: linear-gradient(90deg, var(--red), #f7a600, var(--red)) !important;
+  background-size: 200% auto !important;
+  animation: shimmer-bar 3s linear infinite !important;
+}
+@keyframes shimmer-bar {
+  to { background-position: 200% center; }
+}
+
+.cd-cell {
+  border-radius: 8px !important;
+  transition: background .15s, border-color .15s !important;
+}
+.cd-cell:hover {
+  border-color: var(--red) !important;
+  background: rgba(232,0,29,.07) !important;
+}
+.cd-val {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 2.2rem !important;
+  color: var(--white, #f5f5f5) !important;
+}
+[data-theme="light"] .cd-val { color: #111 !important; }
+
+/* ════════════════════════════════════════════════════════
+   8. TABLES (risultati, classifica, stats)
+   ════════════════════════════════════════════════════════ */
+.race-table,
+table.results-table,
+.stats-table {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* Header tabella */
+.race-table thead th,
+table.results-table thead th,
+.stats-table thead th {
+  background: linear-gradient(90deg, rgba(232,0,29,.12), rgba(232,0,29,.04)) !important;
+  font-family: 'Exo 2', 'Barlow Condensed', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: .72rem !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  border-bottom: 2px solid rgba(232,0,29,.3) !important;
+}
+[data-theme="light"] .race-table thead th,
+[data-theme="light"] table.results-table thead th {
+  background: linear-gradient(90deg, rgba(232,0,29,.07), transparent) !important;
+  border-bottom-color: rgba(232,0,29,.2) !important;
+}
+
+/* Hover righe */
+.race-table tbody tr:hover,
+table.results-table tbody tr:hover {
+  background: rgba(232,0,29,.05) !important;
+}
+[data-theme="light"] .race-table tbody tr:hover {
+  background: rgba(232,0,29,.04) !important;
+}
+
+/* Podio in tabella */
+.race-table tbody tr:first-child,
+table.results-table tbody tr:nth-child(1) { border-left: 3px solid #f7a600; }
+table.results-table tbody tr:nth-child(2) { border-left: 3px solid #c8c8c8; }
+table.results-table tbody tr:nth-child(3) { border-left: 3px solid #cd7f32; }
+
+/* ════════════════════════════════════════════════════════
+   9. CATEGORY STRIP / GP SELECTOR BUTTONS
+   ════════════════════════════════════════════════════════ */
+.cat-btn {
+  font-family: 'Exo 2', 'Barlow Condensed', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: .1em !important;
+  transition: all .2s var(--ease-smooth) !important;
+  position: relative;
+  overflow: hidden;
+}
+.cat-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, transparent 100%);
+  pointer-events: none;
+}
+.cat-btn:hover { transform: translateY(-1px); }
+.cat-btn[data-cat="motogp"].active { box-shadow: inset 0 -3px 0 rgba(0,0,0,.25) !important; }
+.cat-btn[data-cat="moto2"].active  { box-shadow: inset 0 -3px 0 rgba(0,0,0,.2) !important; }
+.cat-btn[data-cat="moto3"].active  { box-shadow: inset 0 -3px 0 rgba(0,0,0,.2) !important; }
+
+/* GP Selector buttons (classifica) */
+.gp-sel-btn {
+  border-radius: 6px !important;
+  transition: all .15s !important;
+  font-family: 'Exo 2', 'Barlow Condensed', sans-serif !important;
+}
+.gp-sel-btn:hover { transform: translateY(-1px); }
+
+/* ════════════════════════════════════════════════════════
+   10. SEASON PROGRESS BAR
+   ════════════════════════════════════════════════════════ */
+.season-progress-wrap {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  background: linear-gradient(135deg, var(--card, #1a1a1a), rgba(232,0,29,.03)) !important;
+}
+.season-progress-track {
+  border-radius: 6px !important;
+  height: 10px !important;
+  background: rgba(255,255,255,.06) !important;
+}
+[data-theme="light"] .season-progress-track {
+  background: rgba(0,0,0,.08) !important;
+}
+.season-progress-fill {
+  border-radius: 6px !important;
+  background: linear-gradient(90deg, var(--red), #f7a600) !important;
+  box-shadow: 0 0 10px rgba(232,0,29,.4) !important;
+}
+[data-theme="light"] .season-progress-fill {
+  box-shadow: 0 0 8px rgba(232,0,29,.2) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   11. STATS BAR (barra in cima alle pagine)
+   ════════════════════════════════════════════════════════ */
+.stats-bar {
+  border-bottom: 1px solid var(--border, #2a2a2a) !important;
+}
+.stat-box {
+  position: relative;
+  transition: background .15s !important;
+}
+.stat-box:hover {
+  background: rgba(232,0,29,.04) !important;
+}
+.stat-box h3 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.6rem !important;
+  letter-spacing: .04em !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   12. MODALS (auth, news, welcome)
+   ════════════════════════════════════════════════════════ */
+.auth-modal,
+.welcome-box,
+.news-modal {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6) !important;
+}
+[data-theme="light"] .auth-modal,
+[data-theme="light"] .welcome-box,
+[data-theme="light"] .news-modal {
+  box-shadow: 0 12px 40px rgba(0,0,0,.16) !important;
+}
+
+/* Welcome box – bordo top gradient invece di solo rosso */
+.welcome-box {
+  border-top: 3px solid transparent !important;
+  background-clip: padding-box !important;
+  position: relative;
+}
+.welcome-box::before {
+  content: '';
+  position: absolute; top: -3px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), #f7a600, var(--red));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.auth-field input {
+  border-radius: 6px !important;
+  font-family: 'Exo 2', 'Barlow Condensed', sans-serif !important;
+}
+.auth-field input:focus {
+  box-shadow: 0 0 0 3px rgba(232,0,29,.15) !important;
+}
+[data-theme="light"] .auth-field input:focus {
+  box-shadow: 0 0 0 3px rgba(232,0,29,.1) !important;
+}
+.auth-submit {
+  border-radius: 6px !important;
+  background: var(--grad-red) !important;
+  box-shadow: 0 4px 14px rgba(232,0,29,.3) !important;
+  font-family: 'Exo 2', 'Barlow Condensed', sans-serif !important;
+  transition: box-shadow .2s, transform .15s !important;
+}
+.auth-submit:hover {
+  box-shadow: 0 6px 20px rgba(232,0,29,.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Notifica modal */
+.news-modal {
+  border-radius: var(--radius-lg) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   13. USER MENU & NAV DROPDOWN
+   ════════════════════════════════════════════════════════ */
+.nav-dropdown-menu,
+.user-menu {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border, #2a2a2a) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,.5) !important;
+}
+[data-theme="light"] .nav-dropdown-menu,
+[data-theme="light"] .user-menu {
+  box-shadow: 0 8px 32px rgba(0,0,0,.14) !important;
+}
+
+.nav-dropdown-item:hover,
+.user-menu-item:hover {
+  padding-left: 1.1rem !important;
+}
+
+/* User avatar */
+.user-avatar-btn {
+  background: var(--grad-red) !important;
+  box-shadow: 0 0 0 2px rgba(232,0,29,.3) !important;
+}
+.user-avatar-btn:hover {
+  box-shadow: 0 0 0 3px rgba(232,0,29,.5) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   14. SCROLL TO TOP BUTTON
+   ════════════════════════════════════════════════════════ */
+#scroll-top-btn {
+  border-radius: 50% !important;
+  background: var(--grad-red) !important;
+  box-shadow: 0 4px 16px rgba(232,0,29,.4) !important;
+  transition: transform .2s, box-shadow .2s, opacity .3s !important;
+}
+#scroll-top-btn:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 8px 24px rgba(232,0,29,.55) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   15. FOOTER
+   ════════════════════════════════════════════════════════ */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), #f7a600, var(--red), transparent);
+}
+footer .logo {
+  letter-spacing: .1em !important;
+}
+footer .socials a:hover {
+  color: var(--red) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   16. TOAST & NOTIFICATION BADGE
+   ════════════════════════════════════════════════════════ */
+#shortcut-toast {
+  border-radius: 8px !important;
+  background: rgba(20,20,20,.95) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06) !important;
+  backdrop-filter: blur(10px) !important;
+}
+[data-theme="light"] #shortcut-toast {
+  background: rgba(255,255,255,.97) !important;
+  color: #333 !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,.15) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   17. PILOTA DETAIL PAGE
+   ════════════════════════════════════════════════════════ */
+.pilot-header {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card) !important;
+}
+.pilot-number {
+  font-family: 'Bebas Neue', 'Racing Sans One', sans-serif !important;
+  opacity: .08 !important;
+}
+.pilot-stat-card {
+  border-radius: var(--radius-md) !important;
+  transition: transform .2s, box-shadow .2s !important;
+}
+.pilot-stat-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* Rating stars (commenti) */
+.star-btn {
+  transition: transform .15s, color .15s !important;
+}
+.star-btn:hover { transform: scale(1.25) !important; }
+.star-btn.active { filter: drop-shadow(0 0 4px #f7a600) !important; }
+
+/* Comment cards */
+.comment-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: box-shadow .2s !important;
+}
+.comment-card:hover { box-shadow: var(--shadow-hover) !important; }
+
+/* ════════════════════════════════════════════════════════
+   18. PREDICTION PAGE
+   ════════════════════════════════════════════════════════ */
+.prediction-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s, box-shadow .2s !important;
+}
+.prediction-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   19. STATS PAGE — SVG charts
+   ════════════════════════════════════════════════════════ */
+.chart-wrap {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden;
+}
+
+/* ════════════════════════════════════════════════════════
+   20. CIRCUITI DETAIL PAGES
+   ════════════════════════════════════════════════════════ */
+.circuit-info-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+.circuit-map-wrap {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   21. ALBO D'ORO
+   ════════════════════════════════════════════════════════ */
+.albo-row:hover {
+  background: rgba(247,166,0,.05) !important;
+}
+.albo-row td:first-child {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.1rem !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   22. CALENDARIO PAGE
+   ════════════════════════════════════════════════════════ */
+.cal-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform .2s, box-shadow .2s, border-color .2s !important;
+  overflow: hidden;
+}
+.cal-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+.cal-card.active-round { box-shadow: 0 0 0 2px var(--red), var(--shadow-card) !important; }
+
+/* ════════════════════════════════════════════════════════
+   23. FADE-IN ANIMATIONS (già presenti, le potenziamo)
+   ════════════════════════════════════════════════════════ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s var(--ease-smooth), transform .5s var(--ease-smooth) !important;
+}
+.fade-in.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   24. GUIDA & RELAZIONE pages — reading-friendly
+   ════════════════════════════════════════════════════════ */
+.guide-section,
+.relazione-section {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   25. MOBILE REFINEMENTS
+   ════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .section-title { font-size: 1.5rem !important; }
+  .hero h1 { line-height: .92 !important; }
+  .top3-wrap { gap: .7rem !important; }
+  .race-card { border-radius: 8px !important; }
+  .standings-card { border-radius: 8px !important; }
+
+  /* Scrollbar touch – nascondi su mobile */
+  ::-webkit-scrollbar { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════
+   26. FOCUS ACCESSIBILITY
+   ════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--red) !important;
+  outline-offset: 3px !important;
+}
+button:focus-visible,
+a:focus-visible {
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════════════
+   27. LINK ACCENT GLOBALE
+   ════════════════════════════════════════════════════════ */
+main a:not(.btn):not(.news-card):not(.news-featured):not(.top3-card):not(.rider-card):not(.race-card):not(.circuit-card):not(.cal-card) {
+  color: var(--red) !important;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232,0,29,.3);
+  transition: border-color .15s, color .15s;
+}
+main a:not(.btn):not(.news-card):not(.news-featured):not(.top3-card):not(.rider-card):not(.race-card):not(.circuit-card):not(.cal-card):hover {
+  border-bottom-color: var(--red);
+  color: #ff4444 !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   28. STAMPA (nessun effetto extra)
+   ════════════════════════════════════════════════════════ */
+@media print {
+  header, footer, #scroll-top-btn, .audio-player { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .section-title::before { display: none; }
+}

@@ -761,12 +761,12 @@
 <div class="hero-inner">
 <div class="breadcrumb"><a href="index.html">Home</a> › Moto2</div>
 <h1>MOTO<span>2</span> 2026</h1>
-<p>La classe di mezzo. 29 piloti, 14 team, 22 Gran Premi. Il vivaio dei futuri campioni della MotoGP.</p>
+<p>La classe di mezzo. 32 piloti, 14 team, 22 Gran Premi. Il vivaio dei futuri campioni della MotoGP.</p>
 <div class="hero-stats">
-<div class="hstat"><div class="hstat-num">29</div><div class="hstat-label">Piloti</div></div>
+<div class="hstat"><div class="hstat-num">32</div><div class="hstat-label">Piloti</div></div>
 <div class="hstat"><div class="hstat-num">14</div><div class="hstat-label">Team</div></div>
 <div class="hstat"><div class="hstat-num">22</div><div class="hstat-label">Gare</div></div>
-<div class="hstat"><div class="hstat-num">5</div><div class="hstat-label">Round conclusi</div></div>
+<div class="hstat"><div class="hstat-num">7</div><div class="hstat-label">Round conclusi</div></div>
 </div>
 </div>
 </section>
@@ -784,8 +784,8 @@
 <div class="next-gp-banner">
 <div>
 <div class="next-gp-label">⏭ Prossimo Gran Premio</div>
-<div class="next-gp-name">🇮🇹 Round 7 — GP Italia · Mugello</div>
-<div class="next-gp-date">29 – 31 maggio 2026 · Autodromo Internazionale del Mugello</div>
+<div class="next-gp-name">🇭🇺 Round 8 — GP Ungheria · Budapest</div>
+<div class="next-gp-date">5 – 7 giugno 2026 · Balaton Park</div>
 </div>
 <a class="next-gp-btn" href="calendario.html">Calendario →</a>
 </div>
@@ -796,8 +796,38 @@
 <div class="news-block">
   
 <!-- NOTIZIE TEST VISIBLE -->
+<div class="news-card featured" id="nc-moto25" style="cursor:pointer;">
+<div class="news-card-body">
+<span class="news-tag tag-breaking">Breaking</span>
+<div class="news-title">Mugello: dominio Gonzalez, Vietti show con rimonta da applausi davanti al pubblico italiano</div>
+<div class="news-excerpt">Lo spagnolo imprendibile vince ancora, Vietti risale dalla 16ª posizione fino al secondo posto.</div>
+<div class="news-meta">
+<span class="news-date">📅 31 mag 2026</span>
+<span class="news-author">Redazione</span>
+</div>
+</div>
+</div>
 
-<div class="news-card featured" id="nc-moto22" style="cursor:pointer;">
+<script>
+(function(){
+  var _cat="Moto2",
+  _title="Mugello: dominio Gonzalez, Vietti show con rimonta da applausi davanti al pubblico italiano",
+  _meta="📅 31 mag 2026 · ✍️ Redazione",
+  _body=`Manuel Gonzalez ha confermato il suo dominio assoluto anche al Mugello, controllando la gara dal primo all’ultimo giro e imponendo un ritmo impossibile per tutti gli avversari.<br><br>Lo spagnolo ha gestito perfettamente la distanza sugli inseguitori, costruendo un vantaggio costante senza mai essere realmente attaccato nella fase centrale e finale della corsa.<br><br>Alle sue spalle, il protagonista assoluto per il pubblico di casa è stato Celestino Vietti: partito dalla sedicesima posizione, ha costruito una rimonta spettacolare fino al secondo posto, sfruttando ritmo, sorpassi puliti e grande gestione gomme nel finale.<br><br>Il podio è stato completato da Dani Holgado, bravo a rimanere nel gruppo di testa e a capitalizzare il ritmo della fase centrale della gara.`;
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var el=document.getElementById('nc-moto25');
+    if(el){
+      el.addEventListener('click',function(){
+        if(typeof openNews==='function'){
+          openNews(_cat,_title,_meta,_body);
+        }
+      });
+    }
+  });
+})();
+</script>
+<div class="news-card" id="nc-moto22" style="cursor:pointer;">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
 <div class="news-title">Test Catalunya: Gonzalez fa suo il crono di riferimento, Ortolá e Guevara a meno di tre decimi</div>
@@ -818,28 +848,19 @@
       })();
       </script>
 
-<div class="news-card" id="nc-moto23" style="cursor:pointer;">
+<!-- NOTIZIE PRECEDENTI (NASCOSTE SOTTO IL BOTTONE) -->
+ <div class="news-card news-h-moto2 hidden-news" onclick="openNews('Moto2','Test Barcellona: Guevara primo tra le Boscoscuro, Vietti cerca il giro','📅 19 mag 2026 · ✍️ Redazione','La giornata di test al Circuit de Barcelona-Catalunya ha offerto spunti tecnici molto interessanti riguardo al duello tra i telai Kalex e Boscoscuro.<br><br>Tra le file della casa italiana, Izan Guevara ha fatto la voce grossa chiudendo al terzo posto assoluto con un ottimo 1:41.503, dimostrando un adattamento perfetto alle caratteristiche del tracciato catalano e un passo costante nei settori centrali.<br><br>Diverso il discorso per Celestino Vietti: il romano della Beta Tools SpeedRS Team ha faticato a trovare il giusto ritmo sul giro secco, chiudendo al 12º posto con un tempo di 1:42.039. Vietti ha provato diverse soluzioni di setup senza riuscire a sfruttare pienamente il potenziale della sua Boscoscuro, pur mantenendo un ritmo gara discreto.<br><br>Da segnalare anche le prestazioni degli altri piloti Boscoscuro: Ferrandez 11º, Oncu 14º, mentre Canet ha chiuso 22º dopo qualche difficoltà tecnica nel pomeriggio.')">
 <div class="news-card-body">
 <span class="news-tag tag-analisi">Analisi</span>
 <div class="news-title">Test Barcellona: Guevara primo tra le Boscoscuro, Vietti cerca il giro</div>
-<div class="news-excerpt">Il pilota Pramac si conferma il migliore con il telaio italiano, mentre il compagno di marca Vietti chiude 12° faticando in fase di qualifica.</div>
+<div class="news-excerpt">Il pilota Pramac si conferma il migliore con il telaio italiano, mentre Vietti chiude 12° faticando in qualifica.</div>
 <div class="news-meta">
 <span class="news-date">📅 19 mag 2026</span>
 <span class="news-author">Redazione</span>
 </div>
 </div>
 </div>
-<script>
-      (function(){
-        var _cat="Moto2",_title="Test Barcellona: Guevara primo tra le Boscoscuro, Vietti cerca il giro",_meta="\ud83d\udcc5 19 mag 2026 \u00b7 \u270d\ufe0f Redazione",_body=`La giornata di test al Circuit de Barcelona-Catalunya ha offerto spunti tecnici molto interessanti riguardo al duello tra i telai Kalex e Boscoscuro. Tra le file della casa italiana, Izan Guevara ha fatto la voce grossa chiudendo al terzo posto assoluto con un ottimo 1:41.503, dimostrando un adattamento perfetto alle caratteristiche del tracciato catalano e un passo costante nei settori centrali.<br><br>Diverso il discorso per Celestino Vietti: il romano della Beta Tools SpeedRS Team ha faticato non poco a trovare il giusto ritmo sul giro secco. Chiuso al 12º posto con un tempo di 1:42.039 (a 0.791 dal leader Gonzalez), Vietti ha provato diverse soluzioni di setup che non gli hanno permesso di sfruttare al massimo le potenzialità della sua Boscoscuro, pur mantenendo un ritmo di gara discreto.<br><br>Da segnalare anche le prestazioni degli altri piloti Boscoscuro: Alberto Ferrandez ha chiuso 11º, Deniz Oncu 14º, mentre un sorprendente Aron Canet ha concluso solo al 22º posto dopo aver affrontato qualche difficoltà tecnica nel corso della sessione pomeridiana.`;
-        document.addEventListener('DOMContentLoaded',function(){
-          var el=document.getElementById('nc-moto23');
-          if(el) el.addEventListener('click',function(){ if(typeof openNews==='function') openNews(_cat,_title,_meta,_body); });
-        });
-      })();
-      </script>
-
-<div class="news-card" id="nc-moto24" style="cursor:pointer;">
+<div class="news-card news-h-moto2 hidden-news" onclick="openNews('Moto2','Aspar Team sorride: Alonso ottavo e Holgado decimo. Gruppo compatto a 15 piloti','📅 19 mag 2026 · ✍️ M. Paggi','Buona giornata per il CFMOTO Aspar Team nei test collettivi di Barcellona. David Alonso ha confermato le sue enormi doti di adattamento chiudendo l\'ottava giornata di test con un tempo di 1:41.867, a soli 0.619 dal crono di Manuel Gonzalez. Il colombiano ha lavorato a lungo sulle mescole morbide, trovando un ottimo feeling nelle curve lente del settore 3.<br><br>Accanto a lui Daniel Holgado, piazzatosi decimo con 1:41.972, a meno di un secondo dal vertice, lo spagnolo ha dimostrato di poter rimanere nella lotta per il titolo. I due del Aspar Team promettono battaglia per le prossime gare europee.<br><br>Il dato più sorprendente della giornata è l\'equilibrio generale della categoria: dal 4º classificato Alonso Lopez fino al 15º Collin Veijer, ben 15 piloti sono racchiusi in soli 8 decimi. Un gruppo compatto che presagisce gare combattutissime e sorpassi continui. Hanno faticato leggermente di più Tony Arbolino, solo 18°, e Sergio Garcia, 24° a oltre un secondo e mezzo dal vertice.')">
 <div class="news-card-body">
 <span class="news-tag tag-paddock">Paddock</span>
 <div class="news-title">Aspar Team sorride: Alonso ottavo e Holgado decimo. Gruppo compatto a 15 piloti</div>
@@ -850,18 +871,6 @@
 </div>
 </div>
 </div>
-<script>
-      (function(){
-        var _cat="Moto2",_title="Aspar Team sorride: Alonso ottavo e Holgado decimo. Gruppo compatto a 15 piloti",_meta="\ud83d\udcc5 19 mag 2026 \u00b7 \u270d\ufe0f M. Paggi",_body=`Buona giornata per il CFMOTO Aspar Team nei test collettivi di Barcellona. David Alonso ha confermato le sue enormi doti di adattamento chiudendo l'ottava giornata di test con un tempo di 1:41.867, a soli 0.619 dal crono di Manuel Gonzalez. Il colombiano ha lavorato a lungo sulle mescole morbide, trovando un ottimo feeling nelle curve lente del settore 3.<br><br>Accanto a lui Daniel Holgado, piazzatosi decimo  con 1:41.972, a meno di un secondo dal vertice, lo spagnolo ha dimostrato di poter rimanere nella lotta per il titolo. I due del Aspar Team promettono battaglia per le prossime gare europee.<br><br>Il dato più sorprendente della giornata, però, è l'equilibrio generale della categoria: dal 4º classificato Alonso Lopez (1:41.702) fino al 15º Collin Veijer (1:42.148), ben 15 piloti sono racchiusi in uno spazio di soli 8 decimi. Un gruppo compatto che presagisce gare combattutissime e sorpassaggi all'ordine del giorno. Hanno faticato leggermente di più Tony Arbolino, solo 18°, e Sergio Garcia, 24° a oltre un secondo e mezzo dal vertice.`;
-        document.addEventListener('DOMContentLoaded',function(){
-          var el=document.getElementById('nc-moto24');
-          if(el) el.addEventListener('click',function(){ if(typeof openNews==='function') openNews(_cat,_title,_meta,_body); });
-        });
-      })();
-      </script>
-
-<!-- NOTIZIE PRECEDENTI (NASCOSTE SOTTO IL BOTTONE) -->
-
 <div class="news-card news-h-moto2 hidden-news" id="nc-moto20" style="cursor:pointer;">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
@@ -903,7 +912,6 @@
         });
       })();
       </script>
-
 <div class="news-card news-h-moto2 hidden-news" onclick="openNews('Moto2','Ufficiale: Marcos Ramírez sostituisce Piqueras per Spagna e Francia','📅 18 apr 2026 · ✍️ Redazione','Dopo l\'incidente ad Austin, il team MSi ha deciso di chiamare Marcos Ramírez come sostituto per i GP di Spagna e Francia.&lt;br&gt;&lt;br&gt;Piqueras ha riportato fratture importanti a femore e gamba. Ramírez torna in Moto2 con una grande occasione.')">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
@@ -993,7 +1001,7 @@
 </div>
 </div>
 
-<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto2')">▼ Tutte le notizie (11)</button>
+<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto2')">▼ Tutte le notizie (12)</button>
 </div>
 </div>
 <!-- COLONNA DX: Classifica -->
@@ -1001,15 +1009,15 @@
 <h2 class="section-title" style="max-width:100%;margin:0 0 1.4rem 0;">Classifica Piloti</h2>
 <div class="standings-preview">
 <div class="sp-header">
-<span class="sp-title">Moto2 2026 — Dopo 5 Round</span>
+<span class="sp-title">Moto2 2026 — Dopo 7 Round</span>
 <a class="sp-link" href="classifica.html" onclick="sessionStorage.setItem('cls','moto2')">Classifica completa →</a>
 </div>
 <table class="sp-table">
-<tr><td><span class="sp-pos p1c">1</span></td><td>🇪🇸</td><td><div class="sp-name">Manuel González</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">104.5</td></tr>
-<tr><td><span class="sp-pos p2c">2</span></td><td>🇪🇸</td><td><div class="sp-name">Izan Guevara</div><div class="sp-team">BLU CRU Pramac Yamaha Moto2</div></td><td class="sp-pts">86</td></tr>
-<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Celestino Vietti</div><div class="sp-team">SpeedRS Team</div></td><td class="sp-pts">73</td></tr>
-<tr><td><span class="sp-pos">4</span></td><td>🇦🇺</td><td><div class="sp-name">Senna Agius</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">65</td></tr>
-<tr><td><span class="sp-pos">5</span></td><td>🇨🇴</td><td><div class="sp-name">David Alonso</div><div class="sp-team">CFMOTO Aspar Team</div></td><td class="sp-pts">58</td></tr>
+<tr><td><span class="sp-pos p1c">1</span></td><td>🇪🇸</td><td><div class="sp-name">Manuel González</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">129.5</td></tr>
+<tr><td><span class="sp-pos p2c">2</span></td><td>🇪🇸</td><td><div class="sp-name">Izan Guevara</div><div class="sp-team">BLU CRU Pramac Yamaha Moto2</div></td><td class="sp-pts">95</td></tr>
+<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Celestino Vietti</div><div class="sp-team">SpeedRS Team</div></td><td class="sp-pts">93</td></tr>
+<tr><td><span class="sp-pos">4</span></td><td>🇦🇺</td><td><div class="sp-name">Senna Agius</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">78</td></tr>
+<tr><td><span class="sp-pos">5</span></td><td>🇨🇴</td><td><div class="sp-name">Daniel Holgado</div><div class="sp-team">CFMOTO Aspar Team</div></td><td class="sp-pts">65</td></tr>
 </table>
 </div>
 </div><!-- fine col DX -->
@@ -1693,12 +1701,6 @@ document.addEventListener('keydown', function(e) {
 })();</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
-<div class="gs-footer">
-<span><kbd>↑</kbd><kbd>↓</kbd> naviga</span>
-<span><kbd>↵</kbd> apri</span>
-<span><kbd>Esc</kbd> chiudi</span>
-<span style="margin-left:auto;"><kbd>Ctrl</kbd>+<kbd>K</kbd> ovunque</span>
-</div>
 
 
 <!-- AUTH MODAL -->
@@ -1725,5 +1727,76 @@ document.addEventListener('keydown', function(e) {
 </div>
 </div>
 </div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:180px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+<script>
+(function(){
+  var audio = document.getElementById('bg-audio');
+  var progressSlider = document.getElementById('progress-slider');
+  var playBtn = document.getElementById('play-btn');
+  
+  // Sincronizza tra pagine: salva il tempo corrente
+  window.addEventListener('beforeunload', function(){
+    try {
+      sessionStorage.setItem('audio-time', audio.currentTime);
+      sessionStorage.setItem('audio-playing', !audio.paused);
+    } catch(e){}
+  });
+  
+  // Ripristina il tempo quando carica la pagina
+  audio.addEventListener('loadedmetadata', function(){
+    try {
+      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+      audio.currentTime = savedTime;
+      if(wasPlaying) audio.play();
+    } catch(e){}
+  });
+  
+  // Aggiorna la barra di progresso
+  audio.addEventListener('timeupdate', function(){
+    if(audio.duration) {
+      progressSlider.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  
+  // Aggiorna il bottone play/pause
+  audio.addEventListener('play', function(){
+    playBtn.textContent = '⏸';
+  });
+  audio.addEventListener('pause', function(){
+    playBtn.textContent = '▶';
+  });
+  
+  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
+  audio.addEventListener('ended', function(){
+    try {
+      sessionStorage.removeItem('audio-time');
+    } catch(e){}
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -714,7 +714,7 @@
         ← Torna alla pagina dei risultati
       </button>
 <h1>STAGIONE <span>2026</span></h1>
-<p>Statistiche aggregate, vincitori, podii e tendenze dopo 6 round disputati su 22.</p>
+<p>Statistiche aggregate, vincitori, podii e tendenze dopo 7 round disputati su 22.</p>
 </div>
 </section>
 <div class="container">
@@ -772,6 +772,12 @@ const ROUNDS_DONE = [
     m2:  { winner:'Manuel González',       flag:'🇪🇸', team:'Liqui Moly Intact GP' },
     m3:  { winner:'Máximo Quiles',      flag:'🇪🇸', team:'CFMoto Aspar' },
   },
+  {
+    num:7, flag:'🇮🇹', name:'GP Italia', circuit:'Autodromo Internazionale del Mugello',
+    gp:  { winner:'Marco Bezzecchi',      flag:'🇮🇹', team:'Aprilia Racing' },
+    m2:  { winner:'Manuel González',       flag:'🇪🇸', team:'Liqui Moly Intact GP' },
+    m3:  { winner:'Brian Uriarte',         flag:'🇪🇸', team:'Red Bull KTM Ajo' },
+  }
 ];
 
 const SPRINT_WINNERS = [
@@ -781,6 +787,7 @@ const SPRINT_WINNERS = [
   { round:4, flag:'🇪🇸', winner:'Marc Márquez',      team:'Ducati Lenovo Team' },
   { round:5, flag:'🇪🇸', winner:'Jorge Martín',      team:'Aprilia Racing' },
   { round:6, flag:'🇪🇸', winner:'Álex Márquez',      team:'BK8 Gresini Racing MotoGP' },
+  { round:7, flag:'🇪🇸', winner:'Raúl Fernández',      team:'Trackhouse MotoGP Team' },
 ];
 
 const CLASSIFICA = {
@@ -790,7 +797,7 @@ const CLASSIFICA = {
       "flag": "🇮🇹",
       "name": "Marco Bezzecchi",
       "team": "Aprilia Racing",
-      "pts": 142.0,
+      "pts": 173.0,
       "sostituto": null
     },
     {
@@ -798,7 +805,7 @@ const CLASSIFICA = {
       "flag": "🇪🇸",
       "name": "Jorge Martín",
       "team": "Aprilia Racing",
-      "pts": 127.0,
+      "pts": 156.0,
       "sostituto": null
     },
     {
@@ -806,7 +813,7 @@ const CLASSIFICA = {
       "flag": "🇮🇹",
       "name": "Fabio Di Giannantonio",
       "team": "Pertamina Enduro VR46",
-      "pts": 116.0,
+      "pts": 134.0,
       "sostituto": null
     },
     {
@@ -814,7 +821,7 @@ const CLASSIFICA = {
       "flag": "🇪🇸",
       "name": "Pedro Acosta",
       "team": "Red Bull KTM Factory Racing",
-      "pts": 92.0,
+      "pts": 103.0,
       "sostituto": null
     },
     {
@@ -822,7 +829,7 @@ const CLASSIFICA = {
       "flag": "🇯🇵",
       "name": "Ai Ogura",
       "team": "Trackhouse MotoGP Team",
-      "pts": 77.0,
+      "pts": 92.0,
       "sostituto": null
     },
   ],
@@ -832,7 +839,7 @@ const CLASSIFICA = {
       "flag": "🇪🇸",
       "name": "Manuel González",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 104.5,
+      "pts": 129.5,
       "sostituto": null
     },
     {
@@ -840,7 +847,7 @@ const CLASSIFICA = {
       "flag": "🇪🇸",
       "name": "Izan Guevara",
       "team": "BLU CRU Pramac Yamaha Moto2",
-      "pts": 86.0,
+      "pts": 95.0,
       "sostituto": null
     },
     {
@@ -848,7 +855,7 @@ const CLASSIFICA = {
       "flag": "🇮🇹",
       "name": "Celestino Vietti",
       "team": "SpeedRS Team",
-      "pts": 73.0,
+      "pts": 93.0,
       "sostituto": null
     },
     {
@@ -856,15 +863,15 @@ const CLASSIFICA = {
       "flag": "🇦🇺",
       "name": "Senna Agius",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 65.0,
+      "pts": 78.0,
       "sostituto": null
     },
     {
       "pos": 5,
-      "flag": "🇨🇴",
-      "name": "David Alonso",
+      "flag": "🇪🇸",
+      "name": "Daniel Holgado",
       "team": "CFMOTO Aspar Team",
-      "pts": 58.0,
+      "pts": 65.0,
       "sostituto": null
     },
   ],
@@ -874,23 +881,23 @@ const CLASSIFICA = {
       "flag": "🇪🇸",
       "name": "Máximo Quiles",
       "team": "CFMOTO Gaviota Aspar Team",
-      "pts": 140.0,
+      "pts": 145.0,
       "sostituto": null
     },
     {
       "pos": 2,
       "flag": "🇪🇸",
-      "name": "Adrián Fernández",
-      "team": "Leopard Racing",
-      "pts": 76.0,
+      "name": "Álvaro Carpe",
+      "team": "Red Bull KTM Ajo",
+      "pts": 95.0,
       "sostituto": null
     },
     {
       "pos": 3,
-      "flag": "🇪🇸",
-      "name": "Álvaro Carpe",
-      "team": "Red Bull KTM Ajo",
-      "pts": 73.0,
+      "flag": "🇮🇩",
+      "name": "Veda Pratama",
+      "team": "Honda Team Asia",
+      "pts": 71.0,
       "sostituto": null
     },
     {
@@ -898,15 +905,15 @@ const CLASSIFICA = {
       "flag": "🇦🇷",
       "name": "Marco Morelli",
       "team": "CFMOTO Gaviota Aspar Team",
-      "pts": 58.0,
+      "pts": 68.0,
       "sostituto": null
     },
     {
       "pos": 5,
-      "flag": "🇮🇩",
-      "name": "Veda Pratama",
-      "team": "Honda Team Asia",
-      "pts": 58.0,
+      "flag": "🇦🇷",
+      "name": "Valentin Perrone",
+      "team": "RedBull KTM Tech 3",
+      "pts": 60.0,
       "sostituto": null
     },
   ]
@@ -1017,23 +1024,23 @@ const gpLeader   = CLASSIFICA.motogp[0];
 const m2Leader   = CLASSIFICA.moto2[0];
 const m3Leader   = CLASSIFICA.moto3[0];
 const gpWinner   = gpWins[0] ? gpWins[0][0] : '—';
-const sprintKing = 'Marc Márquez (2) / Jorge Martín (2) / Pedro Acosta (1) / Álex Márquez (1)';
+const sprintKing = 'Marc Márquez (2) / Jorge Martín (2)';
 
 document.getElementById('main-content').innerHTML = `
 
 
   <!-- IN FORMA -->
-  <h2 class="section-title"><span>🔥</span> Piloti in forma — Round 6 (GP CATALUNYA)</h2>
+  <h2 class="section-title"><span>🔥</span> Piloti in forma — Round 7 (GP ITALIA)</h2>
   <div class="forma-grid">
     <div class="forma-card gp">
       <div class="forma-cat">MotoGP — Vincitore gara</div>
-      <div class="forma-name">🇮🇹 Fabio Di Giannantonio</div>
-      <div class="forma-pts">Vittoria gara + 3 posto sprint · 32 pts nel weekend</div>
+      <div class="forma-name">🇮🇹 Marco Bezzecchi</div>
+      <div class="forma-pts">+3.559 sul secondo [J. Martin]</div>
     </div>
     <div class="forma-card gp" style="border-left-color:#f7a600;">
       <div class="forma-cat">MotoGP — Migliore del weekend</div>
-      <div class="forma-name">🇮🇹 Fabio Di Giannantonio</div>
-      <div class="forma-pts">Vittoria gara + 3 posto sprint · 32 pts nel weekend</div>
+      <div class="forma-name">🇮🇹 Marco Bezzecchi</div>
+      <div class="forma-pts">Vittoria gara + 4 posto sprint · 31 pts nel weekend</div>
     </div>
     <div class="forma-card m2">
       <div class="forma-cat">Moto2</div>
@@ -1042,7 +1049,7 @@ document.getElementById('main-content').innerHTML = `
     </div>
     <div class="forma-card m3">
       <div class="forma-cat">Moto3</div>
-      <div class="forma-name">🇪🇸 Máximo Quiles</div>
+      <div class="forma-name">🇪🇸 Brian Uriarte</div>
       <div class="forma-pts">Vittoria · 25 pts</div>
     </div>
   </div>
@@ -1050,14 +1057,14 @@ document.getElementById('main-content').innerHTML = `
   <!-- PANORAMICA -->
   <h2 class="section-title">Panoramica Stagione</h2>
   ${buildStatRow([
-    {cls:'neutral', label:'Round disputati', val:'6 / 22', sub:'Prossimo: GP Italia — Mugello'},
+    {cls:'neutral', label:'Round disputati', val:'7 / 22', sub:'Prossimo: GP Ungheria — Balaton Park'},
     {cls:'gp',      label:'Leader MotoGP',   val:gpLeader.name.split(' ').pop(), sub:`${gpLeader.name} · ${gpLeader.pts} pt`},
     {cls:'m2',      label:'Leader Moto2',    val:m2Leader.name.split(' ').pop(), sub:`${m2Leader.name} · ${m2Leader.pts} pt`},
     {cls:'m3',      label:'Leader Moto3',    val:m3Leader.name.split(' ').pop(), sub:`${m3Leader.name} · ${m3Leader.pts} pt`},
   ])}
   ${buildStatRow([
     {cls:'gp',      label:'Pilota più vincente MotoGP', val:gpWinner.split(' ').pop(), sub:`${gpWinner} · ${gpWins[0]?gpWins[0][1]:0} vittorie`},
-    {cls:'gp',      label:'Sprint King',                val:'M.Márquez - J.Martín', sub:`Marc Márquez, Martín 2 sprint · Acosta 1 sprint`},
+    {cls:'gp',      label:'Sprint King',                val:'M.Márquez - J.Martín', sub:`Marc Márquez, Martín 2 sprint vittorie ciascuno`},
     {cls:'m2',      label:'Pilota più vincente Moto2',  val:m2Wins[0]?m2Wins[0][0].split(' ').pop():'—', sub:m2Wins[0]?`${m2Wins[0][0]} · ${m2Wins[0][1]} vittoria`:''},
     {cls:'m3',      label:'Pilota più vincente Moto3',  val:m3Wins[0]?m3Wins[0][0].split(' ').pop():'—', sub:m3Wins[0]?`${m3Wins[0][0]} · ${m3Wins[0][1]} vittoria`:''},
   ])}
@@ -1069,8 +1076,8 @@ document.getElementById('main-content').innerHTML = `
   <!-- MOTOGP -->
   ${sectionTitle('MotoGP — Statistiche', 'MotoGP', 'gp')}
   ${buildStatRow([
-    {cls:'gp', label:'Gare disputate', val:'6'},
-    {cls:'gp', label:'Sprint disputate', val:'6'},
+    {cls:'gp', label:'Gare disputate', val:'7'},
+    {cls:'gp', label:'Sprint disputate', val:'7'},
   ])}
   <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;">Vittorie Gara</h3>
   <div class="vbar-wrap"><div class="vbar-header">Vittorie per pilota — Gran Premi (no Sprint)</div>${buildWinsBar(gpWins,'var(--gp)')}</div>
@@ -1094,9 +1101,9 @@ document.getElementById('main-content').innerHTML = `
   <!-- COSTRUTTORI TENDENZE -->
   ${sectionTitle('Costruttori Dominanti', '🏭', 'gp')}
   ${buildStatRow([
-    {cls:'gp', label:'MotoGP — Marca leader', val:'Aprilia', sub:'Bezzecchi (142) + Martín (127) + Ogura (77) + Fernández (68)'},
-    {cls:'m2', label:'Moto2 — Marca leader',  val:'Kalex',   sub:'Gonzalez (104.5) + Agius (65) + D.Alonso (58) + Ortola (52.5)'},
-    {cls:'m3', label:'Moto3 — Marca leader',  val:'KTM',     sub:'Quiles (140) + Carpe (73) + Morelli (58) + Perrome (56)'},
+    {cls:'gp', label:'MotoGP — Marca leader', val:'Aprilia', sub:'Bezzecchi (173) + Martín (156) + Ogura (92) + Fernández (87)'},
+    {cls:'m2', label:'Moto2 — Marca leader',  val:'Kalex',   sub:'Gonzalez (129.5) + Agius (78) + Holgado (65) + D.Alonso (58)'},
+    {cls:'m3', label:'Moto3 — Marca leader',  val:'KTM',     sub:'Quiles (145) + Carpe (95) + Morelli (68) + Perrone (60)'},
   ])}
 `;
 function goBackCls() {
@@ -1370,7 +1377,9 @@ if (!localStorage.getItem('moto2026-shortcut-seen')) {
     { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
     { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
     { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
+    { name:'GP Francia',    sub:'Round 5 · 8–10 mag',       icon:'🇫🇷', url:'risultati.html?round=r5' },
     { name:'GP Catalunya',  sub:'Round 6 · 15–17 mag',     icon:'🇪🇸', url:'risultati.html?round=r6' },
+    { name:'GP Italia',     sub:'Round 7 · 29–31 mag',     icon:'🇮🇹', url:'risultati.html?round=r7' },
   ];
 
   var overlay   = document.getElementById('global-search-overlay');
@@ -1733,12 +1742,6 @@ document.addEventListener('keydown', function(e) {
 })();</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
-<div class="gs-footer">
-<span><kbd>↑</kbd><kbd>↓</kbd> naviga</span>
-<span><kbd>↵</kbd> apri</span>
-<span><kbd>Esc</kbd> chiudi</span>
-<span style="margin-left:auto;"><kbd>Ctrl</kbd>+<kbd>K</kbd> ovunque</span>
-</div>
 
 
 <!-- AUTH MODAL -->
@@ -1765,5 +1768,76 @@ document.addEventListener('keydown', function(e) {
 </div>
 </div>
 </div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:180px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+<script>
+(function(){
+  var audio = document.getElementById('bg-audio');
+  var progressSlider = document.getElementById('progress-slider');
+  var playBtn = document.getElementById('play-btn');
+  
+  // Sincronizza tra pagine: salva il tempo corrente
+  window.addEventListener('beforeunload', function(){
+    try {
+      sessionStorage.setItem('audio-time', audio.currentTime);
+      sessionStorage.setItem('audio-playing', !audio.paused);
+    } catch(e){}
+  });
+  
+  // Ripristina il tempo quando carica la pagina
+  audio.addEventListener('loadedmetadata', function(){
+    try {
+      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+      audio.currentTime = savedTime;
+      if(wasPlaying) audio.play();
+    } catch(e){}
+  });
+  
+  // Aggiorna la barra di progresso
+  audio.addEventListener('timeupdate', function(){
+    if(audio.duration) {
+      progressSlider.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  
+  // Aggiorna il bottone play/pause
+  audio.addEventListener('play', function(){
+    playBtn.textContent = '⏸';
+  });
+  audio.addEventListener('pause', function(){
+    playBtn.textContent = '▶';
+  });
+  
+  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
+  audio.addEventListener('ended', function(){
+    try {
+      sessionStorage.removeItem('audio-time');
+    } catch(e){}
+  });
+})();
+</script>
+
 </body>
 </html>

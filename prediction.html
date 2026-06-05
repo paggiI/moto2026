@@ -472,7 +472,7 @@
 <a class="btn ghost" href="stats.html">📊 Vai alle statistiche</a>
 </div>
 <div class="meta">
-<span class="pill" id="meta-rounds">16 GP rimanenti</span>
+<span class="pill" id="meta-rounds">15 GP rimanenti</span>
 <span class="pill" id="meta-saved">0 pronostici salvati</span>
 <span class="pill">Dati stagionali già caricati</span>
 </div>
@@ -482,8 +482,8 @@
 <br/>
 <div class="container">
 <div class="summary">
-<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">18</div><div class="card-desc">Round ancora da correre</div></div>
-<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">4</div><div class="card-desc">Su 22 totali</div></div>
+<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">15</div><div class="card-desc">Round ancora da correre</div></div>
+<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">7</div><div class="card-desc">Su 22 totali</div></div>
 <div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Marco Bezzecchi</div><div class="card-desc">Leader attuale della classe regina</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto2</div><div class="card-value">Manuel González</div><div class="card-desc">Leader attuale Moto2</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto3</div><div class="card-value">Máximo Quiles</div><div class="card-desc">Leader attuale Moto3</div></div>
@@ -533,7 +533,7 @@
 </div>
 </div>
 <script>
-const FUTURE_ROUNDS = [{"num": 7, "name": "Gran Premio d'Italia", "circuit": "Autodromo Internazionale del Mugello", "date": "29 – 31 mag", "flag": "🇮🇹", "status": "next"}, {"num": 8, "name": "Gran Premio d'Ungheria", "circuit": "Balaton Park Circuit · Zalaegerszeg", "date": "5 – 7 giu", "flag": "🇭🇺", "status": "future"}, {"num": 9, "name": "Gran Premio della Repubblica Ceca", "circuit": "Automotodrom Brno", "date": "19 – 21 giu", "flag": "🇨🇿", "status": "future"}, {"num": 10, "name": "Gran Premio d'Olanda", "circuit": "TT Circuit Assen", "date": "26 – 28 giu", "flag": "🇳🇱", "status": "future"}, {"num": 11, "name": "Gran Premio di Germania", "circuit": "Sachsenring · Hohenstein-Ernstthal", "date": "10 – 12 lug", "flag": "🇩🇪", "status": "future"}, {"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "future"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
+const FUTURE_ROUNDS = [{"num": 8, "name": "Gran Premio d'Ungheria", "circuit": "Balaton Park Circuit · Zalaegerszeg", "date": "5 – 7 giu", "flag": "🇭🇺", "status": "next"}, {"num": 9, "name": "Gran Premio della Repubblica Ceca", "circuit": "Automotodrom Brno", "date": "19 – 21 giu", "flag": "🇨🇿", "status": "future"}, {"num": 10, "name": "Gran Premio d'Olanda", "circuit": "TT Circuit Assen", "date": "26 – 28 giu", "flag": "🇳🇱", "status": "future"}, {"num": 11, "name": "Gran Premio di Germania", "circuit": "Sachsenring · Hohenstein-Ernstthal", "date": "10 – 12 lug", "flag": "🇩🇪", "status": "future"}, {"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "future"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
 const RIDER_OPTIONS = {
   "motogp": [
     {
@@ -546,7 +546,7 @@ const RIDER_OPTIONS = {
       "name": "Marc Márquez",
       "flag": "🇪🇸",
       "team": "Ducati Desmosedici GP26",
-      "note": "⚠️ Assente Round 6 (infortunio)"
+      "note": ""
     },
     {
       "name": "Jack Miller",
@@ -576,7 +576,13 @@ const RIDER_OPTIONS = {
       "name": "Michele Pirro",
       "flag": "🇮🇹",
       "team": "Ducati Desmosedici GP25",
-      "note": "SOSTITUTO R1 Sub. Aldeguer al Round 1 - Sub. A. Marquez al Round 7"
+      "note": "SOSTITUTO R1 Sub. F. Aldeguer al Round 1 - SOSTITUTO R7 Sub. Á. Márquez al Round 7"
+    },
+    {
+      "name": "Iker Lecuona",
+      "flag": "🇪🇸",
+      "team": "Ducati Desmosedici GP25",
+      "note": "SOSTITUTO R8 Sub. A. Marquez al Round 8"
     },
     {
       "name": "Franco Morbidelli",
@@ -606,7 +612,7 @@ const RIDER_OPTIONS = {
       "name": "Lorenzo Savadori",
       "flag": "🇮🇹",
       "team": "Aprilia Racing",
-      "note": "WILDCARD R5 WildCard al Round 5"
+      "note": "Wildcard Round 4"
     },
     {
       "name": "Raúl Fernández",
@@ -642,13 +648,13 @@ const RIDER_OPTIONS = {
       "name": "Maverick Vinales",
       "flag": "🇪🇸",
       "team": "Red Bull KTM Tech3",
-      "note": "⚠️ Assente Round 4-5 (infortunio) Sostituito da J. Folger"
+      "note": ""
     },
     {
       "name": "Jonas Folger",
       "flag": "🇩🇪",
       "team": "Red Bull KTM Tech3",
-      "note": "SOSTITUTO R5 Sub. Vinales al Round 5"
+      "note": "Sostituto R5 Sub. M. Vinales al Round 5"
     },
     {
       "name": "Fabio Quartararo",
@@ -666,7 +672,7 @@ const RIDER_OPTIONS = {
       "name": "Augusto Fernández",
       "flag": "🇪🇸",
       "team": "Yamaha Racing Factory",
-      "note": "WILDCARD R4-R6 WildCard al Round 4 e 6"
+      "note": "Wildcard Round 4-6"
     },
     {
       "name": "Joan Mir",
@@ -684,7 +690,13 @@ const RIDER_OPTIONS = {
       "name": "Johann Zarco",
       "flag": "🇫🇷",
       "team": "Honda RC213V",
-      "note": "⚠️ Assente Round 7-8-9-10 (infortunio)"
+      "note": "⚠️ Assente Round 8-9-10 (infortunio)"
+    },
+    {
+      "name": "Cal Crutchlow",
+      "flag": "🇬🇧",
+      "team": "Honda RC213V",
+      "note": "SOSTITUTO R8-R9-R10 Sub. Zarco ai Round 8-9-10"
     },
     {
       "name": "Diogo Moreira",
@@ -758,7 +770,13 @@ const RIDER_OPTIONS = {
       "name": "Mario Aji",
       "flag": "🇮🇩",
       "team": "Kalex",
-      "note": ""
+      "note": "⚠️ Assente Round 8 (infortunio)"
+    },
+    {
+      "name": "Jacob Roulstone",
+      "flag": "🇦🇺",
+      "team": "Kalex",
+      "note": "SOSTITUTO R8 Sub. Aji al Round 8"
     },
     {
       "name": "Taiyo Furusato",
@@ -812,7 +830,7 @@ const RIDER_OPTIONS = {
       "name": "Angel Piqueras",
       "flag": "🇪🇸",
       "team": "Kalex",
-      "note": "⚠️ Assente Round 7-8 (infortunio) Sostituito da M. Ramirez e U. Orradre"
+      "note": ""
     },
     {
       "name": "Marcos Ramirez",
@@ -824,7 +842,7 @@ const RIDER_OPTIONS = {
       "name": "Unai Orradre",
       "flag": "🇪🇸",
       "team": "Kalex",
-      "note": "SOSTITUTO R6 Sub. Piqueras al Round 6"
+      "note": "SOSTITUTO R6-R7 Sub. Piqueras al Round 6-7"
     },
     {
       "name": "José Antonio Rueda",
@@ -842,13 +860,13 @@ const RIDER_OPTIONS = {
       "name": "Jorge Navarro",
       "flag": "🇪🇸",
       "team": "Kalex",
-      "note": "⚠️ Assente Round 6 (infortunio) Sostituito da X. Zurutuza"
+      "note": "Da R1 a R5 fino all'infortunio, poi sostituito da X. Zurutuza"
     },
     {
       "name": "Xabi Zurutuza",
       "flag": "🇪🇸",
       "team": "Kalex",
-      "note": "SOSTITUTO R6 Sub. Navarro al Round 6"
+      "note": ""
     },
     {
       "name": "Alex Escrig",
@@ -866,7 +884,7 @@ const RIDER_OPTIONS = {
       "name": "Luca Lunetta",
       "flag": "🇮🇹",
       "team": "Kalex",
-      "note": "⚠️ Assente Round 2–3 (infortunio) Sostituito da D. Foggia"
+      "note": ""
     },
     {
       "name": "Dennis Foggia",
@@ -1473,5 +1491,76 @@ document.addEventListener('click', function(e) {
   }, true);
 })();
 </script>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:180px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
+<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+</div>
+<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+<input id="vol-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+<audio id="bg-audio" autoplay loop style="display:none;">
+<source src="motogp_intro_26.mp3" type="audio/mpeg">
+</audio>
+</div>
+<script>
+(function(){
+  var audio = document.getElementById('bg-audio');
+  var progressSlider = document.getElementById('progress-slider');
+  var playBtn = document.getElementById('play-btn');
+  
+  // Sincronizza tra pagine: salva il tempo corrente
+  window.addEventListener('beforeunload', function(){
+    try {
+      sessionStorage.setItem('audio-time', audio.currentTime);
+      sessionStorage.setItem('audio-playing', !audio.paused);
+    } catch(e){}
+  });
+  
+  // Ripristina il tempo quando carica la pagina
+  audio.addEventListener('loadedmetadata', function(){
+    try {
+      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+      audio.currentTime = savedTime;
+      if(wasPlaying) audio.play();
+    } catch(e){}
+  });
+  
+  // Aggiorna la barra di progresso
+  audio.addEventListener('timeupdate', function(){
+    if(audio.duration) {
+      progressSlider.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  
+  // Aggiorna il bottone play/pause
+  audio.addEventListener('play', function(){
+    playBtn.textContent = '⏸';
+  });
+  audio.addEventListener('pause', function(){
+    playBtn.textContent = '▶';
+  });
+  
+  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
+  audio.addEventListener('ended', function(){
+    try {
+      sessionStorage.removeItem('audio-time');
+    } catch(e){}
+  });
+})();
+</script>
+
 </body>
 </html>
