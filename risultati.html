@@ -1824,23 +1824,54 @@
   width: 200px;
   box-sizing: border-box;
 }
+
 @media (max-width: 480px) {
-  #audio-player-widget {
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-    padding: 0.6rem 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
+  /* 1. Creiamo 70px di spazio VUOTO alla fine del sito */
+  /* Così la tabella si ferma prima e non finisce sotto l'audio */
+  body {
+    padding-bottom: 75px !important;
   }
+
+  /* 2. Sistemiamo l'audio player per essere USABILE */
+  #audio-player-widget {
+    bottom: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: #141414 !important;
+    border-top: 2px solid #e8001d !important;
+    height: 58px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    padding: 0 1rem !important;
+    gap: 0 !important;
+    /* Rimuoviamo filter e transform che bloccano il tocco su mobile */
+    backdrop-filter: none !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  /* 3. Assicuriamoci che gli slider siano grandi e trascinabili */
   #audio-player-widget > div:first-child {
     margin-bottom: 0 !important;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
   }
+  
+  #audio-player-widget input[type="range"] {
+    height: 28px !important; /* Area di tocco più grande per il dito */
+    min-width: 0 !important;
+    flex: 1 !important;
+    margin: 0 8px !important; /* Spazio per non farli attaccare */
+    pointer-events: auto !important;
+    -webkit-appearance: sliderHorizontal !important;
+    appearance: auto !important;
+  }
+
   #audio-player-widget #progress-slider,
   #audio-player-widget #vol-slider {
     flex: 1;

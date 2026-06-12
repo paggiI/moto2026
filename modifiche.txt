@@ -17,7 +17,7 @@ pilota.html :
 classifica.html :
 
 albo_doro.html :
-        ? aggiungere altre categorie (350...)
+        
 TO DO : 
     ultimi anni, vedere classifica completa delle 3 categorie
 
