@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 
-<html data-theme="dark" lang="it">
+<html lang="it">
 <head>
+<!-- SCRIPT ANTICO-FLASH: Legge il tema salvato PRIMA di caricare la grafica -->
+<script>
+  try {
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Prediction GP 2026 — Motomondiale 2026</title>
@@ -30,62 +44,67 @@
     }
     [data-theme="light"] .nav-dropdown-menu {
       box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      background: #fff !important;
+      border-color: #d8d8d8 !important;
     }
+    [data-theme="light"] .nav-dropdown-section { color: #888 !important; }
     [data-theme="light"] .nav-dropdown-item {
-      color: #111;
+      color: #111 !important;
     }
     [data-theme="light"] .nav-dropdown-item:hover {
-      background: rgba(232,0,29,.08);
-      color: var(--red);
+      background: rgba(232,0,29,.08) !important;
+      color: var(--red) !important;
     }
 
     [data-theme="light"] .hero {
-      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%);
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%) !important;
     }
     [data-theme="light"] .hero h1,
     [data-theme="light"] .hero h1 span {
-      color:#111;
+      color:#111 !important;
     }
+    [data-theme="light"] .eyebrow,
     [data-theme="light"] .sub,
     [data-theme="light"] .panel-sub,
     [data-theme="light"] .round-meta,
     [data-theme="light"] .card-desc,
     [data-theme="light"] .saved-item .s,
     [data-theme="light"] .tip {
-      color:#555;
+      color:#555 !important;
     }
     [data-theme="light"] .btn.ghost {
-      color:#111;
-      border-color:#cfcfcf;
+      color:#111 !important;
+      border-color:#cfcfcf !important;
     }
     [data-theme="light"] .btn.ghost:hover {
-      border-color: var(--red);
-      color:#111;
+      border-color: var(--red) !important;
+      color:#111 !important;
     }
     [data-theme="light"] .card,
     [data-theme="light"] .panel,
     [data-theme="light"] details.round,
     [data-theme="light"] .saved-item {
-      background:#fff;
-      box-shadow:none;
+      background:#fff !important;
+      box-shadow:none !important;
     }
     [data-theme="light"] .field select {
-      background:#fff;
-      color:#111;
+      background:#fff !important;
+      color:#111 !important;
+      border-color: #d8d8d8 !important;
     }
     [data-theme="light"] .round-summary:hover {
-      background:rgba(0,0,0,.03);
+      background:rgba(0,0,0,.03) !important;
     }
     [data-theme="light"] .status {
-      background:rgba(247,166,0,.15);
-      color:#9a6100;
+      background:rgba(247,166,0,.15) !important;
+      color:#9a6100 !important;
     }
 
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     html, body { overflow-x:hidden; }
-    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; transition: background-color .25s ease, color .2s ease; }
     html { scroll-behavior:smooth; }
-    header { position:sticky; top:0; z-index:200; background:rgba(10,10,10,.96); backdrop-filter:blur(12px); border-bottom:2px solid var(--red); display:flex; align-items:center; justify-content:space-between; padding:0 1.5rem; height:60px; gap:.8rem; }
+    header { position:sticky; top:0; z-index:200; background:rgba(10,10,10,.96); backdrop-filter:blur(12px); border-bottom:2px solid var(--red); display:flex; align-items:center; justify-content:space-between; padding:0 1.5rem; height:60px; gap:.8rem; transition: background-color .25s ease, border-color .2s ease; }
     .logo { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.08em; color:var(--white); text-decoration:none; flex-shrink:0; }
     .logo span { color:var(--red); }
     nav { display:flex; align-items:center; flex:1; min-width:0; overflow:hidden; gap:0; }
@@ -93,7 +112,7 @@
     nav a:hover { color:var(--white); background:rgba(255,255,255,.04); }
     nav a.active { color:var(--white); border-bottom-color:var(--red); }
     .header-right { display:flex; align-items:center; gap:.5rem; flex-shrink:0; }
-    #theme-toggle { background:transparent; border:1px solid var(--border); color:var(--muted); cursor:pointer; border-radius:6px; padding:.3rem .5rem; font-size:.9rem; line-height:1; display:flex; align-items:center; }
+    #theme-toggle { background:transparent; border:1px solid var(--border); color:var(--muted); cursor:pointer; border-radius:6px; padding:.3rem .5rem; font-size:.9rem; line-height:1; display:flex; align-items:center; transition: border-color .2s, color .2s; }
     .nav-dropdown-wrap { position:relative; }
     .nav-dropdown-btn { background:transparent; border:1px solid var(--border); color:var(--muted); cursor:pointer; border-radius:6px; padding:.28rem .65rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:.4rem; white-space:nowrap; }
     .nav-dropdown-menu { position:absolute; top:calc(100% + .5rem); right:0; background:var(--card); border:1px solid var(--border); border-radius:10px; min-width:200px; box-shadow:0 12px 40px rgba(0,0,0,.4); z-index:400; overflow:hidden; opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity .18s, transform .18s; }
@@ -112,7 +131,7 @@
     .mobile-menu a.active, .mobile-menu a:hover { color:var(--white); background:rgba(232,0,29,.1); }
     @media (max-width:1100px) { nav { display:none; } .hamburger { display:flex; } }
     @media (min-width:1101px) { .hamburger { display:none; } }
-    .hero { padding:3rem 1.5rem 2rem; background:linear-gradient(135deg, #0a0a0a 0%, #160004 52%, #0a0a0a 100%); border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+    .hero { padding:3rem 1.5rem 2rem; background:linear-gradient(135deg, #0a0a0a 0%, #160004 52%, #0a0a0a 100%); border-bottom:1px solid var(--border); position:relative; overflow:hidden; transition: background .3s ease; }
     .hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232,0,29,.03) 38px, rgba(232,0,29,.03) 40px); pointer-events:none; }
     .hero-inner { position:relative; max-width:1200px; margin:0 auto; }
     .eyebrow { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:var(--red); margin-bottom:.6rem; display:flex; align-items:center; gap:.5rem; }
@@ -121,27 +140,29 @@
     h1 span { color:var(--red); }
     .sub { color:var(--muted); max-width:760px; }
     .hero-actions { margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; }
-    .btn { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; padding:.6rem 1rem; border-radius:6px; border:1px solid var(--border); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.45rem; }
+    .btn { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; padding:.6rem 1rem; border-radius:6px; border:1px solid var(--border); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.45rem; transition: all .15s; }
     .btn.primary { background:var(--red); color:#fff; border-color:var(--red); }
     .btn.primary:hover { background:#c4001a; }
     .btn.ghost { background:transparent; color:#fff; }
     .btn.ghost:hover { border-color:var(--red); color:var(--white); }
     .meta { display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1rem; }
-    .pill { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.3rem .8rem; border-radius:3px; background:rgba(232,0,29,.12); border:1px solid rgba(232,0,29,.25); color:var(--white); }
+    .pill { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.3rem .8rem; border-radius:3px; background:rgba(232,0,29,.12); border:1px solid rgba(232,0,29,.25); color:var(--white); transition: background .2s, border-color .2s, color .2s; }
+    [data-theme="light"] .pill { background:rgba(232,0,29,.08); border-color:rgba(232,0,29,.15); color: #111; }
+    
     .container { max-width:1200px; margin:0 auto; padding:0 1.5rem 4rem; }
     .summary { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:.8rem; margin-top:-1rem; margin-bottom:1.5rem; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; box-shadow:0 8px 30px rgba(0,0,0,.12); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; box-shadow:0 8px 30px rgba(0,0,0,.12); transition: background .25s, border-color .2s; }
     .card-label { font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.35rem; }
     .card-value { font-family:'Bebas Neue',sans-serif; font-size:2rem; line-height:1; color:var(--red); }
     .card-desc { color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:.82rem; margin-top:.2rem; }
     .layout { display:grid; grid-template-columns: 1fr 300px; gap:1.2rem; align-items:start; }
-    .panel { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+    .panel { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition: background .25s, border-color .2s; }
     .panel-head { padding:1rem 1.1rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:.6rem; }
     .panel-title { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:.05em; }
     .panel-sub { font-family:'Barlow Condensed',sans-serif; font-size:.8rem; color:var(--muted); }
     .panel-body { padding:1rem 1.1rem; }
     .rounds { display:grid; gap:1rem; }
-    details.round { border:1px solid var(--border); border-radius:12px; background:var(--mid); overflow:hidden; }
+    details.round { border:1px solid var(--border); border-radius:12px; background:var(--mid); overflow:hidden; transition: background .25s, border-color .2s; }
     details.round[open] { background:var(--card); }
     summary.round-summary { list-style:none; cursor:pointer; padding:1rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
     summary.round-summary::-webkit-details-marker { display:none; }
@@ -153,13 +174,13 @@
     .round-body { padding:0 1rem 1rem; }
     .choices { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:.8rem; }
     .field label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:.3rem; }
-    .field select { width:100%; background:var(--dark); border:1px solid var(--border); color:var(--white); border-radius:8px; padding:.65rem .7rem; font-family:'Barlow Condensed',sans-serif; font-size:.95rem; }
+    .field select { width:100%; background:var(--dark); border:1px solid var(--border); color:var(--white); border-radius:8px; padding:.65rem .7rem; font-family:'Barlow Condensed',sans-serif; font-size:.95rem; transition: background .25s, color .2s, border-color .2s; }
     .field select:focus { outline:none; border-color:var(--red); }
     .actions { display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.9rem; }
     .btn.small { padding:.55rem .8rem; font-size:.78rem; }
     .btn.ok { background:rgba(46,204,113,.12); border-color:rgba(46,204,113,.3); color:#7dffab; }
     .btn.warn { background:rgba(232,0,29,.08); border-color:rgba(232,0,29,.28); color:#ff8f9b; }
-    .saved-item { padding:.75rem .8rem; border:1px solid var(--border); border-radius:10px; background:var(--mid); margin-bottom:.7rem; }
+    .saved-item { padding:.75rem .8rem; border:1px solid var(--border); border-radius:10px; background:var(--mid); margin-bottom:.7rem; transition: background .25s, border-color .2s; }
     .saved-item strong { color:var(--white); }
     .saved-item .s { display:block; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:.82rem; margin-top:.1rem; }
     .tip { color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:.82rem; line-height:1.45; }
@@ -345,6 +366,7 @@
       color: var(--muted); font-size: 1.1rem;
       cursor: pointer; line-height: 1;
     }
+    
     [data-theme="light"] .auth-btn,
     [data-theme="light"] .nav-dropdown-btn {
       background:#fff !important;
@@ -363,70 +385,35 @@
       border-color:#d0d0d0 !important;
       box-shadow:0 12px 40px rgba(0,0,0,.15) !important;
     }
-    [data-theme="light"] .user-menu {
-      color: #111;
-    }
-
-    [data-theme="light"] .user-menu * {
-      color: inherit;
-    }
-    [data-theme="light"] .user-menu-item.user-menu-fav {
-      color: #111 !important;
-    }
-    [data-theme="light"] .user-menu {
-      background: #fff;
-      border-color: #e0e0e0;
-    }
-    [data-theme="light"] .user-menu-item.logout {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--red);
-    }
-    [data-theme="light"] .hero { background:linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%); }
-    [data-theme="light"] .hero h1 { color:#111 !important; }
-    [data-theme="light"] .hero p { color:#555 !important; }
+    [data-theme="light"] .user-menu * { color: #111 !important; }
+    [data-theme="light"] .user-menu-item.user-menu-fav { color: #111 !important; }
+    [data-theme="light"] .user-menu-item.logout { background: rgba(255, 255, 255, 0.08); color: var(--red) !important; }
     [data-theme="light"] .btn.ghost { color:#111; border-color:#cfcfcf; }
     [data-theme="light"] .btn.ghost:hover { color:#111; border-color:var(--red); }
-
-    footer { background:var(--mid); border-top:1px solid var(--border); padding:2rem 1.5rem; text-align:center; color:var(--muted); margin-top:2rem; }
-    footer .logo { font-size:1.5rem; display:block; margin-bottom:.5rem; }
-    @media (max-width: 980px) { .layout { grid-template-columns:1fr; } .choices { grid-template-columns:1fr; } }
-    @media (max-width: 768px) { .hero { padding:2rem 1rem 1.5rem; } .container { padding:0 .9rem 3rem; } .summary { grid-template-columns:1fr 1fr; } .panel-head { padding:.9rem; } .panel-body { padding:.9rem; } summary.round-summary { padding:.85rem .8rem; } .round-name { font-size:1.2rem; } .round-meta { font-size:.78rem; } }
-  
-    [data-theme="light"] .hero {
-      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%) !important;
-    }
-    [data-theme="light"] .hero h1,
-    [data-theme="light"] .hero h1 span,
-    [data-theme="light"] .eyebrow,
-    [data-theme="light"] .sub,
-    [data-theme="light"] .meta,
-    [data-theme="light"] .card-desc,
-    [data-theme="light"] .tip {
-      color: #111 !important;
-    }
-    [data-theme="light"] .nav-dropdown-btn,
-    [data-theme="light"] .auth-btn,
-    [data-theme="light"] .user-avatar-btn,
     [data-theme="light"] #theme-toggle {
       color: #111 !important;
       border-color: #d8d8d8 !important;
       background: #fff !important;
     }
-    [data-theme="light"] .user-menu,
-    [data-theme="light"] .nav-dropdown-menu,
-    [data-theme="light"] .mobile-menu {
-      background: rgba(255,255,255,.98) !important;
-    }
-    [data-theme="light"] .nav-dropdown-item,
-    [data-theme="light"] .user-menu-item,
-    [data-theme="light"] .mobile-menu a {
-      color: #111 !important;
-    }
     [data-theme="light"] .user-avatar-btn {
       background: #e8001d !important;
       color: #fff !important;
     }
+    
+    /* LIGHT MODE PER AUDIO PLAYER */
+    [data-theme="light"] #audio-player-widget {
+      background:#ffffff !important;
+      border-color:#d0d0d0 !important;
+    }
+    [data-theme="light"] #audio-player-widget label {
+      color:#666 !important;
+    }
 
+    footer { background:var(--mid); border-top:1px solid var(--border); padding:2rem 1.5rem; text-align:center; color:var(--muted); margin-top:2rem; transition: background .25s, border-color .2s, color .2s; }
+    footer .logo { font-size:1.5rem; display:block; margin-bottom:.5rem; }
+    @media (max-width: 980px) { .layout { grid-template-columns:1fr; } .choices { grid-template-columns:1fr; } }
+    @media (max-width: 768px) { .hero { padding:2rem 1rem 1.5rem; } .container { padding:0 .9rem 3rem; } .summary { grid-template-columns:1fr 1fr; } .panel-head { padding:.9rem; } .panel-body { padding:.9rem; } summary.round-summary { padding:.85rem .8rem; } .round-name { font-size:1.2rem; } .round-meta { font-size:.78rem; } }
+  
     nav a[href="prediction.html"].active,
     .mobile-menu a[href="prediction.html"].active,
     .nav-dropdown-item[href="prediction.html"].active {
@@ -435,7 +422,7 @@
       background: rgba(255,255,255,.05) !important;
     }
 </style>
-</link><style id="audio-player-responsive">
+<style id="audio-player-responsive">
 #audio-player-widget {
   position: fixed;
   bottom: 20px;
@@ -447,6 +434,7 @@
   padding: 1rem;
   width: 200px;
   box-sizing: border-box;
+  transition: background-color .25s ease, border-color .2s ease;
 }
 @media (max-width: 480px) {
   #audio-player-widget {
@@ -477,7 +465,7 @@
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a class="active" href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
 <button class="auth-btn" onclick="openAuthModal()">👤 Accedi</button>
 <div class="nav-dropdown-wrap">
@@ -510,7 +498,7 @@
 <a class="btn ghost" href="stats.html">📊 Vai alle statistiche</a>
 </div>
 <div class="meta">
-<span class="pill" id="meta-rounds">15 GP rimanenti</span>
+<span class="pill" id="meta-rounds">14 GP rimanenti</span>
 <span class="pill" id="meta-saved">0 pronostici salvati</span>
 <span class="pill">Dati stagionali già caricati</span>
 </div>
@@ -520,8 +508,8 @@
 <br/>
 <div class="container">
 <div class="summary">
-<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">15</div><div class="card-desc">Round ancora da correre</div></div>
-<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">7</div><div class="card-desc">Su 22 totali</div></div>
+<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">14</div><div class="card-desc">Round ancora da correre</div></div>
+<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">8</div><div class="card-desc">Su 22 totali</div></div>
 <div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Marco Bezzecchi</div><div class="card-desc">Leader attuale della classe regina</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto2</div><div class="card-value">Manuel González</div><div class="card-desc">Leader attuale Moto2</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto3</div><div class="card-value">Máximo Quiles</div><div class="card-desc">Leader attuale Moto3</div></div>
@@ -571,550 +559,125 @@
 </div>
 </div>
 <script>
-const FUTURE_ROUNDS = [{"num": 8, "name": "Gran Premio d'Ungheria", "circuit": "Balaton Park Circuit · Zalaegerszeg", "date": "5 – 7 giu", "flag": "🇭🇺", "status": "next"}, {"num": 9, "name": "Gran Premio della Repubblica Ceca", "circuit": "Automotodrom Brno", "date": "19 – 21 giu", "flag": "🇨🇿", "status": "future"}, {"num": 10, "name": "Gran Premio d'Olanda", "circuit": "TT Circuit Assen", "date": "26 – 28 giu", "flag": "🇳🇱", "status": "future"}, {"num": 11, "name": "Gran Premio di Germania", "circuit": "Sachsenring · Hohenstein-Ernstthal", "date": "10 – 12 lug", "flag": "🇩🇪", "status": "future"}, {"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "future"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
+const FUTURE_ROUNDS = [{"num": 9, "name": "Gran Premio della Repubblica Ceca", "circuit": "Automotodrom Brno", "date": "19 – 21 giu", "flag": "🇨🇿", "status": "future"}, {"num": 10, "name": "Gran Premio d'Olanda", "circuit": "TT Circuit Assen", "date": "26 – 28 giu", "flag": "🇳🇱", "status": "future"}, {"num": 11, "name": "Gran Premio di Germania", "circuit": "Sachsenring · Hohenstein-Ernstthal", "date": "10 – 12 lug", "flag": "🇩🇪", "status": "future"}, {"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "future"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
 const RIDER_OPTIONS = {
   "motogp": [
-    {
-      "name": "Francesco Bagnaia",
-      "flag": "🇮🇹",
-      "team": "Ducati Desmosedici GP26",
-      "note": ""
-    },
-    {
-      "name": "Marc Márquez",
-      "flag": "🇪🇸",
-      "team": "Ducati Desmosedici GP26",
-      "note": ""
-    },
-    {
-      "name": "Jack Miller",
-      "flag": "🇦🇺",
-      "team": "Yamaha YZR-M1",
-      "note": ""
-    },
-    {
-      "name": "Toprak Razgatlıoğlu",
-      "flag": "🇹🇷",
-      "team": "Yamaha YZR-M1",
-      "note": ""
-    },
-    {
-      "name": "Álex Márquez",
-      "flag": "🇪🇸",
-      "team": "Ducati Desmosedici GP25",
-      "note": "⚠️ Assente Round 7-8 (infortunio)"
-    },
-    {
-      "name": "Fermín Aldeguer",
-      "flag": "🇪🇸",
-      "team": "Ducati Desmosedici GP25",
-      "note": "⚠️ Assente Round 1 (infortunio) Sostituito da M. Pirro"
-    },
-    {
-      "name": "Michele Pirro",
-      "flag": "🇮🇹",
-      "team": "Ducati Desmosedici GP25",
-      "note": "SOSTITUTO R1 Sub. F. Aldeguer al Round 1 - SOSTITUTO R7 Sub. Á. Márquez al Round 7"
-    },
-    {
-      "name": "Iker Lecuona",
-      "flag": "🇪🇸",
-      "team": "Ducati Desmosedici GP25",
-      "note": "SOSTITUTO R8 Sub. A. Marquez al Round 8"
-    },
-    {
-      "name": "Franco Morbidelli",
-      "flag": "🇮🇹",
-      "team": "Ducati Desmosedici GP25",
-      "note": ""
-    },
-    {
-      "name": "Fabio Di Giannantonio",
-      "flag": "🇮🇹",
-      "team": "Ducati Desmosedici GP25",
-      "note": ""
-    },
-    {
-      "name": "Jorge Martín",
-      "flag": "🇪🇸",
-      "team": "Aprilia RS-GP26",
-      "note": ""
-    },
-    {
-      "name": "Marco Bezzecchi",
-      "flag": "🇮🇹",
-      "team": "Aprilia RS-GP26",
-      "note": ""
-    },
-    {
-      "name": "Lorenzo Savadori",
-      "flag": "🇮🇹",
-      "team": "Aprilia Racing",
-      "note": "Wildcard Round 4"
-    },
-    {
-      "name": "Raúl Fernández",
-      "flag": "🇪🇸",
-      "team": "Aprilia RS-GP25",
-      "note": ""
-    },
-    {
-      "name": "Ai Ogura",
-      "flag": "🇯🇵",
-      "team": "Aprilia RS-GP25",
-      "note": ""
-    },
-    {
-      "name": "Brad Binder",
-      "flag": "🇿🇦",
-      "team": "KTM RC16",
-      "note": ""
-    },
-    {
-      "name": "Pedro Acosta",
-      "flag": "🇪🇸",
-      "team": "KTM RC16",
-      "note": ""
-    },
-    {
-      "name": "Enea Bastianini",
-      "flag": "🇮🇹",
-      "team": "Red Bull KTM Tech3",
-      "note": ""
-    },
-    {
-      "name": "Maverick Vinales",
-      "flag": "🇪🇸",
-      "team": "Red Bull KTM Tech3",
-      "note": ""
-    },
-    {
-      "name": "Jonas Folger",
-      "flag": "🇩🇪",
-      "team": "Red Bull KTM Tech3",
-      "note": "Sostituto R5 Sub. M. Vinales al Round 5"
-    },
-    {
-      "name": "Fabio Quartararo",
-      "flag": "🇫🇷",
-      "team": "Yamaha YZR-M1",
-      "note": ""
-    },
-    {
-      "name": "Álex Rins",
-      "flag": "🇪🇸",
-      "team": "Yamaha YZR-M1",
-      "note": ""
-    },
-    {
-      "name": "Augusto Fernández",
-      "flag": "🇪🇸",
-      "team": "Yamaha Racing Factory",
-      "note": "Wildcard Round 4-6"
-    },
-    {
-      "name": "Joan Mir",
-      "flag": "🇪🇸",
-      "team": "Honda RC213V",
-      "note": ""
-    },
-    {
-      "name": "Luca Marini",
-      "flag": "🇮🇹",
-      "team": "Honda RC213V",
-      "note": ""
-    },
-    {
-      "name": "Johann Zarco",
-      "flag": "🇫🇷",
-      "team": "Honda RC213V",
-      "note": "⚠️ Assente Round 8-9-10 (infortunio)"
-    },
-    {
-      "name": "Cal Crutchlow",
-      "flag": "🇬🇧",
-      "team": "Honda RC213V",
-      "note": "SOSTITUTO R8-R9-R10 Sub. Zarco ai Round 8-9-10"
-    },
-    {
-      "name": "Diogo Moreira",
-      "flag": "🇧🇷",
-      "team": "Honda RC213V",
-      "note": ""
-    }
+    { "name": "Francesco Bagnaia", "flag": "🇮🇹", "team": "Ducati Desmosedici GP26", "note": "" },
+    { "name": "Marc Márquez", "flag": "🇪🇸", "team": "Ducati Desmosedici GP26", "note": "" },
+    { "name": "Jack Miller", "flag": "🇦🇺", "team": "Yamaha YZR-M1", "note": "" },
+    { "name": "Toprak Razgatlıoğlu", "flag": "🇹🇷", "team": "Yamaha YZR-M1", "note": "" },
+    { "name": "Álex Márquez", "flag": "🇪🇸", "team": "Ducati Desmosedici GP25", "note": "⚠️ Assente Round 7-8 (infortunio)" },
+    { "name": "Fermín Aldeguer", "flag": "🇪🇸", "team": "Ducati Desmosedici GP25", "note": "⚠️ Assente Round 1 (infortunio) Sostituito da M. Pirro" },
+    { "name": "Michele Pirro", "flag": "🇮🇹", "team": "Ducati Desmosedici GP25", "note": "SOSTITUTO R1 Sub. F. Aldeguer al Round 1 - SOSTITUTO R7 Sub. Á. Márquez al Round 7" },
+    { "name": "Iker Lecuona", "flag": "🇪🇸", "team": "Ducati Desmosedici GP25", "note": "SOSTITUTO R8 Sub. A. Marquez al Round 8" },
+    { "name": "Franco Morbidelli", "flag": "🇮🇹", "team": "Ducati Desmosedici GP25", "note": "" },
+    { "name": "Fabio Di Giannantonio", "flag": "🇮🇹", "team": "Ducati Desmosedici GP25", "note": "" },
+    { "name": "Jorge Martín", "flag": "🇪🇸", "team": "Aprilia RS-GP26", "note": "" },
+    { "name": "Marco Bezzecchi", "flag": "🇮🇹", "team": "Aprilia RS-GP26", "note": "" },
+    { "name": "Lorenzo Savadori", "flag": "🇮🇹", "team": "Aprilia Racing", "note": "Wildcard Round 4" },
+    { "name": "Raúl Fernández", "flag": "🇪🇸", "team": "Aprilia RS-GP25", "note": "" },
+    { "name": "Ai Ogura", "flag": "🇯🇵", "team": "Aprilia RS-GP25", "note": "" },
+    { "name": "Brad Binder", "flag": "🇿🇦", "team": "KTM RC16", "note": "" },
+    { "name": "Pedro Acosta", "flag": "🇪🇸", "team": "KTM RC16", "note": "" },
+    { "name": "Enea Bastianini", "flag": "🇮🇹", "team": "Red Bull KTM Tech3", "note": "" },
+    { "name": "Maverick Vinales", "flag": "🇪🇸", "team": "Red Bull KTM Tech3", "note": "" },
+    { "name": "Jonas Folger", "flag": "🇩🇪", "team": "Red Bull KTM Tech3", "note": "Sostituto R5 Sub. M. Vinales al Round 5" },
+    { "name": "Fabio Quartararo", "flag": "🇫🇷", "team": "Yamaha YZR-M1", "note": "" },
+    { "name": "Álex Rins", "flag": "🇪🇸", "team": "Yamaha YZR-M1", "note": "" },
+    { "name": "Augusto Fernández", "flag": "🇪🇸", "team": "Yamaha Racing Factory", "note": "Wildcard Round 4-6" },
+    { "name": "Joan Mir", "flag": "🇪🇸", "team": "Honda RC213V", "note": "" },
+    { "name": "Luca Marini", "flag": "🇮🇹", "team": "Honda RC213V", "note": "" },
+    { "name": "Johann Zarco", "flag": "🇫🇷", "team": "Honda RC213V", "note": "⚠️ Assente Round 9-10-11 (infortunio)" },
+    { "name": "Cal Crutchlow", "flag": "🇬🇧", "team": "Honda RC213V", "note": "SOSTITUTO R8-R9-R10 Sub. Zarco ai Round 9-10-11" },
+    { "name": "Diogo Moreira", "flag": "🇧🇷", "team": "Honda RC213V", "note": "" }
   ],
   "moto2": [
-    {
-      "name": "Joe Roberts",
-      "flag": "🇺🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Filip Salač",
-      "flag": "🇨🇿",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Daniel Holgado",
-      "flag": "🇪🇸",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "David Alonso",
-      "flag": "🇨🇴",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Izan Guevara",
-      "flag": "🇪🇸",
-      "team": "Yamaha",
-      "note": ""
-    },
-    {
-      "name": "Alberto Ferrandez",
-      "flag": "🇪🇸",
-      "team": "Yamaha",
-      "note": ""
-    },
-    {
-      "name": "Barry Baltus",
-      "flag": "🇧🇪",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Tony Arbolino",
-      "flag": "🇮🇹",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Sergio García",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Alonso López",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Mario Aji",
-      "flag": "🇮🇩",
-      "team": "Kalex",
-      "note": "⚠️ Assente Round 8 (infortunio)"
-    },
-    {
-      "name": "Jacob Roulstone",
-      "flag": "🇦🇺",
-      "team": "Kalex",
-      "note": "SOSTITUTO R8 Sub. Aji al Round 8"
-    },
-    {
-      "name": "Taiyo Furusato",
-      "flag": "🇯🇵",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Adrián Huertas",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Daniel Muñoz",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Senna Agius",
-      "flag": "🇦🇺",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Manuel González",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Aron Canet",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Deniz Öncü",
-      "flag": "🇹🇷",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Iván Ortolá",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Angel Piqueras",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Marcos Ramirez",
-      "flag": "🇮🇹",
-      "team": "Kalex",
-      "note": "SOSTITUTO R4-R5 Sub. Piqueras ai Round 4-5"
-    },
-    {
-      "name": "Unai Orradre",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": "SOSTITUTO R6-R7 Sub. Piqueras al Round 6-7"
-    },
-    {
-      "name": "José Antonio Rueda",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Collin Veijer",
-      "flag": "🇳🇱",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Jorge Navarro",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": "Da R1 a R5 fino all'infortunio, poi sostituito da X. Zurutuza"
-    },
-    {
-      "name": "Xabi Zurutuza",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Alex Escrig",
-      "flag": "🇪🇸",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Celestino Vietti",
-      "flag": "🇮🇹",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Luca Lunetta",
-      "flag": "🇮🇹",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Dennis Foggia",
-      "flag": "🇮🇹",
-      "team": "Kalex",
-      "note": "SOSTITUTO R2-R3 Sub. Lunetta ai Round 2-3"
-    },
-    {
-      "name": "Ayumu Sasaki",
-      "flag": "🇯🇵",
-      "team": "Kalex",
-      "note": ""
-    },
-    {
-      "name": "Zonta van den Goorbergh",
-      "flag": "🇳🇱",
-      "team": "Kalex",
-      "note": ""
-    }
+    { "name": "Joe Roberts", "flag": "🇺🇸", "team": "Kalex", "note": "" },
+    { "name": "Filip Salač", "flag": "🇨🇿", "team": "Kalex", "note": "" },
+    { "name": "Daniel Holgado", "flag": "🇪🇸", "team": "CFMOTO", "note": "" },
+    { "name": "David Alonso", "flag": "🇨🇴", "team": "CFMOTO", "note": "" },
+    { "name": "Izan Guevara", "flag": "🇪🇸", "team": "Yamaha", "note": "" },
+    { "name": "Alberto Ferrandez", "flag": "🇪🇸", "team": "Yamaha", "note": "" },
+    { "name": "Barry Baltus", "flag": "🇧🇪", "team": "Kalex", "note": "" },
+    { "name": "Tony Arbolino", "flag": "🇮🇹", "team": "Kalex", "note": "" },
+    { "name": "Sergio García", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Alonso López", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Mario Aji", "flag": "🇮🇩", "team": "Kalex", "note": "⚠️ Assente Round 8 (infortunio)" },
+    { "name": "Jacob Roulstone", "flag": "🇦🇺", "team": "Kalex", "note": "SOSTITUTO R8 Sub. Aji al Round 8" },
+    { "name": "Taiyo Furusato", "flag": "🇯🇵", "team": "Kalex", "note": "" },
+    { "name": "Adrián Huertas", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Daniel Muñoz", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Senna Agius", "flag": "🇦🇺", "team": "Kalex", "note": "" },
+    { "name": "Manuel González", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Aron Canet", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Deniz Öncü", "flag": "🇹🇷", "team": "Kalex", "note": "" },
+    { "name": "Iván Ortolá", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Angel Piqueras", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Marcos Ramirez", "flag": "🇮🇹", "team": "Kalex", "note": "SOSTITUTO R4-R5 Sub. Piqueras ai Round 4-5" },
+    { "name": "Unai Orradre", "flag": "🇪🇸", "team": "Kalex", "note": "SOSTITUTO R6-R7 Sub. Piqueras al Round 6-7" },
+    { "name": "José Antonio Rueda", "flag": "🇪🇸", "team": "KTM", "note": "" },
+    { "name": "Collin Veijer", "flag": "🇳🇱", "team": "KTM", "note": "" },
+    { "name": "Jorge Navarro", "flag": "🇪🇸", "team": "Kalex", "note": "SOSTITUTO R1-5 POI APPIEDATO" },
+    { "name": "Xabi Zurutuza", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Alex Escrig", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Celestino Vietti", "flag": "🇮🇹", "team": "Kalex", "note": "" },
+    { "name": "Luca Lunetta", "flag": "🇮🇹", "team": "Kalex", "note": "" },
+    { "name": "Dennis Foggia", "flag": "🇮🇹", "team": "Kalex", "note": "SOSTITUTO R2-R3 Sub. Lunetta ai Round 2-3" },
+    { "name": "Ayumu Sasaki", "flag": "🇯🇵", "team": "Kalex", "note": "" },
+    { "name": "Zonta van den Goorbergh", "flag": "🇳🇱", "team": "Kalex", "note": "" }
   ],
   "moto3": [
-    {
-      "name": "Cormac Buchanan",
-      "flag": "🇳🇿",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Ruche Moodley",
-      "flag": "🇿🇦",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Ryusei Yamanaka",
-      "flag": "🇯🇵",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Hakim Danish",
-      "flag": "🇲🇾",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Joel Kelso",
-      "flag": "🇦🇺",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Eddie O'Shea",
-      "flag": "🇮🇪",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Veda Pratama",
-      "flag": "🇮🇩",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Zen Mitani",
-      "flag": "🇯🇵",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Nicola Carraro",
-      "flag": "🇮🇹",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Jesús Ríos",
-      "flag": "🇪🇸",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Adrián Cruces",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Scott Ogden",
-      "flag": "🇬🇧",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "David Muñoz",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": "⚠️ Assente Round 2–3 (infortunio)"
-    },
-    {
-      "name": "David Almansa",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": "⚠️ Assente Round 3 — Austin (infortunio) Sostituito da M. Uriarte"
-    },
-    {
-      "name": "Marcos Uriarte",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": "SOSTITUTO R2-R3 Sub. Almansa al Round 3"
-    },
-    {
-      "name": "Rico Salmela",
-      "flag": "🇫🇮",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Valentin Perrone",
-      "flag": "🇦🇷",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Máximo Quiles",
-      "flag": "🇪🇸",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Marco Morelli",
-      "flag": "🇦🇷",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Guido Pini",
-      "flag": "🇮🇹",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Adrián Fernández",
-      "flag": "🇪🇸",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Álvaro Carpe",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Brian Uriarte",
-      "flag": "🇪🇸",
-      "team": "KTM",
-      "note": ""
-    },
-    {
-      "name": "Joel Esteban",
-      "flag": "🇪🇸",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Matteo Bertelle",
-      "flag": "🇮🇹",
-      "team": "CFMOTO",
-      "note": ""
-    },
-    {
-      "name": "Leo Rammerstorfer",
-      "flag": "🇦🇹",
-      "team": "Honda NSF250RW",
-      "note": ""
-    },
-    {
-      "name": "Casey O'Gorman",
-      "flag": "🇮🇪",
-      "team": "Honda NSF250RW",
-      "note": ""
-    }
+    { "name": "Cormac Buchanan", "flag": "🇳🇿", "team": "CFMOTO", "note": "" },
+    { "name": "Ruche Moodley", "flag": "🇿🇦", "team": "CFMOTO", "note": "" },
+    { "name": "Ryusei Yamanaka", "flag": "🇯🇵", "team": "KTM", "note": "" },
+    { "name": "Hakim Danish", "flag": "🇲🇾", "team": "KTM", "note": "" },
+    { "name": "Joel Kelso", "flag": "🇦🇺", "team": "KTM", "note": "" },
+    { "name": "Eddie O'Shea", "flag": "🇮🇪", "team": "KTM", "note": "" },
+    { "name": "Veda Pratama", "flag": "🇮🇩", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Zen Mitani", "flag": "🇯🇵", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Nicola Carraro", "flag": "🇮🇹", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Jesús Ríos", "flag": "🇪🇸", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Adrián Cruces", "flag": "🇪🇸", "team": "KTM", "note": "" },
+    { "name": "Scott Ogden", "flag": "🇬🇧", "team": "KTM", "note": "" },
+    { "name": "David Muñoz", "flag": "🇪🇸", "team": "KTM", "note": "⚠️ Assente Round 2–3 (infortunio)" },
+    { "name": "David Almansa", "flag": "🇪🇸", "team": "KTM", "note": "⚠️ Assente Round 3 — Austin (infortunio) Sostituito da M. Uriarte" },
+    { "name": "Marcos Uriarte", "flag": "🇪🇸", "team": "KTM", "note": "SOSTITUTO R2-R3 Sub. Almansa al Round 3" },
+    { "name": "Rico Salmela", "flag": "🇫🇮", "team": "KTM", "note": "" },
+    { "name": "Valentin Perrone", "flag": "🇦🇷", "team": "KTM", "note": "" },
+    { "name": "Máximo Quiles", "flag": "🇪🇸", "team": "CFMOTO", "note": "" },
+    { "name": "Marco Morelli", "flag": "🇦🇷", "team": "CFMOTO", "note": "" },
+    { "name": "Guido Pini", "flag": "🇮🇹", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Adrián Fernández", "flag": "🇪🇸", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Álvaro Carpe", "flag": "🇪🇸", "team": "KTM", "note": "" },
+    { "name": "Brian Uriarte", "flag": "🇪🇸", "team": "KTM", "note": "" },
+    { "name": "Joel Esteban", "flag": "🇪🇸", "team": "CFMOTO", "note": "" },
+    { "name": "Matteo Bertelle", "flag": "🇮🇹", "team": "CFMOTO", "note": "" },
+    { "name": "Leo Rammerstorfer", "flag": "🇦🇹", "team": "Honda NSF250RW", "note": "" },
+    { "name": "Casey O'Gorman", "flag": "🇮🇪", "team": "Honda NSF250RW", "note": "" }
   ]
 };
 const STORAGE_KEY = 'motomondiale2026_predictions_v1';
-function toggleTheme() { const root = document.documentElement; const light = root.getAttribute('data-theme') === 'light'; root.setAttribute('data-theme', light ? 'dark' : 'light'); localStorage.setItem('theme', light ? 'dark' : 'light'); const icon = document.getElementById('theme-icon'); if (icon) icon.textContent = light ? '☀️' : '🌙'; }
-(function initTheme() { const saved = localStorage.getItem('theme'); if (saved) document.documentElement.setAttribute('data-theme', saved); const icon = document.getElementById('theme-icon'); if (icon) icon.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '🌙' : '☀️'; })();
+
+function toggleTheme() { 
+  const root = document.documentElement; 
+  const light = root.getAttribute('data-theme') === 'light'; 
+  root.setAttribute('data-theme', light ? 'dark' : 'light'); 
+  localStorage.setItem('theme', light ? 'dark' : 'light'); 
+  const icon = document.getElementById('theme-icon'); 
+  if (icon) icon.textContent = light ? '☀️' : '🌙'; 
+}
+
+// Questa funzione ora si occupa SOLO dell'icona, perché il tema è già stato caricato in <head>
+(function initThemeIcon() { 
+  const icon = document.getElementById('theme-icon'); 
+  if (icon) icon.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '🌙' : '☀️'; 
+})();
+
 function toggleNavDropdown() { const menu = document.getElementById('nav-dropdown-menu'); if (!menu) return; menu.classList.toggle('open'); }
 function closeNavDropdown() { const menu = document.getElementById('nav-dropdown-menu'); if (menu) menu.classList.remove('open'); }
 window.addEventListener('scroll',()=>{var b=document.getElementById('scroll-top-btn'); if(b) b.style.display=window.scrollY>300?'flex':'none';});
 document.addEventListener('click', (e) => { const wrap = document.querySelector('.nav-dropdown-wrap'); if (wrap && !wrap.contains(e.target)) closeNavDropdown(); });
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({
     '&': '&amp;',
@@ -1215,12 +778,11 @@ renderRounds();
 
 /* ── ACCOUNT / LOGIN ── */
 (function() {
-  var MODE = 'login'; // 'login' | 'register'
+  var MODE = 'login';
   var USERS_KEY  = 'moto2026_users';
   var CURR_KEY   = 'moto2026_current';
   var FAVS_KEY   = 'moto2026_favs_';
 
-  // ── Helpers storage ────────────────────────────────────────
   function getUsers() {
     try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
   }
@@ -1237,18 +799,15 @@ renderRounds();
   }
   function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
 
-  // ── Inizializzazione UI ─────────────────────────────────────
   function initAuth() {
     var user = getCurrentUser();
     var headerRight = document.querySelector('.header-right');
     if (!headerRight) return;
 
-    // Rimuovi vecchi btn auth se ci sono
     var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
     if (old) old.remove();
 
     if (user) {
-      // Utente loggato: mostra avatar
       var favs = getFavs(user.username);
       var initials = user.username.slice(0,2).toUpperCase();
       var wrap = document.createElement('div');
@@ -1280,14 +839,11 @@ renderRounds();
           '<div class="user-menu-divider"></div>' +
           '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
         '</div>';
-      // Inserisci prima del theme-toggle
       var themeBtn = headerRight.querySelector('#theme-toggle');
       if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
       else headerRight.prepend(wrap);
 
-      // Chiudi menu cliccando fuori
-      window.addEventListener('scroll',()=>{var b=document.getElementById('scroll-top-btn'); if(b) b.style.display=window.scrollY>300?'flex':'none';});
-document.addEventListener('click', function(e) {
+      document.addEventListener('click', function(e) {
         var w = document.getElementById('user-menu-wrap');
         if (w && !w.contains(e.target)) {
           var m = document.getElementById('user-menu');
@@ -1295,14 +851,7 @@ document.addEventListener('click', function(e) {
         }
       });
 
-      // Inizializza le stelle sui piloti
-      initFavStars(user.username);
-
-      // Mostra sezione preferiti se siamo in piloti.html
-      showFavsSection(user.username);
-
     } else {
-      // Non loggato: mostra bottone "Accedi"
       var btn = document.createElement('button');
       btn.className = 'auth-btn';
       btn.textContent = '👤 Accedi';
@@ -1313,7 +862,6 @@ document.addEventListener('click', function(e) {
     }
   }
 
-  // ── Modal Auth ──────────────────────────────────────────────
   window.openAuthModal = function() {
     MODE = 'login';
     document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
@@ -1384,7 +932,6 @@ document.addEventListener('click', function(e) {
     if (m) m.classList.toggle('open');
   };
 
-  // ── Preferiti ───────────────────────────────────────────────
   window.toggleFav = function(riderId, riderName) {
     var user = getCurrentUser();
     if (!user) { openAuthModal(); return; }
@@ -1398,15 +945,12 @@ document.addEventListener('click', function(e) {
       showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
     }
     saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
     document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
       star.classList.toggle('active', idx < 0);
       star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
     });
-    // Aggiorna badge nel menu
     var badge = document.querySelector('.user-fav-badge');
     if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
     showFavsSection(user.username);
     initAuth();
   };
@@ -1425,10 +969,7 @@ document.addEventListener('click', function(e) {
     var container = document.getElementById('favs-section-container');
     if (!container) return;
     var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
+    if (favs.length === 0) { container.innerHTML = ''; return; }
     var chips = favs.map(function(f) {
       return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
     }).join('');
@@ -1447,7 +988,6 @@ document.addEventListener('click', function(e) {
     window.location.href = 'piloti.html#favs';
   };
 
-  // ── Toast ────────────────────────────────────────────────────
   function showToast(msg) {
     var t = document.createElement('div');
     t.textContent = msg;
@@ -1461,7 +1001,6 @@ document.addEventListener('click', function(e) {
     setTimeout(function(){ t.remove(); }, 2600);
   }
 
-  // Avvia
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAuth);
   } else {
@@ -1519,8 +1058,7 @@ document.addEventListener('click', function(e) {
   }
   window.addEventListener('pageshow', showBackBtn);
 
-  window.addEventListener('scroll',()=>{var b=document.getElementById('scroll-top-btn'); if(b) b.style.display=window.scrollY>300?'flex':'none';});
-document.addEventListener('click', function(e) {
+  document.addEventListener('click', function(e) {
     var a = e.target.closest('a[href]');
     if (!a) return;
     var href = a.getAttribute('href') || '';
@@ -1530,18 +1068,26 @@ document.addEventListener('click', function(e) {
 })();
 </script>
 
-
-
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
-</div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
 <script>
 (function(){
@@ -1549,7 +1095,6 @@ document.addEventListener('click', function(e) {
   var progressSlider = document.getElementById('progress-slider');
   var playBtn = document.getElementById('play-btn');
   
-  // Sincronizza tra pagine: salva il tempo corrente
   window.addEventListener('beforeunload', function(){
     try {
       sessionStorage.setItem('audio-time', audio.currentTime);
@@ -1557,7 +1102,6 @@ document.addEventListener('click', function(e) {
     } catch(e){}
   });
   
-  // Ripristina il tempo quando carica la pagina
   audio.addEventListener('loadedmetadata', function(){
     try {
       var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
@@ -1567,14 +1111,12 @@ document.addEventListener('click', function(e) {
     } catch(e){}
   });
   
-  // Aggiorna la barra di progresso
   audio.addEventListener('timeupdate', function(){
     if(audio.duration) {
       progressSlider.value = (audio.currentTime / audio.duration) * 100;
     }
   });
   
-  // Aggiorna il bottone play/pause
   audio.addEventListener('play', function(){
     playBtn.textContent = '⏸';
   });
@@ -1582,7 +1124,6 @@ document.addEventListener('click', function(e) {
     playBtn.textContent = '▶';
   });
   
-  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
   audio.addEventListener('ended', function(){
     try {
       sessionStorage.removeItem('audio-time');

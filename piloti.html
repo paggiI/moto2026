@@ -779,13 +779,14 @@
     margin-bottom: 0 !important;
   }
 }
+.search-hide { display: none !important; }
 </style>
 </head>
 <body>
 <!-- HEADER -->
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a class="active" href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
 <button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
@@ -1034,7 +1035,7 @@
 <div class="rider-card" style="border-left:3px solid #f700d6;">
 <div class="rider-flag">🇬🇧</div>
 <div class="rider-name">Cal Crutchlow <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R7-R8</span></div>
-<div class="rider-meta">Honda RC213V — Sub. Zarco al Round 7-8 </div>
+<div class="rider-meta">Honda RC213V — Sub. Zarco al Round 7-8-9-10 </div>
 </div>
 <div class="rider-card"><div class="rider-flag">🇧🇷</div><div class="rider-name">Diogo Moreira</div><div class="rider-meta">Honda RC213V</div></div>
 </div>
@@ -1346,7 +1347,7 @@
 <!-- FOOTER -->
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Entry list ufficiale FIM/Dorna — aggiornata al 23 marzo 2026</p>
+<p>Entry list ufficiale FIM/Dorna</p>
 <div class="socials">
 <a href="#">📸 Instagram</a>
 <a href="#">🐦 X / Twitter</a>
@@ -1395,55 +1396,94 @@
   }
 
   function filterClass(cls, btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active-all','active-gp','active-m2','active-m3');
-    });
-    const map = { all:'active-all', motogp:'active-gp', moto2:'active-m2', moto3:'active-m3' };
-    btn.classList.add(map[cls]);
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active-all','active-gp','active-m2','active-m3');
+  });
+  const map = { all:'active-all', motogp:'active-gp', moto2:'active-m2', moto3:'active-m3' };
+  btn.classList.add(map[cls]);
 
-    const sections = { motogp:'sec-motogp', moto2:'sec-moto2', moto3:'sec-moto3' };
-    if (cls === 'all') {
-      Object.values(sections).forEach(id => document.getElementById(id).classList.remove('hidden'));
-    } else {
-      Object.entries(sections).forEach(([key,id]) => {
-        document.getElementById(id).classList.toggle('hidden', key !== cls);
-      });
-    }
-    // Reset search when switching category
-    const searchEl = document.getElementById('searchPiloti');
-    if (searchEl && searchEl.value) { searchEl.value = ''; searchRiders(''); }
+  const sections = { motogp:'sec-motogp', moto2:'sec-moto2', moto3:'sec-moto3' };
+  if (cls === 'all') {
+    Object.values(sections).forEach(id => document.getElementById(id).classList.remove('hidden'));
+  } else {
+    Object.entries(sections).forEach(([key,id]) => {
+      document.getElementById(id).classList.toggle('hidden', key !== cls);
+    });
   }
+
+  // Reset ricerca + ripristino completo di TUTTO
+  const searchEl = document.getElementById('searchPiloti');
+  if (searchEl) searchEl.value = '';
+  
+  document.querySelectorAll('.rider-card').forEach(c => c.style.display = '');
+  document.querySelectorAll('.team-block').forEach(tb => tb.style.display = '');
+
+  updateRiderCount();
+}
+
 
   function searchRiders(query) {
-    const q = query.trim().toLowerCase()
-      .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    const cards = document.querySelectorAll('.rider-card');
-    const sections = document.querySelectorAll('.class-section');
-    if (!q) {
-      cards.forEach(c => c.style.display = '');
-      sections.forEach(s => s.classList.remove('hidden'));
-      return;
-    }
-    // Show all sections when searching
-    sections.forEach(s => s.classList.remove('hidden'));
-    // Reset tab buttons
-    document.querySelectorAll('.tab-btn').forEach(b =>
-      b.classList.remove('active-all','active-gp','active-m2','active-m3'));
-    document.querySelector('.tab-btn').classList.add('active-all');
+  const q = query.trim().toLowerCase()
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+  const cards = document.querySelectorAll('.rider-card');
+  const sections = document.querySelectorAll('.class-section');
+  const teamBlocks = document.querySelectorAll('.team-block');
 
-    cards.forEach(card => {
-      const nameEl = card.querySelector('.rider-name');
-      if (!nameEl) return;
-      const name = nameEl.textContent.toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-      card.style.display = name.includes(q) ? '' : 'none';
-    });
-    // Hide sections that have no visible cards
-    sections.forEach(s => {
-      const visible = [...s.querySelectorAll('.rider-card')].some(c => c.style.display !== 'none');
-      s.classList.toggle('hidden', !visible);
-    });
+  if (!q) {
+    // ← RESET TOTALE: ripristina card, team e sezioni
+    cards.forEach(c => c.style.display = '');
+    teamBlocks.forEach(tb => tb.style.display = '');
+    sections.forEach(s => s.classList.remove('hidden'));
+    updateRiderCount();
+    return;
   }
+
+  // Mostra tutte le sezioni durante la ricerca
+  sections.forEach(s => s.classList.remove('hidden'));
+
+  // Reset tab buttons
+  document.querySelectorAll('.tab-btn').forEach(b =>
+    b.classList.remove('active-all','active-gp','active-m2','active-m3'));
+  document.querySelector('.tab-btn').classList.add('active-all');
+
+  // 1) Nascondi/mostra le singole rider-card
+  cards.forEach(card => {
+    const nameEl = card.querySelector('.rider-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.toLowerCase()
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+    card.style.display = name.includes(q) ? '' : 'none';
+  });
+
+  // 2) Nascondi i team-block che non hanno NESSUNA card visibile
+  teamBlocks.forEach(tb => {
+    const teamCards = tb.querySelectorAll('.rider-card');
+    let hasVisible = false;
+    for (let i = 0; i < teamCards.length; i++) {
+      if (teamCards[i].style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+    }
+    tb.style.display = hasVisible ? '' : 'none';
+  });
+
+  // 3) Nascondi le sezioni (MotoGP/Moto2/Moto3) senza card visibili
+  sections.forEach(s => {
+    const sectionCards = s.querySelectorAll('.rider-card');
+    let hasVisible = false;
+    for (let i = 0; i < sectionCards.length; i++) {
+      if (sectionCards[i].style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+    }
+    s.classList.toggle('hidden', !hasVisible);
+  });
+
+  updateRiderCount();
+}
+
 
   function riderSlugify(text) {
     // Mapping esplicito per caratteri che non decompongono con NFKD
@@ -1619,13 +1659,17 @@ if (!localStorage.getItem('moto2026-shortcut-seen')) {
     if (t) { t.classList.add('show'); setTimeout(() => { t.classList.remove('show'); localStorage.setItem('moto2026-shortcut-seen','1'); }, 4000); }
   }, 2500);
 }
-
+// Contatore piloti aggiornato e sicuro
 function updateRiderCount() {
-  const visible = document.querySelectorAll('.rider-card:not(.rider-hidden):not([style*="display: none"])').length;
-  const total   = document.querySelectorAll('.rider-card').length;
-  const badge   = document.getElementById('rider-count-badge');
+  let visible = 0;
+  document.querySelectorAll('.rider-card').forEach(c => {
+    if (c.style.display !== 'none') visible++;
+  });
+  const total = document.querySelectorAll('.rider-card').length;
+  const badge = document.getElementById('rider-count-badge');
   if (badge) badge.textContent = visible === total ? `${total} piloti` : `${visible} / ${total} piloti`;
 }
+
 // Hook sul filterClass
 const _origFilterClass = window.filterClass;
 window.filterClass = function(cls, btn) {
@@ -2285,16 +2329,26 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
 
 
 
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
-</div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
 <script>
 (function(){

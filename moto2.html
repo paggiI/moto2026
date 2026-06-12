@@ -776,7 +776,7 @@
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a class="active" href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
 <button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
@@ -804,7 +804,7 @@
 <div class="hstat"><div class="hstat-num">32</div><div class="hstat-label">Piloti</div></div>
 <div class="hstat"><div class="hstat-num">14</div><div class="hstat-label">Team</div></div>
 <div class="hstat"><div class="hstat-num">22</div><div class="hstat-label">Gare</div></div>
-<div class="hstat"><div class="hstat-num">7</div><div class="hstat-label">Round conclusi</div></div>
+<div class="hstat"><div class="hstat-num">8</div><div class="hstat-label">Round conclusi</div></div>
 </div>
 </div>
 </section>
@@ -822,8 +822,8 @@
 <div class="next-gp-banner">
 <div>
 <div class="next-gp-label">⏭ Prossimo Gran Premio</div>
-<div class="next-gp-name">🇭🇺 Round 8 — GP Ungheria · Budapest</div>
-<div class="next-gp-date">5 – 7 giugno 2026 · Balaton Park</div>
+<div class="next-gp-name">🇨🇿 Round 9 — GP Repubblica Ceca · Automotodrom Brno</div>
+<div class="next-gp-date">19 – 21 giugno 2026 · Brno</div>
 </div>
 <a class="next-gp-btn" href="calendario.html">Calendario →</a>
 </div>
@@ -833,10 +833,10 @@
 <div>
 <div class="news-block">
   
-<!-- NOTIZIE VISIBLI -->
+<!-- NOTIZIE VISIBILI -->
+<div>
 <div class="news-header">📰 Ultime Notizie</div>
 <div class="news-card featured" id="nc-moto25" style="cursor:pointer;">
-<div class="news-card" id="nc-moto22" style="cursor:pointer;">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
 <div class="news-title">Balaton Park: Gonzalez cala il tris, Salač e Agius sul podio della Moto2</div>
@@ -844,6 +844,7 @@
 <div class="news-meta">
 <span class="news-date">📅 7 giu 2026</span>
 <span class="news-author">Redazione</span>
+</div>
 </div>
 </div>
 </div>
@@ -864,7 +865,7 @@ Alle loro spalle Senna Agius ha completato una straordinaria giornata per il tea
 Grazie a questo successo Gonzalez rafforza ulteriormente la propria leadership in classifica generale e si presenta come il principale candidato al titolo mondiale Moto2 2026 dopo un'altra prestazione praticamente perfetta a Balaton Park.`;
 
   document.addEventListener('DOMContentLoaded',function(){
-    var el=document.getElementById('nc-moto22');
+    var el=document.getElementById('nc-moto25');
     if(el) el.addEventListener('click',function(){
       if(typeof openNews==='function') openNews(_cat,_title,_meta,_body);
     });
@@ -872,6 +873,7 @@ Grazie a questo successo Gonzalez rafforza ulteriormente la propria leadership i
 })();
 </script>
 
+<div class="news-card" id="nc-moto26" style="cursor:pointer;">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
 <div class="news-title">Mugello: dominio Gonzalez, Vietti show con rimonta da applausi davanti al pubblico italiano</div>
@@ -891,7 +893,7 @@ Grazie a questo successo Gonzalez rafforza ulteriormente la propria leadership i
   _body=`Manuel Gonzalez ha confermato il suo dominio assoluto anche al Mugello, controllando la gara dal primo all’ultimo giro e imponendo un ritmo impossibile per tutti gli avversari.<br><br>Lo spagnolo ha gestito perfettamente la distanza sugli inseguitori, costruendo un vantaggio costante senza mai essere realmente attaccato nella fase centrale e finale della corsa.<br><br>Alle sue spalle, il protagonista assoluto per il pubblico di casa è stato Celestino Vietti: partito dalla sedicesima posizione, ha costruito una rimonta spettacolare fino al secondo posto, sfruttando ritmo, sorpassi puliti e grande gestione gomme nel finale.<br><br>Il podio è stato completato da Dani Holgado, bravo a rimanere nel gruppo di testa e a capitalizzare il ritmo della fase centrale della gara.`;
 
   document.addEventListener('DOMContentLoaded',function(){
-    var el=document.getElementById('nc-moto25');
+    var el=document.getElementById('nc-moto26');
     if(el){
       el.addEventListener('click',function(){
         if(typeof openNews==='function'){
@@ -1074,15 +1076,15 @@ Grazie a questo successo Gonzalez rafforza ulteriormente la propria leadership i
 <h2 class="section-title" style="max-width:100%;margin:0 0 1.4rem 0;">Classifica Piloti</h2>
 <div class="standings-preview">
 <div class="sp-header">
-<span class="sp-title">Moto2 2026 — Dopo 7 Round</span>
+<span class="sp-title">Moto2 2026 — Dopo 8 Round</span>
 <a class="sp-link" href="classifica.html" onclick="sessionStorage.setItem('cls','moto2')">Classifica completa →</a>
 </div>
 <table class="sp-table">
-<tr><td><span class="sp-pos p1c">1</span></td><td>🇪🇸</td><td><div class="sp-name">Manuel González</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">129.5</td></tr>
-<tr><td><span class="sp-pos p2c">2</span></td><td>🇪🇸</td><td><div class="sp-name">Izan Guevara</div><div class="sp-team">BLU CRU Pramac Yamaha Moto2</div></td><td class="sp-pts">95</td></tr>
-<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Celestino Vietti</div><div class="sp-team">SpeedRS Team</div></td><td class="sp-pts">93</td></tr>
-<tr><td><span class="sp-pos">4</span></td><td>🇦🇺</td><td><div class="sp-name">Senna Agius</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">78</td></tr>
-<tr><td><span class="sp-pos">5</span></td><td>🇨🇴</td><td><div class="sp-name">Daniel Holgado</div><div class="sp-team">CFMOTO Aspar Team</div></td><td class="sp-pts">65</td></tr>
+<tr><td><span class="sp-pos p1c">1</span></td><td>🇪🇸</td><td><div class="sp-name">Manuel González</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">154.5</td></tr>
+<tr><td><span class="sp-pos p2c">2</span></td><td>🇪🇸</td><td><div class="sp-name">Izan Guevara</div><div class="sp-team">BLU CRU Pramac Yamaha Moto2</div></td><td class="sp-pts">105</td></tr>
+<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Celestino Vietti</div><div class="sp-team">SpeedRS Team</div></td><td class="sp-pts">102</td></tr>
+<tr><td><span class="sp-pos">4</span></td><td>🇦🇺</td><td><div class="sp-name">Senna Agius</div><div class="sp-team">Liqui Moly Dynavolt Intact GP</div></td><td class="sp-pts">94</td></tr>
+<tr><td><span class="sp-pos">5</span></td><td>🇪🇸</td><td><div class="sp-name">Daniel Holgado</div><div class="sp-team">CFMOTO Aspar Team</div></td><td class="sp-pts">76</td></tr>
 </table>
 </div>
 </div><!-- fine col DX -->
@@ -1130,14 +1132,14 @@ const TEAMS = [
   { name:'BLU CRU Pramac Yamaha Moto2', riders:[{flag:'🇪🇸',name:'Izan Guevara'},{flag:'🇪🇸',name:'Alberto Ferrández'}]},
   { name:'REDS Fantic Racing', riders:[{flag:'🇧🇪',name:'Barry Baltus'},{flag:'🇮🇹',name:'Tony Arbolino'}]},
   { name:'Italjet Gresini Moto2', riders:[{flag:'🇪🇸',name:'Sergio García'},{flag:'🇪🇸',name:'Alonso López'}]},
-  { name:'Idemitsu Honda Team Asia', riders:[{flag:'🇮🇩',name:'Super Mario Aji'},{flag:'🇯🇵',name:'Taiyo Furusato'}]},
+  { name:'Idemitsu Honda Team Asia', riders:[{flag:'🇮🇩',name:'Super Mario Aji'},{flag:'🇯🇵',name:'Taiyo Furusato'}, {flag:'🇦🇺',name:'Jacob Roulstone',sub:'SOB. R8'}]},
   { name:'Italtrans Racing Team', riders:[{flag:'🇪🇸',name:'Adrián Huertas'},{flag:'🇪🇸',name:'Daniel Muñoz'}]},
   { name:'LIQUI MOLY Dynavolt Intact GP', riders:[{flag:'🇦🇺',name:'Senna Agius'},{flag:'🇪🇸',name:'Manuel González'}]},
   { name:'ELF Marc VDS Racing Team', riders:[{flag:'🇪🇸',name:'Aron Canet'},{flag:'🇹🇷',name:'Deniz Öncü'}]},
-  { name:'QJMOTOR – PONT GRUP – MSI', riders:[{flag:'🇪🇸',name:'Ángel Piqueras'},{flag:'🇪🇸',name:'Iván Ortolá'},{flag:'🇪🇸',name:'Marcos Ramirez',sub:'SOB.'},{flag:'🇪🇸',name:'Orradre U.',sub:'SOB.'}]},
+  { name:'QJMOTOR – PONT GRUP – MSI', riders:[{flag:'🇪🇸',name:'Ángel Piqueras'},{flag:'🇪🇸',name:'Iván Ortolá'},{flag:'🇪🇸',name:'Marcos Ramirez',sub:'SOB. R4-5'},{flag:'🇪🇸',name:'Orradre U.',sub:'SOB. R6-7'}]},
   { name:'Red Bull KTM Ajo', riders:[{flag:'🇪🇸',name:'José Antonio Rueda'},{flag:'🇳🇱',name:'Collin Veijer'}]},
-  { name:'Forward Factory Team', riders:[{flag:'🇪🇸',name:'Jorge Navarro'},{flag:'🇪🇸',name:'Alex Escrig'},{flag:'🇪🇸',name:'Zurutuza X.',sub:'SOB.'}]},
-  { name:'SpeedRS Team', riders:[{flag:'🇮🇹',name:'Celestino Vietti'},{flag:'🇮🇹',name:'Luca Lunetta'},{flag:'🇮🇹',name:'Dennis Foggia',sub:'SOB.'}]},
+  { name:'Forward Factory Team', riders:[{flag:'🇪🇸',name:'Jorge Navarro',sub:'SOB. R1-5'},{flag:'🇪🇸',name:'Alex Escrig'},{flag:'🇪🇸',name:'Zurutuza X.',sub:'SOB. R6-22'}]},
+  { name:'SpeedRS Team', riders:[{flag:'🇮🇹',name:'Celestino Vietti'},{flag:'🇮🇹',name:'Luca Lunetta'},{flag:'🇮🇹',name:'Dennis Foggia',sub:'SOB. R2-3'}]},
   { name:'Momoven Idrofoglia RW Racing Team', riders:[{flag:'🇯🇵',name:'Ayumu Sasaki'},{flag:'🇳🇱',name:'Zonta van den Goorbergh'}]},
 ];
 
@@ -1795,16 +1797,26 @@ document.addEventListener('keydown', function(e) {
 
 
 
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
-</div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
 <script>
 (function(){

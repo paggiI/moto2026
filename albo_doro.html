@@ -747,7 +747,7 @@
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a class="active" href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
 <button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
@@ -1816,7 +1816,6 @@ document.addEventListener('keydown', function(e) {
   }
 })();</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
-<div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 <style>
 input, button { pointer-events: auto !important; position: relative; z-index: 5 !important; }
 .category-btn, .filter-btn { pointer-events:auto !important; z-index:5 !important; position:relative;}
@@ -1849,16 +1848,26 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
 
 
 
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
-</div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
 <script>
 (function(){

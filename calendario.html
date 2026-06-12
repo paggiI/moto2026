@@ -892,13 +892,65 @@
     margin-bottom: 0 !important;
   }
 }
+/* ── FILTRO CALENDARIO ── */
+.calendar-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: 1.5rem;
+}
+.calendar-filter-wrap label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+#cal-filter {
+  background: var(--card);
+  color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .5rem 1rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .04em;
+  cursor: pointer;
+  outline: none;
+  transition: border-color .2s;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23888' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .7rem center;
+  background-size: 1rem;
+  padding-right: 2.2rem;
+}
+#cal-filter:focus {
+  border-color: var(--red);
+}
+#cal-filter option, #cal-filter optgroup {
+  background: var(--card);
+  color: var(--white);
+}
+[data-theme="light"] #cal-filter {
+  background-color: #fff;
+  color: #111;
+  border-color: #d0d0d0;
+}
+[data-theme="light"] #cal-filter option, [data-theme="light"] #cal-filter optgroup {
+  background: #fff;
+  color: #111;
+} 
 </style>
 </head>
 <body>
 <!-- HEADER -->
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a class="active" href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
 <button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
@@ -945,7 +997,7 @@
 <div class="stat-label">Gran Premi</div>
 </div>
 <div class="stat-item">
-<div class="stat-num green">7</div>
+<div class="stat-num green">8</div>
 <div class="stat-label">Conclusi</div>
 </div>
 <div class="stat-item">
@@ -953,7 +1005,7 @@
 <div class="stat-label">Prossimo</div>
 </div>
 <div class="stat-item">
-<div class="stat-num">15</div>
+<div class="stat-num">14</div>
 <div class="stat-label">In programma</div>
 </div>
 <div class="stat-item">
@@ -965,14 +1017,14 @@
 <div class="season-progress-wrap">
 <div class="season-progress-header">
 <span class="season-progress-title">⚡ Progressione stagionale 2026</span>
-<span class="season-progress-pct">7 / 22 Round  ·  31.82%</span>
+<span class="season-progress-pct">8 / 22 Round</span>
 </div>
 <div class="season-progress-track">
-<div class="season-progress-done" style="width:33.40%"></div>
-<div class="season-progress-next" style="left:33.40%;width:4.55%"></div>
+<div class="season-progress-done" style="width:38.20%"></div>
+<div class="season-progress-next" style="left:38.20%;width:4.55%"></div>
 </div>
 <div class="season-progress-dots" style="position:relative;height:28px;">
-<div class="spd-item done" style="position:absolute;left:calc(0.00% - 0px)"><div class="spd-dot"></div>1</div><div class="spd-item done" style="position:absolute;left:calc(4.76% - 0px)"><div class="spd-dot"></div>2</div><div class="spd-item done" style="position:absolute;left:calc(9.52% - 0px)"><div class="spd-dot"></div>3</div><div class="spd-item done" style="position:absolute;left:calc(14.29% - 0px)"><div class="spd-dot"></div>4</div><div class="spd-item done" style="position:absolute;left:calc(19.05% - 0px)"><div class="spd-dot"></div>5</div><div class="spd-item done" style="position:absolute;left:calc(23.81% - 0px)"><div class="spd-dot"></div>6</div><div class="spd-item done" style="position:absolute;left:calc(28.57% - 0px)"><div class="spd-dot"></div>7</div><div class="spd-item next" style="position:absolute;left:calc(33.33% - 0px)"><div class="spd-dot"></div>8</div><div class="spd-item" style="position:absolute;left:calc(38.10% - 0px)"><div class="spd-dot"></div>9</div><div class="spd-item milestone" style="position:absolute;left:calc(42.86% - 0px)"><div class="spd-dot"></div>10</div><div class="spd-item" style="position:absolute;left:calc(47.62% - 0px)"><div class="spd-dot"></div>11</div><div class="spd-item" style="position:absolute;left:calc(52.38% - 0px)"><div class="spd-dot"></div>12</div><div class="spd-item" style="position:absolute;left:calc(57.14% - 0px)"><div class="spd-dot"></div>13</div><div class="spd-item" style="position:absolute;left:calc(61.90% - 0px)"><div class="spd-dot"></div>14</div><div class="spd-item milestone" style="position:absolute;left:calc(66.67% - 0px)"><div class="spd-dot"></div>15</div><div class="spd-item" style="position:absolute;left:calc(71.43% - 0px)"><div class="spd-dot"></div>16</div><div class="spd-item" style="position:absolute;left:calc(76.19% - 0px)"><div class="spd-dot"></div>17</div><div class="spd-item" style="position:absolute;left:calc(80.95% - 0px)"><div class="spd-dot"></div>18</div><div class="spd-item" style="position:absolute;left:calc(85.71% - 0px)"><div class="spd-dot"></div>19</div><div class="spd-item milestone" style="position:absolute;left:calc(90.48% - 0px)"><div class="spd-dot"></div>20</div><div class="spd-item" style="position:absolute;left:calc(95.24% - 0px)"><div class="spd-dot"></div>21</div><div class="spd-item milestone" style="position:absolute;left:calc(100.00% - 0px)"><div class="spd-dot"></div>22</div>
+<div class="spd-item done" style="position:absolute;left:calc(0.00% - 0px)"><div class="spd-dot"></div>1</div><div class="spd-item done" style="position:absolute;left:calc(4.76% - 0px)"><div class="spd-dot"></div>2</div><div class="spd-item done" style="position:absolute;left:calc(9.52% - 0px)"><div class="spd-dot"></div>3</div><div class="spd-item done" style="position:absolute;left:calc(14.29% - 0px)"><div class="spd-dot"></div>4</div><div class="spd-item done" style="position:absolute;left:calc(19.05% - 0px)"><div class="spd-dot"></div>5</div><div class="spd-item done" style="position:absolute;left:calc(23.81% - 0px)"><div class="spd-dot"></div>6</div><div class="spd-item done" style="position:absolute;left:calc(28.57% - 0px)"><div class="spd-dot"></div>7</div><div class="spd-item done" style="position:absolute;left:calc(33.33% - 0px)"><div class="spd-dot"></div>8</div><div class="spd-item next" style="position:absolute;left:calc(38.10% - 0px)"><div class="spd-dot"></div>9</div><div class="spd-item milestone" style="position:absolute;left:calc(42.86% - 0px)"><div class="spd-dot"></div>10</div><div class="spd-item" style="position:absolute;left:calc(47.62% - 0px)"><div class="spd-dot"></div>11</div><div class="spd-item" style="position:absolute;left:calc(52.38% - 0px)"><div class="spd-dot"></div>12</div><div class="spd-item" style="position:absolute;left:calc(57.14% - 0px)"><div class="spd-dot"></div>13</div><div class="spd-item" style="position:absolute;left:calc(61.90% - 0px)"><div class="spd-dot"></div>14</div><div class="spd-item milestone" style="position:absolute;left:calc(66.67% - 0px)"><div class="spd-dot"></div>15</div><div class="spd-item" style="position:absolute;left:calc(71.43% - 0px)"><div class="spd-dot"></div>16</div><div class="spd-item" style="position:absolute;left:calc(76.19% - 0px)"><div class="spd-dot"></div>17</div><div class="spd-item" style="position:absolute;left:calc(80.95% - 0px)"><div class="spd-dot"></div>18</div><div class="spd-item" style="position:absolute;left:calc(85.71% - 0px)"><div class="spd-dot"></div>19</div><div class="spd-item milestone" style="position:absolute;left:calc(90.48% - 0px)"><div class="spd-dot"></div>20</div><div class="spd-item" style="position:absolute;left:calc(95.24% - 0px)"><div class="spd-dot"></div>21</div><div class="spd-item milestone" style="position:absolute;left:calc(100.00% - 0px)"><div class="spd-dot"></div>22</div>
 </div>
 <div class="season-progress-legend">
 <div class="spl-item"><div class="spl-dot" style="background:#22c55e;"></div>Concluso</div>
@@ -983,16 +1035,16 @@
 <div class="container">
 <main>
 <!-- NEXT RACE CARD -->
-<div class="next-race-card" onclick="goTo('risultati.html?round=r8')" onmousedown="handleMouse(event,'risultati.html?round=r8')" style="cursor:pointer;">
-<div class="nrc-flag">🇭🇺</div>
+<div class="next-race-card" onclick="goTo('risultati.html?round=r9')" onmousedown="handleMouse(event,'risultati.html?round=r9')" style="cursor:pointer;">
+<div class="nrc-flag">🇨🇿</div>
 <div class="nrc-body">
-<div class="nrc-label">⚡ Prossima gara — Round 8</div>
-<div class="nrc-name">Gran Premio d'Ungheria</div>
-<div class="nrc-circuit">Balaton Park</div>
-<div class="nrc-date">📅 5 – 7 giugno 2026</div>
+<div class="nrc-label">⚡ Prossima gara — Round 9</div>
+<div class="nrc-name">Gran Premio della Repubblica Ceca</div>
+<div class="nrc-circuit">Automotodrom Brno</div>
+<div class="nrc-date">📅 19 – 21 giugno 2026</div>
 </div>
 <div class="nrc-round">
-<div class="nrc-round-num">08</div>
+<div class="nrc-round-num">09</div>
 <div class="nrc-round-label">Round</div>
 </div>
 </div>
@@ -1004,6 +1056,31 @@
 <div class="leg-item"><div class="leg-dot" style="background:rgba(247,166,0,.5);"></div>Data spostata</div>
 </div>
 <h2 class="section-title">Tutti i Round 2026</h2>
+
+<!-- MENU A TENDINA FILTRO -->
+<div class="calendar-filter-wrap">
+  <label for="cal-filter">Filtra per:</label>
+  <select id="cal-filter" onchange="filterCalendar(this.value)">
+    <option value="all">Tutti i round</option>
+    <optgroup label="Stato della gara">
+      <option value="done">✓ Conclusi</option>
+      <option value="next">⚡ Prossimo GP</option>
+      <option value="future">📅 In programma</option>
+    </optgroup>
+    <optgroup label="Mese">
+      <option value="feb-mar">Febbraio / Marzo</option>
+      <option value="apr">Aprile</option>
+      <option value="mag">Maggio</option>
+      <option value="giu">Giugno</option>
+      <option value="lug">Luglio</option>
+      <option value="ago">Agosto</option>
+      <option value="set">Settembre</option>
+      <option value="ott">Ottobre</option>
+      <option value="nov">Novembre</option>
+    </optgroup>
+  </select>
+</div>
+
 <table class="race-table">
 <thead>
 <tr>
@@ -1016,251 +1093,177 @@
 </thead>
 <tbody>
 <!-- FEBBRAIO / MARZO -->
-<tr class="month-row"><td colspan="5">— Febbraio · Marzo 2026 —</td></tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r1')" onmousedown="handleMouse(event,'risultati.html?round=r1')" style="cursor:pointer;">
+<tr class="month-row" data-status="month" data-month="feb-mar"><td colspan="5">— Febbraio · Marzo 2026 —</td></tr>
+<tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r1')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">01</div></td>
 <td class="td-flag">🇹🇭</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio della Thailandia</div>
-<div class="gp-circuit">Chang International Circuit · Buriram</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio della Thailandia" src="img/tracciati/thailandia.png"/></div><div class="date-range">27 feb – 1 mar</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio della Thailandia</div><div class="gp-circuit">Chang International Circuit · Buriram</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Thailandia" src="img/tracciati/thailandia.png"/></div><div class="date-range">27 feb – 1 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r2')" onmousedown="handleMouse(event,'risultati.html?round=r2')" style="cursor:pointer;">
+<tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r2')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">02</div></td>
 <td class="td-flag">🇧🇷</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio del Brasile</div>
-<div class="gp-circuit">Autódromo Internacional de Goiânia</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio del Brasile" src="img/tracciati/brasile.png"/></div><div class="date-range">20 – 22 mar</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio del Brasile</div><div class="gp-circuit">Autódromo Internacional de Goiânia</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Brasile" src="img/tracciati/brasile.png"/></div><div class="date-range">20 – 22 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r3')" onmousedown="handleMouse(event,'risultati.html?round=r3')" style="cursor:pointer;">
+<tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r3')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">03</div></td>
 <td class="td-flag">🇺🇸</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio degli USA</div>
-<div class="gp-circuit">Circuit of the Americas · Austin</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio degli USA" src="img/tracciati/america.png"/></div><div class="date-range">27 – 29 mar</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio degli USA</div><div class="gp-circuit">Circuit of the Americas · Austin</div></td>
+<td class="td-date"><div class="track-preview"><img alt="USA" src="img/tracciati/america.png"/></div><div class="date-range">27 – 29 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
+
 <!-- APRILE -->
-<tr class="month-row"><td colspan="5">— Aprile 2026 —</td></tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r4')" onmousedown="handleMouse(event,'risultati.html?round=r4')" style="cursor:pointer;">
+<tr class="month-row" data-status="month" data-month="apr"><td colspan="5">— Aprile 2026 —</td></tr>
+<tr class="row-done" data-status="done" data-month="apr" onclick="goTo('risultati.html?round=r4')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">04</div></td>
 <td class="td-flag">🇪🇸</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Spagna</div>
-<div class="gp-circuit">Circuito de Jerez – Ángel Nieto</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Spagna" src="img/tracciati/spagnaJerez.png"/></div><div class="date-range">24 – 26 apr</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Spagna</div><div class="gp-circuit">Circuito de Jerez – Ángel Nieto</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Spagna" src="img/tracciati/spagnaJerez.png"/></div><div class="date-range">24 – 26 apr</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
+
 <!-- MAGGIO -->
-<tr class="month-row"><td colspan="5">— Maggio 2026 —</td></tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r5')" onmousedown="handleMouse(event,'risultati.html?round=r5')" style="cursor:pointer;">
+<tr class="month-row" data-status="month" data-month="mag"><td colspan="5">— Maggio 2026 —</td></tr>
+<tr class="row-done" data-status="done" data-month="mag" onclick="goTo('risultati.html?round=r5')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">05</div></td>
 <td class="td-flag">🇫🇷</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Francia</div>
-<div class="gp-circuit">Circuit Bugatti · Le Mans</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Francia" src="img/tracciati/francia.png"/></div><div class="date-range">8 – 10 mag</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Francia</div><div class="gp-circuit">Circuit Bugatti · Le Mans</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Francia" src="img/tracciati/francia.png"/></div><div class="date-range">8 – 10 mag</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r6')" onmousedown="handleMouse(event,'risultati.html?round=r6')" style="cursor:pointer;">
+<tr class="row-done" data-status="done" data-month="mag" onclick="goTo('risultati.html?round=r6')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">06</div></td>
-<td class="td-flag">🇪🇸</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Catalunya</div>
-<div class="gp-circuit">Circuit de Barcelona-Catalunya</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Catalunya" src="img/tracciati/spagnaBarcellona.png"/></div><div class="date-range">15 – 17 mag</div></td>
-<td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
-</tr>
-<tr class="row-done" onclick="goTo('risultati.html?round=r7')" onmousedown="handleMouse(event,'risultati.html?round=r7')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">07</div></td>
 <td class="td-flag">🇮🇹</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Italia</div>
-<div class="gp-circuit">Autodromo Internazionale del Mugello</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Italia" src="img/tracciati/italiaMugello.png"/></div><div class="date-range">29 – 31 mag</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Italia</div><div class="gp-circuit">Autodromo del Mugello</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Italia" src="img/tracciati/mugello.png"/></div><div class="date-range">22 – 24 mag</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
+
 <!-- GIUGNO -->
-<tr class="month-row"><td colspan="5">— Giugno 2026 —</td></tr>
-<tr class="row-next" onclick="showFutureTooltip('Gran Premio d\'Ungheria','5–7 giugno 2026','🇭🇺')" onmousedown="handleMouse(event,'risultati.html?round=r8')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">08</div></td>
-<td class="td-flag">🇭🇺</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Ungheria</div>
-<div class="gp-circuit">Balaton Park Circuit · Zalaegerszeg</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Ungheria" src="img/tracciati/ungheria.png"/></div><div class="date-range">5 – 7 giu</div></td>
-<td class="td-status"><span class="status-badge s-future">In programma</span></td>
+<tr class="month-row" data-status="month" data-month="giu"><td colspan="5">— Giugno 2026 —</td></tr>
+<tr class="row-done" data-status="done" data-month="giu" onclick="goTo('risultati.html?round=r7')" style="cursor:pointer;">
+<td class="td-round"><div class="round-num">07</div></td>
+<td class="td-flag">🇬🇧</td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Gran Bretagna</div><div class="gp-circuit">Silverstone Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="UK" src="img/tracciati/silverstone.png"/></div><div class="date-range">5 – 7 giu</div></td>
+<td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio Rep. Ceca','19–21 giugno 2026','🇨🇿')" onmousedown="handleMouse(event,'risultati.html?round=r9')" style="cursor:pointer;">
+<tr class="row-done" data-status="done" data-month="giu" onclick="goTo('risultati.html?round=r8')" style="cursor:pointer;">
+<td class="td-round"><div class="round-num">08</div></td>
+<td class="td-flag">🇮🇹</td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Italia S2</div><div class="gp-circuit">Misano World Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Misano" src="img/tracciati/misano.png"/></div><div class="date-range">12 – 14 giu</div></td>
+<td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
+</tr>
+<!-- PROSSIMO GP -->
+<tr class="row-next" data-status="next" data-month="giu" onclick="goTo('risultati.html?round=r9')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">09</div></td>
 <td class="td-flag">🇨🇿</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio della Repubblica Ceca</div>
-<div class="gp-circuit">Automotodrom Brno</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio della Repubblica Ceca" src="img/tracciati/repubblicaceca.png"/></div><div class="date-range">19 – 21 giu</div></td>
-<td class="td-status"><span class="status-badge s-future">In programma</span></td>
+<td class="td-gp"><div class="gp-name">Gran Premio della Repubblica Ceca</div><div class="gp-circuit">Automotodrom Brno</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Brno" src="img/tracciati/brno.png"/></div><div class="date-range">19 – 21 giu</div></td>
+<td class="td-status"><span class="status-badge s-next">⚡ Prossimo</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio d\'Olanda','26–28 giugno 2026','🇳🇱')" onmousedown="handleMouse(event,'risultati.html?round=r10')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">10</div></td>
-<td class="td-flag">🇳🇱</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Olanda</div>
-<div class="gp-circuit">TT Circuit Assen</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Olanda" src="img/tracciati/olanda.png"/></div><div class="date-range">26 – 28 giu</div></td>
-<td class="td-status"><span class="status-badge s-future">In programma</span></td>
-</tr>
+
 <!-- LUGLIO -->
-<tr class="month-row"><td colspan="5">— Luglio 2026 —</td></tr>
-<tr onclick="showFutureTooltip('Gran Premio di Germania','10–12 luglio 2026','🇩🇪')" onmousedown="handleMouse(event,'risultati.html?round=r11')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">11</div></td>
+<tr class="month-row" data-status="month" data-month="lug"><td colspan="5">— Luglio 2026 —</td></tr>
+<tr class="row-future" data-status="future" data-month="lug">
+<td class="td-round"><div class="round-num">10</div></td>
 <td class="td-flag">🇩🇪</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Germania</div>
-<div class="gp-circuit">Sachsenring · Hohenstein-Ernstthal</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Germania" src="img/tracciati/germania.png"/></div><div class="date-range">10 – 12 lug</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Germania</div><div class="gp-circuit">Sachsenring</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Germania" src="img/tracciati/sachsenring.png"/></div><div class="date-range">3 – 5 lug</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<!-- AGOSTO -->
-<tr class="month-row"><td colspan="5">— Agosto 2026 —</td></tr>
-<tr onclick="showFutureTooltip('Gran Premio di Gran Bretagna','7–9 agosto 2026','🇬🇧')" onmousedown="handleMouse(event,'risultati.html?round=r12')" style="cursor:pointer;">
+<tr class="row-future" data-status="future" data-month="lug">
+<td class="td-round"><div class="round-num">11</div></td>
+<td class="td-flag">🇳🇱</td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Olanda</div><div class="gp-circuit">TT Circuit Assen</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Olanda" src="img/tracciati/assen.png"/></div><div class="date-range">10 – 12 lug</div></td>
+<td class="td-status"><span class="status-badge s-future">In programma</span></td>
+</tr>
+<tr class="row-future" data-status="future" data-month="lug">
 <td class="td-round"><div class="round-num">12</div></td>
-<td class="td-flag">🇬🇧</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Gran Bretagna</div>
-<div class="gp-circuit">Silverstone Circuit</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Gran Bretagna" src="img/tracciati/inghilterra.png"/></div><div class="date-range">7 – 9 ago</div></td>
+<td class="td-flag">🇫🇮</td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Finlandia</div><div class="gp-circuit">Kymi Ring</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Finlandia" src="img/tracciati/finlandia.png"/></div><div class="date-range">17 – 19 lug</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio d\'Aragona','28–30 agosto 2026','🇪🇸')" onmousedown="handleMouse(event,'risultati.html?round=r13')" style="cursor:pointer;">
+
+<!-- AGOSTO -->
+<tr class="month-row" data-status="month" data-month="ago"><td colspan="5">— Agosto 2026 —</td></tr>
+<tr class="row-future" data-status="future" data-month="ago">
 <td class="td-round"><div class="round-num">13</div></td>
-<td class="td-flag">🇪🇸</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di Aragona</div>
-<div class="gp-circuit">MotorLand Aragón · Alcañiz</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di Aragona" src="img/tracciati/spagnaAragon.png"/></div><div class="date-range">28 – 30 ago</div></td>
-<td class="td-status"><span class="status-badge s-future">In programma</span></td>
-</tr>
-<!-- SETTEMBRE -->
-<tr class="month-row"><td colspan="5">— Settembre 2026 —</td></tr>
-<tr onclick="showFutureTooltip('Gran Premio di San Marino','11–13 settembre 2026','🇮🇹')" onmousedown="handleMouse(event,'risultati.html?round=r14')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">14</div></td>
-<td class="td-flag">🇮🇹</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio di San Marino</div>
-<div class="gp-circuit">Misano World Circuit Marco Simoncelli</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio di San Marino" src="img/tracciati/italiaMisano.png"/></div><div class="date-range">11 – 13 set</div></td>
-<td class="td-status"><span class="status-badge s-future">In programma</span></td>
-</tr>
-<tr onclick="showFutureTooltip('Gran Premio d\'Austria','18–20 settembre 2026','🇦🇹')" onmousedown="handleMouse(event,'risultati.html?round=r15')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">15</div></td>
 <td class="td-flag">🇦🇹</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Austria</div>
-<div class="gp-circuit">Red Bull Ring · Spielberg</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Austria" src="img/tracciati/austria.png"/></div><div class="date-range">18 – 20 set</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Austria</div><div class="gp-circuit">Red Bull Ring · Spielberg</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Austria" src="img/tracciati/austria.png"/></div><div class="date-range">7 – 9 ago</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<!-- OTTOBRE -->
-<tr class="month-row"><td colspan="5">— Ottobre 2026 —</td></tr>
-<tr onclick="showFutureTooltip('Gran Premio del Giappone','2–4 ottobre 2026','🇯🇵')" onmousedown="handleMouse(event,'risultati.html?round=r16')" style="cursor:pointer;">
+<tr class="row-future" data-status="future" data-month="ago">
+<td class="td-round"><div class="round-num">14</div></td>
+<td class="td-flag">🇪🇸</td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Aragona</div><div class="gp-circuit">MotorLand Aragón · Alcañiz</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Aragona" src="img/tracciati/aragona.png"/></div><div class="date-range">21 – 23 ago</div></td>
+<td class="td-status"><span class="status-badge s-future">In programma</span></td>
+</tr>
+
+<!-- SETTEMBRE -->
+<tr class="month-row" data-status="month" data-month="set"><td colspan="5">— Settembre 2026 —</td></tr>
+<tr class="row-future" data-status="future" data-month="set">
+<td class="td-round"><div class="round-num">15</div></td>
+<td class="td-flag">🇪🇸</td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Catalogna</div><div class="gp-circuit">Circuit de Barcelona-Catalunya</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Catalogna" src="img/tracciati/catalogna.png"/></div><div class="date-range">4 – 6 set</div></td>
+<td class="td-status"><span class="status-badge s-future">In programma</span></td>
+</tr>
+<tr class="row-future" data-status="future" data-month="set">
 <td class="td-round"><div class="round-num">16</div></td>
 <td class="td-flag">🇯🇵</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio del Giappone</div>
-<div class="gp-circuit">Twin Ring Motegi</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio del Giappone" src="img/tracciati/giappone.png"/></div><div class="date-range">2 – 4 ott</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio del Giappone</div><div class="gp-circuit">Twin Ring Motegi</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Giappone" src="img/tracciati/motegi.png"/></div><div class="date-range">18 – 20 set</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio d\'Indonesia','9–11 ottobre 2026','🇮🇩')" onmousedown="handleMouse(event,'risultati.html?round=r17')" style="cursor:pointer;">
+
+<!-- OTTOBRE -->
+<tr class="month-row" data-status="month" data-month="ott"><td colspan="5">— Ottobre 2026 —</td></tr>
+<tr class="row-future" data-status="future" data-month="ott">
 <td class="td-round"><div class="round-num">17</div></td>
 <td class="td-flag">🇮🇩</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Indonesia</div>
-<div class="gp-circuit">Pertamina Mandalika Street Circuit</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Indonesia" src="img/tracciati/indonesia.png"/></div><div class="date-range">9 – 11 ott</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio dell'Indonesia</div><div class="gp-circuit">Pertamina Mandalika Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Indonesia" src="img/tracciati/indonesia.png"/></div><div class="date-range">2 – 4 ott</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio d\'Australia','23–25 ottobre 2026','🇦🇺')" onmousedown="handleMouse(event,'risultati.html?round=r18')" style="cursor:pointer;">
+<tr class="row-future" data-status="future" data-month="ott">
 <td class="td-round"><div class="round-num">18</div></td>
 <td class="td-flag">🇦🇺</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio d'Australia</div>
-<div class="gp-circuit">Phillip Island Grand Prix Circuit</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio d'Australia" src="img/tracciati/australia.png"/></div><div class="date-range">23 – 25 ott</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Australia</div><div class="gp-circuit">Phillip Island Grand Prix Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Australia" src="img/tracciati/phillip.png"/></div><div class="date-range">16 – 18 ott</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio di Malesia','30 ott – 1 nov 2026','🇲🇾')" onmousedown="handleMouse(event,'risultati.html?round=r19')" style="cursor:pointer;">
+<tr class="row-future" data-status="future" data-month="ott">
 <td class="td-round"><div class="round-num">19</div></td>
 <td class="td-flag">🇲🇾</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio della Malesia</div>
-<div class="gp-circuit">Sepang International Circuit</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio della Malesia" src="img/tracciati/malaysia.png"/></div><div class="date-range">30 ott – 1 nov</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio della Malesia</div><div class="gp-circuit">Sepang International Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Malesia" src="img/tracciati/sepang.png"/></div><div class="date-range">23 – 25 ott</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<!-- NOVEMBRE — FINALI -->
-<tr class="month-row"><td colspan="5">— Novembre 2026 —</td></tr>
-<tr onclick="showFutureTooltip('Gran Premio del Qatar','6–8 novembre 2026','🇶🇦')" onmousedown="handleMouse(event,'risultati.html?round=r20')" style="cursor:pointer;">
+
+<!-- NOVEMBRE -->
+<tr class="month-row" data-status="month" data-month="nov"><td colspan="5">— Novembre 2026 —</td></tr>
+<tr class="row-future" data-status="future" data-month="nov">
 <td class="td-round"><div class="round-num">20</div></td>
-<td class="td-flag">🇶🇦</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio del Qatar</div>
-<div class="gp-circuit">Lusail International Circuit</div>
-<div class="gp-circuit" style="color:#f7a600;font-size:.72rem;margin-top:.2rem;">⚠️ Spostato da aprile a novembre 2026</div>
-</td>
-<td class="td-date">
-<div class="track-preview"><img alt="Immagine tracciato Gran Premio del Qatar" src="img/tracciati/qatar.png"/></div>
-<div class="date-range">6 – 8 nov</div>
-<div class="date-note">🔁 Data modificata</div>
-</td>
-<td class="td-status"><span class="status-badge s-moved">🔁 Spostato</span></td>
-</tr>
-<tr onclick="showFutureTooltip('Gran Premio del Portogallo','20–22 novembre 2026','🇵🇹')" onmousedown="handleMouse(event,'risultati.html?round=r21')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">21</div></td>
-<td class="td-flag">🇵🇹</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio del Portogallo</div>
-<div class="gp-circuit">Autodromo Internacional do Algarve · Portimão</div>
-</td>
-<td class="td-date"><div class="track-preview"><img alt="Immagine tracciato Gran Premio del Portogallo" src="img/tracciati/portimao.png"/></div><div class="date-range">20 – 22 nov</div></td>
+<td class="td-flag">🇹🇭</td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Thailandia S2</div><div class="gp-circuit">Chang International Circuit</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Thailandia" src="img/tracciati/thailandia.png"/></div><div class="date-range">6 – 8 nov</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
-<tr onclick="showFutureTooltip('Gran Premio di Valencia','27–29 novembre 2026','🇪🇸')" onmousedown="handleMouse(event,'risultati.html?round=r22')" style="cursor:pointer;">
-<td class="td-round"><div class="round-num">22</div></td>
+<tr class="row-future" data-status="future" data-month="nov">
+<td class="td-round"><div class="round-num">21</div></td>
 <td class="td-flag">🇪🇸</td>
-<td class="td-gp">
-<div class="gp-name">Gran Premio della Comunitat Valenciana</div>
-<div class="gp-circuit">Circuit Ricardo Tormo · Cheste</div>
-<div class="gp-circuit" style="color:#f7a600;font-size:.72rem;margin-top:.2rem;">🏆 Finale di stagione</div>
-</td>
-<td class="td-date">
-<div class="track-preview"><img alt="Immagine tracciato Gran Premio della Comunitat Valenciana" src="img/tracciati/spagnaValencia.png"/></div>
-<div class="date-range">27 – 29 nov</div>
-<div class="date-note">🏆 Gran Finale</div>
-</td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Valencia</div><div class="gp-circuit">Circuit Ricardo Tormo</div></td>
+<td class="td-date"><div class="track-preview"><img alt="Valencia" src="img/tracciati/valencia.png"/></div><div class="date-range">13 – 15 nov</div></td>
 <td class="td-status"><span class="status-badge s-future">In programma</span></td>
 </tr>
 </tbody>
@@ -1272,7 +1275,7 @@
 <!-- FOOTER — fuori dal container/main -->
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Calendario ufficiale FIM/Dorna — aggiornato al 23 marzo 2026</p>
+<p>Calendario ufficiale FIM/Dorna</p>
 <div class="socials">
 <a href="#">📸 Instagram</a>
 <a href="#">🐦 X / Twitter</a>
@@ -1361,6 +1364,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("backBtnM3").style.display = "inline-block";
   }
 });
+function filterCalendar(filterValue) {
+  const rows = document.querySelectorAll('.race-table tbody tr');
+  
+  rows.forEach(row => {
+    // Se seleziono "Tutti", mostro tutto
+    if (filterValue === 'all') {
+      row.style.display = '';
+      return;
+    } 
+    
+    // Filtro per Stato (Conclusi, Prossimo, Futuro)
+    if (filterValue === 'done' || filterValue === 'next' || filterValue === 'future') {
+      // Nascondi le righe di separazione dei mesi quando filtri per stato
+      if (row.dataset.status === 'month') {
+        row.style.display = 'none';
+      } else {
+        row.style.display = row.dataset.status === filterValue ? '' : 'none';
+      }
+    } 
+    // Filtro per Mese
+    else {
+      row.style.display = row.dataset.month === filterValue ? '' : 'none';
+    }
+  });
+}
 </script>
 <script>
 // Middle-click / Ctrl+click support for navigation
@@ -1958,16 +1986,26 @@ document.addEventListener('keydown', function(e) {
 
 
 
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
-</div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
 <script>
 (function(){

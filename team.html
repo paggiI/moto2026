@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Team 2026 — Motomondiale 2026</title>
+<script>
+  (function() {
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  })();
+</script>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -32,7 +40,7 @@
     .nav-dropdown-wrap{position:relative;}
     .nav-dropdown-btn{display:flex;align-items:center;gap:.4rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;padding:0 .5rem;height:60px;}
     .nav-dropdown-btn:hover{color:var(--white);}
-    .nav-dropdown-menu{display:none;position:absolute;right:0;top:62px;background:#1a1a1a;border:1px solid var(--border);border-radius:8px;min-width:200px;z-index:300;padding:.5rem 0;box-shadow:0 8px 32px rgba(0,0,0,.6);}
+    .nav-dropdown-menu{display:none;position:absolute;right:0;top:62px;background:var(--card);border:1px solid var(--border);border-radius:8px;min-width:200px;z-index:300;padding:.5rem 0;box-shadow:0 8px 32px rgba(0,0,0,.6);}
     .nav-dropdown-menu.open{display:block;}
     .nav-dropdown-section{font-family:'Bebas Neue',sans-serif;font-size:.75rem;letter-spacing:.1em;color:var(--muted);padding:.4rem 1rem .2rem;}
     .nav-dropdown-divider{border-top:1px solid var(--border);margin:.4rem 0;}
@@ -41,15 +49,26 @@
     .nav-dropdown-item-icon{font-size:1rem;width:1.2rem;text-align:center;}
 
     /* Mobile menu */
-    .mobile-menu{display:none;flex-direction:column;background:var(--mid);border-bottom:2px solid var(--border);position:absolute;top:60px;left:0;right:0;z-index:190;}
+    .mobile-menu{display:none;flex-direction:column;background:var(--mid);border-bottom:2px solid var(--border);position:fixed;top:60px;left:0;right:0;bottom:0;z-index:190;overflow-y:auto;}
     .mobile-menu.open{display:flex;}
     .mobile-menu a{padding:.75rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
     .mobile-menu a.active,.mobile-menu a:hover{color:var(--white);}
 
+    /* Mostra Hamburger e nascondi Nav su mobile */
+    @media (max-width: 900px) {
+      nav { display: none !important; }
+      .nav-dropdown-wrap { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 901px) {
+      .hamburger { display: none !important; }
+      .mobile-menu { display: none !important; }
+    }
+
     body{background:var(--dark);color:var(--white);font-family:'Barlow',sans-serif;min-height:100vh;}
 
     /* ══ NOTIFICA BANNER ══ */
-    #notif-banner{display:none;position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#1a1a1a,#222);border:1px solid var(--red);border-radius:12px;padding:.85rem 1.2rem;min-width:280px;max-width:440px;box-shadow:0 8px 32px rgba(0,0,0,.7),0 0 0 1px rgba(232,0,29,.3);display:flex;align-items:center;gap:.8rem;animation:slideUp .4s ease;}
+    #notif-banner{display:none;position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,var(--card),var(--mid));border:1px solid var(--red);border-radius:12px;padding:.85rem 1.2rem;min-width:280px;max-width:440px;box-shadow:0 8px 32px rgba(0,0,0,.7),0 0 0 1px rgba(232,0,29,.3);align-items:center;gap:.8rem;animation:slideUp .4s ease;}
     @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
     #notif-banner .notif-icon{font-size:1.5rem;flex-shrink:0;}
     #notif-banner .notif-body{flex:1;}
@@ -127,13 +146,47 @@
       .teams-grid{grid-template-columns:1fr;}
       .page-hero h1{font-size:2rem;}
       .class-tab{padding:.8rem 1.2rem;font-size:.82rem;}
-      nav{display:none!important;}
     }
 
-    /* Light theme */
-    [data-theme="light"]{--dark:#f0f0f0;--mid:#e4e4e4;--card:#fff;--border:#d0d0d0;--muted:#666;--white:#111;}
-  </style>
-</link><style id="audio-player-responsive">
+    /* ══════════════ LIGHT MODE OVERRIDES ══════════════ */
+    [data-theme="light"]{--dark:#f4f4f4;--mid:#e8e8e8;--card:#ffffff;--border:#d0d0d0;--muted:#555555;--white:#111111;}
+
+    [data-theme="light"] .page-hero{background:linear-gradient(135deg,#f4f4f4 0%,#ffffff 50%,#f4f4f4 100%);}
+    [data-theme="light"] .page-hero::before{color:rgba(232,0,29,.08);}
+
+    [data-theme="light"] header{background:rgba(248,248,248,.97)!important;border-bottom-color:#d0d0d0!important;}
+    [data-theme="light"] nav a{color:#555!important;}
+    [data-theme="light"] nav a:hover{color:#111!important;background:rgba(0,0,0,.04)!important;}
+    [data-theme="light"] nav a.active{color:#111!important;border-bottom-color:var(--red)!important;}
+    [data-theme="light"] .nav-dropdown-btn{color:#555!important;}
+    [data-theme="light"] .nav-dropdown-btn:hover{color:#111!important;}
+    [data-theme="light"] .hamburger span{background:#111!important;}
+    
+    [data-theme="light"] .nav-dropdown-menu{background:#fff!important;border-color:#d0d0d0!important;box-shadow:0 8px 32px rgba(0,0,0,.1)!important;}
+    [data-theme="light"] .nav-dropdown-section{color:#888!important;}
+    [data-theme="light"] .nav-dropdown-item{color:#333!important;}
+    [data-theme="light"] .nav-dropdown-item:hover{background:rgba(232,0,29,.08)!important;color:var(--red)!important;}
+
+    [data-theme="light"] .mobile-menu{background:#f8f8f8!important;border-bottom-color:#d0d0d0!important;}
+    [data-theme="light"] .mobile-menu a{color:#555!important;border-bottom-color:#e0e0e0!important;}
+    [data-theme="light"] .mobile-menu a:hover,[data-theme="light"] .mobile-menu a.active{color:#111!important;background:rgba(0,0,0,.03)!important;}
+
+    [data-theme="light"] #notif-banner{background:#fff!important;border-color:#d0d0d0!important;box-shadow:0 8px 32px rgba(0,0,0,.1)!important;}
+    [data-theme="light"] .notif-title{color:var(--red)!important;}
+    [data-theme="light"] .notif-text{color:#111!important;}
+
+    [data-theme="light"] #theme-toggle{border-color:#d0d0d0!important;color:#111!important;}
+    [data-theme="light"] #theme-toggle:hover{background:rgba(0,0,0,.05)!important;}
+
+    [data-theme="light"] #audio-player-widget{background:#ffffff!important;border-color:#d0d0d0!important;}
+    [data-theme="light"] #audio-player-widget label{color:#666!important;}
+
+    [data-theme="light"] .team-badge.gp-badge{background:rgba(232,0,29,.1);color:#c4001a;border-color:rgba(232,0,29,.2);}
+    [data-theme="light"] .team-badge.m2-badge{background:rgba(247,166,0,.1);color:#d68f00;border-color:rgba(247,166,0,.2);}
+    [data-theme="light"] .team-badge.m3-badge{background:rgba(0,180,216,.1);color:#0090ad;border-color:rgba(0,180,216,.2);}
+
+</style>
+<style id="audio-player-responsive">
 #audio-player-widget {
   position: fixed;
   bottom: 20px;
@@ -171,10 +224,18 @@
   }
 }
 </style>
+<script>
+  (function() {
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
 </head>
 <body>
 <!-- NOTIFICA BANNER -->
-<div id="notif-banner" style="display:none;">
+<div id="notif-banner">
 <span class="notif-icon">🏁</span>
 <div class="notif-body">
 <div class="notif-title">Nuovo GP aggiunto!</div>
@@ -183,9 +244,10 @@
 </div>
 <button aria-label="Chiudi" class="notif-close" onclick="closeNotif()">✕</button>
 </div>
+
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a class="active" href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
+<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
 <div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
 <button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
@@ -199,18 +261,22 @@
 <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div>
 </div>
 </header>
+
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a class="active" href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
+
 <!-- HERO -->
 <div class="page-hero">
 <h1>TEAM <span>2026</span></h1>
 <p>Tutte le scuderie del Motomondiale — storia, moto, piloti e statistiche.</p>
 </div>
+
 <!-- TABS -->
 <div class="class-tabs">
 <button class="class-tab active-gp" onclick="switchTab('motogp',this)">🔴 MotoGP — 11 team</button>
 <button class="class-tab" onclick="switchTab('moto2',this)">🟡 Moto2 — 14 team</button>
 <button class="class-tab" onclick="switchTab('moto3',this)">🔵 Moto3 — 13 team</button>
 </div>
+
 <!-- ═══════════ MOTOGP ═══════════ -->
 <div class="class-panel active" id="panel-motogp">
 <div class="search-bar">
@@ -224,12 +290,12 @@
 <div class="team-emblem" style="background:rgba(232,0,29,.12);">🔴</div>
 <div class="team-header-info">
 <div class="team-name-main">Ducati Lenovo Team</div>
-<div class="team-base">📍 Bologna, Italia  |  🏭 Borgo Panigale</div>
+<div class="team-base">📍 Bologna, Italia  |  🏭 Borgo Panigale</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
 <div class="team-body">
-<div class="team-story">La scuderia ufficiale Ducati, nata nel 2003 in partnership con Marlboro e poi con Lenovo dal 2021. Il team factory ha conquistato 7 titoli costruttori consecutivi (2022–2026) e ha prodotto campioni come Bagnaia e Marc Márquez. Nella stagione 2026 schiera la coppia più attesa: il campione in carica Marc Márquez e l'eterno Pecco Bagnaia, in cerca di riscatto.</div>
+<div class="team-story">La scuderia ufficiale Ducati, nata nel 2003 in partnership con Marlboro e poi con Lenovo dal 2021. Il team factory ha conquistato 4 titoli costruttori negli ultimi 5 anni (2021–2022; 2024–2025) e ha prodotto e confermato campioni come Bagnaia e Marc Márquez. Nella stagione 2026 schiera la coppia più attesa: il campione in carica Marc Márquez e l'eterno Pecco Bagnaia, in cerca di riscatto.</div>
 <div class="team-stats-row">
 <div class="team-stat"><div class="team-stat-val" style="color:#e8001d;">23</div><div class="team-stat-lbl">Anni in MotoGP</div></div>
 <div class="team-stat"><div class="team-stat-val" style="color:#e8001d;">7</div><div class="team-stat-lbl">Titoli costrutt.</div></div>
@@ -244,8 +310,8 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">63</div><div class="team-rider-flag">🇮🇹</div><div class="team-rider-name">Francesco Bagnaia</div><div class="team-rider-note">🏆 3 Volte Campione</div></div>
-<div class="team-rider-row"><div class="team-rider-num">93</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Marc Márquez</div><div class="team-rider-note">🏆 9 Volte Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">63</div><div class="team-rider-flag">🇮🇹</div><div class="team-rider-name">Francesco Bagnaia</div><div class="team-rider-note">🏆 MOTO 2 2018 - MOTO GP 2022-2023</div></div>
+<div class="team-rider-row"><div class="team-rider-num">93</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Marc Márquez</div><div class="team-rider-note">🏆 MOTO 3 2010 - MOTO 2 2012 - MOTO GP 2013-2014-2016-2017-2018-2019-2025</div></div>
 </div>
 </div>
 </div>
@@ -256,7 +322,7 @@
 <div class="team-emblem" style="background:rgba(232,0,29,.12);">🔵</div>
 <div class="team-header-info">
 <div class="team-name-main">BK8 Gresini Racing MotoGP</div>
-<div class="team-base">📍 Faenza, Italia  |  Team satellite Ducati</div>
+<div class="team-base">📍 Faenza, Italia  |  Team satellite Ducati</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -276,7 +342,7 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">73</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Álex Márquez</div><div class="team-rider-note">🏆 2 Volte Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">73</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Álex Márquez</div><div class="team-rider-note">🏆 MOTO 3 2014 - MOTO 2 2019</div></div>
 <div class="team-rider-row"><div class="team-rider-num">54</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Fermín Aldeguer</div><div class="team-rider-note"></div></div>
 </div>
 </div>
@@ -288,7 +354,7 @@
 <div class="team-emblem" style="background:rgba(255,215,0,.12);">⭐</div>
 <div class="team-header-info">
 <div class="team-name-main">Pertamina Enduro VR46</div>
-<div class="team-base">📍 Tavullia, Italia  |  Team di Valentino Rossi</div>
+<div class="team-base">📍 Tavullia, Italia  |  Team di Valentino Rossi</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -320,12 +386,12 @@
 <div class="team-emblem" style="background:rgba(0,163,224,.12);">🔷</div>
 <div class="team-header-info">
 <div class="team-name-main">Aprilia Racing</div>
-<div class="team-base">📍 Noale, Italia  |  Costruttore italiano</div>
+<div class="team-base">📍 Noale, Italia  |  Costruttore italiano</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
 <div class="team-body">
-<div class="team-story">Il grande ritorno di Aprilia ai vertici del Motomondiale è uno dei capitoli più belli degli anni 2020. Dal titolo di Aleix Espargaró nel 2022 in poi, la scuderia di Noale è diventata una potenza. Nel 2026, con Martín e Bezzecchi — due ex campioni del mondo — vanta la coppia piloti più stellare del campionato. Bezzecchi guida la classifica dopo 5 gare.</div>
+<div class="team-story">Il grande ritorno di Aprilia ai vertici del Motomondiale è uno dei capitoli più belli degli anni 2020. Dal titolo di Aleix Espargaró nel 2022 in poi, la scuderia di Noale è diventata una potenza. Nel 2026, con Martín e Bezzecchi — due ex campioni del mondo — vanta la coppia piloti più stellare del campionato. Bezzecchi guida la classifica del 2026.</div>
 <div class="team-stats-row">
 <div class="team-stat"><div class="team-stat-val" style="color:#00a3e0;">30+</div><div class="team-stat-lbl">Anni in GP</div></div>
 <div class="team-stat"><div class="team-stat-val" style="color:#00a3e0;">1</div><div class="team-stat-lbl">Titolo piloti</div></div>
@@ -340,7 +406,7 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">89</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Jorge Martín</div><div class="team-rider-note">🏆 2 Volte Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">89</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Jorge Martín</div><div class="team-rider-note">🏆 MOTO 3 2018 - MOTO GP 2024</div></div>
 <div class="team-rider-row"><div class="team-rider-num">72</div><div class="team-rider-flag">🇮🇹</div><div class="team-rider-name">Marco Bezzecchi</div><div class="team-rider-note">🥇 Leader classifica 2026</div></div>
 </div>
 </div>
@@ -352,7 +418,7 @@
 <div class="team-emblem" style="background:rgba(0,163,224,.12);">🎯</div>
 <div class="team-header-info">
 <div class="team-name-main">Trackhouse MotoGP Team</div>
-<div class="team-base">📍 USA/Europa  |  Team satellite Aprilia</div>
+<div class="team-base">📍 USA/Europa  |  Team satellite Aprilia</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -373,7 +439,7 @@
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">25</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Raúl Fernández</div></div>
-<div class="team-rider-row"><div class="team-rider-num">79</div><div class="team-rider-flag">🇯🇵</div><div class="team-rider-name">Ai Ogura</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">79</div><div class="team-rider-flag">🇯🇵</div><div class="team-rider-name">Ai Ogura</div><div class="team-rider-note">🏆 MOTO 2 2024</div></div>
 </div>
 </div>
 </div>
@@ -384,7 +450,7 @@
 <div class="team-emblem" style="background:rgba(247,127,0,.12);">🟠</div>
 <div class="team-header-info">
 <div class="team-name-main">Red Bull KTM Factory Racing</div>
-<div class="team-base">📍 Mattighofen, Austria  |  Costruttore austriaco</div>
+<div class="team-base">📍 Mattighofen, Austria  |  Costruttore austriaco</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -404,8 +470,8 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">33</div><div class="team-rider-flag">🇿🇦</div><div class="team-rider-name">Brad Binder</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
-<div class="team-rider-row"><div class="team-rider-num">37</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Pedro Acosta</div><div class="team-rider-note">🏆 2 Volte Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">33</div><div class="team-rider-flag">🇿🇦</div><div class="team-rider-name">Brad Binder</div><div class="team-rider-note">🏆 MOTO 3 2016</div></div>
+<div class="team-rider-row"><div class="team-rider-num">37</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Pedro Acosta</div><div class="team-rider-note">🏆 MOTO 3 2021 - MOTO 2 2023</div></div>
 </div>
 </div>
 </div>
@@ -416,7 +482,7 @@
 <div class="team-emblem" style="background:rgba(247,127,0,.12);">🔶</div>
 <div class="team-header-info">
 <div class="team-name-main">Red Bull KTM Tech3</div>
-<div class="team-base">📍 Bormes-les-Mimosas, Francia  |  Team satellite KTM</div>
+<div class="team-base">📍 Bormes-les-Mimosas, Francia  |  Team satellite KTM</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -437,7 +503,7 @@
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">23</div><div class="team-rider-flag">🇮🇹</div><div class="team-rider-name">Enea Bastianini</div></div>
-<div class="team-rider-row"><div class="team-rider-num">12</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Maverick Viñales</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">12</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Maverick Viñales</div><div class="team-rider-note">🏆 MOTO 3 2013</div></div>
 </div>
 </div>
 </div>
@@ -448,12 +514,12 @@
 <div class="team-emblem" style="background:rgba(0,51,153,.12);">🔵</div>
 <div class="team-header-info">
 <div class="team-name-main">Monster Energy Yamaha MotoGP</div>
-<div class="team-base">📍 Iwata, Giappone  |  Costruttore giapponese</div>
+<div class="team-base">📍 Iwata, Giappone  |  Costruttore giapponese</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
 <div class="team-body">
-<div class="team-story">Yamaha è il costruttore con la storia più lunga nel Motomondiale, attivo ininterrottamente dal 1973. Il periodo d'oro con Valentino Rossi (4 titoli) e Jorge Lorenzo (3) ha fatto epoca. Dopo anni difficili, la YZR-M1 2026 è tornata competitiva. Quartararo cerca il secondo titolo, mentre Rins porta esperienza e velocità nei circuiti favorevoli alla M1.</div>
+<div class="team-story">Yamaha è il costruttore con la storia più lunga nel Motomondiale, attivo ininterrottamente dal 1973. Il periodo d'oro con Valentino Rossi (4 titoli) e Jorge Lorenzo (3) ha fatto epoca. Dopo anni di gloria, sta vivendo periodi di difficoltà, complice anche il passaggio dal motore in lina al V4 nel 2026. Il cambio regolamentare del 2027 li ripoterà alla gloria?. Quartararo cerca il secondo titolo, mentre Rins porta esperienza e velocità nei circuiti favorevoli alla M1.</div>
 <div class="team-stats-row">
 <div class="team-stat"><div class="team-stat-val" style="color:#0044cc;">50+</div><div class="team-stat-lbl">Anni in GP</div></div>
 <div class="team-stat"><div class="team-stat-val" style="color:#0044cc;">7</div><div class="team-stat-lbl">Titoli piloti MotoGP</div></div>
@@ -468,7 +534,7 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">20</div><div class="team-rider-flag">🇫🇷</div><div class="team-rider-name">Fabio Quartararo</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">20</div><div class="team-rider-flag">🇫🇷</div><div class="team-rider-name">Fabio Quartararo</div><div class="team-rider-note">🏆 MOTO GP 2021</div></div>
 <div class="team-rider-row"><div class="team-rider-num">42</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Álex Rins</div></div>
 </div>
 </div>
@@ -480,7 +546,7 @@
 <div class="team-emblem" style="background:rgba(0,51,153,.12);">🟡</div>
 <div class="team-header-info">
 <div class="team-name-main">Prima Pramac Yamaha MotoGP</div>
-<div class="team-base">📍 Mantova, Italia  |  Team satellite Yamaha</div>
+<div class="team-base">📍 Mantova, Italia  |  Team satellite Yamaha</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -501,7 +567,7 @@
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">43</div><div class="team-rider-flag">🇦🇺</div><div class="team-rider-name">Jack Miller</div></div>
-<div class="team-rider-row"><div class="team-rider-num">7</div><div class="team-rider-flag">🇹🇷</div><div class="team-rider-name">Toprak Razgatlıoğlu</div><div class="team-rider-note">🏆 3 Volte Campione WSBK</div></div>
+<div class="team-rider-row"><div class="team-rider-num">7</div><div class="team-rider-flag">🇹🇷</div><div class="team-rider-name">Toprak Razgatlıoğlu</div><div class="team-rider-note">🏆 WSBK 2021-2024-2025</div></div>
 </div>
 </div>
 </div>
@@ -512,7 +578,7 @@
 <div class="team-emblem" style="background:rgba(204,0,0,.12);">🔴</div>
 <div class="team-header-info">
 <div class="team-name-main">Honda HRC Castrol</div>
-<div class="team-base">📍 Tokyo, Giappone  |  Costruttore giapponese</div>
+<div class="team-base">📍 Tokyo, Giappone  |  Costruttore giapponese</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -532,7 +598,7 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">36</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Joan Mir</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">36</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Joan Mir</div><div class="team-rider-note">🏆 MOTO GP 2020</div></div>
 <div class="team-rider-row"><div class="team-rider-num">10</div><div class="team-rider-flag">🇮🇹</div><div class="team-rider-name">Luca Marini</div></div>
 </div>
 </div>
@@ -544,7 +610,7 @@
 <div class="team-emblem" style="background:rgba(204,0,0,.12);">🏍️</div>
 <div class="team-header-info">
 <div class="team-name-main">Castrol Honda LCR [Zarco] / Pro Honda LCR [Moreira]</div>
-<div class="team-base">📍 Monaco  |  Team satellite Honda · Dir. Lucio Cecchinello</div>
+<div class="team-base">📍 Monaco  |  Team satellite Honda · Dir. Lucio Cecchinello</div>
 </div>
 <span class="team-badge gp-badge">MotoGP</span>
 </div>
@@ -564,13 +630,14 @@
 </div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">5</div><div class="team-rider-flag">🇫🇷</div><div class="team-rider-name">Johann Zarco</div><div class="team-rider-note">🏆 2 Volte Campione</div></div>
-<div class="team-rider-row"><div class="team-rider-num">11</div><div class="team-rider-flag">🇧🇷</div><div class="team-rider-name">Diogo Moreira</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">5</div><div class="team-rider-flag">🇫🇷</div><div class="team-rider-name">Johann Zarco</div><div class="team-rider-note">🏆 MOTO 2 2015-2016</div></div>
+<div class="team-rider-row"><div class="team-rider-num">11</div><div class="team-rider-flag">🇧🇷</div><div class="team-rider-name">Diogo Moreira</div><div class="team-rider-note">🏆 MOTO 2 2025</div></div>
 </div>
 </div>
 </div>
 </div><!-- /grid-motogp -->
 </div>
+
 <!-- ═══════════ MOTO2 ═══════════ -->
 <div class="class-panel" id="panel-moto2">
 <div class="search-bar">
@@ -588,12 +655,12 @@
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">Uno dei team più solidi della classe intermedia, con radici tedesche e sponsor storici come Liqui Moly. Senna Agius, australiano, è il protagonista assoluto della stagione: tre vittorie nei primi 5 GP lo proiettano ai vertici della classifica. Manuel González, spagnolo, è una garanzia di regolarità.</div>
+<div class="team-story">Uno dei team più solidi della classe intermedia, con radici tedesche e sponsor storici come Liqui Moly. Senna Agius, australiano, cerca costanza e rendimento di risultati per approdare nella classe regina il prima possibile. Manuel González, spagnolo, è una garanzia di regolarità e punta al successo irridato mancato nel 2025.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Kalex Moto2</div><div class="team-moto-detail">I3 765cc Triumph · ~140 CV · Telaio Kalex alluminio</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">81</div><div class="team-rider-flag">🇦🇺</div><div class="team-rider-name">Senna Agius</div></div>
-<div class="team-rider-row"><div class="team-rider-num">18</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Manuel González</div><div class="team-rider-note">🏆 1 Volta Campione WSSP - 🥇 Leader classifica 2026</div></div>
+<div class="team-rider-row"><div class="team-rider-num">18</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Manuel González</div><div class="team-rider-note">🏆 WSSP 2019 - 🥇 Leader classifica 2026</div></div>
 </div>
 </div>
 </div>
@@ -603,16 +670,16 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🟤</div>
 <div class="team-header-info">
 <div class="team-name-main">BLU CRU Pramac Yamaha Moto2</div>
-<div class="team-base">📍 Mantova, Italia  |  Yamaha Moto2</div>
+<div class="team-base">📍 Mantova, Italia  |  Yamaha Moto2</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">Nell'inedita configurazione Moto2 con motore Yamaha, Pramac schiera due spagnoli. Izan Guevara, ex campione del mondo Moto3 2022, cerca di imporsi nella classe intermedia. Alberto Ferrandez, giovane e agguerrito, è la seconda voce di questo team ambizioso.</div>
+<div class="team-story">Nell'inedita configurazione Moto2 con motore Yamaha, Pramac schiera due spagnoli. Izan Guevara, ex campione del mondo Moto3 2022, cerca di imporsi nella classe intermedia e di sbarcare nella classe regina. Alberto Ferrandez, giovane e agguerrito, è la seconda voce di questo team ambizioso Alla sua prima stagione nel motomondiale proveniente dal paddock del JuniorGp.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Yamaha Moto2</div><div class="team-moto-detail">I3 765cc Yamaha Triumph-based · Telaio Kalex</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">28</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Izan Guevara</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">28</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Izan Guevara</div><div class="team-rider-note">🏆 MOTO 3 2022</div></div>
 <div class="team-rider-row"><div class="team-rider-num">54</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Alberto Ferrandez</div></div>
 </div>
 </div>
@@ -623,17 +690,17 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🔆</div>
 <div class="team-header-info">
 <div class="team-name-main">CFMOTO Aspar Team Moto2</div>
-<div class="team-base">📍 Valencia, Spagna  |  Fondatore: Jorge Martínez "Aspar"</div>
+<div class="team-base">📍 Valencia, Spagna  |  Fondatore: Jorge Martínez "Aspar"</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">Il team di Jorge Martínez "Aspar" è uno dei più storici del paddock, fondato nel 1988. In Moto2 schiera due talenti con percorsi diversi: Daniel Holgado, già sul podio diverse volte, e David Alonso, campione del mondo Moto3 2024, alla sua prima stagione nella classe di mezzo.</div>
+<div class="team-story">Il team di Jorge Martínez "Aspar" è uno dei più storici del paddock, fondato nel 1988. In Moto2 schiera due talenti con percorsi diversi: Daniel Holgado, già sul podio diverse volte, e David Alonso, campione del mondo Moto3 2024, alla sua seconda stagione nella classe di mezzo.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">CFMOTO Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio CFMOTO</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">96</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Daniel Holgado</div></div>
-<div class="team-rider-row"><div class="team-rider-num">80</div><div class="team-rider-flag">🇨🇴</div><div class="team-rider-name">David Alonso</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">80</div><div class="team-rider-flag">🇨🇴</div><div class="team-rider-name">David Alonso</div><div class="team-rider-note">🏆 MOTO 3 2024</div></div>
 </div>
 </div>
 </div>
@@ -643,7 +710,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🎯</div>
 <div class="team-header-info">
 <div class="team-name-main">REDS Fantic Racing</div>
-<div class="team-base">📍 Alassio, Italia  |  Sponsor: REDS Racing</div>
+<div class="team-base">📍 Alassio, Italia  |  Sponsor: REDS Racing</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -663,12 +730,12 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🟠</div>
 <div class="team-header-info">
 <div class="team-name-main">ITALJET Gresini Moto2</div>
-<div class="team-base">📍 Faenza, Italia  |  Team Gresini in Moto2</div>
+<div class="team-base">📍 Faenza, Italia  |  Team Gresini in Moto2</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">La struttura Gresini è presente anche in Moto2 con il supporto di Italjet. Sergio García e Alonso López sono due giovani spagnoli di talento, ex MotoGP in cerca di riscatto nella classe intermedia. García in particolare ha dimostrato il suo valore in stagioni precedenti.</div>
+<div class="team-story">La struttura Gresini è presente anche in Moto2 con il supporto di Italjet. Sergio García e Alonso López sono due giovani spagnoli di talento, in cerca di risultati nella classe intermedia. García in particolare ha dimostrato il suo valore in stagioni precedentil, avendo però un calo nella stagione in cui lottava per il titolo mondiale.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Kalex Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio Kalex</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -680,10 +747,10 @@
 <div class="team-card" data-search="ajo ktm red bull rueda veijer moto2" style="--tc:#f7a600;">
 <div class="team-color-bar"></div>
 <div class="team-card-header">
-<div class="team-emblem" style="background:rgba(247,166,0,.12);">🔴</div>
+<div class="team-emblem" style="background:rgba(247,127,0,.12);">🔴</div>
 <div class="team-header-info">
 <div class="team-name-main">Red Bull KTM Ajo Moto2</div>
-<div class="team-base">📍 Finlandia  |  Dir. Aki Ajo — vivaio KTM</div>
+<div class="team-base">📍 Finlandia  |  Dir. Aki Ajo — vivaio KTM</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -692,7 +759,7 @@
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">KTM Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio KTM</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">98</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">José Antonio Rueda</div><div class="team-rider-note">🏆 1 Volta Campione</div></div>
+<div class="team-rider-row"><div class="team-rider-num">98</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">José Antonio Rueda</div><div class="team-rider-note">🏆 MOTO 3 2025</div></div>
 <div class="team-rider-row"><div class="team-rider-num">95</div><div class="team-rider-flag">🇳🇱</div><div class="team-rider-name">Collin Veijer</div></div>
 </div>
 </div>
@@ -703,7 +770,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🔷</div>
 <div class="team-header-info">
 <div class="team-name-main">ELF Marc VDS Racing Team</div>
-<div class="team-base">📍 Belgio  |  Fondatore: Marc Van der Straten</div>
+<div class="team-base">📍 Belgio  |  Fondatore: Marc Van der Straten</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -723,12 +790,12 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">⚡</div>
 <div class="team-header-info">
 <div class="team-name-main">SpeedRS Team</div>
-<div class="team-base">📍 Italia  |  Team emergente Moto2</div>
+<div class="team-base">📍 Italia  |  Team emergente Moto2</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">Celestino Vietti, piemontese di Mathi vicino a Torino, è uno dei talenti più puri della Moto2. Ha già sfiorato il titolo in passato e cerca il salto definitivo. Luca Lunetta completa il duo, ma ha subito un infortunio nelle prime gare che lo ha portato a saltare i round 2 e 3, con Dennis Foggia come sostituto.</div>
+<div class="team-story">Celestino Vietti, piemontese di Mathi vicino a Torino, è uno dei talenti più puri della Moto2. Ha già sfiorato il titolo in passato e cerca il salto definitivo. Luca Lunetta completa il duo, ma ha subito un infortunio nelle prime gare che lo ha portato a saltare dei round, rendendo difficile l'adattamento alla classe di mezzo.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Kalex Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio Kalex</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -743,7 +810,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🇺🇸</div>
 <div class="team-header-info">
 <div class="team-name-main">OnlyFans American Racing Team</div>
-<div class="team-base">📍 USA  |  Team americano</div>
+<div class="team-base">📍 USA  |  Team americano</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -763,7 +830,7 @@
 <div class="team-emblem" style="background:rgba(204,0,0,.12);">🏯</div>
 <div class="team-header-info">
 <div class="team-name-main">Idemitsu Honda Team Asia</div>
-<div class="team-base">📍 Asia  |  Team satellite Honda</div>
+<div class="team-base">📍 Asia  |  Team satellite Honda</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -783,7 +850,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🟢</div>
 <div class="team-header-info">
 <div class="team-name-main">Italtrans Racing Team</div>
-<div class="team-base">📍 Italia  |  Team italiano in Moto2</div>
+<div class="team-base">📍 Italia  |  Team italiano in Moto2</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -792,7 +859,7 @@
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Kalex Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio Kalex</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">99</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Adrián Huertas</div><div class="team-rider-note">🏆 1 Volta Campione WSSP</div></div>
+<div class="team-rider-row"><div class="team-rider-num">99</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Adrián Huertas</div><div class="team-rider-note">🏆 WSSP 2024</div></div>
 <div class="team-rider-row"><div class="team-rider-num">17</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Daniel Muñoz</div></div>
 </div>
 </div>
@@ -803,7 +870,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">➡️</div>
 <div class="team-header-info">
 <div class="team-name-main">Forward Factory Team</div>
-<div class="team-base">📍 Italia  |  Team indipendente</div>
+<div class="team-base">📍 Italia  |  Team indipendente</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -823,7 +890,7 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🌊</div>
 <div class="team-header-info">
 <div class="team-name-main">Momoven Idrofoglia RW Racing</div>
-<div class="team-base">📍 Paesi Bassi  |  Fondatore: Nico Roelants</div>
+<div class="team-base">📍 Paesi Bassi  |  Fondatore: Nico Roelants</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
@@ -843,22 +910,23 @@
 <div class="team-emblem" style="background:rgba(247,166,0,.12);">🔩</div>
 <div class="team-header-info">
 <div class="team-name-main">QJMOTOR – FRINSA – MSI</div>
-<div class="team-base">📍 Cina/Spagna  |  Costruttore QJMOTOR</div>
+<div class="team-base">📍 Cina/Spagna  |  Costruttore QJMOTOR</div>
 </div>
 <span class="team-badge m2-badge">Moto2</span>
 </div>
 <div class="team-body">
-<div class="team-story">Il team porta in pista la moto cinese QJMOTOR, una delle novità della stagione. Iván Ortolá è il pilota di punta, mentre Angel Piqueras — infortunato ai round 4-5 — viene sostituito da Marcos Ramirez. Una squadra in crescita con ambizioni concrete.</div>
+<div class="team-story">Il team porta in pista la moto cinese QJMOTOR. Iván Ortolá è il pilota di punta, mentre Angel Piqueras, proveniente dalla Moto3 dopo un secondo posto nella classifica generale del 2025, cerca di far capire ai vertici di che pasta è fatto. Una squadra in crescita con ambizioni concrete.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Kalex Moto2</div><div class="team-moto-detail">I3 765cc Triumph · Telaio Kalex</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
 <div class="team-rider-row"><div class="team-rider-num">4</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Iván Ortolá</div></div>
-<div class="team-rider-row"><div class="team-rider-num">36</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Angel Piqueras</div><div class="team-rider-note">Rookies Cup 2023</div></div>
+<div class="team-rider-row"><div class="team-rider-num">36</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Angel Piqueras</div><div class="team-rider-note">🏆 Rookies Cup 2023</div></div>
 </div>
 </div>
 </div>
 </div><!-- /grid-moto2 -->
 </div>
+
 <!-- ═══════════ MOTO3 ═══════════ -->
 <div class="class-panel" id="panel-moto3">
 <div class="search-bar">
@@ -871,12 +939,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">⭐</div>
 <div class="team-header-info">
 <div class="team-name-main">CFMOTO Gaviota Aspar Team Moto3</div>
-<div class="team-base">📍 Valencia, Spagna  |  Costruttore CFMOTO</div>
+<div class="team-base">📍 Valencia, Spagna  |  Costruttore CFMOTO</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">La squadra più forte della Moto3 2026. Máximo Quiles è il fenomeno della stagione: con 5 vittorie nelle prime 5 gare ha stabilito il record assoluto di punti nelle prime cinque gare della storia della Moto3 (115 punti), superando Maverick Viñales del 2013. Marco Morelli è il suo gregario-competitore.</div>
+<div class="team-story">La squadra più forte della Moto3 2026. Máximo Quiles cerca di distruggere il record fatto da David Alonso di 14 vittorie, stabilendo di fatto il record assoluto di punti nelle prime cinque gare della storia della Moto3 (115 punti), superando Maverick Viñales del 2013. Marco Morelli, argentino di grande talento, è il suo gregario-competitore.</div>
 <div class="team-stats-row">
 <div class="team-stat"><div class="team-stat-val" style="color:#00b4d8;">5</div><div class="team-stat-lbl">Vittorie su 5 GP</div></div>
 <div class="team-stat"><div class="team-stat-val" style="color:#00b4d8;">115</div><div class="team-stat-lbl">Punti Quiles (record!)</div></div>
@@ -895,12 +963,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">🐆</div>
 <div class="team-header-info">
 <div class="team-name-main">Leopard Racing</div>
-<div class="team-base">📍 Lussemburgo  |  Fondatore: Ernst Gielen</div>
+<div class="team-base">📍 Lussemburgo  |  Fondatore: Ernst Gielen</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">Leopard Racing è una delle realtà più apprezzate della Moto3, con una storia di scoperta di talenti. Guido Pini, primo italiano a vincere in Moto3 dopo Dennis Foggia nel 2022, è la sorpresa della stagione. Adrián Fernández è già sul podio con due secondi posti consecutivi.</div>
+<div class="team-story">Leopard Racing è una delle realtà più apprezzate della Moto3, con una storia di scoperta di talenti. Guido Pini, primo italiano a vincere in Moto3 dopo Dennis Foggia nel 2022, è la sorpresa della stagione. Adrián Fernández cerca costanza per un approdo nella classe di mezzo.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Honda NSF250RW</div><div class="team-moto-detail">250cc · 4 tempi · ~60 CV · Telaio Honda</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -915,17 +983,17 @@
 <div class="team-emblem" style="background:rgba(247,127,0,.12);">🔶</div>
 <div class="team-header-info">
 <div class="team-name-main">Red Bull KTM Ajo Moto3</div>
-<div class="team-base">📍 Finlandia  |  Dir. Aki Ajo</div>
+<div class="team-base">📍 Finlandia  |  Dir. Aki Ajo</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">La versione Moto3 del team Ajo porta avanti la tradizione di lanciare futuri campioni. Álvaro Carpe, spagnolo, è il terzo in classifica con cinque podi. Brian Uriarte, vincitore del Red Bull Rookies Cup 2025, è al debutto assoluto nel mondiale.</div>
+<div class="team-story">La versione Moto3 del team Ajo porta avanti la tradizione di lanciare futuri campioni. Álvaro Carpe, spagnolo, cerca di lottare per il titolo. Brian Uriarte, vincitore del Red Bull Rookies Cup e del JuniorGP 2025, è al debutto assoluto nel mondiale.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">KTM RC 250 GP</div><div class="team-moto-detail">250cc · 4 tempi · Telaio KTM</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
-<div class="team-rider-row"><div class="team-rider-num">83</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Álvaro Carpe</div><div class="team-rider-note">Rookies Cup 2024</div></div>
-<div class="team-rider-row"><div class="team-rider-num">51</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Brian Uriarte</div><div class="team-rider-note">🆕 Rookies Cup 2025</div></div>
+<div class="team-rider-row"><div class="team-rider-num">83</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Álvaro Carpe</div><div class="team-rider-note">🏆 Rookies Cup 2024</div></div>
+<div class="team-rider-row"><div class="team-rider-num">51</div><div class="team-rider-flag">🇪🇸</div><div class="team-rider-name">Brian Uriarte</div><div class="team-rider-note">🏆 Rookies Cup 2025</div></div>
 </div>
 </div>
 </div>
@@ -935,7 +1003,7 @@
 <div class="team-emblem" style="background:rgba(247,127,0,.12);">🟠</div>
 <div class="team-header-info">
 <div class="team-name-main">Red Bull KTM Tech3 Moto3</div>
-<div class="team-base">📍 Francia  |  Team satellite KTM</div>
+<div class="team-base">📍 Francia  |  Team satellite KTM</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
@@ -955,12 +1023,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">💧</div>
 <div class="team-header-info">
 <div class="team-name-main">Liqui Moly Dynavolt Intact GP Moto3</div>
-<div class="team-base">📍 Germania  |  Team tedesco</div>
+<div class="team-base">📍 Germania  |  Team tedesco</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">Team tedesco affidabile in Moto3. David Muñoz (assente nei round 2-3 per infortuni) e David Almansa (assente al round 3) hanno avuto stagioni difficili. Marcos Uriarte li ha sostituiti in alcune gare. Il potenziale della coppia è dimostrato dai buoni piazzamenti nelle gare disputate.</div>
+<div class="team-story">Team tedesco affidabile in Moto3. David Muñoz (assente nei round 2-3 per infortuni) cerca di far risultati per poter salire nella classe di mezzo, e David Almansa (assente al round 3) hanno avuto stagioni difficili. Marcos Uriarte li ha sostituiti in alcune gare. Il potenziale della coppia è dimostrato dai buoni piazzamenti nelle gare disputate.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">KTM RC 250 GP</div><div class="team-moto-detail">250cc · 4 tempi · Telaio KTM</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -975,12 +1043,12 @@
 <div class="team-emblem" style="background:rgba(204,0,0,.12);">🏯</div>
 <div class="team-header-info">
 <div class="team-name-main">Honda Team Asia Moto3</div>
-<div class="team-base">📍 Asia  |  Team ufficiale Honda Asia</div>
+<div class="team-base">📍 Asia  |  Team ufficiale Honda Asia</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">Team Honda dedicato ai talenti asiatici. Veda Pratama, indonesiano, ha già dimostrato di essere a suo agio nel bagnato e sulle piste impegnative. Zen Mitani (Giappone) è al debutto nel mondiale. Entrambi rappresentano il futuro della Moto3 nel mercato asiatico.</div>
+<div class="team-story">Team Honda dedicato ai talenti asiatici. Veda Pratama, indonesiano, ha già dimostrato di essere a suo agio nel bagnato e sulle piste impegnative nelle categoire precedenti alla Moto3. Zen Mitani (Giappone) anche lui al debutto nel mondiale. Entrambi rappresentano il futuro della Moto3 nel mercato asiatico.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">Honda NSF250RW</div><div class="team-moto-detail">250cc · 4 tempi · Honda ufficiale</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -995,7 +1063,7 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">⬆️</div>
 <div class="team-header-info">
 <div class="team-name-main">LEVELUP – MTA</div>
-<div class="team-base">📍 Italia  |  Team italiano emergente</div>
+<div class="team-base">📍 Italia  |  Team italiano emergente</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
@@ -1015,7 +1083,7 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">🎯</div>
 <div class="team-header-info">
 <div class="team-name-main">Rivacold Snipers Team</div>
-<div class="team-base">📍 Italia  |  Team italiano in Moto3</div>
+<div class="team-base">📍 Italia  |  Team italiano in Moto3</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
@@ -1035,12 +1103,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">🌿</div>
 <div class="team-header-info">
 <div class="team-name-main">CIP Green Power</div>
-<div class="team-base">📍 Francia  |  Team eco-sostenibile</div>
+<div class="team-base">📍 Francia  |  Team eco-sostenibile</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">Team francese con un'identità ecologica e di promozione dei giovani piloti. Adrián Cruces (Spagna) e Scott Ogden (Gran Bretagna) puntano alla zona punti. Cruces ha già mostrato buone capacità nel bagnato, con la 7ª posizione a Le Mans degna di nota.</div>
+<div class="team-story">Team francese con un'identità ecologica e di promozione dei giovani piloti. Adrián Cruces (Spagna) e Scott Ogden (Gran Bretagna) puntano alla zona punti. Cruces ha già mostrato buone capacità nel bagnato e un ottimo adattamento alla Moto3 dopo aver fatto un anno di Moto2 nel mondiale JuniorGp.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">KTM RC 250 GP</div><div class="team-moto-detail">250cc · 4 tempi · Telaio KTM</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -1055,12 +1123,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">🌏</div>
 <div class="team-header-info">
 <div class="team-name-main">BOE Motorsports</div>
-<div class="team-base">📍 Internazionale  |  Team CFMOTO</div>
+<div class="team-base">📍 Internazionale  |  Team CFMOTO</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">BOE Motorsports porta in pista piloti del Commonwealth: il neozelandese Cormac Buchanan e il sudafricano Ruche Moodley. Entrambi sono giovani che cercano di farsi strada nel mondo della Moto3. Il team utilizza il telaio CFMOTO e punta alla zona punti come traguardo stagionale.</div>
+<div class="team-story">BOE Motorsports porta in pista piloti del Commonwealth: il neozelandese Cormac Buchanan e il sudafricano Ruche Moodley. Entrambi sono giovani che cercano di farsi strada nel mondo della Moto3. Il team punta alla zona punti come traguardo stagionale.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">CFMOTO Moto3</div><div class="team-moto-detail">250cc · 4 tempi · Telaio CFMOTO</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -1075,12 +1143,12 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">🦅</div>
 <div class="team-header-info">
 <div class="team-name-main">GRYD – MLav Racing</div>
-<div class="team-base">📍 Australia  |  Team australiano KTM</div>
+<div class="team-base">📍 Australia  |  Team australiano KTM</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
 <div class="team-body">
-<div class="team-story">Joel Kelso, australiano che detiene il record assoluto del giro a Le Mans in Moto3 (2025), è la principale attrattiva del team. Eddie O'Shea, irlandese, porta le prime soddisfazioni della sua nazione nella Moto3. Il team australiano porta un'identità unica nel paddock.</div>
+<div class="team-story">Joel Kelso, australiano, è la principale attrattiva del team. Eddie O'Shea, irlandese, porta le prime soddisfazioni della sua nazione nella Moto3. Il team australiano porta un'identità unica nel paddock.</div>
 <div class="team-moto-box"><div class="team-moto-icon">🏍️</div><div class="team-moto-info"><div class="team-moto-name">KTM RC 250 GP</div><div class="team-moto-detail">250cc · 4 tempi · Telaio KTM</div></div></div>
 <div class="team-riders-label">Piloti 2026</div>
 <div class="team-riders">
@@ -1095,7 +1163,7 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">⛑️</div>
 <div class="team-header-info">
 <div class="team-name-main">FRINSA – MT Helmets – MSI</div>
-<div class="team-base">📍 Spagna  |  Sponsor: MT Helmets</div>
+<div class="team-base">📍 Spagna  |  Sponsor: MT Helmets</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
@@ -1115,7 +1183,7 @@
 <div class="team-emblem" style="background:rgba(0,180,216,.12);">58</div>
 <div class="team-header-info">
 <div class="team-name-main">SIC58 Squadra Corse</div>
-<div class="team-base">📍 Italia  |  In memoria di Marco Simoncelli</div>
+<div class="team-base">📍 Italia  |  In memoria di Marco Simoncelli</div>
 </div>
 <span class="team-badge m3-badge">Moto3</span>
 </div>
@@ -1131,6 +1199,7 @@
 </div>
 </div><!-- /grid-moto3 -->
 </div>
+
 <footer>
 <a class="logo" href="index.html" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:var(--white);text-decoration:none;">MOTO<span style="color:var(--red);">2026</span></a>
 <p style="margin-top:.4rem;">Team — Motomondiale 2026</p>
@@ -1142,6 +1211,7 @@
 </div>
 <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
 </footer>
+
 <script>
 // ══ TABS ══
 function switchTab(name, btn) {
@@ -1171,7 +1241,8 @@ function closeNavDropdown() {
   document.getElementById('nav-dropdown-menu').classList.remove('open');
 }
 document.addEventListener('click', e => {
-  if (!document.getElementById('nav-dropdown-wrap').contains(e.target)) closeNavDropdown();
+  const wrap = document.getElementById('nav-dropdown-wrap');
+  if (wrap && !wrap.contains(e.target)) closeNavDropdown();
 });
 
 // ══ NOTIFICHE GP ══
@@ -1199,7 +1270,6 @@ function checkNotifications() {
       banner.dataset.notifId = n.id;
       banner.style.display = 'flex';
       shown = true;
-      // Auto-dismiss after 8 seconds
       setTimeout(() => { if (banner.style.display !== 'none') closeNotif(); }, 8000);
     }
   }
@@ -1216,7 +1286,10 @@ function toggleTheme() {
 (function() {
   try {
     const t = localStorage.getItem('theme');
-    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); document.getElementById('theme-icon').textContent = '🌙'; }
+    if (t === 'light') { 
+      document.documentElement.setAttribute('data-theme','light'); 
+      document.getElementById('theme-icon').textContent = '🌙'; 
+    }
   } catch(e) {}
 })();
 
@@ -1225,26 +1298,26 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-
-
+<!-- AUDIO PLAYER -->
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-<div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-<button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-<button id="loop-btn" onclick="var a=document.getElementById('bg-audio');a.loop=!a.loop;this.style.color=a.loop?'#e8001d':'#888';" style="flex:1;background:0;border:1px solid #2a2a2a;color:#888;border-radius:4px;cursor:pointer;">🔁</button>
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
 </div>
-<input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-<input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-<audio id="bg-audio" loop style="display:none;">
-<source src="motogp_intro_26.mp3" type="audio/mpeg">
-</audio>
-</div>
+
 <script>
 (function(){
   var audio = document.getElementById('bg-audio');
   var progressSlider = document.getElementById('progress-slider');
   var playBtn = document.getElementById('play-btn');
   
-  // Sincronizza tra pagine: salva il tempo corrente
   window.addEventListener('beforeunload', function(){
     try {
       sessionStorage.setItem('audio-time', audio.currentTime);
@@ -1252,7 +1325,6 @@ window.addEventListener('DOMContentLoaded', () => {
     } catch(e){}
   });
   
-  // Ripristina il tempo quando carica la pagina
   audio.addEventListener('loadedmetadata', function(){
     try {
       var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
@@ -1262,14 +1334,12 @@ window.addEventListener('DOMContentLoaded', () => {
     } catch(e){}
   });
   
-  // Aggiorna la barra di progresso
   audio.addEventListener('timeupdate', function(){
     if(audio.duration) {
       progressSlider.value = (audio.currentTime / audio.duration) * 100;
     }
   });
   
-  // Aggiorna il bottone play/pause
   audio.addEventListener('play', function(){
     playBtn.textContent = '⏸';
   });
@@ -1277,7 +1347,6 @@ window.addEventListener('DOMContentLoaded', () => {
     playBtn.textContent = '▶';
   });
   
-  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
   audio.addEventListener('ended', function(){
     try {
       sessionStorage.removeItem('audio-time');
@@ -1285,6 +1354,80 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 })();
 </script>
+<script>
+  /* ═══════════ GESTIONE TEMA (MIGLIORATA) ═══════════ */
+  function toggleTheme() {
+    try {
+      // Controlla lo stato attuale del DOM, non del localStorage
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      
+      if (isLight) {
+        // Passa al tema scuro
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+      } else {
+        // Passa al tema chiaro
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').textContent = '🌙';
+      }
+    } catch(e) { console.error("Errore tema:", e); }
+  }
 
+  // All'avvio della pagina, aggiorna solo l'icona in base allo stato reale
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      var icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.textContent = isLight ? '🌙' : '☀️';
+      }
+    } catch(e) {}
+  });
+
+  /* ═══════════ NAVIGAZIONE E MENU ═══════════ */
+  function toggleNavDropdown() {
+    document.getElementById('nav-dropdown-menu').classList.toggle('open');
+  }
+  function closeNavDropdown() {
+    document.getElementById('nav-dropdown-menu').classList.remove('open');
+  }
+  function closeNotif() {
+    document.getElementById('notif-banner').style.display = 'none';
+  }
+  
+  // Chiudi il dropdown se si clicca fuori
+  document.addEventListener('click', function(e) {
+    var wrap = document.getElementById('nav-dropdown-wrap');
+    if (wrap && !wrap.contains(e.target)) {
+      closeNavDropdown();
+    }
+  });
+
+  /* ═══════════ TAB E FILTRI ═══════════ */
+  function switchTab(cat, btn) {
+    document.querySelectorAll('.class-tab').forEach(function(t) { t.className = 'class-tab'; });
+    document.querySelectorAll('.class-panel').forEach(function(p) { p.classList.remove('active'); });
+    
+    if(cat === 'motogp') btn.classList.add('active-gp');
+    else if(cat === 'moto2') btn.classList.add('active-m2');
+    else if(cat === 'moto3') btn.classList.add('active-m3');
+    
+    document.getElementById('panel-' + cat).classList.add('active');
+  }
+
+  function filterCards(query, cat) {
+    var grid = document.getElementById('grid-' + cat);
+    if(!grid) return;
+    var cards = grid.querySelectorAll('.team-card');
+    var q = query.toLowerCase();
+    
+    cards.forEach(function(card) {
+      var searchData = card.getAttribute('data-search').toLowerCase();
+      card.style.display = searchData.includes(q) ? '' : 'none';
+    });
+  }
+</script>
 </body>
 </html>
