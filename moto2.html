@@ -833,8 +833,45 @@
 <div>
 <div class="news-block">
   
-<!-- NOTIZIE TEST VISIBLE -->
+<!-- NOTIZIE VISIBLI -->
+<div class="news-header">📰 Ultime Notizie</div>
 <div class="news-card featured" id="nc-moto25" style="cursor:pointer;">
+<div class="news-card" id="nc-moto22" style="cursor:pointer;">
+<div class="news-card-body">
+<span class="news-tag tag-breaking">Breaking</span>
+<div class="news-title">Balaton Park: Gonzalez cala il tris, Salač e Agius sul podio della Moto2</div>
+<div class="news-excerpt">Lo spagnolo conquista la terza vittoria consecutiva e allunga nel mondiale. Salač chiude secondo davanti ad Agius.</div>
+<div class="news-meta">
+<span class="news-date">📅 7 giu 2026</span>
+<span class="news-author">Redazione</span>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var _cat="Moto2",
+      _title="Balaton Park: Gonzalez cala il tris, Salač e Agius sul podio della Moto2",
+      _meta="📅 7 giu 2026 · ✍️ Redazione",
+      _body=`Manuel Gonzalez continua a dominare il campionato Moto2 2026 conquistando anche il Gran Premio d'Ungheria sul circuito di Balaton Park. Lo spagnolo della Liqui Moly Dynavolt Intact GP ha ottenuto la terza vittoria consecutiva, confermandosi l'uomo da battere della categoria.<br><br>
+
+Nelle prime fasi di gara Filip Salač ha provato a prendere il controllo della corsa mantenendo la leadership per diversi giri. Gonzalez è però rimasto incollato al pilota ceco studiandone le traiettorie prima di lanciare l'attacco decisivo nella seconda metà della gara.<br><br>
+
+Una volta conquistata la prima posizione, il leader del mondiale ha aumentato progressivamente il ritmo costruendo un margine sufficiente per gestire gli ultimi giri senza particolari rischi. Salač ha difeso con autorità il secondo posto, tornando sul podio dopo una lunga attesa.<br><br>
+
+Alle loro spalle Senna Agius ha completato una straordinaria giornata per il team Intact GP conquistando la terza posizione. L'australiano ha dovuto respingere gli attacchi di David Alonso nelle fasi finali, riuscendo comunque a conservare il gradino più basso del podio.<br><br>
+
+Grazie a questo successo Gonzalez rafforza ulteriormente la propria leadership in classifica generale e si presenta come il principale candidato al titolo mondiale Moto2 2026 dopo un'altra prestazione praticamente perfetta a Balaton Park.`;
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var el=document.getElementById('nc-moto22');
+    if(el) el.addEventListener('click',function(){
+      if(typeof openNews==='function') openNews(_cat,_title,_meta,_body);
+    });
+  });
+})();
+</script>
+
 <div class="news-card-body">
 <span class="news-tag tag-breaking">Breaking</span>
 <div class="news-title">Mugello: dominio Gonzalez, Vietti show con rimonta da applausi davanti al pubblico italiano</div>
@@ -865,28 +902,18 @@
   });
 })();
 </script>
-<div class="news-card" id="nc-moto22" style="cursor:pointer;">
-<div class="news-card-body">
-<span class="news-tag tag-breaking">Breaking</span>
-<div class="news-title">Test Catalunya: Gonzalez fa suo il crono di riferimento, Ortolá e Guevara a meno di tre decimi</div>
-<div class="news-excerpt">Lo spagnolo della Liqui Moly Dynavolt Intact GP chiude in testa con 1:41.248. Stacco minimo per Ortolá e Guevara.</div>
-<div class="news-meta">
-<span class="news-date">📅 19 mag 2026</span>
-<span class="news-author">Redazione</span>
-</div>
-</div>
-</div>
-<script>
-      (function(){
-        var _cat="Moto2",_title="Test Catalunya: Gonzalez fa suo il crono di riferimento, Ortolá e Guevara a meno di tre decimi",_meta="\ud83d\udcc5 19 mag 2026 \u00b7 \u270d\ufe0f Redazione",_body=`Manuel Gonzalez ha confermato il suo stato di grazia assoluto firmando il miglior tempo nella giornata di test ufficiali Moto2 al Circuit de Barcelona-Catalunya. Lo spagnolo ha fatto segnare un eccellente 1:41.248 al 72° giro dei 75 totali dispiegati, dimostrando una consistenza impressionante anche sui lunghi run.<br><br>Dietro di lui, una lotta serrata per la seconda piazza ha visto Ivan Ortolá (QJMOTOR-Bordoy-MSI) staccato di soli 0.200 secondi. Il pilota spagnolo ha trovato un ottimo feeling con il tracciato di casa, mettendo a segno il suo giro migliore al 62° passaggio. Terzo tempo per Izan Guevara su Boscoscuro, a 0.255 dal vertice: lo spagnolo della BLU CRU Pramac Yamaha ha confermato la competitività del pacchetto italiano, chiudendo a soli 55 millesimi da Ortolá.<br><br>La giornata, caratterizzata da condizioni di pista asciutte e temperature ideali, ha permesso ai team di testare soluzioni tecniche avanzate in vista delle prossime gare. Gonzalez ha dominato anche i settori intermedi, mentre Guevara ha mostrato un passo aggressivo nel terzo settore. Con i primi tre racchiusi in appena un quarto di secondo, il campionato si preannuncia al rovente.`;
-        document.addEventListener('DOMContentLoaded',function(){
-          var el=document.getElementById('nc-moto22');
-          if(el) el.addEventListener('click',function(){ if(typeof openNews==='function') openNews(_cat,_title,_meta,_body); });
-        });
-      })();
-      </script>
-
 <!-- NOTIZIE PRECEDENTI (NASCOSTE SOTTO IL BOTTONE) -->
+ <div class="news-card news-h-moto2 hidden-news" onclick="openNews('Moto2','Test Catalunya: Gonzalez fa suo il crono di riferimento, Ortolá e Guevara a meno di tre decimi','📅 19 mag 2026 · ✍️ Redazione','Manuel Gonzalez ha confermato il suo stato di grazia assoluto firmando il miglior tempo nella giornata di test ufficiali Moto2 al Circuit de Barcelona-Catalunya. Lo spagnolo ha fatto segnare un eccellente 1:41.248 al 72° giro dei 75 totali dispiegati, dimostrando una consistenza impressionante anche sui lunghi run.<br><br>Dietro di lui, una lotta serrata per la seconda piazza ha visto Ivan Ortolá (QJMOTOR-Bordoy-MSI) staccato di soli 0.200 secondi. Il pilota spagnolo ha trovato un ottimo feeling con il tracciato di casa, mettendo a segno il suo giro migliore al 62° passaggio. Terzo tempo per Izan Guevara su Boscoscuro, a 0.255 dal vertice: lo spagnolo della BLU CRU Pramac Yamaha ha confermato la competitività del pacchetto italiano, chiudendo a soli 55 millesimi da Ortolá.<br><br>La giornata, caratterizzata da condizioni di pista asciutte e temperature ideali, ha permesso ai team di testare soluzioni tecniche avanzate in vista delle prossime gare. Gonzalez ha dominato anche i settori intermedi, mentre Guevara ha mostrato un passo aggressivo nel terzo settore. Con i primi tre racchiusi in appena un quarto di secondo, il campionato si preannuncia al rovente.')">
+    <div class="news-card-body">
+        <span class="news-tag tag-breaking">Breaking</span>
+        <div class="news-title">Test Catalunya: Gonzalez fa suo il crono di riferimento, Ortolá e Guevara a meno di tre decimi</div>
+        <div class="news-excerpt">Lo spagnolo della Liqui Moly Dynavolt Intact GP chiude in testa con 1:41.248. Stacco minimo per Ortolá e Guevara.</div>
+        <div class="news-meta">
+            <span class="news-date">📅 19 mag 2026</span>
+            <span class="news-author">Redazione</span>
+        </div>
+    </div>
+</div>
  <div class="news-card news-h-moto2 hidden-news" onclick="openNews('Moto2','Test Barcellona: Guevara primo tra le Boscoscuro, Vietti cerca il giro','📅 19 mag 2026 · ✍️ Redazione','La giornata di test al Circuit de Barcelona-Catalunya ha offerto spunti tecnici molto interessanti riguardo al duello tra i telai Kalex e Boscoscuro.<br><br>Tra le file della casa italiana, Izan Guevara ha fatto la voce grossa chiudendo al terzo posto assoluto con un ottimo 1:41.503, dimostrando un adattamento perfetto alle caratteristiche del tracciato catalano e un passo costante nei settori centrali.<br><br>Diverso il discorso per Celestino Vietti: il romano della Beta Tools SpeedRS Team ha faticato a trovare il giusto ritmo sul giro secco, chiudendo al 12º posto con un tempo di 1:42.039. Vietti ha provato diverse soluzioni di setup senza riuscire a sfruttare pienamente il potenziale della sua Boscoscuro, pur mantenendo un ritmo gara discreto.<br><br>Da segnalare anche le prestazioni degli altri piloti Boscoscuro: Ferrandez 11º, Oncu 14º, mentre Canet ha chiuso 22º dopo qualche difficoltà tecnica nel pomeriggio.')">
 <div class="news-card-body">
 <span class="news-tag tag-analisi">Analisi</span>
@@ -1039,7 +1066,7 @@
 </div>
 </div>
 
-<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto2')">▼ Tutte le notizie (12)</button>
+<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto2')">▼ Tutte le notizie (13)</button>
 </div>
 </div>
 <!-- COLONNA DX: Classifica -->

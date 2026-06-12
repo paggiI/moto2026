@@ -832,6 +832,47 @@
 <!-- COLONNA SX: Notizie -->
 <div>
 <div class="news-header">📰 Ultime Notizie</div>
+<div class="news-card featured" id="nc-moto32" style="cursor:pointer;">
+<div class="news-card-body">
+<span class="news-tag tag-breaking">Breaking</span>
+<div class="news-title">Balaton Park: Quiles vince sotto bandiera rossa, dramma Muñoz nel finale</div>
+<div class="news-excerpt">Finale choc in Moto3: bandiera rossa dopo un incidente all’ultimo giro. Muñoz operato per fratture al bacino e al braccio sinistro.</div>
+<div class="news-meta">
+<span class="news-date">📅 7 giu 2026</span>
+<span class="news-author">Redazione</span>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var _cat="Moto3",
+  _title="Balaton Park: Quiles vince sotto bandiera rossa, dramma Muñoz nel finale",
+  _meta="📅 7 giu 2026 · ✍️ Redazione",
+  _body=`La gara Moto3 del Gran Premio d'Ungheria 2026 a Balaton Park si è conclusa in regime di bandiera rossa dopo un violento incidente avvenuto all’ultimo giro.<br><br>
+
+Mentre la lotta per il podio era serratissima, David Muñoz è stato coinvolto in una caduta ad alta velocità dopo un contatto nel gruppo di testa. La sua moto è rimasta in traiettoria, generando una carambola che ha coinvolto più piloti in arrivo.<br><br>
+
+La Direzione Gara ha immediatamente esposto la bandiera rossa interrompendo la corsa e congelando le posizioni al giro precedente, assegnando la vittoria a Máximo Quiles davanti a David Almansa e Álvaro Carpe.<br><br>
+
+Il momento più drammatico è arrivato subito dopo l’incidente: Muñoz è stato soccorso e trasportato al centro medico, prima del trasferimento in ospedale a Budapest. Gli esami hanno evidenziato una frattura al bacino e una frattura al braccio sinistro. Il pilota è stato sottoposto a intervento chirurgico per stabilizzare le lesioni.<br><br>
+
+Secondo gli ultimi aggiornamenti, Muñoz non è mai stato in pericolo di vita ma dovrà affrontare un periodo di recupero lungo e delicato. È previsto il trasferimento in Spagna per ulteriori controlli specialistici e la pianificazione della riabilitazione.<br><br>
+
+Un finale amaro per una gara già estremamente combattuta, con Balaton Park che si conferma uno dei tracciati più impegnativi e selettivi del calendario Moto3.`;
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var el=document.getElementById('nc-moto32');
+    if(el){
+      el.addEventListener('click',function(){
+        if(typeof openNews==='function'){
+          openNews(_cat,_title,_meta,_body);
+        }
+      });
+    }
+  });
+})();
+</script>
 <div class="news-card featured" id="nc-moto3-fernandez-dsq" style="cursor:pointer;">
 <div class="news-card-body">
 <span class="news-tag tag-breaking">CLAMOROSO</span>
@@ -863,32 +904,18 @@ La sanzione costa a Fernández anche due podi (Le Mans e Barcellona) e la 3ª po
   });
 })();
 </script>
-<div class="news-card" id="nc-moto32" style="cursor:pointer;">
-<div class="news-card-body">
-<span class="news-tag tag-breaking">Breaking</span>
-<div class="news-title">Mugello: Uriarte vince una Moto3 da infarto, Carpe e Danish sul podio</div>
-<div class="news-excerpt">Finale incredibile al Mugello: Uriarte conquista la sua prima vittoria in Moto3 davanti a Carpe e Danish.</div>
-<div class="news-meta">
-<span class="news-date">📅 31 mag 2026</span>
-<span class="news-author">Redazione</span>
-</div>
-</div>
-</div>
-<script>
-(function(){
-  var _cat="Moto3",
-  _title="Mugello: Uriarte vince una Moto3 da infarto, Carpe e Danish sul podio",
-  _meta="📅 31 mag 2026 · ✍️ Redazione",
-  _body=`La Moto3 al Mugello ha regalato una delle gare più spettacolari della stagione, con un gruppo di testa rimasto compatto fino all’ultima curva e continui sorpassi resi possibili dalla scia sul lunghissimo rettilineo.<br><br>Nel finale Brian Uriarte ha trovato il tempismo perfetto per uscire davanti dall’ultima curva, conquistando la sua prima vittoria mondiale.<br><br>Álvaro Carpe ha chiuso secondo dopo una battaglia serratissima, mentre Hakim Danish ha completato il podio.`;
 
-  document.addEventListener('DOMContentLoaded',function(){
-    var el=document.getElementById('nc-moto32');
-    if(el) el.addEventListener('click',function(){
-      if(typeof openNews==='function') openNews(_cat,_title,_meta,_body);
-    });
-  });
-})();
-</script>
+<div class="news-card news-h-moto3 hidden-news" onclick="openNews('Moto3','Mugello: Uriarte vince una Moto3 da infarto, Carpe e Danish sul podio','📅 31 mag 2026 · ✍️ Redazione','La Moto3 al Mugello ha regalato una delle gare più spettacolari della stagione, con un gruppo di testa rimasto compatto fino all’ultima curva e continui sorpassi resi possibili dalla scia sul lunghissimo rettilineo.<br><br>Nel finale Brian Uriarte ha trovato il tempismo perfetto per uscire davanti dall’ultima curva, conquistando la sua prima vittoria mondiale.<br><br>Álvaro Carpe ha chiuso secondo dopo una battaglia serratissima, mentre Hakim Danish ha completato il podio.')">
+    <div class="news-card-body">
+        <span class="news-tag tag-breaking">Breaking</span>
+        <div class="news-title">Mugello: Uriarte vince una Moto3 da infarto, Carpe e Danish sul podio</div>
+        <div class="news-excerpt">Finale incredibile al Mugello: Uriarte conquista la sua prima vittoria in Moto3 davanti a Carpe e Danish.</div>
+        <div class="news-meta">
+            <span class="news-date">📅 31 mag 2026</span>
+            <span class="news-author">Redazione</span>
+        </div>
+    </div>
+</div>
 <div class="news-block">
 <div class="news-card news-h-moto3 hidden-news" onclick="openNews('Moto3','Catalunya: finale pazzesco, Quiles si conferma leader del mondiale','📅 17 mag 2026 · ✍️ Redazione','Anche in Catalunya la Moto3 ha regalato uno spettacolo incredibile. Maximo Quiles ha confermato il suo straordinario momento di forma conquistando un\'altra vittoria fondamentale per il mondiale.<br><br>La gara è rimasta serrata fino all\'ultimo giro, con un gruppo di testa formato da cinque piloti sempre racchiusi in pochi decimi.<br><br>David Muñoz e Álvaro Carpe hanno provato più volte ad attaccare il leader del mondiale, ma Quiles ha sempre risposto con precisione e grande gestione della scia sul lungo rettilineo di Barcellona-Catalunya.<br><br>Nel finale la tensione è salita al massimo: all\'ultima curva Muñoz ha tentato il sorpasso decisivo, ma in uscita ha perso slancio permettendo a Quiles di incrociare e riprendersi la leadership fino al traguardo. Carpe ha completato il podio in una volata serratissima.<br><br>Con questa vittoria, il pilota Aspar consolida ulteriormente la leadership iridata dopo sei gare di stagione.')">
 <div class="news-card-body">
@@ -1000,7 +1027,7 @@ La sanzione costa a Fernández anche due podi (Le Mans e Barcellona) e la 3ª po
 </div>
 </div>
 </div>
-<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto3')">▼ Tutte le notizie (10)</button>
+<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-moto3')">▼ Tutte le notizie (11)</button>
 </div>
 </div>
 <!-- COLONNA DX: Classifica -->
