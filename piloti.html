@@ -862,7 +862,7 @@
 <!-- TAB BAR -->
 <div class="tab-bar">
 <button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
-<button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+5)</button>
+<button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+6)</button>
 <button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+6)</button>
 <button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+1)</button>
 </div>
@@ -1102,17 +1102,64 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">REDS Fantic Racing</span></div>
 <div class="riders-row rc-m2">
-<div class="rider-card"><div class="rider-flag">🇧🇪</div><div class="rider-name">Barry Baltus</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇧🇪</div><div class="rider-name">Barry Baltus</div><div class="rider-meta">Kalex</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round R9[sabato e domenica]-10-11 (infortunio)<br/>
+          <span style="color:var(--muted);">Sostituito da Jorge Navarro R10-11</span>
+</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">
+        Jorge Navarro
+        <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
+          SOSTITUTO R10-11
+        </span>
+</div>
+<div class="rider-meta">Kalex — Sub. Barry Baltus ai Round 10-11</div>
+</div>
 <div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Tony Arbolino</div><div class="rider-meta">Kalex</div></div>
 </div>
 </div>
 <div class="team-block">
-<div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">ITALJET Gresini Moto2</span></div>
+<div class="team-header">
+  <div class="team-dot dot-m2"></div>
+  <span class="team-name">ITALJET Gresini Moto2</span>
+</div>
+
 <div class="riders-row rc-m2">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Sergio García</div><div class="rider-meta">Kalex</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alonso López</div><div class="rider-meta">Kalex</div></div>
+
+  <div class="rider-card">
+    <div class="rider-flag">🇪🇸</div>
+    <div class="rider-name">Sergio García</div>
+    <div class="rider-meta">Kalex</div>
+  </div>
+
+  <div class="rider-card">
+    <div class="rider-flag">🇪🇸</div>
+    <div class="rider-name">Alonso López</div>
+    <div class="rider-meta">Kalex</div>
+
+    <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+      ⚠️ Assente Round 9[sabato e domenica]-10 (infortunio)<br/>
+      <span style="color:var(--muted);">Sostituito da Milan Pawelec</span>
+    </div>
+  </div>
+
+  <div class="rider-card" style="border-left:3px solid #f700d6;">
+    <div class="rider-flag">🇵🇱</div>
+    <div class="rider-name">
+      Milan Pawelec
+      <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
+        SOSTITUTO R9[sabato e domenica]-10
+      </span>
+    </div>
+    <div class="rider-meta">
+      Kalex — Sub. Alonso López ai Round 9[sabato e domenica] e 10
+    </div>
+  </div>
 </div>
-</div>
+  </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Idemitsu Honda Team Asia</span></div>
 <div class="riders-row rc-m2">
@@ -1129,8 +1176,8 @@
         <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
           SOSTITUTO R8
         </span>
-<div class="rider-meta">Kalex — Sub. Super Mario Aji al Round 8</div>
 </div>
+<div class="rider-meta">Kalex — Sub. Super Mario Aji al Round 8</div>
 </div>
 <div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Taiyo Furusato</div><div class="rider-meta">Kalex</div></div>
 </div>
@@ -1211,8 +1258,8 @@
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alex Escrig</div><div class="rider-meta">Forward</div></div>
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Navarro</div><div class="rider-meta">Forward</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
-            ⚠️ Assente Da Round 6 (infortunio)<br/>
-<span style="color:var(--muted);">Sostituito da X. Zurutuza</span></div></div>
+            ⚠️ Assente Da Round 6 (infortunio) [Sub B.Baltus R10-11]<br/>
+<span style="color:var(--muted);">Sostituito da X. Zurutuza [Sub B.Baltus R10-11]</span></div></div>
 <div class="rider-card" style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
 <div class="rider-flag">🇪🇸</div>
 <div class="rider-name">

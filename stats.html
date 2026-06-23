@@ -289,7 +289,7 @@ MENU
 <div class="hero-eyebrow">Analisi dati</div>
 <div class="back-btn-wrap"></div>
 <h1>Statistiche <span>2026</span></h1>
-<p class="hero-sub">Dati, grafici e record della stagione — aggiornati al Round 8 (Balaton, Ungheria)</p>
+<p class="hero-sub">Dati, grafici e record della stagione — aggiornati al Round 9 (Brno, Repubblica Ceca)</p>
 </div>
 </section>
 
@@ -297,11 +297,11 @@ MENU
 <div class="container">
 <div class="section-title">📊 Numeri chiave</div>
 <div class="stat-cards">
-<div class="stat-card fade-in"><div class="stat-card-val">8</div><div class="stat-card-lbl">Round disputati</div></div>
-<div class="stat-card fade-in"><div class="stat-card-val">24</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">9</div><div class="stat-card-lbl">Round disputati</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">27</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">180</div><div class="stat-card-lbl">Punti leader MotoGP</div></div>
-<div class="stat-card fade-in"><div class="stat-card-val">154.5</div><div class="stat-card-lbl">Punti leader Moto2</div></div>
-<div class="stat-card fade-in"><div class="stat-card-val">170</div><div class="stat-card-lbl">Punti leader Moto3</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">165.5</div><div class="stat-card-lbl">Punti leader Moto2</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">186</div><div class="stat-card-lbl">Punti leader Moto3</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">21</div><div class="stat-card-lbl">Nazioni rappresentate</div></div>
 </div>
 
@@ -324,23 +324,24 @@ MENU
 <div class="section-title">🏆 Record stagione 2025-2026</div>
 <div class="records-grid">
 <div class="record-card fade-in"><div class="record-cat">Vittorie consecutive</div><div class="record-val">3</div><div class="record-desc">Marco Bezzecchi [MOTO GP] - Manuel González [MOTO 2] - Máximo Quiles [MOTO 3]</div></div>
-<div class="record-card fade-in"><div class="record-cat">Più pole position MotoGP</div><div class="record-val">2</div><div class="record-desc">Fabio Di Giannantonio - Marco Bezzecchi - Marc Márquez</div></div>
+<div class="record-card fade-in"><div class="record-cat">Più pole position</div><div class="record-val">3</div><div class="record-desc">David Almansa [MOTO 3]</div></div>
 <div class="record-card fade-in"><div class="record-cat">Punteggio massimo in un round</div><div class="record-val">37 pt</div><div class="record-desc">Martín · R5 Le Mans (gara+sprint) - Márquez · R8 Balaton (gara+sprint)</div></div>
-<div class="record-card fade-in"><div class="record-cat">Più podi</div><div class="record-val">7</div><div class="record-desc">Máximo Quiles [MOTO3]</div></div>
+<div class="record-card fade-in"><div class="record-cat">Più podi</div><div class="record-val">8</div><div class="record-desc">Máximo Quiles [MOTO3]</div></div>
 </div>
 
 <div class="section-title">🌍 Vittorie per nazione</div>
 <div class="nations-grid">
-<div class="nation-card fade-in"><div class="nation-flag">🇪🇸</div><div class="nation-wins">16</div><div class="nation-name">Spagna</div></div>
+<div class="nation-card fade-in"><div class="nation-flag">🇪🇸</div><div class="nation-wins">18</div><div class="nation-name">Spagna</div></div>
 <div class="nation-card fade-in"><div class="nation-flag">🇮🇹</div><div class="nation-wins">6</div><div class="nation-name">Italia</div></div>
 <div class="nation-card fade-in"><div class="nation-flag">🇦🇺</div><div class="nation-wins">2</div><div class="nation-name">Australia</div></div>
+<div class="nation-card fade-in"><div class="nation-flag">🇲🇾</div><div class="nation-wins">1</div><div class="nation-name">Malesia</div></div>
 </div>
 </div>
 </main>
 
 <footer style="background:var(--mid);border-top:1px solid var(--border);padding:2rem;text-align:center;">
 <a href="index.html" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:var(--white);text-decoration:none;">MOTO<span style="color:var(--red)">2026</span></a>
-<p style="font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--muted);margin:.4rem 0 0;">Statistiche · Round 8 · Balaton, Ungheria · 05-07 giugno 2026</p>
+<p style="font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--muted);margin:.4rem 0 0;">Statistiche · Round 9 · Brno, Repubblica Ceca · 19-21 giugno 2026</p>
 </footer>
 
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
@@ -365,49 +366,51 @@ MENU
 const CHART_DATA = {
   motogp: {
     pilots: [
-      { name:'Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180] },
-      { name:'Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160] },
-      { name:'Di Giann.', color:'#a855f7', pts:[0,12,37,50,71,84,116,134,138] },
-      { name:'Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132] },
-      { name:'M.Márquez', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108] }
+      { name:'Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180]},
+      { name:'Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172]},
+      { name:'Di Giann.', color:'#a855f7', pts:[0,12,37,50,71,84,116,134,138,156]},
+      { name:'M.Márquez', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140]},
+      { name:'Ogura', color:'#60b4ff', pts:[0,17,33,37,48,67,77,92,105,134]},  
+      //{ name:'Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132] },
     ],
     constructors: [
-      {name:'Aprilia', pts:238, color:'#af02ff'}, 
-      {name:'Ducati', pts:225, color:'#dc2626'},
-      {name:'KTM', pts:154, color:'#f97316'}, 
-      {name:'Honda', pts:84, color:'#ef4444'},
-      {name:'Yamaha', pts:49, color:'#0502d3'}
+      {name:'Aprilia', pts:267, color:'#af02ff'}, 
+      {name:'Ducati', pts:262, color:'#dc2626'},
+      {name:'KTM', pts:163, color:'#f97316'}, 
+      {name:'Honda', pts:95, color:'#ef4444'},
+      {name:'Yamaha', pts:51, color:'#0502d3'}
     ]
   },
   moto2: {
     pilots: [
-      { name:'González', color:'#f7a600', pts:[0,12.5,28.5,39.5,59.5,79.5,104.5,129.5,154.5] },
-      { name:'Guevara', color:'#22c55e', pts:[0,10,20,36,45,70,86,95,105] },
-      { name:'Vietti', color:'#60b4ff', pts:[0,5,12,32,43,53,73,93,102] },
-      { name:'Agius', color:'#a855f7', pts:[0,0,0,25,50,58,64,77,93] },
-      { name:'Holgado', color:'#ef4444', pts:[0,8,33,33,38,38,49,65,76] }
+      { name:'González', color:'#f7a600', pts:[0,12.5,28.5,39.5,59.5,79.5,104.5,129.5,154.5,165.5] },
+      { name:'Guevara', color:'#22c55e', pts:[0,10,20,36,45,70,86,95,105,115] },
+      { name:'Vietti', color:'#60b4ff', pts:[0,5,12,32,43,53,73,93,102,109] },
+      { name:'Agius', color:'#a855f7', pts:[0,0,0,25,50,58,64,77,93,106] },
+      { name:'D.Alonso', color:'#ef4444', pts:[0,0,11,24,37,48,58,58,71,91] }
+      //{ name:'Holgado', color:'#ef4444', pts:[0,8,33,33,38,38,49,65,76] }
     ],
     constructors: [
-      {name:'Kalex', pts:182.5, color:'#888'}, 
-      {name:'Boscoscuro', pts:126, color:'#f97316'},
-      {name:'Forward', pts:30, color:'#f97316'}, 
+      {name:'Kalex', pts:207.5, color:'#888'}, 
+      {name:'Boscoscuro', pts:136, color:'#f97316'},
+      {name:'Forward', pts:33, color:'#f97316'}, 
     ]
   },
   moto3: {
     pilots: [
-      { name:'Quiles', color:'#00b4d8', pts:[0,20,45,65,90,115,140,145,170] },
-      { name:'Carpe', color:'#f7a600', pts:[0,13,26,42,55,55,75,95,111] },
-      { name:'Morelli', color:'#22c55e', pts:[0,9,29,34,50,54,65,68,77] },
-      { name:'Almansa', color:'#e8001d', pts:[0,25,25,25,34,43,56,56,76] },
-      { name:'B.Uriarte', color:'#a855f7', pts:[0,10,16,26,32,34,34,59,72] }
+      { name:'Quiles', color:'#00b4d8', pts:[0,20,45,65,90,115,140,145,170,186] },
+      { name:'Carpe', color:'#f7a600', pts:[0,13,26,42,55,55,75,95,111,121] },
+      { name:'B.Uriarte', color:'#a855f7', pts:[0,10,16,26,32,34,34,59,72,92] },
+      { name:'Almansa', color:'#e8001d', pts:[0,25,25,25,34,43,56,56,89]},
+      { name:'Morelli', color:'#22c55e', pts:[0,9,29,34,50,54,65,68,77,86]},
     ],
     constructors: [
-      {name:'KTM', pts:195, color:'#00b4d8'},
-      {name:'Honda', pts:109, color:'#ef4444'}, 
+      {name:'KTM', pts:220, color:'#00b4d8'},
+      {name:'Honda', pts:120, color:'#ef4444'}, 
     ]
   }
 };
-const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺'];
+const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺','R9 🇨🇿'];
 let activeCat = 'motogp';
 
 // ── TEMA ──
