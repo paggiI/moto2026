@@ -134,18 +134,88 @@
     .page-hero p { margin-top:.8rem; color:#aaa; max-width:500px; }
 
     /* TAB FILTER */
-    .tab-bar { background:var(--mid); border-bottom:1px solid var(--border); display:flex; overflow-x:auto; }
-    .tab-btn {
-      padding:1rem 2rem; font-family:'Barlow Condensed',sans-serif; font-weight:700;
-      font-size:1rem; letter-spacing:.1em; text-transform:uppercase;
-      background:none; border:none; border-bottom:3px solid transparent;
-      color:var(--muted); cursor:pointer; transition:all .2s; white-space:nowrap;
-    }
-    .tab-btn:hover { color:var(--white); }
-    .tab-btn.active-gp  { color:var(--gp); border-bottom-color:var(--gp); }
-    .tab-btn.active-m2  { color:var(--m2); border-bottom-color:var(--m2); }
-    .tab-btn.active-m3  { color:var(--m3); border-bottom-color:var(--m3); }
-    .tab-btn.active-all { color:var(--white); border-bottom-color:var(--white); }
+.tab-bar {
+  background: var(--mid);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  /* Nascondi scrollbar ma mantieni scroll */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  padding: .85rem 1.2rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  /* Area di tocco più grande su mobile */
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.tab-btn:hover { color: var(--white); }
+.tab-btn.active-gp  { color: var(--gp); border-bottom-color: var(--gp); }
+.tab-btn.active-m2  { color: var(--m2); border-bottom-color: var(--m2); }
+.tab-btn.active-m3  { color: var(--m3); border-bottom-color: var(--m3); }
+.tab-btn.active-all { color: var(--white); border-bottom-color: var(--white); }
+
+/* Indicatori gradient ai lati per mostrare che c'è altro contenuto */
+.tab-bar-wrapper {
+  position: relative;
+}
+.tab-bar-wrapper::before,
+.tab-bar-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 2;
+  pointer-events: none;
+}
+.tab-bar-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--mid), transparent);
+}
+.tab-bar-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--mid), transparent);
+}
+
+/* Su schermi larghi nascondi i gradient (non servono) */
+@media (min-width: 769px) {
+  .tab-bar-wrapper::before,
+  .tab-bar-wrapper::after {
+    display: none;
+  }
+}
+
+/* Mobile: bottoni ancora più compatti */
+@media (max-width: 480px) {
+  .tab-btn {
+    padding: .75rem .9rem;
+    font-size: .75rem;
+    min-height: 44px;
+  }
+}
 
     /* CONTAINER */
     .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
@@ -810,6 +880,12 @@
     margin-bottom: 0 !important;
   }
 }
+[data-theme="light"] .tab-bar-wrapper::before {
+  background: linear-gradient(to right, #e8e8e8, transparent);
+}
+[data-theme="light"] .tab-bar-wrapper::after {
+  background: linear-gradient(to left, #e8e8e8, transparent);
+}
 </style>
 </head>
 <body>
@@ -860,11 +936,13 @@
 </div>
 </section>
 <!-- TAB BAR -->
+<div class="tab-bar-wrapper">
 <div class="tab-bar">
 <button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
 <button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+6)</button>
 <button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+6)</button>
 <button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+1)</button>
+</div>
 </div>
 <div style="background:var(--mid);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;">
 <input id="searchPiloti" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='var(--red)'" oninput="searchRiders(this.value)" placeholder="🔍 Cerca pilota per nome..." style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;
@@ -1031,8 +1109,8 @@
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álex Rins</div><div class="rider-meta">Yamaha YZR-M1</div></div>
 <div class="rider-card" style="border-left:3px solid #3ef700;">
 <div class="rider-flag">🇪🇸</div>
-<div class="rider-name">Augusto Fernàndez <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4</span></div>
-<div class="rider-meta">Yamaha Racing Factory — WildCard al Round 4</div>
+<div class="rider-name">Augusto Fernàndez <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4-R6-R10</span></div>
+<div class="rider-meta">Yamaha Racing Factory — WildCard al Round 4-6-10</div>
 </div>
 </div>
 </div>
