@@ -5,10 +5,7 @@
  */
 
 const GP_NOTIFICATIONS = [
-  { id: 'gp-cat-2026',  msg: '🏁 GP Catalunya aggiunto al calendario — Barcellona 15-17 Maggio 2026', link: 'calendario.html' },
-  { id: 'gp-mug-2026',  msg: '🏁 GP d\'Italia al Mugello — 29-31 Maggio 2026', link: 'calendario.html' },
-  { id: 'gp-hun-2026',  msg: '🏁 Nuovo GP: Gran Premio d\'Ungheria — Budapest, 12-14 Giugno 2026', link: 'calendario.html' },
-  { id: 'gp-team-new',  msg: '🏢 Nuova pagina TEAM disponibile — schede di tutte le scuderie!', link: 'team.html' },
+  
 ];
 
 function moto2026_closeNotif() {
