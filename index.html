@@ -19,6 +19,7 @@
       --m2:     #f7a600;   /* Moto2 giallo */
       --m3:     #00b4d8;   /* Moto3 azzurro */
       --jgp:    #c0db26;
+      --rrc:    #325de9;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -215,6 +216,8 @@
     .cat-btn[data-cat="moto3"].active  { background: var(--m3); }
     .cat-btn[data-cat="juniorgp"]:hover,
     .cat-btn[data-cat="juniorgp"].active  { background: var(--jgp); }
+    .cat-btn[data-cat="redbullrookiescup"]:hover,
+    .cat-btn[data-cat="redbullrookiescup"].active  { background: var(--rrc); }
 
     /* ── LAYOUT MAIN ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
@@ -276,6 +279,7 @@
     .tag-m2  { background: rgba(247,166,0,.15); color: var(--m2); }
     .tag-m3  { background: rgba(0,180,216,.15); color: var(--m3); }
     .tag-jgp { background: rgba(192, 219, 38, .15);  color: var(--jgp); }
+    .tag-rrc { background: rgba(130, 128, 255, 0.15);  color: var(--rrc); }
 
     .news-featured h2 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -363,6 +367,7 @@
     .sc-header.m2 { background: var(--m2); color: #111; }
     .sc-header.m3 { background: var(--m3); }
     .sc-header.jgp { background: var(--jgp); }
+    .sc-header.rrc { background: var(--rrc); }
 
     .standings-card table { width: 100%; border-collapse: collapse; }
     .standings-card td, .standings-card th {
@@ -632,7 +637,7 @@
     }
     /* Escludi elementi che non devono transitare */
     .rider-photo, img, video, canvas, svg,
-    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3, .tag-cat-jgp {
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3, .tag-cat-jgp, .tag-cat-rrc {
       transition: none !important;
     }
     
@@ -1378,7 +1383,7 @@
 <div class="hero-content">
 <span class="hero-badge">🏁 Stagione 2026</span>
 <h1>IL MOTOMONDIALE<br/><span>È QUI.</span></h1>
-<p>Notizie in tempo reale, classifiche aggiornate e tutto ciò che succede in pista — MotoGP, Moto2 e Moto3.</p>
+<p>Notizie in tempo reale, classifiche aggiornate e tutto ciò che succede in pista — MotoGP, Moto2, Moto3, RedBull MotoGP Rookies Cup e FIM MotoJunior World Championship</p>
 <div class="hero-actions">
 <a class="btn btn-outline" href="risultati.html">Risultati</a>
 <a class="btn btn-outline" href="calendario.html">Calendario 2026</a>
@@ -1546,13 +1551,13 @@
   <div class="rc-date">19–21 giu</div>
   <div class="rc-status">✓ Risultati →</div>
 </a>
-<div class="race-card">
+<a class="race-card" href="risultati.html?round=r10" style="text-decoration:none;color:inherit;">
   <div class="rc-round">Round 10</div>
   <div class="rc-flag">🇳🇱</div>
   <div class="rc-name">GP Olanda</div>
   <div class="rc-date">26–28 giu</div>
   <div class="rc-status">⚡ Prossimo →</div>
-</div>
+</a>
 <div class="race-card">
   <div class="rc-round">Round 11</div>
   <div class="rc-flag">🇩🇪</div>
@@ -1724,7 +1729,7 @@ function toggleMenu() {
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
-  const tagColors = { MotoGP:'tag-gp', Moto2:'tag-m2', Moto3:'tag-m3', JuniorGP:'tag-jgp' };
+  const tagColors = { MotoGP:'tag-gp', Moto2:'tag-m2', Moto3:'tag-m3', JuniorGP:'tag-jgp', RedBullRookiesCup:'tag-rrc'};
   function openNews(cat, title, meta, text) {
     const modal = document.getElementById('newsModal');
     document.getElementById('nmTag').textContent = cat;
@@ -1745,6 +1750,7 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
+  {cat:'RedBullRookiesCup',tagCls:'tag-rrc',title:'Red Bull Rookies Cup, Gara 1 ad Assen: Carlos Cano trionfa in volata, Kristian Daniel beffato nell’ultimo settore',excerpt:'Lo spagnolo conquista la sua prima vittoria stagionale precedendo Kristian Daniel Jr. Beñat Fernández completa il podio dopo una gara combattutissima fino all’ultima curva.',date:'27 giu 2026',author:'Redazione',meta:'📅 27 giu 2026 · ✍️ Redazione',body:'Il TT Circuit Assen ha regalato ancora una volta uno spettacolo degno della "Cattedrale della Velocità". Gara 1 della Red Bull MotoGP Rookies Cup si è decisa soltanto sul rettilineo finale, con Carlos Cano che ha conquistato la sua prima vittoria della stagione precedendo di poco lo statunitense Kristian Daniel Jr..<br><br>Lo spagnolo è rimasto costantemente nel gruppo di testa, gestendo alla perfezione una gara caratterizzata da continui sorpassi e cambi di leadership. Nell’ultimo giro Cano ha sfruttato al meglio la scia, riuscendo a tagliare il traguardo davanti a Daniel dopo uno sprint mozzafiato.<br><br>Alle loro spalle Beñat Fernández ha conquistato un prezioso terzo posto, consolidando la leadership del campionato grazie all’ennesimo piazzamento sul podio. Anche Ryota Ogiwara ha lottato fino alla fine per le posizioni di vertice, chiudendo quarto davanti a Fynn Kratochwil e Fernando Bujosa.<br><br>Come da tradizione nella Rookies Cup, la gara è rimasta estremamente compatta per tutti i dodici giri. I primi piloti hanno tagliato il traguardo racchiusi in poco più di un secondo, con continui sorpassi nelle veloci esse di Assen e nelle staccate più impegnative del tracciato olandese.<br><br>Tra gli episodi più significativi della corsa va segnalata la caduta di Sullivan Mounsey, uno dei protagonisti del weekend dopo le qualifiche, costretto al ritiro mentre era in lotta nelle posizioni di testa.<br><br>Per Carlos Cano si tratta di un successo pesantissimo sia dal punto di vista morale sia per la classifica, mentre Fernández esce ancora una volta rafforzato grazie alla sua straordinaria continuità di rendimento. L’appuntamento è ora con Gara 2 alle 8:45 di domenica 28 Giugno, dove i distacchi minimi visti nella prima manche fanno prevedere un’altra battaglia fino all’ultima curva.'},
   {cat:'Moto3',tagCls:'tag-m3',title:'Yamaha sarà il fornitore esclusivo della categoria dal 2028 al 2033',excerpt:'Annunciato ad Assen il nuovo progetto con MotoGP: una moto completamente nuova e una piattaforma dedicata ai giovani talenti.',date:'26 giu 2026',author:'Redazione',meta:'📅 26 giu 2026 · ✍️ Redazione',body:'La Moto3 si prepara a vivere una vera e propria rivoluzione. Nel corso di una conferenza stampa straordinaria ad Assen, MotoGP e Yamaha hanno annunciato che la casa giapponese diventerà il fornitore esclusivo della categoria dal 2028 al 2033.<br><br>L’obiettivo del nuovo progetto è creare una piattaforma tecnica unica che metta ancora di più al centro il talento dei giovani piloti, garantendo al tempo stesso elevati standard di competitività e contenimento dei costi.<br><br>Per l’occasione Yamaha svilupperà un nuovo prototipo da competizione basato sulla piattaforma CP2, profondamente riprogettato per l’utilizzo nei Gran Premi. La moto sarà progettata per offrire un miglior rapporto peso/potenza rispetto alle attuali Moto3 e dimensioni più adatte alla nuova generazione di piloti.<br><br>La presentazione ufficiale del nuovo modello è prevista nel corso del 2027, mentre i primi test dei prototipi dovrebbero iniziare entro la fine dell’anno. Dal 2029 anche il campionato Moto3 Junior adotterà una versione leggermente meno performante della nuova moto, creando un percorso di crescita ancora più lineare verso il Mondiale.<br><br>Carlos Ezpeleta, direttore sportivo della MotoGP, ha definito l’accordo uno dei cambiamenti più importanti per il futuro della categoria, sottolineando come la Moto3 rappresenti il primo vero passo professionale per i futuri campioni e come questa nuova piattaforma contribuirà a rendere il motociclismo ancora più accessibile e competitivo.<br><br>Sulla stessa linea anche Paolo Pavesio, amministratore delegato di Yamaha Motor Racing, che ha evidenziato come il progetto non riguardi solamente la realizzazione di una nuova moto, ma la costruzione di un ecosistema capace di supportare piloti, team e campionati nel lungo periodo.<br><br>Con questo accordo prende così forma una nuova era per la Moto3, destinata a modificare profondamente il percorso di formazione dei giovani talenti che ambiscono ad arrivare fino alla MotoGP.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'DOMINIO DUCATI: Márquez rinnova fino al 2028, addio Bagnaia e arriva Acosta nel 2027',excerpt:'Rivoluzione totale a Borgo Panigale: Marc Márquez resta fino al 2028, Francesco Bagnaia lascia Ducati a fine 2026 e Pedro Acosta sarà il nuovo pilota ufficiale dal 2027.',date:'23 giu 2026',author:'Redazione',meta:'📅 23 giu 2026 · ✍️ Redazione',body:'Ora è ufficiale: il futuro di Ducati in MotoGP prende una svolta totale con tre annunci destinati a cambiare gli equilibri della griglia.<br><br>Dopo mesi di indiscrezioni e trattative, la Casa di Borgo Panigale ha confermato il rinnovo di <strong>Marc Márquez</strong>, che resterà nel <strong>Ducati Lenovo Team fino al 2028</strong>, diventando il pilastro del progetto anche nella nuova era tecnica del 2027.<br><br>"Sono felice di continuare questo progetto. Mi sento a casa in Ducati e credo che insieme possiamo ancora raggiungere grandi risultati", ha dichiarato Márquez dopo l’annuncio ufficiale.<br><br>Ma la notizia più clamorosa riguarda <strong>Francesco Bagnaia</strong>: il due volte campione del mondo lascerà Ducati al termine della stagione 2026, chiudendo una delle partnership più vincenti della storia recente della MotoGP. Il pilota italiano proseguirà la sua carriera in Aprilia a partire dal 2027, aprendo una nuova fase della sua carriera.<br><br>La separazione segna la fine di un’era per Borgo Panigale, con Bagnaia che ha contribuito in modo decisivo al ritorno al titolo mondiale della casa italiana.<br><br>Al suo posto Ducati ha scelto il futuro: dal 2027 entrerà ufficialmente nel team factory <strong>Pedro Acosta</strong>, uno dei talenti più promettenti della nuova generazione, pronto a debuttare nella classe regina con la moto ufficiale.<br><br>Acosta andrà così a formare una coppia completamente nuova con Márquez, creando una delle line-up più attese e competitive della nuova era MotoGP.<br><br>Con queste mosse, Ducati manda un messaggio chiaro alla concorrenza: il progetto vincente continuerà anche nel ciclo tecnico 2027–2028, puntando su un mix di esperienza e talento giovane.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'BRNO : Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato',excerpt:'Un weekend ricco di colpi di scena: Ogura conquista la pole, Bagnaia domina il sabato, Bezzecchi viene escluso dal GP e Márquez trionfa nella gara della domenica.',date:'23 giu 2026',author:'Redazione',meta:'📅 23 giu 2026 · ✍️ Redazione',body:'Il ritorno della MotoGP a Brno dopo diversi anni di assenza ha regalato uno dei weekend più intensi e discussi dell\'intera stagione 2026.<br><br>Il venerdì è stato caratterizzato da condizioni difficili e temperature elevate, con Ai Ogura capace di sorprendere tutti firmando il miglior tempo nelle Practice. Il giapponese della Trackhouse Aprilia si è confermato tra i protagonisti del weekend, mentre Marco Bezzecchi e le Ducati ufficiali di Francesco Bagnaia e Marc Márquez hanno mostrato un ottimo passo gara fin dalle prime sessioni.<br><br>Sabato mattina è arrivata un\'altra sorpresa: Ogura ha conquistato la prima pole position della sua carriera in MotoGP con un giro record sul circuito ceco. In prima fila anche Bagnaia e Fabio Di Giannantonio, mentre Márquez ha dovuto accontentarsi della seconda fila dopo una qualifica meno brillante del previsto.<br><br>Nella Sprint Race è stato però Francesco Bagnaia a fare la differenza. Scattato perfettamente al via, il campione italiano ha preso subito il comando della corsa e ha resistito agli attacchi di Ogura fino alla bandiera a scacchi, conquistando la sua prima vittoria Sprint della stagione. Sul podio anche Marc Márquez, terzo dopo una gara molto intelligente.<br><br>Il vero episodio destinato a segnare il weekend è però arrivato nelle fasi finali della Sprint. Marco Bezzecchi, leader del Mondiale, è caduto a due giri dal termine mentre si trovava nelle posizioni di vertice. Nel tentativo di rientrare in pista si è verificato un acceso confronto con alcuni commissari impegnati nel recupero della moto. Le immagini dell\'accaduto hanno immediatamente fatto il giro del paddock e poche ore dopo i commissari FIM hanno deciso di escludere Bezzecchi dal resto del Gran Premio.<br><br>La squalifica del pilota Aprilia ha inevitabilmente cambiato il volto della domenica. Senza il leader del campionato in griglia, la gara si è trasformata in un confronto diretto tra Bagnaia, Márquez e Ogura.<br><br>Dopo una prima parte di corsa guidata da Bagnaia, Marc Márquez ha aumentato progressivamente il ritmo fino a portare l\'attacco decisivo nella seconda metà della gara. Lo spagnolo della Ducati Lenovo Team ha preso il comando e si è involato verso la vittoria, ottenendo un successo pesantissimo nella corsa al titolo.<br><br>Alle sue spalle Ai Ogura ha completato il miglior weekend della sua carriera in MotoGP conquistando un brillante secondo posto, mentre Bagnaia ha chiuso terzo dopo aver lottato per tutta la gara con i due avversari.<br><br>Il Gran Premio della Repubblica Ceca si chiude così con un Mondiale completamente riaperto: la vittoria di Márquez e l\'assenza forzata di Bezzecchi hanno ridotto sensibilmente il distacco in classifica, promettendo una seconda metà di stagione ancora più combattuta.'},
@@ -1796,6 +1802,7 @@ function renderIndexNews() {
     Moto2: 'var(--m2)',
     Moto3: 'var(--m3)',
     JuniorGP: 'var(--jgp)',
+    RedBullRookiesCup: 'var(--rrc)',
   };
 
   // FEATURED: prima "breaking", altrimenti prima MotoGP
