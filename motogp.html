@@ -836,7 +836,7 @@
 <div class="hstat"><div class="hstat-num">28</div><div class="hstat-label">Piloti</div></div>
 <div class="hstat"><div class="hstat-num">11</div><div class="hstat-label">Team</div></div>
 <div class="hstat"><div class="hstat-num">22</div><div class="hstat-label">Gare</div></div>
-<div class="hstat"><div class="hstat-num">9</div><div class="hstat-label">Round conclusi</div></div>
+<div class="hstat"><div class="hstat-num">10</div><div class="hstat-label">Round conclusi</div></div>
 </div>
 </div>
 </section>
@@ -855,8 +855,8 @@
 <div class="next-gp-banner">
 <div>
 <div class="next-gp-label">⏭ Prossimo Gran Premio</div>
-<div class="next-gp-name">🇳🇱 Round 10 — GP Olanda · TT Circuit Assen</div>
-<div class="next-gp-date">26 – 28 giugno 2026 · Assen</div>
+<div class="next-gp-name">🇩🇪 Round 11 — GP Germania · Sachsenring</div>
+<div class="next-gp-date">10 – 12 luglio 2026 · Sachsenring</div>
 </div>
 <a class="next-gp-btn" href="calendario.html">Calendario →</a>
 </div>
@@ -865,6 +865,48 @@
 <!-- COLONNA SX: Notizie -->
 <div>
 <div class="news-header">📰 Ultime Notizie</div>
+<div class="news-block">
+<div class="news-card featured" id="nc-assen-ogura" style="cursor:pointer;">
+<div class="news-card-body">
+<span class="news-tag tag-gp">ASSEN</span>
+<div class="news-title">ASSEN 2026: Ogura domina la gara lunga davanti a Fernández e Martín, Bezzecchi out dopo una caduta</div>
+<div class="news-excerpt">Prima storica vittoria in MotoGP per Ai Ogura in una gara caotica ad Assen. Doppietta Trackhouse con Raúl Fernández secondo, podio per Jorge Martín che diventa nuovo leader del Mondiale.</div>
+<div class="news-meta">
+<span class="news-date">📅 28 giu 2026</span>
+<span class="news-author">Redazione</span>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var _cat="MotoGP",
+  _title="MotoGP, Assen: Ogura domina la gara lunga davanti a Fernández e Martín, Bezzecchi out dopo una caduta",
+  _meta="📅 28 giu 2026 · ✍️ Redazione",
+  _body=`Il TT Circuit Assen ha ospitato una gara lunga di MotoGP ricca di colpi di scena, sorpassi e cambi di scenario continui, culminata con la prima storica vittoria in top class per Ai Ogura. Il pilota giapponese del team Trackhouse ha sfruttato al meglio il caos del finale per imporsi davanti al compagno di squadra Raúl Fernández, firmando una clamorosa doppietta per il team americano.<br><br>
+
+La gara è stata caratterizzata fin dalle prime fasi da un ritmo altissimo e da numerosi tentativi di fuga, con i piloti ufficiali pronti a contendersi il comando giro dopo giro. Nella fase centrale è stato Raúl Fernández a prendere il controllo, imponendo un passo competitivo che sembrava indirizzare la corsa verso una vittoria in solitaria.<br><br>
+
+Nel finale però il rientro di Ogura ha cambiato completamente lo scenario: il giapponese ha ridotto progressivamente il distacco fino a raggiungere il compagno, costruendo l’attacco decisivo nelle ultime tornate. All’ultimo giro, in un finale tiratissimo, Ogura ha completato il sorpasso che gli ha consegnato la vittoria, con Fernández costretto ad accontentarsi della seconda posizione.<br><br>
+
+Alle loro spalle Jorge Martín ha chiuso terzo, conquistando un podio pesantissimo anche in ottica mondiale grazie al ritiro di Marco Bezzecchi, caduto nelle fasi iniziali dopo una scivolata in curva 17 ed è costretto a fare 0 punti nella gara di domenica. Dopo un controllo al centro medico, Marco Bezzecchi è stato trasferito all’ospedale di Groningen per gli esami di secondo livello, dove i medici hanno avviato una valutazione più approfondita delle sue condizioni fisiche per escludere eventuali complicazioni e definire con precisione l’entità dei traumi riportati nella caduta di Assen. Quarto posto per Fabio Di Giannantonio davanti ad Alex Márquez ed Enea Bastianini, mentre Marc Márquez e Francesco Bagnaia hanno chiuso in top ten dopo una gara complessa.<br><br>
+
+Con questo risultato il Mondiale cambia volto: Martín sale al comando della classifica, mentre Ogura entra nella storia con la sua prima vittoria in MotoGP e Trackhouse celebra un risultato senza precedenti nella classe regina.`;
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var el=document.getElementById('nc-assen-ogura');
+    if(el){
+      el.addEventListener('click',function(){
+        if(typeof openNews==='function'){
+          openNews(_cat,_title,_meta,_body);
+        }
+      });
+    }
+  });
+})();
+</script>
+<br>
 <div class="news-block">
 <div class="news-card featured" id="nc-marquez-rinnovo" style="cursor:pointer;">
 <div class="news-card-body">
@@ -913,54 +955,18 @@ Con queste mosse, Ducati manda un messaggio chiaro alla concorrenza: il progetto
 })();
 </script>
 <br>
-<div class="news-block">
-<div class="news-card featured" id="nc-brno-weekend" style="cursor:pointer;">
-<div class="news-card-body">
-<span class="news-tag tag-gp">BRNO</span>
-<div class="news-title">BRNO 2026: Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato</div>
-<div class="news-excerpt">Un weekend ricco di colpi di scena: Ogura conquista la pole, Bagnaia domina il sabato, Bezzecchi viene escluso dal GP e Márquez trionfa nella gara della domenica.</div>
-<div class="news-meta">
-<span class="news-date">📅 23 giu 2026</span>
-<span class="news-author">Redazione</span>
+<div class="news-card news-h-motogp hidden-news" onclick="openNews('MotoGP','BRNO 2026: Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato','📅 23 giu 2026 · ✍️ Redazione','Il ritorno della MotoGP a Brno dopo diversi anni di assenza ha regalato uno dei weekend più intensi e discussi dell\'intera stagione 2026.<br><br> Il venerdì è stato caratterizzato da condizioni difficili e temperature elevate, con Ai Ogura capace di sorprendere tutti firmando il miglior tempo nelle Practice. Il giapponese della Trackhouse Aprilia si è confermato tra i protagonisti del weekend, mentre Marco Bezzecchi e le Ducati ufficiali di Francesco Bagnaia e Marc Márquez hanno mostrato un ottimo passo gara fin dalle prime sessioni.<br><br> Sabato mattina è arrivata un\'altra sorpresa: Ogura ha conquistato la prima pole position della sua carriera in MotoGP con un giro record sul circuito ceco. In prima fila anche Bagnaia e Fabio Di Giannantonio, mentre Márquez ha dovuto accontentarsi della seconda fila dopo una qualifica meno brillante del previsto.<br><br> Nella Sprint Race è stato però Francesco Bagnaia a fare la differenza. Scattato perfettamente al via, il campione italiano ha preso subito il comando della corsa e ha resistito agli attacchi di Ogura fino alla bandiera a scacchi, conquistando la sua prima vittoria Sprint della stagione. Sul podio anche Marc Márquez, terzo dopo una gara molto intelligente.<br><br> Il vero episodio destinato a segnare il weekend è però arrivato nelle fasi finali della Sprint. Marco Bezzecchi, leader del Mondiale, è caduto a due giri dal termine mentre si trovava nelle posizioni di vertice. Nel tentativo di rientrare in pista si è verificato un acceso confronto con alcuni commissari impegnati nel recupero della moto. Le immagini dell\'accaduto hanno immediatamente fatto il giro del paddock e poche ore dopo i commissari FIM hanno deciso di escludere Bezzecchi dal resto del Gran Premio.<br><br> La squalifica del pilota Aprilia ha inevitabilmente cambiato il volto della domenica. Senza il leader del campionato in griglia, la gara si è trasformata in un confronto diretto tra Bagnaia, Márquez e Ogura.<br><br> Dopo una prima parte di corsa guidata da Bagnaia, Marc Márquez ha aumentato progressivamente il ritmo fino a portare l\'attacco decisivo nella seconda metà della gara. Lo spagnolo della Ducati Lenovo Team ha preso il comando e si è involato verso la vittoria, ottenendo un successo pesantissimo nella corsa al titolo.<br><br> Alle sue spalle Ai Ogura ha completato il miglior weekend della sua carriera in MotoGP conquistando un brillante secondo posto, mentre Bagnaia ha chiuso terzo dopo aver lottato per tutta la gara con i due avversari.<br><br> Il Gran Premio della Repubblica Ceca si chiude così con un Mondiale completamente riaperto: la vittoria di Márquez e l\'assenza forzata di Bezzecchi hanno ridotto sensibilmente il distacco in classifica, promettendo una seconda metà di stagione ancora più combattuta.')
+">
+    <div class="news-card-body">
+        <span class="news-tag tag-gp">BRNO</span>
+        <div class="news-title">BRNO 2026: Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato</div>
+        <div class="news-excerpt">Un weekend ricco di colpi di scena: Ogura conquista la pole, Bagnaia domina il sabato, Bezzecchi viene escluso dal GP e Márquez trionfa nella gara della domenica.</div>
+        <div class="news-meta">
+            <span class="news-date">📅 23 giu 2026</span>
+            <span class="news-author">Redazione</span>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-
-<script>
-(function(){
-  var _cat="MotoGP",
-  _title="BRNO 2026: Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato",
-  _meta="📅 23 giu 2026 · ✍️ Redazione",
-  _body=`Il ritorno della MotoGP a Brno dopo diversi anni di assenza ha regalato uno dei weekend più intensi e discussi dell'intera stagione 2026.<br><br>
-
-Il venerdì è stato caratterizzato da condizioni difficili e temperature elevate, con Ai Ogura capace di sorprendere tutti firmando il miglior tempo nelle Practice. Il giapponese della Trackhouse Aprilia si è confermato tra i protagonisti del weekend, mentre Marco Bezzecchi e le Ducati ufficiali di Francesco Bagnaia e Marc Márquez hanno mostrato un ottimo passo gara fin dalle prime sessioni.<br><br>
-
-Sabato mattina è arrivata un'altra sorpresa: Ogura ha conquistato la prima pole position della sua carriera in MotoGP con un giro record sul circuito ceco. In prima fila anche Bagnaia e Fabio Di Giannantonio, mentre Márquez ha dovuto accontentarsi della seconda fila dopo una qualifica meno brillante del previsto.<br><br>
-
-Nella Sprint Race è stato però Francesco Bagnaia a fare la differenza. Scattato perfettamente al via, il campione italiano ha preso subito il comando della corsa e ha resistito agli attacchi di Ogura fino alla bandiera a scacchi, conquistando la sua prima vittoria Sprint della stagione. Sul podio anche Marc Márquez, terzo dopo una gara molto intelligente.<br><br>
-
-Il vero episodio destinato a segnare il weekend è però arrivato nelle fasi finali della Sprint. Marco Bezzecchi, leader del Mondiale, è caduto a due giri dal termine mentre si trovava nelle posizioni di vertice. Nel tentativo di rientrare in pista si è verificato un acceso confronto con alcuni commissari impegnati nel recupero della moto. Le immagini dell'accaduto hanno immediatamente fatto il giro del paddock e poche ore dopo i commissari FIM hanno deciso di escludere Bezzecchi dal resto del Gran Premio.<br><br>
-
-La squalifica del pilota Aprilia ha inevitabilmente cambiato il volto della domenica. Senza il leader del campionato in griglia, la gara si è trasformata in un confronto diretto tra Bagnaia, Márquez e Ogura.<br><br>
-
-Dopo una prima parte di corsa guidata da Bagnaia, Marc Márquez ha aumentato progressivamente il ritmo fino a portare l'attacco decisivo nella seconda metà della gara. Lo spagnolo della Ducati Lenovo Team ha preso il comando e si è involato verso la vittoria, ottenendo un successo pesantissimo nella corsa al titolo.<br><br>
-
-Alle sue spalle Ai Ogura ha completato il miglior weekend della sua carriera in MotoGP conquistando un brillante secondo posto, mentre Bagnaia ha chiuso terzo dopo aver lottato per tutta la gara con i due avversari.<br><br>
-
-Il Gran Premio della Repubblica Ceca si chiude così con un Mondiale completamente riaperto: la vittoria di Márquez e l'assenza forzata di Bezzecchi hanno ridotto sensibilmente il distacco in classifica, promettendo una seconda metà di stagione ancora più combattuta.`;
-
-  document.addEventListener('DOMContentLoaded',function(){
-    var el=document.getElementById('nc-brno-weekend');
-    if(el){
-      el.addEventListener('click',function(){
-        if(typeof openNews==='function'){
-          openNews(_cat,_title,_meta,_body);
-        }
-      });
-    }
-  });
-})();
-</script>
 <div class="news-card news-h-motogp hidden-news" onclick="openNews('MotoGP','SILLY SEASON 2027: rivoluzione totale in MotoGP, Márquez–Acosta in Ducati e Bagnaia in Aprilia','📅 12 giu 2026 · ✍️ Redazione','Il mercato piloti MotoGP 2027 si infiamma con una serie di rumor che, se confermati, ridisegnerebbero completamente gli equilibri della griglia.<br><br> In Ducati Lenovo Team si profila una coppia stellare composta da Marc Márquez e Pedro Acosta, una formazione che unirebbe esperienza e talento assoluto per dominare la nuova era della MotoGP.<br><br> Nel team Gresini Racing, Joan Mir affiancherebbe il giovane Daniel Holgado, promosso direttamente dalla Moto2 dopo una stagione di grande crescita.<br><br> In VR46 Pertamina Enduro si parla di Fermín Aldeguer affiancato da una scelta ancora aperta tra Nicolò Bulega e Celestino Vietti.<br><br> In Yamaha Monster Energy il colpo sarebbe Jorge Martín insieme ad Ai Ogura, mentre in Prima Pramac Yamaha il progetto punterebbe su Toprak Razgatlıoğlu e Izan Guevara.<br><br> In KTM Factory si ipotizza la coppia Álex Márquez e Fabio Di Giannantonio, mentre Tech3 potrebbe puntare su Maverick Viñales oppure su Raúl Fernández o Manuel González.<br><br> Aprilia Racing sarebbe pronta a una coppia totalmente italiana con Francesco Bagnaia e Marco Bezzecchi, mentre Trackhouse punterebbe su Enea Bastianini con altri giovani in arrivo dalla Moto2.<br><br> In Honda Repsol si vocifera di Fabio Quartararo insieme a David Alonso o Diogo Moreira, mentre LCR completerebbe la line-up con Johann Zarco e un giovane sudamericano.<br><br> Uno scenario ancora tutto da confermare, ma che promette di rivoluzionare completamente la griglia MotoGP 2027.')">
     <div class="news-card-body">
         <span class="news-tag tag-gp">MotoGP</span>
@@ -1118,25 +1124,24 @@ Il Gran Premio della Repubblica Ceca si chiude così con un Mondiale completamen
 </div>
 </div>
 </div>
-<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-motogp')">▼ Tutte le notizie (14)</button>
-</div>
+<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-motogp')">▼ Tutte le notizie (15)</button>
 </div>
 <!-- COLONNA DX: Classifica -->
 <div>
 <h2 class="section-title" style="max-width:100%;margin:0 0 1.4rem 0;">Classifica Piloti</h2>
 <div class="standings-preview">
 <div class="sp-header">
-<span class="sp-title">MotoGP 2026 — Dopo 9 Round</span>
+<span class="sp-title">MotoGP 2026 — Dopo 10 Round</span>
 <a class="sp-link" href="classifica.html">Classifica completa →</a>
 </div>
 <table class="sp-table">
-<tr><td><span class="sp-pos p1c">1</span></td><td>🇮🇹</td><td><div class="sp-name">Marco Bezzecchi</div><div class="sp-team">Aprilia Racing</div></td><td class="sp-pts">180</td></tr>
-<tr><td><span class="sp-pos p2c">2</span></td><td>🇪🇸</td><td><div class="sp-name">Jorge Martín</div><div class="sp-team">Aprilia Racing</div></td><td class="sp-pts">172</td></tr>
-<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Fabio Di Giannantonio</div><div class="sp-team">Pertamina Enduro VR46</div></td><td class="sp-pts">157</td></tr>
+  <tr><td><span class="sp-pos p1c">1</span></td><td>🇪🇸</td><td><div class="sp-name">Jorge Martín</div><div class="sp-team">Aprilia Racing</div></td><td class="sp-pts">193</td></tr>
+<tr><td><span class="sp-pos p2c">2</span></td><td>🇮🇹</td><td><div class="sp-name">Marco Bezzecchi</div><div class="sp-team">Aprilia Racing</div></td><td class="sp-pts">186</td></tr>
+<tr><td><span class="sp-pos p3c">3</span></td><td>🇮🇹</td><td><div class="sp-name">Fabio Di Giannantonio</div><div class="sp-team">Pertamina Enduro VR46</div></td><td class="sp-pts">177</td></tr>
 <!-- <tr><td><span class="sp-pos">4</span></td><td>🇪🇸</td><td><div class="sp-name">Pedro Acosta</div><div class="sp-team">Red Bull KTM Factory Racing</div></td><td class="sp-pts">132</td></tr>
 -->
-<tr><td><span class="sp-pos">4</span></td><td>🇪🇸</td><td><div class="sp-name">Marc Márquez</div><div class="sp-team">Ducati Lenovo Team</div></td><td class="sp-pts">140</td></tr>
-<tr><td><span class="sp-pos">5</span></td><td>🇯🇵</td><td><div class="sp-name">AI Ogura</div><div class="sp-team">Trackhouse MotoGP Team</div></td><td class="sp-pts">134</td></tr>
+<tr><td><span class="sp-pos">4</span></td><td>🇯🇵</td><td><div class="sp-name">AI Ogura</div><div class="sp-team">Trackhouse MotoGP Team</div></td><td class="sp-pts">168</td></tr>
+<tr><td><span class="sp-pos">5</span></td><td>🇪🇸</td><td><div class="sp-name">Marc Márquez</div><div class="sp-team">Ducati Lenovo Team</div></td><td class="sp-pts">153</td></tr>
 </table>
 </div>
 </div><!-- fine colonna DX -->

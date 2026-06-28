@@ -803,6 +803,21 @@
 .top5-grid .winners-table {
   margin-bottom: 0; /* rimuove il margin bottom della tabella singola */
 }
+/* ── SPRINT SPLIT GRID ── */
+.sprint-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.sprint-split-grid .winners-table {
+  margin-bottom: 0;
+}
+@media (max-width: 600px) {
+  .sprint-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -853,7 +868,7 @@
         ← Torna alla pagina dei risultati
       </button>
 <h1>STAGIONE <span>2026</span></h1>
-<p>Statistiche aggregate, vincitori, podii e tendenze dopo 9 round disputati su 22.</p>
+<p>Statistiche aggregate, vincitori, podii e tendenze dopo 10 round disputati su 22.</p>
 </div>
 </section>
 <div class="container">
@@ -883,7 +898,9 @@ const ROUNDS_DONE = [
   { num:6, flag:'🇪🇸', name:'GP Catalunya', circuit:'Barcelona', gp:{ winner:'Fabio Di Giannantonio', flag:'🇮🇹', team:'Pertamina Enduro VR46' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
   { num:7, flag:'🇮🇹', name:'GP Italia', circuit:'Mugello', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } },
   { num:8, flag:'🇭🇺', name:'GP Ungheria', circuit:'Balaton Park', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
-  { num:9, flag:'🇨🇿', name:'GP Repubblica Ceca', circuit:'Brno', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Hakim Danish', flag:'🇪🇸', team:'FRINSA – MT Helmets – MSI' } }
+  { num:9, flag:'🇨🇿', name:'GP Repubblica Ceca', circuit:'Brno', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Hakim Danish', flag:'🇪🇸', team:'FRINSA – MT Helmets – MSI' } },
+  { num:10, flag:'🇳🇱', name:'GP Olanda', circuit:'Brno', gp:{ winner:'Ai Ogura', flag:'🇯🇵', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'David Alonso', flag:'🇨🇴', team:'CFMOTO Aspar Team' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } }
+
 ];
 
 const SPRINT_WINNERS = [
@@ -893,32 +910,33 @@ const SPRINT_WINNERS = [
   { round:4, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
   { round:5, flag:'🇪🇸', winner:'Jorge Martín', team:'Aprilia Racing' },
   { round:6, flag:'🇪🇸', winner:'Álex Márquez', team:'BK8 Gresini Racing MotoGP' },
-  { round:7, flag:'🇪🇸', winner:'Raúl Fernández', team:'Trackhouse MotoGP Team' },
+  { round:7, flag:'🇪🇸', winner:'Raúl Fernández', team:'SuperFile Trackhouse MotoGP Team' },
   { round:8, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
-  { round:9, flag:'🇮🇹', winner:'Francesco Bagnaia', team:'Ducati Lenovo Team' }
+  { round:9, flag:'🇮🇹', winner:'Francesco Bagnaia', team:'Ducati Lenovo Team' },
+  { round:10, flag:'🇪🇸', winner:'Raúl Fernández', team:'SuperFile Trackhouse MotoGP Team' },
 ];
 
 const CLASSIFICA = {
   "motogp": [
-    { pos:1, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:180.0 },
-    { pos:2, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:172.0 },
-    { pos:3, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:157.0 },
-    { pos:4, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:140.0 },
-    { pos:5, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:132.0 }
+    { pos:1, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:193.0 },
+    { pos:2, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:186.0 },
+    { pos:3, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:177.0 },
+    { pos:4, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:168.0 },
+    { pos:5, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:143.0 },
   ],
   "moto2": [
-    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:165.5 },
-    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:115.0 },
-    { pos:3, flag:"🇮🇹", name:"Celestino Vietti", team:"SpeedRS Team", pts:109.0 },
-    { pos:4, flag:"🇦🇺", name:"Senna Agius", team:"Liqui Moly Dynavolt Intact GP", pts:107.0 },
-    { pos:5, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:91.0 }
+    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:185.5 },
+    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:128.0 },
+    { pos:3, flag:"🇦🇺", name:"Senna Agius", team:"Liqui Moly Dynavolt Intact GP", pts:123.0 },
+    { pos:4, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:116.0 },
+    { pos:5, flag:"🇮🇹", name:"Celestino Vietti", team:"SpeedRS Team", pts:109.0 },
   ],
   "moto3": [
-    { pos:1, flag:"🇪🇸", name:"Máximo Quiles", team:"CFMOTO Gaviota Aspar Team", pts:186.0 },
+    { pos:1, flag:"🇪🇸", name:"Máximo Quiles", team:"CFMOTO Gaviota Aspar Team", pts:211.0 },
     { pos:2, flag:"🇪🇸", name:"Álvaro Carpe", team:"Red Bull KTM Ajo", pts:121.0 },
-    { pos:3, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:92.0 },
-    { pos:4, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:89.0 },
-    { pos:5, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:86.0 },
+    { pos:3, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:109.0 },
+    { pos:4, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:102.0 },
+    { pos:5, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:102.0 },
   ]
 };
 
@@ -958,8 +976,31 @@ function buildTopTable(data, color) {
 }
 
 function buildSprintTable() {
-  return `<table class="winners-table"><thead><tr><th>Round</th><th></th><th>Pilota</th><th>Team</th></tr></thead>
-  <tbody>${SPRINT_WINNERS.map(s=>`<tr><td class="wt-round">R${s.round}</td><td class="wt-flag">${s.flag}</td><td><div class="wt-name">${s.winner}</div></td><td><div class="wt-team">${s.team}</div></td></tr>`).join('')}</tbody></table>`;
+  const half = Math.ceil(SPRINT_WINNERS.length / 2);
+  const left = SPRINT_WINNERS.slice(0, half);
+  const right = SPRINT_WINNERS.slice(half);
+
+  function sprintRows(arr) {
+    return arr.map(s => `
+      <tr>
+        <td class="wt-round">R${s.round}</td>
+        <td class="wt-flag">${s.flag}</td>
+        <td><div class="wt-name">${s.winner}</div></td>
+        <td><div class="wt-team">${s.team}</div></td>
+      </tr>`).join('');
+  }
+
+  return `
+    <div class="sprint-split-grid">
+      <table class="winners-table">
+        <thead><tr><th>Round</th><th></th><th>Pilota</th><th>Team</th></tr></thead>
+        <tbody>${sprintRows(left)}</tbody>
+      </table>
+      <table class="winners-table">
+        <thead><tr><th>Round</th><th></th><th>Pilota</th><th>Team</th></tr></thead>
+        <tbody>${sprintRows(right)}</tbody>
+      </table>
+    </div>`;
 }
 
 // ── RENDER MAIN ──────────────────────────────────────────────────────
@@ -1021,17 +1062,17 @@ document.getElementById('main-content').innerHTML = `
   </div>
 
   <!-- PILOTI IN FORMA -->
-  <h2 class="section-title"><span>🔥</span> Ultimo Round — GP Ungheria</h2>
+  <h2 class="section-title"><span>🔥</span> Ultimo Round — GP Olanda</h2>
   <div class="forma-grid">
     <div class="forma-card gp">
       <div class="forma-cat">MotoGP — Vincitore</div>
-      <div class="forma-name">🇪🇸 Marc Márquez</div>
-      <div class="forma-pts">Ducati Lenovo Team · 25 pt</div>
+      <div class="forma-name">🇯🇵 Ai Ogura</div>
+      <div class="forma-pts">SuperFile Trackhouse MotoGP Team · 25 pt</div>
     </div>
     <div class="forma-card m2">
       <div class="forma-cat">Moto2 — Vincitore</div>
-      <div class="forma-name">🇪🇸 Manuel González</div>
-      <div class="forma-pts">Intact GP · 25 pt</div>
+      <div class="forma-name">🇨🇴 David Alonso</div>
+      <div class="forma-pts">CFMoto Aspar · 25 pt</div>
     </div>
     <div class="forma-card m3">
       <div class="forma-cat">Moto3 — Vincitore</div>

@@ -1333,6 +1333,39 @@
     margin-bottom: 0 !important;
   }
 }
+/* ── HERO MOBILE CENTERING ── */
+@media (max-width: 600px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem 1.2rem;
+    min-height: 420px;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-number {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body>
@@ -1405,8 +1438,8 @@
 <div class="countdown-wrap" id="countdown-section">
 <div class="countdown-header">
 <span class="countdown-label">⏱️ Prossimo GP</span>
-<span class="countdown-race">🇳🇱 Round 10 — GP Olanda · TT Circuit Assen</span>
-<span style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;color:var(--muted);">26–28 giugno 2026</span>
+<span class="countdown-race">🇩🇪 Round 11 — GP Germania · Sachsenring</span>
+<span style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;color:var(--muted);">10–12 luglio 2026</span>
 </div>
 <div class="countdown-cells" id="countdown-cells">
 <div class="cd-cell"><div class="cd-val" id="cd-d">--</div><div class="cd-lbl">Giorni</div></div>
@@ -1419,7 +1452,7 @@
 <div class="season-progress-wrap">
 <div class="season-progress-header">
 <span>⚡ Stagione 2026</span>
-<span>9 / 22 round completati</span>
+<span>10 / 22 round completati</span>
 </div>
 <div class="season-progress-track">
 <div class="season-progress-fill" id="season-fill"></div>
@@ -1431,65 +1464,65 @@
 <a class="top3-card" href="classifica.html#motogp" style="text-decoration:none;">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(255,107,53,.15);color:#ff6b35;border:1px solid rgba(255,107,53,.3);">MotoGP</div>
-<div class="top3-flag">🇮🇹</div>
-<div class="top3-name">Marco Bezzecchi</div>
-<div class="top3-pts" style="color:#ff6b35;">180</div>
-<div class="top3-pts-label">punti · 9 round</div>
-<div class="top3-gap">+8 su J.Martin</div>
+<div class="top3-flag">🇪🇸</div>
+<div class="top3-name">Jorge Martín</div>
+<div class="top3-pts" style="color:#ff6b35;">193</div>
+<div class="top3-pts-label">punti · 10 round</div>
+<div class="top3-gap">+7 su M.Bezzecchi</div>
 </a>
 <a class="top3-card" href="classifica.html#moto2" style="text-decoration:none;">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.3);">Moto2</div>
 <div class="top3-flag">🇪🇸</div>
 <div class="top3-name">Manuel González</div>
-<div class="top3-pts" style="color:#f7a600;">165.5</div>
-<div class="top3-pts-label">punti · 9 round</div>
-<div class="top3-gap">+50.5 su I.Guevara</div>
+<div class="top3-pts" style="color:#f7a600;">185.5</div>
+<div class="top3-pts-label">punti · 10 round</div>
+<div class="top3-gap">+57.5 su I.Guevara</div>
 </a>
 <a class="top3-card" href="classifica.html#moto3" style="text-decoration:none;">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.3);">Moto3</div>
 <div class="top3-flag">🇪🇸</div>
 <div class="top3-name">Máximo Quiles</div>
-<div class="top3-pts" style="color:#00b4d8;">186</div>
-<div class="top3-pts-label">punti · 9 round</div>
-<div class="top3-gap">+65 su Carpe</div>
+<div class="top3-pts" style="color:#00b4d8;">211</div>
+<div class="top3-pts-label">punti · 10 round</div>
+<div class="top3-gap">+90 su Carpe</div>
 </a>
 </div>
 <!-- CLASSIFICA PILOTI — dati reali dopo Round 3 -->
-<h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 9 round</span></h2>
+<h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 10 round</span></h2>
 <div class="standings-row">
 <div class="standings-card">
 <div class="sc-header gp">MotoGP</div>
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
-<tr><td class="pos">1</td><td>M. Bezzecchi</td><td class="pts">180</td></tr>
-<tr><td class="pos">2</td><td>J. Martin</td><td class="pts">172</td></tr>
-<tr><td class="pos">3</td><td>F. Di Giannantonio</td><td class="pts">157</td></tr>
-<tr><td class="pos">4</td><td>M. Marquez</td><td class="pts">140</td></tr>
-<tr><td class="pos">5</td><td>A. Ogura</td><td class="pts">134</td></tr>
+<tr><td class="pos">1</td><td>J. Martín</td><td class="pts">193</td></tr>
+<tr><td class="pos">2</td><td>M. Bezzecchi</td><td class="pts">186</td></tr>
+<tr><td class="pos">3</td><td>F. Di Giannantonio</td><td class="pts">177</td></tr>
+<tr><td class="pos">4</td><td>A. Ogura</td><td class="pts">168</td></tr>
+<tr><td class="pos">5</td><td>M. Márquez</td><td class="pts">153</td></tr>
 </table>
 </div>
 <div class="standings-card">
 <div class="sc-header m2">Moto2</div>
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
-<tr><td class="pos">1</td><td>M. González</td><td class="pts">165.5</td></tr>
-<tr><td class="pos">2</td><td>I. Guevara</td><td class="pts">115</td></tr>
-<tr><td class="pos">3</td><td>C. Vietti</td><td class="pts">109</td></tr>
-<tr><td class="pos">4</td><td>S. Agius</td><td class="pts">107</td></tr>
-<tr><td class="pos">5</td><td>D. Alonso</td><td class="pts">91</td></tr>
+<tr><td class="pos">1</td><td>M. González</td><td class="pts">185.5</td></tr>
+<tr><td class="pos">2</td><td>I. Guevara</td><td class="pts">128</td></tr>
+<tr><td class="pos">3</td><td>S. Agius</td><td class="pts">123</td></tr>
+<tr><td class="pos">4</td><td>D. Alonso</td><td class="pts">116</td></tr>
+<tr><td class="pos">5</td><td>C. Vietti</td><td class="pts">109</td></tr>
 </table>
 </div>
 <div class="standings-card">
 <div class="sc-header m3">Moto3</div>
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
-<tr><td class="pos">1</td><td>M. Quiles</td><td class="pts">186</td></tr>
+<tr><td class="pos">1</td><td>M. Quiles</td><td class="pts">211</td></tr>
 <tr><td class="pos">2</td><td>Á. Carpe</td><td class="pts">121</td></tr>
-<tr><td class="pos">3</td><td>B. Uriarte</td><td class="pts">92</td></tr>
-<tr><td class="pos">4</td><td>D. Almansa</td><td class="pts">89</td></tr>
-<tr><td class="pos">5</td><td>M. Morelli</td><td class="pts">86</td></tr>
+<tr><td class="pos">3</td><td>D. Almansa</td><td class="pts">109</td></tr>
+<tr><td class="pos">4</td><td>M. Morelli</td><td class="pts">102</td></tr>
+<tr><td class="pos">5</td><td>B. Uriarte</td><td class="pts">102</td></tr>
 </table>
 </div>
 </div>
@@ -1551,19 +1584,19 @@
   <div class="rc-date">19–21 giu</div>
   <div class="rc-status">✓ Risultati →</div>
 </a>
-<a class="race-card" href="risultati.html?round=r10" style="text-decoration:none;color:inherit;">
+<a class="race-card done" href="risultati.html?round=r10" style="text-decoration:none;color:inherit;">
   <div class="rc-round">Round 10</div>
   <div class="rc-flag">🇳🇱</div>
   <div class="rc-name">GP Olanda</div>
   <div class="rc-date">26–28 giu</div>
-  <div class="rc-status">⚡ Prossimo →</div>
+  <div class="rc-status">✓ Risultati →</div>
 </a>
 <div class="race-card">
   <div class="rc-round">Round 11</div>
   <div class="rc-flag">🇩🇪</div>
   <div class="rc-name">GP Germania</div>
   <div class="rc-date">10–12 lug</div>
-  <div class="rc-status">In programma</div>
+  <div class="rc-status">⚡ Prossimo →</div>
 </div>
 <div class="race-card">
   <div class="rc-round">Round 12</div>
@@ -1750,7 +1783,10 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
-  {cat:'RedBullRookiesCup',tagCls:'tag-rrc',title:'Red Bull Rookies Cup, Gara 1 ad Assen: Carlos Cano trionfa in volata, Kristian Daniel beffato nell’ultimo settore',excerpt:'Lo spagnolo conquista la sua prima vittoria stagionale precedendo Kristian Daniel Jr. Beñat Fernández completa il podio dopo una gara combattutissima fino all’ultima curva.',date:'27 giu 2026',author:'Redazione',meta:'📅 27 giu 2026 · ✍️ Redazione',body:'Il TT Circuit Assen ha regalato ancora una volta uno spettacolo degno della "Cattedrale della Velocità". Gara 1 della Red Bull MotoGP Rookies Cup si è decisa soltanto sul rettilineo finale, con Carlos Cano che ha conquistato la sua prima vittoria della stagione precedendo di poco lo statunitense Kristian Daniel Jr..<br><br>Lo spagnolo è rimasto costantemente nel gruppo di testa, gestendo alla perfezione una gara caratterizzata da continui sorpassi e cambi di leadership. Nell’ultimo giro Cano ha sfruttato al meglio la scia, riuscendo a tagliare il traguardo davanti a Daniel dopo uno sprint mozzafiato.<br><br>Alle loro spalle Beñat Fernández ha conquistato un prezioso terzo posto, consolidando la leadership del campionato grazie all’ennesimo piazzamento sul podio. Anche Ryota Ogiwara ha lottato fino alla fine per le posizioni di vertice, chiudendo quarto davanti a Fynn Kratochwil e Fernando Bujosa.<br><br>Come da tradizione nella Rookies Cup, la gara è rimasta estremamente compatta per tutti i dodici giri. I primi piloti hanno tagliato il traguardo racchiusi in poco più di un secondo, con continui sorpassi nelle veloci esse di Assen e nelle staccate più impegnative del tracciato olandese.<br><br>Tra gli episodi più significativi della corsa va segnalata la caduta di Sullivan Mounsey, uno dei protagonisti del weekend dopo le qualifiche, costretto al ritiro mentre era in lotta nelle posizioni di testa.<br><br>Per Carlos Cano si tratta di un successo pesantissimo sia dal punto di vista morale sia per la classifica, mentre Fernández esce ancora una volta rafforzato grazie alla sua straordinaria continuità di rendimento. L’appuntamento è ora con Gara 2 alle 8:45 di domenica 28 Giugno, dove i distacchi minimi visti nella prima manche fanno prevedere un’altra battaglia fino all’ultima curva.'},
+  {cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Assen: Ogura domina la gara lunga davanti a Fernández e Martín, Bezzecchi out dopo una caduta',excerpt:'Prima storica vittoria in MotoGP per Ai Ogura in una gara caotica ad Assen. Doppietta Trackhouse con Raúl Fernández secondo, podio per Jorge Martín che diventa nuovo leader del Mondiale.',date:'28 giu 2026',author:'Redazione',meta:'📅 28 giu 2026 · ✍️ Redazione',body:'Il TT Circuit Assen ha ospitato una gara lunga di MotoGP ricca di colpi di scena, sorpassi e cambi di scenario continui, culminata con la prima storica vittoria in top class per Ai Ogura. Il pilota giapponese del team Trackhouse ha sfruttato al meglio il caos del finale per imporsi davanti al compagno di squadra Raúl Fernández, firmando una clamorosa doppietta per il team americano.<br><br>La gara è stata caratterizzata fin dalle prime fasi da un ritmo altissimo e da numerosi tentativi di fuga, con i piloti ufficiali pronti a contendersi il comando giro dopo giro. Nella fase centrale è stato Raúl Fernández a prendere il controllo, imponendo un passo competitivo che sembrava indirizzare la corsa verso una vittoria in solitaria.<br><br>Nel finale però il rientro di Ogura ha cambiato completamente lo сценарio: il giapponese ha ridotto progressivamente il distacco fino a raggiungere il compagno, costruendo l’attacco decisivo nelle ultime tornate. All’ultimo giro, in un finale tiratissimo, Ogura ha completato il sorpasso che gli ha consegnato la vittoria, con Fernández costretto ad accontentarsi della seconda posizione.<br><br>Alle loro spalle Jorge Martín ha chiuso terzo, conquistando un podio pesantissimo anche in ottica mondiale grazie al ritiro di Marco Bezzecchi, caduto nelle fasi iniziali dopo una scivolata in curva 17 ed è costretto a fare 0 punti nella gara di domenica. Dopo un controllo al centro medico, Marco Bezzecchi è stato trasferito all’ospedale di Groningen per gli esami di secondo livello, dove i medici hanno avviato una valutazione più approfondita delle sue condizioni fisiche per escludere eventuali complicazioni e definire con precisione l’entità dei traumi riportati nella caduta di Assen. Quarto posto per Fabio Di Giannantonio davanti ad Alex Márquez ed Enea Bastianini, mentre Marc Márquez e Francesco Bagnaia hanno chiuso in top ten dopo una gara complessa.<br><br>Con questo risultato il Mondiale cambia volto: Martín sale al comando della classifica, mentre Ogura entra nella storia con la sua prima vittoria in MotoGP e Trackhouse celebra un risultato senza precedenti nella classe regina.'},
+  {cat:'Moto2',tagCls:'tag-m2',title:'Moto2, Assen: Alonso trionfa all’ultima chicane su González in una volata mozzafiato',excerpt:'Finale incredibile in Olanda: David Alonso supera Manuel González all’esterno dell’ultima chicane e vince per pochi millesimi. Completa il podio Senna Agius.',date:'28 giu 2026',author:'Redazione',meta:'📅 28 giu 2026 · ✍️ Redazione',body:'Il TT Circuit Assen ha ospitato una delle gare più spettacolari della stagione Moto2, decisa soltanto negli ultimissimi metri dopo una battaglia serrata tra David Alonso e Manuel González. Fin dalle prime fasi il gruppo di testa è rimasto compatto, con continui cambi di ritmo e sorpassi che hanno coinvolto diversi protagonisti del Mondiale.<br><br>Nella fase finale la lotta si è ridotta a un duello diretto tra González, leader per gran parte della gara, e Alonso, sempre incisivo nel restare agganciato alla sua scia. L’ultimo giro ha visto il colombiano studiare ogni metro disponibile, aspettando l’occasione giusta per tentare l’attacco decisivo.<br><br>All’uscita dell’ultima curva, nella chicane conclusiva del circuito, Alonso ha scelto una traiettoria esterna estremamente rischiosa ma perfettamente eseguita: affiancato a González, ha mantenuto più velocità in percorrenza e ha completato il sorpasso proprio sul traguardo, vincendo per pochi millesimi in un arrivo al fotofinish.<br><br>Alle loro spalle Senna Agius ha completato il podio dopo una gara solida, restando sempre nel gruppo di testa e approfittando degli ultimi scambi di posizione tra i due battistrada. Il resto della top ten è arrivato con distacchi minimi, confermando ancora una volta l’estremo equilibrio della categoria.<br><br>Con questo successo Alonso rilancia le sue ambizioni mondiali, mentre González mantiene la leadership del campionato nonostante la beffa subita proprio all’ultima curva di Assen.'},
+  {cat:'Moto3',tagCls:'tag-m3',title:'Moto3, Assen: Quiles domina ancora e consolida la leadership mondiale davanti ad Almansa e Morelli',excerpt:'Il leader del mondiale conquista la sesta vittoria stagionale nel GP d’Olanda dopo una gara tiratissima. Podio completato da Almansa e Morelli, con numerosi cambi di gruppo e penalità nel finale.',date:'28 giu 2026',author:'Redazione',meta:'📅 28 giu 2026 · ✍️ Redazione',body:'Il TT Circuit Assen ha ospitato un Gran Premio di Moto3 estremamente combattuto, con Máximo Quiles ancora una volta protagonista assoluto del weekend. Il pilota del CFMOTO Aspar Team, già leader del Mondiale, ha conquistato la sua sesta vittoria stagionale al termine di una gara ricca di sorpassi e con il gruppo di testa sempre estremamente compatto.<br><br>Fin dai primi giri la corsa ha visto numerosi cambi di leadership, con diversi piloti in grado di imporsi temporaneamente al comando. Nella fase decisiva Quiles e David Almansa hanno aumentato il ritmo rispetto al resto del gruppo, giocandosi la vittoria fino all’ultimo giro. Lo spagnolo leader del mondiale ha poi piazzato l’attacco decisivo nel finale, riuscendo a prendere un piccolo margine sufficiente per tagliare il traguardo davanti ad Almansa. Marco Morelli ha completato il podio dopo una gara solida e costante, mentre alle sue spalle si sono distinti Perrone, Ríos e altri protagonisti del gruppo di testa.<br><br>Il Gran Premio è stato reso ancora più movimentato da diverse penalità inflitte dopo il traguardo, che hanno modificato alcune posizioni della top ten e confermato l’elevato livello di intensità della categoria. Non sono mancati anche momenti di tensione nelle fasi iniziali con contatti e cadute che hanno condizionato la gara di alcuni piloti.<br><br>Con questo successo Quiles rafforza ulteriormente la propria leadership iridata, confermandosi il pilota da battere nella stagione 2026. Il Mondiale Moto3 si sposta ora al Sachsenring con una classifica sempre più delineata ma ancora aperta nelle posizioni alle spalle del leader.'},
+  {cat:'RedBullRookiesCup',tagCls:'tag-rrc',title:'Red Bull Rookies Cup, Assen: Cano e Fernández si dividono le vittorie, Borg firma la rimonta del weekend',excerpt:'Carlos Cano conquista Gara 1 in volata davanti a Kristian Daniel Jr., mentre Beñat Fernández risponde in Gara 2 precedendo David González. Straordinaria rimonta di Travis Borg dall’ultima posizione al podio.',date:'28 giu 2026',author:'Redazione',meta:'📅 28 giu 2026 · ✍️ Redazione',body:'Il quarto round della Red Bull MotoGP Rookies Cup al TT Circuit Assen ha regalato due gare spettacolari, confermando ancora una volta l’equilibrio della serie riservata ai migliori giovani talenti del motociclismo mondiale. Su uno dei circuiti più iconici del calendario, Carlos Cano e Beñat Fernández si sono spartiti le vittorie di un weekend caratterizzato da continui sorpassi, gruppi compatti e arrivi al fotofinish.<br><br>In Gara 1 è stato Carlos Cano a festeggiare il primo successo stagionale dopo una volata mozzafiato. Lo spagnolo ha sfruttato alla perfezione la scia nell’ultimo settore, precedendo di appena pochi decimi Kristian Daniel Jr., autore di una prestazione sempre nelle posizioni di vertice. Terzo posto per il leader del campionato Beñat Fernández, bravo a limitare i danni dopo una corsa combattutissima con Ryota Ogiwara, Fernando Bujosa e il resto del gruppo di testa.<br><br>La domenica ha invece visto il riscatto di Fernández. Il campione in carica ha gestito al meglio gli ultimi giri imponendosi davanti a David González, mentre Travis Borg ha firmato la prestazione del weekend con una clamorosa rimonta dall’ultima posizione in griglia fino al terzo gradino del podio, sfiorando addirittura la possibilità di giocarsi la vittoria negli ultimi metri. Alle loro spalle il gruppo è arrivato ancora una volta racchiuso in pochi decimi, a testimonianza dell’elevatissimo equilibrio della categoria.<br><br>Dopo quattro round e otto gare disputate, Fernández esce da Assen ulteriormente rafforzato nella corsa al titolo grazie alla vittoria di Gara 2 e al podio conquistato sabato, mentre Cano rilancia con decisione le proprie ambizioni grazie al successo ottenuto nella prima manche. Ottimo anche il weekend di González e Daniel Jr., costantemente protagonisti, mentre Borg si prende gli applausi di tutti per una rimonta destinata a rimanere tra le più spettacolari della stagione.<br><br>La Red Bull MotoGP Rookies Cup tornerà ora in pista al Sachsenring, dove il campionato entrerà nella sua seconda metà con una classifica ancora apertissima e numerosi piloti racchiusi in pochi punti, pronti a contendersi il titolo fino alle battute finali della stagione.'},
   {cat:'Moto3',tagCls:'tag-m3',title:'Yamaha sarà il fornitore esclusivo della categoria dal 2028 al 2033',excerpt:'Annunciato ad Assen il nuovo progetto con MotoGP: una moto completamente nuova e una piattaforma dedicata ai giovani talenti.',date:'26 giu 2026',author:'Redazione',meta:'📅 26 giu 2026 · ✍️ Redazione',body:'La Moto3 si prepara a vivere una vera e propria rivoluzione. Nel corso di una conferenza stampa straordinaria ad Assen, MotoGP e Yamaha hanno annunciato che la casa giapponese diventerà il fornitore esclusivo della categoria dal 2028 al 2033.<br><br>L’obiettivo del nuovo progetto è creare una piattaforma tecnica unica che metta ancora di più al centro il talento dei giovani piloti, garantendo al tempo stesso elevati standard di competitività e contenimento dei costi.<br><br>Per l’occasione Yamaha svilupperà un nuovo prototipo da competizione basato sulla piattaforma CP2, profondamente riprogettato per l’utilizzo nei Gran Premi. La moto sarà progettata per offrire un miglior rapporto peso/potenza rispetto alle attuali Moto3 e dimensioni più adatte alla nuova generazione di piloti.<br><br>La presentazione ufficiale del nuovo modello è prevista nel corso del 2027, mentre i primi test dei prototipi dovrebbero iniziare entro la fine dell’anno. Dal 2029 anche il campionato Moto3 Junior adotterà una versione leggermente meno performante della nuova moto, creando un percorso di crescita ancora più lineare verso il Mondiale.<br><br>Carlos Ezpeleta, direttore sportivo della MotoGP, ha definito l’accordo uno dei cambiamenti più importanti per il futuro della categoria, sottolineando come la Moto3 rappresenti il primo vero passo professionale per i futuri campioni e come questa nuova piattaforma contribuirà a rendere il motociclismo ancora più accessibile e competitivo.<br><br>Sulla stessa linea anche Paolo Pavesio, amministratore delegato di Yamaha Motor Racing, che ha evidenziato come il progetto non riguardi solamente la realizzazione di una nuova moto, ma la costruzione di un ecosistema capace di supportare piloti, team e campionati nel lungo periodo.<br><br>Con questo accordo prende così forma una nuova era per la Moto3, destinata a modificare profondamente il percorso di formazione dei giovani talenti che ambiscono ad arrivare fino alla MotoGP.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'DOMINIO DUCATI: Márquez rinnova fino al 2028, addio Bagnaia e arriva Acosta nel 2027',excerpt:'Rivoluzione totale a Borgo Panigale: Marc Márquez resta fino al 2028, Francesco Bagnaia lascia Ducati a fine 2026 e Pedro Acosta sarà il nuovo pilota ufficiale dal 2027.',date:'23 giu 2026',author:'Redazione',meta:'📅 23 giu 2026 · ✍️ Redazione',body:'Ora è ufficiale: il futuro di Ducati in MotoGP prende una svolta totale con tre annunci destinati a cambiare gli equilibri della griglia.<br><br>Dopo mesi di indiscrezioni e trattative, la Casa di Borgo Panigale ha confermato il rinnovo di <strong>Marc Márquez</strong>, che resterà nel <strong>Ducati Lenovo Team fino al 2028</strong>, diventando il pilastro del progetto anche nella nuova era tecnica del 2027.<br><br>"Sono felice di continuare questo progetto. Mi sento a casa in Ducati e credo che insieme possiamo ancora raggiungere grandi risultati", ha dichiarato Márquez dopo l’annuncio ufficiale.<br><br>Ma la notizia più clamorosa riguarda <strong>Francesco Bagnaia</strong>: il due volte campione del mondo lascerà Ducati al termine della stagione 2026, chiudendo una delle partnership più vincenti della storia recente della MotoGP. Il pilota italiano proseguirà la sua carriera in Aprilia a partire dal 2027, aprendo una nuova fase della sua carriera.<br><br>La separazione segna la fine di un’era per Borgo Panigale, con Bagnaia che ha contribuito in modo decisivo al ritorno al titolo mondiale della casa italiana.<br><br>Al suo posto Ducati ha scelto il futuro: dal 2027 entrerà ufficialmente nel team factory <strong>Pedro Acosta</strong>, uno dei talenti più promettenti della nuova generazione, pronto a debuttare nella classe regina con la moto ufficiale.<br><br>Acosta andrà così a formare una coppia completamente nuova con Márquez, creando una delle line-up più attese e competitive della nuova era MotoGP.<br><br>Con queste mosse, Ducati manda un messaggio chiaro alla concorrenza: il progetto vincente continuerà anche nel ciclo tecnico 2027–2028, puntando su un mix di esperienza e talento giovane.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'BRNO : Márquez riapre il Mondiale, Bagnaia vince la Sprint e Bezzecchi viene squalificato',excerpt:'Un weekend ricco di colpi di scena: Ogura conquista la pole, Bagnaia domina il sabato, Bezzecchi viene escluso dal GP e Márquez trionfa nella gara della domenica.',date:'23 giu 2026',author:'Redazione',meta:'📅 23 giu 2026 · ✍️ Redazione',body:'Il ritorno della MotoGP a Brno dopo diversi anni di assenza ha regalato uno dei weekend più intensi e discussi dell\'intera stagione 2026.<br><br>Il venerdì è stato caratterizzato da condizioni difficili e temperature elevate, con Ai Ogura capace di sorprendere tutti firmando il miglior tempo nelle Practice. Il giapponese della Trackhouse Aprilia si è confermato tra i protagonisti del weekend, mentre Marco Bezzecchi e le Ducati ufficiali di Francesco Bagnaia e Marc Márquez hanno mostrato un ottimo passo gara fin dalle prime sessioni.<br><br>Sabato mattina è arrivata un\'altra sorpresa: Ogura ha conquistato la prima pole position della sua carriera in MotoGP con un giro record sul circuito ceco. In prima fila anche Bagnaia e Fabio Di Giannantonio, mentre Márquez ha dovuto accontentarsi della seconda fila dopo una qualifica meno brillante del previsto.<br><br>Nella Sprint Race è stato però Francesco Bagnaia a fare la differenza. Scattato perfettamente al via, il campione italiano ha preso subito il comando della corsa e ha resistito agli attacchi di Ogura fino alla bandiera a scacchi, conquistando la sua prima vittoria Sprint della stagione. Sul podio anche Marc Márquez, terzo dopo una gara molto intelligente.<br><br>Il vero episodio destinato a segnare il weekend è però arrivato nelle fasi finali della Sprint. Marco Bezzecchi, leader del Mondiale, è caduto a due giri dal termine mentre si trovava nelle posizioni di vertice. Nel tentativo di rientrare in pista si è verificato un acceso confronto con alcuni commissari impegnati nel recupero della moto. Le immagini dell\'accaduto hanno immediatamente fatto il giro del paddock e poche ore dopo i commissari FIM hanno deciso di escludere Bezzecchi dal resto del Gran Premio.<br><br>La squalifica del pilota Aprilia ha inevitabilmente cambiato il volto della domenica. Senza il leader del campionato in griglia, la gara si è trasformata in un confronto diretto tra Bagnaia, Márquez e Ogura.<br><br>Dopo una prima parte di corsa guidata da Bagnaia, Marc Márquez ha aumentato progressivamente il ritmo fino a portare l\'attacco decisivo nella seconda metà della gara. Lo spagnolo della Ducati Lenovo Team ha preso il comando e si è involato verso la vittoria, ottenendo un successo pesantissimo nella corsa al titolo.<br><br>Alle sue spalle Ai Ogura ha completato il miglior weekend della sua carriera in MotoGP conquistando un brillante secondo posto, mentre Bagnaia ha chiuso terzo dopo aver lottato per tutta la gara con i due avversari.<br><br>Il Gran Premio della Repubblica Ceca si chiude così con un Mondiale completamente riaperto: la vittoria di Márquez e l\'assenza forzata di Bezzecchi hanno ridotto sensibilmente il distacco in classifica, promettendo una seconda metà di stagione ancora più combattuta.'},
@@ -1918,7 +1954,7 @@ window.addEventListener('scroll', function() {
 
 // Countdown prossimo GP
 (function() {
-  const target = new Date('2026-06-26T09:00:00');
+  const target = new Date('2026-07-10T09:00:00');
   function update() {
     const now = new Date();
     const diff = target - now;
