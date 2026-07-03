@@ -132,8 +132,24 @@ footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
 .news-card-full{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;}
 .news-card-full:hover{border-color:#555;transform:translateY(-3px);}
 .ncf-img{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#100010,#1a001a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.ncf-img-letter{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(255,255,255,.04);position:absolute;bottom:8px;right:12px;letter-spacing:.08em;}
-.ncf-img-icon{font-size:2.5rem;color:rgba(255,255,255,.06);}
+/* ══ MINIATURE GENERATE ══ */
+.ncf-img-gen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:1rem;}
+.ncf-img-gen::before{content:'';position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.1) 10px,rgba(255,255,255,.1) 11px),repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,.1) 10px,rgba(255,255,255,.1) 11px);}
+.ncf-img-gen-cat{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:.7;position:relative;z-index:1;}
+.ncf-img-gen-icon{font-size:2.8rem;position:relative;z-index:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+.ncf-img-gen-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.04em;text-align:center;max-width:85%;line-height:1.3;opacity:.85;position:relative;z-index:1;}
+.ncf-img-gen-date{font-family:'Barlow',sans-serif;font-size:.65rem;opacity:.5;position:relative;z-index:1;margin-top:.2rem;}
+.bg-motogp{background:linear-gradient(135deg,#1a0000 0%,#3d0008 30%,#5a0010 60%,#2a0005 100%);}
+.bg-moto2{background:linear-gradient(135deg,#1a1200 0%,#3d2800 30%,#5a3d00 60%,#2a1f00 100%);}
+.bg-moto3{background:linear-gradient(135deg,#001a20 0%,#003040 30%,#004858 60%,#002530 100%);}
+.bg-juniorgp{background:linear-gradient(135deg,#0a1a00 0%,#1a3500 30%,#285000 60%,#152300 100%);}
+.bg-redbullrookiescup{background:linear-gradient(135deg,#000a1a 0%,#00153d 30%,#00205a 60%,#000f2a 100%);}
+.news-card-full:hover .ncf-img-gen{transform:scale(1.03);}
+.nm-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;}
+.nm-img .ncf-img-gen-icon{font-size:4rem;}
+.nm-img .ncf-img-gen-title{font-size:1.4rem;}
+.nm-img .ncf-img-gen-cat{font-size:.85rem;}
+.nm-img .ncf-img-gen-date{font-size:.8rem;}
 .ncf-body{padding:1rem 1.1rem 1.1rem;flex:1;display:flex;flex-direction:column;}
 .tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .45rem;border-radius:2px;margin-bottom:.5rem;width:fit-content;}
 .tag-gp{background:rgba(232,0,29,.15);color:var(--gp);}
@@ -165,9 +181,10 @@ footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
 .news-modal-overlay.open{display:flex;}
 .news-modal{background:var(--card);border:1px solid var(--border);border-radius:10px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;animation:modalIn .22s ease;}
 @keyframes modalIn{from{transform:translateY(18px);opacity:0;}to{transform:none;opacity:1;}}
-.nm-header{padding:1.2rem 1.4rem .8rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:1rem;}
-.nm-tag{flex-shrink:0;}
-.nm-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;line-height:1.3;flex:1;}
+.nm-header{padding:1.2rem 1.4rem .8rem;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;}
+.nm-tag{flex-shrink:0;order:1;}
+.nm-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;line-height:1.3;width:100%;order:3;}
+.nm-close{order:2;}
 .nm-close{flex-shrink:0;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;border-radius:4px;width:28px;height:28px;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .nm-close:hover{border-color:var(--white);color:var(--white);}
 .nm-body{padding:1.2rem 1.4rem;}
@@ -216,7 +233,7 @@ footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
 [data-theme="light"] #scroll-top-btn{box-shadow:0 2px 10px rgba(232,0,29,.25);}
 
 *,*::before,*::after{transition:background-color .25s ease,color .2s ease,border-color .2s ease!important;}
-img,video,canvas,svg,.tag{transition:none!important;}
+img,video,canvas,svg,.tag,.ncf-img-gen{transition:none!important;}
 .fade-in{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease!important;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 </style>
@@ -405,11 +422,12 @@ img,video,canvas,svg,.tag{transition:none!important;}
 <!-- NEWS MODAL -->
 <div class="news-modal-overlay" id="news-modal" onclick="if(event.target===this)closeModal()">
   <div class="news-modal">
+    <div class="nm-img" id="nm-img"></div>
     <div class="nm-header">
       <div class="nm-tag" id="nm-tag"></div>
       <div class="nm-title" id="nm-title"></div>
-      <button class="nm-close" onclick="closeModal()">✕</button>
-    </div>
+        <button class="nm-close" onclick="closeModal()">✕</button>
+      </div>
     <div class="nm-body">
       <div class="nm-meta" id="nm-meta"></div>
       <div class="nm-text" id="nm-text"></div>
@@ -529,26 +547,47 @@ allNews.forEach(n=>{
 // ══════════════════════════════════════
 //  FIX: Assegna ID alle notizie senza ID
 // ══════════════════════════════════════
-allNews.forEach((news, index) => {
-    if (!news.id) news.id = index + 1000;
+allNews.forEach(function(news, index) {
+    if (!news.id) news.id = index + 100;
 });
+
+// ══════════════════════════════════════
+//  MAPPE CATEGORIE
+// ══════════════════════════════════════
+var catIcons = {'MotoGP':'🏍️','Moto2':'🏁','Moto3':'🛵','JuniorGP':'🟢','RedBullRookiesCup':'🔴'};
+var catBgClass = {'MotoGP':'bg-motogp','Moto2':'bg-moto2','Moto3':'bg-moto3','JuniorGP':'bg-juniorgp','RedBullRookiesCup':'bg-redbullrookiescup'};
+
+// ══════════════════════════════════════
+//  GENERA MINIATURA
+// ══════════════════════════════════════
+function generateThumb(news) {
+    var icon = catIcons[news.cat] || '📰';
+    var bgClass = catBgClass[news.cat] || 'bg-motogp';
+    var shortTitle = news.title.length > 50 ? news.title.substring(0, 47) + '...' : news.title;
+    return '<div class="ncf-img-gen ' + bgClass + '">' +
+        '<span class="ncf-img-gen-cat">' + news.cat + '</span>' +
+        '<span class="ncf-img-gen-icon">' + icon + '</span>' +
+        '<span class="ncf-img-gen-title">"' + shortTitle + '"</span>' +
+        '<span class="ncf-img-gen-date">' + news.date + '</span>' +
+    '</div>';
+}
 
 // ══════════════════════════════════════
 //  VARIABILI DI STATO
 // ══════════════════════════════════════
-const PER_PAGE = 6;
-let currentCat = 'tutte';
-let searchTerm = '';
-let shownCount = 0;
+var PER_PAGE = 6;
+var currentCat = 'tutte';
+var searchTerm = '';
+var shownCount = 0;
 
 // ══════════════════════════════════════
-//  FUNZIONI DI FILTRAGGIO
+//  FILTRO NOTIZIE
 // ══════════════════════════════════════
 function getFilteredNews() {
-    return allNews.filter(n => {
-        const catNorm = n.cat.toLowerCase().replace(/\s/g, '');
-        const catMatch = currentCat === 'tutte' || catNorm === currentCat;
-        const searchMatch = !searchTerm || 
+    return allNews.filter(function(n) {
+        var catNorm = n.cat.toLowerCase().replace(/\s/g, '');
+        var catMatch = currentCat === 'tutte' || catNorm === currentCat;
+        var searchMatch = !searchTerm || 
             n.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
             n.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
         return catMatch && searchMatch;
@@ -556,24 +595,11 @@ function getFilteredNews() {
 }
 
 // ══════════════════════════════════════
-//  CREAZIONE CARD HTML
+//  CREAZIONE CARD
 // ══════════════════════════════════════
 function createCard(news) {
-    const icons = {
-        'MotoGP': '🏍️',
-        'Moto2': '🏁',
-        'Moto3': '🛵',
-        'JuniorGP': '🟢',
-        'RedBullRookiesCup': '🔴'
-    };
-    const icon = icons[news.cat] || '📰';
-    const letter = news.cat.charAt(0);
-    
     return '<div class="news-card-full fade-in" onclick="openModal(' + news.id + ')">' +
-        '<div class="ncf-img">' +
-            '<span class="ncf-img-icon">' + icon + '</span>' +
-            '<span class="ncf-img-letter">' + letter + '</span>' +
-        '</div>' +
+        '<div class="ncf-img">' + generateThumb(news) + '</div>' +
         '<div class="ncf-body">' +
             '<span class="tag ' + news.tagCls + '">' + news.cat + '</span>' +
             '<div class="ncf-title">' + news.title + '</div>' +
@@ -607,7 +633,7 @@ function renderNews(reset) {
     }
     shownCount += toShow.length;
     
-    newsCount.textContent = filtered.length + ' notizi' + (filtered.length === 1 ? 'a' : 'e');
+    newsCount.textContent = filtered.length + ' notizie';
     
     if (filtered.length === 0) {
         noResults.style.display = 'block';
@@ -623,14 +649,11 @@ function renderNews(reset) {
         }
     }
     
-    // Anima le card
     setTimeout(function() {
         var cards = document.querySelectorAll('.fade-in:not(.visible)');
         for (var j = 0; j < cards.length; j++) {
             (function(card, delay) {
-                setTimeout(function() {
-                    card.classList.add('visible');
-                }, delay);
+                setTimeout(function() { card.classList.add('visible'); }, delay);
             })(cards[j], j * 80);
         }
     }, 50);
@@ -680,7 +703,7 @@ function resetFilters() {
 }
 
 // ══════════════════════════════════════
-//  APRI MODAL NOTIZIA
+//  APRI MODAL
 // ══════════════════════════════════════
 function openModal(id) {
     var news = null;
@@ -692,6 +715,7 @@ function openModal(id) {
     }
     if (!news) return;
     
+    document.getElementById('nm-img').innerHTML = generateThumb(news);
     document.getElementById('nm-tag').innerHTML = '<span class="tag ' + news.tagCls + '">' + news.cat + '</span>';
     document.getElementById('nm-title').textContent = news.title;
     document.getElementById('nm-meta').textContent = news.meta;
@@ -721,20 +745,19 @@ window.addEventListener('scroll', function() {
 });
 
 // ══════════════════════════════════════
-//  CHIUDI MODAL CON ESC
+//  CHIUDI CON ESC
 // ══════════════════════════════════════
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
+    if (e.key === 'Escape') closeModal();
 });
 
 // ══════════════════════════════════════
-//  INIZIALIZZAZIONE - CARICA LE NOTIZIE
+//  AVVIO
 // ══════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
     renderNews(true);
 });
+
 // ── AUDIO PLAYER LOGIC ──
 (function(){
   var audio = document.getElementById('bg-audio');
