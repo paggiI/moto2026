@@ -220,6 +220,108 @@ img,video,canvas,svg,.tag{transition:none!important;}
 .fade-in{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease!important;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 </style>
+<style id="audio-player-responsive">
+#audio-player-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  /* 1. Creiamo 70px di spazio VUOTO alla fine del sito */
+  /* Così la tabella si ferma prima e non finisce sotto l'audio */
+  body {
+    padding-bottom: 75px !important;
+  }
+
+  /* 2. Sistemiamo l'audio player per essere USABILE */
+  #audio-player-widget {
+    bottom: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: #141414 !important;
+    border-top: 2px solid #e8001d !important;
+    height: 58px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    padding: 0 1rem !important;
+    gap: 0 !important;
+    /* Rimuoviamo filter e transform che bloccano il tocco su mobile */
+    backdrop-filter: none !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  /* 3. Assicuriamoci che gli slider siano grandi e trascinabili */
+  #audio-player-widget > div:first-child {
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  
+  #audio-player-widget input[type="range"] {
+    height: 28px !important; /* Area di tocco più grande per il dito */
+    min-width: 0 !important;
+    flex: 1 !important;
+    margin: 0 8px !important; /* Spazio per non farli attaccare */
+    pointer-events: auto !important;
+    -webkit-appearance: sliderHorizontal !important;
+    appearance: auto !important;
+  }
+
+  #audio-player-widget #progress-slider,
+  #audio-player-widget #vol-slider {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0 !important;
+  }
+}
+/* ── HERO MOBILE CENTERING ── */
+@media (max-width: 600px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem 1.2rem;
+    min-height: 420px;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-number {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    width: 100%;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -229,96 +331,9 @@ img,video,canvas,svg,.tag{transition:none!important;}
      Classifica Risultati Stagione Prediction | MENU 🌙 PA ☰
 ═══════════════════════════════════════════════════════════ -->
 <header>
-  <a class="logo" href="index.html">MOTO<span>2026</span></a>
-  <nav>
-    <a href="motogp.html">MotoGP</a>
-    <a href="moto2.html">Moto2</a>
-    <a href="moto3.html">Moto3</a>
-    <a href="calendario.html">Calendario</a>
-    <a href="piloti.html">Piloti</a>
-    <a href="team.html">Team</a>
-    <a href="classifica.html">Classifica</a>
-    <a href="risultati.html">Risultati</a>
-    <a href="stagione.html">Stagione</a>
-    <a href="prediction.html">Prediction</a>
-  </nav>
-  <div class="header-right">
-    <!-- 1° MENU -->
-    <div class="nav-dropdown-wrap">
-      <button class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
-        MENU
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="nav-dropdown-menu" id="nav-dropdown-menu">
-        <div class="nav-dropdown-section">Categorie</div>
-        <a href="motogp.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🏍️</span> MotoGP</a>
-        <a href="moto2.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🟡</span> Moto2</a>
-        <a href="moto3.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🔵</span> Moto3</a>
-        <a href="juniorgp.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🟢</span> JuniorGP</a>
-        <a href="redbullrookiescup.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🟣</span> RBR Cup</a>
-        <div class="nav-dropdown-divider"></div>
-        <div class="nav-dropdown-section">Utilità</div>
-        <a href="calendario.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📅</span> Calendario</a>
-        <a href="piloti.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👤</span> Piloti</a>
-        <a href="team.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🔧</span> Team</a>
-        <a href="classifica.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🏆</span> Classifica</a>
-        <a href="risultati.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📊</span> Risultati</a>
-        <a href="stagione.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📈</span> Stagione</a>
-        <a href="prediction.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🎯</span> Prediction</a>
-        <div class="nav-dropdown-divider"></div>
-        <a href="circuiti.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🏁</span> Circuiti</a>
-        <a href="guida.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📖</span> Guida</a>
-        <a href="notizie.html" class="nav-dropdown-item active"><span class="nav-dropdown-item-icon">📰</span> Notizie</a>
-      </div>
-    </div>
-    <!-- 2° TEMA -->
-    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cambia tema">🌙</button>
-    <!-- 3° ACCEDI (visibile se NON loggato) -->
-    <button class="auth-btn" id="auth-btn" onclick="openAuth()">Accedi</button>
-    <!-- 3° AVATAR (visibile se loggato) -->
-    <div class="user-menu-wrap" id="user-menu-wrap" style="display:none;">
-      <button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()">
-        <span id="user-avatar-letter">U</span>
-        <span class="user-fav-badge" id="user-fav-badge" style="display:none;">0</span>
-      </button>
-      <div class="user-menu" id="user-menu">
-        <div class="user-menu-header">
-          <div class="user-menu-name" id="user-menu-name">Utente</div>
-          <div class="user-menu-sub" id="user-menu-sub">Account personale</div>
-        </div>
-        <div class="user-menu-section">⭐ Piloti preferiti</div>
-        <div id="user-favs-list"></div>
-        <div class="user-menu-divider"></div>
-        <a href="index.html" class="user-menu-item"><span class="nav-dropdown-item-icon">🏠</span> Home</a>
-        <div class="user-menu-divider"></div>
-        <div class="user-menu-item logout" onclick="logout()"><span class="nav-dropdown-item-icon">🚪</span> Esci</div>
-      </div>
-    </div>
-    <!-- 4° HAMBURGER -->
-    <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
+  <a class="logo" href="index.html" style="margin:0 auto;">MOTO<span>2026</span></a>
 </header>
 
-<!-- MOBILE MENU — STESSO ORDINE DELLA NAV -->
-<div class="mobile-menu">
-  <a href="motogp.html">MotoGP</a>
-  <a href="moto2.html">Moto2</a>
-  <a href="moto3.html">Moto3</a>
-  <a href="calendario.html">Calendario</a>
-  <a href="piloti.html">Piloti</a>
-  <a href="team.html">Team</a>
-  <a href="classifica.html">Classifica</a>
-  <a href="risultati.html">Risultati</a>
-  <a href="stagione.html">Stagione</a>
-  <a href="prediction.html">Prediction</a>
-  <a href="notizie.html" style="color:var(--white);background:rgba(232,0,29,.1);">📰 Notizie</a>
-  <a href="circuiti.html">🏁 Circuiti</a>
-  <a href="guida.html">📖 Guida</a>
-  <a href="juniorgp.html">🟢 JuniorGP</a>
-  <a href="redbullrookiescup.html">🟣 RBR Cup</a>
-</div>
 
 <!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this)closeAuth()">
@@ -346,9 +361,10 @@ img,video,canvas,svg,.tag{transition:none!important;}
 
 <!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="page-hero-content">
+  <div class="page-hero-content" style="text-align:center;">
     <h1>NOTIZIE <span>MOTO</span></h1>
     <p>Tutte le ultime novità dal Motomondiale 2026</p>
+    <a href="index.html" class="btn btn-red" style="display:inline-block;margin-top:1.2rem;padding:.55rem 1.5rem;font-size:.85rem;">← Torna alla Home</a>
   </div>
 </section>
 
@@ -410,12 +426,41 @@ img,video,canvas,svg,.tag{transition:none!important;}
   <p>© 2026 Motomondiale Fan Project — Non affiliato a Dorna Sports</p>
 </footer>
 
+<!-- AUDIO PLAYER -->
+<div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
+
+  <!-- PULSANTE PLAY/PAUSE -->
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+
+  <!-- BARRA PROGRESSO AUDIO -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+
+  <!-- BARRA VOLUME -->
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+
+  <!-- FILE AUDIO -->
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
 <script>
 // ══════════════════════════════════════
 //  DATABASE NOTIZIE
 // ══════════════════════════════════════
 const allNews=[
-{id:1,cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, KTM vuole affiancare un veterano al rookie in Tech3: Marini favorito su Viñales',excerpt:'Secondo i rumor di mercato, KTM vorrebbe completare la line-up Tech3 2027 con un pilota esperto. In cima alla lista ci sarebbero Luca Marini e Maverick Viñales.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Oltre alla ricerca di un giovane talento, KTM starebbe lavorando anche al profilo del pilota esperto destinato ad affiancare il rookie nel team Tech3 a partire dal 2027.<br><br>Secondo Rosario Triolo, i nomi maggiormente presi in considerazione sarebbero quelli di Luca Marini e Maverick Viñales. Entrambi garantirebbero esperienza nella classe regina, ma il pilota italiano sembrerebbe partire leggermente favorito.<br><br>Marini viene infatti considerato particolarmente prezioso per le sue capacità di sviluppo della moto, caratteristica ritenuta fondamentale in vista dell’introduzione delle nuove MotoGP da 850 cc. Viñales rappresenterebbe invece un’opzione di grande esperienza e velocità, ma con caratteristiche differenti rispetto alle esigenze attuali del progetto KTM.<br><br>Si tratta ancora di semplici indiscrezioni di mercato, ma la strategia della casa austriaca appare ormai chiara: costruire una coppia capace di unire talento emergente ed esperienza per affrontare la nuova era tecnica della MotoGP.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'VR46 e Ducati insieme fino al 2029: ora via libera all’arrivo di Aldeguer',excerpt:'Rinnovata la partnership Factory Supported Team con Ducati: il prossimo passo sarà l’ufficializzazione di Fermín Aldeguer.',date:'3 lug 2026',author:'Redazione',meta:'📅 3 lug 2026 · ✍️ Redazione',body:'È arrivata l’ufficialità: Pertamina Enduro VR46 Racing Team continuerà a essere il Factory Supported Team di Ducati fino al termine della stagione 2029. L’accordo conferma la piena fiducia di Borgo Panigale nel progetto guidato da Valentino Rossi e garantisce alla squadra un ruolo centrale anche nell’era regolamentare che inizierà nel 2027.<br><br>Il rinnovo apre ora la strada all’annuncio dell’arrivo di Fermín Aldeguer, destinato a lasciare Gresini per approdare nel team VR46. Lo spagnolo dovrebbe affiancare Nicolo Bulega, formando una coppia che unisce esperienza e prospettiva futura all’interno del programma Ducati.<br><br>Con il nuovo accordo VR46 continuerà a ricevere un importante supporto tecnico da Ducati Corse, confermando il proprio ruolo strategico nello sviluppo delle Desmosedici e consolidando una collaborazione che negli ultimi anni ha portato risultati sempre più competitivi.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Gresini riparte con Mir e Holgado: possibile anche il pieno supporto Ducati',excerpt:'Il campione del mondo 2020 e il talento spagnolo saranno i piloti del team dal 2027, con una Desmosedici Factory per Mir.',date:'2 lug 2026',author:'Redazione',meta:'📅 2 lug 2026 · ✍️ Redazione',body:'BK8 Gresini Racing ha ufficializzato la propria formazione per la MotoGP 2027: Joan Mir lascia Honda dopo quattro stagioni e firma un contratto biennale con la squadra italiana, dove ritroverà Frankie Carchedi, il capotecnico con cui conquistò il titolo mondiale MotoGP nel 2020 ai tempi della Suzuki.<br><br>Accanto a Mir arriverà Dani Holgado, protagonista di un’ottima crescita in Moto2 con Aspar, miglior rookie della scorsa stagione e vincitore del Gran Premio del Brasile 2026. Lo spagnolo debutterà così nella classe regina con un progetto pensato per accompagnarne la crescita nel lungo periodo.<br><br>Contestualmente Gresini ha confermato il proseguimento della partnership pluriennale con Ducati Corse. Secondo quanto annunciato, Mir disporrà di una Desmosedici Factory nel 2027, ulteriore dimostrazione del rafforzamento del legame tra la squadra di Nadia Padovani e Ducati in vista della nuova era tecnica della MotoGP.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Red Bull valuta un ridimensionamento del sostegno a Tech3 dal 2027',excerpt:'Secondo le ultime indiscrezioni di mercato, Red Bull potrebbe ridurre il proprio coinvolgimento come title sponsor di Tech3 a partire dal 2027, lasciando maggiore libertà commerciale alla squadra satellite KTM.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Il mercato MotoGP continua a muoversi anche fuori dalla pista e, secondo quanto riportato da Rosario Triolo, Red Bull starebbe valutando un ridimensionamento del proprio coinvolgimento economico e d’immagine all’interno del team Tech3 in vista della stagione 2027.<br><br>L’ipotesi non riguarderebbe un addio alla partnership con KTM, bensì una minore presenza come title sponsor della squadra satellite. L’obiettivo sarebbe consentire a KTM di concentrare una parte maggiore delle proprie risorse sul team ufficiale e sullo sviluppo della nuova MotoGP da 850 cc prevista dal regolamento 2027.<br><br>Parallelamente, Tech3 potrebbe beneficiare di una maggiore libertà nella ricerca di sponsor esterni, ampliando le proprie opportunità commerciali senza dipendere esclusivamente dal marchio Red Bull. Sul piano tecnico, invece, non sarebbero previsti cambiamenti significativi, con la squadra francese destinata a mantenere il proprio ruolo di team satellite KTM.<br><br>Al momento si tratta esclusivamente di un rumor di mercato, ma rappresenta uno dei temi più discussi nel paddock mentre costruttori e squadre iniziano già a pianificare il nuovo ciclo tecnico della MotoGP.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Honda valuta Zarco come collaudatore ufficiale per il progetto 2027',excerpt:'Dopo il grave incidente di Barcellona, Johann Zarco potrebbe proseguire il proprio percorso con Honda nel ruolo di test rider in vista dell’arrivo delle MotoGP 850 cc.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Tra le indiscrezioni più concrete del mercato MotoGP spicca quella che riguarda il futuro di Johann Zarco. Secondo diverse voci del paddock, Honda starebbe valutando di affidare al francese il ruolo di collaudatore ufficiale a partire dalla stagione 2027.<br><br>L’ipotesi nasce anche in seguito al grave incidente di Barcellona 2026, nel quale Zarco ha riportato una seria lesione al ginocchio. Dopo quell’episodio, la casa giapponese avrebbe iniziato a riflettere sulla soluzione migliore per mantenere il pilota all’interno del proprio progetto senza affrontare i rischi di una stagione completa da titolare.<br><br>Con l’introduzione delle nuove MotoGP da 850 cc, Honda avrà infatti bisogno di un intenso programma di sviluppo e considera Zarco uno dei migliori collaudatori della griglia. L’esperienza maturata nelle ultime stagioni con LCR rappresenterebbe inoltre un valore aggiunto per accelerare l’evoluzione della futura RC213V.<br><br>Qualora l’operazione andasse in porto, si libererebbe automaticamente una sella nel team LCR Honda, destinata a diventare uno dei posti più ambiti del mercato piloti 2027.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Tech3 pensa ad Agius o González per la sella da rookie nel 2027',excerpt:'KTM starebbe valutando Senna Agius e Manuel González per uno dei due posti disponibili in Tech3, seguendo una strategia che punta a un mix tra giovani ed esperienza.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Il futuro del team Tech3 continua a prendere forma in vista del 2027. Secondo Rosario Triolo, KTM avrebbe individuato in Manuel González e Senna Agius i principali candidati per occupare la sella destinata a un rookie nella squadra satellite.<br><br>La casa austriaca sarebbe orientata a costruire una formazione composta da un giovane di prospettiva e da un pilota già esperto, così da affrontare al meglio l’arrivo del nuovo regolamento tecnico. Manuel González viene considerato uno dei piloti più completi della Moto2 grazie alla velocità sul giro secco, alla costanza in gara e alle qualità nello sviluppo della moto.<br><br>Senna Agius rappresenterebbe invece un profilo differente, apprezzato per l’aggressività in pista, la capacità di adattamento e l’elevato margine di crescita. Inoltre il pilota australiano potrebbe riportare un rappresentante competitivo del proprio Paese nella classe regina, aspetto considerato interessante anche dal punto di vista mediatico.<br><br>Per il momento non sarebbe stata presa alcuna decisione definitiva, ma entrambi figurerebbero tra i nomi più caldi per il futuro della struttura Tech3.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, LCR mette Agius nel mirino se Zarco lascerà la griglia',excerpt:'L’eventuale passaggio di Johann Zarco al ruolo di collaudatore Honda potrebbe aprire le porte della MotoGP a Senna Agius, seguito con attenzione anche da KTM.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Il possibile futuro di Johann Zarco come collaudatore Honda potrebbe avere effetti importanti anche sul mercato piloti. Secondo le ultime indiscrezioni, LCR avrebbe infatti individuato Senna Agius come principale candidato per sostituire il francese qualora si liberasse una RC213V nel 2027.<br><br>L’interesse della squadra di Lucio Cecchinello rischierebbe però di complicare i piani di KTM, che considera l’australiano uno dei profili più interessanti per il progetto Tech3. Per questo motivo la casa di Mattighofen starebbe mantenendo aperta anche la candidatura di Manuel González, così da non farsi trovare impreparata in caso di inserimento della concorrenza.<br><br>La situazione resta strettamente legata alle decisioni di Honda sul futuro di Zarco, ma il nome di Agius è ormai diventato uno dei più ricercati del mercato MotoGP 2027.<br><br>Al momento nessuna trattativa risulta definita, ma le prossime settimane potrebbero chiarire gli equilibri tra Honda, KTM e i giovani protagonisti della Moto2.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, KTM vuole affiancare un veterano al rookie in Tech3: Marini favorito su Viñales',excerpt:'Secondo i rumor di mercato, KTM vorrebbe completare la line-up Tech3 2027 con un pilota esperto. In cima alla lista ci sarebbero Luca Marini e Maverick Viñales.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Oltre alla ricerca di un giovane talento, KTM starebbe lavorando anche al profilo del pilota esperto destinato ad affiancare il rookie nel team Tech3 a partire dal 2027.<br><br>Secondo Rosario Triolo, i nomi maggiormente presi in considerazione sarebbero quelli di Luca Marini e Maverick Viñales. Entrambi garantirebbero esperienza nella classe regina, ma il pilota italiano sembrerebbe partire leggermente favorito.<br><br>Marini viene infatti considerato particolarmente prezioso per le sue capacità di sviluppo della moto, caratteristica ritenuta fondamentale in vista dell’introduzione delle nuove MotoGP da 850 cc. Viñales rappresenterebbe invece un’opzione di grande esperienza e velocità, ma con caratteristiche differenti rispetto alle esigenze attuali del progetto KTM.<br><br>Si tratta ancora di semplici indiscrezioni di mercato, ma la strategia della casa austriaca appare ormai chiara: costruire una coppia capace di unire talento emergente ed esperienza per affrontare la nuova era tecnica della MotoGP.'},
+{cat:'MotoGP',tagCls:'tag-gp',title:'Ufficiale: Yamaha sceglie Martin e Ogura per il biennio 2027-2028',excerpt:'La Casa di Iwata apre un nuovo ciclo tecnico affidandosi a Jorge Martin e Ai Ogura, entrambi in arrivo dal mondo Aprilia.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Yamaha ha ufficializzato la formazione del team ufficiale per le stagioni MotoGP 2027 e 2028: saranno Jorge Martin e Ai Ogura a guidare il nuovo progetto della Casa di Iwata. Entrambi firmano un contratto biennale e rappresentano la base del programma che accompagnerà Yamaha nell’era tecnica delle nuove MotoGP da 850 cc.<br><br>Martin arriva dopo l’esperienza con Aprilia e porterà in dote velocità, esperienza e capacità di sviluppo, caratteristiche considerate fondamentali per accelerare la crescita della nuova M1. Al suo fianco ci sarà Ai Ogura, protagonista di una stagione straordinaria che ha convinto Yamaha a puntare su uno dei talenti più interessanti del panorama mondiale.<br><br>Con questo annuncio Yamaha chiude definitivamente il capitolo dell’attuale line-up e inaugura una nuova fase della propria storia sportiva, con l’obiettivo dichiarato di tornare stabilmente nella lotta per vittorie e titolo mondiale già dal 2027.'},
 {id:2,cat:'Moto2',tagCls:'tag-m2',title:'Moto2, Pramac Yamaha valuta tre nomi per il dopo Guevara: Carpe, Ortolá e Pini',excerpt:'Il team Blu Cru Pramac Yamaha Moto2 starebbe già pianificando il futuro in vista del possibile addio di Izan Guevara, monitorando tre giovani profili.',date:'1 lug 2026',author:'Redazione',meta:'📅 1 lug 2026 · ✍️ Redazione',body:'Anche il mercato Moto2 è già proiettato verso il 2027. Secondo quanto riportato da Rosario Triolo, il team Blu Cru Pramac Yamaha starebbe valutando tre possibili candidati per raccogliere l’eredità di Izan Guevara qualora lo spagnolo dovesse lasciare la squadra.<br><br>Il profilo ritenuto più pronto sarebbe Álvaro Carpe, apprezzato per la velocità mostrata in Moto3, la costanza nei risultati e la capacità di adattarsi rapidamente a nuove categorie. Un pilota che potrebbe garantire un inserimento immediato nella classe intermedia.<br><br>Tra le alternative figura anche Iván Ortolá, forte di una maggiore esperienza nel Motomondiale e considerato in grado di offrire risultati competitivi fin dalle prime gare. Più orientata al futuro, invece, la candidatura di Guido Pini, ritenuto da Yamaha uno dei prospetti italiani più interessanti degli ultimi anni grazie all’elevato potenziale di crescita.<br><br>Al momento non esistono decisioni ufficiali, ma le indiscrezioni confermano come Pramac Yamaha stia già lavorando alla costruzione della propria line-up per le prossime stagioni.'},
 {id:3,cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Yamaha rivoluziona il team: Quartararo e Rins lasceranno a fine 2026, pronti Martín e Ogura',excerpt:'Yamaha ha annunciato la separazione da Fabio Quartararo e Alex Rins al termine della stagione 2026. Per il 2027 sono attesi Jorge Martín e Ai Ogura, anche se manca ancora l’ufficialità della nuova line-up.',date:'30 giu 2026',author:'Redazione',meta:'📅 30 giu 2026 · ✍️ Redazione',body:'Yamaha ha ufficializzato che Fabio Quartararo e Alex Rins lasceranno il team ufficiale al termine della stagione MotoGP 2026, ponendo fine a due importanti collaborazioni in vista dell’introduzione del nuovo regolamento tecnico del 2027. La casa di Iwata ha scelto di voltare pagina, avviando un nuovo progetto sportivo che punta a riportare il marchio ai vertici della classe regina.<br><br>Per Quartararo si chiude un capitolo iniziato nel 2019 e culminato con la conquista del titolo mondiale nel 2021, mentre Rins concluderà la propria esperienza dopo tre stagioni in sella alla M1. Entrambi continueranno a difendere i colori Yamaha fino all’ultima gara del campionato, con l’obiettivo di chiudere nel migliore dei modi la loro avventura con il costruttore giapponese.<br><br>Per il futuro, Yamaha non ha ancora annunciato ufficialmente i sostituti, ma tutto lascia pensare che saranno Jorge Martín e Ai Ogura a formare la nuova coppia di piloti ufficiali dal 2027. Lo spagnolo rappresenterebbe il nuovo punto di riferimento del progetto, mentre il giapponese arriverebbe dopo l’ottima crescita mostrata con Trackhouse, andando a rafforzare ulteriormente il legame tra Yamaha e i talenti nipponici.<br><br>L’ufficialità della line-up 2027 è attesa nelle prossime settimane, ma nel paddock la scelta viene ormai considerata definita. Yamaha si prepara così ad aprire un nuovo ciclo tecnico e sportivo, salutando due piloti che hanno contribuito allo sviluppo della M1 negli ultimi anni e puntando su una formazione completamente rinnovata per affrontare la nuova era della MotoGP.'},  
 {id:4,cat:'Moto3',tagCls:'tag-m3',title:'Moto3 mercato: Carpe punta alla Moto2, Guevara verso Pramac MotoGP 2027 con Ferrández e Ortolá in corsa per il secondo posto',excerpt:'Álvaro Carpe privilegia il passaggio in Moto2 per il 2027 nonostante diverse offerte dalla Moto3. Per Pramac in MotoGP, Izan Guevara è il principale candidato al posto lasciato libero, con Ferrández e Ortolá tra le alternative per completare la line-up.',date:'30 giu 2026',author:'Redazione',meta:'📅 30 giu 2026 · ✍️ Redazione',body:'Il mercato Moto3 e MotoGP in vista della stagione 2027 continua a intrecciarsi tra prospetti in crescita e scelte strategiche dei team legate alla rivoluzione regolamentare. Álvaro Carpe resta uno dei nomi più seguiti della griglia Moto3, ma la sua priorità sarebbe ormai chiaramente orientata verso un salto diretto in Moto2 per il 2027, nonostante diverse proposte ricevute per proseguire nella categoria inferiore.<br><br>Parallelamente, il focus principale riguarda il progetto Pramac in MotoGP, dove si sta delineando il futuro assetto della squadra satellite Yamaha. Secondo le informazioni provenienti dal paddock, Izan Guevara è attualmente il candidato numero uno per occupare uno dei due posti disponibili nel 2027, dopo la crescita evidenziata nelle ultime stagioni e il forte sostegno interno al progetto giapponese.<br><br>Per il secondo sedile resta invece una forte competizione interna tra diversi profili giovani. Tra questi figurano Alberto Ferrández, in grande evidenza in Moto2, e Iván Ortolá, considerato da molti addetti ai lavori una delle opzioni più pronte per il salto di categoria grazie alla sua costanza di rendimento e alla capacità di adattamento ai diversi circuiti.<br><br>Lo scenario resta comunque aperto e in continua evoluzione, con Pramac che sta valutando attentamente la composizione ideale della propria line-up in vista del nuovo ciclo tecnico del 2027. Le decisioni definitive sono attese nei prossimi mesi, ma il quadro attuale vede Guevara in vantaggio e una corsa serrata per completare il secondo posto disponibile.'},
@@ -481,244 +526,261 @@ allNews.forEach(n=>{
   if(!n.meta) n.meta='📅 '+n.date+(n.author?' · ✍️ '+n.author:'');
 });
 
-// Auto-ID
-const usedIds=new Set(allNews.map(n=>n.id));
-let nextId=Math.max(...usedIds)+1;
-allNews.forEach(n=>{
-  if(!n.id||usedIds.has(n.id)){n.id=nextId++;}else{usedIds.add(n.id);}
+// ══════════════════════════════════════
+//  FIX: Assegna ID alle notizie senza ID
+// ══════════════════════════════════════
+allNews.forEach((news, index) => {
+    if (!news.id) news.id = index + 1000;
 });
 
 // ══════════════════════════════════════
-//  STATO APPLICAZIONE
+//  VARIABILI DI STATO
 // ══════════════════════════════════════
-let currentCat='tutte';
-let searchQuery='';
-let visibleCount=9;
-const PER_PAGE=9;
-
-// ══════════════════════════════════════
-//  FILTRO E RICERCA
-// ══════════════════════════════════════
-function getFiltered(){
-  return allNews.filter(n=>{
-    const catOk=currentCat==='tutte'||n.cat===currentCat;
-    const searchOk=!searchQuery||n.title.toLowerCase().includes(searchQuery)||n.desc.toLowerCase().includes(searchQuery);
-    return catOk&&searchOk;
-  });
-}
-
-function handleSearch(){
-  searchQuery=document.getElementById('search-input').value.toLowerCase().trim();
-  visibleCount=PER_PAGE;
-  renderCards();
-}
-
-function filterCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  visibleCount=PER_PAGE;
-  renderCards();
-}
-
-function resetFilters(){
-  currentCat='tutte';
-  searchQuery='';
-  document.getElementById('search-input').value='';
-  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelector('.cat-tab[data-cat="tutte"]').classList.add('active');
-  visibleCount=PER_PAGE;
-  renderCards();
-}
+const PER_PAGE = 6;
+let currentCat = 'tutte';
+let searchTerm = '';
+let shownCount = 0;
 
 // ══════════════════════════════════════
-//  RENDERING CARD
+//  FUNZIONI DI FILTRAGGIO
 // ══════════════════════════════════════
-function renderCards(){
-  const filtered=getFiltered();
-  const toShow=filtered.slice(0,visibleCount);
-  const grid=document.getElementById('news-grid');
-  const noRes=document.getElementById('no-results');
-  const countEl=document.getElementById('news-count');
-  const loadWrap=document.getElementById('load-more-wrap');
-  const loadBtn=document.getElementById('load-more-btn');
-  const loadCounter=document.getElementById('load-more-counter');
-
-  countEl.textContent=filtered.length+' notizie';
-
-  if(!filtered.length){
-    grid.innerHTML='';
-    noRes.style.display='block';
-    loadWrap.style.display='none';
-    return;
-  }
-  noRes.style.display='none';
-
-  grid.innerHTML=toShow.map((n,i)=>{
-    const icon=iconMap[n.cat]||'📰';
-    const letter=n.tag?n.tag.charAt(0):'N';
-    return `
-    <div class="news-card-full fade-in" onclick="openModal(${n.id})" style="animation-delay:${i*40}ms">
-      <div class="ncf-img">
-        <span class="ncf-img-icon">${icon}</span>
-        <span class="ncf-img-letter">${letter}</span>
-      </div>
-      <div class="ncf-body">
-        <span class="tag ${n.tagClass}">${n.tag}</span>
-        <div class="ncf-title">${n.title}</div>
-        <div class="ncf-desc">${n.desc}</div>
-        <div class="ncf-meta">${n.date}</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  // Fade-in
-  requestAnimationFrame(()=>{
-    grid.querySelectorAll('.fade-in').forEach((el,i)=>{
-      setTimeout(()=>el.classList.add('visible'),i*40);
+function getFilteredNews() {
+    return allNews.filter(n => {
+        const catNorm = n.cat.toLowerCase().replace(/\s/g, '');
+        const catMatch = currentCat === 'tutte' || catNorm === currentCat;
+        const searchMatch = !searchTerm || 
+            n.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            n.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+        return catMatch && searchMatch;
     });
-  });
-
-  // Load more
-  if(visibleCount>=filtered.length){
-    loadWrap.style.display='none';
-  } else {
-    loadWrap.style.display='block';
-    loadBtn.disabled=false;
-    loadBtn.textContent='Carica altre notizie';
-    loadCounter.textContent=`${visibleCount} di ${filtered.length} visualizzate`;
-  }
-}
-
-function loadMore(){
-  visibleCount+=PER_PAGE;
-  renderCards();
 }
 
 // ══════════════════════════════════════
-//  MODAL — QUI STA IL FIX PRINCIPALE
+//  CREAZIONE CARD HTML
 // ══════════════════════════════════════
-function openModal(id){
-  const n=allNews.find(x=>x.id===id);
-  if(!n) return;
-
-  document.getElementById('nm-tag').innerHTML=`<span class="tag ${n.tagClass}">${n.tag}</span>`;
-  document.getElementById('nm-title').textContent=n.title;
-  document.getElementById('nm-meta').textContent=n.meta;
-  document.getElementById('nm-text').innerHTML=n.body;
-
-  const overlay=document.getElementById('news-modal');
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-  overlay.querySelector('.news-modal').scrollTop=0;
+function createCard(news) {
+    const icons = {
+        'MotoGP': '🏍️',
+        'Moto2': '🏁',
+        'Moto3': '🛵',
+        'JuniorGP': '🟢',
+        'RedBullRookiesCup': '🔴'
+    };
+    const icon = icons[news.cat] || '📰';
+    const letter = news.cat.charAt(0);
+    
+    return '<div class="news-card-full fade-in" onclick="openModal(' + news.id + ')">' +
+        '<div class="ncf-img">' +
+            '<span class="ncf-img-icon">' + icon + '</span>' +
+            '<span class="ncf-img-letter">' + letter + '</span>' +
+        '</div>' +
+        '<div class="ncf-body">' +
+            '<span class="tag ' + news.tagCls + '">' + news.cat + '</span>' +
+            '<div class="ncf-title">' + news.title + '</div>' +
+            '<div class="ncf-desc">' + news.excerpt + '</div>' +
+            '<div class="ncf-meta">' + news.meta + '</div>' +
+        '</div>' +
+    '</div>';
 }
 
-function closeModal(){
-  document.getElementById('news-modal').classList.remove('open');
-  document.body.style.overflow='';
+// ══════════════════════════════════════
+//  RENDERING NOTIZIE
+// ══════════════════════════════════════
+function renderNews(reset) {
+    var grid = document.getElementById('news-grid');
+    var noResults = document.getElementById('no-results');
+    var loadMoreWrap = document.getElementById('load-more-wrap');
+    var loadMoreBtn = document.getElementById('load-more-btn');
+    var loadMoreCounter = document.getElementById('load-more-counter');
+    var newsCount = document.getElementById('news-count');
+    
+    var filtered = getFilteredNews();
+    
+    if (reset) {
+        grid.innerHTML = '';
+        shownCount = 0;
+    }
+    
+    var toShow = filtered.slice(shownCount, shownCount + PER_PAGE);
+    for (var i = 0; i < toShow.length; i++) {
+        grid.insertAdjacentHTML('beforeend', createCard(toShow[i]));
+    }
+    shownCount += toShow.length;
+    
+    newsCount.textContent = filtered.length + ' notizi' + (filtered.length === 1 ? 'a' : 'e');
+    
+    if (filtered.length === 0) {
+        noResults.style.display = 'block';
+        loadMoreWrap.style.display = 'none';
+    } else {
+        noResults.style.display = 'none';
+        if (shownCount >= filtered.length) {
+            loadMoreWrap.style.display = 'none';
+        } else {
+            loadMoreWrap.style.display = 'block';
+            loadMoreBtn.disabled = false;
+            loadMoreCounter.textContent = 'Mostrate ' + shownCount + ' di ' + filtered.length;
+        }
+    }
+    
+    // Anima le card
+    setTimeout(function() {
+        var cards = document.querySelectorAll('.fade-in:not(.visible)');
+        for (var j = 0; j < cards.length; j++) {
+            (function(card, delay) {
+                setTimeout(function() {
+                    card.classList.add('visible');
+                }, delay);
+            })(cards[j], j * 80);
+        }
+    }, 50);
 }
 
-// Chiudi modal con ESC
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeModal();
-});
+// ══════════════════════════════════════
+//  LOAD MORE
+// ══════════════════════════════════════
+function loadMore() {
+    renderNews(false);
+}
+
+// ══════════════════════════════════════
+//  FILTRO CATEGORIA
+// ══════════════════════════════════════
+function filterCat(cat, btn) {
+    currentCat = cat;
+    var tabs = document.querySelectorAll('.cat-tab');
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+    }
+    btn.classList.add('active');
+    renderNews(true);
+}
+
+// ══════════════════════════════════════
+//  RICERCA
+// ══════════════════════════════════════
+function handleSearch() {
+    searchTerm = document.getElementById('search-input').value;
+    renderNews(true);
+}
+
+// ══════════════════════════════════════
+//  RESET FILTRI
+// ══════════════════════════════════════
+function resetFilters() {
+    currentCat = 'tutte';
+    searchTerm = '';
+    document.getElementById('search-input').value = '';
+    var tabs = document.querySelectorAll('.cat-tab');
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+    }
+    document.querySelector('.cat-tab[data-cat="tutte"]').classList.add('active');
+    renderNews(true);
+}
+
+// ══════════════════════════════════════
+//  APRI MODAL NOTIZIA
+// ══════════════════════════════════════
+function openModal(id) {
+    var news = null;
+    for (var i = 0; i < allNews.length; i++) {
+        if (allNews[i].id === id) {
+            news = allNews[i];
+            break;
+        }
+    }
+    if (!news) return;
+    
+    document.getElementById('nm-tag').innerHTML = '<span class="tag ' + news.tagCls + '">' + news.cat + '</span>';
+    document.getElementById('nm-title').textContent = news.title;
+    document.getElementById('nm-meta').textContent = news.meta;
+    document.getElementById('nm-text').innerHTML = news.body;
+    document.getElementById('news-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+// ══════════════════════════════════════
+//  CHIUDI MODAL
+// ══════════════════════════════════════
+function closeModal() {
+    document.getElementById('news-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
 
 // ══════════════════════════════════════
 //  SCROLL TO TOP
 // ══════════════════════════════════════
-window.addEventListener('scroll',()=>{
-  document.getElementById('scroll-top-btn').classList.toggle('visible',window.scrollY>400);
+window.addEventListener('scroll', function() {
+    var btn = document.getElementById('scroll-top-btn');
+    if (window.scrollY > 400) {
+        btn.classList.add('visible');
+    } else {
+        btn.classList.remove('visible');
+    }
 });
 
 // ══════════════════════════════════════
-//  TEMA
+//  CHIUDI MODAL CON ESC
 // ══════════════════════════════════════
-function toggleTheme(){
-  const html=document.documentElement;
-  const isLight=html.getAttribute('data-theme')==='light';
-  html.setAttribute('data-theme',isLight?'dark':'light');
-  document.getElementById('theme-toggle').textContent=isLight?'🌙':'☀️';
-  localStorage.setItem('theme',isLight?'dark':'light');
-}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// ══════════════════════════════════════
+//  INIZIALIZZAZIONE - CARICA LE NOTIZIE
+// ══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+    renderNews(true);
+});
+// ── AUDIO PLAYER LOGIC ──
 (function(){
-  const saved=localStorage.getItem('theme');
-  if(saved==='light'){
-    document.documentElement.setAttribute('data-theme','light');
-    document.getElementById('theme-toggle').textContent='☀️';
-  }
+  var audio = document.getElementById('bg-audio');
+  var progressSlider = document.getElementById('progress-slider');
+  var playBtn = document.getElementById('play-btn');
+  
+  // Sincronizza tra pagine: salva il tempo corrente
+  window.addEventListener('beforeunload', function(){
+    try {
+      sessionStorage.setItem('audio-time', audio.currentTime);
+      sessionStorage.setItem('audio-playing', !audio.paused);
+    } catch(e){}
+  });
+  
+  // Ripristina il tempo quando carica la pagina
+  audio.addEventListener('loadedmetadata', function(){
+    try {
+      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+      audio.currentTime = savedTime;
+      if(wasPlaying) audio.play();
+    } catch(e){}
+  });
+  
+  // Aggiorna la barra di progresso
+  audio.addEventListener('timeupdate', function(){
+    if(audio.duration) {
+      progressSlider.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  
+  // Aggiorna il bottone play/pause
+  audio.addEventListener('play', function(){
+    playBtn.textContent = '⏸';
+  });
+  audio.addEventListener('pause', function(){
+    playBtn.textContent = '▶';
+  });
+  
+  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
+  audio.addEventListener('ended', function(){
+    try {
+      sessionStorage.removeItem('audio-time');
+    } catch(e){}
+  });
 })();
-
-// ══════════════════════════════════════
-//  MENU A TENDINA
-// ══════════════════════════════════════
-function toggleNavDropdown(){
-  const btn=document.getElementById('nav-dropdown-btn');
-  const menu=document.getElementById('nav-dropdown-menu');
-  btn.classList.toggle('open');
-  menu.classList.toggle('open');
-}
-document.addEventListener('click',e=>{
-  const wrap=document.querySelector('.nav-dropdown-wrap');
-  if(wrap&&!wrap.contains(e.target)){
-    document.getElementById('nav-dropdown-btn').classList.remove('open');
-    document.getElementById('nav-dropdown-menu').classList.remove('open');
-  }
-});
-
-// ══════════════════════════════════════
-//  AUTH (se presente anche in index)
-// ══════════════════════════════════════
-function openAuth(){document.getElementById('auth-modal').classList.add('open');}
-function closeAuth(){document.getElementById('auth-modal').classList.remove('open');}
-function showRegister(){document.getElementById('auth-login-view').style.display='none';document.getElementById('auth-register-view').style.display='block';}
-function showLogin(){document.getElementById('auth-login-view').style.display='block';document.getElementById('auth-register-view').style.display='none';}
-function login(){
-  const u=document.getElementById('auth-username').value.trim();
-  const p=document.getElementById('auth-password').value;
-  if(!u||!p){document.getElementById('auth-error').style.display='block';document.getElementById('auth-error').textContent='Compila tutti i campi.';return;}
-  const users=JSON.parse(localStorage.getItem('moto2026_users')||'{}');
-  if(!users[u]){document.getElementById('auth-error').style.display='block';document.getElementById('auth-error').textContent='Utente non trovato.';return;}
-  if(users[u].pass!==p){document.getElementById('auth-error').style.display='block';document.getElementById('auth-error').textContent='Password errata.';return;}
-  localStorage.setItem('moto2026_session',u);
-  closeAuth();updateAuthUI();
-}
-function register(){
-  const u=document.getElementById('reg-username').value.trim();
-  const p=document.getElementById('reg-password').value;
-  const p2=document.getElementById('reg-password2').value;
-  if(!u||!p||!p2){document.getElementById('auth-error-reg').style.display='block';document.getElementById('auth-error-reg').textContent='Compila tutti i campi.';return;}
-  if(p!==p2){document.getElementById('auth-error-reg').style.display='block';document.getElementById('auth-error-reg').textContent='Le password non coincidono.';return;}
-  const users=JSON.parse(localStorage.getItem('moto2026_users')||'{}');
-  if(users[u]){document.getElementById('auth-error-reg').style.display='block';document.getElementById('auth-error-reg').textContent='Username già usato.';return;}
-  users[u]={pass:p,favs:[]};
-  localStorage.setItem('moto2026_users',JSON.stringify(users));
-  localStorage.setItem('moto2026_session',u);
-  closeAuth();updateAuthUI();
-}
-function logout(){
-  localStorage.removeItem('moto2026_session');
-  updateAuthUI();
-}
-function updateAuthUI(){
-  const session=localStorage.getItem('moto2026_session');
-  document.getElementById('auth-btn').style.display=session?'none':'flex';
-  document.getElementById('user-menu-wrap').style.display=session?'block':'none';
-  if(session){
-    document.getElementById('user-avatar-letter').textContent=session.charAt(0).toUpperCase();
-    document.getElementById('user-menu-name').textContent=session;
-  }
-}
-function toggleUserMenu(){
-  document.getElementById('user-menu').classList.toggle('open');
-}
-document.addEventListener('click',e=>{
-  const w=document.getElementById('user-menu-wrap');
-  if(w&&!w.contains(e.target)) document.getElementById('user-menu').classList.remove('open');
-});
-
-// ══════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════
 updateAuthUI();
 renderCards();
 </script>
