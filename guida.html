@@ -1223,20 +1223,8 @@
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
-<div class="header-right"><div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
-<button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
-<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14">
-<line x1="1" x2="13" y1="3" y2="3"></line>
-<line x1="1" x2="13" y1="7" y2="7"></line>
-<line x1="1" x2="13" y1="11" y2="11"></line>
-</svg>
-      MENU
-      <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 10 10" width="10">
-<polyline points="2,3 5,7 8,3"></polyline>
-</svg>
-</button>
-<div class="nav-dropdown-menu" id="nav-dropdown-menu"><div class="nav-dropdown-section">Home</div><a class="nav-dropdown-item" href="index.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏠</span>Home</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Categorie</div><a class="nav-dropdown-item" href="motogp.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔴</span>MotoGP</a><a class="nav-dropdown-item" href="moto2.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🟡</span>Moto2</a><a class="nav-dropdown-item" href="moto3.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔵</span>Moto3</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Campionato</div><a class="nav-dropdown-item" href="classifica.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏆</span>Classifica</a><a class="nav-dropdown-item" href="risultati.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📋</span>Risultati</a><a class="nav-dropdown-item" href="calendario.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📅</span>Calendario</a><a class="nav-dropdown-item" href="stagione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📖</span>Stagione</a><a class="nav-dropdown-item" href="stats.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📊</span>Statistiche</a><a class="nav-dropdown-item" href="circuiti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏁</span>Circuiti</a><a class="nav-dropdown-item" href="prediction.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🧠</span>Prediction</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Piloti</div><a class="nav-dropdown-item" href="piloti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">👤</span>Tutti i piloti</a><a class="nav-dropdown-item" href="albo_doro.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🥇</span>Albo d'oro</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Team</div><a class="nav-dropdown-item" href="team.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏎️</span>Team</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Info</div><a class="nav-dropdown-item active" href="guida.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">❓</span>Guida al sito</a><a class="nav-dropdown-item" href="relazione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📝</span>Relazione</a></div>
-</div>
+<div class="header-right">
+<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
 <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
 <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
 <span></span><span></span><span></span>
@@ -1283,6 +1271,7 @@
 <li><a href="#navigazione">Come navigare</a></li>
 <div class="toc-section">Le pagine</div>
 <li><a href="#home">🏠 Home</a></li>
+<li><a href="#notizie">📰 Notizie</a></li>
 <li><a href="#categorie">🏍️ MotoGP · Moto2 · Moto3</a></li>
 <li><a href="#piloti">👥 Piloti</a></li>
 <li><a href="#pilota">🧑 Scheda Pilota</a></li>
@@ -1318,7 +1307,7 @@
                 <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e
                 sessione per sessione, schede complete di tutti i piloti in griglia, pronostici GP e statistiche avanzate.
               </p>
-<p>Il sito è composto da <span class="hl">39 pagine</span> collegate tra loro. Puoi partire da qualunque
+<p>Il sito è composto da <span class="hl">40 pagine</span> collegate tra loro. Puoi partire da qualunque
                 punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due
                 click.</p>
 <div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire
@@ -1375,7 +1364,7 @@
 <ul class="feature-list">
 <li><span class="fl-icon">📰</span>
 <div><span class="hl">Ultime notizie</span> — articoli e aggiornamenti su MotoGP, Moto2 e Moto3.
-                    Clicca su una notizia per leggerla per intero in un pannello che si apre nella stessa pagina.</div>
+  Clicca su una notizia per leggerla per intero. Usa il link <span class="internal-link">"Vedi tutte le notizie"</span> per aprire la pagina dedicata con filtri e ricerca completa.</div>
 </li>
 <li><span class="fl-icon">⏱️</span>
 <div><span class="hl">Countdown prossimo GP</span> — conto alla rovescia in tempo reale (giorni, ore,
@@ -1394,6 +1383,37 @@
                     round completati portano ai risultati, quello successivo è evidenziato.</div>
 </li>
 </ul>
+</div>
+</div>
+<!-- NOTIZIE -->
+<div class="guide-section" id="notizie">
+<div class="guide-section-header">
+<div class="guide-icon">📰</div>
+<div>
+<div class="guide-section-title">Notizie</div>
+<div class="guide-section-sub">notizie.html • Solo dalla Home</div>
+</div>
+</div>
+<div class="guide-body">
+<p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
+<ul class="feature-list">
+<li><span class="fl-icon">🔍</span>
+<div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div>
+</li>
+<li><span class="fl-icon">🏷️</span>
+<div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · JuniorGP · RedBull RookiesCup) filtrano istantaneamente le notizie per classe.</div>
+</li>
+<li><span class="fl-icon">📄</span>
+<div><span class="hl">Card con anteprima</span> — ogni notizia mostra una miniatura generata, il titolo, un riassunto e la data. Cliccando sulla card si apre l'articolo completo in un modale sovrapposto.</div>
+</li>
+<li><span class="fl-icon">📦</span>
+<div><span class="hl">Caricamento progressivo</span> — le notizie vengono caricate a gruppi di 6. Il pulsante "Carica altre notizie" in fondo mostra le successive senza ricaricare la pagina.</div>
+</li>
+<li><span class="fl-icon">🔲</span>
+<div><span class="hl">Modal di lettura</span> — l'articolo si apre in un pannello centrato con sfondo sfocato. Si chiude cliccando fuori, sul pulsante ✕ o premendo <kbd>Esc</kbd>.</div>
+</li>
+</ul>
+<div class="note">Questa pagina non ha un link diretto nel menu perché è pensata come <strong>estensione della sezione notizie della Home</strong>. Per tornarci, basta passare dalla Home e cliccare "Vedi tutte le notizie".</div>
 </div>
 </div>
 <!-- CATEGORIE -->

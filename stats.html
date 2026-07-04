@@ -268,17 +268,11 @@
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button class="auth-btn" onclick="openAuthModal()">👤 Accedi</button>
-<div class="nav-dropdown-wrap" id="nav-dropdown-wrap">
-<button aria-label="Menu pagine" class="nav-dropdown-btn" id="nav-dropdown-btn" onclick="toggleNavDropdown()">
-<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 14 14" width="14"><line x1="1" x2="13" y1="3" y2="3"></line><line x1="1" x2="13" y1="7" y2="7"></line><line x1="1" x2="13" y1="11" y2="11"></line></svg>
-MENU
-<svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 10 10" width="10"><polyline points="2,3 5,7 8,3"></polyline></svg>
-</button>
-<div class="nav-dropdown-menu" id="nav-dropdown-menu"><div class="nav-dropdown-section">Home</div><a class="nav-dropdown-item" href="index.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏠</span>Home</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Categorie</div><a class="nav-dropdown-item" href="motogp.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔴</span>MotoGP</a><a class="nav-dropdown-item" href="moto2.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🟡</span>Moto2</a><a class="nav-dropdown-item" href="moto3.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🔵</span>Moto3</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Campionato</div><a class="nav-dropdown-item" href="classifica.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏆</span>Classifica</a><a class="nav-dropdown-item" href="risultati.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📋</span>Risultati</a><a class="nav-dropdown-item" href="calendario.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📅</span>Calendario</a><a class="nav-dropdown-item" href="stagione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📖</span>Stagione</a><a class="nav-dropdown-item active" href="stats.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📊</span>Statistiche</a><a class="nav-dropdown-item" href="circuiti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏁</span>Circuiti</a><a class="nav-dropdown-item" href="prediction.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🧠</span>Prediction</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Piloti</div><a class="nav-dropdown-item" href="piloti.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">👤</span>Tutti i piloti</a><a class="nav-dropdown-item" href="albo_doro.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🥇</span>Albo d'oro</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Team</div><a class="nav-dropdown-item" href="team.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">🏎️</span>Team</a><div class="nav-dropdown-divider"></div><div class="nav-dropdown-section">Info</div><a class="nav-dropdown-item" href="guida.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">❓</span>Guida al sito</a><a class="nav-dropdown-item" href="relazione.html" onclick="closeNavDropdown()"><span class="nav-dropdown-item-icon">📝</span>Relazione</a></div>
-</div>
+<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
 <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div>
+<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+<span></span><span></span><span></span>
+</div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a class="active" href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -597,6 +591,7 @@ document.addEventListener('click', function(e) { var wrap=document.getElementByI
   audio.addEventListener('play',function(){playBtn.textContent='⏸'});audio.addEventListener('pause',function(){playBtn.textContent='▶'});
   audio.addEventListener('ended',function(){try{sessionStorage.removeItem('audio-time')}catch(e){}});
 })();
+
 </script>
 </body>
 </html>
