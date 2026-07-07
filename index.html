@@ -1450,7 +1450,9 @@
 <!-- TOP 3 LEADER PER CATEGORIA -->
 <h2 class="section-title">Leader di Campionato</h2>
 <div class="top3-wrap">
-<a class="top3-card" href="classifica.html#motogp" style="text-decoration:none;">
+<a class="top3-card"
+   href="classifica.html"
+   onclick="sessionStorage.setItem('cls','motogp')">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(255,107,53,.15);color:#ff6b35;border:1px solid rgba(255,107,53,.3);">MotoGP</div>
 <div class="top3-flag">🇪🇸</div>
@@ -1459,7 +1461,9 @@
 <div class="top3-pts-label">punti · 10 round</div>
 <div class="top3-gap">+7 su M.Bezzecchi</div>
 </a>
-<a class="top3-card" href="classifica.html#moto2" style="text-decoration:none;">
+<a class="top3-card"
+   href="classifica.html"
+   onclick="sessionStorage.setItem('cls','moto2')">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.3);">Moto2</div>
 <div class="top3-flag">🇪🇸</div>
@@ -1468,7 +1472,9 @@
 <div class="top3-pts-label">punti · 10 round</div>
 <div class="top3-gap">+57.5 su I.Guevara</div>
 </a>
-<a class="top3-card" href="classifica.html#moto3" style="text-decoration:none;">
+<a class="top3-card"
+   href="classifica.html"
+   onclick="sessionStorage.setItem('cls','moto3')">
 <span class="top3-crown">👑</span>
 <div class="top3-cat" style="background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.3);">Moto3</div>
 <div class="top3-flag">🇪🇸</div>
@@ -1772,6 +1778,7 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
+  {cat:'Moto3',tagCls:'tag-m3',title:'Moto3, Muñoz: "Ho pensato di smettere dopo i miei infortuni"',excerpt:'Il pilota spagnolo racconta il dramma vissuto dopo dieci interventi chirurgici: decisivo anche il sostegno di Marc Márquez.',date:'7 lug 2026',author:'Redazione',meta:'📅 7 lug 2026 · ✍️ Redazione',body:'David Muñoz ha confessato di aver pensato di lasciare le corse dopo i gravissimi infortuni subiti negli ultimi mesi e i dieci interventi chirurgici affrontati tra la frattura del femore in Indonesia e le lesioni riportate a Balaton Park. Il pilota spagnolo ha raccontato come anche il supporto di Marc Márquez sia stato fondamentale per convincerlo a concentrarsi sul recupero completo, con l’obiettivo di tornare in pista e debuttare in Moto2 nella prossima stagione.'},
   {cat:'JuniorGP',tagCls:'tag-jgp',title:'JEREZ REGALA SPETTACOLO: Cano e Karpushin si dividono la Moto3, Pawelec trionfa in Moto2, Pritelli e Marulanda vincono in Moto4',excerpt:'Il Round 3 del FIM MotoJunior World Championship 2026 regala emozioni a Jerez. Successi per Carlos Cano e Yaroslav Karpushin in Moto3, Milan Pawelec conquista la Moto2 mentre Lorenzo Pritelli e Mateo Marulanda si dividono le vittorie in Moto4.',date:'6 lug 2026',author:'Redazione',meta:'📅 6 lug 2026 · ✍️ Redazione',body:'Il terzo appuntamento del FIM MotoJunior World Championship 2026, disputato sul Circuito de Jerez-Ángel Nieto, ha regalato un weekend ricco di colpi di scena, sorpassi e cadute che hanno rimescolato le classifiche delle tre categorie principali.<br><br>Nel Moto3 Junior World Championship Gara 1 è stata conquistata da Carlos Cano davanti al compagno di squadra Yaroslav Karpushin e Fernando Bujosa, mentre Leonardo Zanni è caduto quando era al comando. In Gara 2 è arrivato il riscatto di Karpushin, vincitore davanti a David Gonzalez e Travis Borg, in una corsa segnata da numerosi incidenti e contatti. Grazie ai risultati del weekend la classifica generale si accende con Giulio Pugliese, Carlos Cano e Travis Borg appaiati al comando a pari punti.<br><br>Nel Moto2 European Championship è andata in scena una sola gara, vinta dal campione in carica Milan Pawelec dopo un intenso duello con Unai Orradre, Éric Fernández e Francesco Mongiardo. Il polacco ha preceduto proprio Mongiardo e Orradre, mentre Fernández è stato retrocesso dal secondo al quarto posto per non aver scontato un Long Lap Penalty. Con questa vittoria Pawelec sale in testa al campionato con 98 punti davanti a Orradre (92) e Fernández (74).<br><br>Nella Moto4 European Cup Gara 1 ha premiato Lorenzo Pritelli davanti ad Álvaro Lucas ed Edoardo Savino. La seconda manche, conclusa con un giro d’anticipo dopo una spettacolare caduta multipla che ha coinvolto Pritelli, Lucas, Savino e Cubeles, ha visto il successo di Mateo Marulanda davanti a Ignacio Galán e Qabil Irfan. Nonostante lo zero in Gara 2, Lucas mantiene la leadership della classifica generale con 116 punti, seguito da Pritelli e Savino.<br><br>Dopo il Round 3 di Jerez il campionato si prepara ora a fare tappa a Magny-Cours, dove le classifiche sempre più corte promettono un’altra sfida spettacolare nella corsa ai titoli 2026.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'KTM ufficializza Alex Márquez e Di Giannantonio dal 2027',excerpt:'La casa austriaca annuncia la nuova coppia del team ufficiale: entrambi hanno firmato contratti pluriennali e guideranno la RC16 nella nuova era MotoGP.',date:'6 lug 2026',author:'Redazione',meta:'📅 6 lug 2026 · ✍️ Redazione',body:'Red Bull KTM Factory Racing ha ufficializzato una delle operazioni più importanti del mercato MotoGP, annunciando l’arrivo di Alex Márquez e Fabio Di Giannantonio come piloti ufficiali a partire dalla stagione 2027. Entrambi hanno firmato contratti pluriennali con la casa di Mattighofen e saranno chiamati a guidare il progetto KTM nella nuova era tecnica della MotoGP, caratterizzata dall’introduzione delle moto da 850 cc.<br><br>Per Alex Márquez si tratta del ritorno in un team ufficiale dopo l’esperienza con Honda nel 2020. Lo spagnolo lascia Gresini Racing dopo quattro stagioni di crescita, nelle quali è riuscito a conquistare vittorie, podi e il ruolo di protagonista del campionato. «Sono davvero felice di entrare a far parte della famiglia KTM. Ho percepito fin da subito la fiducia del team e sono convinto che insieme potremo costruire qualcosa di speciale», ha dichiarato il due volte campione del mondo.<br><br>Anche Fabio Di Giannantonio saluterà il team VR46 al termine del 2026 per affrontare una nuova sfida. L’italiano, autore di una costante crescita nelle ultime stagioni, ha definito il passaggio in KTM «un’opportunità straordinaria» aggiungendo di essere pronto a dare il massimo per contribuire allo sviluppo della RC16 e riportare il marchio austriaco al vertice della categoria.<br><br>Il direttore di KTM Motorsport, Pit Beirer, ha spiegato la scelta del costruttore: «Alex porta talento, intelligenza in gara e una mentalità vincente che rispecchia perfettamente il nostro DNA. Fabio, invece, è cresciuto fino a diventare uno dei piloti più competitivi della griglia e siamo convinti che abbia ancora un enorme margine di miglioramento. Insieme rappresentano la base ideale per il nostro futuro». Con questa doppia firma KTM lancia un messaggio chiaro alla concorrenza e punta ad aprire un nuovo ciclo vincente nella massima categoria.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'Aldeguer salta il GP di Germania: Gresini correrà con una sola moto',excerpt:'Lo spagnolo non ha ancora recuperato dalla frattura alla vertebra T7 rimediata ad Assen e non sarà sostituito al Sachsenring.',date:'6 lug 2026',author:'Redazione',meta:'📅 6 lug 2026 · ✍️ Redazione',body:'Gresini Racing ha confermato che Fermín Aldeguer non prenderà parte al Gran Premio di Germania, in programma questo weekend al Sachsenring. Lo spagnolo sta proseguendo il recupero dalla frattura della vertebra T7 riportata dopo la caduta nelle prove di Assen e non ha ancora ricevuto l’idoneità medica. A differenza di quanto accaduto in Thailandia a inizio stagione, il team ha deciso di non schierare alcun sostituto: in Germania sarà quindi presente una sola Ducati Gresini, affidata ad Alex Márquez. L’obiettivo di Aldeguer è sfruttare la pausa estiva per completare il recupero e tornare regolarmente in pista alla ripresa del campionato.'},
