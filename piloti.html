@@ -933,7 +933,7 @@
 <button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
 <button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+6)</button>
 <button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+6)</button>
-<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+1)</button>
+<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+2)</button>
 </div>
 </div>
 <div style="background:var(--mid);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;">
@@ -1256,7 +1256,11 @@
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Italtrans Racing Team</span></div>
 <div class="riders-row rc-m2">
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Huertas</div><div class="rider-meta">Kalex</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Muñoz</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Muñoz</div><div class="rider-meta">Kalex</div>
+<div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+            ⚠️ Assente Round 11 (infortunio)<br/>
+            <span style="color:var(--muted);">Nessun Sostituto</span>
+</div>
 </div>
 </div>
 <div class="team-block">
@@ -1393,8 +1397,22 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">BOE Motorsports</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇳🇿</div><div class="rider-name">Cormac Buchanan</div><div class="rider-meta">CFMOTO</div></div>
-<div class="rider-card"><div class="rider-flag">🇿🇦</div><div class="rider-name">Ruche Moodley</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇳🇿</div><div class="rider-name">Cormac Buchanan</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card">
+    <div class="rider-flag">🇿🇦</div>
+    <div class="rider-name">Ruche Moodley</div>
+    <div class="rider-meta">KTM</div>
+
+    <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
+        ⚠️ Assente Round 11 (infortunio)<br/>
+        <span style="color:var(--muted);">Sostituito da Eduardo Gutiérrez Cobo</span>
+    </div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇲🇽</div>
+<div class="rider-name">Eduardo Gutiérrez Cobo <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R11</span></div>
+<div class="rider-meta">KTM — Sub. Moodley al Round 11</div>
+</div>
 </div>
 </div>
 <div class="team-block">
@@ -1407,8 +1425,8 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">GRYD – MLav Racing</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Joel Kelso</div><div class="rider-meta">KTM</div></div>
-<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Eddie O'Shea</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Joel Kelso</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Eddie O'Shea</div><div class="rider-meta">Honda NSF250RW</div></div>
 </div>
 </div>
 <div class="team-block">
@@ -1440,7 +1458,7 @@
 <div class="rider-name">David Muñoz</div>
 <div class="rider-meta">KTM</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
-            ⚠️ Assente Round 2–3-9-10 (infortunio)<br/>
+            ⚠️ Assente Round 2–3-9-10-11 (infortunio)<br/>
 <span style="color:var(--muted);">Sostituito da M. Uriarte al Round 9-10</span>
 </div>
 </div>
@@ -1456,7 +1474,7 @@
 <div class="rider-card" style="border-left:3px solid #f700d6;">
 <div class="rider-flag">🇪🇸</div>
 <div class="rider-name">Marcos Uriarte <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R2-R3-R9-R10</span></div>
-<div class="rider-meta">KTM — Sub. Alamnsa al Round 3; Sub. Muñoz al Round 9-10</div>
+<div class="rider-meta">KTM — Sub. Alamnsa al Round 3; Sub. Muñoz al Round 9-10-11</div>
 </div>
 </div>
 </div>
@@ -1470,8 +1488,8 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">CFMOTO Aspar Team</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Máximo Quiles</div><div class="rider-meta">CFMOTO</div></div>
-<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Marco Morelli</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Máximo Quiles</div><div class="rider-meta">KTM CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Marco Morelli</div><div class="rider-meta">KTM CFMOTO</div></div>
 </div>
 </div>
 <div class="team-block">
@@ -1491,8 +1509,8 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">LEVEL UP – MTA</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Joel Esteban</div><div class="rider-meta">CFMOTO</div></div>
-<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Matteo Bertelle</div><div class="rider-meta">CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Joel Esteban</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Matteo Bertelle</div><div class="rider-meta">KTM</div></div>
 </div>
 </div>
 <div class="team-block">
@@ -1523,7 +1541,7 @@
     '🇮🇹':'ITA','🇪🇸':'SPA','🇫🇷':'FRA','🇦🇺':'AUS','🇹🇷':'TUR','🇿🇦':'RSA',
     '🇯🇵':'JPN','🇧🇷':'BRA','🇳🇱':'NED','🇨🇿':'CZE','🇧🇪':'BEL','🇨🇴':'COL',
     '🇺🇸':'USA','🇦🇷':'ARG','🇫🇮':'FIN','🇲🇾':'MAL','🇮🇩':'INA','🇳🇿':'NZL',
-    '🇮🇪':'IRL','🇬🇧':'GBR','🇦🇹':'AUT','🇵🇹':'POR', '🇩🇪':'GER',  
+    '🇮🇪':'IRL','🇬🇧':'GBR','🇦🇹':'AUT','🇵🇹':'POR', '🇩🇪':'GER', '🇲🇽':'MEX'
   };
 
   // SVG moto semplificata
