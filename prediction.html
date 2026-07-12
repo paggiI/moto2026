@@ -525,8 +525,8 @@
 <br/>
 <div class="container">
 <div class="summary">
-<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">12</div><div class="card-desc">Round ancora da correre</div></div>
-<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">10</div><div class="card-desc">Su 22 totali</div></div>
+<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">11</div><div class="card-desc">Round ancora da correre</div></div>
+<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">11</div><div class="card-desc">Su 22 totali</div></div>
 <div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Jorge Martín</div><div class="card-desc">Leader attuale della classe regina</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto2</div><div class="card-value">Manuel González</div><div class="card-desc">Leader attuale Moto2</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto3</div><div class="card-value">Máximo Quiles</div><div class="card-desc">Leader attuale Moto3</div></div>
@@ -576,7 +576,7 @@
 </div>
 </div>
 <script>
-const FUTURE_ROUNDS = [{"num": 11, "name": "Gran Premio di Germania", "circuit": "Sachsenring · Hohenstein-Ernstthal", "date": "10 – 12 lug", "flag": "🇩🇪", "status": "next"}, {"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "future"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
+const FUTURE_ROUNDS = [{"num": 12, "name": "Gran Premio di Gran Bretagna", "circuit": "Silverstone Circuit", "date": "7 – 9 ago", "flag": "🇬🇧", "status": "next"}, {"num": 13, "name": "Gran Premio di Aragona", "circuit": "MotorLand Aragón · Alcañiz", "date": "28 – 30 ago", "flag": "🇪🇸", "status": "future"}, {"num": 14, "name": "Gran Premio di San Marino", "circuit": "Misano World Circuit Marco Simoncelli", "date": "11 – 13 set", "flag": "🇮🇹", "status": "future"}, {"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "future"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
 const RIDER_OPTIONS = {
   "motogp": [
     { "name": "Francesco Bagnaia", "flag": "🇮🇹", "team": "Ducati Desmosedici GP26", "note": "" },
@@ -604,7 +604,7 @@ const RIDER_OPTIONS = {
     { "name": "Augusto Fernández", "flag": "🇪🇸", "team": "Yamaha Racing Factory", "note": "Wildcard Round 6-10" }, //WildCard R4-R6-R10
     { "name": "Joan Mir", "flag": "🇪🇸", "team": "Honda RC213V", "note": "" },
     { "name": "Luca Marini", "flag": "🇮🇹", "team": "Honda RC213V", "note": "" },
-    { "name": "Johann Zarco", "flag": "🇫🇷", "team": "Honda RC213V", "note": "⚠️ Assente Round 10-11 (infortunio)" }, //Assente R7-R8-R9-R10-R11
+    { "name": "Johann Zarco", "flag": "🇫🇷", "team": "Honda RC213V", "note": "⚠️ Assente Round 12-13 (infortunio)" }, //Assente R7-R8-R9-R10-R11-R12-R13
     { "name": "Cal Crutchlow", "flag": "🇬🇧", "team": "Honda RC213V", "note": "SOSTITUTO R8-R9-R10-R11 Sub. Zarco ai Round 9-10-11" },
     { "name": "Diogo Moreira", "flag": "🇧🇷", "team": "Honda RC213V", "note": "" }
   ],
