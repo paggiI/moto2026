@@ -421,6 +421,18 @@
       border-bottom-color: transparent !important;
       background: rgba(255,255,255,.05) !important;
     }
+    .header-right .auth-btn,
+.header-right .user-menu-wrap {
+    order: 1;
+}
+
+.header-right #theme-toggle {
+    order: 2;
+}
+
+.header-right .hamburger {
+    order: 3;
+}
 </style>
 <style id="audio-player-responsive">
 #audio-player-widget {
@@ -859,8 +871,15 @@ renderRounds();
           '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
         '</div>';
       var themeBtn = headerRight.querySelector('#theme-toggle');
-      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
-      else headerRight.prepend(wrap);
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      var hamburger = headerRight.querySelector('.hamburger');
+      if (themeBtn) {
+          headerRight.insertBefore(wrap, themeBtn);
+      } else if (hamburger) {
+          headerRight.insertBefore(wrap, hamburger);
+      } else {
+          headerRight.appendChild(wrap);
+      }
 
       document.addEventListener('click', function(e) {
         var w = document.getElementById('user-menu-wrap');
@@ -876,8 +895,15 @@ renderRounds();
       btn.textContent = '👤 Accedi';
       btn.onclick = openAuthModal;
       var themeBtn2 = headerRight.querySelector('#theme-toggle');
-      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
-      else headerRight.prepend(btn);
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      var hamburger = headerRight.querySelector('.hamburger');
+      if (themeBtn2) {
+      headerRight.insertBefore(btn, themeBtn2);
+      } else if (hamburger) {
+      headerRight.insertBefore(btn, hamburger);
+      } else {
+      headerRight.appendChild(btn);
+      }
     }
   }
 
