@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classifiche Junior & Rookies 2026 — Moto2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+      --rrc:    #325de9;
+      --jgp-m2: #f7a600;
+      --jgp-m3: #00b4d8;
+      --jgp-m4: #ff6b35;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER MINIMALE ── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--red);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem; height: 60px;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .08em;
+      color: var(--white); text-decoration: none;
+    }
+    .logo span { color: var(--red); }
+    .header-right { display: flex; align-items: center; gap: .5rem; }
+    .auth-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; border-radius: 6px;
+      padding: .28rem .65rem; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .78rem; letter-spacing: .06em;
+      text-transform: uppercase; transition: all .15s;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+    #theme-toggle {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; border-radius: 6px;
+      padding: .3rem .5rem; font-size: .9rem; line-height: 1;
+      display: flex; align-items: center; transition: all .15s;
+    }
+    #theme-toggle:hover { transform: rotate(20deg); border-color: var(--red); color: var(--white); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0015 60%, #0a0a0a 100%);
+      padding: 3rem 2rem; text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1;
+      letter-spacing: .02em; margin-bottom: .5rem;
+    }
+    .page-hero h1 span { color: var(--red); }
+    .page-hero p { color: var(--muted); max-width: 600px; margin: 0 auto; }
+
+    /* ── LAYOUT MAIN ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+     /* ── BOTTONE TORNA HOME ── */
+    .back-home-wrap {
+      text-align: center; margin-bottom: 2rem;
+    }
+    .btn-red {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+      padding: .7rem 1.6rem; border-radius: 3px; transition: all .2s;
+      cursor: pointer; border: none; color: #fff; background: var(--red);
+    }
+    .btn-red:hover { background: #c4001a; transform: translateY(-2px); }
+
+    /* ── TABS CATEGORIE ── */
+    .cat-tabs {
+      display: flex; gap: 0; margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border); overflow-x: auto;
+    }
+    .tab-btn {
+      flex: 1; padding: 1rem .5rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: .06em; text-transform: uppercase; text-align: center;
+      background: transparent; color: var(--muted); border: none; border-bottom: 3px solid transparent;
+      cursor: pointer; transition: all .2s; white-space: nowrap; margin-bottom: -2px;
+    }
+    .tab-btn:hover { color: var(--white); }
+    .tab-btn.active { color: var(--white); }
+    .tab-btn[data-cat="rrc"].active { border-bottom-color: var(--rrc); color: var(--rrc); }
+    .tab-btn[data-cat="jgp_m2"].active { border-bottom-color: var(--jgp-m2); color: var(--jgp-m2); }
+    .tab-btn[data-cat="jgp_m3"].active { border-bottom-color: var(--jgp-m3); color: var(--jgp-m3); }
+    .tab-btn[data-cat="jgp_m4"].active { border-bottom-color: var(--jgp-m4); color: var(--jgp-m4); }
+
+    /* ── STANDINGS CARD & COLONNE ── */
+    .standings-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden; display: none;
+      animation: fadeIn .3s ease;
+    }
+    .standings-card.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .sc-header {
+      padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em;
+    }
+    .sc-header.rrc { background: rgba(50,93,233,.1); color: var(--rrc); border-bottom: 2px solid var(--rrc); }
+    .sc-header.jgp_m2 { background: rgba(247,166,0,.1); color: var(--jgp-m2); border-bottom: 2px solid var(--jgp-m2); }
+    .sc-header.jgp_m3 { background: rgba(0,180,216,.1); color: var(--jgp-m3); border-bottom: 2px solid var(--jgp-m3); }
+    .sc-header.jgp_m4 { background: rgba(255,107,53,.1); color: var(--jgp-m4); border-bottom: 2px solid var(--jgp-m4); }
+
+    /* Wrapper Colonne */
+    .standings-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* Mobile: 1 colonna */
+      gap: 0;
+    }
+    @media (min-width: 768px) {
+      .standings-grid {
+        grid-template-columns: 1fr 1fr; /* Desktop: 2 colonne */
+      }
+      .standings-grid > div:first-child {
+        border-right: 1px solid var(--border);
+      }
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .8rem 1.5rem; text-align: left; font-size: .95rem; }
+    th {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; font-size: .75rem;
+      color: var(--muted); border-bottom: 1px solid var(--border);
+    }
+    tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+    tr:hover td { background: rgba(255,255,255,.02); }
+    
+    .pos { color: var(--muted); width: 40px; font-weight: 700; text-align: center; }
+    .pts { font-weight: 700; text-align: right; width: 80px; }
+    
+    .standings-card.rrc .pts { color: var(--rrc); }
+    .standings-card.jgp_m2 .pts { color: var(--jgp-m2); }
+    .standings-card.jgp_m3 .pts { color: var(--jgp-m3); }
+    .standings-card.jgp_m4 .pts { color: var(--jgp-m4); }
+
+    .rider-cell { display: flex; align-items: center; gap: .8rem; }
+    .rider-flag { font-size: 1.2rem; }
+    .rider-team { font-size: .8rem; color: var(--muted); display: block; }
+
+    /* ── FOOTER MINI ── */
+    footer {
+      text-align: center; padding: 2rem; color: var(--muted);
+      font-size: .8rem; border-top: 1px solid var(--border); margin-top: 2rem;
+    }
+
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] { --dark: #f4f4f4; --mid: #e8e8e8; --card: #ffffff; --border: #d0d0d0; --muted: #666; --white: #111; }
+    [data-theme="light"] body { background: #f4f4f4; color: #111; }
+    [data-theme="light"] header { background: rgba(248,248,248,.97); }
+    [data-theme="light"] .auth-btn, [data-theme="light"] #theme-toggle { background: #fff; border-color: #d0d0d0; color: #111; }
+    [data-theme="light"] .page-hero { background: linear-gradient(135deg, #fff 0%, #ffe8e8 60%, #fff0f0 100%); }
+    [data-theme="light"] tr:hover td { background: rgba(0,0,0,.02); }
+    [data-theme="light"] .btn-outline { border-color: #aaa; color: #111; }
+    [data-theme="light"] .btn-outline:hover { border-color: #111; }
+</style>
+</head>
+<body>
+
+<!-- HEADER MINIMALE -->
+<header>
+  <a class="logo" href="index.html">MOTO<span>2026</span></a>
+  <div class="header-right">
+    <button class="auth-btn" id="auth-btn" onclick="openAuthModal()">Accedi</button>
+    <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  </div>
+</header>
+
+<!-- HERO PAGINA -->
+<section class="page-hero">
+  <h1>Classifiche <span>Junior & Rookies</span></h1>
+  <p>Scopri i campioni del futuro. Le classifiche aggiornate della Red Bull MotoGP Rookies Cup e del FIM MotoJunior World Championship.</p>
+</section>
+
+<!-- CONTENITORE PRINCIPALE -->
+<div class="container">
+  
+  <!-- BOTTONE TORNA ALLA HOME -->
+  <div class="back-home-wrap">
+    <a href="index.html" class="btn-red">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Torna alla Home
+    </a>
+  </div>
+
+  <!-- TABS -->
+  <div class="cat-tabs">
+    <button class="tab-btn active" data-cat="rrc" onclick="switchTab('rrc')">Rookies Cup</button>
+    <button class="tab-btn" data-cat="jgp_m2" onclick="switchTab('jgp_m2')">JuniorGP Moto2</button>
+    <button class="tab-btn" data-cat="jgp_m3" onclick="switchTab('jgp_m3')">JuniorGP Moto3</button>
+    <button class="tab-btn" data-cat="jgp_m4" onclick="switchTab('jgp_m4')">JuniorGP Moto4</button>
+  </div>
+
+  <!-- LE TABELLE VENGONO GENERATE DINAMICAMENTE QUI DENTRO DALLO SCRIPT JS -->
+  <div id="standings-container"></div>
+
+</div>
+
+<footer>
+  <p>© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports.</p>
+</footer>
+
+<script>
+// ── DATI CLASSIFICHE ──
+const CHAMPIONSHIPS = {
+  rrc: {
+    name: "Red Bull Rookies Cup", colorClass: "rrc",
+    riders: [
+      {pos: 1, flag: "🇪🇸", name: "Beñat Fernández", team: "#7", pts: 148},
+      {pos: 2, flag: "🇯🇵", name: "Ryota Ogiwara", team: "#97", pts: 131},
+      {pos: 3, flag: "🇮🇩", name: "Kiandra Ramadhipa", team: "#32", pts: 101},
+      {pos: 4, flag: "🇪🇸", name: "Fernando Bujosa", team: "#69", pts: 97},
+      {pos: 5, flag: "🇪🇸", name: "David Gonzales", team: "#11", pts: 96},
+      {pos: 6, flag: "🇹🇭", name: "Kiattisak Singhapong", team: "#85", pts: 89},
+      {pos: 7, flag: "🇩🇪", name: "Fynn Kratochwil", team: "#20", pts: 81},
+      {pos: 8, flag: "🇺🇸", name: "Kristian Daniel", team: "#70", pts: 77},
+      {pos: 9, flag: "🇰🇬", name: "Yaroslav Karpushin", team: "#17", pts: 75},
+      {pos: 10, flag: "🇪🇸", name: "Carlos Cano", team: "#71", pts: 72},
+      {pos: 11, flag: "🇲🇹", name: "Travis Borg", team: "#23", pts: 68},
+      {pos: 12, flag: "🇬🇧", name: "Sullivan Mounsey", team: "#4", pts: 59},
+      {pos: 13, flag: "🇫🇷", name: "Guillem Planques", team: "#24", pts: 54},
+      {pos: 14, flag: "🇨🇴", name: "Mateo Marulanda", team: "#27", pts: 46},
+      {pos: 15, flag: "🇮🇹", name: "Giulio Pugliese", team: "#31", pts: 46},
+      {pos: 16, flag: "🇫🇷", name: "David Da Costa", team: "#72", pts: 41},
+      {pos: 17, flag: "🇻🇪", name: "Kerman Tinez", team: "#77", pts: 29},
+      {pos: 18, flag: "🇬🇧", name: "Ethan Sparks", team: "#62", pts: 29},
+      {pos: 19, flag: "🇵🇭", name: "Alfonsi Daquigan", team: "#51", pts: 16},
+      {pos: 20, flag: "🇰🇬", name: "Luca Agostinelli", team: "#9", pts: 12},
+      {pos: 21, flag: "🇮🇹", name: "Cristian Borrelli", team: "#57", pts: 11},
+      {pos: 22, flag: "🇭🇺", name: "Tibor Varga", team: "#47", pts: 10},
+      {pos: 23, flag: "🇳🇱", name: "Jurrien Van Crugten", team: "#36", pts: 6},
+      {pos: 24, flag: "🇦🇺", name: "Archie Schmidt", team: "#18", pts: 3},
+      {pos: 25, flag: "🇵🇹", name: "Afonso Almeida", team: "#10", pts: 2},
+      {pos: 26, flag: "🇪🇸", name: "Alejandra Fernández", team: "#22", pts: 1}
+    ]
+  },
+  jgp_m2: {
+    name: "FIM JuniorGP Moto2", colorClass: "jgp_m2",
+    riders: [
+      {pos: 1, flag: "🇵🇱", name: "Milan Pawelec", team: "AGR Team", pts: 98},
+      {pos: 2, flag: "🇪🇸", name: "Unai Orradre", team: "Momoven Racing", pts: 92},
+      {pos: 3, flag: "🇪🇸", name: "Eric Fernández", team: "FAU55Teyracing", pts: 74},
+      {pos: 4, flag: "🇮🇹", name: "Francesco Mongiardo", team: "MMR", pts: 70},
+      {pos: 5, flag: "🇮🇹", name: "Dennis Foggia", team: "Team Ciatti", pts: 62},
+      {pos: 6, flag: "🇮🇹", name: "Alessandro Morosi", team: "Eagle-1", pts: 52},
+      {pos: 7, flag: "🇭🇺", name: "Rossi Moor", team: "RM92 Forward", pts: 33},
+      {pos: 8, flag: "🇪🇸", name: "Javier Palomera", team: "Stylobike", pts: 32},
+      {pos: 9, flag: "🇦🇺", name: "Harrison Voight", team: "Cardoso Racing", pts: 32},
+      {pos: 10, flag: "🇦🇺", name: "Jacob Roulstone", team: "Team Ciatti", pts: 29},
+      {pos: 11, flag: "🇪🇸", name: "Marcos Ludeña", team: "Aspar Team", pts: 28},
+      {pos: 12, flag: "🇺🇾", name: "Facundo Llambias", team: "Estrella Galicia", pts: 17},
+      {pos: 13, flag: "🇦🇺", name: "Jonathan Nahlous", team: "AGR Team", pts: 15},
+      {pos: 14, flag: "🇮🇹", name: "Pier Francesco Venturini", team: "AC Racing", pts: 12},
+      {pos: 15, flag: "🇫🇷", name: "Johan Gimbert", team: "Reds-Eagle-1", pts: 12},
+      {pos: 16, flag: "🇪🇸", name: "Marco Tapia", team: "FAU55Teyracing", pts: 12},
+      {pos: 17, flag: "🇪🇸", name: "Iker Garcia", team: "Aspar Team", pts: 9},
+      {pos: 18, flag: "🇮🇹", name: "Stefano Nepa", team: "Klint Racing Face Forward", pts: 7},
+      {pos: 19, flag: "🇸🇮", name: "Enej Krsevan", team: "Eagle-1", pts: 5},
+      {pos: 20, flag: "🇬🇧", name: "Amanuel Brinton", team: "Promoracing Factory", pts: 3},
+      {pos: 21, flag: "🇪🇸", name: "Rubén Romero", team: "SF Racing Yamaha", pts: 3},
+      {pos: 22, flag: "🇺🇸", name: "Maxwell Toth", team: "Cardoso Racing", pts: 2},
+      {pos: 23, flag: "🇪🇸", name: "Joan Santos", team: "GV EBC Racing", pts: 1}
+    ]
+  },
+  jgp_m3: {
+    name: "FIM JuniorGP Moto3", colorClass: "jgp_m3",
+    riders: [
+      {pos: 1, flag: "🇮🇹", name: "Giulio Pugliese", team: "CFMOTO Aspar Junior", pts: 69},
+      {pos: 2, flag: "🇪🇸", name: "Carlos Cano", team: "CFMOTO Aspar Junior", pts: 69},
+      {pos: 3, flag: "🇲🇹", name: "Travis Borg", team: "Monlau Motul", pts: 69},
+      {pos: 4, flag: "🇮🇩", name: "Kiandra Ramadhipa", team: "Honda Asia-Dream", pts: 60},
+      {pos: 5, flag: "🇰🇬", name: "Yaroslav Karpushin", team: "CFMOTO Aspar Junior", pts: 56},
+      {pos: 6, flag: "🇮🇹", name: "Leonardo Zanni", team: "Momoven Racing", pts: 46},
+      {pos: 7, flag: "🇯🇵", name: "Ryota Ogiwara", team: "Asia Talent Team", pts: 44},
+      {pos: 8, flag: "🇪🇸", name: "Fernando Bujosa", team: "AC Racing Team", pts: 40},
+      {pos: 9, flag: "🇹🇭", name: "Kiattisak Singhapong", team: "Honda Asia-Dream", pts: 39},
+      {pos: 10, flag: "🇫🇷", name: "Guillem Planques", team: "Momoven Racing", pts: 32},
+      {pos: 11, flag: "🇪🇸", name: "David González", team: "AC Racing Team", pts: 31},
+      {pos: 12, flag: "🇫🇷", name: "David Da Costa", team: "JEG Take Off GP", pts: 25},
+      {pos: 13, flag: "🇻🇪", name: "Kerman Tinez", team: "Monlau Motul", pts: 24},
+      {pos: 14, flag: "🇿🇦", name: "Kgopotso Mononyane", team: "AGR Team", pts: 19},
+      {pos: 15, flag: "🇮🇹", name: "Leonardo Abruzzo", team: "FPS Laglisse", pts: 16},
+      {pos: 16, flag: "🇺🇸", name: "Kristian Daniel", team: "Snipers Igax", pts: 15},
+      {pos: 17, flag: "🇫🇷", name: "Enzo Bellon", team: "CIP Green Power", pts: 14},
+      {pos: 18, flag: "🇬🇧", name: "Evan Belford", team: "American Talent Team", pts: 8},
+      {pos: 19, flag: "🇮🇹", name: "Matteo Gabarrini", team: "MTA Junior Team", pts: 7},
+      {pos: 20, flag: "🇫🇷", name: "Rémy Sanjuan", team: "Larresport", pts: 6},
+      {pos: 21, flag: "🇮🇹", name: "Erik Michielon", team: "Echoit Pasini", pts: 4},
+      {pos: 22, flag: "🇬🇧", name: "Sullivan Mounsey", team: "CIP Green Power", pts: 4},
+      {pos: 23, flag: "🇦🇺", name: "Marianos Nikolis", team: "Monlau Motul", pts: 2},
+      {pos: 24, flag: "🇭🇺", name: "Tibor Varga", team: "MTA Junior Team", pts: 1}
+    ]
+  },
+  jgp_m4: {
+    name: "FIM JuniorGP Moto4", colorClass: "jgp_m4",
+    riders: [
+      {pos: 1, flag: "🇪🇸", name: "Álvaro Lucas", team: "CFMOTO Aspar Junior", pts: 95},
+      {pos: 2, flag: "🇮🇹", name: "Lorenzo Pritelli", team: "Echoit Pasini", pts: 61},
+      {pos: 3, flag: "🇨🇴", name: "Mateo Marulanda", team: "AC Racing Team", pts: 59},
+      {pos: 4, flag: "🇮🇹", name: "Edoardo Savino", team: "Leopard Junior", pts: 56},
+      {pos: 5, flag: "🇪🇸", name: "Ignacio Galán", team: "Frando Racing VHC", pts: 53},
+      {pos: 6, flag: "🇲🇾", name: "Qabil Irfan", team: "SIC - Gryd Racing", pts: 51},
+      {pos: 7, flag: "🇪🇸", name: "Victor Cubeles", team: "Team Impala", pts: 44},
+      {pos: 8, flag: "🇩🇪", name: "Fynn Kratochwil", team: "Snipers Igax", pts: 32},
+      {pos: 9, flag: "🇮🇹", name: "Cristian Borrelli", team: "Echoit Pasini", pts: 30},
+      {pos: 10, flag: "🇪🇸", name: "Jonathan Ramila", team: "Snipers Igax", pts: 29},
+      {pos: 11, flag: "🇵🇭", name: "Alfonsi Daquigan", team: "Honda Asia-Dream", pts: 26},
+      {pos: 12, flag: "🇮🇹", name: "Leonardo Casadei", team: "Echoit Pasini", pts: 25},
+      {pos: 13, flag: "🇨🇭", name: "Alessio Arnold", team: "Fullmoto AC Racing", pts: 22},
+      {pos: 14, flag: "🇪🇸", name: "Eneko Osorio", team: "Frando Racing VHC", pts: 21},
+      {pos: 15, flag: "🇫🇷", name: "Evan Boxberger", team: "JEG Take Off GP", pts: 19},
+      {pos: 16, flag: "🇬🇧", name: "Ethan Sparks", team: "British Talent Team", pts: 18},
+      {pos: 17, flag: "🇵🇹", name: "Afonso Almeida", team: "Frando Racing VHC", pts: 12},
+      {pos: 18, flag: "🇪🇸", name: "David Sanchez", team: "Frando Racing VHC", pts: 11},
+      {pos: 19, flag: "🇺🇸", name: "Mikey Lou Sanchez", team: "AC Racing Team", pts: 9},
+      {pos: 20, flag: "🇫🇷", name: "Antoine Nativi", team: "JEG Take Off GP", pts: 7},
+      {pos: 21, flag: "🇪🇸", name: "David Peris", team: "Team Altogo", pts: 5},
+      {pos: 22, flag: "🇪🇸", name: "Samuel Castiblanques", team: "Futurotel Face", pts: 4},
+      {pos: 23, flag: "🇪🇸", name: "Enzo Zaragoza", team: "CFMOTO Aspar Junior", pts: 4},
+      {pos: 24, flag: "🇸🇲", name: "Gabriel Tesini", team: "Buccimoto", pts: 3},
+      {pos: 25, flag: "🇮🇹", name: "Mathias Tamburini", team: "AC Racing Team", pts: 2},
+      {pos: 26, flag: "🇮🇹", name: "Leonardo Martinazzi", team: "AC Racing Team", pts: 2}
+    ]
+  }
+};
+
+// ── LOGICA GENERAZIONE TABELLE ──
+function generateStandings() {
+  const container = document.getElementById('standings-container');
+  let html = '';
+
+  for (const catKey in CHAMPIONSHIPS) {
+    const cat = CHAMPIONSHIPS[catKey];
+    
+    // Filtra solo i piloti con punti > 0
+    const classifiedRiders = cat.riders.filter(r => r.pts > 0);
+    
+    // Dividi in due array per le colonne
+    const halfIndex = Math.ceil(classifiedRiders.length / 2);
+    const col1 = classifiedRiders.slice(0, halfIndex);
+    const col2 = classifiedRiders.slice(halfIndex);
+
+    html += `<div class="standings-card ${cat.colorClass} ${catKey === 'rrc' ? 'active' : ''}" id="tab-${catKey}">`;
+    html += `<div class="sc-header ${cat.colorClass}">${cat.name}</div>`;
+    html += `<div class="standings-grid">`; // Apri Grid
+    
+    // Tabella Colonna 1
+    html += `<div><table><thead><tr><th class="pos">#</th><th>Pilota</th><th class="pts">Punti</th></tr></thead><tbody>`;
+    col1.forEach(r => {
+      html += `<tr>
+        <td class="pos">${r.pos}</td>
+        <td><div class="rider-cell"><span class="rider-flag">${r.flag}</span><span>${r.name}<span class="rider-team">${r.team}</span></span></div></td>
+        <td class="pts">${r.pts}</td>
+      </tr>`;
+    });
+    html += `</tbody></table></div>`;
+
+    // Tabella Colonna 2 (se ci sono piloti)
+    if (col2.length > 0) {
+      html += `<div><table><thead><tr><th class="pos">#</th><th>Pilota</th><th class="pts">Punti</th></tr></thead><tbody>`;
+      col2.forEach(r => {
+        html += `<tr>
+          <td class="pos">${r.pos}</td>
+          <td><div class="rider-cell"><span class="rider-flag">${r.flag}</span><span>${r.name}<span class="rider-team">${r.team}</span></span></div></td>
+          <td class="pts">${r.pts}</td>
+        </tr>`;
+      });
+      html += `</tbody></table></div>`;
+    }
+
+    html += `</div>`; // Chiudi Grid
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+// ── LOGICA TABS ──
+function switchTab(cat) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.standings-card').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.tab-btn[data-cat="${cat}"]`).classList.add('active');
+  document.getElementById(`tab-${cat}`).classList.add('active');
+}
+
+// ── TEMA DARK/LIGHT ──
+function initTheme() {
+  const saved = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+
+// ── SISTEMA LOGIN ──
+function initAuth() {
+  var user = JSON.parse(localStorage.getItem('moto2026_current'));
+  var headerRight = document.querySelector('.header-right');
+  var old = headerRight.querySelector('.auth-btn, .user-avatar-btn');
+  if (old) old.remove();
+
+  if (user) {
+    var initials = user.username.slice(0,2).toUpperCase();
+    var btn = document.createElement('button');
+    btn.className = 'user-avatar-btn';
+    btn.style.cssText = 'width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:Bebas Neue;font-size:.85rem;display:flex;align-items:center;justify-content:center;';
+    btn.textContent = initials;
+    btn.onclick = function() { alert('Ciao ' + user.username + '! (Qui ci va il menu a tendina)'); };
+    headerRight.prepend(btn);
+  } else {
+    var btn = document.createElement('button');
+    btn.className = 'auth-btn';
+    btn.textContent = 'Accedi';
+    btn.onclick = function() { alert('Vai nella pagina Home per effettuare il login!'); };
+    headerRight.prepend(btn);
+  }
+}
+
+// Avvia tutto
+initTheme();
+initAuth();
+generateStandings();
+</script>
+</body>
+</html>

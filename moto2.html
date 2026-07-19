@@ -1373,14 +1373,34 @@ if (!localStorage.getItem('moto2026-shortcut-seen')) {
 }
 
 function toggleOldNews(btn, cls) {
-  var hidden = document.querySelectorAll('.' + cls + '.hidden-news');
-  var exp = hidden.length > 0 && hidden[0].classList.contains('show');
-  for (var i = 0; i < hidden.length; i++) {
-    hidden[i].classList.toggle('show', !exp);
+  var hidden = document.querySelectorAll('.' + cls + '.hidden-news:not(.show)');
+  
+  // Se non ci sono più notizie da mostrare, torniamo su e nascondiamo tutto
+  if (hidden.length === 0) {
+    var allHidden = document.querySelectorAll('.' + cls + '.hidden-news.show');
+    for (var i = 0; i < allHidden.length; i++) {
+      allHidden[i].classList.remove('show');
+    }
+    btn.textContent = '▼ Mostra altre notizie';
+    // Scrolla dolcemente verso l'alto fino alla prima notizia
+    var firstNews = document.querySelector('.news-card.featured');
+    if(firstNews) firstNews.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
   }
-  btn.textContent = exp
-    ? '▼ Tutte le notizie (' + hidden.length + ')'
-    : '▲ Mostra meno';
+
+  // Altrimenti, mostra le prossime 5 notizie
+  var toShow = Math.min(5, hidden.length);
+  for (var i = 0; i < toShow; i++) {
+    hidden[i].classList.add('show');
+  }
+
+  // Aggiorna il testo del bottone
+  var remaining = document.querySelectorAll('.' + cls + '.hidden-news:not(.show)').length;
+  if (remaining > 0) {
+    btn.textContent = '▼ Carica altre 5 notizie (' + remaining + ' restanti)';
+  } else {
+    btn.textContent = '▲ Mostra meno';
+  }
 }
 // ── TORNA INDIETRO ──
 (function(){

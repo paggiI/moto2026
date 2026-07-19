@@ -413,10 +413,10 @@ img,video,canvas,svg,.tag,.ncf-img-gen{transition:none!important;}
     <p>Prova a cambiare i filtri o il termine di ricerca.</p>
     <button class="btn btn-red" onclick="resetFilters()">Resetta filtri</button>
   </div>
-  <div class="load-more-wrap" id="load-more-wrap">
-    <button class="btn btn-red" id="load-more-btn" onclick="loadMore()">Carica altre notizie</button>
-    <div class="load-more-counter" id="load-more-counter"></div>
+  <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+    <div class="load-more-counter" id="load-more-counter">Caricamento...</div>
   </div>
+  <div id="scroll-sentinel" style="height: 20px;"></div>
 </div>
 
 <!-- NEWS MODAL -->
@@ -624,11 +624,13 @@ function createCard(news) {
 // ══════════════════════════════════════
 //  RENDERING NOTIZIE
 // ══════════════════════════════════════
+// Variabile per l'observer
+var io;
+
 function renderNews(reset) {
     var grid = document.getElementById('news-grid');
     var noResults = document.getElementById('no-results');
     var loadMoreWrap = document.getElementById('load-more-wrap');
-    var loadMoreBtn = document.getElementById('load-more-btn');
     var loadMoreCounter = document.getElementById('load-more-counter');
     var newsCount = document.getElementById('news-count');
     
@@ -637,6 +639,8 @@ function renderNews(reset) {
     if (reset) {
         grid.innerHTML = '';
         shownCount = 0;
+        // Se resettiamo, disattiviamo il vecchio observer se esiste
+        if (io) io.disconnect();
     }
     
     var toShow = filtered.slice(shownCount, shownCount + PER_PAGE);
@@ -652,15 +656,19 @@ function renderNews(reset) {
         loadMoreWrap.style.display = 'none';
     } else {
         noResults.style.display = 'none';
+        
+        // Se abbiamo mostrato tutte le notizie, nascondi il caricamento
         if (shownCount >= filtered.length) {
             loadMoreWrap.style.display = 'none';
         } else {
+            // Altrimenti attiva l'observer per lo scroll infinito
             loadMoreWrap.style.display = 'block';
-            loadMoreBtn.disabled = false;
-            loadMoreCounter.textContent = 'Mostrate ' + shownCount + ' di ' + filtered.length;
+            loadMoreCounter.textContent = 'Scorri per caricare altre notizie...';
+            initIntersectionObserver();
         }
     }
     
+    // Animazione fade-in
     setTimeout(function() {
         var cards = document.querySelectorAll('.fade-in:not(.visible)');
         for (var j = 0; j < cards.length; j++) {
@@ -671,11 +679,36 @@ function renderNews(reset) {
     }, 50);
 }
 
-// ══════════════════════════════════════
-//  LOAD MORE
-// ══════════════════════════════════════
-function loadMore() {
-    renderNews(false);
+// Nuova funzione per lo Scroll Infinito
+function initIntersectionObserver() {
+    var sentinel = document.getElementById('scroll-sentinel');
+    if (!sentinel) return;
+    
+    // Se un observer esiste già, scollegalo prima di crearne uno nuovo
+    if (io) io.disconnect();
+
+    io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            // Se la sentinella entra nello schermo...
+            if (entry.isIntersecting) {
+                // Scolleghiamo temporaneamente per evitare che spari 100 volte
+                io.unobserve(entry.target);
+                
+                // Mostra un feedback visivo
+                document.getElementById('load-more-counter').textContent = 'Caricamento altre notizie...';
+                
+                // Carica il blocco successivo
+                setTimeout(function() {
+                    renderNews(false);
+                }, 200); // Piccolo ritardo per dare l'effetto "caricamento"
+            }
+        });
+    }, {
+        // L'observer scatta quando la sentinella è a 200px dal fondo dello schermo
+        rootMargin: '200px'
+    });
+
+    io.observe(sentinel);
 }
 
 // ══════════════════════════════════════
