@@ -195,15 +195,22 @@
       .podium-card.pos-1:hover { transform: translateY(-5px); }
     }
 
-    /* ── TABELLA CLASSIFICA ── */
-    .standings-grid {
-      display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border);
+    /* ── BARRA RICERCA PILOTI ── */
+    .search-wrap {
+      padding: 1rem 1.5rem; background: var(--mid); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .8rem;
     }
-    @media (min-width: 768px) {
-      .standings-grid { grid-template-columns: 1fr 1fr; }
-      .standings-grid > div:first-child { border-right: 1px solid var(--border); }
+    .search-input {
+      flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+      color: var(--white); padding: .5rem .8rem; font-family: 'Barlow', sans-serif; font-size: .9rem;
+      outline: none; transition: border-color .15s;
     }
+    .search-input:focus { border-color: var(--red); }
+    .search-input::placeholder { color: var(--muted); }
+    .search-label { font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }
 
+    /* ── TABELLA CLASSIFICA ── */
+    .standings-table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: .8rem 1.5rem; text-align: left; font-size: .95rem; }
     th {
@@ -214,8 +221,13 @@
     tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
     tr:hover td { background: rgba(255,255,255,.02); }
     
+    /* Evidenziazione Top 5 */
+    tr.top-5 td { background: rgba(255,255,255,.03); }
+    tr.top-5:hover td { background: rgba(255,255,255,.05); }
+
     .pos { color: var(--muted); width: 40px; font-weight: 700; text-align: center; }
     .pts { font-weight: 700; text-align: right; width: 80px; }
+    .gap { text-align: right; width: 80px; color: var(--muted); font-size: .85rem; }
     
     .standings-card.rrc .pts { color: var(--rrc); }
     .standings-card.jgp_m2 .pts { color: var(--jgp-m2); }
@@ -243,6 +255,8 @@
     [data-theme="light"] .btn-outline:hover { border-color: #111; }
     [data-theme="light"] .season-progress-track { background: #e0e0e0; }
     [data-theme="light"] .podium-card { background: #f0f0f0; }
+    [data-theme="light"] .search-input { background: #fff; border-color: #d0d0d0; color: #111; }
+    [data-theme="light"] tr.top-5 td { background: rgba(0,0,0,.03); }
 </style>
 </head>
 <body>
@@ -251,7 +265,7 @@
 <header>
   <a class="logo" href="index.html">MOTO<span>2026</span></a>
   <div class="header-right">
-    <button class="auth-btn" id="auth-btn" onclick="openAuthModal()">Accedi</button>
+    <button class="auth-btn" id="auth-btn">Accedi</button>
     <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
   </div>
 </header>
@@ -291,7 +305,7 @@
 </footer>
 
 <script>
-// ── DATI CLASSIFICHE (Aggiornati con Round disputati) ──
+// ── DATI CLASSIFICHE ──
 const CHAMPIONSHIPS = {
   rrc: {
     name: "Red Bull Rookies Cup", colorClass: "rrc", roundsDone: 5, roundsTotal: 7,
@@ -425,8 +439,11 @@ function generateStandings() {
     const cat = CHAMPIONSHIPS[catKey];
     const classifiedRiders = cat.riders.filter(r => r.pts > 0);
     
-    // Calcolo progressione stagionale
-    const progressPct = Math.round((cat.roundsDone / cat.roundsTotal) * 100);
+    // Calcolo progressione stagionale con sicurezza al 100%
+    const progressPct = Math.min(100, Math.round((cat.roundsDone / cat.roundsTotal) * 100));
+    
+    // Prendi il punteggio del leader per calcolare il distacco
+    const leaderPts = classifiedRiders.length > 0 ? classifiedRiders[0].pts : 0;
 
     html += `<div class="standings-card ${cat.colorClass} ${catKey === 'rrc' ? 'active' : ''}" id="tab-${catKey}">`;
     html += `<div class="sc-header ${cat.colorClass}">${cat.name}</div>`;
@@ -466,51 +483,84 @@ function generateStandings() {
     });
     html += `</div>`;
 
-    // 3. TABELLA CLASSIFICA COMPLETA
-    const halfIndex = Math.ceil(classifiedRiders.length / 2);
-    const col1 = classifiedRiders.slice(0, halfIndex);
-    const col2 = classifiedRiders.slice(halfIndex);
+    // 3. BARRA DI RICERCA
+    html += `<div class="search-wrap">
+      <span class="search-label">🔍 Cerca pilota:</span>
+      <input type="text" class="search-input" placeholder="Nome pilota..." oninput="filterRiders(this, '${catKey}')">
+    </div>`;
 
-    html += `<div class="standings-grid">`;
-    
-    // Colonna 1
-    html += `<div><table><thead><tr><th class="pos">#</th><th>Pilota</th><th class="pts">Punti</th></tr></thead><tbody>`;
-    col1.forEach(r => {
-      html += `<tr>
+    // 4. TABELLA CLASSIFICA COMPLETA
+    html += `<div class="standings-table-wrap"><table id="table-${catKey}">
+      <thead>
+        <tr>
+          <th class="pos">#</th>
+          <th>Pilota</th>
+          <th class="pts">Punti</th>
+          <th class="gap">Distacco</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+    classifiedRiders.forEach(r => {
+      const gapVal = r.pos === 1 ? "Leader" : `-${leaderPts - r.pts}`;
+      const topClass = r.pos <= 5 ? 'top-5' : ''; // Evidenzia i primi 5
+      html += `<tr class="${topClass}">
         <td class="pos">${r.pos}</td>
-        <td><div class="rider-cell"><span class="rider-flag">${r.flag}</span><span>${r.name}<span class="rider-team">${r.team}</span></span></div></td>
+        <td>
+          <div class="rider-cell">
+            <span class="rider-flag">${r.flag}</span>
+            <span>${r.name}<span class="rider-team">${r.team}</span></span>
+          </div>
+        </td>
         <td class="pts">${r.pts}</td>
+        <td class="gap">${gapVal}</td>
       </tr>`;
     });
+
     html += `</tbody></table></div>`;
-
-    // Colonna 2
-    if (col2.length > 0) {
-      html += `<div><table><thead><tr><th class="pos">#</th><th>Pilota</th><th class="pts">Punti</th></tr></thead><tbody>`;
-      col2.forEach(r => {
-        html += `<tr>
-          <td class="pos">${r.pos}</td>
-          <td><div class="rider-cell"><span class="rider-flag">${r.flag}</span><span>${r.name}<span class="rider-team">${r.team}</span></span></div></td>
-          <td class="pts">${r.pts}</td>
-        </tr>`;
-      });
-      html += `</tbody></table></div>`;
-    }
-
-    html += `</div>`; // Chiudi Grid
     html += `</div>`; // Chiudi Card
   }
 
   container.innerHTML = html;
 }
 
-// ── LOGICA TABS ──
+// ── LOGICA RICERCA PILOTI NELLA TABELLA ──
+function filterRiders(input, catKey) {
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("table-" + catKey);
+    var tr = table.getElementsByTagName("tr");
+    
+    for (var i = 1; i < tr.length; i++) { // Parto da 1 per saltare l'header
+        var td = tr[i].getElementsByTagName("td")[1]; // Prendo la colonna "Pilota"
+        if (td) {
+            var txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+// ── LOGICA TABS E DEEP LINKING ──
 function switchTab(cat) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.standings-card').forEach(c => c.classList.remove('active'));
   document.querySelector(`.tab-btn[data-cat="${cat}"]`).classList.add('active');
   document.getElementById(`tab-${cat}`).classList.add('active');
+  
+  // Aggiorna l'URL per la condivisione diretta
+  history.replaceState(null, null, "#" + cat);
 }
+
+// All'avvio, controlla se c'è un tab specifico nell'URL (es. classifica-jgprcc.html#jgp_m4)
+window.addEventListener('load', function() {
+    var hash = window.location.hash.replace('#', '');
+    if (hash && CHAMPIONSHIPS[hash]) {
+        switchTab(hash);
+    }
+});
 
 // ── TEMA DARK/LIGHT ──
 function initTheme() {

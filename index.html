@@ -1366,6 +1366,29 @@
     width: 100%;
   }
 }
+/* ── MERCATO TICKER ── */
+.ticker-wrap {
+  width: 100%; overflow: hidden; background: var(--mid);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.ticker-label {
+  background: var(--red); color: #fff; font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; padding: .5rem 1rem; text-transform: uppercase; letter-spacing: .1em;
+  font-size: .8rem; white-space: nowrap; flex-shrink: 0; z-index: 2;
+}
+.ticker-content span {
+  font-family: 'Barlow Condensed', sans-serif; color: var(--muted);
+  font-size: .9rem; margin-right: 3rem; text-transform: uppercase;
+}
+.ticker-content span strong { color: var(--white); }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+.ticker-content {
+  white-space: nowrap; padding-left: 100%; 
+  animation: ticker 60s linear infinite; /* Cambiato da 40s a 60s */
+}
+
 </style>
 </head>
 <body>
@@ -1415,15 +1438,33 @@
 <div class="container">
 <main>
   <!-- BANNER JUNIOR & ROOKIES -->
-    <div style="background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%); border: 1px solid var(--border); border-left: 4px solid var(--gp); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-      <div>
+<!-- Cambia var(--gp) in var(--rrc) -->
+<div style="background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%); border: 1px solid var(--border); border-left: 4px solid var(--rrc); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">      <div>
         <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em; color: var(--white); margin-bottom: .2rem;">Classifiche Junior & Rookies 🏆</h3>
         <p style="font-size: .9rem; color: var(--muted); margin: 0;">Scopri i campioni del futuro: Red Bull Rookies Cup e FIM JuniorGP (Moto2, Moto3, Moto4).</p>
       </div>
       <a href="classifica-jgprcc.html" class="btn btn-red" style="white-space: nowrap;">
         Vedi Classifiche Complete
       </a>
-    </div>
+</div>
+<!-- MERCATO TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">🔥 Mercato 2027</div>
+  <div class="ticker-content">
+    <span><strong>Ducati Lenovo:</strong> Marc Márquez rinnova per due anni, Bagnaia passa in Aprilia e Acosta arriva a sostituirlo.</span>
+    <span><strong>Aprilia Racing:</strong> Bagnaia firma un contratto quadriennale e Bezzecchi rinnova per due stagioni: nasce una coppia tutta italiana.</span>
+    <span><strong>Yamaha Factory:</strong> Jorge Martín e Ai Ogura sono i nuovi piloti ufficiali, entrambi ex piloti Aprilia.</span>
+    <span><strong>Pramac Yamaha:</strong> Toprak Razgatlıoğlu confermato; al suo fianco Izan Guevara, promosso dal vivaio della Moto2.</span>
+    <span><strong>KTM Factory:</strong> Álex Márquez e Fabio Di Giannantonio sono i nuovi piloti titolari.</span>
+    <span><strong>Tech3 KTM:</strong> Senna Agius è pronto al salto in MotoGP; come veterano è stato scelto Luca Marini, proveniente da Honda HRC.</span>
+    <span><strong>Honda HRC:</strong> Colpo Quartararo dal 2027, affiancato dal rookie David Alonso o dal brasiliano Diogo Moreira, promosso dal team LCR?</span>
+    <span><strong>LCR Honda:</strong> Zarco confermato fino al 2027, con spazio ai giovani talenti.</span>
+    <span><strong>Gresini Racing:</strong> In arrivo Joan Mir e il rookie Daniel Holgado dalla Moto2 con il team Aspar.</span>
+    <span><strong>VR46 Racing Team:</strong> Fermín Aldeguer cambia squadra ma resta in Ducati; Nicolò Bulega è la prima scelta per la seconda sella.</span>
+    <span><strong>Trackhouse:</strong> Enea Bastianini, affiancato dallo spagnolo Raúl Fernández.</span>
+  </div>
+</div>
+<br>
 <!-- ULTIME NOTIZIE -->
 <h2 class="section-title">Ultime Notizie</h2>
 <div class="news-grid" id="news-container"></div>
@@ -1446,6 +1487,67 @@
 <div class="cd-cell"><div class="cd-val" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
 <div class="cd-cell"><div class="cd-val" id="cd-s">--</div><div class="cd-lbl">Sec</div></div>
 </div>
+</div>
+<!-- FOCUS CIRCUITO -->
+<div style="display: flex; gap: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; align-items: center; flex-wrap: wrap;">
+  <a href="circuiti/circuito_silverstone.html" style="flex: 1; min-width: 200px; text-align: center; background: #fff; padding: .5rem; border-radius: 6px;">
+    <img src="img/tracciati/inghilterra.png" alt="Mappa Circuito di Silverstone" style="max-width: 100%; height: auto; border-radius: 4px;">
+  </a>
+  <div style="flex: 2; min-width: 250px;">
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem;">🏁 Focus Circuito: Silverstone</h3>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+      <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">5.9 Km</div>
+        <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Lunghezza</div>
+      </div>
+      <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">18</div>
+        <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Curve</div>
+      </div>
+      <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">1'57"223 - Fabio Quatararo 2025</div>
+        <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Record Giro</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ULTIMO GP RISULTATI -->
+<div class="last-race-wrap" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;">
+    🏁 Risultati GP Germania
+  </h3>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <!-- MotoGP -->
+    <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--gp);">
+      <div style="font-family: 'Barlow Condensed'; color: var(--gp); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">MotoGP</div>
+      <div style="font-size: .9rem; line-height: 1.5;">
+        🥇 🇪🇸 M. Márquez<br>
+        🥈 🇯🇵 A. Ogura<br>
+        🥉 🇪🇸 R. Fernández
+      </div>
+    </div>
+    <!-- Moto2 -->
+    <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--m2);">
+      <div style="font-family: 'Barlow Condensed'; color: var(--m2); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto2</div>
+      <div style="font-size: .9rem; line-height: 1.5;">
+        🥇 🇪🇸 I. Ortolá<br>
+        🥈 🇪🇸 D. Holgado<br>
+        🥉 🇪🇸 I. Guevara
+      </div>
+    </div>
+    <!-- Moto3 -->
+    <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--m3);">
+      <div style="font-family: 'Barlow Condensed'; color: var(--m3); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto3</div>
+      <div style="font-size: .9rem; line-height: 1.5;">
+        🥇 🇪🇸 B. Uriarte<br>
+        🥈 🇪🇸 M. Quiles<br>
+        🥉 🇮🇹 M. Bertelle
+      </div>
+    </div>
+  </div>
+  <div style="text-align: right; margin-top: 1rem;">
+    <a href="risultati.html?round=r11" class="btn btn-outline" style="font-size: .75rem; padding: .4rem 1rem;">Vedi Risultati Completi →</a>
+  </div>
 </div>
 <!-- BARRA PROGRESSIONE STAGIONE -->
 <div class="season-progress-wrap">
@@ -1493,6 +1595,74 @@
 <div class="top3-pts-label">punti · 11 round</div>
 <div class="top3-gap">+104 su B.Uriarte</div>
 </a>
+</div>
+<!-- PILOTI DEL WEEKEND (MotoGP, Moto2, Moto3) -->
+<style>
+  .spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 768px) {
+    .spotlight-grid { grid-template-columns: 1fr; }
+  }
+  .spotlight-item {
+    background: var(--mid);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .spotlight-cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .1em;
+    font-weight: 700; margin-bottom: .3rem;
+  }
+  .spotlight-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; color: var(--white);
+    margin-bottom: .3rem; line-height: 1;
+  }
+  .spotlight-desc {
+    font-size: .8rem; color: var(--muted);
+    margin: 0; line-height: 1.4;
+  }
+</style>
+
+<div style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2.5rem;">
+  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;">
+    🌟 Piloti del Weekend
+  </h3>
+  
+  <div class="spotlight-grid">
+    <!-- MotoGP -->
+    <div class="spotlight-item" style="border-top: 3px solid var(--gp);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--gp);">MotoGP</div>
+        <div class="spotlight-name">Marc Márquez</div>
+      </div>
+      <p class="spotlight-desc">Il dominatore del Sachsenring. Firmò pole, Sprint e gara, raggiungendo la storica quota 100 vittorie.</p>
+    </div>
+
+    <!-- Moto2 -->
+    <div class="spotlight-item" style="border-top: 3px solid var(--m2);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--m2);">Moto2</div>
+        <div class="spotlight-name">Iván Ortolá</div>
+      </div>
+      <p class="spotlight-desc">Trionfò in Germania resistendo alla pressione di Holgado, confermandosi protagonista assoluto.</p>
+    </div>
+
+    <!-- Moto3 -->
+    <div class="spotlight-item" style="border-top: 3px solid var(--m3);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--m3);">Moto3</div>
+        <div class="spotlight-name">Brian Uriarte</div>
+      </div>
+      <p class="spotlight-desc">Vinse al fotofinish sul leader del mondiale Quiles, in una battaglia spettacolare all'ultima curva.</p>
+    </div>
+  </div>
 </div>
 <!-- CLASSIFICA PILOTI — dati reali dopo Round 11 -->
 <h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 11 round</span></h2>
@@ -1681,6 +1851,101 @@
   <div class="rc-status">🏆 Finale</div>
 </div>
 </div>
+<!-- BANNER PREDICTION -->
+<div style="background: linear-gradient(135deg, rgba(247,166,0,.1) 0%, rgba(232,0,29,.1) 100%); border: 1px solid var(--border); border-left: 4px solid var(--m2); border-radius: 8px; padding: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+  <div>
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); margin-bottom: .3rem;">🎯 Gioca alla MotoGP Prediction!</h3>
+    <p style="font-size: .9rem; color: var(--muted); margin: 0;">Pronostica i vincitori del prossimo GP di Gran Bretagna.</p>
+  </div>
+  <a href="prediction.html" class="btn btn-red" style="white-space: nowrap;">Vai alla Prediction →</a>
+</div>
+
+<!-- CAMPIONI IN CARICA (MotoGP, Moto2, Moto3) -->
+<style>
+  .champs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .champs-grid { grid-template-columns: 1fr; }
+  }
+  .champ-card {
+    background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .champ-bg-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.05;
+    line-height: 1;
+  }
+  .champ-cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: .8rem;
+    margin-bottom: .3rem;
+    position: relative; z-index: 1;
+  }
+  .champ-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: .3rem;
+    position: relative; z-index: 1;
+    line-height: 1.1;
+  }
+  .champ-sub {
+    color: var(--muted);
+    font-size: .85rem;
+    position: relative; z-index: 1;
+  }
+</style>
+
+<div style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
+  <h2 class="section-title" style="margin-bottom: 1.5rem;">Campioni in Carica <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">Stagione 2025</span></h2>
+  
+  <div class="champs-grid">
+    
+    <!-- MotoGP -->
+    <div class="champ-card" style="border-top: 3px solid var(--gp);">
+      <div class="champ-bg-num" style="color: var(--gp);">2025</div>
+      <div style="font-size: 2rem; margin-bottom: .5rem; position: relative; z-index: 1;">🏆</div>
+      <div class="champ-cat" style="color: var(--gp);">MotoGP</div>
+      <div class="champ-name">Marc Márquez</div>
+      <p class="champ-sub">Ducati Lenovo Team · 7° Titolo MotoGP. 9 Titoli In totale</p>
+    </div>
+
+    <!-- Moto2 -->
+    <div class="champ-card" style="border-top: 3px solid var(--m2);">
+      <div class="champ-bg-num" style="color: var(--m2);">2025</div>
+      <div style="font-size: 2rem; margin-bottom: .5rem; position: relative; z-index: 1;">🏆</div>
+      <div class="champ-cat" style="color: var(--m2);">Moto2</div>
+      <div class="champ-name">Diogo Moreira</div>
+      <p class="champ-sub">Italtrans Racing Team · 1° Titolo Moto2. 1 Titolo In totale</p>
+    </div>
+
+    <!-- Moto3 -->
+    <div class="champ-card" style="border-top: 3px solid var(--m3);">
+      <div class="champ-bg-num" style="color: var(--m3);">2025</div>
+      <div style="font-size: 2rem; margin-bottom: .5rem; position: relative; z-index: 1;">🏆</div>
+      <div class="champ-cat" style="color: var(--m3);">Moto3</div>
+      <div class="champ-name">José Antonio Rueda</div>
+      <p class="champ-sub">Red Bull KTM Ajo Moto3 · 1° Titolo Moto3. 1 Titolo In totale</p>
+    </div>
+
+  </div>
+</div>
 </main>
 </div>
 <!-- FOOTER -->
@@ -1736,8 +2001,8 @@
 </div>
 
 <!-- AUDIO PLAYER -->
-<div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-
+ <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su" class="visible">↑</button>
+<div id="audio-player-widget">
   <!-- PULSANTE PLAY/PAUSE -->
   <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
     <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
@@ -1788,7 +2053,7 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
-  {cat:'JuniorGP',tagCls:'tag-jgp',title:'MAGNY-COURS INCORONA CANO: doppietta Pawelec in Moto2, Cubeles e Pritelli si dividono la Moto4',excerpt:'Il Round 4 del FIM MotoJunior World Championship 2026 regala spettacolo a Magny-Cours. Carlos Cano conquista la Moto3, Milan Pawelec firma una preziosa doppietta in Moto2, mentre Victor Cubeles e Lorenzo Pritelli si dividono le vittorie nella Moto4.',date:'26 lug 2026',author:'Redazione',meta:'📅 26 lug 2026 · ✍️ Redazione',body:'Il quarto appuntamento del FIM MotoJunior World Championship 2026, disputato sul circuito francese di Magny-Cours, ha regalato gare combattute e risultati importanti nella corsa ai titoli delle categorie Moto3, Moto2 e Moto4.<br><br>Nel Moto3 Junior World Championship è andata in scena una sola gara, vinta da Carlos Cano dopo aver trasformato la sua prima pole position stagionale in un successo impeccabile. Lo spagnolo del CFMOTO Aspar Junior Team ha resistito agli attacchi di Fernando Bujosa, secondo al traguardo, mentre Travis Borg ha completato il podio superando Yaroslav Karpushin nel corso dell’ultimo giro. Giornata difficile invece per l’italiano Giulio Pugliese, soltanto decimo al traguardo. Perdendo così la leadership del campionato e trovandosi a -19 da Carlos Cano.<br><br>Nel Moto2 European Championship Milan Pawelec è stato il grande protagonista del weekend conquistando entrambe le gare. Nella prima manche il polacco dell’AGR Team ha approfittato di un errore di Unai Orradre quando quest’ultimo era al comando, imponendosi davanti allo spagnolo e ad Alessandro Morosi, autore del suo primo podio stagionale nella categoria, dopo quello ottenuto in gara 2 ad aragon nel 2025. Anche Gara 2 ha visto Orradre in testa per gran parte della corsa, ma nel finale Pawelec ha recuperato il distacco e lo ha superato conquistando una splendida doppietta, con Morosi nuovamente terzo.<br><br>Nella Moto4 European Cup Victor Cubeles ha conquistato la sua prima vittoria nella categoria in Gara 1 dopo la penalizzazione per track limits inflitta ad Álvaro Lucas, inizialmente primo sotto la bandiera a scacchi. Lucas ha così chiuso secondo davanti a Mateo Marulanda. In Gara 2 è stato invece Lorenzo Pritelli ad avere la meglio al termine di una spettacolare battaglia a otto piloti, precedendo ancora Lucas e Cubeles, che ha completato un altro podio.<br><br>Dopo il Round 4 di Magny-Cours il campionato osserverà la pausa estiva prima di tornare in pista il 6 settembre sul Circuit Ricardo Tormo di Valencia, dove la lotta per i titoli entrerà nella fase decisiva della stagione.'},
+  {cat:'JuniorGP',tagCls:'tag-jgp',title:'MAGNY-COURS INCORONA CANO: doppietta Pawelec in Moto2, Cubeles e Pritelli si dividono la Moto4',excerpt:'Il Round 4 del FIM MotoJunior World Championship 2026 regala spettacolo a Magny-Cours. Carlos Cano conquista la Moto3, Milan Pawelec firma una preziosa doppietta in Moto2, mentre Victor Cubeles e Lorenzo Pritelli si dividono le vittorie nella Moto4.',date:'26 lug 2026',author:'Redazione',meta:'📅 26 lug 2026 · ✍️ Redazione',body:'Il quarto appuntamento del FIM MotoJunior World Championship 2026, disputato sul circuito francese di Magny-Cours, ha regalato gare combattute e risultati importanti nella corsa ai titoli delle categorie Moto3, Moto2 e Moto4.<br><br>Nel Moto3 Junior World Championship è andata in scena una sola gara, vinta da Carlos Cano dopo aver trasformato la sua prima pole position stagionale in un successo impeccabile. Lo spagnolo del CFMOTO Aspar Junior Team ha resistito agli attacchi di Fernando Bujosa, secondo al traguardo, mentre Travis Borg ha completato il podio superando Yaroslav Karpushin nel corso dell’ultimo giro. Giornata difficile invece per l’italiano Giulio Pugliese, soltanto decimo al traguardo. Perdendo così la leadership del campionato e trovandosi a -19 da Carlos Cano.<br><br>Nel Moto2 European Championship Milan Pawelec è stato il grande protagonista del weekend conquistando entrambe le gare. Nella prima manche il polacco dell’AGR Team ha approfittato di un errore di Unai Orradre quando quest’ultimo era al comando, imponendosi davanti allo spagnolo e ad Alessandro Morosi, autore del suo primo podio stagionale nella categoria, dopo quello ottenuto in gara 2 ad aragon nel 2025. Anche Gara 2 ha visto Orradre in testa per gran parte della corsa, ma nel finale Pawelec ha recuperato il distacco e lo ha superato conquistando una splendida doppietta, con Morosi nuovamente terzo.<br><br>Nella Moto4 European Cup Victor Cubeles ha conquistato la sua prima vittoria nella categoria in Gara 1 dopo la penalizzazione per track limits inflitta ad Álvaro Lucas, inizialmente primo sotto la bandiera a scacchi. Lucas ha così chiuso secondo davanti a Mateo Marulanda. In Gara 2 è stato invece Lorenzo Pritelli ad avere la meglio al termine di una spettacolare battaglia a otto piloti, precedendo ancora Lucas e Cubeles, che ha completato un altro podio.<br><br>Dopo il Round 4 di Magny-Cours il campionato osserverà la pausa estiva prima di tornare in pista il 6 settembre sul Circuit Ricardo Tormo di Valencia, dove la lotta per i titoli entrerà nella fase decisiva della stagione.<br><br><a href="classifica-jgprcc.html" style="display:inline-block; margin-top:1rem; padding:.6rem 1.2rem; background:var(--red); color:#fff; text-decoration:none; border-radius:4px; font-family:Barlow Condensed, sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.05em;">🔗 Vedi la Classifica Completa del FIM JuniorGP</a>'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'ESCLUSIVO: Senna Agius verso Tech3 KTM nel 2027, sorpassato Manu González',excerpt:'Il talento australiano è ormai il favorito per conquistare la sella da rookie nel team Tech3 KTM per la MotoGP 2027. I contatti con il suo entourage sarebbero iniziati da circa due mesi e l\'accordo è vicino alla definizione.',date:'25 lug 2026',author:'Redazione',meta:'📅 25 lug 2026 · ✍️ Redazione',body:'Senna Agius è sempre più vicino al grande salto in MotoGP. Secondo quanto raccolto dalla nostra redazione, il pilota australiano è il prescelto di Tech3 KTM per occupare uno dei due posti disponibili nella stagione 2027, destinato a un rookie. Dopo settimane di valutazioni interne, Agius avrebbe superato definitivamente la concorrenza del leader del Mondiale Moto2 Manu González, con il quale era in corso un serrato ballottaggio. Le trattative tra KTM, Tech3 e lo staff del pilota sarebbero iniziate circa due mesi fa e, salvo colpi di scena, sarebbero ormai nelle fasi finali. La scelta sarebbe stata dettata non solo dai risultati ottenuti in pista, ma anche dal potenziale di crescita mostrato dall’australiano, considerato uno dei prospetti più interessanti in vista della nuova era MotoGP da 850 cc. Negli ultimi giorni diverse indiscrezioni provenienti dal paddock indicano Agius come netto favorito per la sella Tech3, mentre le possibilità di González sembrano essersi sensibilmente ridotte. Resta ora da definire soltanto l’ufficializzazione dell’accordo, attesa nelle prossime settimane, che consentirebbe a Senna Agius di debuttare nella classe regina nel 2027 con i colori Tech3 KTM.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'Ufficiale: David Alonso in MotoGP con Honda dal 2027, resta da definire il team',excerpt:'Honda Racing Corporation ha annunciato l’ingaggio di David Alonso a partire dalla stagione 2027. Non è ancora stato comunicato se il colombiano correrà nel team ufficiale HRC oppure con LCR Honda.',date:'24 lug 2026',author:'Redazione',meta:'📅 24 lug 2026 · ✍️ Redazione',body:'Honda Racing Corporation ha ufficializzato l’ingaggio di David Alonso per la MotoGP a partire dalla stagione 2027. Il ventenne colombiano, tra i talenti più brillanti emersi negli ultimi anni, compirà così il salto nella classe regina dopo l’esperienza in Moto2, entrando a far parte del progetto Honda per la nuova era delle MotoGP da 850 cc. Nel comunicato diffuso dalla Casa giapponese non viene però specificato in quale squadra correrà Alonso: resta infatti da capire se affiancherà Fabio Quartararo nel team ufficiale Honda HRC Castrol oppure se inizierà la propria avventura nel team satellite LCR Honda, soluzione che permetterebbe un inserimento più graduale nella categoria. Anche la durata del contratto non è stata resa nota, anche se l’accordo sarebbe pluriennale. Per celebrare il momento, Alonso ha condiviso sui propri canali social una serie di immagini accompagnate da un messaggio di entusiasmo e gratitudine verso Honda e tutte le persone che lo hanno sostenuto nel suo percorso. Pochi minuti dopo è arrivato anche il post del team Aspar, che ha voluto congratularsi con il proprio pilota per il traguardo raggiunto, sottolineando come il passaggio in MotoGP rappresenti il naturale coronamento di un percorso di crescita iniziato nelle categorie minori. L’annuncio conferma la volontà di Honda di puntare sui giovani talenti in vista del nuovo ciclo tecnico che prenderà il via nel 2027. Resta ora soltanto da conoscere quale sarà la squadra con cui David Alonso farà il proprio debutto nella classe regina, dettaglio che dovrebbe essere comunicato nei prossimi mesi.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'Colpo Honda: Fabio Quartararo firma fino al 2028, il francese apre un nuovo capitolo dopo Yamaha',excerpt:'Honda HRC mette a segno uno dei colpi più importanti del mercato MotoGP assicurandosi Fabio Quartararo per le stagioni 2027 e 2028. Il campione del mondo 2021 sarà il pilota di riferimento del nuovo progetto 850 cc della Casa giapponese.',date:'24 lug 2026',author:'Redazione',meta:'📅 24 lug 2026 · ✍️ Redazione',body:'È arrivata l’ufficialità di uno dei trasferimenti più importanti degli ultimi anni in MotoGP. Fabio Quartararo lascerà Yamaha al termine della stagione 2026 per diventare pilota ufficiale Honda HRC nel biennio 2027-2028, andando a rappresentare il volto principale del nuovo progetto della Casa giapponese nell’era delle MotoGP da 850 cc. L’accordo tra il campione del mondo 2021 e Honda Racing Corporation segna la fine di un lungo capitolo iniziato nel 2019, quando il francese fece il suo debutto nella classe regina proprio con Yamaha. Dopo la conquista del titolo mondiale nel 2021 e il secondo posto nella stagione successiva, il rapporto tra Quartararo e la Casa di Iwata ha iniziato progressivamente a complicarsi a causa delle difficoltà tecniche della M1, con il pilota che più volte ha chiesto alla squadra un cambio di direzione per tornare competitivo ai massimi livelli. Il futuro del francese era già stato al centro delle attenzioni nel 2022, quando il suo nome era stato accostato a Honda come possibile compagno di squadra di Marc Márquez nel team ufficiale HRC. In quel periodo la Casa giapponese aveva mostrato grande interesse per il talento di Nizza, ma Quartararo decise alla fine di rinnovare con Yamaha scegliendo di continuare il progetto che lo aveva portato al titolo mondiale. :contentReference. Negli anni successivi però la situazione è cambiata: la Yamaha ha faticato a mantenere il passo dei rivali e Quartararo ha iniziato a valutare nuove opportunità per rilanciare la propria carriera. Honda ha quindi colto l’occasione, proponendogli un ruolo centrale nello sviluppo della nuova RC213V e affidandogli il compito di guidare il ritorno ai vertici della squadra dopo alcune stagioni difficili. Per Honda si tratta di un investimento strategico: Quartararo porta esperienza, velocità e capacità di sviluppo, oltre a un titolo mondiale già conquistato. Per il francese invece sarà una delle sfide più importanti della carriera, chiamato a dimostrare di poter vincere anche con una moto diversa dalla Yamaha con cui ha costruito la propria storia in MotoGP. Il passaggio in HRC apre quindi una nuova era per Quartararo e per Honda, con il 2027 che potrebbe rappresentare un punto di svolta per entrambi.'},
