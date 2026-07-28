@@ -1059,18 +1059,29 @@
 <div class="container">
 <main>
 <!-- NEXT RACE CARD -->
-<div class="next-race-card" onclick="goTo('risultati.html?round=r11')" onmousedown="handleMouse(event,'risultati.html?round=r11')" style="cursor:pointer;">
-<div class="nrc-flag">🇬🇧</div>
-<div class="nrc-body">
-<div class="nrc-label">⚡ Prossima gara — Round 12</div>
-<div class="nrc-name">Gran Premio di Gran Bretagna</div>
-<div class="nrc-circuit">Silverstone</div>
-<div class="nrc-date">📅 07 – 09 agosto 2026</div>
-</div>
-<div class="nrc-round">
-<div class="nrc-round-num">12</div>
-<div class="nrc-round-label">Round</div>
-</div>
+<div class="next-race-card" onclick="goTo('risultati.html?round=r12')" onmousedown="handleMouse(event,'risultati.html?round=r12')" style="cursor:pointer;">
+  <div class="nrc-flag">🇬🇧</div>
+  <div class="nrc-body">
+    <div class="nrc-label">⚡ Prossima gara — Round 12</div>
+    <div class="nrc-name">Gran Premio di Gran Bretagna</div>
+    <div class="nrc-circuit">Silverstone</div>
+    <div class="nrc-date">📅 07 – 09 agosto 2026</div>
+    
+    <!-- COUNTDOWN LIVE -->
+    <div class="countdown-cells" id="countdown-cells" style="display:flex; gap:.5rem; margin-top:1rem;">
+      <div style="background:var(--mid); border:1px solid var(--border); border-radius:6px; min-width:50px; padding:.3rem .5rem; text-align:center;"><div style="font-family:'Bebas Neue'; font-size:1.5rem; color:var(--next); line-height:1;" id="cd-d">--</div><div style="font-size:.55rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;">Giorni</div></div>
+      <div style="background:var(--mid); border:1px solid var(--border); border-radius:6px; min-width:50px; padding:.3rem .5rem; text-align:center;"><div style="font-family:'Bebas Neue'; font-size:1.5rem; color:var(--next); line-height:1;" id="cd-h">--</div><div style="font-size:.55rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;">Ore</div></div>
+      <div style="background:var(--mid); border:1px solid var(--border); border-radius:6px; min-width:50px; padding:.3rem .5rem; text-align:center;"><div style="font-family:'Bebas Neue'; font-size:1.5rem; color:var(--next); line-height:1;" id="cd-m">--</div><div style="font-size:.55rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;">Min</div></div>
+      <div style="background:var(--mid); border:1px solid var(--border); border-radius:6px; min-width:50px; padding:.3rem .5rem; text-align:center;"><div style="font-family:'Bebas Neue'; font-size:1.5rem; color:var(--next); line-height:1;" id="cd-s">--</div><div style="font-size:.55rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;">Sec</div></div>
+    </div>
+
+    <!-- ADD TO GOOGLE CALENDAR -->
+    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=MotoGP%20Gran%20Premio%20Gran%20Bretagna%202026&dates=20260807T090000Z/20260809T150000Z&details=Round%2012%20-%20Silverstone&location=Silverstone%20Circuit" target="_blank" onclick="event.stopPropagation()" style="display:inline-block; margin-top:1rem; padding:.4rem .8rem; background:var(--card); border:1px solid var(--border); border-radius:4px; color:var(--muted); text-decoration:none; font-family:'Barlow Condensed'; font-weight:700; font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; transition:.2s;">📅 Aggiungi al Calendario</a>
+  </div>
+  <div class="nrc-round">
+    <div class="nrc-round-num">12</div>
+    <div class="nrc-round-label">Round</div>
+  </div>
 </div>
 <!-- LEGEND -->
 <div class="legend">
@@ -1121,21 +1132,24 @@
 <tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r1')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">01</div></td>
 <td class="td-flag">🇹🇭</td>
-<td class="td-gp"><div class="gp-name">Gran Premio della Thailandia</div><div class="gp-circuit">Chang International Circuit · Buriram</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio della Thailandia</div><div class="gp-circuit">Chang International Circuit · Buriram</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Bezzecchi · 🏍 M. González · 🛵 D. Almansa</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Thailandia" src="img/tracciati/thailandia.png"/></div><div class="date-range">27 feb – 1 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
 <tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r2')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">02</div></td>
 <td class="td-flag">🇧🇷</td>
-<td class="td-gp"><div class="gp-name">Gran Premio del Brasile</div><div class="gp-circuit">Autódromo Internacional de Goiânia</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio del Brasile</div><div class="gp-circuit">Autódromo Internacional de Goiânia</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Bezzecchi · 🏍 D. Holgado · 🛵 M. Quiles</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Brasile" src="img/tracciati/brasile.png"/></div><div class="date-range">20 – 22 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
 <tr class="row-done" data-status="done" data-month="feb-mar" onclick="goTo('risultati.html?round=r3')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">03</div></td>
 <td class="td-flag">🇺🇸</td>
-<td class="td-gp"><div class="gp-name">Gran Premio degli USA</div><div class="gp-circuit">Circuit of the Americas · Austin</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio degli USA</div><div class="gp-circuit">Circuit of the Americas · Austin</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Bezzecchi · 🏍 S. Agius · 🛵 G. Pini</div></td>
 <td class="td-date"><div class="track-preview"><img alt="USA" src="img/tracciati/america.png"/></div><div class="date-range">27 – 29 mar</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1145,7 +1159,8 @@
 <tr class="row-done" data-status="done" data-month="apr" onclick="goTo('risultati.html?round=r4')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">04</div></td>
 <td class="td-flag">🇪🇸</td>
-<td class="td-gp"><div class="gp-name">Gran Premio di Spagna</div><div class="gp-circuit">Circuito de Jerez – Ángel Nieto</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Spagna</div><div class="gp-circuit">Circuito de Jerez – Ángel Nieto</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 A. Márquez · 🏍 S. Agius · 🛵 M. Quiles</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Spagna" src="img/tracciati/spagnaJerez.png"/></div><div class="date-range">24 – 26 apr</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1155,21 +1170,24 @@
 <tr class="row-done" data-status="done" data-month="mag" onclick="goTo('risultati.html?round=r5')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">05</div></td>
 <td class="td-flag">🇫🇷</td>
-<td class="td-gp"><div class="gp-name">Gran Premio di Francia</div><div class="gp-circuit">Circuit Bugatti · Le Mans</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Francia</div><div class="gp-circuit">Circuit Bugatti · Le Mans</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 J. Martin · 🏍 I. Guevara · 🛵 M. Quiles</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Francia" src="img/tracciati/francia.png"/></div><div class="date-range">8 – 10 mag</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
 <tr class="row-done" data-status="done" data-month="mag" onclick="goTo('risultati.html?round=r6')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">06</div></td>
 <td class="td-flag">🇪🇸</td>
-<td class="td-gp"><div class="gp-name">Gran Premio di Catalunya</div><div class="gp-circuit">Circuit de Barcelona-Catalunya</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio di Catalunya</div><div class="gp-circuit">Circuit de Barcelona-Catalunya</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 F. Di Giannantonio · 🏍 M. González · 🛵 M. Quiles</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Spagna" src="img/tracciati/spagnaBarcellona.png"/></div><div class="date-range">15 – 17 mag</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
 <tr class="row-done" data-status="done" data-month="mag" onclick="goTo('risultati.html?round=r7')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">07</div></td>
 <td class="td-flag">🇮🇹</td>
-<td class="td-gp"><div class="gp-name">Gran Premio d'Italia</div><div class="gp-circuit">Autodromo internazionale del Mugello</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Italia</div><div class="gp-circuit">Autodromo internazionale del Mugello</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Bezzecchi · 🏍 M. González · 🛵 B. Uriarte</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Italia" src="img/tracciati/italiaMugello.png"/></div><div class="date-range">29 – 31 mag</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1179,14 +1197,16 @@
 <tr class="row-done" data-status="done" data-month="giu" onclick="goTo('risultati.html?round=r8')" style="cursor:pointer;">
 <td class="td-round"><div class="round-num">08</div></td>
 <td class="td-flag">🇭🇺</td>
-<td class="td-gp"><div class="gp-name">Gran Premio d'Ungheria</div><div class="gp-circuit">Balaton Park</div></td>
+<td class="td-gp"><div class="gp-name">Gran Premio d'Ungheria</div><div class="gp-circuit">Balaton Park</div>
+<div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Márquez · 🏍 M. González · 🛵 M. Quiles</div></td>
 <td class="td-date"><div class="track-preview"><img alt="Ungheria" src="img/tracciati/ungheria.png"/></div><div class="date-range">5 – 7 giu</div></td>
 <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
 <tr class="row-done" data-status="done" data-month="giu" onclick="goTo('risultati.html?round=r9')" style="cursor:pointer;">
   <td class="td-round"><div class="round-num">09</div></td>
   <td class="td-flag">🇨🇿</td>
-  <td class="td-gp"><div class="gp-name">Gran Premio della Repubblica Ceca</div><div class="gp-circuit">Automotodrom Brno</div></td>
+  <td class="td-gp"><div class="gp-name">Gran Premio della Repubblica Ceca</div><div class="gp-circuit">Automotodrom Brno</div>
+  <div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Márquez · 🏍 I. Ortolá · 🛵 H. Danish</div></td>
   <td class="td-date"><div class="track-preview"><img alt="Brno" src="img/tracciati/repubblicaceca.png"/></div><div class="date-range">19 – 21 giu</div></td>
   <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1194,7 +1214,8 @@
 <tr class="row-done" data-status="done" data-month="giu" onclick="goTo('risultati.html?round=r10')" style="cursor:pointer;">
   <td class="td-round"><div class="round-num">10</div></td>
   <td class="td-flag">🇳🇱</td>
-  <td class="td-gp"><div class="gp-name">Gran Premio motociclistico d'Olanda</div><div class="gp-circuit">TT Circuit Assen</div></td>
+  <td class="td-gp"><div class="gp-name">Gran Premio motociclistico d'Olanda</div><div class="gp-circuit">TT Circuit Assen</div>
+  <div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 Ai Ogura · 🏍 D. Alonso · 🛵 M. Quiles</div></td>
   <td class="td-date"><div class="track-preview"><img alt="Olanda" src="img/tracciati/olanda.png"/></div><div class="date-range">26 – 28 giu</div></td>
   <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1205,7 +1226,12 @@
 <tr class="row-done" data-status="done" data-month="lug" onclick="goTo('risultati.html?round=r11')" style="cursor:pointer;">
   <td class="td-round"><div class="round-num">11</div></td>
   <td class="td-flag">🇩🇪</td>
-  <td class="td-gp"><div class="gp-name">Gran Premio di Germania</div><div class="gp-circuit">Sachsenring</div></td>
+  <td class="td-gp">
+    <div class="gp-name">Gran Premio di Germania</div>
+    <div class="gp-circuit">Sachsenring</div>
+    <!-- AGGIUNTA VINCITORI -->
+    <div class="gp-winner" style="font-size:.65rem; color:var(--muted); margin-top:.2rem; font-weight:600; letter-spacing:.03em;">🏆 M. Márquez · 🏍 I. Ortolá · 🛵 B. Uriarte</div>
+  </td>
   <td class="td-date"><div class="track-preview"><img alt="Germania" src="img/tracciati/germania.png"/></div><div class="date-range">10 – 12 lug</div></td>
   <td class="td-status"><span class="status-badge s-done">✓ Risultati →</span></td>
 </tr>
@@ -1420,6 +1446,28 @@ function filterCalendar(filterValue) {
     }
   });
 }
+// Countdown prossimo GP (Silverstone - 7 Agosto 2026)
+(function() {
+  const target = new Date('2026-08-07T11:00:00');
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) return;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const f = n => String(n).padStart(2,'0');
+    if(document.getElementById('cd-d')) document.getElementById('cd-d').textContent = d;
+    if(document.getElementById('cd-h')) document.getElementById('cd-h').textContent = f(h);
+    if(document.getElementById('cd-m')) document.getElementById('cd-m').textContent = f(m);
+    if(document.getElementById('cd-s')) document.getElementById('cd-s').textContent = f(s);
+  }
+  if (document.getElementById('cd-d')) {
+    update();
+    setInterval(update, 1000);
+  }
+})();
 </script>
 <script>
 // Middle-click / Ctrl+click support for navigation
@@ -1604,108 +1652,6 @@ if (!localStorage.getItem('moto2026-shortcut-seen')) {
   } else {
     initFade();
   }
-})();
-// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
-(function() {
-  // Indice statico: pagine + round
-  var PAGES = [
-    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
-    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
-    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
-    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
-    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
-    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
-    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
-    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
-    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
-    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
-    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
-    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
-    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
-    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
-    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
-    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
-  ];
-
-  var overlay   = document.getElementById('global-search-overlay');
-  var input     = document.getElementById('global-search-input');
-  var resultsEl = document.getElementById('global-search-results');
-  if (!overlay) return;
-
-  var selected = -1;
-  var currentResults = [];
-
-  function openGS() {
-    overlay.classList.add('open');
-    input.value = '';
-    renderResults([]);
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-  window.closeGS = function() {
-    overlay.classList.remove('open');
-  };
-
-  function renderResults(items) {
-    currentResults = items;
-    selected = -1;
-    if (!items.length) {
-      resultsEl.innerHTML = input.value.length > 0
-        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
-        : '<div class="gs-empty">Inizia a digitare…</div>';
-      return;
-    }
-    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
-      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
-        '<div class="gs-result-icon">' + r.icon + '</div>' +
-        '<div><div class="gs-result-name">' + r.name + '</div>' +
-        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
-    }).join('');
-  }
-
-  window.searchGS = function(q) {
-    if (!q.trim()) { renderResults([]); return; }
-    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    var res = PAGES.filter(function(p) {
-      return (p.name + ' ' + p.sub).toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .includes(ql);
-    });
-    renderResults(res);
-  };
-
-  window.handleGSKey = function(e) {
-    var items = resultsEl.querySelectorAll('.gs-result');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selected = Math.min(selected + 1, items.length - 1);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selected = Math.max(selected - 1, 0);
-    } else if (e.key === 'Enter' && selected >= 0) {
-      items[selected].click(); return;
-    } else if (e.key === 'Escape') {
-      closeGS(); return;
-    }
-    items.forEach(function(el, i) {
-      el.classList.toggle('selected', i === selected);
-    });
-    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
-  };
-
-  // Apri con Ctrl+K / Cmd+K
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (overlay.classList.contains('open')) closeGS();
-      else openGS();
-    }
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
-  });
-
-  // Click sull'icona 🔍 se presente
-  var searchBtn = document.getElementById('global-search-btn');
-  if (searchBtn) searchBtn.addEventListener('click', openGS);
 })();
 // ── MENU A TENDINA ──
 function toggleNavDropdown() {

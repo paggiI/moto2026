@@ -960,6 +960,34 @@
 </section>
 <div class="container">
 <main>
+<!-- SINTESI STAGIONE 2026 -->
+<h2 class="section-title" style="margin-top:0;">Stagione 2026</h2>
+<div class="career-box" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-around; margin-bottom: 2rem;">
+  <div style="text-align:center; flex:1; min-width:80px;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--gp);" id="syn-pts">0</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; color:var(--muted); text-transform:uppercase;">Punti</div>
+  </div>
+  <div style="height:40px; width:1px; background:var(--border);"></div>
+  <div style="text-align:center; flex:1; min-width:80px;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--white);" id="syn-pos">—</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; color:var(--muted); text-transform:uppercase;">Pos. Camp.</div>
+  </div>
+  <div style="height:40px; width:1px; background:var(--border);"></div>
+  <div style="text-align:center; flex:1; min-width:80px;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:#ffd700;" id="syn-win">0</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; color:var(--muted); text-transform:uppercase;">Vittorie</div>
+  </div>
+  <div style="height:40px; width:1px; background:var(--border);"></div>
+  <div style="text-align:center; flex:1; min-width:80px;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--muted);" id="syn-podi">0</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; color:var(--muted); text-transform:uppercase;">Podi</div>
+  </div>
+  <div style="height:40px; width:1px; background:var(--border);"></div>
+  <div style="text-align:center; flex:1; min-width:80px;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--muted);" id="syn-pole">0</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:.75rem; color:var(--muted); text-transform:uppercase;">Pole</div>
+  </div>
+</div>
 <!--
   <div id="api-error-box" style="display:none;" class="api-error">⚠️ Impossibile caricare i dati dall'API MotoGP. I dati mostrati sono quelli statici del sito.</div>
   -->
@@ -9297,108 +9325,6 @@ function renderRoundChart(data2026, cat) {
     initFade();
   }
 })();
-// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
-(function() {
-  // Indice statico: pagine + round
-  var PAGES = [
-    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
-    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
-    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
-    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
-    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
-    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
-    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
-    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
-    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
-    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
-    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
-    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
-    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
-    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
-    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
-    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
-  ];
-
-  var overlay   = document.getElementById('global-search-overlay');
-  var input     = document.getElementById('global-search-input');
-  var resultsEl = document.getElementById('global-search-results');
-  if (!overlay) return;
-
-  var selected = -1;
-  var currentResults = [];
-
-  function openGS() {
-    overlay.classList.add('open');
-    input.value = '';
-    renderResults([]);
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-  window.closeGS = function() {
-    overlay.classList.remove('open');
-  };
-
-  function renderResults(items) {
-    currentResults = items;
-    selected = -1;
-    if (!items.length) {
-      resultsEl.innerHTML = input.value.length > 0
-        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
-        : '<div class="gs-empty">Inizia a digitare…</div>';
-      return;
-    }
-    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
-      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
-        '<div class="gs-result-icon">' + r.icon + '</div>' +
-        '<div><div class="gs-result-name">' + r.name + '</div>' +
-        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
-    }).join('');
-  }
-
-  window.searchGS = function(q) {
-    if (!q.trim()) { renderResults([]); return; }
-    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    var res = PAGES.filter(function(p) {
-      return (p.name + ' ' + p.sub).toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .includes(ql);
-    });
-    renderResults(res);
-  };
-
-  window.handleGSKey = function(e) {
-    var items = resultsEl.querySelectorAll('.gs-result');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selected = Math.min(selected + 1, items.length - 1);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selected = Math.max(selected - 1, 0);
-    } else if (e.key === 'Enter' && selected >= 0) {
-      items[selected].click(); return;
-    } else if (e.key === 'Escape') {
-      closeGS(); return;
-    }
-    items.forEach(function(el, i) {
-      el.classList.toggle('selected', i === selected);
-    });
-    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
-  };
-
-  // Apri con Ctrl+K / Cmd+K
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (overlay.classList.contains('open')) closeGS();
-      else openGS();
-    }
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
-  });
-
-  // Click sull'icona 🔍 se presente
-  var searchBtn = document.getElementById('global-search-btn');
-  if (searchBtn) searchBtn.addEventListener('click', openGS);
-})();
 // ── MENU A TENDINA ──
 function toggleNavDropdown() {
   var btn  = document.getElementById('nav-dropdown-btn');
@@ -9732,7 +9658,47 @@ document.addEventListener('keydown', function(e) {
   } else {
     initPilotaFav();
   }
-})();</script>
+})();
+// ── SINTESI STAGIONE 2026 (USA LA TUA FUNZIONE CALC STATS) ──
+function caricaSintesi2026() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const riderId = urlParams.get('id') || Object.keys(RIDERS)[0];
+  const rider = RIDERS[riderId];
+
+  if (!rider) return; // Se il pilota non esiste, esce
+
+  let stats = { pts: 0, vit: 0, podi: 0, pole: 0 };
+  
+  // CHIAMA LA TUA FUNZIONE GIA ESISTENTE PER CALCOLARE I DATI REALI
+  if (typeof calcStats2026 === 'function') {
+    stats = calcStats2026(rider);
+  }
+
+  const ptsEl = document.getElementById('syn-pts');
+  const posEl = document.getElementById('syn-pos');
+  const winEl = document.getElementById('syn-win');
+  const podiEl = document.getElementById('syn-podi');
+  const poleEl = document.getElementById('syn-pole');
+
+  // Punti: usa i punti calcolati dinamicamente, altrimenti quelli base
+  if (ptsEl) ptsEl.textContent = stats.pts || rider.points || 0;
+  
+  // Posizione: la prende direttamente dall'oggetto RIDERS (es. 190 punti, 3º posizione)
+  if (posEl) posEl.textContent = rider.position || '—';
+  
+  // Vittorie, Podi, Pole calcolate dinamicamente da calcStats2026
+  if (winEl) winEl.textContent = stats.vit || 0;
+  if (podiEl) podiEl.textContent = stats.podi || 0;
+  if (poleEl) poleEl.textContent = stats.pole || 0;
+}
+
+// Esecuzione sicura a DOM pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', caricaSintesi2026);
+} else {
+  caricaSintesi2026();
+}
+</script>
 <button aria-label="Torna in cima alla pagina" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 

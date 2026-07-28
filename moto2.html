@@ -96,6 +96,15 @@
 
     /* ── LAYOUT DUE COLONNE (notizie + classifica) ── */
     .top-layout{display:grid;grid-template-columns:1fr 360px;gap:2rem;margin-bottom:2.5rem;align-items:start;}
+    @media (min-width: 901px) {
+  .top-layout > div:last-child {
+    position: sticky;
+    top: 80px; /* Distanza dall'header */
+    align-self: start; /* Necessario per far funzionare sticky nelle grid */
+    max-height: calc(100vh - 100px);
+    overflow-y: auto; /* Aggiunge scrollbar se il contenuto è troppo alto */
+  }
+}
     @media(max-width:900px){.top-layout{grid-template-columns:1fr;}}
 
     /* ── NOTIZIE ── */
@@ -841,6 +850,15 @@
 </div>
 <div class="container">
 <main>
+  <!-- COSA È LA MOTO2 -->
+<div style="background:linear-gradient(135deg, rgba(247,166,0,.1) 0%, var(--card) 100%); border:1px solid rgba(247,166,0,.3); border-left:4px solid var(--gp); border-radius:8px; padding:1.2rem 1.5rem; margin-bottom:2rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+  <div style="font-family:'Bebas Neue'; font-size:2.5rem; color:var(--gp); line-height:1;">⚙️</div>
+  <div style="flex:1; min-width:250px;">
+    <div style="font-family:'Barlow Condensed'; font-size:.8rem; color:var(--gp); text-transform:uppercase; font-weight:700; letter-spacing:.1em; margin-bottom:.2rem;">La Categoria</div>
+    <h4 style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--white); margin-bottom:.3rem;">Cos'è la Moto2?</h4>
+    <p style="font-size:.82rem; color:var(--muted); margin:0; line-height:1.5;">Classe intermedia del Motomondiale. Utilizza telai liberi (Kalex, Boscoscuro, Forward.) ma con un motore unico fornito da Triumph (765cc tre cilindri) e gomme Pirelli. È il trampolino di lancio verso la MotoGP.</p>
+  </div>
+</div>
 <!-- PROSSIMO GP BANNER -->
 <div class="next-gp-banner">
 <div>
@@ -1229,9 +1247,171 @@
 </div>
 </div><!-- fine col DX -->
 </div><!-- fine top-layout -->
+<!-- CLASSIFICA COSTRUTTORI -->
+<div style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; margin-bottom:2rem;">
+  <div style="font-family:'Barlow Condensed'; font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:.8rem;">🏗️ Classifica Costruttori</div>
+  <div style="display:flex; flex-direction:column; gap:.6rem;">
+    <!-- Kalex -->
+    <div style="display:flex; align-items:center; gap:.8rem;">
+      <span style="font-size:.8rem; font-weight:700; color:var(--muted); width:20px;">1</span>
+      <span style="flex:1; font-family:'Barlow Condensed'; font-weight:700; font-size:1rem; color:var(--white);">Kalex</span>
+      <span style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--red);">257.5</span>
+    </div>
+    <!-- Boscoscuro -->
+    <div style="display:flex; align-items:center; gap:.8rem;">
+      <span style="font-size:.8rem; font-weight:700; color:var(--muted); width:20px;">2</span>
+      <span style="flex:1; font-family:'Barlow Condensed'; font-weight:700; font-size:1rem; color:var(--white);">Boscoscuro</span>
+      <span style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--red);">165</span>
+    </div>
+    <!-- Forward -->
+    <div style="display:flex; align-items:center; gap:.8rem;">
+      <span style="font-size:.8rem; font-weight:700; color:var(--muted); width:20px;">3</span>
+      <span style="flex:1; font-family:'Barlow Condensed'; font-weight:700; font-size:1rem; color:var(--white);">Forward</span>
+      <span style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--red);">34</span>
+    </div>
+  </div>
+</div>
+<!-- SISTEMA PUNTEGGI -->
+<div style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1.2rem; margin-bottom:2rem;">
+  <div style="font-family:'Barlow Condensed'; font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:1rem;">📋 Sistema Punteggi 2026</div>
+  <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:.5rem; text-align:center;">
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--gold);">25</div><div style="font-size:.6rem; color:var(--muted);">1°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--silver);">20</div><div style="font-size:.6rem; color:var(--muted);">2°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--bronze);">16</div><div style="font-size:.6rem; color:var(--muted);">3°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--white);">13</div><div style="font-size:.6rem; color:var(--muted);">4°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1.2rem; color:var(--white);">11</div><div style="font-size:.6rem; color:var(--muted);">5°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">10</div><div style="font-size:.6rem; color:var(--muted);">6°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">9</div><div style="font-size:.6rem; color:var(--muted);">7°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">8</div><div style="font-size:.6rem; color:var(--muted);">8°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">7</div><div style="font-size:.6rem; color:var(--muted);">9°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">6</div><div style="font-size:.6rem; color:var(--muted);">10°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">5</div><div style="font-size:.6rem; color:var(--muted);">11°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">4</div><div style="font-size:.6rem; color:var(--muted);">12°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">3</div><div style="font-size:.6rem; color:var(--muted);">13°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">2</div><div style="font-size:.6rem; color:var(--muted);">14°</div></div>
+    <div style="background:var(--mid); padding:.5rem; border-radius:4px;"><div style="font-family:'Bebas Neue'; font-size:1rem; color:var(--muted);">1</div><div style="font-size:.6rem; color:var(--muted);">15°</div></div>
+  </div>
+</div>
 <h2 class="section-title">Team &amp; Piloti 2026</h2>
 <p style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:var(--white);margin-bottom:2rem;">Clicca su un team per espandere i piloti.</p>
 <div id="riders-container"></div>
+<!-- TALENTI MOTO2 PER MOTOGP 2027 -->
+<div style="background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%); border: 1px solid var(--border); border-left: 4px solid var(--gp); border-radius: 8px; padding: 1.5rem; margin-top: 2.5rem; margin-bottom: 2rem;">
+  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;">
+    🚀 I Talenti per la MotoGP 2027
+  </h3>
+  <p style="font-size: .9rem; color: var(--muted); margin-bottom: 1.2rem; line-height: 1.5;">
+    Dalla Moto2 arriveranno i prossimi rookie della classe regina. Ecco i nomi più accreditati per il salto di categoria nel 2027:
+  </p>
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Senna Agius → KTM Tech3 ?</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Manuel González → KTM Tech3 ?</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Collin Veijer → KTM Tech3 ?</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Celestino Vietti → Ducati VR46 ?</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Izan Guevara → Pramac Yamaha ?</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ David Alonso → Honda ? ✓ Ufficiale ma Team incognito</div>
+    <div style="background: var(--mid); padding: .5rem 1rem; border-radius: 20px; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--white);">🏍️ Daniel Holgado → Ducati Gresini ? ✓ Ufficiale </div>
+  </div>
+</div>
+<!-- FOCUS TECNICO MOTO2 -->
+<div style="background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%); border: 1px solid var(--border); border-left: 4px solid var(--gp); border-radius: 8px; padding: 1.8rem; margin-top: 2.5rem; margin-bottom: 2rem;">
+  <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">
+    ⚙️ Focus Tecnico: La Rivoluzione Moto2 2027
+  </h3>
+  <p style="font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">
+    La Moto2 è la categoria in cui il talento dei piloti si scontra con l'ingegneria dei telai. 
+    Con l'arrivo del nuovo motore Triumph nel 2027, la classe intermedia si prepara a una nuova sfida tecnica, 
+    mantenendo però la sua filosofia originaria: moto competitive ma accessibili, dove il talento fa la differenza.
+  </p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+    
+    <!-- Motore -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        🏍 Motore
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • Fornitore unico: <strong>Triumph</strong>.<br>
+        • Cilindrata: <strong>765cc</strong> (3 cilindri in linea).<br>
+        • Dal 2027 nuovo propulsore aggiornato per ridurre i costi di manutenzione.<br>
+        • Potenza: circa <strong>140 CV</strong>.
+      </div>
+    </div>
+
+    <!-- Telai -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        🛠 Telai
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • A differenza della MotoGP, i telai sono <strong>liberi</strong>.<br>
+        • Costruttori principali: <strong>Kalex</strong> (dominatore), <strong>Boscoscuro</strong> e <strong>Forward</strong>.<br>
+        • Le carene e l'aerodinamica sono più semplici rispetto alla classe regina.
+      </div>
+    </div>
+
+    <!-- Elettronica -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        💻 Elettronica
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • Centralina <strong>Magneti Marelli</strong> standard per tutti.<br>
+        • Software unico: niente trucchi elettronici segreti.<br>
+        • Il controllo trazione e l'anti-wheelie sono gestibili, ma con parametri uguali per tutta la griglia.
+      </div>
+    </div>
+
+    <!-- Pneumatici -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        🛞 Pneumatici
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • Fornitore unico: <strong>Pirelli</strong> (dal 2024).<br>
+        • Mescole slick e da bagnato fornite a tutti i piloti.<br>
+        • La gestione delle gomme è spesso la chiave per vincere le gare.
+      </div>
+    </div>
+
+    <!-- Freni -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        🛑 Freni
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • Fornitore unico: <strong>Brembo</strong>.<br>
+        • Dischi in carbonio vietati (troppo costosi), si usano dischi in acciaio.<br>
+        • Pinze monoblocco a 4 pistoncini.
+      </div>
+    </div>
+
+    <!-- Altre Novità -->
+    <div style="background:var(--mid);padding:1.2rem;border-radius:8px;">
+      <div style="font-size:.72rem;color:var(--gp);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:.4rem;">
+        📊 Altre Caratteristiche
+      </div>
+      <div style="font-size:.88rem;color:var(--white);line-height:1.6;">
+        • Peso minimo: <strong>217 kg</strong> (moto + pilota).<br>
+        • Età minima piloti: 18 anni.<br>
+        • Niente partenze lanciate: si usa la frizione manuale.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:1.8rem;padding:1rem;border-radius:8px;background:rgba(255,255,255,.03);border-left:3px solid var(--gp);">
+    <div style="font-size:.75rem;color:var(--gp);text-transform:uppercase;font-weight:700;letter-spacing:.08em;margin-bottom:.4rem;">
+      💡 Perché questo regolamento?
+    </div>
+    <p style="font-size:.9rem;color:var(--muted);line-height:1.7;margin:0;">
+      La Moto2 è pensata come il trampolino perfetto per la MotoGP. Avere un motore unico e un'elettronica standard 
+      significa che la differenza la fanno il talento del pilota, l'abilità dei tecnici nel settare il telaio e la 
+      scelta degli pneumatici. Questo mantiene i costi sotto controllo e garantisce gare spettacolari con gruppi 
+      compatiti fino all'ultimo giro.
+    </p>
+  </div>
+</div>
 </main>
 </div>
 <!-- NEWS MODAL -->
@@ -1544,108 +1724,6 @@ function toggleOldNews(btn, cls) {
   } else {
     initFade();
   }
-})();
-// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
-(function() {
-  // Indice statico: pagine + round
-  var PAGES = [
-    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
-    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
-    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
-    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
-    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
-    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
-    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
-    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
-    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
-    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
-    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
-    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
-    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
-    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
-    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
-    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
-  ];
-
-  var overlay   = document.getElementById('global-search-overlay');
-  var input     = document.getElementById('global-search-input');
-  var resultsEl = document.getElementById('global-search-results');
-  if (!overlay) return;
-
-  var selected = -1;
-  var currentResults = [];
-
-  function openGS() {
-    overlay.classList.add('open');
-    input.value = '';
-    renderResults([]);
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-  window.closeGS = function() {
-    overlay.classList.remove('open');
-  };
-
-  function renderResults(items) {
-    currentResults = items;
-    selected = -1;
-    if (!items.length) {
-      resultsEl.innerHTML = input.value.length > 0
-        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
-        : '<div class="gs-empty">Inizia a digitare…</div>';
-      return;
-    }
-    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
-      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
-        '<div class="gs-result-icon">' + r.icon + '</div>' +
-        '<div><div class="gs-result-name">' + r.name + '</div>' +
-        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
-    }).join('');
-  }
-
-  window.searchGS = function(q) {
-    if (!q.trim()) { renderResults([]); return; }
-    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    var res = PAGES.filter(function(p) {
-      return (p.name + ' ' + p.sub).toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .includes(ql);
-    });
-    renderResults(res);
-  };
-
-  window.handleGSKey = function(e) {
-    var items = resultsEl.querySelectorAll('.gs-result');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selected = Math.min(selected + 1, items.length - 1);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selected = Math.max(selected - 1, 0);
-    } else if (e.key === 'Enter' && selected >= 0) {
-      items[selected].click(); return;
-    } else if (e.key === 'Escape') {
-      closeGS(); return;
-    }
-    items.forEach(function(el, i) {
-      el.classList.toggle('selected', i === selected);
-    });
-    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
-  };
-
-  // Apri con Ctrl+K / Cmd+K
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (overlay.classList.contains('open')) closeGS();
-      else openGS();
-    }
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
-  });
-
-  // Click sull'icona 🔍 se presente
-  var searchBtn = document.getElementById('global-search-btn');
-  if (searchBtn) searchBtn.addEventListener('click', openGS);
 })();
 // ── MENU A TENDINA ──
 function toggleNavDropdown() {

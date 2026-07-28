@@ -300,7 +300,28 @@
     .rider-meta { font-size:.78rem; color:var(--muted); margin-top:.3rem; font-family:'Barlow Condensed',sans-serif; }
     .rider-card-inner { display:flex; align-items:center; gap:.8rem; }
     .rider-card-moto { flex-shrink:0; opacity:.12; }
-    .rider-card-moto svg { width:52px; height:28px; }
+        /* NUMERO PILOTA IN SFONDO */
+    .rider-num-bg {
+      position: absolute;
+      bottom: -15px; /* Lo abbassiamo un po' così spunta solo a metà */
+      right: -5px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem; /* Numero gigante */
+      line-height: 1;
+      color: rgba(255,255,255,.04); /* Quasi trasparente per non disturbare */
+      pointer-events: none;
+      z-index: 0;
+      font-weight: bold;
+    }
+    [data-theme="light"] .rider-num-bg {
+      color: rgba(0,0,0,.04); /* Colore per light mode */
+    }
+    /* Il testo della card deve stare sopra il numero */
+    .rider-card { position: relative; overflow: hidden; }
+    .rider-card > *:not(.rider-num-bg) {
+      position: relative;
+      z-index: 1;
+    }
     .rider-card:hover .rider-card-moto { opacity:.22; }
 
     /* FOOTER */
@@ -974,7 +995,7 @@
 </div>
 <div class="riders-row rc-gp">
 <div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Jack Miller</div><div class="rider-meta">Yamaha YZR-M1</div></div>
-<div class="rider-card"><div class="rider-flag">🇹🇷</div><div class="rider-name">Toprak Razgatlıoğlu</div><div class="rider-meta">Yamaha YZR-M1</div></div>
+<div class="rider-card"><div class="rider-flag">🇹🇷</div><div class="rider-name">Toprak Razgatlıoğlu</div><div class="rider-meta">Yamaha YZR-M1</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <!-- Gresini -->
@@ -1031,7 +1052,7 @@
 <span style="margin-left:auto;font-size:.8rem;color:var(--muted);">Aprilia RS-GP26</span>
 </div>
 <div class="riders-row rc-gp">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Martín</div><div class="rider-meta">Aprilia RS-GP26</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Martín</div><div class="rider-meta">Aprilia RS-GP26</div><div style="margin-top:.2rem; font-size:.85rem; color:var(--gp); font-family:'Barlow Condensed',sans-serif;">208 PTS</div></div>
 <div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Marco Bezzecchi</div><div class="rider-meta">Aprilia RS-GP26</div></div>
 <div class="rider-card" style="border-left:3px solid #3ef700;">
 <div class="rider-flag">🇮🇹</div>
@@ -1075,7 +1096,7 @@
 <div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Enea Bastianini</div><div class="rider-meta">Red Bull KTM Tech3</div></div>
 <div class="rider-card">
 <div class="rider-flag">🇪🇸</div>
-<div class="rider-name">Maverick Vinales</div>
+<div class="rider-name">Maverick Viñales</div>
 <div class="rider-meta">Red Bull KTM Tech3</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
             ⚠️ Assente Round 4-5 (infortunio)<br/>
@@ -1101,7 +1122,7 @@
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álex Rins</div><div class="rider-meta">Yamaha YZR-M1</div></div>
 <div class="rider-card" style="border-left:3px solid #3ef700;">
 <div class="rider-flag">🇪🇸</div>
-<div class="rider-name">Augusto Fernàndez <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4-R6-R10</span></div>
+<div class="rider-name">Augusto Fernández<span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">WILDCARD R4-R6-R10</span></div>
 <div class="rider-meta">Yamaha Racing Factory — WildCard al Round 4-6-10</div>
 </div>
 </div>
@@ -1137,7 +1158,7 @@
 <div class="rider-name">Cal Crutchlow <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R7-R8-R9-R10-R11-R12</span></div>
 <div class="rider-meta">Honda RC213V — Sub. Zarco al Round 7-8-9-10-11-12</div>
 </div>
-<div class="rider-card"><div class="rider-flag">🇧🇷</div><div class="rider-name">Diogo Moreira</div><div class="rider-meta">Honda RC213V</div></div>
+<div class="rider-card"><div class="rider-flag">🇧🇷</div><div class="rider-name">Diogo Moreira</div><div class="rider-meta">Honda RC213V</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 </div></section>
@@ -1166,7 +1187,7 @@
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">BLU CRU Pramac Yamaha Moto2</span></div>
 <div class="riders-row rc-m2">
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Izan Guevara</div><div class="rider-meta">Yamaha</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alberto Ferrandez</div><div class="rider-meta">Yamaha</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alberto Ferrández</div><div class="rider-meta">Yamaha</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <div class="team-block">
@@ -1249,14 +1270,14 @@
 </div>
 <div class="rider-meta">Kalex — Sub. Super Mario Aji al Round 8</div>
 </div>
-<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Taiyo Furusato</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Taiyo Furusato</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span><div class="rider-meta">Kalex</div></div>
 </div>
 </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Italtrans Racing Team</span></div>
 <div class="riders-row rc-m2">
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Huertas</div><div class="rider-meta">Kalex</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Muñoz</div><div class="rider-meta">Kalex</div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Daniel Muñoz</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE [Già wildcard anni scorso]</span><div class="rider-meta">Kalex</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
             ⚠️ Assente Round 11 (infortunio)<br/>
             <span style="color:var(--muted);">Nessun Sostituto</span>
@@ -1267,7 +1288,7 @@
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">LIQUI MOLY Dynavolt Intact GP</span></div>
 <div class="riders-row rc-m2">
 <div class="rider-card"><div class="rider-flag">🇦🇺</div><div class="rider-name">Senna Agius</div><div class="rider-meta">Kalex</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Manuel González</div><div class="rider-meta">Kalex</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Manuel González</div><div class="rider-meta">Kalex</div><div style="margin-top:.2rem; font-size:.85rem; color:var(--m2); font-family:'Barlow Condensed',sans-serif;">195.5 PTS</div></div>
 </div>
 </div>
 <div class="team-block">
@@ -1290,7 +1311,7 @@
 </div>
 <div class="rider-card">
 <div class="rider-flag">🇪🇸</div>
-<div class="rider-name">Angel Piqueras</div>
+<div class="rider-name">Ángel Piqueras</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span>
 <div class="rider-meta">Kalex</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
         ⚠️ Assente Round 4–5-6-7 (infortunio)<br/>
@@ -1300,7 +1321,7 @@
 <div class="rider-card" style="border-left:3px solid #f700d6;">
 <div class="rider-flag">🇪🇸</div>
 <div class="rider-name">
-        Marcos Ramirez 
+        Marcos Ramírez 
         <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">
           SOSTITUTO R4-R5
         </span>
@@ -1322,14 +1343,14 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Red Bull KTM Ajo</span></div>
 <div class="riders-row rc-m2">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">José Antonio Rueda</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">José Antonio Rueda</div><div class="rider-meta">KTM</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 <div class="rider-card"><div class="rider-flag">🇳🇱</div><div class="rider-name">Collin Veijer</div><div class="rider-meta">KTM</div></div>
 </div>
 </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m2"></div><span class="team-name">Forward Factory Team</span></div>
 <div class="riders-row rc-m2">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Alex Escrig</div><div class="rider-meta">Forward</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álex Escrig</div><div class="rider-meta">Forward</div></div>
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jorge Navarro</div><div class="rider-meta">Forward</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
             ⚠️ Assente Da Round 6 (infortunio) [Sub B.Baltus R10-11]<br/>
@@ -1365,7 +1386,7 @@
 <div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Celestino Vietti</div><div class="rider-meta">Kalex</div></div>
 <div class="rider-card">
 <div class="rider-flag">🇮🇹</div>
-<div class="rider-name">Luca Lunetta</div>
+<div class="rider-name">Luca Lunetta</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span>
 <div class="rider-meta">Kalex</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
             ⚠️ Assente Round 2–3 (infortunio)<br/>
@@ -1386,6 +1407,7 @@
 <div class="rider-card"><div class="rider-flag">🇳🇱</div><div class="rider-name">Zonta van den Goorbergh</div><div class="rider-meta">Kalex</div></div>
 </div>
 </div>
+</div>
 </section>
 <!-- ═══════════════ MOTO3 ═══════════════ -->
 <section class="class-section" id="sec-moto3">
@@ -1400,7 +1422,7 @@
 <div class="rider-card"><div class="rider-flag">🇳🇿</div><div class="rider-name">Cormac Buchanan</div><div class="rider-meta">KTM</div></div>
 <div class="rider-card">
     <div class="rider-flag">🇿🇦</div>
-    <div class="rider-name">Ruche Moodley</div>
+    <div class="rider-name">Ruché Moodley</div>
     <div class="rider-meta">KTM</div>
 
     <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
@@ -1419,7 +1441,7 @@
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">FRINSA – MT Helmets – MSI</span></div>
 <div class="riders-row rc-m3">
 <div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Ryusei Yamanaka</div><div class="rider-meta">KTM</div></div>
-<div class="rider-card"><div class="rider-flag">🇲🇾</div><div class="rider-name">Hakim Danish</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇲🇾</div><div class="rider-name">Hakim Danish</div><div class="rider-meta">KTM</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <div class="team-block">
@@ -1432,21 +1454,21 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Honda Team Asia</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇮🇩</div><div class="rider-name">Veda Pratama</div><div class="rider-meta">Honda NSF250RW</div></div>
-<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Zen Mitani</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇮🇩</div><div class="rider-name">Veda Pratama</div><div class="rider-meta">Honda NSF250RW</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
+<div class="rider-card"><div class="rider-flag">🇯🇵</div><div class="rider-name">Zen Mitani</div><div class="rider-meta">Honda NSF250RW</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Rivacold Snipers Team</span></div>
 <div class="riders-row rc-m3">
 <div class="rider-card"><div class="rider-flag">🇮🇹</div><div class="rider-name">Nicola Carraro</div><div class="rider-meta">Honda NSF250RW</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jesús Ríos</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Jesús Ríos</div><div class="rider-meta">Honda NSF250RW</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">CIP Green Power</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Cruces</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Adrián Cruces</div><div class="rider-meta">KTM</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE [Già wildcard anni scorso]</span></div>
 <div class="rider-card"><div class="rider-flag">🇬🇧</div><div class="rider-name">Scott Ogden</div><div class="rider-meta">KTM</div></div>
 </div>
 </div>
@@ -1481,15 +1503,15 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Red Bull KTM Tech3</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇫🇮</div><div class="rider-name">Rico Salmela</div><div class="rider-meta">KTM</div></div>
-<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Valentin Perrone</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇫🇮</div><div class="rider-name">Rico Salmela</div><div class="rider-meta">KTM</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
+<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Valentín Perrone</div><div class="rider-meta">KTM</div></div>
 </div>
 </div>
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">CFMOTO Aspar Team</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Máximo Quiles</div><div class="rider-meta">KTM CFMOTO</div></div>
-<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Marco Morelli</div><div class="rider-meta">KTM CFMOTO</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Máximo Quiles</div><div class="rider-meta">KTM CFMOTO</div><div style="margin-top:.2rem; font-size:.85rem; color:var(--m3); font-family:'Barlow Condensed',sans-serif;">231 PTS</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇷</div><div class="rider-name">Marco Morelli</div><div class="rider-meta">KTM CFMOTO</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE [Già wildcard anni scorso]</span></div>
 </div>
 </div>
 <div class="team-block">
@@ -1503,7 +1525,7 @@
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">Red Bull KTM Ajo</span></div>
 <div class="riders-row rc-m3">
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Álvaro Carpe</div><div class="rider-meta">KTM</div></div>
-<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Brian Uriarte</div><div class="rider-meta">KTM</div></div>
+<div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Brian Uriarte</div><div class="rider-meta">KTM</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 <div class="team-block">
@@ -1516,8 +1538,8 @@
 <div class="team-block">
 <div class="team-header"><div class="team-dot dot-m3"></div><span class="team-name">SIC58 Squadra Corse</span></div>
 <div class="riders-row rc-m3">
-<div class="rider-card"><div class="rider-flag">🇦🇹</div><div class="rider-name">Leo Rammerstorfer</div><div class="rider-meta">Honda NSF250RW</div></div>
-<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Casey O'Gorman</div><div class="rider-meta">Honda NSF250RW</div></div>
+<div class="rider-card"><div class="rider-flag">🇦🇹</div><div class="rider-name">Leo Rammerstorfer</div><div class="rider-meta">Honda NSF250RW</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
+<div class="rider-card"><div class="rider-flag">🇮🇪</div><div class="rider-name">Casey O'Gorman</div><div class="rider-meta">Honda NSF250RW</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
 </div>
 </div>
 </section>
@@ -1554,20 +1576,57 @@
     <ellipse cx="30" cy="14" rx="6" ry="3" stroke="white" stroke-width="1"/>
   </svg>`;
 
-  // Aggiorna tutte le rider-card con bandiera+codice e moto
+    // Mappa Numeri Piloti 2026
+  const riderNumbers = {
+    'Francesco Bagnaia': '63', 'Marc Márquez': '93', 'Jorge Martín': '89', 'Marco Bezzecchi': '72',
+    'Fabio Di Giannantonio': '49', 'Franco Morbidelli': '21', 'Pedro Acosta': '37', 'Brad Binder': '33',
+    'Jack Miller': '43', 'Toprak Razgatlıoğlu': '7', 'Álex Márquez': '73', 'Fermín Aldeguer': '54',
+    'Enea Bastianini': '23', 'Maverick Viñales': '12', 'Raúl Fernández': '25', 'Ai Ogura': '79',
+    'Fabio Quartararo': '20', 'Álex Rins': '42', 'Joan Mir': '36', 'Luca Marini': '10',
+    'Johann Zarco': '5', 'Diogo Moreira': '11', 'Cal Crutchlow': '35', 'Augusto Fernández': '47', 
+    'Jonas Folger': '94', 'Lorenzo Savadori': '32', 'Michele Pirro': '51', 'Iker Lecuona': '27',
+    'Manuel González': '18', 'Senna Agius': '81', 'Celestino Vietti': '13',
+    'Tony Arbolino': '14', 'Izan Guevara': '28', 'David Alonso': '80',
+    'Daniel Holgado': '96', 'Filip Salač': '12', 'Alonso López': '21',
+    'Milan Pawelec': '40', 'Daniel Muñoz': '17', 'Adrián Huertas': '99',
+    'Joe Roberts': '16', 'Iván Ortolá': '4', 'Ángel Piqueras': '36', 'Alberto Ferrández': '54',
+    'Marcos Ramírez': '24', 'Orradre U': '10', 'Collin Veijer': '95',
+    'José Antonio Rueda': '98', 'Barry Baltus': '7', 'Jorge Navarro': '9',
+    'Ayumu Sasaki': '71', 'Zonta van den Goorbergh': '84', 'Arón Canet': '44',
+    'Deniz Öncü': '53', 'Luca Lunetta': '32', 'Dennis Foggia': '8',
+    'Zurutuza X.': '85', 'Álex Escrig': '11', 'Mario Aji': '64',
+    'Jacob Roulstone': '22', 'Taiyo Furusato': '72', 'Sergio García': '3',
+    'Eddie O\'Shea': '8', 'Joel Kelso': '66', 'Veda Pratama': '9',
+    'Zen Mitani': '32', 'Adrián Fernández': '31', 'Guido Pini': '94',
+    'Nicola Carraro': '10', 'Jesús Ríos': '54', 'Leo Rammerstorfer': '5',
+    'Casey O\'Gorman': '67', 'Ryusei Yamanaka': '6', 'Hakim Danish': '13',
+    'Máximo Quiles': '28', 'Marco Morelli': '97', 'Adrián Cruces': '11',
+    'Scott Ogden': '19', 'Cormac Buchanan': '14', 'Ruché Moodley': '21',
+    'Eduardo Gutiérrez Cobo': '41', 'Matteo Bertelle': '18', 'Joel Esteban': '78',
+    'David Almansa': '22', 'David Muñoz': '64', 'Marcos Uriarte': '88',
+    'Brian Uriarte': '51', 'Álvaro Carpe': '83', 'Rico Salmela': '27',
+    'Valentín Perrone': '73',
+  };
+
+  // Aggiorna tutte le rider-card con bandiera+codice e NUMERO di gara
   document.querySelectorAll('.rider-card').forEach(card => {
     const flagEl = card.querySelector('.rider-flag');
-    if (!flagEl) return;
+    const nameEl = card.querySelector('.rider-name');
+    if (!flagEl || !nameEl) return;
+    
     const emoji = flagEl.textContent.trim();
     const code = flagToCode[emoji] || '';
     flagEl.innerHTML = `<span class="flag-emoji">${emoji}</span><span class="flag-code">${code}</span>`;
 
-    // Aggiungi moto in posizione assoluta in fondo a destra
-    const motoDiv = document.createElement('div');
-    motoDiv.className = 'rider-card-moto';
-    motoDiv.style.cssText = 'position:absolute;bottom:6px;right:8px;opacity:.1;pointer-events:none;';
-    motoDiv.innerHTML = motoSVG;
-    card.appendChild(motoDiv);
+    // Prendi il nome pulito per cercare il numero
+    const rawName = nameEl.firstChild ? nameEl.firstChild.textContent.trim() : nameEl.textContent.trim();
+    const rNum = riderNumbers[rawName];
+
+    // Aggiungi il NUMERO di gara in sfondo
+    const numDiv = document.createElement('div');
+    numDiv.className = 'rider-num-bg';
+    numDiv.textContent = rNum || '🏍️';
+    card.appendChild(numDiv);
   });
 
   function toggleMenu() {
@@ -1793,16 +1852,11 @@ function toggleTheme() {
 }
 initTheme();
 
-// Scroll to top
-window.addEventListener('scroll', function() {
-  const btn = document.getElementById('scroll-top-btn');
-  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
-});
 
 // Segna i leader di classifica cercando per nome
 (function() {
   const leaders = [
-    'Marco Bezzecchi',   // MotoGP
+    'Jorge Martín',   // MotoGP
     'Manuel González',   // Moto2
     'Máximo Quiles',     // Moto3
   ];
@@ -1870,7 +1924,7 @@ setTimeout(updateRiderCount, 200);
     'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
     'classifica.html':'Classifica','risultati.html':'Risultati',
     'calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
-    'albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'
+    'albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'team.html':'Team',
   };
   var cur = (location.pathname.split('/').pop() || 'index.html');
   var curName = NAMES[cur] || cur;
@@ -1986,108 +2040,6 @@ setTimeout(updateRiderCount, 200);
   } else {
     initFade();
   }
-})();
-// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
-(function() {
-  // Indice statico: pagine + round
-  var PAGES = [
-    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
-    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
-    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
-    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
-    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
-    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
-    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
-    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
-    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
-    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
-    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
-    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
-    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
-    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
-    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
-    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
-  ];
-
-  var overlay   = document.getElementById('global-search-overlay');
-  var input     = document.getElementById('global-search-input');
-  var resultsEl = document.getElementById('global-search-results');
-  if (!overlay) return;
-
-  var selected = -1;
-  var currentResults = [];
-
-  function openGS() {
-    overlay.classList.add('open');
-    input.value = '';
-    renderResults([]);
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-  window.closeGS = function() {
-    overlay.classList.remove('open');
-  };
-
-  function renderResults(items) {
-    currentResults = items;
-    selected = -1;
-    if (!items.length) {
-      resultsEl.innerHTML = input.value.length > 0
-        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
-        : '<div class="gs-empty">Inizia a digitare…</div>';
-      return;
-    }
-    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
-      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
-        '<div class="gs-result-icon">' + r.icon + '</div>' +
-        '<div><div class="gs-result-name">' + r.name + '</div>' +
-        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
-    }).join('');
-  }
-
-  window.searchGS = function(q) {
-    if (!q.trim()) { renderResults([]); return; }
-    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    var res = PAGES.filter(function(p) {
-      return (p.name + ' ' + p.sub).toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .includes(ql);
-    });
-    renderResults(res);
-  };
-
-  window.handleGSKey = function(e) {
-    var items = resultsEl.querySelectorAll('.gs-result');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selected = Math.min(selected + 1, items.length - 1);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selected = Math.max(selected - 1, 0);
-    } else if (e.key === 'Enter' && selected >= 0) {
-      items[selected].click(); return;
-    } else if (e.key === 'Escape') {
-      closeGS(); return;
-    }
-    items.forEach(function(el, i) {
-      el.classList.toggle('selected', i === selected);
-    });
-    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
-  };
-
-  // Apri con Ctrl+K / Cmd+K
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (overlay.classList.contains('open')) closeGS();
-      else openGS();
-    }
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
-  });
-
-  // Click sull'icona 🔍 se presente
-  var searchBtn = document.getElementById('global-search-btn');
-  if (searchBtn) searchBtn.addEventListener('click', openGS);
 })();
 // ── MENU A TENDINA ──
 function toggleNavDropdown() {
@@ -2473,11 +2425,12 @@ document.addEventListener('keydown', function(e) {
     initStars();
   }
 })();</script>
-<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 <style>
-input, button { pointer-events: auto !important; position: relative; z-index: 5 !important; }
-.category-btn, .filter-btn { pointer-events:auto !important; z-index:5 !important; position:relative;}
+/* Fix per far funzionare i bottoni sopra l'audio player, senza rompere il bottone Torna Su */
+input, button { pointer-events: auto !important; }
+#scroll-top-btn { position: fixed !important; z-index: 9999 !important; pointer-events: auto !important; }
+.category-btn, .filter-btn { z-index:5 !important; position:relative; }
 </style>
 
 
@@ -2509,6 +2462,7 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
 
 
 <!-- AUDIO PLAYER -->
+  <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su">↑</button>
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
 
   <!-- PULSANTE PLAY/PAUSE -->
@@ -2530,6 +2484,11 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
   </audio>
 </div>
 <script>
+  // Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
 (function(){
   var audio = document.getElementById('bg-audio');
   var progressSlider = document.getElementById('progress-slider');
