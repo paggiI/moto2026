@@ -1810,6 +1810,71 @@
       transition: border-color .15s;
     }
     .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    /* === MIGLIORIE UI RISULTATI === */
+
+/* Modifica 1: Podio Evidenziato */
+.podium-1 {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.08) 0%, transparent 100%) !important;
+  border-left: 3px solid var(--gold);
+}
+.podium-2 {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.06) 0%, transparent 100%) !important;
+  border-left: 3px solid var(--silver);
+}
+.podium-3 {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.06) 0%, transparent 100%) !important;
+  border-left: 3px solid var(--bronze);
+}
+
+/* Modifica 2: Pallino Colorato Team */
+.team-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+/* Modifica 3: Header Sticky */
+table.rt thead tr {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--card);
+  box-shadow: 0 2px 0 var(--border);
+}
+/* === NUOVE MIGLIORIE RISULTATI === */
+
+/* Modifica 1: Barra di Ricerca */
+#riderSearch {
+  width: 140px;
+  padding: .35rem .6rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--mid);
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem;
+  margin-left: auto;
+  outline: none;
+  transition: border-color .2s;
+}
+#riderSearch::placeholder { color: var(--muted); }
+#riderSearch:focus { border-color: var(--red); }
+
+/* Modifica 2: Gap Vicino (Verde) */
+.gap-close {
+  color: #4ade80 !important; /* Verde brillante */
+  font-weight: 700;
+}
+
+/* Modifica 3: Top Time (1° in Prove/Q) */
+.top-time-row {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, transparent 100%) !important;
+  border-left: 3px solid var(--white);
+}
     </style>
 </link><style id="audio-player-responsive">
 #audio-player-widget {
@@ -9460,6 +9525,108 @@ r11: {
     initFade();
   }
 })();
+// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
+(function() {
+  // Indice statico: pagine + round
+  var PAGES = [
+    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
+    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
+    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
+    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
+    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
+    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
+    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
+    { name:'Piloti',        sub:'Tutti i 79 piloti',        icon:'👤', url:'piloti.html' },
+    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
+    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
+    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
+    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
+    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
+    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
+    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
+    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
+    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
+  ];
+
+  var overlay   = document.getElementById('global-search-overlay');
+  var input     = document.getElementById('global-search-input');
+  var resultsEl = document.getElementById('global-search-results');
+  if (!overlay) return;
+
+  var selected = -1;
+  var currentResults = [];
+
+  function openGS() {
+    overlay.classList.add('open');
+    input.value = '';
+    renderResults([]);
+    setTimeout(function(){ input.focus(); }, 60);
+  }
+  window.closeGS = function() {
+    overlay.classList.remove('open');
+  };
+
+  function renderResults(items) {
+    currentResults = items;
+    selected = -1;
+    if (!items.length) {
+      resultsEl.innerHTML = input.value.length > 0
+        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
+        : '<div class="gs-empty">Inizia a digitare…</div>';
+      return;
+    }
+    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
+      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
+        '<div class="gs-result-icon">' + r.icon + '</div>' +
+        '<div><div class="gs-result-name">' + r.name + '</div>' +
+        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
+    }).join('');
+  }
+
+  window.searchGS = function(q) {
+    if (!q.trim()) { renderResults([]); return; }
+    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+    var res = PAGES.filter(function(p) {
+      return (p.name + ' ' + p.sub).toLowerCase()
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+        .includes(ql);
+    });
+    renderResults(res);
+  };
+
+  window.handleGSKey = function(e) {
+    var items = resultsEl.querySelectorAll('.gs-result');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selected = Math.min(selected + 1, items.length - 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selected = Math.max(selected - 1, 0);
+    } else if (e.key === 'Enter' && selected >= 0) {
+      items[selected].click(); return;
+    } else if (e.key === 'Escape') {
+      closeGS(); return;
+    }
+    items.forEach(function(el, i) {
+      el.classList.toggle('selected', i === selected);
+    });
+    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
+  };
+
+  // Apri con Ctrl+K / Cmd+K
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (overlay.classList.contains('open')) closeGS();
+      else openGS();
+    }
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
+  });
+
+  // Click sull'icona 🔍 se presente
+  var searchBtn = document.getElementById('global-search-btn');
+  if (searchBtn) searchBtn.addEventListener('click', openGS);
+})();
 // ── MENU A TENDINA ──
 function toggleNavDropdown() {
   var btn  = document.getElementById('nav-dropdown-btn');
@@ -9738,7 +9905,133 @@ document.addEventListener('keydown', function(e) {
   } else {
     initAuth();
   }
-})();</script>
+})();
+// === MIGLIORIE UI RISULTATI (Plug & Play) ===
+
+// Mappa dei colori per i costruttori
+
+function applyUIEnhancements() {
+  const tbody = document.querySelector('table.rt tbody');
+  if (!tbody) return;
+
+  const rows = tbody.querySelectorAll('tr');
+  
+  rows.forEach(row => {
+    const posCell = row.querySelector('.pos-num');
+    const nameCell = row.querySelector('.rider-name');
+    const teamCell = row.querySelectorAll('td')[2]; // La 3ª colonna è di solito il team
+
+    if (!posCell) return;
+
+    // 1. Evidenzia Podio
+    const posText = posCell.innerText.trim();
+    const posNum = parseInt(posText);
+    
+    // Rimuovi classi vecchie per sicurezza
+    row.classList.remove('podium-1', 'podium-2', 'podium-3');
+    
+    if (posNum === 1) row.classList.add('podium-1');
+    if (posNum === 2) row.classList.add('podium-2');
+    if (posNum === 3) row.classList.add('podium-3');
+  });
+}
+
+// Osserva i cambiamenti nella pagina per applicare le modifiche automaticamente
+// quando cambi round (Thailandia, Italia, ecc.) o sessione (FP1, Q, Gara)
+const mainContent = document.getElementById('main');
+if (mainContent) {
+  const observer = new MutationObserver(() => {
+    applyUIEnhancements();
+  });
+  observer.observe(mainContent, { childList: true, subtree: true });
+}
+
+// Applica subito al caricamento della pagina
+document.addEventListener('DOMContentLoaded', applyUIEnhancements);
+// Applica anche dopo un piccolo ritardo per sicurezza
+setTimeout(applyUIEnhancements, 500);
+// === NUOVE MIGLIORIE RISULTATI (Plug & Play) ===
+
+// Modifica 1: Crea la barra di ricerca
+function setupSearchBar() {
+  const sessHeader = document.querySelector('.sess-header');
+  if (!sessHeader) return;
+
+  let searchInput = document.getElementById('riderSearch');
+  
+  // Crea l'input solo se non esiste già
+  if (!searchInput) {
+    searchInput = document.createElement('input');
+    searchInput.id = 'riderSearch';
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Cerca pilota...';
+    
+    sessHeader.appendChild(searchInput);
+
+    // Logica di ricerca
+    searchInput.addEventListener('input', (e) => {
+      const filter = e.target.value.toLowerCase();
+      const rows = document.querySelectorAll('table.rt tbody tr');
+      rows.forEach(row => {
+        const nameCell = row.querySelector('.rider-name');
+        if (nameCell) {
+          const name = nameCell.innerText.toLowerCase();
+          // Se il nome contiene il testo cercato, mostra la riga, altrimenti nascondila
+          row.style.display = name.includes(filter) ? '' : 'none';
+        }
+      });
+    });
+  }
+}
+
+// Modifica 2 & 3: Colora i Gap e evidenzia il Top Time
+function applyGapAndTopTime() {
+  const rows = document.querySelectorAll('table.rt tbody tr');
+  
+  rows.forEach(row => {
+    const posCell = row.querySelector('.pos-num');
+    const gapCell = row.querySelector('.gap-time');
+    if (!posCell) return;
+
+    const posText = posCell.innerText.trim();
+    const posNum = parseInt(posText);
+
+    // Rimuovi classi vecchie per sicurezza
+    row.classList.remove('top-time-row');
+    if (gapCell) gapCell.classList.remove('gap-close');
+
+    // Modifica 3: Top Time (solo se è 1 e non è già un podio di gara)
+    if (posNum === 1 && !row.classList.contains('podium-1')) {
+      row.classList.add('top-time-row');
+    }
+
+    // Modifica 2: Gap Verde (se c'è la colonna gap e inizia con +0.)
+    if (gapCell) {
+      const gapText = gapCell.innerText.trim();
+      // Controlla se il distacco è sotto il secondo (es. +0.512 o +0'090)
+      if (gapText.startsWith('+0.') || (gapText.startsWith("+0'") && !gapText.includes("1'"))) {
+        gapCell.classList.add('gap-close');
+      }
+    }
+  });
+}
+
+// Osserva i cambiamenti nella pagina per applicare le modifiche automaticamente
+const mainContentUI = document.getElementById('main');
+if (mainContentUI) {
+  const observerUI = new MutationObserver(() => {
+    setupSearchBar();
+    applyGapAndTopTime();
+  });
+  observerUI.observe(mainContentUI, { childList: true, subtree: true });
+}
+
+// Applica subito al caricamento della pagina
+document.addEventListener('DOMContentLoaded', () => {
+  setupSearchBar();
+  applyGapAndTopTime();
+});
+</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd>
       per cercare un pilota</div>

@@ -664,6 +664,48 @@
       transition: border-color .15s;
     }
     .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    
+        /* === BATTAGLIA PER IL TITOLO === */
+    .title-battle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .battle-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      border-top: 3px solid transparent;
+    }
+    .battle-card.gp { border-top-color: var(--gp); }
+    .battle-card.m2 { border-top-color: var(--m2); }
+    .battle-card.m3 { border-top-color: var(--m3); }
+    .battle-riders {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .5rem;
+    }
+    .battle-riders span { flex: 1; text-align: center; }
+    .battle-riders span:first-child { text-align: left; }
+    .battle-riders span:last-child { text-align: right; }
+    .battle-vs { font-size: .8rem; color: var(--muted); }
+    .battle-gap {
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .04em;
+      color: var(--white);
+      background: rgba(255,255,255,.04);
+      border-radius: 4px;
+      padding: .2rem 0;
+    }
+    .battle-gap span { color: var(--gold); }
     </style>
 </link><style id="audio-player-responsive">
 #audio-player-widget {
@@ -999,9 +1041,15 @@ const gpLeader = CLASSIFICA.motogp[0];
 const m2Leader = CLASSIFICA.moto2[0];
 const m3Leader = CLASSIFICA.moto3[0];
 
+// Calcoli Gap per la Battaglia
+const gpGap = (CLASSIFICA.motogp[0].pts - CLASSIFICA.motogp[1].pts).toFixed(1);
+const m2Gap = (CLASSIFICA.moto2[0].pts - CLASSIFICA.moto2[1].pts).toFixed(1);
+const m3Gap = (CLASSIFICA.moto3[0].pts - CLASSIFICA.moto3[1].pts).toFixed(1);
+
 const gpWins  = buildWinsMap('gp');
 const m2Wins  = buildWinsMap('m2');
 const m3Wins  = buildWinsMap('m3');
+const sprintWins = buildSprintWinsMap(); // Nuovo grafico sprint
 
 const progressPct = ((ROUNDS_DONE.length / 22) * 100).toFixed(1);
 
@@ -1032,6 +1080,34 @@ document.getElementById('main-content').innerHTML = `
     <div class="season-bar-wrap">
        <div class="season-bar-label"><span>Progressione Stagione</span><span>${ROUNDS_DONE.length} / 22 Round</span></div>
        <div class="season-bar-track"><div class="season-bar-fill" style="width: ${progressPct}%"></div></div>
+    </div>
+  </div>
+    <!-- BATTAGLIA PER IL TITOLO -->
+  <h2 class="section-title">Battaglia per il Titolo</h2>
+  <div class="title-battle-grid">
+    <div class="battle-card gp">
+      <div class="battle-riders">
+        <span>1° ${gpLeader.flag} ${gpLeader.name.split(' ').pop()}</span>
+        <span class="battle-vs">VS</span>
+        <span>2° ${CLASSIFICA.motogp[1].flag} ${CLASSIFICA.motogp[1].name.split(' ').pop()}</span>
+      </div>
+      <div class="battle-gap">Gap: <span>${gpGap} pt</span></div>
+    </div>
+    <div class="battle-card m2">
+      <div class="battle-riders">
+        <span>1° ${m2Leader.flag} ${m2Leader.name.split(' ').pop()}</span>
+        <span class="battle-vs">VS</span>
+        <span>2° ${CLASSIFICA.moto2[1].flag} ${CLASSIFICA.moto2[1].name.split(' ').pop()}</span>
+      </div>
+      <div class="battle-gap">Gap: <span>${m2Gap} pt</span></div>
+    </div>
+    <div class="battle-card m3">
+      <div class="battle-riders">
+        <span>1° ${m3Leader.flag} ${m3Leader.name.split(' ').pop()}</span>
+        <span class="battle-vs">VS</span>
+        <span>2° ${CLASSIFICA.moto3[1].flag} ${CLASSIFICA.moto3[1].name.split(' ').pop()}</span>
+      </div>
+      <div class="battle-gap">Gap: <span>${m3Gap} pt</span></div>
     </div>
   </div>
 
@@ -1082,10 +1158,20 @@ document.getElementById('main-content').innerHTML = `
   <h2 class="section-title"><span class="badge badge-m3">Moto3</span> Vittorie per pilota</h2>
   <div class="vbar-wrap"><div class="vbar-header">Classifica vittorie gara 2026</div>${buildWinsBar(m3Wins, 'var(--m3)')}</div>
 
-  <!-- VINCITORI SPRINT -->
+    <!-- VINCITORI SPRINT -->
   <h2 class="section-title"><span class="badge badge-gp">Sprint</span> Vincitori Sprint Race</h2>
+  <div class="vbar-wrap" style="margin-bottom: 2rem;">
+    <div class="vbar-header">Classifica vittorie Sprint Race 2026</div>
+    ${buildWinsBar(sprintWins, 'var(--gp)')}
+  </div>
   ${buildSprintTable()}
 `;
+    // === FUNZIONE PER CREARE IL GRAFICO SPRINT ===
+    function buildSprintWinsMap() {
+      const map = {};
+      SPRINT_WINNERS.forEach(s => { const w = s.winner; if (w) map[w] = (map[w] || 0) + 1; });
+      return Object.entries(map).sort((a,b)=>b[1]-a[1]);
+    }
 </script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>

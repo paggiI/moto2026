@@ -1098,6 +1098,68 @@
       transition: border-color .15s;
     }
     .fav-chip:hover { border-color: var(--red); color: var(--red); }
+/* === COUNTDOWN SECTION (VERSIONE COMPATTA) === */
+.countdown-section {
+  background-color: var(--card);
+  padding: 1.5rem 1rem; /* Ridotto da 3rem a 1.5rem */
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.countdown-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem; /* Ridotto da 2.5rem a 1.8rem */
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+.countdown-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem; /* Ridotto da 1.1rem */
+  margin-bottom: 1rem; /* Ridotto da 2rem a 1rem */
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem; /* Ridotto da 1.5rem a 0.8rem */
+  flex-wrap: wrap; 
+}
+
+.time-box {
+  background: var(--mid);
+  border: 1px solid var(--border);
+  border-radius: 6px; /* Leggermente più piccolo */
+  padding: 0.8rem 0.5rem; /* Ridotto da 1.5rem 1rem a 0.8rem 0.5rem */
+  min-width: 70px; /* Ridotto da 100px a 70px */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.time-box span {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; /* Ridotto drasticamente da 3.5rem a 2rem */
+  color: var(--white); 
+  line-height: 1;
+}
+
+.time-box small {
+  display: block;
+  margin-top: 0.3rem; /* Ridotto da 0.5rem a 0.3rem */
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* Leggermente ridotto per stare nello spazio */
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.7rem; /* Ridotto da 0.8rem a 0.7rem */
+}
+
+/* Responsive per mobile */
+@media (max-width: 600px) {
+  .hero-content h1 { font-size: 2.5rem; }
+  .time-box { min-width: 60px; padding: 0.6rem 0.4rem; }
+  .time-box span { font-size: 1.6rem; } /* Ridotto da 2.5rem a 1.6rem su mobile */
+  .time-box small { font-size: 0.6rem; }
+}
     </style>
 </link>
 <style id="audio-player-responsive">
@@ -1253,6 +1315,31 @@
 </div>
 <div class="container">
 <main>
+
+<!-- COUNTDOWN PROSSIMA GARA -->
+<section class="countdown-section">
+  <h2 class="countdown-title">Prossima Gara</h2>
+  <p class="countdown-subtitle">Gran Premio di Gran Bretagna - Silverstone</p>
+  
+  <div class="countdown-timer" id="countdown">
+    <div class="time-box">
+      <span id="days">00</span>
+      <small>Giorni</small>
+    </div>
+    <div class="time-box">
+      <span id="hours">00</span>
+      <small>Ore</small>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <small>Minuti</small>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <small>Secondi</small>
+    </div>
+  </div>
+</section>
 <!-- ═══════ MOTOGP PANEL ═══════ -->
 <div class="panel active" id="panel-motogp">
 <div class="notice">
@@ -9347,7 +9434,39 @@ document.addEventListener('keydown', function(e) {
   } else {
     initAuth();
   }
-})();</script>
+})();
+// === COUNTDOWN LOGIC ===
+// Imposta la data del prossimo GP (Formato: Anno-Mese-GiornoTOra:Minuti:Secondi)
+const raceDate = new Date("2026-08-07T11:00:00").getTime();
+
+// Aggiorna il countdown ogni secondo
+const countdownFunction = setInterval(() => {
+  // Prendi la data e l'ora di oggi
+  const now = new Date().getTime();
+  
+  // Calcola la distanza tra ora e la data della gara
+  const distance = raceDate - now;
+
+  // Calcoli per giorni, ore, minuti e secondi
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Inserisci i risultati negli elementi HTML
+  // Aggiungo lo zero davanti se il numero è minore di 10 (es. 09 invece di 9)
+  document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+  document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+  document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+  document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+  // Se il countdown è finito, scrivi "GARA IN CORSO!"
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("countdown").innerHTML = "<p style='font-size: 1.5rem; color: var(--red); font-weight: bold;'>GARA IN CORSO!</p>";
+  }
+}, 1000);
+</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 <style>
