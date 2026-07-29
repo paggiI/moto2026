@@ -2,6 +2,15 @@
 
 <html lang="it">
 <head>
+  <!-- SCRIPT ANTICO-FLASH: Legge il tema salvato PRIMA di caricare la grafica -->
+<script>
+  try {
+    var savedTheme = localStorage.getItem('moto2026-theme') || localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stagione 2026 — Riepilogo · Motomondiale 2026</title>
@@ -860,6 +869,68 @@
     grid-template-columns: 1fr;
   }
 }
+/* TIMELINE VINCITORI */
+.winners-timeline {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.winners-timeline::-webkit-scrollbar { height: 6px; }
+.winners-timeline::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+ .timeline-card {
+  flex: 0 0 auto;
+  width: 160px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  border-bottom: 4px solid var(--muted); /* Default */
+  transition: transform 0.2s, border-color 0.2s;
+}
+.timeline-card.gp { border-bottom-color: var(--gp); }
+.timeline-card.m2 { border-bottom-color: var(--m2); }
+.timeline-card.m3 { border-bottom-color: var(--m3); }
+.timeline-card:hover { transform: translateY(-3px); border-color: var(--red); }
+.tc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.tc-round { font-family: 'Bebas Neue', sans-serif; color: var(--muted); font-size: 1.1rem; }
+.tc-flag { font-size: 1.3rem; }
+.tc-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; color: var(--muted); height: 2.2rem; overflow: hidden; margin-bottom: 0.8rem; }
+.tc-winner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.tc-wflag { font-size: 2rem; }
+.tc-wname { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--white); margin-top: 0.3rem; }
+/* Griglia affiancata Vittorie Piloti/Costruttori */
+.wins-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+/* Su mobile (sotto 768px) tornano una sotto l'altra */
+@media (max-width: 768px) {
+  .wins-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Rimuoviamo il margin-bottom dal vbar-wrap quando è dentro questa griglia */
+.wins-split-grid .vbar-wrap {
+  margin-bottom: 0;
+}
+/* Estende l'elemento a tutta la larghezza della griglia */
+.full-width-grid {
+  grid-column: 1 / -1;
+}
+/* Assicura che la card linkata non abbia stili da link standard */
+a.timeline-card {
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: inherit;        /* Mantiene il colore del testo normale */
+  display: flex;         /* Mantiene il layout interno allineato */
+  flex-direction: column;
+}
 </style>
 </head>
 <body>
@@ -921,16 +992,16 @@ function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('
 
 // ── DATI STAGIONE ────────────────────────────────────────────────────
 const ROUNDS_DONE = [
-  { num:1, flag:'🇹🇭', name:'GP Thailandia', circuit:'Buriram', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'David Almansa', flag:'🇪🇸', team:'Intact GP' } },
-  { num:2, flag:'🇧🇷', name:'GP Brasile', circuit:'Goiânia', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Daniel Holgado', flag:'🇪🇸', team:'CFMoto Aspar' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
-  { num:3, flag:'🇺🇸', name:'GP USA', circuit:'Circuit of the Americas', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Senna Agius', flag:'🇦🇺', team:'Liqui Moly Intact GP' }, m3:{ winner:'Guido Pini', flag:'🇮🇹', team:'Leopard Racing' } },
+  { num:1, flag:'🇹🇭', name:'GP Thailandia', circuit:'Buriram', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'David Almansa', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' } },
+  { num:2, flag:'🇧🇷', name:'GP Brasile', circuit:'Goiânia', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Daniel Holgado', flag:'🇪🇸', team:'CFMOTO Aspar Team' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
+  { num:3, flag:'🇺🇸', name:'GP USA', circuit:'Circuit of the Americas', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Senna Agius', flag:'🇦🇺', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Guido Pini', flag:'🇮🇹', team:'Leopard Racing' } },
   { num:4, flag:'🇪🇸', name:'GP Spagna', circuit:'Jerez', gp:{ winner:'Álex Márquez', flag:'🇪🇸', team:'BK8 Gresini Racing' }, m2:{ winner:'Senna Agius', flag:'🇦🇺', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
-  { num:5, flag:'🇫🇷', name:'GP Francia', circuit:'Le Mans', gp:{ winner:'Jorge Martín', flag:'🇪🇸', team:'Aprilia Racing' }, m2:{ winner:'Izan Guevara', flag:'🇪🇸', team:'Pramac Yamaha' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
-  { num:6, flag:'🇪🇸', name:'GP Catalunya', circuit:'Barcelona', gp:{ winner:'Fabio Di Giannantonio', flag:'🇮🇹', team:'Pertamina Enduro VR46' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
-  { num:7, flag:'🇮🇹', name:'GP Italia', circuit:'Mugello', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } },
-  { num:8, flag:'🇭🇺', name:'GP Ungheria', circuit:'Balaton Park', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
+  { num:5, flag:'🇫🇷', name:'GP Francia', circuit:'Le Mans', gp:{ winner:'Jorge Martín', flag:'🇪🇸', team:'Aprilia Racing' }, m2:{ winner:'Izan Guevara', flag:'🇪🇸', team:'BLU CRU Pramac Yamaha Moto2' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
+  { num:6, flag:'🇪🇸', name:'GP Catalunya', circuit:'Barcelona', gp:{ winner:'Fabio Di Giannantonio', flag:'🇮🇹', team:'Pertamina Enduro VR46' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
+  { num:7, flag:'🇮🇹', name:'GP Italia', circuit:'Mugello', gp:{ winner:'Marco Bezzecchi', flag:'🇮🇹', team:'Aprilia Racing' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } },
+  { num:8, flag:'🇭🇺', name:'GP Ungheria', circuit:'Balaton Park', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
   { num:9, flag:'🇨🇿', name:'GP Repubblica Ceca', circuit:'Brno', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Hakim Danish', flag:'🇪🇸', team:'FRINSA – MT Helmets – MSI' } },
-  { num:10, flag:'🇳🇱', name:'GP Olanda', circuit:'Brno', gp:{ winner:'Ai Ogura', flag:'🇯🇵', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'David Alonso', flag:'🇨🇴', team:'CFMOTO Aspar Team' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMoto Aspar' } },
+  { num:10, flag:'🇳🇱', name:'GP Olanda', circuit:'Brno', gp:{ winner:'Ai Ogura', flag:'🇯🇵', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'David Alonso', flag:'🇨🇴', team:'CFMOTO Aspar Team' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
   { num:11, flag:'🇩🇪', name:'GP Germania', circuit:'Sachsenring', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } }
 ];
 
@@ -979,7 +1050,21 @@ function buildWinsMap(cat) {
   ROUNDS_DONE.forEach(r => { const w = r[cat]?.winner; if (w) map[w] = (map[w] || 0) + 1; });
   return Object.entries(map).sort((a,b)=>b[1]-a[1]);
 }
-
+function buildWinnersTimeline(cat) {
+  return ROUNDS_DONE.map(r => `
+    <a href="risultati.html?round=r${r.num}" class="timeline-card ${cat}">
+      <div class="tc-header">
+        <span class="tc-round">Round ${r.num}</span>
+        <span class="tc-flag">${r.flag}</span>
+      </div>
+      <div class="tc-name">${r.name}</div>
+      <div class="tc-winner">
+        <span class="tc-wflag">${r[cat].flag}</span>
+        <span class="tc-wname">${r[cat].winner.split(' ').pop()}</span>
+      </div>
+    </a>
+  `).join('');
+}
 function buildWinsBar(winsMap, color) {
   if (!winsMap.length) return '';
   const max = winsMap[0][1];
@@ -1148,23 +1233,61 @@ document.getElementById('main-content').innerHTML = `
     </div>
   </div>
 
-  <!-- VITTORIE PER CATEGORIA -->
-  <h2 class="section-title"><span class="badge badge-gp">MotoGP</span> Vittorie per pilota</h2>
-  <div class="vbar-wrap"><div class="vbar-header">Classifica vittorie gara 2026</div>${buildWinsBar(gpWins, 'var(--gp)')}</div>
+      <!-- VITTORIE MOTOGP (Piloti, Costruttori, Sprint) -->
+  <h2 class="section-title"><span class="badge badge-gp">MotoGP</span> Vittorie della Stagione</h2>
+  <div class="wins-split-grid">
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏆 Piloti</div>
+      ${buildWinsBar(gpWins, 'var(--gp)')}
+    </div>
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏭 Costruttori</div>
+      ${buildWinsBar(buildTeamWinsMap('gp'), 'var(--gp)')}
+    </div>
+    <!-- Sprint occupa tutta la riga sotto -->
+    <div class="vbar-wrap full-width-grid">
+      <div class="vbar-header">⚡ Vincitori Sprint Race</div>
+      ${buildWinsBar(sprintWins, 'var(--gp)')}
+    </div>
+  </div>
 
-  <h2 class="section-title"><span class="badge badge-m2">Moto2</span> Vittorie per pilota</h2>
-  <div class="vbar-wrap"><div class="vbar-header">Classifica vittorie gara 2026</div>${buildWinsBar(m2Wins, 'var(--m2)')}</div>
+  <!-- VITTORIE MOTO2 (Affiancate) -->
+  <h2 class="section-title"><span class="badge badge-m2">Moto2</span> Vittorie della Stagione</h2>
+  <div class="wins-split-grid">
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏆 Piloti</div>
+      ${buildWinsBar(m2Wins, 'var(--m2)')}
+    </div>
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏭 Costruttori</div>
+      ${buildWinsBar(buildTeamWinsMap('m2'), 'var(--m2)')}
+    </div>
+  </div>
 
-  <h2 class="section-title"><span class="badge badge-m3">Moto3</span> Vittorie per pilota</h2>
-  <div class="vbar-wrap"><div class="vbar-header">Classifica vittorie gara 2026</div>${buildWinsBar(m3Wins, 'var(--m3)')}</div>
+  <!-- VITTORIE MOTO3 (Affiancate) -->
+  <h2 class="section-title"><span class="badge badge-m3">Moto3</span> Vittorie della Stagione</h2>
+  <div class="wins-split-grid">
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏆 Piloti</div>
+      ${buildWinsBar(m3Wins, 'var(--m3)')}
+    </div>
+    <div class="vbar-wrap">
+      <div class="vbar-header">🏭 Costruttori</div>
+      ${buildWinsBar(buildTeamWinsMap('m3'), 'var(--m3)')}
+    </div>
+  </div>
 
-    <!-- VINCITORI SPRINT -->
-  <h2 class="section-title"><span class="badge badge-gp">Sprint</span> Vincitori Sprint Race</h2>
-  <div class="vbar-wrap" style="margin-bottom: 2rem;">
-    <div class="vbar-header">Classifica vittorie Sprint Race 2026</div>
-    ${buildWinsBar(sprintWins, 'var(--gp)')}
   </div>
   ${buildSprintTable()}
+    <!-- TIMELINE VINCITORI -->
+  <h2 class="section-title"><span class="badge badge-gp">MotoGP</span> Storia della Stagione</h2>
+  <div class="winners-timeline">${buildWinnersTimeline('gp')}</div>
+
+  <h2 class="section-title"><span class="badge badge-m2">Moto2</span> Storia della Stagione</h2>
+  <div class="winners-timeline">${buildWinnersTimeline('m2')}</div>
+
+  <h2 class="section-title"><span class="badge badge-m3">Moto3</span> Storia della Stagione</h2>
+  <div class="winners-timeline">${buildWinnersTimeline('m3')}</div>
 `;
     // === FUNZIONE PER CREARE IL GRAFICO SPRINT ===
     function buildSprintWinsMap() {
@@ -1172,8 +1295,37 @@ document.getElementById('main-content').innerHTML = `
       SPRINT_WINNERS.forEach(s => { const w = s.winner; if (w) map[w] = (map[w] || 0) + 1; });
       return Object.entries(map).sort((a,b)=>b[1]-a[1]);
     }
+    function buildTeamWinsMap(cat) {
+  const map = {};
+  ROUNDS_DONE.forEach(r => { 
+    const team = r[cat]?.team; 
+    if (team) map[team] = (map[team] || 0) + 1; 
+  });
+  return Object.entries(map).sort((a,b)=>b[1]-a[1]);
+}
+// ── TEMA ──
+function initTheme() {
+  var t = localStorage.getItem('moto2026-theme') || localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  var ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  // Salva su entrambe le chiavi per essere sicuri che tutte le pagine lo leggano
+  localStorage.setItem('moto2026-theme', next);
+  localStorage.setItem('theme', next);
+  
+  var ic = document.getElementById('theme-icon');
+  if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+
+// Applica il tema e l'icona corretta al caricamento della pagina
+initTheme();
 </script>
-<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 
 
@@ -1205,6 +1357,7 @@ document.getElementById('main-content').innerHTML = `
 
 
 <!-- AUDIO PLAYER -->
+ <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su" class="visible">↑</button>
 <div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
 
   <!-- PULSANTE PLAY/PAUSE -->
@@ -1271,6 +1424,11 @@ document.getElementById('main-content').innerHTML = `
     } catch(e){}
   });
 })();
+// Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
 </script>
 
 </body>

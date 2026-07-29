@@ -1230,6 +1230,54 @@
     margin-bottom: 0 !important;
   }
 }
+/* ══ BATTAGLIA PER IL TITOLO ══ */
+.title-battle-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.battle-header {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.8rem;
+}
+.battle-rows { display: flex; flex-direction: column; gap: 0.8rem; }
+.battle-row {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px 1fr; /* Medaglia | Nome | Punti | Barra */
+  align-items: center;
+  gap: 1rem;
+}
+.battle-pos { font-size: 1.2rem; text-align: center; }
+.battle-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.battle-pts {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  text-align: right;
+  color: var(--white);
+}
+.battle-bar-track {
+  background: var(--mid); height: 8px; border-radius: 4px; overflow: hidden;
+}
+.battle-bar-fill {
+  height: 100%; width: 0; border-radius: 4px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fill-gp { background: var(--gp); }
+.fill-m2 { background: var(--m2); }
+.fill-m3 { background: var(--m3); }
 </style>
 
 </head>
@@ -1378,6 +1426,10 @@
 </div><!-- /left -->
 <!-- Destra 72% -->
 <div class="panel-right-col">
+<div class="title-battle-box">
+  <div class="battle-header">⚔️ Battaglia per il Titolo</div>
+  <div id="battle-container-gp" class="battle-rows"></div>
+</div>
 <div class="standings-wrap">
 <div class="standings-header sh-gp">
 <span class="sh-title">Classifica Piloti — MotoGP</span>
@@ -1573,6 +1625,10 @@
 </div><!-- /left -->
 <!-- Destra 72% -->
 <div class="panel-right-col">
+  <div class="title-battle-box">
+  <div class="battle-header">⚔️ Battaglia per il Titolo</div>
+  <div id="battle-container-m2" class="battle-rows"></div>
+</div>
 <div class="standings-wrap">
 <div class="standings-header sh-m2" style="color:#111">
 <span class="sh-title">Classifica Piloti — Moto2</span>
@@ -1748,6 +1804,10 @@
 </div><!-- /left -->
 <!-- Destra 72% -->
 <div class="panel-right-col">
+  <div class="title-battle-box">
+  <div class="battle-header">⚔️ Battaglia per il Titolo</div>
+  <div id="battle-container-m3" class="battle-rows"></div>
+</div>
 <div class="standings-wrap">
 <div class="standings-header sh-m3">
 <span class="sh-title">Classifica Piloti — Moto3</span>
@@ -8405,11 +8465,11 @@ function buildDataFromResults() {
       'OnlyFans American Racing Team': 'Kalex',
       'Momoven Idrofoglia RW Racing Team': 'Kalex',
       'QJMOTOR – FRINSA – MSI': 'Kalex',
+      'ITALJET Team Gresini Moto2': 'Kalex',
 
       'SpeedRS Team': 'Boscoscuro',
-      'ITALJET Team Gresini Moto2': 'Boscoscuro',
-      'Elf Marc VDS Racing Team': 'Boscoscuro',
       'BLU CRU Pramac Yamaha Moto2': 'Boscoscuro',
+      'ELF Marc VDS Racing Team': 'Boscoscuro',
 
       'Forward Factory Team': 'Forward',
     },
@@ -9569,7 +9629,66 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
     } catch(e){}
   });
 })();
-</script>
 
+</script>
+<script>
+function initTitleBattles() {
+  // Dati top 3 per ogni categoria
+  const data = {
+    gp: [
+      { name: 'Jorge Martín', pts: 208, width: 100 },
+      { name: 'Ai Ogura', pts: 194, width: 93 },
+      { name: 'Marc Márquez', pts: 190, width: 91 }
+    ],
+    m2: [
+      { name: 'Manuel González', pts: 195.5, width: 100 },
+      { name: 'Izan Guevara', pts: 144, width: 73 },
+      { name: 'Senna Agius', pts: 136, width: 69 }
+    ],
+    m3: [
+      { name: 'Máximo Quiles', pts: 231, width: 100 },
+      { name: 'Brian Uriarte', pts: 127, width: 54 },
+      { name: 'Álvaro Carpe', pts: 126, width: 54 }
+    ]
+  };
+
+  const categories = ['gp', 'm2', 'm3'];
+  
+  categories.forEach(cat => {
+    const container = document.getElementById('battle-container-' + cat);
+    if (!container) return; // Se non trova il contenitore, salta senza dare errore
+
+    // Crea l'HTML per le righe
+    container.innerHTML = data[cat].map((r, i) => {
+      const pos = i + 1;
+      const medal = pos === 1 ? '🥇' : pos === 2 ? '🥈' : '🥉';
+      return `
+        <div class="battle-row">
+          <div class="battle-pos">${medal}</div>
+          <div class="battle-name" title="${r.name}">${r.name}</div>
+          <div class="battle-pts">${r.pts}</div>
+          <div class="battle-bar-track">
+            <div class="battle-bar-fill fill-${cat}" data-target-width="${r.width}"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  });
+
+  // Anima le barre leggermente in ritardo per dare l'effetto fluido
+  setTimeout(() => {
+    document.querySelectorAll('.battle-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.targetWidth + '%';
+    });
+  }, 300);
+}
+
+// Esegue la funzione quando il DOM è pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTitleBattles);
+} else {
+  initTitleBattles(); // Se il DOM è già caricato, esegue subito
+}
+</script>
 </body>
 </html>

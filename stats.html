@@ -261,6 +261,53 @@
     margin-bottom: 0 !important;
   }
 }
+/* ══ HEAD TO HEAD BATTLE ══ */
+.h2h-card {
+  background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.h2h-side { display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 2; }
+.h2h-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; margin-bottom: .3rem; }
+.h2h-pts { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; }
+.h2h-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: .2rem; }
+.h2h-center {
+  width: 60px; height: 60px; background: var(--dark); border: 2px solid var(--border);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--red); z-index: 2;
+}
+.h2h-bar-wrap {
+  position: absolute; top: 0; bottom: 0; left: 0; display: flex; width: 100%; z-index: 1;
+}
+.h2h-bar-left { height: 100%; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.h2h-bar-right { height: 100%; flex: 1; background: rgba(255,255,255,0.02); }
+@media (max-width: 600px) {
+  .h2h-name { font-size: 1.2rem; }
+  .h2h-pts { font-size: 2rem; }
+  .h2h-center { width: 45px; height: 45px; font-size: 1rem; }
+}
+
+/* ══ DOMINANCE GAUGE ══ */
+.gauge-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;
+}
+.gauge-svg { width: 140px; height: 80px; flex-shrink: 0; overflow: visible; }
+.gauge-track { fill: none; stroke: var(--mid); stroke-width: 12; }
+.gauge-fill { fill: none; stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 1s ease, stroke 0.3s; }
+.gauge-text { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; fill: var(--white); text-anchor: middle; }
+.gauge-info { flex: 1; min-width: 200px; }
+.gauge-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: .5rem; }
+.gauge-desc { font-family: 'Barlow Condensed', sans-serif; font-size: .9rem; color: var(--muted); line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -306,6 +353,9 @@
   <button class="cat-tab" data-cat="moto3"><span class="cat-dot" style="background:var(--m3);"></span>Moto3</button>
 </div>
 
+<!-- NUOVE FEATURE: HEAD TO HEAD E GAUGE -->
+<div id="h2h-container"></div>
+<div id="dominance-gauge-wrap"></div>
 <div class="section-title">📈 Andamento punti per round — Top 5</div>
 <div class="chart-wrap fade-in">
 <div class="chart-legend" id="chart-legend"></div>
@@ -390,7 +440,7 @@ const CHART_DATA = {
     constructors: [
       {name:'Kalex', pts:257.5, color:'#888'}, 
       {name:'Boscoscuro', pts:165, color:'#f97316'},
-      {name:'Forward', pts:34, color:'#f97316'}, 
+      {name:'Forward', pts:34, color:'#22c55e'}, 
     ]
   },
   moto3: {
@@ -568,6 +618,7 @@ document.addEventListener('click', function(e) { var wrap=document.getElementByI
 
 // ── TORNA INDIETRO ──
 (function(){var NAMES={'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2','moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota','classifica.html':'Classifica','risultati.html':'Risultati','calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction','albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'};var cur=(location.pathname.split('/').pop()||'index.html');var curName=NAMES[cur]||cur;function showBackBtn(){var prev=sessionStorage.getItem('moto_from_url');var prevName=sessionStorage.getItem('moto_from_name');if(prev&&prevName&&prevName!==curName){var wrap=document.querySelector('.back-btn-wrap');if(wrap)wrap.innerHTML='<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>'}}function saveAndGo(href){var dest=href.split('/').pop().split('?')[0].split('#')[0];if(NAMES[dest]){sessionStorage.setItem('moto_from_url',location.href);sessionStorage.setItem('moto_from_name',curName)}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',showBackBtn)}else{showBackBtn()}document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';if(href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto'))return;saveAndGo(href)},true)})();
+
 </script>
 
 <!-- AUDIO PLAYER -->
@@ -593,6 +644,118 @@ document.addEventListener('click', function(e) { var wrap=document.getElementByI
   audio.addEventListener('ended',function(){try{sessionStorage.removeItem('audio-time')}catch(e){}});
 })();
 
+</script>
+<script>
+// ══ SCRIPT HEAD-TO-HEAD E GAUGE (AUTO-INSTALLANTE) ══
+(function() {
+  // Aspetta che il DOM e il tuo script principale siano pronti
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Funzione per disegnare Head-to-Head
+    function renderH2H(cat) {
+      const wrap = document.getElementById('h2h-container');
+      if (!wrap || typeof CHART_DATA === 'undefined' || !CHART_DATA[cat]) return;
+      
+      const pilots = CHART_DATA[cat].pilots;
+      if (pilots.length < 2) { wrap.innerHTML = ''; return; }
+      
+      const p1 = pilots[0];
+      const p2 = pilots[1];
+      const pts1 = p1.pts[p1.pts.length - 1];
+      const pts2 = p2.pts[p2.pts.length - 1];
+      
+      const totalPts = pts1 + pts2;
+      const pct1 = (pts1 / totalPts * 100).toFixed(0);
+      const gap = (pts1 - pts2).toFixed(1);
+      
+      wrap.innerHTML = `
+        <div class="h2h-card">
+          <div class="h2h-bar-wrap">
+            <div class="h2h-bar-left" style="width:${pct1}%; background: ${p1.color}33;"></div>
+            <div class="h2h-bar-right"></div>
+          </div>
+          <div class="h2h-side left">
+            <div class="h2h-lbl">Leader Mondiale</div>
+            <div class="h2h-name" style="color:${p1.color};">${p1.name}</div>
+            <div class="h2h-pts" style="color:${p1.color};">${pts1}</div>
+          </div>
+          <div class="h2h-center">VS</div>
+          <div class="h2h-side right">
+            <div class="h2h-lbl">Inseguitore (-${gap})</div>
+            <div class="h2h-name" style="color:${p2.color};">${p2.name}</div>
+            <div class="h2h-pts" style="color:${p2.color};">${pts2}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Funzione per disegnare il Gauge
+    function renderDominanceGauge(cat) {
+      const wrap = document.getElementById('dominance-gauge-wrap');
+      if (!wrap || typeof CHART_DATA === 'undefined' || !CHART_DATA[cat]) return;
+      
+      const pilots = CHART_DATA[cat].pilots;
+      if (pilots.length < 2) { wrap.innerHTML = ''; return; }
+      
+      const p1 = pilots[0];
+      const p2 = pilots[1];
+      const pts1 = p1.pts[p1.pts.length - 1];
+      const pts2 = p2.pts[p2.pts.length - 1];
+      
+      let dominancePct = ((pts1 - pts2) / pts1 * 100).toFixed(0);
+      if (dominancePct < 0) dominancePct = 0;
+      if (dominancePct > 100) dominancePct = 100;
+      
+      const halfCirc = Math.PI * 60; // Lunghezza semicerchio raggio 60
+      const offset = halfCirc - (dominancePct / 100 * halfCirc);
+      
+      let color = "#f7a600"; // Giallo
+      let statusText = "Battaglia Aperta";
+      if (dominancePct > 30) { color = "#ff6b35"; statusText = "Dominio Chiaro"; }
+      if (dominancePct > 50) { color = "#e8001d"; statusText = "Stagione Monopolio"; }
+      if (dominancePct < 10) { color = "#22c55e"; statusText = "Battaglia Aperta"; }
+      
+      wrap.innerHTML = `
+        <div class="gauge-card">
+          <svg class="gauge-svg" viewBox="0 0 140 80">
+            <path class="gauge-track" d="M 10 70 A 60 60 0 0 1 130 70" />
+            <path class="gauge-fill" d="M 10 70 A 60 60 0 0 1 130 70" 
+                  stroke="${color}" 
+                  stroke-dasharray="${halfCirc}" 
+                  stroke-dashoffset="${offset}" />
+            <text class="gauge-text" x="70" y="60">${dominancePct}%</text>
+          </svg>
+          <div class="gauge-info">
+            <div class="gauge-title" style="color:${color};">Indice di Dominanza</div>
+            <div class="gauge-desc">
+              Lo scarto tra <strong style="color:${p1.color};">${p1.name}</strong> e <strong style="color:${p2.color};">${p2.name}</strong> indica uno stato di: <strong>${statusText}</strong>.<br>
+              Il leader ha il <strong>${dominancePct}%</strong> di scarto in punti rispetto al diretto inseguitore.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 1. Disegna all'avvio della pagina usando la categoria attiva
+    const initialCat = document.querySelector('.cat-tab.active') ? document.querySelector('.cat-tab.active').dataset.cat : 'motogp';
+    renderH2H(initialCat);
+    renderDominanceGauge(initialCat);
+
+    // 2. Aggancia il click sulle tab per aggiornare le due nuove feature
+    const tabs = document.getElementById('cat-tabs');
+    if (tabs) {
+      tabs.addEventListener('click', function(e) {
+        const btn = e.target.closest('.cat-tab');
+        if (btn) {
+          const cat = btn.dataset.cat;
+          renderH2H(cat);
+          renderDominanceGauge(cat);
+        }
+      });
+    }
+
+  });
+})();
 </script>
 </body>
 </html>

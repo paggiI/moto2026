@@ -502,6 +502,15 @@
     margin-bottom: 0 !important;
   }
 }
+.btn.lucky {
+  background: rgba(100, 160, 255, .12);
+  border-color: rgba(100, 160, 255, .3);
+  color: #64a0ff;
+}
+.btn.lucky:hover {
+  background: rgba(100, 160, 255, .2);
+  border-color: rgba(100, 160, 255, .5);
+}
 </style>
 </head>
 <body>
@@ -623,10 +632,10 @@ const RIDER_OPTIONS = {
   "moto2": [
     { "name": "Joe Roberts", "flag": "🇺🇸", "team": "Kalex", "note": "" },
     { "name": "Filip Salač", "flag": "🇨🇿", "team": "Kalex", "note": "" },
-    { "name": "Daniel Holgado", "flag": "🇪🇸", "team": "CFMOTO", "note": "" },
-    { "name": "David Alonso", "flag": "🇨🇴", "team": "CFMOTO", "note": "" },
-    { "name": "Izan Guevara", "flag": "🇪🇸", "team": "Yamaha", "note": "" },
-    { "name": "Alberto Ferrandez", "flag": "🇪🇸", "team": "Yamaha", "note": "" },
+    { "name": "Daniel Holgado", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "David Alonso", "flag": "🇨🇴", "team": "Kalex", "note": "" },
+    { "name": "Izan Guevara", "flag": "🇪🇸", "team": "Boscoscuro", "note": "" },
+    { "name": "Alberto Ferrandez", "flag": "🇪🇸", "team": "Boscoscuro", "note": "" },
     { "name": "Barry Baltus", "flag": "🇧🇪", "team": "Kalex", "note": "⚠️ Assente Round 10-11 (infortunio)" }, //Assente R10-R11
      { "name": "Jorge Navarro", "flag": "🇪🇸", "team": "Kalex", "note": "SOSTITUTO R10-11 Sub. Baltus al Round 10-11" }, // SOSTITUTO R1-5 poi appiedato, Assente da R6 a R22, sostituito da X.Zurutuza [R10-R11 Sostisuice Baltus]
     { "name": "Tony Arbolino", "flag": "🇮🇹", "team": "Kalex", "note": "" },
@@ -640,19 +649,19 @@ const RIDER_OPTIONS = {
     { "name": "Daniel Muñoz", "flag": "🇪🇸", "team": "Kalex", "note": "⚠️ Assente Round 11 (infortunio)" }, //Assente R11
     { "name": "Senna Agius", "flag": "🇦🇺", "team": "Kalex", "note": "" },
     { "name": "Manuel González", "flag": "🇪🇸", "team": "Kalex", "note": "" },
-    { "name": "Aron Canet", "flag": "🇪🇸", "team": "Kalex", "note": "" },
-    { "name": "Deniz Öncü", "flag": "🇹🇷", "team": "Kalex", "note": "" },
+    { "name": "Aron Canet", "flag": "🇪🇸", "team": "Boscoscuro", "note": "" },
+    { "name": "Deniz Öncü", "flag": "🇹🇷", "team": "Boscoscuro", "note": "" },
     { "name": "Iván Ortolá", "flag": "🇪🇸", "team": "Kalex", "note": "" },
     { "name": "Angel Piqueras", "flag": "🇪🇸", "team": "Kalex", "note": "" }, //Assente anche R2-R3-R4-R5-R6-R7
     { "name": "Unai Orradre", "flag": "🇪🇸", "team": "Kalex", "note": "SOSTITUTO R6-R7 Sub. Piqueras al Round 6-7" },
     { "name": "José Antonio Rueda", "flag": "🇪🇸", "team": "KTM", "note": "" },
     { "name": "Collin Veijer", "flag": "🇳🇱", "team": "KTM", "note": "" },
-    { "name": "Xabi Zurutuza", "flag": "🇪🇸", "team": "Kalex", "note": "" }, //Titolare da R6 a R22, al posto di J.Navarro
-    { "name": "Alex Escrig", "flag": "🇪🇸", "team": "Kalex", "note": "" },
-    { "name": "Marcos Ramirez", "flag": "🇪🇸", "team": "Kalex", "note": "Wildcard R13-14-15" }, //SOSTITUTO R4-R5 Sub. Piqueras ai Round 4-5 - WildCard R13-14-15
-    { "name": "Celestino Vietti", "flag": "🇮🇹", "team": "Kalex", "note": "" },
-    { "name": "Luca Lunetta", "flag": "🇮🇹", "team": "Kalex", "note": "" }, //Assente R2-R3
-    { "name": "Dennis Foggia", "flag": "🇮🇹", "team": "Kalex", "note": "SOSTITUTO R2-R3 Sub. Lunetta ai Round 2-3" }, 
+    { "name": "Xabi Zurutuza", "flag": "🇪🇸", "team": "Forward", "note": "" }, //Titolare da R6 a R22, al posto di J.Navarro
+    { "name": "Alex Escrig", "flag": "🇪🇸", "team": "Forward", "note": "" },
+    { "name": "Marcos Ramirez", "flag": "🇪🇸", "team": "Forward", "note": "Wildcard R13-14-15" }, //SOSTITUTO R4-R5 Sub. Piqueras ai Round 4-5 - WildCard R13-14-15
+    { "name": "Celestino Vietti", "flag": "🇮🇹", "team": "Boscoscuro", "note": "" },
+    { "name": "Luca Lunetta", "flag": "🇮🇹", "team": "Boscoscuro", "note": "" }, //Assente R2-R3
+    { "name": "Dennis Foggia", "flag": "🇮🇹", "team": "Boscoscuro", "note": "SOSTITUTO R2-R3 Sub. Lunetta ai Round 2-3" }, 
     { "name": "Ayumu Sasaki", "flag": "🇯🇵", "team": "Kalex", "note": "" },
     { "name": "Zonta van den Goorbergh", "flag": "🇳🇱", "team": "Kalex", "note": "" },
   ],
@@ -754,14 +763,47 @@ function riderAvailableForRound(r, roundNum) {
 }
 function ridersMarkup(cat, roundNum) { const riders = (RIDER_OPTIONS[cat] || []).filter(r => riderAvailableForRound(r, roundNum)); return ['<option value="">Seleziona…</option>'].concat(riders.map(r => `<option value="${escapeHtml(r.name)}">${escapeHtml(r.name)} — ${escapeHtml(r.team || '')}</option>`)).join(''); }
 function loadPredictions() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; } }
-function refreshSidebar() { const data = loadPredictions(); const items = Object.entries(data).sort((a,b) => Number(a[0]) - Number(b[0])); document.getElementById('saved-count').textContent = `${items.length} salvati`; document.getElementById('meta-saved').textContent = `${items.length} pronostici salvati`; document.getElementById('saved-list').innerHTML = items.length ? items.map(([round, r]) => `
-    <div class="saved-item">
-      <strong>GP #${round}</strong>
-      <span class="s">MotoGP: ${escapeHtml(r.motogp || '—')}</span>
-      <span class="s">Moto2: ${escapeHtml(r.moto2 || '—')}</span>
-      <span class="s">Moto3: ${escapeHtml(r.moto3 || '—')}</span>
-    </div>
-  `).join('') : '<p class="tip">Nessun pronostico salvato al momento.</p>'; }
+function refreshSidebar() {
+  const data = loadPredictions();
+  const items = Object.entries(data).sort((a,b) => Number(a[0]) - Number(b[0]));
+  document.getElementById('saved-count').textContent = `${items.length} salvati`;
+  document.getElementById('meta-saved').textContent = `${items.length} pronostici salvati`;
+  
+  // --- NUOVA LOGICA: Calcola il pilota più scelto ---
+  const counts = {};
+  items.forEach(([round, r]) => {
+    ['motogp', 'moto2', 'moto3'].forEach(cat => {
+      if (r[cat]) {
+        counts[r[cat]] = (counts[r[cat]] || 0) + 1;
+      }
+    });
+  });
+  
+  let favHtml = '';
+  if (Object.keys(counts).length > 0) {
+    // Trova il pilota con il numero più alto di pronostici
+    const topFav = Object.entries(counts).sort((a,b) => b[1] - a[1])[0];
+    favHtml = `
+      <div style="background:rgba(232,0,29,.1); border:1px solid rgba(232,0,29,.25); padding:.8rem; border-radius:10px; margin-bottom:1rem; text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em;">Il tuo Favorito</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--red); margin-top:.2rem; line-height:1.1;">${escapeHtml(topFav[0])}</div>
+        <div style="font-size:.8rem; color:var(--muted); margin-top:.2rem;">Scelto ${topFav[1]} volte</div>
+      </div>
+    `;
+  }
+  // ------------------------------------------------
+
+  document.getElementById('saved-list').innerHTML = 
+    favHtml + 
+    (items.length ? items.map(([round, r]) => `
+      <div class="saved-item">
+        <strong>GP #${round}</strong>
+        <span class="s">MotoGP: ${escapeHtml(r.motogp || '—')}</span>
+        <span class="s">Moto2: ${escapeHtml(r.moto2 || '—')}</span>
+        <span class="s">Moto3: ${escapeHtml(r.moto3 || '—')}</span>
+      </div>
+    `).join('') : '<p class="tip">Nessun pronostico salvato al momento.</p>');
+}
 function savePredictions(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); refreshSidebar(); }
 function renderRounds() {
   const saved = loadPredictions();
@@ -786,7 +828,8 @@ function renderRounds() {
         </div>
         <div class="actions">
           <button class="btn small ok" onclick="saveRound(${r.num})">💾 Salva GP</button>
-          <button class="btn small warn" onclick="clearRound(${r.num})">🧹 Reset GP</button>
+          <button class="btn small warn" onclick="clearRound(${r.num})">🧹 Reset GP</button>  
+          <button class="btn small lucky" onclick="randomFillRound(${r.num})">🎲 Casuale</button>
         </div>
       </div>
     </details>
@@ -805,6 +848,16 @@ function saveRound(num) { const data = loadPredictions(); const roundData = {}; 
 function clearRound(num) { const data = loadPredictions(); delete data[num]; localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => sel.value = ''); refreshSidebar(); }
 function saveAll() { FUTURE_ROUNDS.forEach(r => saveRound(r.num)); alert('Pronostici salvati nel browser.'); }
 function clearAll() { if (!confirm('Vuoi cancellare tutti i pronostici salvati?')) return; localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('select').forEach(sel => sel.value = ''); refreshSidebar(); }
+function randomFillRound(num) {
+  document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => {
+    // Prendi tutte le opzioni tranne la prima (che di solito è "Seleziona...")
+    const options = Array.from(sel.options).filter(o => o.value !== '');
+    if (options.length > 0) {
+      const randomOption = options[Math.floor(Math.random() * options.length)];
+      sel.value = randomOption.value;
+    }
+  });
+}
 renderRounds();
 
 /* ── ACCOUNT / LOGIN ── */

@@ -774,6 +774,22 @@
     margin-bottom: 0 !important;
   }
 }
+.dom-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .6rem; font-family: 'Barlow Condensed', sans-serif;
+}
+.dom-name { font-size: .9rem; color: var(--white); font-weight: 700; display: flex; align-items: center; gap: .4rem; }
+.dom-bar { flex: 1; height: 4px; background: var(--mid); border-radius: 2px; margin: 0 .6rem; }
+.dom-bar-fill { height: 100%; background: var(--red); border-radius: 2px; }
+.dom-count { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--red); }
+.decade-btn {
+  flex: 0 0 auto; padding: .5rem 1rem; border-radius: 6px; cursor: pointer;
+  background: var(--card); border: 1px solid var(--border); color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem;
+  text-transform: uppercase; transition: all .15s;
+}
+.decade-btn:hover { border-color: var(--red); color: var(--white); }
+.decade-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
 </style>
 </head>
 <body>
@@ -822,11 +838,30 @@
 <button class="tab-btn" onclick="showPanel('80cc',this)" style="color:#27ae60;">🟢 80cc</button>
 <button class="tab-btn" onclick="showPanel('sidecar',this)" style="color:#16a085;">🏍️ Sidecar</button>
 </div>
+<br>
 <div class="container">
+  <div id="decade-strip" style="display: flex; gap: .5rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border);">
+  <button class="decade-btn active" data-decade="all">Tutti gli anni</button>
+  <button class="decade-btn" data-decade="194">👴 Anni 40</button>
+  <button class="decade-btn" data-decade="195">🕊️ Anni '50</button>
+  <button class="decade-btn" data-decade="196">🎸 Anni '60</button>
+  <button class="decade-btn" data-decade="197">🪩 Anni '70</button>
+  <button class="decade-btn" data-decade="198">📺 Anni '80</button>
+  <button class="decade-btn" data-decade="199">💻 Anni '90</button>
+  <button class="decade-btn" data-decade="200">🌐 Anni '00</button>
+  <button class="decade-btn" data-decade="201">📱 Anni 2010</button>
+  <button class="decade-btn" data-decade="202">🚀 Anni 2020</button>
+</div>
 <main>
 <div class="albo-page-layout">
 <!-- SIDEBAR RICERCA -->
 <aside class="albo-sidebar">
+<div class="albo-stat-widget" style="margin-top: 1rem;">
+  <div class="albo-stat-widget-header">👑 Top 5 Dominatori</div>
+  <div id="dominators-list" style="padding: .8rem 1rem;">
+    <p style="font-size: .8rem; color: var(--muted);">Caricamento...</p>
+  </div>
+</div>
 <div class="albo-search-widget">
 <div class="albo-search-widget-header">🔍 Cerca</div>
 <div class="albo-search-widget-body">
@@ -1257,6 +1292,8 @@ window.addEventListener('scroll', function() {
 
 // ── RICERCA ALBO D'ORO ──
 function alboSearch(q) {
+  document.querySelectorAll('.decade-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.decade-btn[data-decade="all"]').classList.add('active');
   const query = q.toLowerCase().trim();
   let found = 0, total = 0;
   document.querySelectorAll('table.hall tbody tr').forEach(row => {
@@ -1282,6 +1319,7 @@ function alboSearch(q) {
     const firstFound = document.querySelector('table.hall tbody tr.hall-row-found');
     if (firstFound) firstFound.scrollIntoView({behavior:'smooth', block:'nearest'});
   }
+  updateDominators(); 
 }
 function alboReset() {
   const inp = document.getElementById('albo-search-main');
@@ -1736,7 +1774,118 @@ document.addEventListener('keydown', function(e) {
   } else {
     initAuth();
   }
-})();</script>
+})();
+function updateDominators() {
+  const activePanel = document.querySelector('.panel.active');
+  if (!activePanel) return;
+  
+  const rows = activePanel.querySelectorAll('table.hall tbody tr');
+  const counts = {};
+  
+  rows.forEach(row => {
+    // Ignora le righe nascoste dalla ricerca
+    if (row.classList.contains('hall-row-hidden')) return;
+    
+    const champCell = row.querySelector('.champ-cell');
+    if (champCell) {
+      const name = champCell.textContent.trim();
+      counts[name] = (counts[name] || 0) + 1;
+    }
+  });
+  
+  // Ordina per numero di titoli
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const maxVal = sorted.length > 0 ? sorted[0][1] : 1;
+  
+  const list = document.getElementById('dominators-list');
+  if (!list) return;
+  
+  if (sorted.length === 0) {
+    list.innerHTML = '<p style="font-size: .8rem; color: var(--muted);">Nessun risultato.</p>';
+    return;
+  }
+  
+  list.innerHTML = sorted.map(([name, count]) => {
+    const pct = (count / maxVal) * 100;
+    return `
+      <div class="dom-row">
+        <div class="dom-name">${name}</div>
+        <div class="dom-bar"><div class="dom-bar-fill" style="width:${pct}%;"></div></div>
+        <div class="dom-count">${count}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Aggiorna quando carica la pagina
+updateDominators();
+
+// Aggiorna quando si clicca su una tab (intercetta il tuo bottone esistente)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    setTimeout(updateDominators, 50); // Piccolo ritardo per lasciare cambio classe
+  });
+});
+
+// Aggiorna anche quando l'utente usa la ricerca (modifica la tua funzione alboSearch)
+// Aggiungi questa riga alla fine della tua funzione alboSearch(q):
+// updateDominators(); 
+// ── FILTRO PER DECADI ──
+document.getElementById('decade-strip').addEventListener('click', function(e) {
+  const btn = e.target.closest('.decade-btn');
+  if (!btn) return;
+  
+  // Aggiorna stato pulsanti
+  this.querySelectorAll('.decade-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const decade = btn.dataset.decade;
+  const searchInput = document.getElementById('albo-search-main');
+  const resetBtn = document.getElementById('albo-reset-btn');
+  
+  // Puliamo la barra di ricerca testuale per evitare confusione
+  if (searchInput) searchInput.value = '';
+  if (resetBtn) resetBtn.style.display = 'none';
+  
+  let found = 0;
+  let total = 0;
+  
+  document.querySelectorAll('table.hall tbody tr').forEach(row => {
+    total++;
+    const yearCell = row.querySelector('.year-cell');
+    if (!yearCell) return;
+    
+    const yearText = yearCell.textContent.trim();
+    let match = false;
+    
+    if (decade === 'all') {
+      match = true; // Mostra tutti
+    } else {
+      match = yearText.startsWith(decade); // Controlla se l'anno inizia con 194, 195, ecc.
+    }
+    
+    row.classList.toggle('hall-row-hidden', !match);
+    row.classList.remove('hall-row-found'); // Rimuove l'evidenziazione della ricerca testuale
+    
+    if (match) found++;
+  });
+  
+  // Aggiorna il contatore sotto la barra di ricerca
+  const cnt = document.getElementById('albo-count');
+  if (cnt) {
+    if (decade === 'all') {
+      cnt.textContent = total + ' campioni totali';
+    } else {
+      // Prende solo il testo del bottone, es: "Anni '40" invece di "194"
+      const label = btn.textContent.trim();
+      cnt.textContent = found + ' risultati (' + label + ')';
+    }
+  }
+  
+  // Aggiorna la sidebar dei dominatori
+  updateDominators();
+});
+</script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <style>
 input, button { pointer-events: auto !important; position: relative; z-index: 5 !important; }

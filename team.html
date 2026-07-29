@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<!-- SCRIPT ANTICO-FLASH: Legge il tema salvato PRIMA di caricare la grafica -->
+<script>
+  try {
+    var savedTheme = localStorage.getItem('moto2026-theme') || localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Team 2026 — Motomondiale 2026</title>
-<script>
-  (function() {
-    try {
-      if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-    } catch(e) {}
-  })();
-</script>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -1587,36 +1587,28 @@ window.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 <script>
-  /* ═══════════ GESTIONE TEMA (MIGLIORATA) ═══════════ */
-  function toggleTheme() {
-    try {
-      // Controlla lo stato attuale del DOM, non del localStorage
-      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      
-      if (isLight) {
-        // Passa al tema scuro
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-        document.getElementById('theme-icon').textContent = '☀️';
-      } else {
-        // Passa al tema chiaro
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        document.getElementById('theme-icon').textContent = '🌙';
-      }
-    } catch(e) { console.error("Errore tema:", e); }
+  /* ═══════════ GESTIONE TEMA (UNIFICATA) ═══════════ */
+  function initTheme() {
+    var t = localStorage.getItem('moto2026-theme') || localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    var ic = document.getElementById('theme-icon');
+    if (ic) ic.textContent = t === 'dark' ? '☀️' : '🌙';
   }
 
-  // All'avvio della pagina, aggiorna solo l'icona in base allo stato reale
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      var icon = document.getElementById('theme-icon');
-      if (icon) {
-        icon.textContent = isLight ? '🌙' : '☀️';
-      }
-    } catch(e) {}
-  });
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    // Salva su entrambe le chiavi per la massima compatibilità tra le pagine
+    localStorage.setItem('moto2026-theme', next);
+    localStorage.setItem('theme', next);
+    
+    var ic = document.getElementById('theme-icon');
+    if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
+  }
+
+  // Applica il tema e l'icona corretta al caricamento della pagina
+  initTheme();
 
   /* ═══════════ NAVIGAZIONE E MENU ═══════════ */
   function toggleNavDropdown() {

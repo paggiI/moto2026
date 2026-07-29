@@ -895,8 +895,134 @@
       .circuit-img-wrap { height: 130px; }
       .circuit-grid { grid-template-columns: 1fr; gap: 1rem; }
     }
+/* Pulsanti Filtro Continenti */
+.filter-cont-btn {
+  background: var(--card); border: 1px solid var(--border); color: var(--muted);
+  padding: .55rem 1rem; border-radius: 6px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: .8rem; text-transform: uppercase; transition: all .15s;
+}
+.filter-cont-btn:hover { border-color: var(--red); color: var(--white); }
+.filter-cont-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
 
-  </style>
+/* Effetto Zoom immagine tracciato */
+.circuit-img-wrap { overflow: hidden; }
+.circuit-img { transition: transform 0.4s ease; }
+.circuit-card:hover .circuit-img { transform: scale(1.08); }
+/* Quick Jump Strip */
+#quick-jump-strip { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+#quick-jump-strip::-webkit-scrollbar { height: 4px; }
+#quick-jump-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.qj-btn {
+  flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+  padding: .4rem .5rem; cursor: pointer; transition: all .15s; min-width: 50px;
+  color: var(--white); /* Mantiene il testo bianco */
+}
+.qj-btn:hover { border-color: var(--red); background: var(--mid); transform: translateY(-2px); }
+
+.qj-flag { 
+  font-size: 1.4rem; 
+  line-height: 1; 
+  color: var(--white); /* Forza il colore bianco per le lettere */
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Barlow Condensed', sans-serif; /* Usa font emoji se disponibile, altrimenti Barlow */
+  background: var(--mid); /* Sfondo per evidenziare le lettere se non c'è l'emoji */
+  padding: .1rem .35rem; 
+  border-radius: 4px; 
+  min-height: 1.6rem; /* Altezza minima per allineare tutte le card */
+  display: flex; align-items: center; justify-content: center;
+}
+
+.qj-num { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; color: var(--muted); font-weight: 700; }
+
+/* Animazione di evidenziazione card */
+@keyframes cardHighlight {
+  0% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+  30% { box-shadow: 0 0 15px 2px rgba(232,0,29,.4); border-color: var(--red); }
+  100% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+}
+.circuit-card.highlight-pulse { animation: cardHighlight 1.5s ease-out; }
+
+/* Animazione di evidenziazione card */
+@keyframes cardHighlight {
+  0% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+  30% { box-shadow: 0 0 15px 2px rgba(232,0,29,.4); border-color: var(--red); }
+  100% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+}
+.circuit-card.highlight-pulse { animation: cardHighlight 1.5s ease-out; }
+/* Badge Stato Gara */
+.race-status-badge {
+  position: absolute; top: 10px; right: 10px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: .65rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: .25rem .55rem; border-radius: 4px; z-index: 5;
+  backdrop-filter: blur(4px);
+}
+.rsb-done { background: rgba(46,204,113,.15); color: #2ecc71; border: 1px solid rgba(46,204,113,.3); }
+.rsb-next { background: rgba(247,166,0,.15); color: #f7a600; border: 1px solid rgba(247,166,0,.3); }
+.rsb-future { background: rgba(255,255,255,.05); color: var(--muted); border: 1px solid var(--border); }
+
+/* Serve per posizionare il badge assolutamente */
+.circuit-card { position: relative; }
+/* ══ QUICK JUMP STRIP ══ */
+#quick-jump-strip { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+#quick-jump-strip::-webkit-scrollbar { height: 4px; }
+#quick-jump-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.qj-btn {
+  flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+  padding: .4rem .5rem; cursor: pointer; transition: all .15s; min-width: 50px;
+  color: var(--white); /* Colore testo di default (scuro in light mode, chiaro in dark mode) */
+}
+.qj-btn:hover { border-color: var(--red); background: var(--mid); transform: translateY(-2px); }
+
+.qj-flag { 
+  font-size: 1.4rem; 
+  line-height: 1; 
+  color: var(--white); 
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Barlow Condensed', sans-serif;
+  background: var(--mid); 
+  padding: .1rem .35rem; 
+  border-radius: 4px; 
+  min-height: 1.6rem; 
+  display: flex; align-items: center; justify-content: center;
+}
+
+.qj-num { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; color: var(--muted); font-weight: 700; }
+
+/* Animazione di evidenziazione card */
+@keyframes cardHighlight {
+  0% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+  30% { box-shadow: 0 0 15px 2px rgba(232,0,29,.4); border-color: var(--red); }
+  100% { box-shadow: 0 0 0 0px rgba(232,0,29,0); border-color: var(--border); }
+}
+.circuit-card.highlight-pulse { animation: cardHighlight 1.5s ease-out; }
+
+/* ══ OVERRIDE MODELLI CHIARI (LIGHT MODE) PER QUICK JUMP ══ */
+/* Forza i colori corretti quando il tema è light */
+[data-theme="light"] .qj-btn {
+  background: #ffffff;
+  border-color: #d8d8d8;
+  color: #111111;
+}
+[data-theme="light"] .qj-btn:hover {
+  background: #f4f4f4;
+  border-color: var(--red);
+}
+[data-theme="light"] .qj-flag {
+  background: #f0f0f0;
+  color: #111111; /* Testo nero per le abbreviazioni (es. TH, IT) su sfondo chiaro */
+  border: 1px solid #e0e0e0;
+}
+[data-theme="light"] .qj-num {
+  color: #666666;
+}
+</style>
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
@@ -923,7 +1049,23 @@
 <div class="container">
 <div class="section-title">🗺️ Cerca circuito</div>
 <div class="circuit-search-wrap">
-<input class="circuit-search" id="circuit-search" oninput="filterCircuits(this.value)" placeholder="Cerca per nome, paese o città…" type="text"/>
+<input class="circuit-search" id="circuit-search" placeholder="Cerca per nome, paese o città…" type="text"/>
+</div>
+<div id="quick-jump-strip" style="display:flex; gap:.5rem; overflow-x:auto; padding:.5rem 0 1rem; margin-bottom:.5rem; border-bottom:1px solid var(--border);"></div>
+<div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom:1.5rem;">
+  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+    <button class="filter-cont-btn active" data-cont="all">🌍 Tutti</button>
+    <button class="filter-cont-btn" data-cont="eu">🇪🇺 Europa</button>
+    <button class="filter-cont-btn" data-cont="as">🌏 Asia</button>
+    <button class="filter-cont-btn" data-cont="am">🌎 Americhe</button>
+    <button class="filter-cont-btn" data-cont="oc">🇦🇺 Oceania</button>
+  </div>
+  <select id="sort-tracks" style="background:var(--card); border:1px solid var(--border); color:var(--white); padding:.6rem .8rem; border-radius:6px; font-family:'Barlow Condensed',sans-serif; font-size:.9rem; outline:none; margin-left:auto;">
+    <option value="default">Ordine Calendario</option>
+    <option value="length-desc">Lunghezza (Lungo ➔ Corto)</option>
+    <option value="length-asc">Lunghezza (Corto ➔ Lungo)</option>
+    <option value="corners-desc">Curve (Tante ➔ Poche)</option>
+  </select>
 </div>
 <div class="circuit-grid" id="circuit-grid">
 <div class="circuit-card fade-in" data-search="gran premio della thailandia chang international circuit buriram">
@@ -2070,6 +2212,147 @@ document.addEventListener('keydown', function(e) {
   } else {
     initAuth();
   }
+})();
+
+// ══ FILTRO, RICERCA E ORDINAMENTO CIRCUITI ══
+(function() {
+  const grid = document.getElementById('circuit-grid');
+  if (!grid) return;
+  
+  const cards = Array.from(grid.querySelectorAll('.circuit-card'));
+  // Salva l'ordine originale dei circuiti
+  cards.forEach((c, i) => c.dataset.origOrder = i);
+  
+  const searchInput = document.getElementById('circuit-search');
+  const sortSelect = document.getElementById('sort-tracks');
+  const noneMsg = document.getElementById('circuit-none');
+  
+  // Mappa bandiere -> continenti
+  const euFlags = ['🇪🇸','🇫🇷','🇮🇹','🇭🇺','🇨🇿','🇳🇱','🇩🇪','🇬🇧','🇦🇹','🇵🇹'];
+  const asFlags = ['🇹🇭','🇯🇵','🇮🇩','🇲🇾','🇶🇦'];
+  const amFlags = ['🇧🇷','🇺🇸'];
+  const ocFlags = ['🇦🇺'];
+  
+  function getContinent(flag) {
+    if (euFlags.includes(flag)) return 'eu';
+    if (asFlags.includes(flag)) return 'as';
+    if (amFlags.includes(flag)) return 'am';
+    if (ocFlags.includes(flag)) return 'oc';
+    return 'other';
+  }
+  
+  function applyAllFilters() {
+    const activeContBtn = document.querySelector('.filter-cont-btn.active');
+    const activeCont = activeContBtn ? activeContBtn.dataset.cont : 'all';
+    const sortVal = sortSelect.value;
+    const searchText = searchInput.value.toLowerCase().trim();
+    
+    let visibleCount = 0;
+    
+    // 1. Filtra per testo e continente
+    cards.forEach(card => {
+      const flag = card.querySelector('.circuit-flag').textContent.trim();
+      const cont = getContinent(flag);
+      const cardData = card.dataset.search || '';
+      const matchText = !searchText || cardData.indexOf(searchText) >= 0;
+      const matchCont = (activeCont === 'all' || cont === activeCont);
+      
+      const show = matchText && matchCont;
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    
+    // 2. Ordina le card visibili
+    const visibleCards = cards.filter(c => c.style.display !== 'none');
+    visibleCards.sort((a, b) => {
+      if (sortVal === 'default') {
+        return parseInt(a.dataset.origOrder) - parseInt(b.dataset.origOrder);
+      } else if (sortVal === 'length-desc' || sortVal === 'length-asc') {
+        const lenA = parseFloat(a.querySelector('.circuit-stats-row .circuit-stat:first-child .circuit-stat-val').textContent);
+        const lenB = parseFloat(b.querySelector('.circuit-stats-row .circuit-stat:first-child .circuit-stat-val').textContent);
+        return sortVal === 'length-desc' ? lenB - lenA : lenA - lenB;
+      } else if (sortVal === 'corners-desc') {
+        const crnA = parseInt(a.querySelector('.circuit-stats-row .circuit-stat:nth-child(2) .circuit-stat-val').textContent);
+        const crnB = parseInt(b.querySelector('.circuit-stats-row .circuit-stat:nth-child(2) .circuit-stat-val').textContent);
+        return crnB - crnA;
+      }
+    });
+    
+    // 3. Riapplica l'ordine nel DOM
+    visibleCards.forEach(card => grid.appendChild(card));
+    
+    // Mostra messaggio se vuoto
+    if (noneMsg) noneMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+  
+  // Event Listeners
+  document.querySelectorAll('.filter-cont-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-cont-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyAllFilters();
+    });
+  });
+  
+  if (sortSelect) sortSelect.addEventListener('change', applyAllFilters);
+  if (searchInput) searchInput.addEventListener('input', applyAllFilters);
+  
+  // Sostituisci la vecchia funzione filterCircuits se esiste
+  window.filterCircuits = function() {}; 
+})();
+// ══ QUICK JUMP STRIP ══
+(function() {
+  const strip = document.getElementById('quick-jump-strip');
+  const grid = document.getElementById('circuit-grid');
+  if (!strip || !grid) return;
+
+  const cards = grid.querySelectorAll('.circuit-card');
+  cards.forEach((card, i) => {
+    const roundNum = i + 1;
+    card.id = 'circuit-card-' + roundNum; // Assegna un ID univoco ad ogni card
+    
+    const flag = card.querySelector('.circuit-flag').textContent.trim();
+    
+    const btn = document.createElement('button');
+    btn.className = 'qj-btn';
+    btn.innerHTML = `<span class="qj-flag">${flag}</span><span class="qj-num">R${roundNum}</span>`;
+    
+    btn.addEventListener('click', () => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Aggiungi l'effetto pulse
+      card.classList.remove('highlight-pulse');
+      void card.offsetWidth; // Trick per riavviare l'animazione CSS
+      card.classList.add('highlight-pulse');
+    });
+    
+    strip.appendChild(btn);
+  });
+})();
+// ══ BADGE STATO GARA ══
+(function() {
+  const cards = document.querySelectorAll('.circuit-card');
+  cards.forEach((card, i) => {
+    const roundNum = i + 1;
+    const body = card.querySelector('.circuit-body');
+    if (!body) return;
+
+    const badge = document.createElement('div');
+    badge.className = 'race-status-badge';
+    
+    if (roundNum <= 11) {
+      badge.classList.add('rsb-done');
+      badge.textContent = '✓ Completato';
+    } else if (roundNum === 12) {
+      badge.classList.add('rsb-next');
+      badge.textContent = '⚡ Prossimo GP';
+    } else {
+      badge.classList.add('rsb-future');
+      badge.textContent = 'In programma';
+    }
+    
+    // Inserisci il badge all'inizio del body della card
+    body.insertBefore(badge, body.firstChild);
+  });
 })();
 // ── SISTEMA LOGIN / REGISTRAZIONE ──
 (function() {
