@@ -1,5 +1,5 @@
-const CACHE = 'moto2026-v6';
-const PRECACHE = [
+const CACHE_NAME = 'moto2026-v6';
+const ASSETS_TO_CACHE = [
   'index.html',
   'notizie.html',
   'classifica.html',
@@ -42,7 +42,9 @@ const PRECACHE = [
   'circuiti/circuito_portimao.html',
   'circuiti/circuito_valencia.html',
   'favicon.svg',
-  'manifest.json'
+  'manifest.json',
+  'img/icon-192.png',  // AGGIUNTA: Così salva in cache anche le icone!
+  'img/icon-512.png'   // AGGIUNTA: Così salva in cache anche le icone!
 ];
 
 // Installazione: salva i file in cache
