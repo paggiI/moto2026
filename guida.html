@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-
-<html data-theme="dark" lang="it">
+<html lang="it" data-theme="dark">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Guida completa al sito Motomondiale 2026: scopri tutte le funzionalità, le scorciatoie da tastiera e come navigare nelle sezioni."/>
 <title>Guida al Sito — Motomondiale 2026</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+
+<!-- Performance: Preconnect to Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+    /* === DESIGN SYSTEM (Allineato a classifica.html) === */
     :root {
       --red: #e8001d;
+      --red-hover: #c4001a;
       --dark: #0a0a0a;
       --mid: #141414;
       --card: #1a1a1a;
@@ -19,1987 +26,949 @@
       --gp: #ff6b35;
       --m2: #f7a600;
       --m3: #00b4d8;
+      --gold: #ffd700;
+      --silver: #c0c0c0;
+      --bronze: #cd7f32;
+      
+      --header-h: 60px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+      --transition-fast: 0.15s ease-in-out;
+      --transition-med: 0.25s ease-in-out;
     }
 
     [data-theme="light"] {
       --dark: #f4f4f4;
       --mid: #e8e8e8;
-      --card: #fff;
+      --card: #ffffff;
       --border: #d0d0d0;
-      --muted: #666;
-      --white: #111;
+      --muted: #555555;
+      --white: #111111;
     }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ══ HEADER PULITO ══ */
-    header {
-      position: sticky !important;
-      top: 0 !important;
-      z-index: 200 !important;
-      background: rgba(10, 10, 10, .96) !important;
-      backdrop-filter: blur(12px) !important;
-      border-bottom: 2px solid var(--red) !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 0 1.5rem !important;
-      height: 60px !important;
-      flex-wrap: nowrap !important;
-      gap: .8rem !important;
-    }
-
-    .logo {
-      font-family: 'Bebas Neue', sans-serif !important;
-      font-size: 1.6rem !important;
-      letter-spacing: .08em !important;
-      color: var(--white) !important;
-      text-decoration: none !important;
-      flex-shrink: 0 !important;
-    }
-
-    .logo span {
-      color: var(--red) !important;
-    }
-
-    nav {
-      display: flex !important;
-      align-items: center !important;
-      flex: 1 !important;
-      min-width: 0 !important;
-      gap: 0 !important;
-      flex-wrap: nowrap !important;
-      overflow: hidden !important;
-    }
-
-    nav a {
-      font-family: 'Barlow Condensed', sans-serif !important;
-      font-weight: 700 !important;
-      font-size: .72rem !important;
-      letter-spacing: .06em !important;
-      text-transform: uppercase !important;
-      color: var(--muted) !important;
-      text-decoration: none !important;
-      padding: 0 .5rem !important;
-      height: 60px !important;
-      display: flex !important;
-      align-items: center !important;
-      white-space: nowrap !important;
-      flex-shrink: 1 !important;
-      border-bottom: 2px solid transparent !important;
-      margin-bottom: -2px !important;
-      transition: color .15s !important;
-    }
-
-    nav a:hover {
-      color: var(--white) !important;
-      background: rgba(255, 255, 255, .04) !important;
-    }
-
-    nav a.active {
-      color: var(--white) !important;
-      border-bottom-color: var(--red) !important;
-    }
-
-    .header-right {
-      display: flex !important;
-      align-items: center !important;
-      gap: .5rem !important;
-      flex-shrink: 0 !important;
-      white-space: nowrap !important;
-    }
-
-    #theme-toggle {
-      background: transparent !important;
-      border: 1px solid var(--border) !important;
-      color: var(--muted) !important;
-      cursor: pointer !important;
-      border-radius: 6px !important;
-      padding: .3rem .5rem !important;
-      font-size: .9rem !important;
-      line-height: 1 !important;
-      display: flex !important;
-      align-items: center !important;
-    }
-
-    .hamburger {
-      display: none !important;
-      flex-direction: column !important;
-      gap: 5px !important;
-      cursor: pointer !important;
-      padding: .3rem !important;
-    }
-
-    .hamburger span {
-      display: block !important;
-      width: 22px !important;
-      height: 2px !important;
-      background: var(--white) !important;
-      border-radius: 2px !important;
-    }
-
-    @media (max-width: 1100px) {
-      nav {
-        display: none !important;
-      }
-
-      .hamburger {
-        display: flex !important;
-      }
-
-      .nav-dropdown-wrap {
-        display: none !important;
-      }
-    }
-
-    @media (min-width: 1101px) {
-      .hamburger {
-        display: none !important;
-      }
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background: rgba(10, 10, 10, .98) !important;
-      border-bottom: 2px solid var(--red);
-      padding: .5rem 0;
-      z-index: 199;
-      max-height: calc(100vh - 60px);
-      overflow-y: auto;
-    }
-
-    .mobile-menu.open {
-      display: flex !important;
-    }
-
-    .mobile-menu a {
-      white-space: nowrap;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      padding: .75rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: block;
-      transition: color .15s;
-    }
-
-    .mobile-menu a:hover,
-    .mobile-menu a.active {
-      color: var(--white);
-      background: rgba(232, 0, 29, .1);
-    }
-
-    [data-theme="light"] header {
-      background: rgba(248, 248, 248, .97) !important;
-    }
-
-    [data-theme="light"] nav a {
-      color: #555 !important;
-    }
-
-    [data-theme="light"] nav a:hover,
-    [data-theme="light"] nav a.active {
-      color: #111 !important;
-    }
-
-    [data-theme="light"] .hamburger span {
-      background: #111 !important;
-    }
-
-    [data-theme="light"] .mobile-menu {
-      background: rgba(248, 248, 248, .99) !important;
+    body, header, nav a, .mobile-menu, .guide-section, .toc, .auth-modal, .user-menu, #audio-player-widget {
+      transition: background-color var(--transition-med), color var(--transition-med), border-color var(--transition-med);
     }
 
     body {
       background: var(--dark);
       color: var(--white);
       font-family: 'Barlow', sans-serif;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* HEADER */
+    /* Accessibilità: Focus visibile */
+    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex="0"]:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
 
-    /* HERO */
+    /* === HEADER (Allineato a classifica.html) === */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--red);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem; height: var(--header-h);
+      flex-wrap: nowrap; gap: .8rem;
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97); }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .08em;
+      color: var(--white); text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--red); }
+
+    nav {
+      display: flex; align-items: center; flex: 1;
+      min-width: 0; gap: 0; flex-wrap: nowrap; overflow: hidden;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 0 .5rem; height: var(--header-h);
+      display: flex; align-items: center; white-space: nowrap;
+      flex-shrink: 1; border-bottom: 2px solid transparent;
+      margin-bottom: -2px; 
+      transition: color var(--transition-fast), background var(--transition-fast);
+    }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,.04); }
+    nav a.active { color: var(--white); border-bottom-color: var(--red); }
+    [data-theme="light"] nav a { color: #555; }
+    [data-theme="light"] nav a:hover, [data-theme="light"] nav a.active { color: #111; background: rgba(0,0,0,.04); }
+
+    .header-right { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+
+    .header-btn, .auth-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; border-radius: var(--radius-md);
+      padding: .3rem .5rem; font-size: .9rem; line-height: 1;
+      display: flex; align-items: center;
+      transition: all var(--transition-fast);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    }
+    .header-btn:hover, .auth-btn:hover { border-color: var(--red); color: var(--white); }
+    #theme-toggle:hover { transform: rotate(20deg) scale(1.1); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: .3rem; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+    }
+    [data-theme="light"] .hamburger span { background: #111; }
+
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: var(--header-h); left: 0; right: 0;
+      background: rgba(10,10,10,.98);
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+    }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem; border-bottom: 1px solid var(--border);
+      transition: all var(--transition-fast);
+    }
+    .mobile-menu a:hover, .mobile-menu a.active { color: var(--white); background: rgba(232,0,29,.1); }
+
+    @media (max-width: 1100px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* === HERO === */
     .page-hero {
       background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 60%, #2a0005 100%);
-      padding: 3rem 2rem 2.5rem;
-      position: relative;
-      overflow: hidden;
+      padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
     }
-
+    [data-theme="light"] .page-hero { background: linear-gradient(135deg, #f0f0f0, #ffe8e8); }
     .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232, 0, 29, .04) 38px, rgba(232, 0, 29, .04) 40px);
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(232,0,29,.04) 38px, rgba(232,0,29,.04) 40px);
     }
-
     .hero-bg-text {
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(80px, 15vw, 200px);
-      color: rgba(232, 0, 29, .05);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
+      position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,15vw,200px);
+      color: rgba(232,0,29,.05); line-height: 1; pointer-events: none; user-select: none;
     }
-
-    .page-hero-content {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
+    .page-hero-content { position: relative; max-width: 1200px; margin: 0 auto; }
     .breadcrumb {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .7rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .7rem;
     }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,6vw,4rem); letter-spacing: .04em; line-height: 1; }
+    .page-hero h1 span { color: var(--red); }
+    .page-hero p { margin-top: .8rem; color: #aaa; max-width: 560px; }
+    [data-theme="light"] .page-hero p { color: #444; }
 
-    .breadcrumb a {
-      color: var(--muted);
-      text-decoration: none;
-    }
+    /* === LAYOUT === */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    main { padding: 2.5rem 0 5rem; }
 
-    .breadcrumb a:hover {
-      color: var(--white);
-    }
-
-    .page-hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      letter-spacing: .04em;
-      line-height: 1;
-    }
-
-    .page-hero h1 span {
-      color: var(--red);
-    }
-
-    .page-hero p {
-      margin-top: .8rem;
-      color: #aaa;
-      max-width: 560px;
-    }
-
-    /* LAYOUT */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    main {
-      padding: 2.5rem 0 5rem;
-    }
-
-    /* TOC sidebar + content */
     .guide-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 2.5rem;
-      align-items: flex-start;
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 2.5rem; align-items: flex-start;
     }
+
+    /* === TOC (Indice) === */
+    .toc {
+      position: sticky; top: 80px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .toc-header { background: var(--red); padding: .7rem 1.1rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .06em; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .toc-header::after { content: '▼'; font-size: .8rem; }
+    .toc.collapsed ul { display: none; }
+    .toc ul { list-style: none; padding: .5rem 0; }
+    .toc li a {
+      display: block; padding: .42rem 1.1rem; font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem; font-weight: 600; color: var(--muted); text-decoration: none;
+      border-left: 2px solid transparent; transition: all var(--transition-fast);
+    }
+    .toc li a:hover, .toc li a.active { color: var(--white); border-left-color: var(--red); background: rgba(232,0,29,.06); }
+    .toc-section { padding: .35rem 1.1rem .1rem; font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #444; margin-top: .3rem; }
 
     @media(max-width:900px) {
-      .guide-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .toc {
-        display: none;
-      }
+      .guide-layout { grid-template-columns: 1fr; }
+      .toc { position: static; margin-bottom: 1.5rem; }
     }
 
-    /* TOC */
-    .toc {
-      position: sticky;
-      top: 80px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .toc-header {
-      background: var(--red);
-      padding: .7rem 1.1rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.05rem;
-      letter-spacing: .06em;
-    }
-
-    .toc ul {
-      list-style: none;
-      padding: .5rem 0;
-    }
-
-    .toc li a {
-      display: block;
-      padding: .42rem 1.1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .85rem;
-      font-weight: 600;
-      letter-spacing: .04em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all .15s;
-      border-left: 2px solid transparent;
-    }
-
-    .toc li a:hover {
-      color: var(--white);
-      border-left-color: var(--red);
-      background: rgba(232, 0, 29, .06);
-    }
-
-    .toc li a.active {
-      color: var(--white);
-      border-left-color: var(--red);
-    }
-
-    .toc-section {
-      padding: .35rem 1.1rem .1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: #444;
-      margin-top: .3rem;
-    }
-
-    /* CONTENT */
+    /* === GUIDE SECTIONS === */
     .guide-section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-      scroll-margin-top: 80px;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden; margin-bottom: 1.5rem; scroll-margin-top: 80px;
     }
+    .guide-section-header { padding: 1rem 1.4rem; display: flex; align-items: center; gap: .9rem; border-bottom: 1px solid var(--border); }
+    .guide-icon { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+    .guide-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .05em; }
+    .guide-section-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: .1rem; }
+    .guide-body { padding: 1.2rem 1.4rem; }
+    .guide-body p { font-size: .95rem; line-height: 1.65; color: #ccc; margin-bottom: .9rem; }
+    .guide-body p:last-child { margin-bottom: 0; }
+    [data-theme="light"] .guide-body p { color: #444; }
 
-    .guide-section-header {
-      padding: 1rem 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      border-bottom: 1px solid var(--border);
-    }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin: 1rem 0; }
+    .feature-list li { display: flex; align-items: flex-start; gap: .75rem; font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; line-height: 1.45; color: #ccc; }
+    [data-theme="light"] .feature-list li { color: #444; }
+    .fl-icon { font-size: 1rem; line-height: 1.45; flex-shrink: 0; width: 1.4rem; text-align: center; }
 
-    .guide-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-      flex-shrink: 0;
-    }
+    .page-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .18rem .55rem; border-radius: 3px; margin-right: .3rem; vertical-align: middle; }
+    .tag-gp { background: rgba(255,107,53,.2); color: #ff6b35; border: 1px solid rgba(255,107,53,.3); }
+    .tag-m2 { background: rgba(247,166,0,.2); color: #f7a600; border: 1px solid rgba(247,166,0,.3); }
+    .tag-m3 { background: rgba(0,180,216,.2); color: #00b4d8; border: 1px solid rgba(0,180,216,.3); }
 
-    .guide-section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: .05em;
-    }
-
-    .guide-section-sub {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .1rem;
-    }
-
-    .guide-body {
-      padding: 1.2rem 1.4rem;
-    }
-
-    .guide-body p {
-      font-size: .95rem;
-      line-height: 1.65;
-      color: #ccc;
-      margin-bottom: .9rem;
-    }
-
-    .guide-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    [data-theme="light"] .guide-body p {
-      color: #444;
-    }
-
-    /* Feature list */
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .55rem;
-      margin: 1rem 0;
-    }
-
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .92rem;
-      letter-spacing: .02em;
-      line-height: 1.45;
-      color: #ccc;
-    }
-
-    [data-theme="light"] .feature-list li {
-      color: #444;
-    }
-
-    .feature-list li::before {
-      content: '';
-      flex-shrink: 0;
-    }
-
-    .fl-icon {
-      font-size: 1rem;
-      line-height: 1.45;
-      flex-shrink: 0;
-      width: 1.4rem;
-      text-align: center;
-    }
-
-    /* Tag pagina */
-    .page-tag {
-      display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .18rem .55rem;
-      border-radius: 3px;
-      margin-right: .3rem;
-      vertical-align: middle;
-    }
-
-    .tag-gp {
-      background: rgba(255, 107, 53, .2);
-      color: #ff6b35;
-      border: 1px solid rgba(255, 107, 53, .3);
-    }
-
-    .tag-m2 {
-      background: rgba(247, 166, 0, .2);
-      color: #f7a600;
-      border: 1px solid rgba(247, 166, 0, .3);
-    }
-
-    .tag-m3 {
-      background: rgba(0, 180, 216, .2);
-      color: #00b4d8;
-      border: 1px solid rgba(0, 180, 216, .3);
-    }
-
-    .tag-all {
-      background: rgba(232, 0, 29, .15);
-      color: #e8001d;
-      border: 1px solid rgba(232, 0, 29, .3);
-    }
-
-    /* Kbd shortcut */
-    kbd {
-      background: var(--mid);
-      border: 1px solid #444;
-      border-bottom: 2px solid #333;
-      border-radius: 4px;
-      padding: .15rem .45rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .82rem;
-      font-weight: 700;
-      letter-spacing: .04em;
-      color: var(--white);
-    }
-
-    /* Tip box */
-    .tip {
-      background: rgba(247, 166, 0, .08);
-      border-left: 3px solid #f7a600;
-      border-radius: 0 6px 6px 0;
-      padding: .7rem 1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .88rem;
-      letter-spacing: .02em;
-      color: #ddd;
-      margin: 1rem 0;
-    }
-
-    .tip strong {
-      color: #f7a600;
-    }
-
-    [data-theme="light"] .tip {
-      color: #333;
-    }
-
-    /* Note box */
-    .note {
-      background: rgba(0, 180, 216, .08);
-      border-left: 3px solid #00b4d8;
-      border-radius: 0 6px 6px 0;
-      padding: .7rem 1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .88rem;
-      letter-spacing: .02em;
-      color: #ddd;
-      margin: 1rem 0;
-    }
-
-    [data-theme="light"] .note {
-      color: #333;
-    }
-
-    /* Step numerati */
-    .steps {
-      counter-reset: step;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .7rem;
-      margin: 1rem 0;
-    }
-
-    .steps li {
-      display: flex;
-      align-items: flex-start;
-      gap: .8rem;
-      font-size: .93rem;
-      line-height: 1.55;
-      color: #ccc;
-    }
-
-    [data-theme="light"] .steps li {
-      color: #444;
-    }
-
-    .steps li::before {
-      counter-increment: step;
-      content: counter(step);
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      background: var(--red);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: .9rem;
-      margin-top: .1rem;
-    }
-
-    /* Divider */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 1.2rem 0;
-    }
-
-    /* Link interno */
-    .internal-link {
-      color: var(--red);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .internal-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Scroll top */
-    #scroll-top-btn {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 999;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s, transform .25s;
-    }
-
-    #scroll-top-btn.visible {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    #scroll-top-btn:hover {
-      transform: translateY(-3px);
-    }
-
-    /* Theme toggle */
-    [data-theme="light"] .page-hero {
-      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-    }
-
-    [data-theme="light"] .guide-section {
-      background: #fff;
-      border-color: #d0d0d0;
-    }
-
-    [data-theme="light"] .toc {
-      background: #fff;
-      border-color: #d0d0d0;
-    }
-
-    [data-theme="light"] .toc li a {
-      color: #666;
-    }
-
-    [data-theme="light"] .toc li a:hover {
-      color: #111;
-    }
-
-    [data-theme="light"] kbd {
-      background: #e8e8e8;
-      border-color: #ccc;
-      color: #111;
-    }
-
-    /* Highlight span */
-    .hl {
-      color: var(--white);
-      font-weight: 700;
-    }
-
-    [data-theme="light"] .hl {
-      color: #111;
-    }
-
-    /* ═══════════════════════════════════
-       HEADER OVERRIDE — versione finale
-    ═══════════════════════════════════ */
-    /* ── Breakpoint: hamburger sotto 1100px ── */
-    @media (min-width: 1101px) {}
-
-    /* Mobile menu */
-    /* Light mode */
-    [data-theme="light"] #theme-toggle {
-      border-color: #ccc !important;
-      color: #555 !important;
-    }
-    footer {
-      background: var(--mid);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      font-size: .85rem;
-      color: var(--muted);
-    }
-    footer .logo {
-      font-size: 1.5rem;
-      display: block;
-      margin-bottom: .5rem;
-    }
-
-    footer .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    footer .socials a {
-      color: var(--muted);
-      text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: .85rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      transition: color .2s;
-    }
-
-    footer .socials a:hover {
-      color: var(--white);
-    }
-  
-    /* Transizione fluida cambio tema */
-    *, *::before, *::after {
-      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
-    }
-    /* Escludi elementi che non devono transitare */
-    .rider-photo, img, video, canvas, svg,
-    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
-      transition: none !important;
-    }
+    kbd { background: var(--mid); border: 1px solid #444; border-bottom: 2px solid #333; border-radius: 4px; padding: .15rem .45rem; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 700; color: var(--white); }
     
-    /* Animazione fade-in scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .45s ease, transform .45s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Toggle tema migliorato */
-    #theme-toggle {
-      transition: transform .3s ease, background .2s !important;
-    }
-    #theme-toggle:hover { transform: rotate(20deg) scale(1.1) !important; }
-    #theme-toggle:active { transform: rotate(180deg) scale(.95) !important; }
-    
-    
-    /* ── MENU A TENDINA ── */
-    .nav-dropdown-wrap {
-      position: relative;
-    }
-    .nav-dropdown-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      border-radius: 6px;
-      padding: .28rem .65rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      transition: border-color .15s, color .15s, background .15s;
-      white-space: nowrap;
-    }
-    .nav-dropdown-btn:hover {
-      border-color: var(--red);
-      color: var(--white);
-      background: rgba(232,0,29,.07);
-    }
-    .nav-dropdown-btn.open {
-      border-color: var(--red);
-      color: var(--white);
-      background: rgba(232,0,29,.1);
-    }
-    .nav-dropdown-btn svg {
-      transition: transform .2s;
-    }
-    .nav-dropdown-btn.open svg {
-      transform: rotate(180deg);
-    }
-    .nav-dropdown-menu {
-      position: absolute;
-      top: calc(100% + .5rem);
-      right: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      min-width: 200px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.4);
-      z-index: 400;
-      overflow: hidden;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-8px);
-      transition: opacity .18s, transform .18s;
-    }
-    .nav-dropdown-menu.open {
-      opacity: 1;
-      pointer-events: all;
-      transform: translateY(0);
-    }
-    .nav-dropdown-section {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: .6rem .9rem .2rem;
-    }
-    .nav-dropdown-item {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .5rem .9rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: .88rem;
-      letter-spacing: .04em;
-      color: var(--white);
-      text-decoration: none;
-      transition: background .12s, color .12s;
-    }
-    .nav-dropdown-item:hover {
-      background: rgba(232,0,29,.1);
-      color: var(--red);
-    }
-    .nav-dropdown-item.active { color: var(--white); background: rgba(255,255,255,.05); }
-    .nav-dropdown-divider {
-      height: 1px;
-      background: var(--border);
-      margin: .3rem 0;
-    }
-    .nav-dropdown-item-icon {
-      font-size: .9rem;
-      width: 18px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    [data-theme="light"] .nav-dropdown-menu {
-      box-shadow: 0 12px 40px rgba(0,0,0,.15);
-    }
-    
-    /* ── SISTEMA LOGIN ── */
-    .auth-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      border-radius: 6px;
-      padding: .28rem .65rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      transition: border-color .15s, color .15s;
-      white-space: nowrap;
-    }
-    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+    .tip { background: rgba(247,166,0,.08); border-left: 3px solid #f7a600; border-radius: 0 6px 6px 0; padding: .7rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: .9rem; color: #ddd; margin: 1rem 0; }
+    .tip strong { color: #f7a600; }
+    .note { background: rgba(0,180,216,.08); border-left: 3px solid #00b4d8; border-radius: 0 6px 6px 0; padding: .7rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: .9rem; color: #ddd; margin: 1rem 0; }
+    [data-theme="light"] .tip, [data-theme="light"] .note { color: #333; }
 
-    /* Avatar utente loggato */
-    .user-avatar-btn {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: .85rem;
-      letter-spacing: .04em;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      transition: transform .15s;
-    }
-    .user-avatar-btn:hover { transform: scale(1.1); }
-    .user-fav-badge {
-      position: absolute; top: -5px; right: -5px;
-      background: #f7a600;
-      color: #000;
-      border-radius: 50%;
-      width: 14px; height: 14px;
-      font-size: .55rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .internal-link { color: var(--red); text-decoration: none; font-weight: 700; }
+    .internal-link:hover { text-decoration: underline; }
+    .hl { color: var(--white); font-weight: 700; }
+    [data-theme="light"] .hl { color: #111; }
 
-    /* Modal auth */
-    .auth-modal-overlay {
-      position: fixed; inset: 0; z-index: 800;
-      background: rgba(0,0,0,.75);
-      backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity .2s;
-    }
+    .kbd-table { width: 100%; border-collapse: collapse; margin: .8rem 0; font-family: 'Barlow Condensed', sans-serif; font-size: .95rem; }
+    .kbd-table th { text-align: left; padding: .5rem .7rem; color: var(--muted); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid var(--border); }
+    .kbd-table td { padding: .55rem .7rem; border-bottom: 1px solid var(--border); }
+
+    /* Banner CTA Relazione */
+    .cta-banner { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; }
+    .cta-banner-inner { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; flex-wrap: wrap; gap: 1rem; }
+    .cta-tag { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: .3rem; }
+    .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .05em; }
+    .cta-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .85rem; color: var(--muted); margin-top: .2rem; }
+    .cta-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .07em; text-transform: uppercase; padding: .6rem 1.4rem; background: var(--red); color: #fff; border-radius: var(--radius-md); text-decoration: none; flex-shrink: 0; transition: background var(--transition-fast); }
+    .cta-btn:hover { background: var(--red-hover); }
+
+    .back-btn-wrap { margin: .9rem 0 0; min-height: 1.5rem; display:block; position:relative; z-index:2; }
+    .back-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .8rem; border-radius: 4px; background: rgba(255,255,255,.07); border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .76rem; transition: all var(--transition-fast); cursor: pointer; }
+    .back-btn:hover { border-color: var(--red); color: var(--white); }
+    [data-theme="light"] .back-btn { background: rgba(0,0,0,.05); border-color: #d8d8d8; color: #111; }
+
+    #scroll-top-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: #fff; border: none; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--transition-med), transform var(--transition-fast); }
+    #scroll-top-btn.visible { opacity: 1; pointer-events: all; }
+    #scroll-top-btn:hover { transform: translateY(-3px); }
+
+    /* === FOOTER (Allineato a classifica.html) === */
+    footer { background: var(--mid); border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; font-size: .85rem; color: var(--muted); }
+    footer .logo { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+    footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; flex-wrap: wrap; }
+    footer .socials a { color: var(--muted); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; transition: color var(--transition-fast); }
+    footer .socials a:hover { color: var(--white); }
+
+    /* === AUTH MODAL & USER MENU === */
+    .auth-modal-overlay { position: fixed; inset: 0; z-index: 800; background: rgba(0,0,0,.75); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--transition-med); }
     .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
-    .auth-modal {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-      width: 100%; max-width: 360px;
-      margin: 1rem;
-      transform: translateY(-12px);
-      transition: transform .22s;
-      position: relative;
-    }
+    .auth-modal { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; width: 100%; max-width: 360px; margin: 1rem; transform: translateY(-12px); transition: transform var(--transition-med); position: relative; }
     .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
-    .auth-modal-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem; letter-spacing: .06em;
-      margin-bottom: 1.4rem;
-    }
+    .auth-modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .06em; margin-bottom: 1.4rem; }
     .auth-modal-title span { color: var(--red); }
-    .auth-field {
-      margin-bottom: .9rem;
-    }
-    .auth-field label {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .72rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: .3rem;
-    }
-    .auth-field input {
-      width: 100%; box-sizing: border-box;
-      background: var(--mid);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--white);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .95rem;
-      padding: .55rem .8rem;
-      outline: none;
-      transition: border-color .15s;
-    }
+    .auth-field { margin-bottom: .9rem; }
+    .auth-field label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+    .auth-field input { width: 100%; background: var(--mid); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: .95rem; padding: .55rem .8rem; outline: none; transition: border-color var(--transition-fast); }
     .auth-field input:focus { border-color: var(--red); }
-    .auth-submit {
-      width: 100%;
-      background: var(--red); color: #fff;
-      border: none; border-radius: 6px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .95rem;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: .65rem; cursor: pointer;
-      margin-top: .4rem;
-      transition: background .15s;
-    }
-    .auth-submit:hover { background: #c4001a; }
-    .auth-switch {
-      text-align: center;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .82rem; color: var(--muted);
-      margin-top: .8rem;
-    }
-    .auth-switch a {
-      color: var(--red); cursor: pointer; text-decoration: none;
-    }
+    .auth-submit { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; padding: .65rem; cursor: pointer; margin-top: .4rem; transition: background var(--transition-fast); }
+    .auth-submit:hover { background: var(--red-hover); }
+    .auth-switch { text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+    .auth-switch a { color: var(--red); cursor: pointer; text-decoration: none; }
     .auth-switch a:hover { text-decoration: underline; }
-    .auth-error {
-      background: rgba(232,0,29,.1);
-      border: 1px solid rgba(232,0,29,.3);
-      border-radius: 6px;
-      padding: .45rem .7rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .82rem; color: #ff6b6b;
-      margin-bottom: .8rem;
-      display: none;
-    }
-    .auth-close {
-      position: absolute; top: .8rem; right: .9rem;
-      background: none; border: none;
-      color: var(--muted); font-size: 1.1rem;
-      cursor: pointer; line-height: 1;
-    }
+    .auth-error { background: rgba(232,0,29,.1); border: 1px solid rgba(232,0,29,.3); border-radius: 6px; padding: .45rem .7rem; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; color: #ff6b6b; margin-bottom: .8rem; display: none; }
+    .auth-close { position: absolute; top: .8rem; right: .9rem; background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; line-height: 1; }
 
-    /* Menu utente dropdown */
+    .user-avatar-btn { width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; border: none; cursor: pointer; font-family: 'Bebas Neue', sans-serif; font-size: .85rem; display: flex; align-items: center; justify-content: center; transition: transform var(--transition-fast); }
+    .user-avatar-btn:hover { transform: scale(1.1); }
     .user-menu-wrap { position: relative; }
-    .user-menu {
-      position: absolute; top: calc(100% + .5rem); right: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      min-width: 200px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.4);
-      z-index: 500;
-      overflow: hidden;
-      opacity: 0; pointer-events: none;
-      transform: translateY(-8px);
-      transition: opacity .18s, transform .18s;
-    }
+    .user-menu { position: absolute; top: calc(100% + .5rem); right: 0; background: var(--card); border: 1px solid var(--border); border-radius: 10px; min-width: 200px; box-shadow: 0 12px 40px rgba(0,0,0,.4); z-index: 500; overflow: hidden; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all var(--transition-med); }
     .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
-    .user-menu-header {
-      padding: .8rem 1rem;
-      border-bottom: 1px solid var(--border);
-      font-family: 'Barlow Condensed', sans-serif;
-    }
-    .user-menu-name {
-      font-weight: 700; font-size: 1rem;
-      color: var(--white);
-    }
-    .user-menu-sub {
-      font-size: .75rem; color: var(--muted); margin-top: .1rem;
-    }
-    .user-menu-item {
-      display: flex; align-items: center; gap: .6rem;
-      padding: .55rem 1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .88rem; font-weight: 700;
-      color: var(--white); text-decoration: none;
-      cursor: pointer; transition: background .12s;
-    }
+    .user-menu-header { padding: .8rem 1rem; border-bottom: 1px solid var(--border); font-family: 'Barlow Condensed', sans-serif; }
+    .user-menu-name { font-weight: 700; font-size: 1rem; color: var(--white); }
+    .user-menu-sub { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+    .user-menu-item { display: flex; align-items: center; gap: .6rem; padding: .55rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; font-weight: 700; color: var(--white); text-decoration: none; cursor: pointer; transition: background var(--transition-fast); }
     .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
     .user-menu-item.logout { color: #ff6b6b; }
     .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
-    .user-menu-section {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted);
-      padding: .4rem .9rem .2rem;
-    }
-    .user-menu-fav {
-      font-size: .82rem !important;
-      padding: .35rem .9rem !important;
-      color: var(--white) !important;
-    }
-    .user-menu-fav:hover { color: var(--red) !important; }
+    .user-menu-section { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .4rem .9rem .2rem; }
+    .user-fav-badge { position: absolute; top: -5px; right: -5px; background: #f7a600; color: #000; border-radius: 50%; width: 14px; height: 14px; font-size: .55rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
-    /* Stella preferiti sui piloti */
-    .fav-star {
-      background: none; border: none;
-      font-size: 1.1rem; cursor: pointer;
-      opacity: .4; transition: opacity .2s, transform .2s;
-      padding: 0; line-height: 1;
+    /* === AUDIO PLAYER === */
+    #audio-player-widget {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1rem; width: 200px; box-sizing: border-box;
     }
-    .fav-star:hover { opacity: .8; transform: scale(1.2); }
-    .fav-star.active { opacity: 1; }
-
-    /* Sezione preferiti */
-    .favs-section {
-      background: rgba(247,166,0,.07);
-      border: 1px solid rgba(247,166,0,.25);
-      border-radius: 10px;
-      padding: 1.2rem 1.4rem;
-      margin-bottom: 2rem;
-    }
-    .favs-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem; letter-spacing: .06em;
-      color: #f7a600; margin-bottom: .8rem;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .favs-grid {
-      display: flex; flex-wrap: wrap; gap: .5rem;
-    }
-    .fav-chip {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: .3rem .8rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .82rem; font-weight: 700;
-      color: var(--white);
-      text-decoration: none;
-      transition: border-color .15s;
-    }
-    .fav-chip:hover { border-color: var(--red); color: var(--red); }
-    
-    [data-theme="light"] .mobile-menu a:hover,
-    [data-theme="light"] .mobile-menu a.active {
-      color: #111 !important;
-      background: rgba(232,0,29,.08) !important;
-    }
-    [data-theme="light"] .back-btn:hover {
-      color: var(--red) !important;
-    }
-    [data-theme="light"] .nav-dropdown-btn svg,
-    [data-theme="light"] .hamburger span {
-      stroke: #111 !important;
+    @media (max-width: 480px) {
+      body { padding-bottom: 75px !important; }
+      #audio-player-widget {
+        bottom: 0 !important; right: 0 !important; left: 0 !important;
+        width: 100% !important; border-radius: 0 !important; padding: 0 1rem !important;
+        background: var(--mid) !important; border-top: 2px solid var(--red) !important;
+        height: 58px !important; display: flex !important; flex-direction: row !important;
+        align-items: center !important; justify-content: space-around !important;
+        backdrop-filter: none !important; transform: none !important; overflow: visible !important;
+      }
+      #audio-player-widget > div:first-child { margin-bottom: 0 !important; flex-shrink: 0 !important; }
+      #audio-player-widget input[type="range"] {
+        height: 28px !important; min-width: 0 !important; flex: 1 !important; margin: 0 8px !important;
+        pointer-events: auto !important; -webkit-appearance: sliderHorizontal !important; appearance: auto !important;
+      }
+      #audio-player-widget #progress-slider, #audio-player-widget #vol-slider { flex: 1; min-width: 0; margin-bottom: 0 !important; }
     }
 
-
-    .back-btn-wrap { margin: .9rem 0 0; min-height: 1.5rem; display:block; position:relative; z-index:2; }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: .4rem;
-      padding: .35rem .8rem; border-radius: 4px;
-      background: rgba(255,255,255,.07); border: 1px solid var(--border);
-      color: #aaa; text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase; font-size: .76rem;
-      transition: .15s;
-    }
-    .back-btn:hover { border-color: var(--red); color: var(--white); }
-    [data-theme="light"] .back-btn {
-      background: rgba(255,255,255,.85) !important;
-      border-color: #d8d8d8 !important;
-      color: #111 !important;
-    }
-
-</style>
-</link><style id="audio-player-responsive">
-#audio-player-widget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 200px;
-  box-sizing: border-box;
-}
-
-@media (max-width: 480px) {
-  /* 1. Creiamo 70px di spazio VUOTO alla fine del sito */
-  /* Così la tabella si ferma prima e non finisce sotto l'audio */
-  body {
-    padding-bottom: 75px !important;
-  }
-
-  /* 2. Sistemiamo l'audio player per essere USABILE */
-  #audio-player-widget {
-    bottom: 0 !important;
-    right: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    background: #141414 !important;
-    border-top: 2px solid #e8001d !important;
-    height: 58px !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-around !important;
-    padding: 0 1rem !important;
-    gap: 0 !important;
-    /* Rimuoviamo filter e transform che bloccano il tocco su mobile */
-    backdrop-filter: none !important;
-    transform: none !important;
-    overflow: visible !important;
-  }
-
-  /* 3. Assicuriamoci che gli slider siano grandi e trascinabili */
-  #audio-player-widget > div:first-child {
-    margin-bottom: 0 !important;
-    flex-shrink: 0 !important;
-  }
-  
-  #audio-player-widget input[type="range"] {
-    height: 28px !important; /* Area di tocco più grande per il dito */
-    min-width: 0 !important;
-    flex: 1 !important;
-    margin: 0 8px !important; /* Spazio per non farli attaccare */
-    pointer-events: auto !important;
-    -webkit-appearance: sliderHorizontal !important;
-    appearance: auto !important;
-  }
-
-  #audio-player-widget #progress-slider,
-  #audio-player-widget #vol-slider {
-    flex: 1;
-    min-width: 0;
-    margin-bottom: 0 !important;
-  }
-}
+    /* Fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity .45s ease, transform .45s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
+
 <!-- HEADER -->
 <header>
-<a class="logo" href="index.html">MOTO<span>2026</span></a>
-<nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
-<div class="header-right">
-<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-<span></span><span></span><span></span>
-</div>
-</div>
+  <a class="logo" href="index.html">MOTO<span>2026</span></a>
+  <nav aria-label="Navigazione principale">
+    <a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html" class="active">Guida</a><a href="relazione.html">Relazione</a>
+  </nav>
+  <div class="header-right">
+    <button class="auth-btn" id="auth-btn">👤 Accedi</button>
+    <button class="header-btn" aria-label="Cambia tema" id="theme-toggle"><span id="theme-icon">☀️</span></button>
+    <button class="hamburger" aria-label="Apri menu" aria-expanded="false" id="hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
-<div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a class="active" href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="navigation">
+  <a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a class="active" href="guida.html">Guida</a><a href="relazione.html">Relazione</a>
+</div>
+
 <!-- HERO -->
 <section class="page-hero">
-<div class="hero-bg-text">GUIDA</div>
-<div class="page-hero-content">
-<div class="breadcrumb"><a href="index.html">Home</a> › Guida al sito</div>
-<h1>Guida al <span>Sito</span></h1>
-<p>Tutto quello che puoi fare su Motomondiale 2026: pagine, funzionalità, scorciatoie e consigli per navigare al
-        meglio.</p>
-<div class="back-btn-wrap"><a class="back-btn" href="index.html">← Torna a Home</a></div>
-</div>
+  <div class="hero-bg-text" aria-hidden="true">GUIDA</div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Guida al sito</div>
+    <h1>Guida al <span>Sito</span></h1>
+    <p>Tutto quello che puoi fare su Motomondiale 2026: pagine, funzionalità, scorciatoie e consigli per navigare al meglio.</p>
+    <div class="back-btn-wrap"><a class="back-btn" href="index.html">← Torna a Home</a></div>
+  </div>
 </section>
+
+<!-- MAIN CONTENT -->
 <div class="container">
-<main>
-<!-- BANNER RELAZIONE -->
-<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.5rem;">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;flex-wrap:wrap;gap:.8rem;">
-<div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem;">
-              📄 Documentazione tecnica</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.05em;">Relazione Tecnica
-              del Progetto</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:var(--muted);margin-top:.2rem;">
-              Analisi, progettazione, tecnologie utilizzate e sviluppi futuri — per l'esame di maturità.</div>
-</div>
-<a href="relazione.html" onmouseout="this.style.background='#e60023'" onmouseover="this.style.background='#c4001a'" style="font-family:Barlow Condensed, sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.07em; text-transform:uppercase; padding:.6rem 1.4rem; background:#e60023; color:#fff; border-radius:6px; text-decoration:none; flex-shrink:0; transition:background .15s;">
-            Leggi la relazione →
-          </a>
-</div>
-</div>
-<div class="guide-layout">
-<!-- ─── TOC ─── -->
-<aside class="toc">
-<div class="toc-header">Indice</div>
-<ul>
-<div class="toc-section">Panoramica</div>
-<li><a href="#intro">Cos'è questo sito</a></li>
-<li><a href="#navigazione">Come navigare</a></li>
-<div class="toc-section">Le pagine</div>
-<li><a href="#home">🏠 Home</a></li>
-<li><a href="#notizie">📰 Notizie</a></li>
-<li><a href="#categorie">🏍️ MotoGP · Moto2 · Moto3</a></li>
-<li><a href="#piloti">👥 Piloti</a></li>
-<li><a href="#pilota">🧑 Scheda Pilota</a></li>
-<li><a href="#team">👥 Team</a></li>
-<li><a href="#classifica">📊 Classifica</a></li>
-<li><a href="#risultati">🏁 Risultati</a></li>
-<li><a href="#calendario">📅 Calendario</a></li>
-<li><a href="#stagione">📈 Stagione</a></li>
-<li><a href="#albo">🏆 Albo d'Oro</a></li>
-<li><a href="#prediction">🧠 Prediction</a></li>
-<li><a href="#stats">📊 Statistiche</a></li>
-<li><a href="#circuiti">🏁 Circuiti</a></li>
-<div class="toc-section">Extra</div>
-<li><a href="#shortcuts">⌨️ Scorciatoie</a></li>
-<li><a href="#tema">🌙 Tema</a></li>
-<li><a href="#aggiornamenti">🔄 Aggiornamenti</a></li>
-</ul>
-</aside>
-<!-- ─── CONTENT ─── -->
-<div class="guide-content">
-<!-- INTRO -->
-<div class="guide-section" id="intro">
-<div class="guide-section-header">
-<div class="guide-icon">📖</div>
-<div>
-<div class="guide-section-title">Cos'è Motomondiale 2026</div>
-<div class="guide-section-sub">Il sito • Cosa trovi</div>
-</div>
-</div>
-<div class="guide-body">
-<p><span class="hl">Motomondiale 2026</span> è un sito di informazione e statistiche sul campionato
-                mondiale di motociclismo 2026, aggiornato manualmente dopo ogni round. Copre tutte e tre le categorie —
-                <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e
-                sessione per sessione, schede complete di tutti i piloti in griglia, pronostici GP e statistiche avanzate.
-              </p>
-<p>Il sito è composto da <span class="hl">40 pagine</span> collegate tra loro. Puoi partire da qualunque
-                punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due
-                click.</p>
-<div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire
-                subito la lista piloti con il campo di ricerca attivo.</div>
-</div>
-</div>
-<!-- NAVIGAZIONE -->
-<div class="guide-section" id="navigazione">
-<div class="guide-section-header">
-<div class="guide-icon">🧭</div>
-<div>
-<div class="guide-section-title">Come navigare</div>
-<div class="guide-section-sub">Header • Link • Scorciatoie</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La barra di navigazione in alto è sempre visibile — è <span class="hl">sticky</span>, cioè rimane fissa
-                mentre scorri. Da lì raggiungi le sezioni principali del sito.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🖱️</span>
-<div>Su desktop, <span class="hl">click con il tasto centrale</span> (rotellina) o
-                    <kbd>Ctrl</kbd>+click su qualsiasi link apre la pagina in una nuova scheda senza perdere quella
-                    attuale.
-                  </div>
-</li>
-<li><span class="fl-icon">📱</span>
-<div>Su mobile, il menu si raggiunge dall'<span class="hl">icona ☰</span> in alto a destra.</div>
-</li>
-<li><span class="fl-icon">↑</span>
-<div>Il pulsante <span class="hl">↑</span> in basso a destra appare dopo aver scrollato e riporta in
-                    cima alla pagina.</div>
-</li>
-<li><span class="fl-icon">☀️</span>
-<div>Il pulsante <span class="hl">☀️ / 🌙</span> accanto al menu cambia tra tema scuro e chiaro. La
-                    preferenza viene ricordata.</div>
-</li>
-</ul>
-<div class="note">Le pagine si collegano tra loro: dalla classifica puoi aprire la scheda di un pilota,
-                dalla scheda puoi tornare alla lista piloti, dai risultati puoi saltare al round successivo.</div>
-</div>
-</div>
-<!-- HOME -->
-<div class="guide-section" id="home">
-<div class="guide-section-header">
-<div class="guide-icon">🏠</div>
-<div>
-<div class="guide-section-title">Home</div>
-<div class="guide-section-sub">index.html • Punto di partenza</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La home è il punto di accesso principale. Mostra tutto quello che è successo di recente e quello che
-                sta per succedere.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">📰</span>
-<div><span class="hl">Ultime notizie</span> — articoli e aggiornamenti su MotoGP, Moto2 e Moto3.
-  Clicca su una notizia per leggerla per intero. Usa il link <span class="internal-link">"Vedi tutte le notizie"</span> per aprire la pagina dedicata con filtri e ricerca completa.</div>
-</li>
-<li><span class="fl-icon">⏱️</span>
-<div><span class="hl">Countdown prossimo GP</span> — conto alla rovescia in tempo reale (giorni, ore,
-                    minuti, secondi) fino all'inizio del prossimo weekend di gara.</div>
-</li>
-<li><span class="fl-icon">⚡</span>
-<div><span class="hl">Barra progressione stagione</span> — mostra visivamente quanti round sono stati
-                    disputati sul totale di 22 (attualmente 11/22).</div>
-</li>
-<li><span class="fl-icon">📊</span>
-<div><span class="hl">Top 5 classifiche</span> — i primi cinque piloti di ogni categoria, aggiornati
-                    dopo l'ultimo round.</div>
-</li>
-<li><span class="fl-icon">📅</span>
-<div><span class="hl">Calendario completo</span> — tutti i 22 round in una striscia orizzontale. I
-                    round completati portano ai risultati, quello successivo è evidenziato.</div>
-</li>
-</ul>
-</div>
-</div>
-<!-- NOTIZIE -->
-<div class="guide-section" id="notizie">
-<div class="guide-section-header">
-<div class="guide-icon">📰</div>
-<div>
-<div class="guide-section-title">Notizie</div>
-<div class="guide-section-sub">notizie.html • Solo dalla Home</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🔍</span>
-<div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div>
-</li>
-<li><span class="fl-icon">🏷️</span>
-<div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · JuniorGP · RedBull RookiesCup) filtrano istantaneamente le notizie per classe.</div>
-</li>
-<li><span class="fl-icon">📄</span>
-<div><span class="hl">Card con anteprima</span> — ogni notizia mostra una miniatura generata, il titolo, un riassunto e la data. Cliccando sulla card si apre l'articolo completo in un modale sovrapposto.</div>
-</li>
-<li><span class="fl-icon">📦</span>
-<div><span class="hl">Caricamento progressivo</span> — le notizie vengono caricate a gruppi di 6. Il pulsante "Carica altre notizie" in fondo mostra le successive senza ricaricare la pagina.</div>
-</li>
-<li><span class="fl-icon">🔲</span>
-<div><span class="hl">Modal di lettura</span> — l'articolo si apre in un pannello centrato con sfondo sfocato. Si chiude cliccando fuori, sul pulsante ✕ o premendo <kbd>Esc</kbd>.</div>
-</li>
-</ul>
-<div class="note">Questa pagina non ha un link diretto nel menu perché è pensata come <strong>estensione della sezione notizie della Home</strong>. Per tornarci, basta passare dalla Home e cliccare "Vedi tutte le notizie".</div>
-</div>
-</div>
-<!-- CATEGORIE -->
-<div class="guide-section" id="categorie">
-<div class="guide-section-header">
-<div class="guide-icon">🏍️</div>
-<div>
-<div class="guide-section-title">MotoGP · Moto2 · Moto3</div>
-<div class="guide-section-sub">motogp.html · moto2.html · moto3.html</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Ogni categoria ha la sua pagina dedicata con notizie, classifica parziale e link ai piloti iscritti.
-              </p>
-<ul class="feature-list">
-<li><span class="fl-icon">🗓️</span>
-<div><span class="hl">Banner prossimo GP</span> — in cima alla pagina, mostra il round successivo con
-                    data e circuito, con link diretto al calendario.</div>
-</li>
-<li><span class="fl-icon">📰</span>
-<div><span class="hl">Notizie di categoria</span> — articoli filtrati per MotoGP, Moto2 o Moto3.
-                    L'articolo in evidenza è quello più recente.</div>
-</li>
-<li><span class="fl-icon">📊</span>
-<div><span class="hl">Top 5 classifica</span> — i primi cinque piloti del momento con i punti
-                    aggiornati.</div>
-</li>
-<li><span class="fl-icon">👥</span>
-<div><span class="hl">Entry list per team</span> — tutti i team e i piloti iscritti, cliccabili per
-                    aprire la scheda del pilota.</div>
-</li>
-</ul>
-</div>
-</div>
-<!-- PILOTI -->
-<div class="guide-section" id="piloti">
-<div class="guide-section-header">
-<div class="guide-icon">👥</div>
-<div>
-<div class="guide-section-title">Lista Piloti</div>
-<div class="guide-section-sub">piloti.html • 90 piloti in griglia [più le eventuali sostituzioni o wildcard]</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Tutti i piloti iscritti al Mondiale 2026 in un'unica pagina: <span class="hl">90 piloti totali</span> distribuiti fra MotoGP, Moto2 e Moto3, con wildcard e sostituti gestiti automaticamente nella lista.
-              </p>
-<ul class="feature-list">
-<li><span class="fl-icon">🔍</span>
-<div><span class="hl">Ricerca per nome</span> — digita nella barra in alto a destra nella tab bar.
-                    Filtra in tempo reale mentre scrivi.</div>
-</li>
-<li><span class="fl-icon">🔴</span>
-<div><span class="hl">Filtro per categoria</span> — usa i tab in cima (Tutte · MotoGP · Moto2 · Moto3)
-                    per mostrare solo la classe che ti interessa.</div>
-</li>
-<li><span class="fl-icon">👑</span>
-<div><span class="hl">Corona del leader</span> — il pilota leader di classifica in ciascuna categoria
-                    ha la corona 👑 visibile sulla sua card.</div>
-</li>
-<li><span class="fl-icon">🔢</span>
-<div><span class="hl">Contatore visibile</span> — in alto a destra mostra quanti piloti sono visibili
-                    in quel momento (es. "22 / 90 piloti" quando filtra).</div>
-</li>
-<li><span class="fl-icon">👤</span>
-<div><span class="hl">Apri scheda pilota</span> — clicca su qualsiasi card per aprire la pagina
-                    dettagliata del pilota.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> Premi <kbd>/</kbd> da qualsiasi pagina del sito per arrivare
-                direttamente qui con il focus sul campo di ricerca.</div>
-</div>
-</div>
-<!-- SCHEDA PILOTA -->
-<div class="guide-section" id="pilota">
-<div class="guide-section-header">
-<div class="guide-icon">🧑</div>
-<div>
-<div class="guide-section-title">Scheda Pilota</div>
-<div class="guide-section-sub">pilota.html • Info complete su ogni pilota</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La scheda più ricca del sito. Ogni pilota ha la sua pagina con foto, statistiche, storico e molto
-                altro.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">📋</span>
-<div><span class="hl">Dati anagrafici</span> — nazionalità, data di nascita, numero di gara, team e
-                    costruttore 2026.</div>
-</li>
-<li><span class="fl-icon">🏆</span>
-<div><span class="hl">Palmares</span> — titoli mondiali vinti, con anno e categoria.</div>
-</li>
-<li><span class="fl-icon">📅</span>
-<div><span class="hl">Tabella stagioni</span> — tutta la carriera nel Mondiale con posizione finale,
-                    punti, vittorie, podi e pole per ogni anno.</div>
-</li>
-<li><span class="fl-icon">📊</span>
-<div><span class="hl">Grafico punti per round</span> — barre colorate che mostrano quanti punti ha
-                    fatto il pilota in ciascuno dei round 2026 già disputati (gara + sprint per MotoGP).</div>
-</li>
-<li><span class="fl-icon">👥</span>
-<div><span class="hl">Piloti vicini in classifica</span> — 4 piloti della stessa categoria con punti
-                    simili, cliccabili per passare da una scheda all'altra velocemente.</div>
-</li>
-<li><span class="fl-icon">🔗</span>
-<div><span class="hl">Condividi</span> — copia il link alla scheda negli appunti (su mobile usa la
-                    condivisione nativa del sistema).</div>
-</li>
-<li><span class="fl-icon">🖨️</span>
-<div><span class="hl">Stampa</span> — apre la finestra di stampa del browser con un layout ottimizzato
-                    (senza header, footer e pulsanti).</div>
-</li>
-</ul>
-</div>
+  <main>
+    
+    <!-- BANNER RELAZIONE -->
+    <article class="cta-banner">
+      <div class="cta-banner-inner">
+        <div>
+          <div class="cta-tag">📄 Documentazione tecnica</div>
+          <div class="cta-title">Relazione Tecnica del Progetto</div>
+          <div class="cta-sub">Analisi, progettazione, tecnologie utilizzate e sviluppi futuri — per l'esame di maturità.</div>
+        </div>
+        <a href="relazione.html" class="cta-btn">Leggi la relazione →</a>
+      </div>
+    </article>
+
+    <div class="guide-layout">
+      
+      <!-- TOC (Aperto di default) -->
+      <aside class="toc" id="toc" aria-label="Indice della pagina">
+        <div class="toc-header" id="toc-header">Indice</div>
+        <ul>
+          <div class="toc-section">Panoramica</div>
+          <li><a href="#intro">Cos'è questo sito</a></li>
+          <li><a href="#navigazione">Come navigare</a></li>
+          <div class="toc-section">Le pagine</div>
+          <li><a href="#home">🏠 Home</a></li>
+          <li><a href="#notizie">📰 Notizie</a></li>
+          <li><a href="#categorie">🏍️ MotoGP · Moto2 · Moto3</a></li>
+          <li><a href="#piloti">👥 Piloti</a></li>
+          <li><a href="#pilota">🧑 Scheda Pilota</a></li>
+          <li><a href="#team">👥 Team</a></li>
+          <li><a href="#classifica">📊 Classifica</a></li>
+          <li><a href="#junior">🏆 Junior & Rookies</a></li>
+          <li><a href="#risultati">🏁 Risultati</a></li>
+          <li><a href="#calendario">📅 Calendario</a></li>
+          <li><a href="#stagione">📈 Stagione</a></li>
+          <li><a href="#albo">🏆 Albo d'Oro</a></li>
+          <li><a href="#prediction">🧠 Prediction</a></li>
+          <li><a href="#stats">📊 Statistiche</a></li>
+          <li><a href="#circuiti">🏁 Circuiti</a></li>
+          <div class="toc-section">Extra</div>
+          <li><a href="#shortcuts">⌨️ Scorciatoie</a></li>
+          <li><a href="#tema">🌙 Tema</a></li>
+          <li><a href="#aggiornamenti">🔄 Aggiornamenti</a></li>
+        </ul>
+      </aside>
+
+      <!-- GUIDE CONTENT -->
+      <div class="guide-content">
+        
+        <section class="guide-section" id="intro">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📖</div>
+            <div>
+              <h2 class="guide-section-title">Cos'è Motomondiale 2026</h2>
+              <div class="guide-section-sub">Il sito • Cosa trovi</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p><span class="hl">Motomondiale 2026</span> è un sito di informazione e statistiche sul campionato mondiale di motociclismo 2026, aggiornato manualmente dopo ogni round. Copre tutte e tre le categorie — <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e sessione per sessione, schede complete di tutti i piloti in griglia, pronostici GP e statistiche avanzate.</p>
+            <p>Il sito è composto da <span class="hl">41 pagine</span> collegate tra loro. Puoi partire da qualunque punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due click.</p>
+            <div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire subito la lista piloti con il campo di ricerca attivo.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="navigazione">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🧭</div>
+            <div>
+              <h2 class="guide-section-title">Come navigare</h2>
+              <div class="guide-section-sub">Header • Link • Scorciatoie</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La barra di navigazione in alto è sempre visibile — è <span class="hl">sticky</span>, cioè rimane fissa mentre scorri. Da lì raggiungi le sezioni principali del sito.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">🖱️</span><div>Su desktop, <span class="hl">click con il tasto centrale</span> (rotellina) o <kbd>Ctrl</kbd>+click su qualsiasi link apre la pagina in una nuova scheda senza perdere quella attuale.</div></li>
+              <li><span class="fl-icon">📱</span><div>Su mobile, il menu si raggiunge dall'<span class="hl">icona ☰</span> in alto a destra.</div></li>
+              <li><span class="fl-icon">↑</span><div>Il pulsante <span class="hl">↑</span> in basso a destra appare dopo aver scrollato e riporta in cima alla pagina.</div></li>
+              <li><span class="fl-icon">☀️</span><div>Il pulsante <span class="hl">☀️ / 🌙</span> accanto al menu cambia tra tema scuro e chiaro. La preferenza viene ricordata.</div></li>
+            </ul>
+            <div class="note">Le pagine si collegano tra loro: dalla classifica puoi aprire la scheda di un pilota, dalla scheda puoi tornare alla lista piloti, dai risultati puoi saltare al round successivo.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="home">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏠</div>
+            <div>
+              <h2 class="guide-section-title">Home</h2>
+              <div class="guide-section-sub">index.html • Punto di partenza</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La home è il punto di accesso principale. Mostra tutto quello che è successo di recente e quello che sta per succedere. All'apertura del sito, potresti notare un <span class="hl">Welcome Modal</span> (popup di benvenuto) che ti suggerisce le funzionalità principali, come la ricerca rapida. Ecco cosa trovi scorrendo la pagina:</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📈</span><div><span class="hl">Ticker Mercato 2027</span> — Una striscia dinamica in alto che scorre e mostra le ultime voci di mercato sui trasferimenti dei piloti per la prossima stagione.</div></li>
+              <li><span class="fl-icon">📰</span><div><span class="hl">Ultime notizie</span> — articoli e aggiornamenti su MotoGP, Moto2 e Moto3. Usa il link <a class="internal-link" href="notizie.html">"Vedi tutte le notizie"</a> per aprire la pagina dedicata con filtri e ricerca completa.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Banner Junior & Rookies</span> — Un box che ti porta direttamente alle classifiche del futuro del motociclismo: Red Bull Rookies Cup e FIM JuniorGP.</div></li>
+              <li><span class="fl-icon">⏱️</span><div><span class="hl">Countdown prossimo GP</span> — conto alla rovescia in tempo reale (giorni, ore, minuti, secondi) fino all'inizio del prossimo weekend di gara.</div></li>
+              <li><span class="fl-icon">🗺️</span><div><span class="hl">Focus Circuito</span> — Una scheda dedicata al prossimo tracciato, con mappa, lunghezza, numero di curve e record del giro.</div></li>
+              <li><span class="fl-icon">🏁</span><div><span class="hl">Risultati Ultimo GP</span> — I podi (MotoGP, Moto2, Moto3) della gara appena disputata, con link diretto ai risultati completi.</div></li>
+              <li><span class="fl-icon">⚡</span><div><span class="hl">Barra progressione stagione</span> — mostra visivamente quanti round sono stati disputati sul totale (es. 11/22).</div></li>
+              <li><span class="fl-icon">👑</span><div><span class="hl">Top 3 Leader</span> — Tre card che evidenziano i leader di campionato di MotoGP, Moto2 e Moto3 con i loro punti e il gap sul secondo.</div></li>
+              <li><span class="fl-icon">🌟</span><div><span class="hl">Piloti del Weekend</span> — I protagonisti assoluti del weekend appena concluso, uno per categoria.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Classifica Top 5</span> — Le prime posizioni dei tre campionati in formato tabella.</div></li>
+              <li><span class="fl-icon">📅</span><div><span class="hl">Calendario completo</span> — tutti i round in una striscia orizzontale. I round completati portano ai risultati, quello successivo è evidenziato.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Campioni in Carica</span> — In fondo alla pagina, una sezione che mostra i vincitori del titolo dell'anno precedente.</div></li>
+            </ul>
+            <div class="tip"><strong>💡 Ricerca Rapida:</strong> Usa <kbd>Ctrl</kbd>+<kbd>K</kbd> (o <kbd>Cmd</kbd>+<kbd>K</kbd> su Mac) in qualsiasi momento per aprire la <span class="hl">Ricerca Globale</span> e trovare subito pagine, piloti o Gran Premi specifici!</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="notizie">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📰</div>
+            <div>
+              <h2 class="guide-section-title">Notizie</h2>
+              <div class="guide-section-sub">notizie.html • Solo dalla Home</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div></li>
+              <li><span class="fl-icon">🏷️</span><div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · JuniorGP · RedBull RookiesCup) filtrano istantaneamente le notizie per classe.</div></li>
+              <li><span class="fl-icon">🖼️</span><div><span class="hl">Miniature dinamiche</span> — ogni card mostra un'anteprima grafica generata automaticamente, con icone, colori e gradienti specifici per la categoria di appartenenza.</div></li>
+              <li><span class="fl-icon">♾️</span><div><span class="hl">Scroll Infinito</span> — le notizie vengono caricate automaticamente in gruppi di 6 man mano che scorri verso il basso, senza dover cliccare alcun pulsante.</div></li>
+              <li><span class="fl-icon">🔢</span><div><span class="hl">Contatore dinamico</span> — un indicatore in alto mostra il numero totale di notizie trovate con i filtri attuali.</div></li>
+              <li><span class="fl-icon">🚫</span><div><span class="hl">Stato "Nessun risultato"</span> — se una ricerca non produce articoli, compare un messaggio chiaro con un pulsante per resettare i filtri con un click.</div></li>
+              <li><span class="fl-icon">🔲</span><div><span class="hl">Modal di lettura</span> — l'articolo si apre in un pannello centrato con sfondo sfocato. Si chiude cliccando fuori, sul pulsante ✕ o premendo <kbd>Esc</kbd>.</div></li>
+            </ul>
+            <div class="note">Questa pagina non ha un link diretto nel menu perché è pensata come <strong>estensione della sezione notizie della Home</strong>. Per tornarci, basta passare dalla Home e cliccare "Vedi tutte le notizie".</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="categorie">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏍️</div>
+            <div>
+              <h2 class="guide-section-title">MotoGP · Moto2 · Moto3</h2>
+              <div class="guide-section-sub">motogp.html · moto2.html · moto3.html</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Ogni categoria ha la sua pagina dedicata. La struttura di base è simile per tutte e tre, ma con contenuti specifici per ogni classe. Ecco cosa trovi all'interno:</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📊</span><div><span class="hl">Hero Statistiche</span> — In cima, i numeri principali della categoria: piloti totali, team, gare stagionali e round conclusi.</div></li>
+              <li><span class="fl-icon">⚡</span><div><span class="hl">Barra Quick Links</span> — Una striscia navigabile sotto l'hero per saltare direttamente a Classifica, Risultati, Calendario, Piloti, Albo d'oro e Stagione.</div></li>
+              <li><span class="fl-icon">ℹ️</span><div><span class="hl">Box Informativo</span> — Un box che spiega le regole base della categoria: sulla pagina MotoGP spiega la <span class="hl">Sprint Race</span> (gara del sabato), su Moto2 spiega il motore unico Triumph e i telai liberi (Kalex, Boscoscuro), su Moto3 spiega i motori 250cc monocilindrici e le gomme Dunlop.</div></li>
+              <li><span class="fl-icon">🗓️</span><div><span class="hl">Banner Prossimo GP</span> — Mostra il round successivo con data e circuito.</div></li>
+              <li><span class="fl-icon">📰</span><div><span class="hl">Layout a Due Colonne</span> — Affianca le notizie di categoria (con tag colorati e pulsante "Mostra altre notizie") alla Top 5 della Classifica Piloti, sempre visibile sulla destra.</div></li>
+              <li><span class="fl-icon">🏗️</span><div><span class="hl">Classifica Costruttori & Punteggi</span> — Sezioni dedicate per vedere i punteggi dei costruttori (o telai in Moto2/Moto3) e una griglia visiva che spiega come vengono assegnati i punti.</div></li>
+              <li><span class="fl-icon">📂</span><div><span class="hl">Team & Piloti (Accordion)</span> — I team sono raggruppati in blocchi cliccabili. Cliccando su un team si espandono le card dei piloti, con badge speciali per sostituti (SOB.) e wildcard.</div></li>
+              <li><span class="fl-icon">🚀</span><div><span class="hl">Talenti in entrata e in uscita</span> — Sezioni dedicate ai giovani piloti: la pagina Moto2 lista i candidati al salto in MotoGP nel 2027, mentre la pagina Moto3 mostra sia i talenti in uscita verso la Moto2, sia i nuovi arrivi dalla Red Bull Rookies Cup e dal FIM JuniorGP.</div></li>
+              <li><span class="fl-icon">⚙️</span><div><span class="hl">Focus Tecnico</span> — In fondo alla pagina, un approfondimento tecnico: la pagina MotoGP spiega le novità regolamentari del 2027 (850cc, abbassatori vietati, Pirelli), la pagina Moto2 descrive le regole attuali e l'aggiornamento Triumph 2027, mentre la pagina Moto3 svela la rivoluzione del 2028 con Yamaha come fornitore unico (moto bicilindrica CP2).</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="piloti">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">👥</div>
+            <div>
+              <h2 class="guide-section-title">Lista Piloti</h2>
+              <div class="guide-section-sub">piloti.html • 90 piloti in griglia</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Tutti i piloti iscritti al Mondiale 2026 in un'unica pagina: <span class="hl">90 piloti totali</span> distribuiti fra MotoGP, Moto2 e Moto3, con wildcard e sostituti gestiti automaticamente nella lista e raggruppati per team.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca per nome</span> — la barra in alto filtra in tempo reale. Nasconde automaticamente i team e le sezioni senza piloti visibili.</div></li>
+              <li><span class="fl-icon">🔴</span><div><span class="hl">Filtro per categoria</span> — i tab in cima (Tutte · MotoGP · Moto2 · Moto3) mostrano solo la classe selezionata. Si attiva in automatico se arrivi dalle pagine di categoria.</div></li>
+              <li><span class="fl-icon">🔢</span><div><span class="hl">Contatore dinamico</span> — un badge in alto aggiorna in tempo reale il numero di piloti visibili (es. "22 / 90 piloti" durante una ricerca).</div></li>
+              <li><span class="fl-icon">📋</span><div><span class="hl">Card dettagliate</span> — Ogni card mostra bandiera e codice nazioni, info sul team/moto, e il <span class="hl">numero di gara</span> del pilota come filigrana sullo sfondo.</div></li>
+              <li><span class="fl-icon">🏷️</span><div><span class="hl">Badge speciali</span> — I piloti hanno tag visivi per identificare i <span class="hl">Rookie</span>, i <span class="hl">Sostituti</span> (SOB.) e le <span class="hl">Wildcard</span>. Se un pilota è infortunato, viene mostrato un avviso con i round saltati.</div></li>
+              <li><span class="fl-icon">👑</span><div><span class="hl">Corona del leader</span> — i leader di classifica di MotoGP, Moto2 e Moto3 hanno la corona 👑 sulla loro card.</div></li>
+              <li><span class="fl-icon">⭐</span><div><span class="hl">Preferiti</span> — Se hai un account, puoi cliccare la stellina sulle card per salvare i tuoi piloti preferiti e ritrovarli rapidamente nel menu utente.</div></li>
+              <li><span class="fl-icon">👤</span><div><span class="hl">Apri scheda pilota</span> — clicca su qualsiasi card (o usa click con il tasto centrale / Ctrl+click) per aprire la pagina dettagliata del pilota.</div></li>
+            </ul>
+            <div class="tip"><strong>💡</strong> Premi <kbd>/</kbd> da qualsiasi pagina del sito per arrivare direttamente qui con il focus sul campo di ricerca.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="pilota">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🧑</div>
+            <div>
+              <h2 class="guide-section-title">Scheda Pilota</h2>
+              <div class="guide-section-sub">pilota.html • Info complete su ogni pilota</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La scheda più ricca del sito. Ogni pilota ha la sua pagina dedicata con foto, statistiche, storico e molto altro.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📸</span><div><span class="hl">Hero Dinamico</span> — Mostra la foto del pilota (con fallback sul numero di gara se l'immagine non è disponibile), il numero gigante in sfondo, i tag con team, moto e punti attuali, e i pulsanti per <span class="hl">Condividere</span> e <span class="hl">Stampare</span> la scheda.</div></li>
+              <li><span class="fl-icon">⚡</span><div><span class="hl">Sintesi Stagione 2026</span> — Una barra rapida con i numeri chiave della stagione in corso: Punti, Posizione in campionato, Vittorie, Podi e Pole.</div></li>
+              <li><span class="fl-icon">📋</span><div><span class="hl">Carriera & Statistiche</span> — Un riquadro con un riassunto testuale della carriera e una griglia con le statistiche totali: Vittorie, Podi, Pole e Gare disputate in carriera.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Palmarès e Titoli</span> — Elenco dei titoli mondiali vinti (con badge colorati per categoria) e tabella dettagliata di tutte le stagioni disputate con anno, classe, posizione finale e punti.</div></li>
+              <li><span class="fl-icon">📈</span><div><span class="hl">Grafico Punti per Stagione</span> — Un grafico a barre (SVG) interattivo che visualizza l'andamento dei punti conquistati dal pilota in ogni stagione della sua carriera.</div></li>
+              <li><span class="fl-icon">🗂️</span><div><span class="hl">Scheda Laterale (Side Card)</span> — Una scheda fissa (sticky) sul lato destro con tutti i dati anagrafici: numero, nazionalità, data e città di nascita, categoria, team, moto, esordio e punti 2026.</div></li>
+              <li><span class="fl-icon">👥</span><div><span class="hl">Piloti vicini in classifica</span> — 4 piloti della stessa categoria con punti simili, cliccabili per passare da una scheda all'altra velocemente.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Grafico punti per round</span> — Barre colorate che mostrano quanti punti ha fatto il pilota in ciascuno dei round 2026 già disputati (gara + sprint per MotoGP).</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="team">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">👥</div>
+            <div>
+              <h2 class="guide-section-title">Team</h2>
+              <div class="guide-section-sub">team.html • Le scuderie del 2026</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina <span class="hl">team.html</span> raccoglie tutte le scuderie del Motomondiale 2026. La struttura è organizzata per offrire una panoramica completa di ogni team, con dati storici, statistiche e informazioni sui piloti.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab per Categorie</span> — Pulsanti in cima (MotoGP, Moto2, Moto3) per filtrare i team. I tab sono <span class="hl">sticky</span> e rimangono fissi durante lo scroll.</div></li>
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca Team</span> — Una barra di ricerca filtra le card dei team per nome in tempo reale.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Layout a Due Colonne</span> — Affianca la griglia dei team a una colonna laterale (sticky) con la <span class="hl">Classifica Squadre</span> aggiornata per la categoria selezionata.</div></li>
+              <li><span class="fl-icon">📋</span><div><span class="hl">Card Dettagliate</span> — Ogni card mostra: nome, sede, storia, statistiche (titoli, vittorie), info sulla moto e l'elenco dei piloti 2026 con numero e bandiera.</div></li>
+              <li><span class="fl-icon">🎨</span><div><span class="hl">Colori Costruttori</span> — Le card hanno un bordo colorato in alto a seconda del costruttore (Ducati, Aprilia, KTM, Yamaha, Honda).</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="classifica">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📊</div>
+            <div>
+              <h2 class="guide-section-title">Classifica</h2>
+              <div class="guide-section-sub">classifica.html • Piloti + Costruttori</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina centrale del sito, con classifiche complete di piloti e costruttori per tutte e tre le categorie.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab categorie</span> — MotoGP · Moto2 · Moto3 · Costruttori. Clicca per passare da una all'altra.</div></li>
+              <li><span class="fl-icon">🏭</span><div><span class="hl">Filtro costruttore</span> — nella colonna sinistra, filtra la classifica per mostrare solo i piloti di un costruttore specifico (es. solo Ducati, solo Aprilia).</div></li>
+              <li><span class="fl-icon">⚖️</span><div><span class="hl">Confronto piloti</span> — seleziona due piloti dai menu a tendina nella colonna sinistra. Il confronto parte automaticamente appena selezioni il secondo. Mostra: posizione, punti, gap dal leader, costruttore, con <span class="hl">barra visiva comparativa</span> e highlight del "vincitore" per ogni metrica. Usa ✕ per resettare.</div></li>
+              <li><span class="fl-icon">🏭</span><div><span class="hl">Classifica costruttori</span> — nel tab Costruttori, ogni marca ha una card con barra di progressione e l'elenco dei piloti. I punteggi sono quelli ufficiali FIM (miglior pilota per costruttore per round, non somma).</div></li>
+              <li><span class="fl-icon">✨</span><div><span class="hl">Animazione entrata</span> — le righe della classifica appaiono con un'animazione slide-in al caricamento.</div></li>
+            </ul>
+            <div class="tip"><strong>💡</strong> Arrivando da <a class="internal-link" href="moto2.html">moto2.html</a> o <a class="internal-link" href="moto3.html">moto3.html</a>, il tab giusto si apre automaticamente.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="junior">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏆</div>
+            <div>
+              <h2 class="guide-section-title">Classifiche Junior & Rookies</h2>
+              <div class="guide-section-sub">classificajrcrcc.html • I campioni del futuro</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Una pagina dedicata interamente ai giovani talenti delle serie propedeutiche. Qui trovi le classifiche aggiornate della <span class="hl">Red Bull MotoGP Rookies Cup</span> e del <span class="hl">FIM MotoJunior World Championship</span> (Moto2, Moto3 e Moto4).</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab per categorie</span> — Passa facilmente tra Rookies Cup, JuniorGP Moto2, Moto3 e Moto4.</div></li>
+              <li><span class="fl-icon">🥇</span><div><span class="hl">Podio Dinamico</span> — Un podio grafico in cima alla pagina evidenzia i primi 3 classificati di ogni categoria con un effetto visivo accattivante.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Barra di Progressione</span> — Mostra a che punto è la stagione per ogni campionato minore.</div></li>
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca Piloti</span> — Un campo di ricerca integrato per filtrare i piloti in tempo reale all'interno della tabella della categoria selezionata.</div></li>
+            </ul>
+            <div class="tip"><strong>💡</strong> Puoi aprire direttamente una categoria specifica aggiungendo l'hash all'URL (es. <kbd>classificajrcrcc.html#jgp_m4</kbd>).</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="risultati">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏁</div>
+            <div>
+              <h2 class="guide-section-title">Risultati</h2>
+              <div class="guide-section-sub">risultati.html • Sessione per sessione</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>I risultati completi di ogni sessione per ogni round disputato. È la pagina più dettagliata del sito, con un'interfaccia ottimizzata per consultare i tempi al volo.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">🗓️</span><div><span class="hl">Seleziona round</span> — i pulsanti in alto (R1, R2, R3...) mostrano i round disponibili. Quello selezionato è evidenziato in rosso.</div></li>
+              <li><span class="fl-icon">🏍️</span><div><span class="hl">Seleziona categoria</span> — tab MotoGP · Moto2 · Moto3 per ogni round.</div></li>
+              <li><span class="fl-icon">📋</span><div><span class="hl">Sessioni</span> — FP (prove libere), Qualifiche Q1+Q2, Sprint (solo MotoGP), Gara. Clicca sulla sessione che vuoi vedere.</div></li>
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca Pilota</span> — All'interno di ogni sessione, una barra di ricerca rapida ti permette di filtrare i piloti per nome, trovando subito i loro tempi e gap.</div></li>
+              <li><span class="fl-icon">🎨</span><div><span class="hl">Evidenziazioni Visive</span> — Il primo tempo (Top Time) è evidenziato, e le righe del podio (1°, 2°, 3°) hanno colori dedicati per distinguere subito i vincitori.</div></li>
+              <li><span class="fl-icon">🎖️</span><div><span class="hl">Qualifiche con Q1→Q2</span> — in Q1, i piloti promossi a Q2 sono evidenziati in arancione con badge "→ Q2" (2 per MotoGP, 4 per Moto2/Moto3).</div></li>
+              <li><span class="fl-icon">🥇</span><div><span class="hl">Medaglie top-3</span> — 🥇🥈🥉 appaiono automaticamente accanto alle prime tre posizioni di ogni classifica.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Sistema Punteggio</span> — Un box laterale mostra sempre come vengono assegnati i punti (Gara e Sprint), con eventuali regole speciali (es. punteggi dimezzati per bandiere rosse).</div></li>
+            </ul>
+            <div class="tip"><strong>💡</strong> Puoi arrivare direttamente a un round specifico cliccando dal calendario o dalle card risultati nelle pagine di categoria. Se arrivi dalla Classifica, troverai un pulsante "Torna alla Classifica" per facilitare la navigazione.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="calendario">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📅</div>
+            <div>
+              <h2 class="guide-section-title">Calendario</h2>
+              <div class="guide-section-sub">calendario.html • 22 round stagionali</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La vista completa della stagione con tutti i 22 round in una tabella. Mostra lo stato di ogni weekend.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📊</span><div><span class="hl">Stats Bar e Barra di Progressione</span> — In cima alla pagina, una barra riassume i numeri della stagione (GP totali, conclusi, in programma) e una barra visiva mostra l'avanzamento del campionato.</div></li>
+              <li><span class="fl-icon">⚡</span><div><span class="hl">Next Race Card</span> — Un box dedicato al prossimo GP che include un <span class="hl">countdown in tempo reale</span> e un pulsante per <span class="hl">aggiungere l'evento al Google Calendar</span>.</div></li>
+              <li><span class="fl-icon">✅</span><div><span class="hl">Round completati</span> — click porta direttamente ai risultati di quel weekend. Inoltre, i nomi dei vincitori di MotoGP, Moto2 e Moto3 vengono mostrati direttamente nella riga.</div></li>
+              <li><span class="fl-icon">🟡</span><div><span class="hl">Prossimo round</span> — evidenziato con sfondo giallo, il numero del round pulsa con un'animazione.</div></li>
+              <li><span class="fl-icon">🔮</span><div><span class="hl">Round futuri</span> — click apre un popup elegante con nome del GP, data e bandiera. Non naviga a pagine vuote.</div></li>
+              <li><span class="fl-icon">🗂️</span><div><span class="hl">Filtro Calendario</span> — Un menu a tendina permette di filtrare i round per stato (Conclusi, Prossimo, In programma) o per mese.</div></li>
+              <li><span class="fl-icon">🗺️</span><div><span class="hl">Anteprima Circuito</span> — ogni riga mostra l'anteprima del tracciato, la data e lo stato del weekend.</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="stagione">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📈</div>
+            <div>
+              <h2 class="guide-section-title">Riepilogo Stagione</h2>
+              <div class="guide-section-sub">stagione.html • Panoramica statistica</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Una vista d'insieme sulla stagione 2026 con statistiche aggregate, vincitori per round e tendenze. La pagina è arricchita da elementi visivi dinamici per analizzare al meglio l'andamento del campionato.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📊</span><div><span class="hl">Dashboard Leader</span> — In cima, tre cerchi colorati mostrano i leader mondiali di MotoGP, Moto2 e Moto3 con i loro punti, affiancati da una barra di progressione della stagione.</div></li>
+              <li><span class="fl-icon">⚔️</span><div><span class="hl">Battaglia per il Titolo</span> — Card dedicate che evidenziano il gap esatto tra il 1° e il 2° classificato per ogni categoria.</div></li>
+              <li><span class="fl-icon">📋</span><div><span class="hl">Top 5 Affiancate</span> — Le classifiche dei primi 5 piloti di MotoGP, Moto2 e Moto3 mostrate in tabelle side-by-side per un confronto rapido.</div></li>
+              <li><span class="fl-icon">🔥</span><div><span class="hl">Piloti in Forma</span> — Card che mostrano i vincitori dell'ultimo round disputato, uno per categoria.</div></li>
+              <li><span class="fl-icon">📈</span><div><span class="hl">Grafici Vittorie</span> — Barre orizzontali che mostrano il numero di vittorie per pilota e per costruttore. Per il MotoGP è presente anche il grafico delle vittorie della Sprint Race.</div></li>
+              <li><span class="fl-icon">⏳</span><div><span class="hl">Timeline Vincitori</span> — Una striscia orizzontale scorrevole che ripercorre tutti i round disputati, mostrando il vincitore di ogni GP. Cliccando su una card, si salta direttamente ai risultati di quel round.</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="albo">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏆</div>
+            <div>
+              <h2 class="guide-section-title">Albo d'Oro</h2>
+              <div class="guide-section-sub">albo_doro.html • Dal 1949 al 2026</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina storica del Motomondiale, con tutti i campioni del mondo dalla prima edizione del 1949 fino a oggi.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab Categorie</span> — Sette tab per esplorare le classi attuali (MotoGP, Moto2, Moto3) e storiche (500cc, 250cc, 125cc, 350cc, 50cc, 80cc, Sidecar).</div></li>
+              <li><span class="fl-icon">📜</span><div><span class="hl">Layout a Due Colonne</span> — Le tabelle sono divise in "Era Classica" ed "Era Moderna" per leggere comodamente la storia delle categorie.</div></li>
+              <li><span class="fl-icon">📅</span><div><span class="hl">Filtro per Decadi</span> — Una striscia di pulsanti in alto permette di filtrare i campioni per decennio (es. Anni '70, Anni 2010, ecc.).</div></li>
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Sidebar di Ricerca</span> — Una barra di ricerca fissa sul lato filtra i risultati per nome pilota o anno. Le righe trovate vengono evidenziate in rosso e il contatore in tempo reale mostra il numero di risultati.</div></li>
+              <li><span class="fl-icon">👑</span><div><span class="hl">Top 5 Dominatori</span> — Un widget dinamico nella sidebar calcola e mostra in tempo reale i 5 piloti con più titoli nella categoria e nel decennio selezionati, tramite barre di progressione.</div></li>
+              <li><span class="fl-icon">📊</span><div><span class="hl">Widget Statistiche</span> — Mostra il numero totale di campioni per ogni categoria e gli anni coperti.</div></li>
+            </ul>
+            <div class="tip"><strong>💡</strong> Cerca "Agostini" per vedere tutti i suoi titoli storici, oppure usa il filtro "Anni '90" per viaggiare nella memoria del Motomondiale.</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="prediction">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🧠</div>
+            <div>
+              <h2 class="guide-section-title">Prediction</h2>
+              <div class="guide-section-sub">prediction.html • Pronostici GP</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina Prediction ti permette di fare i tuoi pronostici sui Gran Premi rimanenti, selezionando il vincitore per ogni categoria. È una stanza dedicata al tifo, senza scommesse reali, dove i tuoi pronostici vengono salvati nel browser.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📊</span><div><span class="hl">Dashboard Iniziale</span> — In cima, card riepilogative mostrano i leader attuali di MotoGP, Moto2 e Moto3, insieme al conteggio dei round rimanenti e di quelli già disputati.</div></li>
+              <li><span class="fl-icon">📑</span><div><span class="hl">Accordion per Round</span> — Ogni Gran Premio futuro è un blocco espandibile che mostra circuito, data e stato (Prossimo GP / In programma).</div></li>
+              <li><span class="fl-icon">🎯</span><div><span class="hl">Selettore Vincitore</span> — Per ogni round, tre menu a tendina permettono di scegliere il vincitore per MotoGP, Moto2 e Moto3.</div></li>
+              <li><span class="fl-icon">🔄</span><div><span class="hl">Smart Entry List</span> — La lista dei piloti nei menu è generata dinamicamente: esclude gli assenti per infortunio in quel specifico round e include solo i sostituti e le wildcard previste. Non vedrai mai piloti non in griglia!</div></li>
+              <li><span class="fl-icon">🎲</span><div><span class="hl">Generatore Casuale</span> — Un pulsante "Casuale" riempie automaticamente i pronostici di un round con piloti scelti a caso tra quelli disponibili.</div></li>
+              <li><span class="fl-icon">👤</span><div><span class="hl">Il tuo Favorito</span> — Il pannello laterale "Le tue giocate" calcola dinamicamente e mostra in evidenza il pilota a cui hai assegnato più vittorie nei tuoi pronostici salvati.</div></li>
+              <li><span class="fl-icon">💾</span><div><span class="hl">Salvataggio Globale</span> — Puoi salvare i pronostici GP per GP o tutti insieme con il pulsante "Salva tutto". I dati restano salvati nel browser.</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="stats">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">📊</div>
+            <div>
+              <h2 class="guide-section-title">Statistiche</h2>
+              <div class="guide-section-sub">stats.html • Dati e grafici stagionali</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina Statistiche raccoglie numeri, grafici e record della stagione 2026, aggiornati dopo ogni round. Offre un'analisi visiva approfondita delle prestazioni.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab Categorie</span> — In cima alla pagina, i tab permettono di filtrare le statistiche per MotoGP, Moto2 o Moto3. Tutti i grafici sottostanti si aggiornano dinamicamente in base alla scelta.</div></li>
+              <li><span class="fl-icon">⚔️</span><div><span class="hl">Head-to-Head</span> — Una card dedicata mette a confronto diretto il Leader Mondiale e il suo inseguitore, mostrando i punti e una barra visiva del divario.</div></li>
+              <li><span class="fl-icon">🎯</span><div><span class="hl">Indice di Dominanza</span> — Un gauge grafico (SVG) calcola la percentuale di scarto tra il 1° e il 2° classificato, definendo lo stato del campionato (es. "Battaglia Aperta", "Dominio Chiaro", "Stagione Monopolio").</div></li>
+              <li><span class="fl-icon">🔢</span><div><span class="hl">Numeri chiave</span> — Card riepilogative con round disputati, gare completate, punti leader delle tre categorie e nazioni rappresentate.</div></li>
+              <li><span class="fl-icon">📈</span><div><span class="hl">Andamento punti</span> — Grafico a linee SVG interattivo che mostra l'evoluzione dei punti per i top 5 piloti della categoria selezionata, round per round.</div></li>
+              <li><span class="fl-icon">🏭</span><div><span class="hl">Classifica Costruttori</span> — Punteggi dei costruttori (o telai per Moto2/Moto3) visualizzati con barre di progressione comparative.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Record stagione</span> — Vittorie consecutive, pole position, punteggio massimo in un round e numero di podi.</div></li>
+              <li><span class="fl-icon">🌍</span><div><span class="hl">Vittorie per nazione</span> — Distribuzione geografica delle vittorie stagionali divise per bandiera.</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="circuiti">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🏁</div>
+            <div>
+              <h2 class="guide-section-title">Circuiti</h2>
+              <div class="guide-section-sub">circuiti.html • Tracciati, Ricerca e Albo d'oro</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina <span class="hl">circuiti.html</span> raccoglie tutti i 22 tracciati del calendario 2026. Ogni circuito ha la sua scheda dedicata con dati tecnici, risultati e storico.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca e Filtri</span> — Una barra di ricerca filtra i circuiti per nome, paese o città in tempo reale. Pulsanti laterali permettono di filtrare per continente (Europa, Asia, Americhe, Oceania) e di ordinarli per lunghezza o numero di curve.</div></li>
+              <li><span class="fl-icon">🚀</span><div><span class="hl">Quick Jump Strip</span> — Una striscia orizzontale scorrevole in cima mostra le bandiere di tutti i GP. Cliccando su una, si salta direttamente alla scheda del circuito corrispondente con un'animazione di evidenziazione.</div></li>
+              <li><span class="fl-icon">🏁</span><div><span class="hl">Badge Stato Gara</span> — Ogni card mostra un badge che indica se la gara è stata "Completata", è il "Prossimo GP" o è "In programma".</div></li>
+              <li><span class="fl-icon">🗺️</span><div><span class="hl">Mappa e Dati tecnici</span> — Ogni card mostra il layout del tracciato (con effetto zoom al passaggio del mouse), lunghezza, numero di curve e record del giro.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Risultati e Albo d'oro</span> — All'interno di ogni card, un riquadro mostra i podi del 2026 (MotoGP, Moto2, Moto3) e l'elenco dei vincitori MotoGP delle edizioni precedenti.</div></li>
+              <li><span class="fl-icon">📖</span><div><span class="hl">Storia</span> — Una breve descrizione storica del circuito, dalla sua inaugurazione alle caratteristiche tecniche.</div></li>
+            </ul>
+            <div class="tip"><strong>💡 Suggerimento:</strong> Usa i filtri per continente per scoprire quali tracciati si trovano in una specifica area del mondo!</div>
+          </div>
+        </section>
+
+        <section class="guide-section" id="shortcuts">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">⌨️</div>
+            <div>
+              <h2 class="guide-section-title">Scorciatoie da Tastiera</h2>
+              <div class="guide-section-sub">Navigazione veloce</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Il sito supporta scorciatoie da tastiera per navigare senza mouse. Non si attivano se stai scrivendo in un campo di testo.</p>
+            <table class="kbd-table">
+              <thead>
+                <tr>
+                  <th scope="col">Tasto</th>
+                  <th scope="col">Azione</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><kbd>Ctrl</kbd> + <kbd>K</kbd></td><td>Apre la <strong>Ricerca Globale</strong> per trovare pagine e GP</td></tr>
+                <tr><td><kbd>/</kbd></td><td>Apre <strong>Lista Piloti</strong> con focus sulla ricerca</td></tr>
+                <tr><td><kbd>M</kbd></td><td>Vai a <strong>MotoGP</strong></td></tr>
+                <tr><td><kbd>2</kbd></td><td>Vai a <strong>Moto2</strong></td></tr>
+                <tr><td><kbd>3</kbd></td><td>Vai a <strong>Moto3</strong></td></tr>
+                <tr><td><kbd>C</kbd></td><td>Vai a <strong>Classifica</strong></td></tr>
+                <tr><td><kbd>R</kbd></td><td>Vai a <strong>Risultati</strong></td></tr>
+                <tr><td><kbd>P</kbd></td><td>Vai a <strong>Piloti</strong></td></tr>
+                <tr><td><kbd>H</kbd></td><td>Vai a <strong>Home</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="guide-section" id="tema">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🌙</div>
+            <div>
+              <h2 class="guide-section-title">Tema Scuro / Chiaro</h2>
+              <div class="guide-section-sub">Personalizzazione visiva</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Il sito è progettato principalmente in <span class="hl">tema scuro</span>, ma supporta anche il tema chiaro. Il passaggio è coerente su tutte le pagine e preserva leggibilità di hero, menu e card.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">☀️</span><div>Clicca il pulsante <kbd>☀️</kbd> / <kbd>🌙</kbd> nell'header per passare da un tema all'altro.</div></li>
+              <li><span class="fl-icon">💾</span><div>La preferenza viene <span class="hl">salvata nel browser</span> e ricordata alla visita successiva.</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="aggiornamenti">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🔄</div>
+            <div>
+              <h2 class="guide-section-title">Come vengono aggiornati i dati</h2>
+              <div class="guide-section-sub">Frequenza • Fonti</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>Il sito è <span class="hl">statico</span> — non ha un backend o un database. I dati vengono aggiornati manualmente dopo ogni round del campionato.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📅</span><div><span class="hl">Dopo ogni gara</span> — classifiche piloti e costruttori, risultati sessioni, statistiche stagione.</div></li>
+              <li><span class="fl-icon">📰</span><div><span class="hl">Notizie</span> — aggiunte manualmente con articoli sulle gare e aggiornamenti di paddock.</div></li>
+              <li><span class="fl-icon">ℹ️</span><div>Attualmente i dati sono aggiornati dopo il <span class="hl">Round 11 — GP Germania (Sachsenring)</span>. I prossimi aggiornamenti seguiranno il calendario ufficiale del mondiale.</div></li>
+            </ul>
+            <div class="note">Il sito è un progetto amatoriale, non affiliato a Dorna Sports o al Campionato Mondiale FIM.</div>
+          </div>
+        </section>
+
+      </div><!-- /guide-content -->
+    </div><!-- /guide-layout -->
+  </main>
 </div>
 
-<!-- TEAM -->
-<div class="guide-section" id="team">
-<div class="guide-section-header">
-<div class="guide-icon">👥</div>
-<div>
-<div class="guide-section-title">Team</div>
-<div class="guide-section-sub">Le scuderie • Moto e piloti</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina <span class="hl">team.html</span> raccoglie tutte le scuderie del Motomondiale 2026 in una scheda dedicata, con una navigazione pensata per leggere rapidamente i dati principali di ogni struttura. L'obiettivo è mostrare, per ogni team, il collegamento con la categoria di appartenenza, i piloti associati e le informazioni utili per orientarsi nel campionato.</p>
-<p>In questa pagina trovi le scuderie organizzate in modo ordinato e coerente con le altre sezioni del sito: puoi confrontare i team, leggere la composizione della griglia e passare facilmente alle pagine collegate senza perdere il contesto della categoria.</p>
-<div class="tip"><strong>💡 Suggerimento:</strong> la pagina Team è utile soprattutto per capire come si distribuiscono i piloti nelle tre categorie e per collegare rapidamente una squadra ai suoi risultati e alle schede pilota.</div>
-</div>
-</div>
-
-<!-- CLASSIFICA -->
-<div class="guide-section" id="classifica">
-<div class="guide-section-header">
-<div class="guide-icon">📊</div>
-<div>
-<div class="guide-section-title">Classifica</div>
-<div class="guide-section-sub">classifica.html • Piloti + Costruttori</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina centrale del sito, con classifiche complete di piloti e costruttori per tutte e tre le
-                categorie.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">📑</span>
-<div><span class="hl">Tab categorie</span> — MotoGP · Moto2 · Moto3 · Costruttori. Clicca per passare
-                    da una all'altra.</div>
-</li>
-<li><span class="fl-icon">🏭</span>
-<div><span class="hl">Filtro costruttore</span> — nella colonna sinistra, filtra la classifica per
-                    mostrare solo i piloti di un costruttore specifico (es. solo Ducati, solo Aprilia).</div>
-</li>
-<li><span class="fl-icon">⚖️</span>
-<div><span class="hl">Confronto piloti</span> — seleziona due piloti dai menu a tendina nella colonna
-                    sinistra. Il confronto parte automaticamente appena selezioni il secondo. Mostra: posizione, punti,
-                    gap dal leader, costruttore, con <span class="hl">barra visiva comparativa</span> e highlight del
-                    "vincitore" per ogni metrica. Usa ✕ per resettare.</div>
-</li>
-<li><span class="fl-icon">🏭</span>
-<div><span class="hl">Classifica costruttori</span> — nel tab Costruttori, ogni marca ha una card con
-                    barra di progressione e l'elenco dei piloti. I punteggi sono quelli ufficiali FIM (miglior pilota
-                    per costruttore per round, non somma).</div>
-</li>
-<li><span class="fl-icon">✨</span>
-<div><span class="hl">Animazione entrata</span> — le righe della classifica appaiono con un'animazione
-                    slide-in al caricamento.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> Arrivando da <a class="internal-link" href="moto2.html">moto2.html</a> o <a class="internal-link" href="moto3.html">moto3.html</a>, il
-                tab giusto si apre automaticamente.</div>
-</div>
-</div>
-<!-- RISULTATI -->
-<div class="guide-section" id="risultati">
-<div class="guide-section-header">
-<div class="guide-icon">🏁</div>
-<div>
-<div class="guide-section-title">Risultati</div>
-<div class="guide-section-sub">risultati.html • Sessione per sessione</div>
-</div>
-</div>
-<div class="guide-body">
-<p>I risultati completi di ogni sessione per ogni round disputato. È la pagina più dettagliata del sito.
-              </p>
-<ul class="feature-list">
-<li><span class="fl-icon">🗓️</span>
-<div><span class="hl">Seleziona round</span> — i pulsanti in alto (R1, R2, R3...) mostrano i round
-                    disponibili. Quello selezionato è evidenziato in rosso.</div>
-</li>
-<li><span class="fl-icon">🏍️</span>
-<div><span class="hl">Seleziona categoria</span> — tab MotoGP · Moto2 · Moto3 per ogni round.</div>
-</li>
-<li><span class="fl-icon">📋</span>
-<div><span class="hl">Sessioni</span> — FP (prove libere), Qualifiche Q1+Q2, Sprint (solo MotoGP),
-                    Gara. Clicca sulla sessione che vuoi vedere.</div>
-</li>
-<li><span class="fl-icon">🎖️</span>
-<div><span class="hl">Qualifiche con Q1→Q2</span> — in Q1, i piloti promossi a Q2 sono evidenziati in
-                    arancione con badge "→ Q2" (2 per MotoGP, 4 per Moto2/Moto3).</div>
-</li>
-<li><span class="fl-icon">🥇</span>
-<div><span class="hl">Medaglie top-3</span> — 🥇🥈🥉 appaiono automaticamente accanto alle prime tre
-                    posizioni di ogni classifica.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> Puoi arrivare direttamente a un round specifico cliccando dal
-                calendario o dalle card risultati nelle pagine di categoria.</div>
-</div>
-</div>
-<!-- CALENDARIO -->
-<div class="guide-section" id="calendario">
-<div class="guide-section-header">
-<div class="guide-icon">📅</div>
-<div>
-<div class="guide-section-title">Calendario</div>
-<div class="guide-section-sub">calendario.html • 22 round stagionali</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La vista completa della stagione con tutti i 22 round in una tabella. Mostra lo stato di ogni weekend.
-              </p>
-<ul class="feature-list">
-<li><span class="fl-icon">✅</span>
-<div><span class="hl">Round completati</span> — click porta direttamente ai risultati di quel weekend.
-                  </div>
-</li>
-<li><span class="fl-icon">🟡</span>
-<div><span class="hl">Prossimo round</span> — evidenziato con sfondo giallo, il numero del round pulsa
-                    con un'animazione. È il Round 11 — GP Gran Bretagna · Silverstone.</div>
-</li>
-<li><span class="fl-icon">🔮</span>
-<div><span class="hl">Round futuri</span> — click apre un popup elegante con nome del GP, data e
-                    bandiera. Non naviga a pagine vuote.</div>
-</li>
-<li><span class="fl-icon">📊</span>
-<div><span class="hl">Informazioni circuito</span> — ogni riga mostra l'anteprima del tracciato, la
-                    data e lo stato del weekend.</div>
-</li>
-</ul>
-</div>
-</div>
-<!-- STAGIONE -->
-<div class="guide-section" id="stagione">
-<div class="guide-section-header">
-<div class="guide-icon">📈</div>
-<div>
-<div class="guide-section-title">Riepilogo Stagione</div>
-<div class="guide-section-sub">stagione.html • Panoramica statistica</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Una vista d'insieme sulla stagione 2026 con statistiche aggregate, vincitori per round e tendenze.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🔥</span>
-<div><span class="hl">Piloti in forma</span> — chi ha fatto meglio nell'ultimo round (ex. GP USA R3):
-                    Bezzecchi vincitore gara MotoGP (25 pt), Martín migliore del weekend (32 pt con sprint+gara), Agius
-                    Moto2 (25 pt), Pini Moto3 (25 pt).</div>
-</li>
-<li><span class="fl-icon">📊</span>
-<div><span class="hl">Panoramica</span> — round disputati, leader delle tre categorie, statistiche
-                    aggregate (vittorie, podi, pole) aggiornate.</div>
-</li>
-<li><span class="fl-icon">🏆</span>
-<div><span class="hl">Vincitori per round</span> — chi ha vinto ogni gara in ogni categoria, round per
-                    round.</div>
-</li>
-</ul>
-</div>
-</div>
-<!-- ALBO D'ORO -->
-<div class="guide-section" id="albo">
-<div class="guide-section-header">
-<div class="guide-icon">🏆</div>
-<div>
-<div class="guide-section-title">Albo d'Oro</div>
-<div class="guide-section-sub">albo_doro.html • Dal 2000 al 2026</div>
-</div>
-</div>
-<div class="guide-body">
-<p>I campioni del Mondo di MotoGP, Moto2 e Moto3 (e 250cc/125cc) dal 2000 a oggi.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🔍</span>
-<div><span class="hl">Ricerca</span> — digita un nome di pilota o un anno nel campo in cima. Le righe
-                    che non corrispondono scompaiono, quelle trovate vengono evidenziate. Usa ✕ per resettare.</div>
-</li>
-<li><span class="fl-icon">📋</span>
-<div><span class="hl">Tabelle per categoria</span> — MotoGP/500cc, 250cc/Moto2, 125cc/Moto3 in sezioni
-                    separate.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> Cerca "Rossi" per vedere tutti i titoli di Valentino Rossi, o "2025"
-                per vedere chi vinse quell'anno in tutte le categorie.</div>
-</div>
-</div>
-<!-- PREDICTION -->
-<div class="guide-section" id="prediction">
-<div class="guide-section-header">
-<div class="guide-icon">🧠</div>
-<div>
-<div class="guide-section-title">Prediction</div>
-<div class="guide-section-sub">prediction.html • Pronostici GP</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina Prediction ti permette di fare i tuoi pronostici sui Gran Premi futuri prima che inizino, con le entry list complete e aggiornate.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🏍️</span>
-<div><span class="hl">Seleziona categoria</span> — scegli MotoGP, Moto2 o Moto3 con i tab in cima. La lista piloti si aggiorna in tempo reale.</div>
-</li>
-<li><span class="fl-icon">🎯</span>
-<div><span class="hl">Pronostica il podio</span> — trascina o seleziona i piloti per i quali vuoi fare il pronostico: 1°, 2° e 3° posto.</div>
-</li>
-<li><span class="fl-icon">🔄</span>
-<div><span class="hl">Filtri automatici</span> — assenze per infortunio, wildcard e sostituti vengono gestiti automaticamente: vedi solo i piloti effettivamente in griglia.</div>
-</li>
-<li><span class="fl-icon">💾</span>
-<div><span class="hl">Salvataggio locale</span> — i tuoi pronostici vengono salvati nel browser e sono disponibili anche alla visita successiva.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> La pagina Prediction mostra solo i round futuri — una volta disputata la gara, il round scompare dalla lista.</div>
-</div>
-</div>
-<!-- STATISTICHE -->
-<div class="guide-section" id="stats">
-<div class="guide-section-header">
-<div class="guide-icon">📊</div>
-<div>
-<div class="guide-section-title">Statistiche</div>
-<div class="guide-section-sub">stats.html • Dati e grafici stagionali</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina Statistiche raccoglie numeri, grafici e record della stagione 2026, aggiornati dopo ogni round.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🔢</span>
-<div><span class="hl">Numeri chiave</span> — round disputati, gare completate, punti leader delle tre categorie e numero di vincitori diversi in MotoGP.</div>
-</li>
-<li><span class="fl-icon">📈</span>
-<div><span class="hl">Andamento punti</span> — grafico visivo con l'evoluzione dei punti per i top 5 MotoGP, round per round.</div>
-</li>
-<li><span class="fl-icon">🏭</span>
-<div><span class="hl">Classifica Costruttori</span> — punteggi ufficiali FIM con barre comparative per ogni marca.</div>
-</li>
-<li><span class="fl-icon">🥊</span>
-<div><span class="hl">Top piloti per categoria</span> — i migliori piloti di MotoGP, Moto2 e Moto3 con statistiche aggregate di vittorie, podi e pole.</div>
-</li>
-<li><span class="fl-icon">🏆</span>
-<div><span class="hl">Record stagione</span> — vittorie consecutive, pole position, punteggio massimo in un round, giri consecutivi in testa e classifica più serrata.</div>
-</li>
-<li><span class="fl-icon">🌍</span>
-<div><span class="hl">Vittorie per nazione</span> — distribuzione geografica delle vittorie stagionali divise per bandiera.</div>
-</li>
-</ul>
-<div class="tip"><strong>💡</strong> Arrivando da qualsiasi pagina del sito, il bottone "← Torna a [pagina]" compare automaticamente sotto il titolo per tornare indietro con un click.</div>
-</div>
-</div>
-<!-- CIRCUITI (MODIFICATA CON VIDEO ONBOARD) -->
-<div class="guide-section" id="circuiti">
-<div class="guide-section-header">
-<div class="guide-icon">🏁</div>
-<div>
-<div class="guide-section-title">Circuiti</div>
-<div class="guide-section-sub">circuiti.html • Tracciati e Onboard</div>
-</div>
-</div>
-<div class="guide-body">
-<p>La pagina <span class="hl">circuiti.html</span> raccoglie tutti i tracciati del calendario 2026. Ogni circuito ha la sua scheda dedicata con dati tecnici e storici.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">🗺️</span><div><span class="hl">Mappa e Layout</span> — Schema del tracciato con settori e curve chiave.</div></li>
-<li><span class="fl-icon">📏</span><div><span class="hl">Dati tecnici</span> — Lunghezza, numero di curve, senso di marcia e record del circuito.</div></li>
-<li><span class="fl-icon">🎥</span><div><span class="hl">Video Onboard</span> — <strong>Novità assoluta:</strong> per ogni circuito è disponibile un video del tracciato! Puoi rivivere un giro completo dalla prospettiva del pilota per capire il ritmo, le frenate e le curvature esatte di ogni tracciato del campionato.</div></li>
-<li><span class="fl-icon">🏆</span><div><span class="hl">Albo d'oro del tracciato</span> — I vincitori delle edizioni passate di quel specifico GP.</div></li>
-</ul>
-<div class="tip"><strong>💡 Suggerimento:</strong> I video sono il modo migliore per studiare un tracciato. Attiva l'audio per sentire il rombo del motore e le marce inserite in curva!</div>
-</div>
-</div>
-<!-- SCORCIATOIE -->
-<div class="guide-section" id="shortcuts">
-<div class="guide-section-header">
-<div class="guide-icon">⌨️</div>
-<div>
-<div class="guide-section-title">Scorciatoie da Tastiera</div>
-<div class="guide-section-sub">Navigazione veloce</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Il sito supporta scorciatoie da tastiera per navigare senza mouse. Non si attivano se stai scrivendo in un campo di testo.</p>
-<table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;">
-<thead>
-<tr style="border-bottom:2px solid var(--border);">
-<th style="text-align:left;padding:.5rem .7rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Tasto</th>
-<th style="text-align:left;padding:.5rem .7rem;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Azione</th>
-</tr>
-</thead>
-<tbody>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>/</kbd></td>
-<td style="padding:.55rem .7rem;">Apre <strong>Lista Piloti</strong> con focus sulla ricerca</td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>M</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>MotoGP</strong></td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>2</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Moto2</strong></td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>3</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Moto3</strong></td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>C</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Classifica</strong></td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>R</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Risultati</strong></td>
-</tr>
-<tr style="border-bottom:1px solid var(--border);">
-<td style="padding:.55rem .7rem;"><kbd>P</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Piloti</strong></td>
-</tr>
-<tr>
-<td style="padding:.55rem .7rem;"><kbd>H</kbd></td>
-<td style="padding:.55rem .7rem;">Vai a <strong>Home</strong></td>
-</tr>
-</tbody>
-</table>
-<div class="tip">
-                💡 Quando premi una scorciatoia, compare un toast <span style="background:#222;color:#fff;padding:.1rem .5rem;border-radius:20px;font-size:.82rem;">⌨️ → MotoGP</span> che conferma la navigazione prima di spostarti.
-              </div>
-</div>
-</div>
-<!-- NUOVE FUNZIONALITÀ -->
-<div class="guide-section" id="novita">
-<div class="guide-section-header">
-<div class="guide-icon">✨</div>
-<div>
-<div class="guide-section-title">Novità e Funzionalità Extra</div>
-<div class="guide-section-sub">Aggiunte recenti</div>
-</div>
-</div>
-<div class="guide-body">
-<ul class="feature-list">
-<li>
-<span class="fl-icon">🔙</span>
-<div>
-<strong>Bottone "Torna indietro"</strong> — compare in tutte le pagine sotto la hero e riporta subito alla pagina precedente.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">👤</span>
-<div>
-<strong>Account e preferiti</strong> — login locale, avatar in alto a destra e piloti preferiti salvati nel browser.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">🧠</span>
-<div>
-<strong>Prediction</strong> — pronostici sui GP futuri con entry list completa e filtraggio automatico per assenze, wildcard e sostituti.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">📊</span>
-<div>
-<strong>Statistics</strong> — grafici, record, classifica costruttori e confronto rapido tra i piloti.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">✨</span>
-<div>
-<strong>Animazioni fade-in</strong> — card, sezioni e box entrano con una dissolvenza leggera mentre scorri la pagina.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">🌙</span>
-<div>
-<strong>Transizione tema fluida</strong> — il passaggio tra tema scuro e chiaro resta uniforme su hero, navbar e contenuti.
-                  </div>
-</li>
-<li>
-<span class="fl-icon">📱</span>
-<div>
-<strong>PWA installabile</strong> — il sito si può aggiungere alla schermata home e funziona anche offline dopo la prima visita.
-                  </div>
-</li>
-</ul>
-</div>
-</div>
-<!-- TEMA -->
-<!-- TEMA -->
-<div class="guide-section" id="tema">
-<div class="guide-section-header">
-<div class="guide-icon">🌙</div>
-<div>
-<div class="guide-section-title">Tema Scuro / Chiaro</div>
-<div class="guide-section-sub">Personalizzazione visiva</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Il sito è progettato principalmente in <span class="hl">tema scuro</span>, ma supporta anche il tema
-                chiaro. Il passaggio è coerente su tutte le pagine e preserva leggibilità di hero, menu e card.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">☀️</span>
-<div>Clicca il pulsante <kbd>☀️</kbd> / <kbd>🌙</kbd> nell'header per passare da un tema all'altro.
-                  </div>
-</li>
-<li><span class="fl-icon">💾</span>
-<div>La preferenza viene <span class="hl">salvata nel browser</span> e ricordata alla visita
-                    successiva.</div>
-</li>
-</ul>
-</div>
-</div>
-<!-- AGGIORNAMENTI -->
-<div class="guide-section" id="aggiornamenti">
-<div class="guide-section-header">
-<div class="guide-icon">🔄</div>
-<div>
-<div class="guide-section-title">Come vengono aggiornati i dati</div>
-<div class="guide-section-sub">Frequenza • Fonti</div>
-</div>
-</div>
-<div class="guide-body">
-<p>Il sito è <span class="hl">statico</span> — non ha un backend o un database. I dati vengono aggiornati
-                manualmente dopo ogni round del campionato.</p>
-<ul class="feature-list">
-<li><span class="fl-icon">📅</span>
-<div><span class="hl">Dopo ogni gara</span> — classifiche piloti e costruttori, risultati sessioni,
-                    statistiche stagione.</div>
-</li>
-<li><span class="fl-icon">📰</span>
-<div><span class="hl">Notizie</span> — aggiunte manualmente con articoli sulle gare e aggiornamenti di
-                    paddock.</div>
-</li>
-<li><span class="fl-icon">ℹ️</span>
-<div>Attualmente i dati sono aggiornati dopo il <span class="hl">Round 11 — GP Germania (Sachsenring)</span>. I prossimi aggiornamenti seguiranno il calendario ufficiale del mondiale.</div>
-</li>
-</ul>
-<div class="note">Il sito è un progetto amatoriale, non affiliato a Dorna Sports o al Campionato Mondiale
-                FIM.</div>
-</div>
-</div>
-</div><!-- /guide-content -->
-</div><!-- /guide-layout -->
-</main>
-</div>
 <footer>
-<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Risultati ufficiali — aggiornati al Round 11</p>
-<div class="socials">
-<a href="#">📸 Instagram</a>
-<a href="#">🐦 X / Twitter</a>
-<a href="#">▶️ YouTube</a>
-<a href="#">📘 Facebook</a>
-</div>
-<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+  <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+  <p>Risultati ufficiali — aggiornati al Round 11</p>
+  <div class="socials">
+    <a href="#" rel="noopener">📸 Instagram</a>
+    <a href="#" rel="noopener">🐦 X / Twitter</a>
+    <a href="#" rel="noopener">▶️ YouTube</a>
+    <a href="#" rel="noopener">📘 Facebook</a>
+  </div>
+  <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
 </footer>
-<button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script>
-    // Dark/light mode
-    function initTheme() {
-      const saved = localStorage.getItem('moto2026-theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', saved);
-      const ic = document.getElementById('theme-icon');
-      if (ic) ic.textContent = saved === 'dark' ? '☀️' : '🌙';
-    }
-    function toggleTheme() {
-      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
-      const next = cur === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('moto2026-theme', next);
-      const ic = document.getElementById('theme-icon');
-      if (ic) ic.textContent = next === 'dark' ? '☀️' : '🌙';
-    }
-    initTheme();
 
-    // Scroll top
-    window.addEventListener('scroll', () => {
-      const b = document.getElementById('scroll-top-btn');
-      if (b) b.classList.toggle('visible', scrollY > 400);
+<button aria-label="Torna in cima" id="scroll-top-btn">↑</button>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-overlay" role="dialog" aria-modal="true">
+  <div class="auth-modal">
+    <button class="auth-close" id="auth-close" aria-label="Chiudi">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-field">
+      <label for="auth-username">Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
+    </div>
+    <div class="auth-field">
+      <label for="auth-password">Password</label>
+      <input autocomplete="current-password" id="auth-password" placeholder="••••••••" type="password"/>
+    </div>
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label for="auth-confirm">Conferma password</label>
+      <input id="auth-confirm" placeholder="••••••••" type="password"/>
+    </div>
+    <button class="auth-submit" id="auth-submit-btn">Accedi</button>
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a id="auth-switch-link">Registrati</a>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIO PLAYER -->
+<div id="audio-player-widget">
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" style="flex:1;background:var(--red);color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;">
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;">
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // === THEME TOGGLE ===
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const savedTheme = localStorage.getItem('moto2026-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('moto2026-theme', nextTheme);
+        themeIcon.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
     });
 
-    // TOC active link on scroll
+    // === MOBILE MENU ===
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // === SCROLL TO TOP ===
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // === TOC LOGIC ===
+    const toc = document.getElementById('toc');
+    const tocHeader = document.getElementById('toc-header');
+    // Solo mobile chiude il TOC, su desktop rimane aperto
+    if (window.innerWidth <= 900) {
+        toc.classList.add('collapsed');
+    }
+    tocHeader.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+            toc.classList.toggle('collapsed');
+        }
+    });
+
     const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
     const sections = [...document.querySelectorAll('.guide-section[id]')];
     window.addEventListener('scroll', () => {
@@ -2012,20 +981,47 @@
       });
     }, { passive: true });
 
-    // Keyboard shortcut
+    // === GLOBAL SHORTCUTS ===
+    var SHORTCUT_MAP = {
+      'm': ['motogp.html', 'MotoGP'], 'M': ['motogp.html', 'MotoGP'],
+      '2': ['moto2.html', 'Moto2'], '3': ['moto3.html', 'Moto3'],
+      'c': ['classifica.html', 'Classifica'], 'C': ['classifica.html', 'Classifica'],
+      'r': ['risultati.html', 'Risultati'], 'R': ['risultati.html', 'Risultati'],
+      'p': ['piloti.html', 'Piloti'], 'P': ['piloti.html', 'Piloti'],
+      'h': ['index.html', 'Home'], 'H': ['index.html', 'Home']
+    };
+
+    function showShortcutToast(label) {
+      var t = document.createElement('div');
+      t.textContent = '⌨️  → ' + label;
+      t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;z-index:9999;pointer-events:none;animation:fadeInUp .2s ease;';
+      document.body.appendChild(t);
+      setTimeout(function() { t.remove(); }, 900);
+    }
+
     document.addEventListener('keydown', e => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === '/') { e.preventDefault(); window.location.href = 'piloti.html'; }
+      
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var entry = SHORTCUT_MAP[e.key];
+      if (entry) {
+        var cur = location.pathname.split('/').pop() || 'index.html';
+        if (cur !== entry[0]) {
+          showShortcutToast(entry[1]);
+          setTimeout(function() { window.location.href = entry[0]; }, 300);
+        }
+      }
     });
 
-    // ── TORNA INDIETRO ──
+    // === BACK BUTTON LOGIC ===
     (function () {
       var NAMES = {
         'index.html': 'Home', 'motogp.html': 'MotoGP', 'moto2.html': 'Moto2',
         'moto3.html': 'Moto3', 'piloti.html': 'Piloti', 'pilota.html': 'Pilota',
         'classifica.html': 'Classifica', 'risultati.html': 'Risultati',
-        'calendario.html': 'Calendario', 'stagione.html': 'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
-        'albo_doro.html': "Albo d\'oro", 'circuiti.html': 'Circuiti', 'guida.html': 'Guida', 'relazione.html': 'Relazione'
+        'calendario.html': 'Calendario', 'stagione.html': 'Stagione','stats.html':'Statistiche',
+        'prediction.html':'Prediction', 'albo_doro.html': "Albo d'oro", 'circuiti.html': 'Circuiti', 'guida.html': 'Guida', 'relazione.html': 'Relazione'
       };
       var cur = (location.pathname.split('/').pop() || 'index.html');
       var curName = NAMES[cur] || cur;
@@ -2042,597 +1038,228 @@
             }
           } catch (e) {}
         }
-        if (!prev) {
-          prev = 'index.html';
-          prevName = 'Home';
-        }
+        if (!prev) { prev = 'index.html'; prevName = 'Home'; }
         if (prev && prevName && prevName !== curName) {
           var wrap = document.querySelector('.back-btn-wrap');
           if (wrap) wrap.innerHTML = '<a class="back-btn" href="' + prev + '">← Torna a ' + prevName + '</a>';
         }
       }
-
-      function saveAndGo(href) {
-        var dest = href.split('/').pop().split('?')[0].split('#')[0];
-        if (NAMES[dest]) {
-          sessionStorage.setItem('moto_from_url', location.href);
-          sessionStorage.setItem('moto_from_name', curName);
-        }
-      }
-
-      // Mostra subito se DOM pronto, altrimenti aspetta
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', showBackBtn);
-      } else {
-        showBackBtn();
-      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', showBackBtn); } 
+      else { showBackBtn(); }
       window.addEventListener('pageshow', showBackBtn);
 
-      // Intercetta TUTTI i click su link interni
       document.addEventListener('click', function (e) {
         var a = e.target.closest('a[href]');
         if (!a) return;
         var href = a.getAttribute('href') || '';
         if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
-        saveAndGo(href);
-      }, true); // useCapture=true: cattura prima del navigate
+        var dest = href.split('/').pop().split('?')[0].split('#')[0];
+        if (NAMES[dest]) { sessionStorage.setItem('moto_from_url', location.href); sessionStorage.setItem('moto_from_name', curName); }
+      }, true);
     })();
-// ── SCORCIATOIE DA TASTIERA ──
-(function() {
-  var map = {
-    'm': ['motogp.html',    'MotoGP'],
-    'M': ['motogp.html',    'MotoGP'],
-    '2': ['moto2.html',     'Moto2'],
-    '3': ['moto3.html',     'Moto3'],
-    'c': ['classifica.html','Classifica'],
-    'C': ['classifica.html','Classifica'],
-    'r': ['risultati.html', 'Risultati'],
-    'R': ['risultati.html', 'Risultati'],
-    'p': ['piloti.html',    'Piloti'],
-    'P': ['piloti.html',    'Piloti'],
-    'h': ['index.html',     'Home'],
-    'H': ['index.html',     'Home']
-  };
 
-  // Toast per feedback visivo
-  function showShortcutToast(label) {
-    var t = document.createElement('div');
-    t.textContent = '⌨️  → ' + label;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.45rem 1.1rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.85rem;' +
-      'letter-spacing:.06em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;';
-    document.body.appendChild(t);
-    setTimeout(function() { t.remove(); }, 900);
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    var entry = map[e.key];
-    if (entry) {
-      var cur = location.pathname.split('/').pop() || 'index.html';
-      if (cur !== entry[0]) {
-        showShortcutToast(entry[1]);
-        setTimeout(function() { window.location.href = entry[0]; }, 300);
+    // === FADE-IN ON SCROLL ===
+    (function() {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.08 });
+      function initFade() {
+        var sel = ['.guide-section', '.cta-banner'].join(',');
+        document.querySelectorAll(sel).forEach(function(el, i) {
+          el.classList.add('fade-in');
+          el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
+          io.observe(el);
+        });
       }
-    }
-  });
-})();
-// ── FADE-IN SCROLL ──
-(function() {
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initFade); } 
+      else { initFade(); }
+    })();
 
-  function initFade() {
-    // Selettori da animare in tutte le pagine
-    var sel = [
-      '.rider-card', '.news-card', '.stat-box', '.stat-pill',
-      '.career-box', '.palmares-card', '.side-card',
-      '.standings-preview', '.next-gp-banner',
-      '.team-acc', '.result-round', '.section-title',
-      '.rel-section', '.toc-card', '.tech-card',
-      '.similar-card', '.round-chart-wrap',
-      '.calendar-round', '.race-row'
-    ].join(',');
-    document.querySelectorAll(sel).forEach(function(el, i) {
-      el.classList.add('fade-in');
-      // Stagger: elementi vicini si animano in sequenza
-      el.style.transitionDelay = Math.min(i % 6 * 60, 300) + 'ms';
-      io.observe(el);
-    });
-  }
+    // === AUTH SYSTEM ===
+    (function() {
+      var MODE = 'login';
+      var USERS_KEY = 'moto2026_users', CURR_KEY = 'moto2026_current', FAVS_KEY = 'moto2026_favs_';
+      function getUsers() { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; } }
+      function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+      function getCurrentUser() { try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; } }
+      function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+      function getFavs(username) { try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; } }
+      function saveFavs(username, favs) { localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs)); }
+      function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFade);
-  } else {
-    initFade();
-  }
-})();
-// ── RICERCA GLOBALE (Ctrl+K / Cmd+K) ──
-(function() {
-  // Indice statico: pagine + round
-  var PAGES = [
-    { name:'Home',          sub:'Pagina principale',         icon:'🏠', url:'index.html' },
-    { name:'MotoGP 2026',   sub:'Notizie, classifica, team', icon:'🔴', url:'motogp.html' },
-    { name:'Moto2 2026',    sub:'Notizie, classifica, team', icon:'🟡', url:'moto2.html' },
-    { name:'Moto3 2026',    sub:'Notizie, classifica, team', icon:'🔵', url:'moto3.html' },
-    { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
-    { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
-    { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 84 piloti',        icon:'👤', url:'piloti.html' },
-    { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
-    { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
-    { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
-    { name:'Relazione',     sub:'Documentazione tecnica',   icon:'📄', url:'relazione.html' },
-    { name:'GP Thailandia', sub:'Round 1 · 27 feb–1 mar',   icon:'🇹🇭', url:'risultati.html?round=r1' },
-    { name:'GP Brasile',    sub:'Round 2 · 20–22 mar',      icon:'🇧🇷', url:'risultati.html?round=r2' },
-    { name:'GP USA',        sub:'Round 3 · 27–29 mar',      icon:'🇺🇸', url:'risultati.html?round=r3' },
-    { name:'GP Spagna',     sub:'Round 4 · 24–26 apr',      icon:'🇪🇸', url:'risultati.html?round=r4' },
-    { name:'GP Catalunya',    sub:'Round 6 · 15–17 mag',       icon:'🇫🇷', url:'risultati.html?round=r6' },
-  ];
+      function initAuth() {
+        var user = getCurrentUser();
+        var headerRight = document.querySelector('.header-right');
+        if (!headerRight) return;
+        var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+        if (old) old.remove();
 
-  var overlay   = document.getElementById('global-search-overlay');
-  var input     = document.getElementById('global-search-input');
-  var resultsEl = document.getElementById('global-search-results');
-  if (!overlay) return;
+        if (user) {
+          var favs = getFavs(user.username);
+          var initials = user.username.slice(0,2).toUpperCase();
+          var wrap = document.createElement('div');
+          wrap.className = 'user-menu-wrap'; wrap.id = 'user-menu-wrap';
+          var favsHTML = '';
+          if (favs.length > 0) {
+            favsHTML += '<div class="user-menu-divider"></div><div class="user-menu-section">★ PREFERITI</div>';
+            for (var fi = 0; fi < favs.length; fi++) {
+              var fav = favs[fi];
+              var favId = (typeof fav === 'object') ? fav.id : fav;
+              var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+              favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+            }
+          }
+          wrap.innerHTML = '<button class="user-avatar-btn" id="user-avatar-btn" title="' + user.username + '">' + initials + '</button><div class="user-menu" id="user-menu"><div class="user-menu-header"><div class="user-menu-name">👋 ' + user.username + '</div><div class="user-menu-sub">' + favs.length + ' piloti preferiti</div></div>' + favsHTML + '<div class="user-menu-divider"></div><a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a><div class="user-menu-divider"></div><div class="user-menu-item logout" id="logout-btn">⊘ Esci</div></div>';
+          var themeBtn = headerRight.querySelector('#theme-toggle');
+          if (themeBtn) headerRight.insertBefore(wrap, themeBtn); else headerRight.prepend(wrap);
+          
+          document.getElementById('user-avatar-btn').addEventListener('click', () => document.getElementById('user-menu').classList.toggle('open'));
+          document.getElementById('logout-btn').addEventListener('click', () => { localStorage.removeItem(CURR_KEY); initAuth(); showToast('👋 Uscito con successo.'); });
 
-  var selected = -1;
-  var currentResults = [];
-
-  function openGS() {
-    overlay.classList.add('open');
-    input.value = '';
-    renderResults([]);
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-  window.closeGS = function() {
-    overlay.classList.remove('open');
-  };
-
-  function renderResults(items) {
-    currentResults = items;
-    selected = -1;
-    if (!items.length) {
-      resultsEl.innerHTML = input.value.length > 0
-        ? '<div class="gs-empty">Nessun risultato per "<strong>' + input.value + '</strong>"</div>'
-        : '<div class="gs-empty">Inizia a digitare…</div>';
-      return;
-    }
-    resultsEl.innerHTML = items.slice(0, 8).map(function(r, i) {
-      return '<a class="gs-result" href="' + r.url + '" onclick="closeGS()">' +
-        '<div class="gs-result-icon">' + r.icon + '</div>' +
-        '<div><div class="gs-result-name">' + r.name + '</div>' +
-        '<div class="gs-result-sub">' + r.sub + '</div></div></a>';
-    }).join('');
-  }
-
-  window.searchGS = function(q) {
-    if (!q.trim()) { renderResults([]); return; }
-    var ql = q.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
-    var res = PAGES.filter(function(p) {
-      return (p.name + ' ' + p.sub).toLowerCase()
-        .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .includes(ql);
-    });
-    renderResults(res);
-  };
-
-  window.handleGSKey = function(e) {
-    var items = resultsEl.querySelectorAll('.gs-result');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selected = Math.min(selected + 1, items.length - 1);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selected = Math.max(selected - 1, 0);
-    } else if (e.key === 'Enter' && selected >= 0) {
-      items[selected].click(); return;
-    } else if (e.key === 'Escape') {
-      closeGS(); return;
-    }
-    items.forEach(function(el, i) {
-      el.classList.toggle('selected', i === selected);
-    });
-    if (selected >= 0) items[selected].scrollIntoView({ block:'nearest' });
-  };
-
-  // Apri con Ctrl+K / Cmd+K
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (overlay.classList.contains('open')) closeGS();
-      else openGS();
-    }
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeGS();
-  });
-
-  // Click sull'icona 🔍 se presente
-  var searchBtn = document.getElementById('global-search-btn');
-  if (searchBtn) searchBtn.addEventListener('click', openGS);
-})();
-// ── MENU A TENDINA ──
-function toggleNavDropdown() {
-  var btn  = document.getElementById('nav-dropdown-btn');
-  var menu = document.getElementById('nav-dropdown-menu');
-  if (!btn || !menu) return;
-  var isOpen = menu.classList.contains('open');
-  btn.classList.toggle('open', !isOpen);
-  menu.classList.toggle('open', !isOpen);
-}
-function closeNavDropdown() {
-  var btn  = document.getElementById('nav-dropdown-btn');
-  var menu = document.getElementById('nav-dropdown-menu');
-  if (btn)  btn.classList.remove('open');
-  if (menu) menu.classList.remove('open');
-}
-// Chiudi cliccando fuori
-document.addEventListener('click', function(e) {
-  var wrap = document.getElementById('nav-dropdown-wrap');
-  if (wrap && !wrap.contains(e.target)) closeNavDropdown();
-});
-// Chiudi con Esc
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeNavDropdown();
-});
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE = 'login'; // 'login' | 'register'
-  var USERS_KEY  = 'moto2026_users';
-  var CURR_KEY   = 'moto2026_current';
-  var FAVS_KEY   = 'moto2026_favs_';
-
-  // ── Helpers storage ────────────────────────────────────────
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getCurrentUser() {
-    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
-  }
-  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
-  function getFavs(username) {
-    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
-  }
-  function saveFavs(username, favs) {
-    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
-  }
-  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
-
-  // ── Inizializzazione UI ─────────────────────────────────────
-  function initAuth() {
-    var user = getCurrentUser();
-    var headerRight = document.querySelector('.header-right');
-    if (!headerRight) return;
-
-    // Rimuovi vecchi btn auth se ci sono
-    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
-    if (old) old.remove();
-
-    if (user) {
-      // Utente loggato: mostra avatar
-      var favs = getFavs(user.username);
-      var initials = user.username.slice(0,2).toUpperCase();
-      var wrap = document.createElement('div');
-      wrap.className = 'user-menu-wrap';
-      wrap.id = 'user-menu-wrap';
-      // Costruisci lista preferiti
-      var favsHTML = '';
-      if (favs.length > 0) {
-        favsHTML += '<div class="user-menu-divider"></div>';
-        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
-        for (var fi = 0; fi < favs.length; fi++) {
-          var fav = favs[fi];
-          var favId   = (typeof fav === 'object') ? fav.id   : fav;
-          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
-          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+          document.addEventListener('click', function(e) {
+            var w = document.getElementById('user-menu-wrap');
+            if (w && !w.contains(e.target)) { var m = document.getElementById('user-menu'); if (m) m.classList.remove('open'); }
+          });
+        } else {
+          var btn = document.createElement('button');
+          btn.className = 'auth-btn'; btn.textContent = '👤 Accedi';
+          var themeBtn2 = headerRight.querySelector('#theme-toggle');
+          if (themeBtn2) headerRight.insertBefore(btn, themeBtn2); else headerRight.prepend(btn);
+          btn.addEventListener('click', openAuthModal);
         }
       }
-      wrap.innerHTML =
-        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
-          initials +
-        '</button>' +
-        '<div class="user-menu" id="user-menu">' +
-          '<div class="user-menu-header">' +
-            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
-            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
-          '</div>' +
-          favsHTML +
-          '<div class="user-menu-divider"></div>' +
-          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
-          '<div class="user-menu-divider"></div>' +
-          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
-        '</div>';
-      // Inserisci prima del theme-toggle
-      var themeBtn = headerRight.querySelector('#theme-toggle');
-      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
-      else headerRight.prepend(wrap);
 
-      // Chiudi menu cliccando fuori
-      document.addEventListener('click', function(e) {
-        var w = document.getElementById('user-menu-wrap');
-        if (w && !w.contains(e.target)) {
-          var m = document.getElementById('user-menu');
-          if (m) m.classList.remove('open');
+      const authOverlay = document.getElementById('auth-overlay');
+      const authTitle = document.getElementById('auth-title');
+      const authSubmitBtn = document.getElementById('auth-submit-btn');
+      const authSwitch = document.getElementById('auth-switch');
+      const authSwitchLink = document.getElementById('auth-switch-link');
+      const authConfirmWrap = document.getElementById('auth-confirm-wrap');
+      const authError = document.getElementById('auth-error');
+      const authUsername = document.getElementById('auth-username');
+      const authPassword = document.getElementById('auth-password');
+      const authConfirm = document.getElementById('auth-confirm');
+      const authClose = document.getElementById('auth-close');
+
+      function openAuthModal() {
+        MODE = 'login';
+        authTitle.innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+        authSubmitBtn.textContent = 'Accedi';
+        authSwitch.innerHTML = 'Non hai un account? <a id="auth-switch-link">Registrati</a>';
+        authConfirmWrap.style.display = 'none';
+        authError.style.display = 'none';
+        authUsername.value = '';
+        authPassword.value = '';
+        authOverlay.classList.add('open');
+        setTimeout(() => authUsername.focus(), 100);
+        document.getElementById('auth-switch-link').addEventListener('click', switchAuthMode);
+      }
+
+      function closeAuthModal() { authOverlay.classList.remove('open'); }
+      
+      function switchAuthMode() {
+        MODE = MODE === 'login' ? 'register' : 'login';
+        var isReg = MODE === 'register';
+        authTitle.innerHTML = (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>' : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+        authSubmitBtn.textContent = isReg ? 'Crea account' : 'Accedi';
+        authSwitch.innerHTML = isReg ? 'Hai già un account? <a id="auth-switch-link">Accedi</a>' : 'Non hai un account? <a id="auth-switch-link">Registrati</a>';
+        authConfirmWrap.style.display = isReg ? 'block' : 'none';
+        authError.style.display = 'none';
+        document.getElementById('auth-switch-link').addEventListener('click', switchAuthMode);
+      }
+
+      function showError(msg) { authError.textContent = msg; authError.style.display = 'block'; }
+
+      function submitAuth() {
+        var username = authUsername.value.trim();
+        var password = authPassword.value;
+        if (!username || !password) { showError('Compila tutti i campi.'); return; }
+        if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+        var users = getUsers();
+        if (MODE === 'register') {
+          var confirm = authConfirm.value;
+          if (password !== confirm) { showError('Le password non coincidano.'); return; }
+          if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+          if (users[username]) { showError('Username già in uso.'); return; }
+          users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+          saveUsers(users); setCurrentUser({ username: username });
+        } else {
+          if (!users[username]) { showError('Username non trovato.'); return; }
+          if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+          setCurrentUser({ username: username });
+        }
+        closeAuthModal(); initAuth(); showToast('✅ Benvenuto, ' + username + '!');
+      }
+
+      function showToast(msg) {
+        var t = document.createElement('div');
+        t.textContent = msg;
+        t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;font-family:"Barlow Condensed",sans-serif;font-weight:700;z-index:9999;animation:fadeInUp .2s ease;';
+        document.body.appendChild(t);
+        setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity .3s'; }, 2200);
+        setTimeout(function(){ t.remove(); }, 2600);
+      }
+
+      authClose.addEventListener('click', closeAuthModal);
+      authOverlay.addEventListener('click', e => { if(e.target === authOverlay) closeAuthModal(); });
+      authSubmitBtn.addEventListener('click', submitAuth);
+      authPassword.addEventListener('keydown', e => { if(e.key === 'Enter') submitAuth(); });
+      authConfirm.addEventListener('keydown', e => { if(e.key === 'Enter') submitAuth(); });
+
+      initAuth();
+    })();
+
+    // === AUDIO PLAYER SCRIPT ===
+    (function(){
+      var audio = document.getElementById('bg-audio');
+      var progressSlider = document.getElementById('progress-slider');
+      var playBtn = document.getElementById('play-btn');
+      var volSlider = document.getElementById('vol-slider');
+      
+      window.addEventListener('beforeunload', function(){
+        try {
+          sessionStorage.setItem('audio-time', audio.currentTime);
+          sessionStorage.setItem('audio-playing', !audio.paused);
+        } catch(e){}
+      });
+      
+      audio.addEventListener('loadedmetadata', function(){
+        try {
+          var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+          var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+          audio.currentTime = savedTime;
+          if(wasPlaying) audio.play();
+        } catch(e){}
+      });
+      
+      audio.addEventListener('timeupdate', function(){
+        if(audio.duration) {
+          progressSlider.value = (audio.currentTime / audio.duration) * 100;
         }
       });
+      
+      audio.addEventListener('play', function(){ playBtn.textContent = '⏸'; });
+      audio.addEventListener('pause', function(){ playBtn.textContent = '▶'; });
+      
+      audio.addEventListener('ended', function(){
+        try { sessionStorage.removeItem('audio-time'); } catch(e){}
+      });
 
-      // Inizializza le stelle sui piloti
-      initFavStars(user.username);
+      playBtn.addEventListener('click', function() {
+        if(audio.paused) { audio.play(); } else { audio.pause(); }
+      });
 
-      // Mostra sezione preferiti se siamo in piloti.html
-      showFavsSection(user.username);
+      progressSlider.addEventListener('input', function() {
+        if(audio.duration) audio.currentTime = (this.value / 100) * audio.duration;
+      });
 
-    } else {
-      // Non loggato: mostra bottone "Accedi"
-      var btn = document.createElement('button');
-      btn.className = 'auth-btn';
-      btn.textContent = '👤 Accedi';
-      btn.onclick = openAuthModal;
-      var themeBtn2 = headerRight.querySelector('#theme-toggle');
-      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
-      else headerRight.prepend(btn);
-    }
-  }
-
-  // ── Modal Auth ──────────────────────────────────────────────
-  window.openAuthModal = function() {
-    MODE = 'login';
-    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
-    document.getElementById('auth-submit-btn').textContent = 'Accedi';
-    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = 'none';
-    document.getElementById('auth-error').style.display = 'none';
-    document.getElementById('auth-username').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
-  };
-  window.closeAuthModal = function() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  };
-  window.switchAuthMode = function() {
-    MODE = MODE === 'login' ? 'register' : 'login';
-    var isReg = MODE === 'register';
-    document.getElementById('auth-title').innerHTML =
-      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
-             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
-    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
-    document.getElementById('auth-switch').innerHTML = isReg
-      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
-      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
-    document.getElementById('auth-error').style.display = 'none';
-  };
-
-  function showError(msg) {
-    var el = document.getElementById('auth-error');
-    el.textContent = msg; el.style.display = 'block';
-  }
-
-  window.submitAuth = function() {
-    var username = document.getElementById('auth-username').value.trim();
-    var password = document.getElementById('auth-password').value;
-    if (!username || !password) { showError('Compila tutti i campi.'); return; }
-    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
-
-    var users = getUsers();
-    if (MODE === 'register') {
-      var confirm = document.getElementById('auth-confirm').value;
-      if (password !== confirm) { showError('Le password non coincidono.'); return; }
-      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
-      if (users[username]) { showError('Username già in uso.'); return; }
-      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
-      saveUsers(users);
-      setCurrentUser({ username: username });
-    } else {
-      if (!users[username]) { showError('Username non trovato.'); return; }
-      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
-      setCurrentUser({ username: username });
-    }
-    closeAuthModal();
-    initAuth();
-    showToast('✅ Benvenuto, ' + username + '!');
-  };
-
-  window.logoutUser = function() {
-    localStorage.removeItem(CURR_KEY);
-    initAuth();
-    showToast('👋 Uscito con successo.');
-  };
-
-  window.toggleUserMenu = function() {
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.toggle('open');
-  };
-
-  // ── Preferiti ───────────────────────────────────────────────
-  window.toggleFav = function(riderId, riderName) {
-    var user = getCurrentUser();
-    if (!user) { openAuthModal(); return; }
-    var favs = getFavs(user.username);
-    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
-    if (idx >= 0) {
-      favs.splice(idx, 1);
-      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
-    } else {
-      favs.push({ id: riderId, name: riderName });
-      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
-    }
-    saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
-    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
-      star.classList.toggle('active', idx < 0);
-      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+      volSlider.addEventListener('input', function() {
+        audio.volume = this.value / 100;
+      });
     });
-    // Aggiorna badge nel menu
-    var badge = document.querySelector('.user-fav-badge');
-    if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
-    showFavsSection(user.username);
-    initAuth();
-  };
-
-  function initFavStars(username) {
-    var favs = getFavs(username);
-    var favIds = new Set(favs.map(function(f){ return f.id; }));
-    document.querySelectorAll('.fav-star').forEach(function(star) {
-      var id = star.getAttribute('data-id');
-      star.classList.toggle('active', favIds.has(id));
-      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-  }
-
-  function showFavsSection(username) {
-    var container = document.getElementById('favs-section-container');
-    if (!container) return;
-    var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var chips = favs.map(function(f) {
-      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
-    }).join('');
-    container.innerHTML =
-      '<div class="favs-section">' +
-        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
-        '<div class="favs-grid">' + chips + '</div>' +
-      '</div>';
-  }
-
-  window.showFavs = function() {
-    var user = getCurrentUser();
-    if (!user) return;
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.remove('open');
-    window.location.href = 'piloti.html#favs';
-  };
-
-  // ── Toast ────────────────────────────────────────────────────
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
-      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;white-space:nowrap;';
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
-    setTimeout(function(){ t.remove(); }, 2600);
-  }
-
-  // Avvia
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuth);
-  } else {
-    initAuth();
-  }
-})();</script>
-
-
-<!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field">
-<label>Username</label>
-<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
-</div>
-<div class="auth-field">
-<label>Password</label>
-<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
-<label>Conferma password</label>
-<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">
-        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
-</div>
-</div>
-</div>
-
-
-
-<!-- AUDIO PLAYER -->
-<div id="audio-player-widget" style="position:fixed;bottom:20px;right:20px;z-index:100;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:1rem;width:200px;">
-
-  <!-- PULSANTE PLAY/PAUSE -->
-  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
-    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
-  </div>
-
-  <!-- BARRA PROGRESSO AUDIO -->
-  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
-  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
-
-  <!-- BARRA VOLUME -->
-  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
-  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
-
-  <!-- FILE AUDIO -->
-  <audio id="bg-audio" loop style="display:none;">
-    <source src="motogp_intro_26.mp3" type="audio/mpeg">
-  </audio>
-</div>
-<script>
-(function(){
-  var audio = document.getElementById('bg-audio');
-  var progressSlider = document.getElementById('progress-slider');
-  var playBtn = document.getElementById('play-btn');
-  
-  // Sincronizza tra pagine: salva il tempo corrente
-  window.addEventListener('beforeunload', function(){
-    try {
-      sessionStorage.setItem('audio-time', audio.currentTime);
-      sessionStorage.setItem('audio-playing', !audio.paused);
-    } catch(e){}
-  });
-  
-  // Ripristina il tempo quando carica la pagina
-  audio.addEventListener('loadedmetadata', function(){
-    try {
-      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
-      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
-      audio.currentTime = savedTime;
-      if(wasPlaying) audio.play();
-    } catch(e){}
-  });
-  
-  // Aggiorna la barra di progresso
-  audio.addEventListener('timeupdate', function(){
-    if(audio.duration) {
-      progressSlider.value = (audio.currentTime / audio.duration) * 100;
-    }
-  });
-  
-  // Aggiorna il bottone play/pause
-  audio.addEventListener('play', function(){
-    playBtn.textContent = '⏸';
-  });
-  audio.addEventListener('pause', function(){
-    playBtn.textContent = '▶';
-  });
-  
-  // Se il file finisce e c'è loop, ripristina il tempo salvato all'inizio
-  audio.addEventListener('ended', function(){
-    try {
-      sessionStorage.removeItem('audio-time');
-    } catch(e){}
-  });
-})();
+});
 </script>
 
 </body>

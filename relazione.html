@@ -255,7 +255,6 @@
     .arch-box.html { background: rgba(255,107,53,.15); border: 1px solid rgba(255,107,53,.3); color: #ff6b35; }
     .arch-box.css  { background: rgba(0,180,216,.12); border: 1px solid rgba(0,180,216,.3); color: var(--m3); }
     .arch-box.js   { background: rgba(247,166,0,.12); border: 1px solid rgba(247,166,0,.3); color: var(--m2); }
-    .arch-box.api  { background: rgba(232,0,29,.12); border: 1px solid rgba(232,0,29,.3); color: var(--red); }
     .arch-box.pwa  { background: rgba(100,160,255,.12); border: 1px solid rgba(100,160,255,.3); color: #64a0ff; }
     .arch-box.data { background: rgba(150,200,100,.12); border: 1px solid rgba(150,200,100,.3); color: #96c864; }
     .arch-arrow { color: var(--muted); font-size: .9rem; font-family: 'Barlow Condensed', sans-serif; }
@@ -445,13 +444,9 @@
 }
 
 @media (max-width: 480px) {
-  /* 1. Creiamo 70px di spazio VUOTO alla fine del sito */
-  /* Così la tabella si ferma prima e non finisce sotto l'audio */
   body {
     padding-bottom: 75px !important;
   }
-
-  /* 2. Sistemiamo l'audio player per essere USABILE */
   #audio-player-widget {
     bottom: 0 !important;
     right: 0 !important;
@@ -469,23 +464,20 @@
     justify-content: space-around !important;
     padding: 0 1rem !important;
     gap: 0 !important;
-    /* Rimuoviamo filter e transform che bloccano il tocco su mobile */
     backdrop-filter: none !important;
     transform: none !important;
     overflow: visible !important;
   }
-
-  /* 3. Assicuriamoci che gli slider siano grandi e trascinabili */
   #audio-player-widget > div:first-child {
     margin-bottom: 0 !important;
     flex-shrink: 0 !important;
   }
   
   #audio-player-widget input[type="range"] {
-    height: 28px !important; /* Area di tocco più grande per il dito */
+    height: 28px !important;
     min-width: 0 !important;
     flex: 1 !important;
-    margin: 0 8px !important; /* Spazio per non farli attaccare */
+    margin: 0 8px !important;
     pointer-events: auto !important;
     -webkit-appearance: sliderHorizontal !important;
     appearance: auto !important;
@@ -527,7 +519,7 @@
 </div>
 <div class="rel-hero-meta">
 <span class="meta-pill">HTML5 · CSS3 · JavaScript ES2022</span>
-<span class="meta-pill">PWA · Fetch API</span>
+<span class="meta-pill">PWA · Dati Embedded</span>
 <span class="meta-pill">90 piloti</span>
 </div>
 </div>
@@ -575,8 +567,8 @@
 <h3>Problema da risolvere</h3>
 <p>I siti ufficiali del Motomondiale sono spesso lenti, appesantiti da pubblicità e difficili da navigare su mobile. Il progetto vuole offrire un'alternativa leggera, veloce e accessibile che metta al centro l'informazione tecnica: punti, risultati sessione per sessione, palmares dei piloti e storico dell'albo d'oro dal 1949.</p>
 <div class="stats-row">
-<div class="stat-box"><div class="stat-box-val">40</div><div class="stat-box-label">Pagine HTML</div></div>
-<div class="stat-box"><div class="stat-box-val">76 + 14</div><div class="stat-box-label">Piloti</div></div>
+<div class="stat-box"><div class="stat-box-val">41</div><div class="stat-box-label">Pagine HTML</div></div>
+<div class="stat-box"><div class="stat-box-val">76 + 14</div><div class="stat-box-label">Piloti Gestiti</div></div>
 <div class="stat-box"><div class="stat-box-val">22</div><div class="stat-box-label">Round stagione</div></div>
 </div>
 </div>
@@ -590,7 +582,7 @@
 </div>
 <div class="rel-body">
 <h3>Analisi applicativa</h3>
-<p>Il dominio applicativo è quello dell'informazione sportiva. Gli utenti sono appassionati di motociclismo che vogliono consultare rapidamente classifiche, risultati e biografie dei piloti. L'interazione avviene tramite browser su desktop, tablet e smartphone. Non è richiesta autenticazione né la creazione di account.</p>
+<p>Il dominio applicativo è quello dell'informazione sportiva. Gli utenti sono appassionati di motociclismo che vogliono consultare rapidamente classifiche, risultati e biografie dei piloti. L'interazione avviene tramite browser su desktop, tablet e smartphone. Non è richiesta autenticazione server-side né la creazione di account per navigare, ma è previsto un sistema di account locale per salvare i piloti preferiti.</p>
 <h3>Requisiti hardware e software</h3>
 <div class="tech-grid">
 <div class="tech-card">
@@ -612,12 +604,14 @@
 <h3>Requisiti funzionali</h3>
 <ul class="feat-list">
 <li>Il sistema deve permettere la visualizzazione delle classifiche piloti e costruttori per MotoGP, Moto2 e Moto3, aggiornate dopo ogni round.</li>
-<li>Il sistema deve permettere la consultazione dei risultati sessione per sessione (FP, Qualifiche Q1/Q2, Sprint, Gara) per ogni round disputato.</li>
+<li>Il sistema deve permettere la consultazione dei risultati sessione per sessione (FP, Qualifiche Q1/Q2, Sprint, Gara) per ogni round disputato, con annessa ricerca rapida pilota all'interno delle sessioni.</li>
 <li>Il sistema deve permettere di filtrare la classifica per costruttore e confrontare due piloti della stessa categoria.</li>
 <li>Il sistema deve permettere di consultare la scheda completa di ogni pilota con palmares, storico stagioni, grafico punti per round e piloti vicini in classifica.</li>
-<li>Il sistema deve permettere di salvare i pronostici nella pagina Prediction, con liste complete per categoria e filtri automatici per assenze, wildcard e sostituti.</li>
-<li>Il sistema deve permettere la consultazione della pagina Statistics con grafici, record e classifica costruttori.</li>
-<li>Il sistema deve permettere la lettura di notizie delle tre categorie con apertura in-page dell'articolo completo.</li>
+<li>Il sistema deve permettere di salvare i pronostici nella pagina Prediction, con liste complete per categoria, filtri automatici per assenze/wildcard e generatore casuale.</li>
+<li>Il sistema deve permettere la consultazione della pagina Statistiche con grafici, Head-to-Head, Indice di Dominanza, record e classifica costruttori.</li>
+<li>Il sistema deve fornire una pagina di Riepilogo Stagione con Dashboard, Battaglia per il Titolo e Timeline dei vincitori.</li>
+<li>Il sistema deve includere la pagina Albo d'Oro dal 1949 ad oggi, comprendente categorie storiche (350cc, 50cc, 80cc, Sidecar), filtri per decadi e widget Top 5 Dominatori.</li>
+<li>Il sistema deve permettere la consultazione delle classifiche minori (JuniorGP & Rookies Cup).</li>
 <li>Il sistema deve permettere la ricerca di un pilota per nome in tutte le pagine tramite la scorciatoia da tastiera <kbd style="background:#222;border:1px solid #444;padding:.1rem .3rem;border-radius:3px;font-family:monospace;font-size:.85em;">/</kbd>.</li>
 <li>Il sistema deve permettere l'accesso locale all'account utente, con preferiti salvati nel browser.</li>
 </ul>
@@ -642,26 +636,25 @@
 <div class="arch-row"><span class="arch-box html">HTML5</span><span class="arch-arrow">→ struttura semantica</span></div>
 <div class="arch-row"><span class="arch-box css">CSS3</span><span class="arch-arrow">→ variabili custom, flexbox, grid, media query</span></div>
 <div class="arch-row"><span class="arch-box js">JavaScript ES2022</span><span class="arch-arrow">→ render dinamico, dati embedded, DOM manipulation</span></div>
-<div class="arch-row"><span class="arch-box api">Fetch API</span><span class="arch-arrow">→ dati live da MotoGP PulseLive (fallback su dati statici)</span></div>
 <div class="arch-row"><span class="arch-box pwa">Service Worker</span><span class="arch-arrow">→ cache offline, installazione come app (PWA)</span></div>
-<div class="arch-row"><span class="arch-box data">localStorage</span><span class="arch-arrow">→ tema, round selezionato, stato toast</span></div>
+<div class="arch-row"><span class="arch-box data">localStorage</span><span class="arch-arrow">→ tema, round selezionato, stato toast, preferiti</span></div>
 </div>
 <h3>Struttura delle pagine</h3>
 <ul class="feat-list">
 <li><strong>index.html</strong> — Home: notizie, countdown prossimo GP, barra progressione stagione, top-5 classifiche, calendario.</li>
 <li><strong>motogp/moto2/moto3.html</strong> — Pagine categoria: notizie filtrate, classifica parziale, entry list per team.</li>
-<li><strong>piloti.html</strong> — Lista completa 84 piloti con ricerca, filtro categoria, corona 👑 sul leader.</li>
+<li><strong>piloti.html</strong> — Lista completa di 90 piloti con ricerca, filtro categoria, corona 👑 sul leader.</li>
 <li><strong>pilota.html</strong> — Scheda singolo pilota: palmares, tabella stagioni, grafico punti per round, piloti simili.</li>
 <li><strong>team.html</strong> — Scheda team: elenco delle scuderie, piloti associati e navigazione per categoria.</li>
 <li><strong>classifica.html</strong> — Classifiche complete piloti + costruttori, layout 30/70, filtro costruttore, confronto piloti.</li>
-<li><strong>risultati.html</strong> — Risultati sessione per sessione (FP1/FP2/Q1/Q2/Sprint/Gara) per i round disputati.</li>
-<li><strong>prediction.html</strong> — Pronostici GP futuri con liste complete e filtri automatici per assenze e wildcard.</li>
-<li><strong>stats.html</strong> — Statistiche, record, grafici e confronto costruttori.</li>
-<li><strong>circuiti.html</strong> — Pagina indice dei 22 tracciati con card, ricerca e link alle pagine dedicate.</li>
-<li><strong>circuito_[nome].html</strong> — 22 pagine individuali per ogni circuito con storia approfondita, caratteristiche tecniche, tabella risultati ultimi 5 anni (MotoGP/Moto2/Moto3) e sezione curiosità.</li>
+<li><strong>risultati.html</strong> — Risultati sessione per sessione (FP1/FP2/Q1/Q2/Sprint/Gara) per i round disputati, con ricerca pilota e medaglie.</li>
+<li><strong>prediction.html</strong> — Pronostici GP futuri con layout ad accordion, Smart Entry List e generatore casuale.</li>
+<li><strong>stats.html</strong> — Statistiche con Head-to-Head, Indice di Dominanza, record e confronto costruttori.</li>
+<li><strong>stagione.html</strong> — Riepilogo statistico stagionale con Dashboard, Battaglia per il Titolo e Timeline.</li>
+<li><strong>circuiti.html</strong> — Pagina indice dei 22 tracciati con ricerca, filtri continente, Quick Jump Strip e badge di stato.</li>
 <li><strong>calendario.html</strong> — 22 round stagionali con popup per i round futuri.</li>
-<li><strong>stagione.html</strong> — Riepilogo statistico stagionale con sezione "piloti in forma".</li>
-<li><strong>albo_doro.html</strong> — Albo d'oro dal 1949 con sidebar ricerca su tutte le categorie.</li>
+<li><strong>albo_doro.html</strong> — Albo d'oro dal 1949 con sidebar di ricerca, filtri per decadi e widget Top 5 Dominatori.</li>
+<li><strong>classificajrcrcc.html</strong> — Classifiche delle serie propedeutiche (Red Bull Rookies Cup e FIM JuniorGP).</li>
 <li><strong>guida.html</strong> — Guida completa alle funzionalità del sito.</li>
 <li><strong>relazione.html</strong> — Documentazione tecnica completa del progetto.</li>
 </ul>
@@ -672,9 +665,9 @@
   <span class="code-str">'david_alonso'</span>: {
     name: <span class="code-str">'David Alonso'</span>, flag: <span class="code-str">'🇨🇴'</span>, number: 80,
     team: <span class="code-str">'CFMOTO Aspar Team'</span>, category: <span class="code-str">'Moto2'</span>,
-    points: 58, position: 6,
+    points: 116, position: 4,
     titoli: [<span class="code-str">'2024 Moto3 🏆'</span>],
-    vittorie: 19, podi: 28, gare: 71,
+    vittorie: 20, podi: 30, gare: 75,
     stagioni: [{ y:2023, cat:<span class="code-str">'Moto3'</span>, pos:3, pt:245 }, ...]
   }, ...
 }
@@ -706,7 +699,7 @@
 @media (min-width: 1101px) {
   .hamburger { display: none <span class="code-kw">!important</span>; }
 }</code></div>
-<p>Il breakpoint è stato fissato a 1100px invece del classico 768px perché il nav contiene 12 link — a 1100px i link iniziano a essere troppo compressi per essere leggibili. Sotto quella soglia appare il menu hamburger che apre un dropdown a piena larghezza con tutti i link in colonna.</p>
+<p>Il breakpoint è stato fissato a 1100px invece del classico 768px perché il nav contiene 15 link — a 1100px i link iniziano a essere troppo compressi per essere leggibili. Sotto quella soglia appare il menu hamburger che apre un dropdown a piena larghezza con tutti i link in colonna.</p>
 <h3>Routing client-side</h3>
 <p>Non essendoci un server che gestisce le route, la navigazione tra pagine avviene tramite link HTML standard con parametri URL. La pagina <code>pilota.html</code> riceve l'identificativo del pilota tramite query string (<code>?id=marco_bezzecchi</code>) e lo legge con <code>URLSearchParams</code>:</p>
 <div class="code-block"><code><span class="code-kw">const</span> riderId = <span class="code-kw">new</span> URLSearchParams(location.search).<span class="code-fn">get</span>(<span class="code-str">'id'</span>);
@@ -739,16 +732,11 @@
 <div class="tech-card hl">
 <div class="tech-card-label">Logica</div>
 <div class="tech-card-name">JavaScript ES2022</div>
-<div class="tech-card-desc">Vanilla JS senza framework. async/await, Fetch API, localStorage, MutationObserver, template literals.</div>
+<div class="tech-card-desc">Vanilla JS senza framework. Dati embedded, localStorage, IntersectionObserver, template literals.</div>
 </div>
 </div>
 <h3>Web API e protocolli</h3>
 <div class="tech-grid">
-<div class="tech-card">
-<div class="tech-card-label">Comunicazione</div>
-<div class="tech-card-name">Fetch API</div>
-<div class="tech-card-desc">Chiamata REST all'endpoint pubblico MotoGP PulseLive per dati live dei piloti. Fallback su dati statici se la rete non è disponibile.</div>
-</div>
 <div class="tech-card">
 <div class="tech-card-label">Offline / App</div>
 <div class="tech-card-name">Service Worker</div>
@@ -757,7 +745,7 @@
 <div class="tech-card">
 <div class="tech-card-label">Persistenza</div>
 <div class="tech-card-name">localStorage</div>
-<div class="tech-card-desc">Salva: tema scuro/chiaro, ultimo round visualizzato, stato del toast scorciatoia. Nessun cookie o sessione server.</div>
+<div class="tech-card-desc">Salva: tema scuro/chiaro, ultimo round visualizzato, stato del toast scorciatoia, account locale e preferiti. Nessun cookie o sessione server.</div>
 </div>
 <div class="tech-card">
 <div class="tech-card-label">Protocollo</div>
@@ -765,36 +753,17 @@
 <div class="tech-card-desc">Il sito funziona su qualsiasi server che serva file statici via HTTP. Il Service Worker richiede HTTPS in produzione.</div>
 </div>
 </div>
-<h3>API esterna: MotoGP PulseLive</h3>
-<div class="code-block"><code><span class="code-comment">// Endpoint utilizzato in pilota.html</span>
-<span class="code-kw">const</span> API_URL = <span class="code-str">'https://api.motogp.pulselive.com/motogp/v1/riders'</span>;
-
-<span class="code-comment">// Chiamata con AbortController (timeout 7 secondi)</span>
-<span class="code-kw">async function</span> <span class="code-fn">loadRider</span>() {
-  <span class="code-kw">const</span> ctrl = <span class="code-kw">new</span> AbortController();
-  <span class="code-kw">const</span> t = setTimeout(() =&gt; ctrl.abort(), 7000);
-  <span class="code-kw">try</span> {
-    <span class="code-kw">const</span> res = <span class="code-kw">await</span> <span class="code-fn">fetch</span>(API_URL, {
-      headers: { <span class="code-str">'Accept'</span>: <span class="code-str">'application/json'</span> },
-      signal: ctrl.signal
-    });
-    <span class="code-kw">const</span> json = <span class="code-kw">await</span> res.<span class="code-fn">json</span>();
-    <span class="code-fn">renderApi</span>(json);           <span class="code-comment">// mostra dati live</span>
-  } <span class="code-kw">catch</span> (err) {
-    <span class="code-fn">renderStatic</span>(staticData);  <span class="code-comment">// fallback su dati statici</span>
-  }
-}</code></div>
 <h3>Tipografia e risorse esterne</h3>
 <ul class="feat-list">
 <li><strong>Bebas Neue</strong> (Google Fonts) — font display per titoli, numeri e label. Scelto per il carattere sport/racing.</li>
 <li><strong>Barlow Condensed</strong> (Google Fonts) — font compresso per la navigazione e le label secondarie. Ottima leggibilità a dimensioni ridotte.</li>
 <li><strong>Barlow</strong> (Google Fonts) — font di testo per i paragrafi e il corpo degli articoli.</li>
-<li><strong>Immagini</strong> — 84 foto piloti in formato WebP (ottimizzato per il web) e 22 immagini dei tracciati in PNG.</li>
+<li><strong>Immagini</strong> — 90 foto piloti in formato WebP (ottimizzato per il web) e 22 immagini dei tracciati in PNG.</li>
 </ul>
 <h3>Motivazioni delle scelte</h3>
 <p>La scelta di <strong>Vanilla JS senza framework</strong> (React, Vue, ecc.) è stata deliberata: per un sito di contenuti statici aggiunge complessità inutile, aumenta il bundle e riduce le performance. Con HTML/CSS/JS puri il sito carica in meno di 1 secondo e non dipende da versioni di librerie esterne che potrebbero diventare obsolete.</p>
 <p>L'assenza di un <strong>back-end</strong> permette di ospitare il sito gratuitamente su Netlify, GitHub Pages o Vercel — servizi di hosting statico che offrono CDN globale, HTTPS automatico e deploy in 30 secondi.</p>
-<div class="note-block">L'unica chiamata di rete del sito è la Fetch API verso l'endpoint PulseLive per arricchire la scheda pilota con dati live. Tutti gli altri dati — classifiche, risultati, notizie, palmares — sono incorporati nel codice e disponibili offline.</div>
+<div class="note-block">Tutti i dati — classifiche, risultati, notizie, palmares — sono incorporati direttamente nel codice JavaScript delle pagine, rendendo il sito indipendente da servizi esterni e consultabile interamente offline dopo il primo caricamento.</div>
 </div>
 </div>
 
@@ -840,7 +809,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 });</code></div>
 <h3>Responsività — breakpoint system</h3>
 <ul class="feat-list">
-<li><strong>&gt; 1100px</strong>: nav desktop completo con tutti gli 11 link.</li>
+<li><strong>&gt; 1100px</strong>: nav desktop completo con tutti i 15 link.</li>
 <li><strong>768px–1100px</strong>: hamburger menu, layout a colonna singola per sezioni a due colonne.</li>
 <li><strong>&lt; 768px</strong>: font scalati, padding ridotti, tabelle con colonne nascoste (<code>bar-cell</code>, <code>gap-cell</code>).</li>
 <li><strong>&lt; 500px</strong>: grid piloti 2 colonne, hero font con <code>clamp()</code>.</li>
@@ -854,10 +823,13 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <li><strong>Bottone "Torna indietro" dinamico</strong> — implementato con <code>sessionStorage</code>: ogni click su un link interno salva la pagina corrente; alla destinazione compare "← Torna a [origine]".</li>
 <li><strong>Animazioni fade-in scroll</strong> — <code>IntersectionObserver</code> con stagger di 60ms applicato a card, sezioni e stat-box. Zero librerie esterne.</li>
 <li><strong>Loading skeleton</strong> in <code>piloti.html</code> — 12 card con animazione shimmer visibili durante il caricamento, rimosse automaticamente.</li>
-<li><strong>Prediction</strong> — pagina pronostici (<code>prediction.html</code>) con entry list completa per MotoGP, Moto2 e Moto3, filtro automatico per assenti e wildcard, salvataggio locale tramite <code>localStorage</code>.</li>
-<li><strong>Statistiche</strong> — pagina dati (<code>stats.html</code>) con numeri chiave stagionali, andamento punti top-5 per round, classifica costruttori con barre comparative, record di stagione e vittorie per nazione.</li>
-<li><strong>Circuiti</strong> — sistema a due livelli: pagina indice (<code>circuiti.html</code>) con card, barra di ricerca e link rapidi + 22 pagine dedicate (<code>circuito_[nome].html</code>) con storia approfondita, caratteristiche tecniche, tabella risultati degli ultimi 5 anni per MotoGP/Moto2/Moto3, curiosità e navigazione contestuale.</li>
-<li><strong>Albo d'oro 350cc</strong> — aggiunta della categoria storica 350cc (1949–1982) all'albo d'oro, con tutti i 34 campioni del mondo.</li>
+<li><strong>Prediction</strong> — pagina pronostici (<code>prediction.html</code>) con layout ad accordion per i round, Smart Entry List che esclude infortunati e wildcard in base al round specifico, generatore casuale e calcolo dinamico del "Pilota Favorito" salvato in <code>localStorage</code>.</li>
+<li><strong>Statistiche</strong> — pagina dati (<code>stats.html</code>) con tab dinamiche per categoria, Head-to-Head (H2H) tra primo e secondo classificato, Indice di Dominanza (gauge SVG che calcola lo stato del campionato), andamento punti top-5, classifica costruttori, record e vittorie per nazione.</li>
+<li><strong>Stagione</strong> — pagina di riepilogo (<code>stagione.html</code>) con Dashboard Leader a cerchi colorati, Battaglia per il Titolo (gap 1°-2°), Top 5 affiancate, Piloti in forma, grafici vittorie e Timeline scorrevole dei vincitori con link diretti ai risultati.</li>
+<li><strong>Risultati</strong> — implementata ricerca rapida pilota all'interno delle sessioni, evidenziazione del Top Time e colori dedicati per le righe del podio (1°, 2°, 3°). Medaglie automatiche e box laterale per il sistema punteggio.</li>
+<li><strong>Circuiti</strong> — sistema a due livelli: pagina indice (<code>circuiti.html</code>) con barra di ricerca, filtri per continente, ordinamento per lunghezza/curve, Quick Jump Strip e badge di stato gara + pagine dedicate per ogni circuito.</li>
+<li><strong>Albo d'oro</strong> — esteso con categorie storiche (350cc, 50cc, 80cc, Sidecar), filtro per decadi, sidebar di ricerca con contatore dinamico e widget "Top 5 Dominatori" che calcola in tempo reale i piloti con più titoli.</li>
+<li><strong>Junior & Rookies</strong> — nuova pagina (<code>classificajrcrcc.html</code>) per le classifiche della Red Bull Rookies Cup e del FIM JuniorGP (Moto2, Moto3, Moto4) con podio dinamico.</li>
 <li><strong>Service Worker v3</strong> — strategia stale-while-revalidate: risponde dalla cache istantaneamente mentre aggiorna in background.</li>
 <li><strong>Favicon SVG</strong> — icona scalabile con "M26" rosso su sfondo nero, compatibile con tutti i browser moderni.</li>
 </ul>
@@ -875,7 +847,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <p>La scelta di non usare framework (React, Vue, Angular) o librerie (jQuery, Bootstrap) elimina completamente il problema del "bundle size". Un progetto React minimo scarica ~150KB di JavaScript prima ancora di mostrare un pixel; questo sito scarica solo il file HTML della pagina richiesta — tipicamente 80-200KB, inclusi tutti i dati.</p>
 <h3>Ottimizzazione delle immagini</h3>
 <ul class="feat-list">
-<li><strong>Formato WebP</strong> — le 84 foto piloti sono in formato WebP, che offre una compressione mediamente il 30% migliore rispetto a JPEG mantenendo la stessa qualità visiva.</li>
+<li><strong>Formato WebP</strong> — le 90 foto piloti sono in formato WebP, che offre una compressione mediamente il 30% migliore rispetto a JPEG mantenendo la stessa qualità visiva.</li>
 <li><strong>Lazy loading</strong> — le immagini fuori dalla viewport iniziale vengono caricate solo quando necessario grazie all'attributo <code>loading="lazy"</code>.</li>
 <li><strong>Dimensioni ottimizzate</strong> — le 22 immagini dei tracciati sono in PNG con risoluzione adeguata al contenitore (non più grande del necessario).</li>
 </ul>
@@ -914,7 +886,6 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <ul class="feat-list">
 <li><strong>Round disputati</strong> vs futuri: nel calendario, i round completati portano ai risultati, quello successivo pulsa in giallo, i futuri mostrano un popup informativo invece di navigare a una pagina vuota.</li>
 <li><strong>Leader di classifica</strong>: il pilota con più punti di ogni categoria ha la corona 👑 sulla card in piloti.html.</li>
-<li><strong>API live</strong>: nella scheda pilota, se la chiamata all'API MotoGP riesce, appare il badge "✓ Live API" in verde nella sidebar.</li>
 </ul>
 </div>
 </div>
@@ -953,14 +924,16 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <p>Il progetto ha raggiunto tutti gli obiettivi iniziali: un sito informativo completo sul Motomondiale 2026, navigabile da qualsiasi dispositivo, con dati aggiornati al Round 11 (Germania, Sachsenring) e funzionante anche offline grazie alla tecnologia PWA.</p>
 <h3>Risultati ottenuti</h3>
 <ul class="feat-list">
-<li>40 pagine funzionanti con navigazione coerente (16 principali + 22 pagine circuiti), tema scuro/chiaro e accesso diretto alle statistiche.</li>
+<li>41 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro e accesso diretto alle statistiche.</li>
 <li>90 piloti con scheda completa, palmares e grafico punti per round.</li>
 <li>Classifiche dinamiche con confronto piloti e filtro costruttore.</li>
-<li>Risultati completi per 7 round (Thailandia, Brasile, USA, Spagna, Francia, Italia, Spagna) con tutte le sessioni.</li>
-<li>Pagina <strong>Prediction</strong> con entry list aggiornate per MotoGP, Moto2 e Moto3, filtri automatici per assenti e wildcard, salvataggio locale pronostici.</li>
-<li>Pagina <strong>Statistiche</strong> con numeri chiave stagionali, andamento punti, classifica costruttori, record e vittorie per nazione.</li>
-<li>Sistema <strong>Circuiti</strong> a due livelli: pagina indice con 22 card + 22 pagine dedicate con storia, caratteristiche tecniche, tabella risultati degli ultimi 5 anni e curiosità.</li>
-<li><strong>Albo d'oro 350cc</strong> — sezione storica con tutti i campioni della classe 350cc dal 1949 al 1982.</li>
+<li>Risultati completi per 11 round con tutte le sessioni, ricerca rapida pilota e medaglie top-3.</li>
+<li>Pagina <strong>Prediction</strong> con layout ad accordion, Smart Entry List per escludere infortunati, generatore casuale e calcolo del pilota favorito.</li>
+<li>Pagina <strong>Statistiche</strong> con Head-to-Head, Indice di Dominanza (gauge SVG), andamento punti, classifica costruttori, record e vittorie per nazione.</li>
+<li>Pagina <strong>Stagione</strong> con Dashboard Leader, Battaglia per il Titolo, Top 5 affiancate e Timeline scorrevole dei vincitori.</li>
+<li>Sistema <strong>Circuiti</strong> a due livelli: pagina indice con ricerca, filtri continente, ordinamento e Quick Jump Strip + pagine dedicate per ogni circuito.</li>
+<li><strong>Albo d'oro</strong> esteso a tutte le categorie storiche (350cc, 50cc, 80cc, Sidecar) con filtri per decadi e widget Top 5 Dominatori.</li>
+<li>Nuova pagina <strong>Junior & Rookies</strong> per le classifiche delle serie propedeutiche.</li>
 <li>Installabile come app su Android, iOS e desktop grazie alla tecnologia PWA.</li>
 </ul>
 <h3>Criticità incontrate e soluzioni</h3>
@@ -981,14 +954,13 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <div class="rel-body">
 <h3>Documentazione tecnica</h3>
 <ul class="feat-list">
-<li><strong>MDN Web Docs</strong> (developer.mozilla.org) — Riferimento principale per HTML5, CSS3, JavaScript ES2022, Fetch API, Service Worker, localStorage.</li>
+<li><strong>MDN Web Docs</strong> (developer.mozilla.org) — Riferimento principale per HTML5, CSS3, JavaScript ES2022, Service Worker, localStorage.</li>
 <li><strong>W3C Standards</strong> (w3.org) — Specifiche HTML Living Standard e CSS.</li>
 <li><strong>web.dev</strong> (web.dev/progressive-web-apps) — Guida alla realizzazione di Progressive Web App, manifest e Service Worker.</li>
 </ul>
 <h3>Dati sportivi</h3>
 <ul class="feat-list">
 <li><strong>MotoGP Official Website</strong> (motogp.com) — Risultati ufficiali, classifiche, schede piloti.</li>
-<li><strong>MotoGP PulseLive API</strong> (api.motogp.pulselive.com) — Endpoint pubblico REST per i dati live dei piloti.</li>
 <li><strong>Wikipedia</strong> — Dati storici palmares piloti e albo d'oro dal 1949.</li>
 </ul>
 <h3>Risorse grafiche</h3>
@@ -1430,7 +1402,7 @@ function apriPDF() {
     { name:'Classifica',    sub:'Top piloti per categoria',  icon:'🏆', url:'classifica.html' },
     { name:'Risultati',     sub:'GP per GP, sessione x sessione', icon:'📋', url:'risultati.html' },
     { name:'Calendario',    sub:'Tutti i 22 round 2026',    icon:'📅', url:'calendario.html' },
-    { name:'Piloti',        sub:'Tutti i 84 piloti',        icon:'👤', url:'piloti.html' },
+    { name:'Piloti',        sub:'Tutti i 90 piloti',        icon:'👤', url:'piloti.html' },
     { name:'Stagione',      sub:'Racconto della stagione',  icon:'📖', url:'stagione.html' },
     { name:"Albo d'oro",    sub:'Campioni dal 1949',        icon:'🥇', url:'albo_doro.html' },
     { name:'Guida al sito', sub:'Come navigare e scorciatoie', icon:'❓', url:'guida.html' },
