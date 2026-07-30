@@ -1386,7 +1386,7 @@
 
 .ticker-content {
   white-space: nowrap; padding-left: 100%; 
-  animation: ticker 60s linear infinite; /* Cambiato da 40s a 60s */
+  animation: ticker 100s linear infinite; /* Cambiato da 40s a 60s */
 }
 
 </style>
@@ -2944,6 +2944,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch(e){}
   });
 })();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        console.log('Service Worker registrato con successo:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Registrazione Service Worker fallita:', error);
+      });
+  });
+}
 </script>
 </body>
 </html>

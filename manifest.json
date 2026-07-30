@@ -2,7 +2,7 @@
   "name": "Motomondiale 2026",
   "short_name": "Moto2026",
   "description": "Classifiche, risultati e notizie del Motomondiale 2026",
-  "start_url": "index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#e8001d",

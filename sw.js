@@ -1,11 +1,14 @@
 const CACHE = 'moto2026-v6';
 const PRECACHE = [
   'index.html',
+  'notizie.html',
   'classifica.html',
+  'classifica-jgprcc-html',
   'risultati.html',
   'piloti.html',
   'pilota.html',
   'calendario.html',
+  'team.html',
   'stagione.html',
   'albo_doro.html',
   'guida.html',
@@ -42,41 +45,41 @@ const PRECACHE = [
   'manifest.json'
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE)
-      .then(c => c.addAll(PRECACHE))
-      .then(() => self.skipWaiting())
-  );
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', e => {
-  // Solo richieste GET della stessa origine
-  if (e.request.method !== 'GET') return;
-  const url = new URL(e.request.url);
-  if (url.origin !== location.origin) return;
-
-  e.respondWith(
-    caches.open(CACHE).then(cache =>
-      cache.match(e.request).then(cached => {
-        const fetchPromise = fetch(e.request)
-          .then(resp => {
-            if (resp && resp.status === 200) cache.put(e.request, resp.clone());
-            return resp;
-          })
-          .catch(() => cached);
-        return cached || fetchPromise;
+// Installazione: salva i file in cache
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Cache aperta');
+        return cache.addAll(ASSETS_TO_CACHE);
       })
-    )
+      .catch((error) => console.error('Errore nel caching:', error))
+  );
+});
+
+// Attivazione: pulisce le vecchie cache se aggiorni l'app
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name))
+      );
+    })
+  );
+});
+
+// Fetch: Serve i file dalla cache se non c'è connessione
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        // Se il file è in cache, lo serve da lì
+        if (response) {
+          return response;
+        }
+        // Altrimenti lo scarica dalla rete
+        return fetch(event.request);
+      })
   );
 });
