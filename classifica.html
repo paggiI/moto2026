@@ -147,7 +147,16 @@
     .status-note { font-family:'Barlow Condensed',sans-serif; font-size:.8rem; color:#f7a600; margin-left:auto; }
 
     /* TAB BAR */
-    .tab-bar { background:var(--mid); border-bottom:1px solid var(--border); display:flex; overflow-x:auto; }
+    .tab-bar { 
+    background: var(--mid); 
+    border-bottom: 1px solid var(--border); 
+    display: flex; 
+    overflow-x: auto;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
     .tab-btn {
       padding:1rem 1.8rem; flex-shrink:0;
       font-family:'Barlow Condensed',sans-serif; font-weight:700;
@@ -7929,7 +7938,7 @@ function buildDataFromResults() {
       "name": "Iker Lecuona",
       "team": "BK8 Gresini Racing MotoGP",
       "pts": 9.0,
-      "sostituto": "Sub A.Marquez \u00b7 R8"
+      "sostituto": "Sub A.Marquez \u00b7 R8 - F.Aldeguer R12"
     }
   ],
   "moto2": [
@@ -8097,9 +8106,9 @@ function buildDataFromResults() {
       "pos": 22,
       "flag": "🇪🇸",
       "name": "Jorge Navarro",
-      "team": "Forward Factory Team / QJMOTOR – FRINSA – MSI",
+      "team": "Forward Factory Team / REDS Fantic Racing",
       "pts": 0.0,
-      "sostituto": "R1-R5 Forward - R10-R11 MSI"
+      "sostituto": "R1-R5 Forward - R10-R11 Fantic"
     },
     {
       "pos": 23,

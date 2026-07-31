@@ -1111,7 +1111,7 @@ const RIDERS = {
     "team": "BK8 Gresini Racing MotoGP",
     "team_bike": "Ducati Desmosedici GP25",
     "bike": "Ducati Desmosedici GP25",
-    "note": "Assente Round 7-8 (infortunio) Sostituito da M. Pirro e I.Lecuona",
+    "note": "Assente Round 7-8 (infortunio) Sostituito da M. Pirro e I. Lecuona",
     "points": 53,
     "position": 9,
     "birth": "1996-04-23",
@@ -1128,7 +1128,7 @@ const RIDERS = {
     "team": "BK8 Gresini Racing MotoGP",
     "team_bike": "Ducati Desmosedici GP25",
     "bike": "Ducati Desmosedici GP25",
-    "note": "Assente Round 1 (infortunio) Sostituito da M. Pirro e al Round 11 (infortunio)",
+    "note": "Assente Round 1 (infortunio) sostituito da M. Pirro, assente al Round 11 (infortunio), senza sostituzione, e al Round 12 (infortunio) sostituito da I. Lecuona ",
     "points": 45,
     "position": 11,
     "birth": "2005-04-05",
@@ -1504,7 +1504,7 @@ const RIDERS = {
     "team": "BK8 Gresini Racing MotoGP",
     "team_bike": "Ducati Desmosedici GP25",
     "bike": "Ducati Desmosedici GP25",
-    "note": "Sostituto di Alex Márquez al Round 8",
+    "note": "Sostituto di Alex Márquez al Round 8 e di Fermín Aldeguer al Round 12",
     "points": 0.0,
     "position": 23,
     "birth": "2000-01-06",
@@ -8845,7 +8845,7 @@ function renderStatic(d) {
   const _samePos = _myPts26 > 0 ? Object.values(RIDERS).filter(r =>
     r.category === d.category && calcStats2026(r).pts === _myPts26
   ).length : 0;
-  const _posStr = _pos26 ? (ordinal(_pos26) + (_samePos > 1 ? '=' : '')) : '—';
+  const _posStr = _pos26 ? ordinal(_pos26) : '—';
   document.getElementById('stats-grid').innerHTML = `
     <div class="stat-pill"><div class="stat-label">Punti 2026</div><div class="stat-value">${_s26.pts > 0 ? _s26.pts : (d.points || 0)}</div></div>
     <div class="stat-pill"><div class="stat-label">Posizione</div><div class="stat-value">${_posStr}</div></div>
