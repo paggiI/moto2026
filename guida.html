@@ -26,6 +26,10 @@
       --gp: #ff6b35;
       --m2: #f7a600;
       --m3: #00b4d8;
+      --jgp:#c0db26;
+      --rrc:#325de9;
+      --gen:#16C416;
+
       --gold: #ffd700;
       --silver: #c0c0c0;
       --bronze: #cd7f32;
@@ -234,6 +238,9 @@
     .tag-gp { background: rgba(255,107,53,.2); color: #ff6b35; border: 1px solid rgba(255,107,53,.3); }
     .tag-m2 { background: rgba(247,166,0,.2); color: #f7a600; border: 1px solid rgba(247,166,0,.3); }
     .tag-m3 { background: rgba(0,180,216,.2); color: #00b4d8; border: 1px solid rgba(0,180,216,.3); }
+    .tag-jgp { background: rgba(192,219,38,.15); color: #c0db26; border: 1px solid rgba(192,219,38,.3); }
+    .tag-rrc { background: rgba(130,128,255,.15); color: #325de9; border: 1px solid rgba(50,93,233,.3); }
+    .tag-gen { background: rgba(9,151,40,.15); color: #16C416; border: 1px solid rgba(22,196,22,.3); }
 
     kbd { background: var(--mid); border: 1px solid #444; border-bottom: 2px solid #333; border-radius: 4px; padding: .15rem .45rem; font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 700; color: var(--white); }
     
@@ -499,7 +506,7 @@
             <p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
             <ul class="feature-list">
               <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div></li>
-              <li><span class="fl-icon">🏷️</span><div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · JuniorGP · RedBull RookiesCup) filtrano istantaneamente le notizie per classe.</div></li>
+              <li><span class="fl-icon">🏷️</span><div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · <span class="page-tag tag-jgp">JuniorGP</span> · <span class="page-tag tag-rrc">RedBull RookiesCup</span> · <span class="page-tag tag-gen">Motomondiale</span>) filtrano istantaneamente le notizie per classe.</div></li>
               <li><span class="fl-icon">🖼️</span><div><span class="hl">Miniature dinamiche</span> — ogni card mostra un'anteprima grafica generata automaticamente, con icone, colori e gradienti specifici per la categoria di appartenenza.</div></li>
               <li><span class="fl-icon">♾️</span><div><span class="hl">Scroll Infinito</span> — le notizie vengono caricate automaticamente in gruppi di 6 man mano che scorri verso il basso, senza dover cliccare alcun pulsante.</div></li>
               <li><span class="fl-icon">🔢</span><div><span class="hl">Contatore dinamico</span> — un indicatore in alto mostra il numero totale di notizie trovate con i filtri attuali.</div></li>
