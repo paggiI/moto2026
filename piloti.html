@@ -952,9 +952,9 @@
 <div class="tab-bar-wrapper">
 <div class="tab-bar">
 <button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
-<button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+6)</button>
+<button class="tab-btn" onclick="filterClass('motogp',this)">🔴 MotoGP (22+7)</button>
 <button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+6)</button>
-<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+2)</button>
+<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+3)</button>
 </div>
 </div>
 <div style="background:var(--mid);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;">
@@ -1107,6 +1107,11 @@
 <div class="rider-flag">🇩🇪</div>
 <div class="rider-name">Jonas Folger <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R4</span></div>
 <div class="rider-meta">Red Bull KTM Tech3 — Sub. Vinales al Round 4 </div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">Pol Espargaró <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R12</span></div>
+<div class="rider-meta">Red Bull KTM Tech3 — Sub. Vinales al Round 12</div>
 </div>
 </div>
 </div>
@@ -1480,8 +1485,8 @@
 <div class="rider-name">David Muñoz</div>
 <div class="rider-meta">KTM</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
-            ⚠️ Assente Round 2–3-9-10-11 (infortunio)<br/>
-<span style="color:var(--muted);">Sostituito da M. Uriarte al Round 9-10</span>
+            ⚠️ Assente Round 2–3-9-10-11-12-13 (infortunio)<br/>
+<span style="color:var(--muted);">Sostituito da M. Uriarte al Round 9-10; Sostituito da D. González al Round 12-13</span>
 </div>
 </div>
 <div class="rider-card">
@@ -1497,6 +1502,11 @@
 <div class="rider-flag">🇪🇸</div>
 <div class="rider-name">Marcos Uriarte <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R2-R3-R9-R10</span></div>
 <div class="rider-meta">KTM — Sub. Alamnsa al Round 3; Sub. Muñoz al Round 9-10-11</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇪🇸</div>
+<div class="rider-name">David González<span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R12-R13</span></div>
+<div class="rider-meta">KTM — Sub. Muñoz al Round 12-13</div>
 </div>
 </div>
 </div>
@@ -1584,7 +1594,7 @@
     'Enea Bastianini': '23', 'Maverick Viñales': '12', 'Raúl Fernández': '25', 'Ai Ogura': '79',
     'Fabio Quartararo': '20', 'Álex Rins': '42', 'Joan Mir': '36', 'Luca Marini': '10',
     'Johann Zarco': '5', 'Diogo Moreira': '11', 'Cal Crutchlow': '35', 'Augusto Fernández': '47', 
-    'Jonas Folger': '94', 'Lorenzo Savadori': '32', 'Michele Pirro': '51', 'Iker Lecuona': '27',
+    'Jonas Folger': '94', 'Lorenzo Savadori': '32', 'Michele Pirro': '51', 'Iker Lecuona': '27', 'Pol Espargaró': '44',
     'Manuel González': '18', 'Senna Agius': '81', 'Celestino Vietti': '13',
     'Tony Arbolino': '14', 'Izan Guevara': '28', 'David Alonso': '80',
     'Daniel Holgado': '96', 'Filip Salač': '12', 'Alonso López': '21',
@@ -1739,8 +1749,9 @@
       .replace(/^_|_$/g, '');
   }
 
-  function cleanRiderName(text) {
-    return (text || '').replace(/\s+(SOSTITUTO|WILDCARD)[\s\S]*$/i, '').trim();
+    function cleanRiderName(text) {
+    // Usa split per tagliare TUTTO ciò che viene dopo SOSTITUTO o WILDCARD, a prescindere dagli spazi
+    return (text || '').split(/\s*(SOSTITUTO|WILDCARD)/i)[0].trim();
   }
 
   document.querySelectorAll('.rider-card').forEach(card => {
@@ -2346,6 +2357,7 @@ document.addEventListener('keydown', function(e) {
     'Luca Marini':            'luca_marini',
     'Johann Zarco':           'johann_zarco',
     'Diogo Moreira':          'diogo_moreira',
+    'Pol Espargaró':          'pol_espargaro',
     // Moto2
     'Joe Roberts':            'joe_roberts',
     'Filip Salač':            'filip_salac',
@@ -2369,6 +2381,7 @@ document.addEventListener('keydown', function(e) {
     'Rico Salmela':           'rico_salmela',
     'Leo Rammerstorfer':      'leo_rammerstorfer',
     "Casey O'Gorman":         'casey_ogorman',
+    'David González':         'david_gonzalez',
   };
 
   function getFavs() {

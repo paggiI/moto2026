@@ -1511,6 +1511,23 @@ const RIDERS = {
     "city": "Valencia",
     "debut": 2016
   },
+  "pol_espargaro":{
+    "id": "pol_espargaro",
+    "name": "Pol Espargaró",
+    "flag": "🇪🇸",
+    "country": "Spagna",
+    "number": 44,
+    "category": "MotoGP",
+    "team": "Red Bull KTM Tech3",
+    "team_bike": "KTM RC16",
+    "bike": "KTM RC16",
+    "note": "",
+    "points": 0.0,
+    "position": 30,
+    "birth": "1991-06-10",
+    "city": "Granollers",
+    "debut": 2009
+  },
 
   // MOTO 2
 
@@ -2572,6 +2589,23 @@ const RIDERS = {
     "birth": "2008-05-03",
     "city": "Siviglia",
     "debut": 2026
+  },
+  "david_gonzalez": {
+    "id": "david_gonzalez",
+    "name": "David González",
+    "flag": "🇪🇸",
+    "country": "Spagna",
+    "number": "",
+    "category": "Moto3",
+    "team": "Liqui Moly Dynavolt Intact GP",
+    "team_bike": "KTM",
+    "bike": "KTM",
+    "note": "",
+    "points": 0,
+    "position": 29,
+    "birth": "2007-02-20",
+    "city": "Madrid",
+    "debut": 2026
   }
 };
 
@@ -2613,7 +2647,8 @@ const RESULTS_2026 = {
   "lorenzo_savadori":     { gare:1, vit:0, podi:0, pole:0 },  // wildcard R4
   "augusto_fernandez":    { gare:1, vit:0, podi:0, pole:0 },  // wildcard R4
   "jonas_folger":         { gare:1, vit:0, podi:0, pole:0 },  // sub R5
-  "cal_crutchlow":        { gare:1, vit:0, podi:0, pole:0 },  // sub R7-8
+  "cal_crutchlow":        { gare:1, vit:0, podi:0, pole:0 },  // sub R7-8-910-11-12-13-14
+  "pol_espargaro":        { gare:0, vit:0, podi:0, pole:0 },  // sub R12
   
   // ── Moto2 ───────────────────────────────────────────────
   "senna_agius":          { gare:5, vit:2, podi:2, pole:1 },
@@ -2677,9 +2712,10 @@ const RESULTS_2026 = {
   "zen_mitani":           { gare:4, vit:0, podi:0, pole:0 },
   "leo_rammerstorfer":    { gare:5, vit:0, podi:0, pole:0 },
   "adrian_cruces":        { gare:5, vit:0, podi:0, pole:0 },
-  "david_munoz":          { gare:4, vit:0, podi:2, pole:0 }, // out R2-3 infortunato
-  "marcos_uriarte":       { gare:1, vit:0, podi:0, pole:0 },  // sub R3 
-  "eduardo_gutierrez_cobo": { gare:0, vit:0, podi:0, pole:0 }   // sub R11
+  "david_munoz":          { gare:4, vit:0, podi:2, pole:0 }, // out R2-R3-R9-R10-R11-R12-R13 infortunato
+  "marcos_uriarte":       { gare:1, vit:0, podi:0, pole:0 },  // sub R3-R9-R10-R11
+  "eduardo_gutierrez_cobo": { gare:0, vit:0, podi:0, pole:0 },   // sub R11
+  "david_gonzalez":       { gare:0, vit:0, podi:0, pole:0 },   // sub R12
 };
 
 const PALMARES = {
@@ -2712,7 +2748,8 @@ const PALMARES = {
   "jonas_folger":{"titoli":[""],"vittorie":5,"podi":24,"pole":6,"gare":162,"stagioni":[{y:2008,cat:"125",pos:32,pt:1},{y:2009,cat:"125",pos:12,pt:73},{y:2010,cat:"125",pos:14,pt:69},{y:2011,cat:"125",pos:6,pt:161},{y:2012,cat:"Moto3",pos:9,pt:93},{y:2013,cat:"Moto3",pos:5,pt:180},{y:2014,cat:"Moto2",pos:15,pt:63},{y:2015,cat:"Moto2",pos:6,pt:163},{y:2016,cat:"Moto2",pos:7,pt:167},{y:2017,cat:"MotoGP",pos:10,pt:84},{y:2019,cat:"Moto2",pos:31,pt:0},{y:2023,cat:"MotoGP",pos:null,pt:9}]},
   "cal_crutchlow":{"titoli":["2006 British Supersport Championship 🏆","2009 Supersport 🏆"],"vittorie":3,"podi":19,"pole":4,"gare":178,"stagioni":[{y:2011,cat:"MotoGP",pos:12,pt:70},{y:2012,cat:"MotoGP",pos:7,pt:151},{y:2013,cat:"MotoGP",pos:5,pt:188},{y:2014,cat:"MotoGP",pos:13,pt:74},{y:2015,cat:"MotoGP",pos:8,pt:125},{y:2016,cat:"MotoGP",pos:7,pt:141},{y:2017,cat:"MotoGP",pos:9,pt:112},{y:2018,cat:"MotoGP",pos:7,pt:148},{y:2019,cat:"MotoGP",pos:9,pt:133},{y:2020,cat:"MotoGP",pos:18,pt:32},{y:2021,cat:"MotoGP",pos:28,pt:0},{y:2022,cat:"MotoGP",pos:25,pt:10},{y:2023,cat:"MotoGP",pos:29,pt:3},{y:2026,cat:"MotoGP",pos:null,pt:0}]},
   "iker_lecuona":{"titoli":[""],"vittorie":0,"podi":2,"pole":0,"gare":94,"stagioni":[{y:2016,cat:"Moto2",pos:32,pt:0},{y:2017,cat:"Moto2",pos:35,pt:2},{y:2018,cat:"Moto2",pos:12,pt:80},{y:2019,cat:"Moto2",pos:12,pt:90},{y:2019,cat:"MotoGP",pos:28,pt:0},{y:2020,cat:"MotoGP",pos:20,pt:27},{y:2021,cat:"MotoGP",pos:20,pt:39},{y:2023,cat:"MotoGP",pos:30,pt:0},{y:2026,cat:"MotoGP",pos:null,pt:0},]},
-  
+  "pol_espargaro":{"titoli":["2006 JuniorGP [ex 125cc] (Moto Junior FIM World Championship) 🏆","2013 Moto2 🏆"],"vittorie":15,"podi":52,"pole":20,"gare":298,stagioni:[{y:2006,cat:"125cc",team:"Derbi",pos:7,pt:19},{y:2007,cat:"125cc",team:"Aprilia",pos:17,pt:110},{y:2008,cat:"125cc",team:"Derbi",pos:15,pt:124},{y:2009,cat:"125cc",team:"Derbi",pos:16,pt:174.5},{y:2010,cat:"125cc",team:"Derbi",pos:17,pt:281},{y:2011,cat:"Moto2",team:"FTR",pos:17,pt:75},{y:2012,cat:"Moto2",team:"Kalex",pos:17,pt:269},{y:2013,cat:"Moto2",team:"Kalex",pos:17,pt:265},{y:2014,cat:"MotoGP",team:"Yamaha",pos:18,pt:136},{y:2015,cat:"MotoGP",team:"Yamaha",pos:18,pt:114},{y:2016,cat:"MotoGP",team:"Yamaha",pos:18,pt:134},{y:2017,cat:"MotoGP",team:"KTM",pos:18,pt:55},{y:2018,cat:"MotoGP",team:"KTM",pos:15,pt:51},{y:2019,cat:"MotoGP",team:"KTM",pos:18,pt:100},{y:2020,cat:"MotoGP",team:"KTM",pos:14,pt:135},{y:2021,cat:"MotoGP",team:"Honda",pos:17,pt:100},{y:2022,cat:"MotoGP",team:"Honda",pos:19,pt:56},{y:2023,cat:"MotoGP",team:"KTM",pos:12,pt:15},{y:2024,cat:"MotoGP",team:"KTM",pos:3,pt:12},{y:2025,cat:"MotoGP",team:"KTM",pos:5,pt:29}]},
+
   // ── MOTO2 ──────────────────────────────────────────────────────
   "daniel_holgado":{"titoli":["2021 JuniorGP [Moto 3] (Moto Junior FIM World Championship)🏆"],"vittorie":7,"podi":23,"pole":8,"gare":85,"stagioni":[{y:2021,cat:"Moto3",pos:"-",pt:4},{y:2022,cat:"Moto3",pos:10,pt:103},{y:2023,cat:"Moto3",pos:5,pt:220},{y:2024,cat:"Moto3",pos:2,pt:256},{y:2025,cat:"Moto2",pos:6,pt:208},{y:2026,cat:"Moto2",pos:null,pt:38}]},
   "david_alonso":{"titoli":["2020 Moto 4 Junior [ex European Talent Cup] (Moto Junior FIM World Championship) 🏆","2021 Red Bull Rookies Cup 🏆","2024 Moto3 🏆"],"vittorie":19,"podi":28,"pole":7,"gare":64,"stagioni":[{y:2021,cat:"Moto3",pos:38,pt:0},{y:2022,cat:"Moto3",pos:"-",pt:0},{y:2023,cat:"Moto3",pos:3,pt:245},{y:2024,cat:"Moto3",pos:1,pt:421},{y:2025,cat:"Moto2",pos:9,pt:153},{y:2026,cat:"Moto2",pos:null,pt:37}]},
@@ -2778,6 +2815,7 @@ const PALMARES = {
   "leo_rammerstorfer":{"titoli":[],"vittorie":0,"podi":0,"pole":0,"gare":0,"stagioni":[{y:2026,cat:"Moto3",pos:null,pt:0}]},
   "casey_o_gorman":{"titoli":["2021 Moto 4 British Cup [ex British Talent Cup] 🏆"],"vittorie":0,"podi":0,"pole":0,"gare":4,"stagioni":[{y:2025, cat:"Moto3", pos:25, pt:16},{y:2026, cat:"Moto3", pos:null, pt:16}]},
   "eduardo_gutierrez_cobo":{"titoli":[],"vittorie":0,"podi":0,"pole":0,"gare":0,"stagioni":[{y:2026,cat:"Moto3",pos:null,pt:0}]},
+  "david_gonzalez":{"titoli":["2021 Cuna of Campeones 🏆"],"vittorie":0,"podi":0,"pole":0,"gare":0,"stagioni":[{y:2026,cat:"Moto3",pos:null,pt:0}]},
 };
 
 // ── FUNZIONE RENDER PALMARÈS ──────────────────────────────────
