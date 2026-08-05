@@ -1168,7 +1168,7 @@
     }
     .welcome-text {
       font-family: 'Barlow', sans-serif;
-      color: var(--muted); font-size: 1rem; line-height: 1.6;
+      color: var(--muted); font-size: 0.9rem; line-height: 1.6;
       margin: 0 0 1.5rem 0;
     }
 
@@ -1392,7 +1392,7 @@
 
 .ticker-content {
   white-space: nowrap; padding-left: 100%; 
-  animation: ticker 100s linear infinite; /* Cambiato da 40s a 60s */
+  animation: ticker 80s linear infinite; /* Cambiato da 40s a 60s */
 }
 
 </style>
@@ -1447,16 +1447,16 @@
   <div class="ticker-label">🔥 Mercato 2027</div>
   <div class="ticker-content">
     <span><strong>Ducati Lenovo:</strong> Marc Márquez rinnova per due anni, Bagnaia passa in Aprilia e Acosta arriva a sostituirlo.</span>
+    <span><strong>Gresini Racing:</strong> Ufficiale l'arrivo di Joan Mir e del rookie Daniel Holgado dalla Moto2 con il team Aspar.</span>
+    <span><strong>VR46 Racing Team:</strong> Fermín Aldeguer cambia squadra ma resta in Ducati; Nicolò Bulega è la prima scelta per la seconda sella.</span>
     <span><strong>Aprilia Racing:</strong> Bagnaia firma un contratto quadriennale e Bezzecchi rinnova per due stagioni: nasce una coppia tutta italiana.</span>
+    <span><strong>Aprilia Trackhouse:</strong> Enea Bastianini è la scelta per sostituire Ai Ogura, affiancando lo spagnolo Raúl Fernández.</span>
     <span><strong>Yamaha Factory:</strong> Jorge Martín e Ai Ogura sono i nuovi piloti ufficiali, entrambi ex piloti Aprilia.</span>
     <span><strong>Pramac Yamaha:</strong> Toprak Razgatlıoğlu confermato; al suo fianco Izan Guevara, promosso dal vivaio della Moto2.</span>
-    <span><strong>KTM Factory:</strong> Álex Márquez e Fabio Di Giannantonio sono i nuovi piloti titolari.</span>
+    <span><strong>KTM Factory:</strong> Álex Márquez e Fabio Di Giannantonio sono i nuovi piloti titolari, entrambi ex piloti Ducati.</span>
     <span><strong>Tech3 KTM:</strong> Senna Agius è pronto al salto in MotoGP; come veterano è stato scelto Luca Marini, proveniente da Honda HRC.</span>
-    <span><strong>Honda HRC:</strong> Colpo Quartararo dal 2027, affiancato dal rookie David Alonso o dal brasiliano Diogo Moreira, promosso dal team LCR?</span>
-    <span><strong>LCR Honda:</strong> Zarco confermato fino al 2027, con spazio ai giovani talenti.</span>
-    <span><strong>Gresini Racing:</strong> In arrivo Joan Mir e il rookie Daniel Holgado dalla Moto2 con il team Aspar.</span>
-    <span><strong>VR46 Racing Team:</strong> Fermín Aldeguer cambia squadra ma resta in Ducati; Nicolò Bulega è la prima scelta per la seconda sella.</span>
-    <span><strong>Trackhouse:</strong> Enea Bastianini, affiancato dallo spagnolo Raúl Fernández.</span>
+    <span><strong>Honda HRC:</strong> Fabio Quartararo dal 2027. Uno tra David Alonso e Diogo Moreira lo affiancherà nel team ufficiale.</span>
+    <span><strong>LCR Honda:</strong> Zarco confermato fino al 2027, con l’altro talento tra Alonso e Moreira destinato al team satellite.</span>
   </div>
 </div>
 <!-- MAIN CONTENT -->
@@ -2080,6 +2080,7 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
+  {cat:'MotoGP',tagCls:'tag-gp',title:'Ufficiale, Raúl Fernández rinnova con Trackhouse Aprilia: accordo fino al 2028',excerpt:'Il team americano conferma il pilota spagnolo anche per le stagioni 2027 e 2028 dopo aver raggiunto l’intesa per il rinnovo biennale.',date:'5 ago 2026',author:'Redazione',meta:'📅 5 ago 2026 · ✍️ Redazione',body:'Raúl Fernández continuerà a vestire i colori di Trackhouse Aprilia anche nelle stagioni 2027 e 2028. Il team americano ha ufficializzato il rinnovo biennale del pilota spagnolo, confermando la fiducia in uno dei protagonisti della crescita della squadra. Arrivato nel 2023 con RNF Aprilia e poi confermato nel progetto Trackhouse dopo il passaggio di proprietà, Fernández ha costruito un percorso di crescita costante diventando una delle pedine principali del team. Dal 2025 ha condiviso il box con Ai Ogura, ma il giapponese lascerà la squadra al termine del 2026 per accasarsi alla Yamaha dal 2027a, aprendo la porta a un possibile arrivo di Enea Bastianini come nuovo compagno di squadra dello spagnolo.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Luca Marini ha detto sì a KTM Tech3: accordo biennale fino al 2028, manca solo l’ufficialità',excerpt:'Accordo totale tra Luca Marini, KTM e Tech3 per le stagioni 2027 e 2028. L’annuncio ufficiale è atteso nelle prossime settimane.',date:'4 ago 2026',author:'Redazione',meta:'📅 4 ago 2026 · ✍️ Redazione',body:'Luca Marini correrà con KTM Tech3 nelle stagioni 2027 e 2028. L’accordo tra il pilota italiano, la Casa di Mattighofen e il team satellite è stato raggiunto durante la pausa estiva dopo una trattativa rapida e ora manca soltanto l’annuncio ufficiale. KTM ha individuato in Marini il profilo ideale per affiancare un giovane rookie, puntando sulla sua esperienza e sulle sue qualità nello sviluppo della moto in vista dell’introduzione dei nuovi prototipi da 850 cc. Il futuro del pilota sembrava inizialmente legato a Honda, ma l’evoluzione del mercato ha cambiato gli scenari, permettendo a Tech3 di riportarsi in vantaggio e chiudere definitivamente l’operazione. Per Marini si apre così una nuova sfida in MotoGP con i colori KTM per il prossimo biennio.'},
   {cat:'Moto3',tagCls:'tag-m3',title:'Moto3, David González debutta nel Mondiale con Intact GP: sostituirà Muñoz a Silverstone e Aragón',excerpt:'Il diciottenne spagnolo David González farà il suo esordio nel Motomondiale sostituendo l’infortunato David Muñoz nei Gran Premi di Silverstone e Aragón con il team Intact GP.',date:'3 ago 2026',author:'Redazione',meta:'📅 3 ago 2026 · ✍️ Redazione',body:'Il team Intact GP ha ufficializzato che David Muñoz non sarà al via dei prossimi due appuntamenti del Mondiale Moto3. Il pilota spagnolo è ancora impegnato nel recupero dall’infortunio riportato durante il Gran Premio di Balaton Park e, dopo aver saltato il weekend di Spielberg, sarà costretto a dare forfait anche per Silverstone e Aragón.<br><br>Al suo posto debutterà nel Motomondiale il connazionale David González. Il diciottenne di Medina del Campo, attualmente impegnato nel FIM JuniorGP (MotoJunior) e nella Red Bull Rookies Cup, vestirà i colori di Intact GP nei due weekend consecutivi, cogliendo così la prima grande occasione della sua carriera a livello iridato.<br><br>González si è messo in evidenza nel corso della stagione nella Red Bull Rookies Cup, dove occupa attualmente la quinta posizione in classifica, confermando una crescita costante e attirando l’attenzione del team tedesco. La chiamata rappresenta un importante premio per il giovane spagnolo, che potrà confrontarsi con i migliori piloti della Moto3 sui circuiti di Silverstone e MotorLand Aragón.<br><br>Per David Muñoz, invece, prosegue il percorso di riabilitazione con l’obiettivo di rientrare in pista una volta ottenuto il via libera definitivo dai medici. Intact GP ha espresso pieno sostegno al proprio pilota, augurandogli un rapido recupero, mentre tutta l’attenzione si sposta ora sull’esordio mondiale di David González.'},
   {cat:'MotoGP',tagCls:'tag-gp',title:'MotoGP, Pol Espargaró sostituirà Maverick Viñales a Silverstone: lo spagnolo salta il GP per recuperare dall’infortunio',excerpt:'Maverick Viñales non prenderà parte al Gran Premio di Gran Bretagna per concentrarsi sul recupero fisico dopo i problemi alla spalla. Al suo posto Tech3 schiererà il collaudatore Pol Espargaró.',date:'3 ago 2026',author:'Redazione',meta:'📅 3 ago 2026 · ✍️ Redazione',body:'Maverick Viñales sarà costretto a saltare il Gran Premio di Gran Bretagna a Silverstone. Il pilota spagnolo sta ancora aspettando l’esito degli ultimi controlli medici per capire quale sarà il percorso migliore per il recupero dall’infortunio alla spalla, ma ha deciso di prendersi ulteriore tempo per tornare nelle migliori condizioni fisiche.<br><br>Il team Red Bull KTM Tech3 ha quindi scelto Pol Espargaró come sostituto per il weekend britannico. Il collaudatore KTM, già esperto della RC16 e della squadra, tornerà così in pista in gara per affiancare il lavoro del team durante il fine settimana di Silverstone.<br><br>La situazione di Viñales resta legata agli accertamenti medici: nel caso fosse necessario un nuovo intervento, i tempi di recupero potrebbero allungarsi ulteriormente. Per questo motivo il pilota ha preferito fermarsi e sfruttare le prossime settimane per completare il percorso di guarigione.<br><br>Per Pol Espargaró si tratta di una nuova opportunità in MotoGP dopo il ruolo di collaudatore KTM. Lo spagnolo conosce molto bene la moto austriaca e potrà mettere a disposizione del team la sua esperienza in un appuntamento importante come quello inglese.<br><br>Non è ancora stata definita la data del rientro di Viñales, che rimane concentrato sul recupero fisico e sul ritorno in pista quando sarà nuovamente al 100%.'},
