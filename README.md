@@ -37,6 +37,8 @@ Attualmente sono disponibili:
 - 🏢 Schede team
 - 📅 Calendario completo della stagione
 - 📊 Classifiche
+- 📊 Classifiche Red Bull MotoGP Rookies Cup e del FIM MotoJunior World Championship
+- 📰 Notizie
 - 📈 Statistiche
 - 🏟️ Circuiti
 - 🏆 Albo d'oro
@@ -85,6 +87,8 @@ Sono previsti aggiornamenti periodici con nuove funzionalità, miglioramenti gra
 Il portale è organizzato nelle seguenti sezioni:
 
 - Home
+- Notizie
+- Classifiche Red Bull MotoGP Rookies Cup e del FIM MotoJunior World Championship
 - MotoGP
 - Moto2
 - Moto3
@@ -140,6 +144,6 @@ Questo sito **non è affiliato, sponsorizzato né approvato da Dorna Sports o da
 
 # 👨‍💻 Autore
 
-Progetto sviluppato da **Paggi**.
+Progetto sviluppato da **Matteo Paggi**.
 
 Grazie per aver visitato il repository!
