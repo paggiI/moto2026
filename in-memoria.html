@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>In Memoria — Motomondiale 2026</title>
+<link rel="manifest" href="manifest.json">
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+        :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+      --gp:     #ff6b35;
+      --m2:     #f7a600;
+      --m3:     #00b4d8;
+      --jgp:    #c0db26;
+      --rrc:    #325de9;
+      --gen:    #16C416;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ══ HEADER ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+      overflow: hidden !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .72rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .5rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+    }
+    .hamburger {
+      display: none !important; flex-direction: column !important;
+      gap: 5px !important; cursor: pointer !important; padding: .3rem !important;
+    }
+    .hamburger span {
+      display: block !important; width: 22px !important; height: 2px !important;
+      background: var(--white) !important; border-radius: 2px !important;
+    }
+    @media (max-width: 1100px) {
+      nav { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    @media (min-width: 1101px) {
+      .hamburger { display: none !important; }
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(10,10,10,.98) !important;
+      border-bottom: 2px solid var(--red);
+      padding: .5rem 0; z-index: 199;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; padding: .75rem 1.5rem;
+      border-bottom: 1px solid var(--border); display: block;
+      transition: color .15s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--white); background: rgba(232,0,29,.1);
+    }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover,
+    [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+    
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    main { padding: 3rem 0; }
+
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #ffffff;
+    }
+    [data-theme="light"] body { background:#f4f4f4; color:#111; }
+    [data-theme="light"] #theme-toggle { background:#fff; border-color:#d0d0d0; color:#000000; }
+    [data-theme="light"] #theme-toggle:hover { background:#f0f0f0; color:#111; }
+    [data-theme="light"] .logo { color:#111 !important; }
+    
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+
+    /* ═══════════════════════════════════
+       STILE PAGINA "IN MEMORIA" (Bruttino/Austero)
+    ═══════════════════════════════════ */
+    .memoria-wrap {
+        max-width: 1000px; /* Allargato per le 2 colonne */
+        margin: 2rem auto;
+        padding: 2.5rem;
+        background: #e0e0e0; /* Sfondo grigio piatto */
+        border: 1px solid #333;
+        border-radius: 0;
+        color: #111;
+        font-family: "Times New Roman", Times, serif;
+        box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+    [data-theme="dark"] .memoria-wrap {
+        background: #1a1a1a;
+        color: #dcdcdc;
+        border-color: #555;
+        box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+    }
+    .memoria-title {
+        font-size: 2.5rem;
+        text-align: center;
+        font-weight: normal;
+        letter-spacing: 2px;
+        border-bottom: 1px solid #777;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    [data-theme="dark"] .memoria-title { border-bottom-color: #666; }
+    
+    .memoria-intro {
+        text-align: center;
+        font-style: italic;
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+        color: #333;
+    }
+    [data-theme="dark"] .memoria-intro { color: #aaa; }
+    
+    /* Lista dei piloti - 2 colonne */
+    ul.memoria-list {
+        list-style: none;
+        padding: 0;
+        column-count: 2; /* Divide in due colonne */
+        column-gap: 2.5rem;
+    }
+    ul.memoria-list li {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed #888;
+        break-inside: avoid; /* Non taglia il pilota a metà */
+    }
+    [data-theme="dark"] ul.memoria-list li { border-bottom-color: #444; }
+    ul.memoria-list li:last-child { border-bottom: none; margin-bottom: 0; }
+    
+    ul.memoria-list h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+    }
+    ul.memoria-list .info {
+        font-size: 0.85rem;
+        color: #444;
+        margin-bottom: 0.4rem;
+        text-transform: none; /* Rimosso uppercase per far stare meglio le date */
+    }
+    [data-theme="dark"] ul.memoria-list .info { color: #999; }
+    
+    .back-link-wrap { text-align: center; margin-top: 2rem; }
+    .back-link {
+        display: inline-block;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 1rem;
+        color: #0000EE;
+        text-decoration: underline;
+    }
+    [data-theme="dark"] .back-link { color: #87ceeb; }
+    .back-link:hover { color: #551A8B; }
+
+    /* Su mobile torna a 1 colonna */
+    @media (max-width: 600px) {
+        .memoria-wrap { padding: 1.5rem; }
+        ul.memoria-list { column-count: 1; }
+    }
+    
+    /* ── SCROLL TO TOP ── */
+    #scroll-top-btn {
+      position:fixed; bottom:1.5rem; right:1.5rem; z-index:999;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--red); color:#fff; border:none;
+      font-size:1.1rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s, transform .25s;
+      box-shadow:0 2px 10px rgba(232,0,29,.4);
+    }
+    #scroll-top-btn.visible { opacity:1; pointer-events:all; }
+    #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    /* ── AUDIO PLAYER ── */
+    #audio-player-widget {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      background: #1a1a1a; border: 1px solid #2a2a2a;
+      border-radius: 8px; padding: 1rem; width: 200px; box-sizing: border-box;
+    }
+    @media (max-width: 480px) {
+      body { padding-bottom: 75px !important; }
+      #audio-player-widget {
+        bottom: 0 !important; right: 0 !important; left: 0 !important;
+        width: 100% !important; border-radius: 0 !important; padding: 0 1rem !important;
+        height: 58px !important; display: flex !important; flex-direction: row !important;
+        align-items: center !important; justify-content: space-around !important;
+        background: #141414 !important; border-top: 2px solid #e8001d !important;
+      }
+      #audio-player-widget input[type="range"] {
+        height: 28px !important; min-width: 0 !important; flex: 1 !important; margin: 0 8px !important;
+      }
+      #audio-player-widget > div:first-child { margin-bottom: 0 !important; flex-shrink: 0 !important; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mid); border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem; text-align: center; font-size: .85rem; color: var(--muted);
+    }
+    footer .logo { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+    footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; }
+    footer .socials a {
+      color: var(--muted); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem;
+      letter-spacing: .06em; text-transform: uppercase; transition: color .2s;
+    }
+    footer .socials a:hover { color: var(--white); }
+    [data-theme="light"] footer { background:#e8e8e8; border-top-color:#d0d0d0; }
+    [data-theme="light"] footer p { color:#000000; }
+
+    /* ── SISTEMA LOGIN UI ── */
+    .auth-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; border-radius: 6px; padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .78rem;
+      letter-spacing: .06em; text-transform: uppercase; transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+    [data-theme="light"] .auth-btn { background: #fff !important; color: #111 !important; border-color: #d0d0d0 !important; }
+
+    .user-menu-wrap { position: relative; }
+    .user-avatar-btn {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff;
+      border: none; cursor: pointer; font-family: 'Bebas Neue', sans-serif; font-size: .85rem;
+      letter-spacing: .04em; display: flex; align-items: center; justify-content: center;
+      position: relative; transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    
+    /* ── SISTEMA LOGIN (minimo indispensabile per UI) ── */
+    .auth-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; border-radius: 6px; padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .78rem;
+      letter-spacing: .06em; text-transform: uppercase; transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+    [data-theme="light"] .auth-btn { background: #fff !important; color: #111 !important; border-color: #d0d0d0 !important; }
+
+    /* ── MENU A TENDINA ── */
+    .nav-dropdown-wrap { position: relative; }
+    .nav-dropdown-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; border-radius: 6px; padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .78rem;
+      letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center;
+      gap: .4rem; transition: border-color .15s, color .15s, background .15s; white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover { border-color: var(--red); color: var(--white); background: rgba(232,0,29,.07); }
+    [data-theme="light"] .nav-dropdown-btn { background: #fff !important; color: #111 !important; border-color: #d0d0d0 !important; }
+
+    .user-menu-wrap { position: relative; }
+    .user-avatar-btn {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff;
+      border: none; cursor: pointer; font-family: 'Bebas Neue', sans-serif; font-size: .85rem;
+      letter-spacing: .04em; display: flex; align-items: center; justify-content: center;
+      position: relative; transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+      margin-bottom: .8rem;
+      display: none;
+    }
+    .auth-close {
+      position: absolute; top: .8rem; right: .9rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+
+    /* Stella preferiti sui piloti */
+    .fav-star {
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      opacity: .4; transition: opacity .2s, transform .2s;
+      padding: 0; line-height: 1;
+    }
+    .fav-star:hover { opacity: .8; transform: scale(1.2); }
+    .fav-star.active { opacity: 1; }
+
+    /* Sezione preferiti */
+    .favs-section {
+      background: rgba(247,166,0,.07);
+      border: 1px solid rgba(247,166,0,.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .favs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em;
+      color: #f7a600; margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .favs-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .fav-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    
+    [data-theme="light"] .hero {
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%);
+    }
+    [data-theme="light"] .hero::before {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 38px,
+        rgba(232,0,29,.035) 38px,
+        rgba(232,0,29,.035) 40px
+      );
+    }
+    [data-theme="light"] .hero-content,
+    [data-theme="light"] .hero p,
+    [data-theme="light"] .hero h1 {
+      color: #111 !important;
+    }
+    [data-theme="light"] .hero h1 span,
+    [data-theme="light"] .hero-badge {
+      color: var(--red) !important;
+    }
+    [data-theme="light"] .hero-number {
+      color: rgba(232,0,29,.12) !important;
+    }
+    [data-theme="light"] .nav-dropdown-btn,
+    [data-theme="light"] .auth-btn,
+    [data-theme="light"] .user-avatar-btn,
+    [data-theme="light"] #theme-toggle {
+      color: #111 !important;
+      border-color: #d8d8d8 !important;
+      background: #fff !important;
+    }
+    [data-theme="light"] .nav-dropdown-btn:hover,
+    [data-theme="light"] .nav-dropdown-btn.open,
+    [data-theme="light"] .auth-btn:hover,
+    [data-theme="light"] .user-avatar-btn:hover,
+    [data-theme="light"] #theme-toggle:hover {
+      background: rgba(0,0,0,.03) !important;
+    }
+    [data-theme="light"] .user-menu {
+      background: #fff !important;
+      border-color: #d8d8d8 !important;
+    }
+    [data-theme="light"] .user-menu-name,
+    [data-theme="light"] .user-menu-item,
+    [data-theme="light"] .user-menu-sub {
+      color: #111 !important;
+    }
+    [data-theme="light"] .user-menu-item:hover {
+      background: rgba(232,0,29,.08) !important;
+      color: var(--red) !important;
+    }
+    [data-theme="light"] .mobile-menu a {
+      color: #555 !important;
+    }
+     /* ── BOTTONE TORNA HOME ── */
+    .back-home-wrap {
+      text-align: center; margin-bottom: 2rem;
+    }
+    .btn-red {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+      padding: .7rem 1.6rem; border-radius: 3px; transition: all .2s;
+      cursor: pointer; border: none; color: #fff; background: var(--red);
+    }
+    .btn-red:hover { background: #c4001a; transform: translateY(-2px); }
+    
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<a class="logo" href="index.html">MOTO<span>2026</span></a>
+<div class="header-right">
+  <button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main>
+    <div class="container">
+    <!-- BOTTONE TORNA ALLA HOME -->
+    <div class="back-home-wrap">
+        <a href="index.html" class="btn-red">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Torna alla Home
+        </a>
+    <div class="memoria-wrap">
+        <h1 class="memoria-title">In Memoria</h1>
+        <p class="memoria-intro">
+            "Le corse sono fatte di passione, ma a volte chiedono un tributo troppo alto. Questa pagina è un umile e doveroso omaggio a coloro che hanno perso la vita inseguendo il loro sogno nel Motomondiale."
+        </p>
+
+        <!-- LISTA DEI PILOTI SU DUE COLONNE -->
+        <ul class="memoria-list">
+            
+            <li>
+                <h2>🇬🇧 Ben Drinkwater</h2>
+                <div class="info">13 giugno 1949 · Tourist Trophy (Gara)</div>
+                <p>Norton</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Dario Ambrosini</h2>
+                <div class="info">15 luglio 1951 · GP di Francia (Prove)</div>
+                <p>Benelli</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Gianni Leoni</h2>
+                <div class="info">15 agosto 1951 · GP dell'Ulster (Prove)</div>
+                <p>Moto Guzzi</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Sante Geminiani</h2>
+                <div class="info">15 agosto 1951 · GP dell'Ulster (Prove)</div>
+                <p>Moto Guzzi</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Ercole Frigerio</h2>
+                <div class="info">18 maggio 1952 · GP di Svizzera (Gara)</div>
+                <p>Gilera</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Leslie Graham</h2>
+                <div class="info">12 giugno 1953 · Tourist Trophy (Gara)</div>
+                <p>MV Agusta</p>
+            </li>
+
+            <li>
+                <h2>🇦🇺 Gordon Laing</h2>
+                <div class="info">4 luglio 1954 · GP del Belgio (Gara)</div>
+                <p>Norton</p>
+            </li>
+
+            <li>
+                <h2>🇦🇹 Rupert Hollaus</h2>
+                <div class="info">11 settembre 1954 · GP delle Nazioni (Prove)</div>
+                <p>NSU</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Roberto Colombo</h2>
+                <div class="info">6 luglio 1957 · GP del Belgio (Prove)</div>
+                <p>MV Agusta</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Adolfo Covi</h2>
+                <div class="info">7 settembre 1959 · GP delle Nazioni (Gara)</div>
+                <p>Norton</p>
+            </li>
+
+            <li>
+                <h2>🇦🇺 Bob Brown</h2>
+                <div class="info">23 luglio 1960 · GP della Germania Ovest (Prove)</div>
+                <p>Honda</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Bill Ivy</h2>
+                <div class="info">12 luglio 1969 · GP della Germania Est (Prove)</div>
+                <p>Jawa</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Robin Fitton</h2>
+                <div class="info">2 maggio 1970 · GP della Germania Ovest (Prove)</div>
+                <p>Norton</p>
+            </li>
+
+            <li>
+                <h2>🇪🇸 Santiago Herrero</h2>
+                <div class="info">10 giugno 1970 · Tourist Trophy (Gara)</div>
+                <p>OSSA</p>
+            </li>
+
+            <li>
+                <h2>🇫🇷 Christian Ravel</h2>
+                <div class="info">4 luglio 1971 · GP del Belgio (Gara)</div>
+                <p>Kawasaki</p>
+            </li>
+
+            <li>
+                <h2>🇩🇪 Günter Bartusch</h2>
+                <div class="info">8 luglio 1971 · GP della Germania Est (Prove)</div>
+                <p>MZ</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Gilberto Parlotti</h2>
+                <div class="info">9 giugno 1972 · Tourist Trophy (Gara)</div>
+                <p>Morbidelli</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Renzo Pasolini</h2>
+                <div class="info">20 maggio 1973 · GP delle Nazioni (Gara)</div>
+                <p>Harley-Davidson</p>
+            </li>
+
+            <li>
+                <h2>🇫🇮 Jarno Saarinen</h2>
+                <div class="info">20 maggio 1973 · GP delle Nazioni (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Billie Nelson</h2>
+                <div class="info">8 settembre 1974 · GP di Jugoslavia (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Paolo Tordi</h2>
+                <div class="info">16 maggio 1976 · GP delle Nazioni (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Otello Buscherini</h2>
+                <div class="info">16 maggio 1976 · GP delle Nazioni (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇺🇸 Pat Evans</h2>
+                <div class="info">3 aprile 1977 · 200 Miglia di Imola (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Hans Stadelmann</h2>
+                <div class="info">1º maggio 1977 · GP d'Austria (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Giovanni Ziggiotto</h2>
+                <div class="info">18 giugno 1977 · GP di Jugoslavia (Gara)</div>
+                <p>Harley-Davidson</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Ulrich Graf</h2>
+                <div class="info">19 giugno 1977 · GP di Jugoslavia (Gara)</div>
+                <p>Kreidler</p>
+            </li>
+
+            <li>
+                <h2>🇫🇷 Patrick Pons</h2>
+                <div class="info">12 agosto 1980 · GP di Gran Bretagna (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Malcolm White</h2>
+                <div class="info">12 agosto 1980 · GP di Gran Bretagna (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇫🇷 Michel Rougerie</h2>
+                <div class="info">31 maggio 1981 · GP di Jugoslavia (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Sauro Pazzaglia</h2>
+                <div class="info">11 luglio 1981 · GP di San Marino (Prove)</div>
+                <p>MBA</p>
+            </li>
+
+            <li>
+                <h2>🇫🇷 Alain Béraud</h2>
+                <div class="info">30 agosto 1981 · GP di Cecoslovacchia (Gara)</div>
+                <p>Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Jock Taylor</h2>
+                <div class="info">15 agosto 1982 · GP di Finlandia (Gara)</div>
+                <p>Windle/Yamaha</p>
+            </li>
+
+            <li>
+                <h2>🇯🇵 Iwao Ishikawa</h2>
+                <div class="info">29 marzo 1983 · GP di Francia (Prove)</div>
+                <p>Suzuki</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Michel Frutschi</h2>
+                <div class="info">3 aprile 1983 · GP di Francia (Gara)</div>
+                <p>Honda</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Rolf Rüttimann</h2>
+                <div class="info">12 giugno 1983 · GP di Jugoslavia (Gara)</div>
+                <p>MBA</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Norman Brown</h2>
+                <div class="info">31 luglio 1983 · GP di Gran Bretagna (Gara)</div>
+                <p>Suzuki</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Peter Huber</h2>
+                <div class="info">31 luglio 1983 · GP di Gran Bretagna (Gara)</div>
+                <p>Suzuki</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Kevin Wrettom</h2>
+                <div class="info">12 luglio 1984 · GP del Belgio (Prove)</div>
+                <p>Suzuki</p>
+            </li>
+
+            <li>
+                <h2>🇩🇪 Alfred Heck</h2>
+                <div class="info">21 luglio 1988 · GP di Francia (Prove)</div>
+                <p>LCR</p>
+            </li>
+
+            <li>
+                <h2>🇻🇪 Ivan Palazzese</h2>
+                <div class="info">28 maggio 1989 · GP della Germania Ovest (Gara)</div>
+                <p>Aprilia</p>
+            </li>
+
+            <li>
+                <h2>🇯🇵 Nobuyuki Wakai</h2>
+                <div class="info">1º maggio 1993 · GP di Spagna (Qualifiche)</div>
+                <p>Suzuki</p>
+            </li>
+
+            <li>
+                <h2>🇬🇧 Simon Prior</h2>
+                <div class="info">12 giugno 1994 · GP di Germania (Gara)</div>
+                <p>LCR/ADM</p>
+            </li>
+
+            <li>
+                <h2>🇯🇵 Daijirō Katō</h2>
+                <div class="info">6 aprile 2003 · GP del Giappone (Gara)</div>
+                <p>Honda</p>
+            </li>
+
+            <li>
+                <h2>🇯🇵 Shōya Tomizawa</h2>
+                <div class="info">5 settembre 2010 · GP di San Marino (Gara)</div>
+                <p>Suter</p>
+            </li>
+
+            <li>
+                <h2>🇮🇹 Marco Simoncelli</h2>
+                <div class="info">23 ottobre 2011 · GP della Malesia (Gara)</div>
+                <p>Honda</p>
+            </li>
+
+            <li>
+                <h2>🇪🇸 Luis Salom</h2>
+                <div class="info">3 giugno 2016 · GP di Catalogna (Prove)</div>
+                <p>Kalex</p>
+            </li>
+
+            <li>
+                <h2>🇨🇭 Jason Dupasquier</h2>
+                <div class="info">29 maggio 2021 · GP d'Italia (Qualifiche)</div>
+                <p>KTM</p>
+            </li>
+
+        </ul>
+    </div>
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+<div class="socials">
+<a href="#">📸 Instagram</a>
+<a href="#">🐦 X / Twitter</a>
+<a href="#">▶️ YouTube</a>
+<a href="#">📘 Facebook</a>
+</div>
+<p style="margin-top:1rem; font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+
+<!-- AUDIO PLAYER -->
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su">↑</button>
+<div id="audio-player-widget">
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🎵 Progresso audio</label>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+  <label style="display:block;color:#aaa;font-size:0.7rem;margin-bottom:2px;font-family:sans-serif;">🔊 Volume</label>
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+  <audio id="bg-audio" loop style="display:none;">
+    <source src="motogp_intro_26.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- SCRIPTS ESSENZIALI (TEMA, SCROLL, AUDIO, LOGIN UI) -->
+<script>
+// ── DARK / LIGHT MODE ──
+function initTheme() {
+  const saved = localStorage.getItem('moto2026-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moto2026-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+// Scroll to top
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      // Costruisci lista preferiti
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+
+// ── AUDIO PLAYER LOGIC ──
+(function(){
+  var audio = document.getElementById('bg-audio');
+  var progressSlider = document.getElementById('progress-slider');
+  var playBtn = document.getElementById('play-btn');
+  
+  window.addEventListener('beforeunload', function(){
+    try {
+      sessionStorage.setItem('audio-time', audio.currentTime);
+      sessionStorage.setItem('audio-playing', !audio.paused);
+    } catch(e){}
+  });
+  
+  audio.addEventListener('loadedmetadata', function(){
+    try {
+      var savedTime = parseFloat(sessionStorage.getItem('audio-time')) || 0;
+      var wasPlaying = sessionStorage.getItem('audio-playing') === 'true';
+      audio.currentTime = savedTime;
+      if(wasPlaying) audio.play();
+    } catch(e){}
+  });
+  
+  audio.addEventListener('timeupdate', function(){
+    if(audio.duration) {
+      progressSlider.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+  audio.addEventListener('play', function(){ playBtn.textContent = '⏸'; });
+  audio.addEventListener('pause', function(){ playBtn.textContent = '▶'; });
+  audio.addEventListener('ended', function(){
+    try { sessionStorage.removeItem('audio-time'); } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

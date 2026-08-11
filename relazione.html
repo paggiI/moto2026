@@ -567,7 +567,7 @@
 <h3>Problema da risolvere</h3>
 <p>I siti ufficiali del Motomondiale sono spesso lenti, appesantiti da pubblicità e difficili da navigare su mobile. Il progetto vuole offrire un'alternativa leggera, veloce e accessibile che metta al centro l'informazione tecnica: punti, risultati sessione per sessione, palmares dei piloti e storico dell'albo d'oro dal 1949.</p>
 <div class="stats-row">
-<div class="stat-box"><div class="stat-box-val">41</div><div class="stat-box-label">Pagine HTML</div></div>
+<div class="stat-box"><div class="stat-box-val">42</div><div class="stat-box-label">Pagine HTML</div></div>
 <div class="stat-box"><div class="stat-box-val">76 + 16</div><div class="stat-box-label">Piloti Gestiti</div></div>
 <div class="stat-box"><div class="stat-box-val">22</div><div class="stat-box-label">Round stagione</div></div>
 </div>
@@ -642,6 +642,7 @@
 <h3>Struttura delle pagine</h3>
 <ul class="feat-list">
 <li><strong>index.html</strong> — Home: notizie, countdown prossimo GP, barra progressione stagione, top-5 classifiche, calendario.</li>
+<li><strong>in-memoria.html</strong> — Pagina commemorativa dedicata ai piloti deceduti. Accessibile dalla Home, presenta uno stile visivo volontariamente "bruttino" e austero (font serif, sfondo grigio) per staccarsi dal design moderno del sito e trasmettere rispetto.</li>
 <li><strong>motogp/moto2/moto3.html</strong> — Pagine categoria: notizie filtrate, classifica parziale, entry list per team.</li>
 <li><strong>piloti.html</strong> — Lista completa di 94 piloti con ricerca, filtro categoria, corona 👑 sul leader.</li>
 <li><strong>pilota.html</strong> — Scheda singolo pilota: palmares, tabella stagioni, grafico punti per round, piloti simili.</li>
@@ -830,6 +831,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <li><strong>Circuiti</strong> — sistema a due livelli: pagina indice (<code>circuiti.html</code>) con barra di ricerca, filtri per continente, ordinamento per lunghezza/curve, Quick Jump Strip e badge di stato gara + pagine dedicate per ogni circuito.</li>
 <li><strong>Albo d'oro</strong> — esteso con categorie storiche (350cc, 50cc, 80cc, Sidecar), filtro per decadi, sidebar di ricerca con contatore dinamico e widget "Top 5 Dominatori" che calcola in tempo reale i piloti con più titoli.</li>
 <li><strong>Junior & Rookies</strong> — nuova pagina (<code>classificajrcrcc.html</code>) per le classifiche della Red Bull Rookies Cup e del FIM JuniorGP (Moto2, Moto3, Moto4) con podio dinamico.</li>
+<li><strong>Pagina In Memoria</strong> — creazione di una sezione commemorativa accessibile tramite bottone nell'hero della Home, con uno styling CSS apposito (font <code>Times New Roman</code>, sfondo grigio piatto, ombre nette) in netto contrasto col design sportivo del sito per dare solennità all'elenco storico dei piloti deceduti.</li>
 <li><strong>Service Worker v3</strong> — strategia stale-while-revalidate: risponde dalla cache istantaneamente mentre aggiorna in background.</li>
 <li><strong>Favicon SVG</strong> — icona scalabile con "M26" rosso su sfondo nero, compatibile con tutti i browser moderni.</li>
 </ul>
@@ -924,7 +926,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <p>Il progetto ha raggiunto tutti gli obiettivi iniziali: un sito informativo completo sul Motomondiale 2026, navigabile da qualsiasi dispositivo, con dati aggiornati al Round 12 (Gran Bretagna, Silverstone) e funzionante anche offline grazie alla tecnologia PWA.</p>
 <h3>Risultati ottenuti</h3>
 <ul class="feat-list">
-<li>41 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro e accesso diretto alle statistiche.</li>
+<li>42 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro e accesso diretto alle statistiche.</li>
 <li>94 piloti con scheda completa, palmares e grafico punti per round.</li>
 <li>Classifiche dinamiche con confronto piloti e filtro costruttore.</li>
 <li>Risultati completi per 12 round con tutte le sessioni, ricerca rapida pilota e medaglie top-3.</li>

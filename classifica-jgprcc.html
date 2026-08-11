@@ -257,6 +257,290 @@
     [data-theme="light"] .podium-card { background: #f0f0f0; }
     [data-theme="light"] .search-input { background: #fff; border-color: #d0d0d0; color: #111; }
     [data-theme="light"] tr.top-5 td { background: rgba(0,0,0,.03); }
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Modal auth */
+    .auth-modal-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .auth-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .auth-modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%; max-width: 360px;
+      margin: 1rem;
+      transform: translateY(-12px);
+      transition: transform .22s;
+      position: relative;
+    }
+    .auth-modal-overlay.open .auth-modal { transform: translateY(0); }
+    .auth-modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+    }
+    .auth-modal-title span { color: var(--red); }
+    .auth-field {
+      margin-bottom: .9rem;
+    }
+    .auth-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .auth-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .auth-field input:focus { border-color: var(--red); }
+    .auth-submit {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem; cursor: pointer;
+      margin-top: .4rem;
+      transition: background .15s;
+    }
+    .auth-submit:hover { background: #c4001a; }
+    .auth-switch {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: var(--muted);
+      margin-top: .8rem;
+    }
+    .auth-switch a {
+      color: var(--red); cursor: pointer; text-decoration: none;
+    }
+    .auth-switch a:hover { text-decoration: underline; }
+    .auth-error {
+      background: rgba(232,0,29,.1);
+      border: 1px solid rgba(232,0,29,.3);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; color: #ff6b6b;
+      margin-bottom: .8rem;
+      display: none;
+    }
+    .auth-close {
+      position: absolute; top: .8rem; right: .9rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+
+    /* Stella preferiti sui piloti */
+    .fav-star {
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      opacity: .4; transition: opacity .2s, transform .2s;
+      padding: 0; line-height: 1;
+    }
+    .fav-star:hover { opacity: .8; transform: scale(1.2); }
+    .fav-star.active { opacity: 1; }
+
+    /* Sezione preferiti */
+    .favs-section {
+      background: rgba(247,166,0,.07);
+      border: 1px solid rgba(247,166,0,.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .favs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em;
+      color: #f7a600; margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .favs-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .fav-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    
+    [data-theme="light"] .hero {
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 55%, #efefef 100%);
+    }
+    [data-theme="light"] .hero::before {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 38px,
+        rgba(232,0,29,.035) 38px,
+        rgba(232,0,29,.035) 40px
+      );
+    }
+    [data-theme="light"] .hero-content,
+    [data-theme="light"] .hero p,
+    [data-theme="light"] .hero h1 {
+      color: #111 !important;
+    }
+    [data-theme="light"] .hero h1 span,
+    [data-theme="light"] .hero-badge {
+      color: var(--red) !important;
+    }
+    [data-theme="light"] .hero-number {
+      color: rgba(232,0,29,.12) !important;
+    }
+    [data-theme="light"] .nav-dropdown-btn,
+    [data-theme="light"] .auth-btn,
+    [data-theme="light"] .user-avatar-btn,
+    [data-theme="light"] #theme-toggle {
+      color: #111 !important;
+      border-color: #d8d8d8 !important;
+      background: #fff !important;
+    }
+    [data-theme="light"] .nav-dropdown-btn:hover,
+    [data-theme="light"] .nav-dropdown-btn.open,
+    [data-theme="light"] .auth-btn:hover,
+    [data-theme="light"] .user-avatar-btn:hover,
+    [data-theme="light"] #theme-toggle:hover {
+      background: rgba(0,0,0,.03) !important;
+    }
+    [data-theme="light"] .user-menu {
+      background: #fff !important;
+      border-color: #d8d8d8 !important;
+    }
+    [data-theme="light"] .user-menu-name,
+    [data-theme="light"] .user-menu-item,
+    [data-theme="light"] .user-menu-sub {
+      color: #111 !important;
+    }
+    [data-theme="light"] .user-menu-item:hover {
+      background: rgba(232,0,29,.08) !important;
+      color: var(--red) !important;
+    }
+    [data-theme="light"] .mobile-menu a {
+      color: #555 !important;
+    }
+
 </style>
 </head>
 <body>
@@ -578,33 +862,264 @@ function toggleTheme() {
   if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
 }
 
-// ── SISTEMA LOGIN ──
-function initAuth() {
-  var user = JSON.parse(localStorage.getItem('moto2026_current'));
-  var headerRight = document.querySelector('.header-right');
-  var old = headerRight.querySelector('.auth-btn, .user-avatar-btn');
-  if (old) old.remove();
+/// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
 
-  if (user) {
-    var initials = user.username.slice(0,2).toUpperCase();
-    var btn = document.createElement('button');
-    btn.className = 'user-avatar-btn';
-    btn.style.cssText = 'width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:Bebas Neue;font-size:.85rem;display:flex;align-items:center;justify-content:center;';
-    btn.textContent = initials;
-    btn.onclick = function() { alert('Ciao ' + user.username + '! (Qui ci va il menu a tendina)'); };
-    headerRight.prepend(btn);
-  } else {
-    var btn = document.createElement('button');
-    btn.className = 'auth-btn';
-    btn.textContent = 'Accedi';
-    btn.onclick = function() { alert('Vai nella pagina Home per effettuare il login!'); };
-    headerRight.prepend(btn);
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
   }
-}
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      // Costruisci lista preferiti
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
 
 // Avvia tutto
 initTheme();
-initAuth();
 generateStandings();
 </script>
 </body>
