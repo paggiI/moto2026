@@ -970,7 +970,7 @@ a.timeline-card {
         ← Torna alla pagina dei risultati
       </button>
 <h1>STAGIONE <span>2026</span></h1>
-<p>Statistiche aggregate, vincitori, podii e tendenze dopo 11 round disputati su 22.</p>
+<p>Statistiche aggregate, vincitori, podii e tendenze dopo 12 round disputati su 22.</p>
 </div>
 </section>
 <div class="container">
@@ -1002,7 +1002,8 @@ const ROUNDS_DONE = [
   { num:8, flag:'🇭🇺', name:'GP Ungheria', circuit:'Balaton Park', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
   { num:9, flag:'🇨🇿', name:'GP Repubblica Ceca', circuit:'Brno', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Hakim Danish', flag:'🇪🇸', team:'FRINSA – MT Helmets – MSI' } },
   { num:10, flag:'🇳🇱', name:'GP Olanda', circuit:'Brno', gp:{ winner:'Ai Ogura', flag:'🇯🇵', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'David Alonso', flag:'🇨🇴', team:'CFMOTO Aspar Team' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
-  { num:11, flag:'🇩🇪', name:'GP Germania', circuit:'Sachsenring', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } }
+  { num:11, flag:'🇩🇪', name:'GP Germania', circuit:'Sachsenring', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } },
+  { num:12, flag:'🇬🇧', name:'GP Inghilterra', circuit:'Silverstone', gp:{ winner:'Raul Fernández', flag:'🇪🇸', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'Filip Salač', flag:'🇨🇿', team:'OnlyFans American Racing Team' }, m3:{ winner:'David Almansa', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' } }
 ];
 
 const SPRINT_WINNERS = [
@@ -1016,31 +1017,33 @@ const SPRINT_WINNERS = [
   { round:8, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
   { round:9, flag:'🇮🇹', winner:'Francesco Bagnaia', team:'Ducati Lenovo Team' },
   { round:10, flag:'🇪🇸', winner:'Raúl Fernández', team:'SuperFile Trackhouse MotoGP Team' },
-  { round:11, flag:'🇩🇪', winner:'Marc Márquez', team:'Ducati Lenovo Team' }
+  { round:11, flag:'🇩🇪', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
+  { round:12, flag:'🇬🇧', winner:'Jorge Martín', team:'Aprilia Racing' }
 ];
 
 const CLASSIFICA = {
   "motogp": [
-    { pos:1, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:208.0 },
-    { pos:2, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:194.0 },
-    { pos:3, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:190.0 },
-    { pos:4, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:186.0 },
-    { pos:5, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:184.0 },
+    { pos:1, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:240.0 },
+    { pos:2, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:209.0 },
+    { pos:3, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:203.0 },
+    { pos:4, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:200.0 },
+    { pos:5, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:199.0 },
   ],
   "moto2": [
-    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:195.5 },
-    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:144.0 },
+    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:197.5 },
+    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:155.0 },
     { pos:3, flag:"🇦🇺", name:"Senna Agius", team:"Liqui Moly Dynavolt Intact GP", pts:136.0 },
-    { pos:4, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:116.0 },
-    { pos:5, flag:"🇪🇸", name:"Daniel Holgado", team:"CFMOTO Aspar Team", pts:115.0 },
+    { pos:4, flag:"🇪🇸", name:"Iván Ortolá", team:"QJMOTOR – FRINSA – MSI", pts:133.5 },
+    //{ pos:4, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:116.0 },
+    { pos:5, flag:"🇪🇸", name:"Daniel Holgado", team:"CFMOTO Aspar Team", pts:128.0 },
     //{ pos:5, flag:"🇮🇹", name:"Celestino Vietti", team:"SpeedRS Team", pts:109.0 },
   ],
   "moto3": [
     { pos:1, flag:"🇪🇸", name:"Máximo Quiles", team:"CFMOTO Gaviota Aspar Team", pts:231.0 },
-    { pos:2, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:127.0 },
-    { pos:3, flag:"🇪🇸", name:"Álvaro Carpe", team:"Red Bull KTM Ajo", pts:126.0 },
-    { pos:4, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:115.0 },
-    { pos:5, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:109.0 },
+    { pos:2, flag:"🇪🇸", name:"Álvaro Carpe", team:"Red Bull KTM Ajo", pts:146.0 },
+    { pos:4, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:134.0 },
+    { pos:3, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:127.0 },
+    { pos:5, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:115.0 },
   ]
 };
 
@@ -1214,22 +1217,22 @@ document.getElementById('main-content').innerHTML = `
   </div>
 
   <!-- PILOTI IN FORMA -->
-  <h2 class="section-title"><span>🔥</span> Ultimo Round — GP Germania</h2>
+  <h2 class="section-title"><span>🔥</span> Ultimo Round — GP Gran Bretagna</h2>
   <div class="forma-grid">
     <div class="forma-card gp">
       <div class="forma-cat">MotoGP — Vincitore</div>
-      <div class="forma-name">🇪🇸 Marc Márquez</div>
-      <div class="forma-pts">Ducati Lenovo Team · 25 pt</div>
+      <div class="forma-name">🇪🇸 Raúl Fernández</div>
+      <div class="forma-pts">SuperFile Trackhouse MotoGP Team · 25 pt</div>
     </div>
     <div class="forma-card m2">
       <div class="forma-cat">Moto2 — Vincitore</div>
-      <div class="forma-name">🇪🇸 Iván Ortolá</div>
-      <div class="forma-pts">QJMOTOR – FRINSA – MSI· 25 pt</div>
+      <div class="forma-name">🇨🇿 Filip Salač</div>
+      <div class="forma-pts">OnlyFans American Racing Team· 25 pt</div>
     </div>
     <div class="forma-card m3">
       <div class="forma-cat">Moto3 — Vincitore</div>
-      <div class="forma-name">🇪🇸 Brian Uriarte</div>
-      <div class="forma-pts">Red Bull KTM Ajo · 25 pt</div>
+      <div class="forma-name">🇪🇸 David Almansa</div>
+      <div class="forma-pts">Liqui Moly Dynavolt Intact GP · 25 pt</div>
     </div>
   </div>
 
