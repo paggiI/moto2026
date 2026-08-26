@@ -410,6 +410,7 @@
           <li><a href="#memoria">🕯️ In Memoria</a></li>
           <li><a href="#notizie">📰 Notizie</a></li>
           <li><a href="#categorie">🏍️ MotoGP · Moto2 · Moto3</a></li>
+          <li><a href="#mercato">🔥 Mercato</a></li>
           <li><a href="#piloti">👥 Piloti</a></li>
           <li><a href="#pilota">🧑 Scheda Pilota</a></li>
           <li><a href="#team">👥 Team</a></li>
@@ -442,7 +443,7 @@
           </div>
           <div class="guide-body">
             <p><span class="hl">Motomondiale 2026</span> è un sito di informazione e statistiche sul campionato mondiale di motociclismo 2026, aggiornato manualmente dopo ogni round. Copre tutte e tre le categorie — <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e sessione per sessione, schede complete di tutti i piloti in griglia, pronostici GP e statistiche avanzate.</p>
-            <p>Il sito è composto da <span class="hl">41 pagine</span> collegate tra loro. Puoi partire da qualunque punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due click.</p>
+            <p>Il sito è composto da <span class="hl">43 pagine</span> collegate tra loro. Puoi partire da qualunque punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due click.</p>
             <div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire subito la lista piloti con il campo di ricerca attivo.</div>
           </div>
         </section>
@@ -556,6 +557,26 @@
               <li><span class="fl-icon">📂</span><div><span class="hl">Team & Piloti (Accordion)</span> — I team sono raggruppati in blocchi cliccabili. Cliccando su un team si espandono le card dei piloti, con badge speciali per sostituti (SOB.) e wildcard.</div></li>
               <li><span class="fl-icon">🚀</span><div><span class="hl">Talenti in entrata e in uscita</span> — Sezioni dedicate ai giovani piloti: la pagina Moto2 lista i candidati al salto in MotoGP nel 2027, mentre la pagina Moto3 mostra sia i talenti in uscita verso la Moto2, sia i nuovi arrivi dalla Red Bull Rookies Cup e dal FIM JuniorGP.</div></li>
               <li><span class="fl-icon">⚙️</span><div><span class="hl">Focus Tecnico</span> — In fondo alla pagina, un approfondimento tecnico: la pagina MotoGP spiega le novità regolamentari del 2027 (850cc, abbassatori vietati, Pirelli), la pagina Moto2 descrive le regole attuali e l'aggiornamento Triumph 2027, mentre la pagina Moto3 svela la rivoluzione del 2028 con Yamaha come fornitore unico (moto bicilindrica CP2).</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-section" id="mercato">
+          <div class="guide-section-header">
+            <div class="guide-icon" aria-hidden="true">🔥</div>
+            <div>
+              <h2 class="guide-section-title">Mercato</h2>
+              <div class="guide-section-sub">mercato.html • Silly Season 2027</div>
+            </div>
+          </div>
+          <div class="guide-body">
+            <p>La pagina Mercato raccoglie tutti i movimenti di piloti, rumor e conferme ufficiali per la stagione 2027. È strutturata per offrire una panoramica chiara e immediata dei cambiamenti in tutte le categorie.</p>
+            <ul class="feature-list">
+              <li><span class="fl-icon">📑</span><div><span class="hl">Tab per Categorie</span> — Tre tab in cima permettono di passare tra MotoGP, Moto2 e Moto3. Cliccando, la griglia sottostante si aggiorna mostrando i movimenti della categoria selezionata.</div></li>
+              <li><span class="fl-icon">🔗</span><div><span class="hl">Accesso Diretto</span> — La pagina è raggiungibile tramite pulsanti dedicati posizionati nell'hero delle pagine MotoGP, Moto2 e Moto3. Cliccando da una di queste pagine, atterri direttamente sulla tab della categoria corrispondente (es. <code>mercato.html#moto2</code>).</div></li>
+              <li><span class="fl-icon">🎨</span><div><span class="hl">Card per Team</span> — I movimenti sono organizzati in card, una per ogni team. Ogni card ha un badge colorato in alto a destra col colore del costruttore (es. rosso per Ducati, blu per Yamaha).</div></li>
+              <li><span class="fl-icon">↔️</span><div><span class="hl">Stato del Pilota</span> — All'interno di ogni card trovi le diciture <span class="hl">Out</span> (in rosso, pilota uscente), <span class="hl">In</span> (in verde, nuovo arrivo) o <span class="hl">Confermato</span>, rendendo immediata la lettura dei trasferimenti.</div></li>
+              <li><span class="fl-icon">↩️</span><div><span class="hl">Bottone Dinamico</span> — In fondo alla pagina, un pulsante "Torna a..." si adatta dinamicamente alla pagina di provenienza, permettendoti di tornare alla categoria di origine con un click.</div></li>
             </ul>
           </div>
         </section>
@@ -1047,7 +1068,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'moto3.html': 'Moto3', 'piloti.html': 'Piloti', 'pilota.html': 'Pilota',
         'classifica.html': 'Classifica', 'risultati.html': 'Risultati',
         'calendario.html': 'Calendario', 'stagione.html': 'Stagione','stats.html':'Statistiche',
-        'prediction.html':'Prediction', 'albo_doro.html': "Albo d'oro", 'circuiti.html': 'Circuiti', 'guida.html': 'Guida', 'relazione.html': 'Relazione'
+        'prediction.html':'Prediction', 'albo_doro.html': "Albo d'oro", 'circuiti.html': 'Circuiti', 'guida.html': 'Guida', 
+        'relazione.html': 'Relazione', 'mercato.html': 'Mercato', 'in-memoria.html': 'In Memoria'
       };
       var cur = (location.pathname.split('/').pop() || 'index.html');
       var curName = NAMES[cur] || cur;

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mercato 2027 — Motomondiale 2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+      --gp:     #ff6b35;
+      --m2:     #f7a600;
+      --m3:     #00b4d8;
+      --ducati: #630101;
+      --yamaha: #0024a8;
+      --ktm:    #ff6600;
+      --aprilia:#00594b;
+      --honda:  #d40000;
+    }
+
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #111111;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ══ HEADER PULITO (Solo Logo) ══ */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo { font-family: 'Bebas Neue', sans-serif !important; font-size: 1.6rem !important; letter-spacing: .08em !important; color: var(--white) !important; text-decoration: none !important; flex-shrink: 0 !important; }
+    .logo span { color: var(--red) !important; }
+    
+    /* Nav nascosta come da richiesta */
+    nav { display: none !important; } 
+    
+    .header-right { display: flex !important; align-items: center !important; gap: .5rem !important; flex-shrink: 0 !important; }
+    #theme-toggle { background: transparent !important; border: 1px solid var(--border) !important; color: var(--muted) !important; cursor: pointer !important; border-radius: 6px !important; padding: .3rem .5rem !important; font-size: .9rem !important; line-height: 1 !important; display: flex !important; align-items: center !important; }
+    .hamburger { display: none !important; flex-direction: column !important; gap: 5px !important; cursor: pointer !important; padding: .3rem !important; }
+    .hamburger span { display: block !important; width: 22px !important; height: 2px !important; background: var(--white) !important; border-radius: 2px !important; }
+    
+    @media (max-width: 1100px) {
+      .hamburger { display: flex !important; }
+    }
+    .mobile-menu { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: rgba(10,10,10,.98) !important; border-bottom: 2px solid var(--red); padding: .5rem 0; z-index: 199; max-height: calc(100vh - 60px); overflow-y: auto; }
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: .75rem 1.5rem; border-bottom: 1px solid var(--border); display: block; transition: color .15s; }
+    .mobile-menu a:hover { color: var(--white); background: rgba(232,0,29,.1); }
+    
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] .hamburger span { background: #111 !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(248,248,248,.99) !important; }
+    [data-theme="light"] .auth-btn,
+    [data-theme="light"] .auth-btn:hover,
+    [data-theme="light"] .auth-btn {
+      background: #fff !important;
+      color: #111 !important;
+      border-color: #d0d0d0 !important;
+    }
+    [data-theme="light"] .auth-btn:hover,
+    [data-theme="light"] .user-avatar-btn,
+    [data-theme="light"] .user-avatar-btn:hover,
+
+    body { background: var(--dark); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    main { padding: 3rem 0; }
+
+    /* ── HERO ── */
+    .page-hero { background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 60%, #2a0005 100%); padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden; }
+    [data-theme="light"] .page-hero { background: linear-gradient(135deg, #f0f0f0, #ffe8e8); }
+    .hero-content { position: relative; max-width: 1200px; margin: 0 auto; }
+    .hero-badge { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: var(--red); color: #fff; padding: .25rem .6rem; border-radius: 2px; margin-bottom: 1rem; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,6vw,4rem); letter-spacing: .04em; line-height: 1; }
+    .page-hero h1 span { color: var(--red); }
+    .page-hero p { margin-top: .8rem; color: #aaa; max-width: 560px; }
+    [data-theme="light"] .page-hero p { color: #444; }
+
+    /* ── CATEGORY STRIP (Tab) ── */
+    .cats { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+    .cat-btn { flex: 1; padding: .9rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; text-align: center; background: var(--mid); color: var(--muted); border: none; border-right: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+    .cat-btn:last-child { border-right: none; }
+    .cat-btn:hover, .cat-btn.active { color: #fff; }
+    .cat-btn[data-cat="motogp"]:hover, .cat-btn[data-cat="motogp"].active { background: var(--gp); }
+    .cat-btn[data-cat="moto2"]:hover, .cat-btn[data-cat="moto2"].active { background: var(--m2); color: #111; }
+    .cat-btn[data-cat="moto3"]:hover, .cat-btn[data-cat="moto3"].active { background: var(--m3); }
+
+    /* ── MERCATO GRID ── */
+    .mercato-section { display: none; }
+    .mercato-section.active { display: block; }
+    
+    .mercato-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .team-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: transform .2s, border-color .2s; }
+    .team-card:hover { transform: translateY(-3px); border-color: #444; }
+    .team-header { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .04em; color: var(--white); }
+    .team-moto { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; padding: .2rem .5rem; border-radius: 4px; color: #fff; }
+    .moto-ducati { background: var(--ducati); } .moto-yamaha { background: var(--yamaha); } .moto-ktm { background: var(--ktm); } .moto-aprilia { background: var(--aprilia); } .moto-honda { background: var(--honda); } .moto-kalex { background: #444; } .moto-boscoscuro { background: #777; } .moto-cfmoto { background: #00b4d8; }
+    .team-body { padding: 1rem 1.2rem; }
+    .rider-move { margin-bottom: 1rem; }
+    .rider-move:last-child { margin-bottom: 0; }
+    .move-label { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .2rem; }
+    .move-out { color: #ff6b6b; text-decoration: line-through; opacity: .8; }
+    .move-in { color: #00d68f; font-weight: 600; }
+    .rider-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; }
+
+    footer { background: var(--mid); border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; font-size: .85rem; color: var(--muted); margin-top: 3rem; }
+    
+    /* ── AUDIO PLAYER ── */
+    #audio-player-widget { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1rem; width: 200px; box-sizing: border-box; }
+    @media (max-width: 480px) { body { padding-bottom: 75px !important; } #audio-player-widget { bottom: 0 !important; right: 0 !important; left: 0 !important; width: 100% !important; border-radius: 0 !important; padding: 0 1rem !important; background: #141414 !important; border-top: 2px solid #e8001d !important; height: 58px !important; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: space-around !important; } }
+    
+    /* ── SISTEMA LOGIN ── */
+    .auth-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 6px;
+      padding: .28rem .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .auth-btn:hover { border-color: var(--red); color: var(--white); }
+
+    /* Avatar utente loggato */
+    .user-avatar-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform .15s;
+    }
+    .user-avatar-btn:hover { transform: scale(1.1); }
+    .user-fav-badge {
+      position: absolute; top: -5px; right: -5px;
+      background: #f7a600;
+      color: #000;
+      border-radius: 50%;
+      width: 14px; height: 14px;
+      font-size: .55rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+        /* Bottone Torna a... centrato e rosso */
+    #back-btn-wrap { 
+      text-align: center; 
+      margin-bottom: 1.5rem; 
+    }
+    .back-btn { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: .4rem; 
+      padding: .55rem 1.3rem; 
+      border-radius: 5px; 
+      background: var(--red); /* Sfondo rosso */
+      border: 1px solid var(--red); 
+      color: #fff; /* Testo bianco */
+      text-decoration: none; 
+      font-family: 'Barlow Condensed', sans-serif; 
+      font-weight: 700; 
+      letter-spacing: .06em; 
+      text-transform: uppercase; 
+      font-size: .85rem; 
+      transition: all .2s; 
+    }
+    .back-btn:hover { 
+      background: #c4001a; /* Rosso scuro all'hover */
+      border-color: #c4001a; 
+    }
+    /* Menu utente dropdown */
+    .user-menu-wrap { position: relative; }
+    .user-menu {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      z-index: 500;
+      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .18s, transform .18s;
+    }
+    .user-menu.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .user-menu-header {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .user-menu-name {
+      font-weight: 700; font-size: 1rem;
+      color: var(--white);
+    }
+    .user-menu-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .1rem;
+    }
+    .user-menu-item {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      cursor: pointer; transition: background .12s;
+    }
+    .user-menu-item:hover { background: rgba(232,0,29,.1); color: var(--red); }
+    .user-menu-item.logout { color: #ff6b6b; }
+    .user-menu-divider { height: 1px; background: var(--border); margin: .3rem 0; }
+    .user-menu-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .4rem .9rem .2rem;
+    }
+    .user-menu-fav {
+      font-size: .82rem !important;
+      padding: .35rem .9rem !important;
+      color: var(--white) !important;
+    }
+    .user-menu-fav:hover { color: var(--red) !important; }
+
+    /* Stella preferiti sui piloti */
+    .fav-star {
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      opacity: .4; transition: opacity .2s, transform .2s;
+      padding: 0; line-height: 1;
+    }
+    .fav-star:hover { opacity: .8; transform: scale(1.2); }
+    .fav-star.active { opacity: 1; }
+
+    /* Sezione preferiti */
+    .favs-section {
+      background: rgba(247,166,0,.07);
+      border: 1px solid rgba(247,166,0,.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .favs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em;
+      color: #f7a600; margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .favs-grid {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .fav-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    .fav-chip:hover { border-color: var(--red); color: var(--red); }
+    
+</style>
+</head>
+<body>
+
+<!-- HEADER (Solo Logo) -->
+<header>
+<a class="logo" href="index.html">MOTO<span>2026</span></a>
+<nav></nav> <!-- Nascosta -->
+<div class="header-right">
+  <button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+</div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <!-- Menu mobile vuoto o con link base se necessario in futuro -->
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-content">
+    <span class="hero-badge">🔥 Silly Season 2027</span>
+    <h1>Mercato <span>Motomondiale</span></h1>
+    <p>Tutti i movimenti, i rumor e le conferme ufficiali per la stagione 2027. La griglia cambia volto: rivoluzioni ai vertici e nuovi talenti in arrivo in tutte le classi.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+<main>
+
+    <!-- CONTENITORE BOTTONE INDIETRO -->
+  <div id="back-btn-wrap"></div>
+  <!-- TAB SEZIONI -->
+  <div class="cats">
+    <button class="cat-btn active" data-cat="motogp" onclick="switchCat('motogp', this)">MotoGP</button>
+    <button class="cat-btn" data-cat="moto2" onclick="switchCat('moto2', this)">Moto2</button>
+    <button class="cat-btn" data-cat="moto3" onclick="switchCat('moto3', this)">Moto3</button>
+  </div>
+
+  <!-- MERCATO MOTOGP -->
+  <div class="mercato-section active" id="cat-motogp">
+    <div class="mercato-grid">
+      <!-- Ducati -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Ducati Lenovo Team</div><div class="team-moto moto-ducati">Ducati</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Marc Márquez</div></div>
+          <div class="rider-move"><div class="move-label">In (Red Bull KTM Factory Racing)</div><div class="rider-name move-in">Pedro Acosta</div></div>
+        </div>
+      </div>
+      <!-- Aprilia -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Aprilia Racing</div><div class="team-moto moto-aprilia">Aprilia</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Ducati Lenovo Team)</div><div class="rider-name move-in">Francesco Bagnaia</div></div>
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Marco Bezzecchi</div></div>
+        </div>
+      </div>
+      <!-- Yamaha -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Monster Energy Yamaha MotoGP</div><div class="team-moto moto-yamaha">Yamaha</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Aprilia Racing)</div><div class="rider-name move-in">Jorge Martín</div></div>
+          <div class="rider-move"><div class="move-label">In (SuperFile Trackhouse MotoGP Team)</div><div class="rider-name move-in">Ai Ogura</div></div>
+        </div>
+      </div>
+      <!-- Honda -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Honda HRC Castrol</div><div class="team-moto moto-honda">Honda</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Monster Energy Yamaha MotoGP)</div><div class="rider-name move-in">Fabio Quartararo</div></div>
+          <div class="rider-move"><div class="move-label">Rumor</div><div class="rider-name">David Alonso / Diogo Moreira</div></div>
+        </div>
+      </div>
+      <!-- KTM -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Red Bull KTM Factory Racing</div><div class="team-moto moto-ktm">KTM</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (BK8 Gresini Racing MotoGP)</div><div class="rider-name move-in">Álex Márquez</div></div>
+          <div class="rider-move"><div class="move-label">In (Pertamina Enduro VR46)</div><div class="rider-name move-in">Fabio Di Giannantonio</div></div>
+        </div>
+      </div>
+      <!-- Pramac Yamaha -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Prima Pramac Yamaha MotoGP</div><div class="team-moto moto-yamaha">Yamaha</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Toprak Razgatlıoğlu</div></div>
+          <div class="rider-move"><div class="move-label">In (Da Moto2)</div><div class="rider-name move-in">Izan Guevara</div></div>
+        </div>
+      </div>
+      <!-- KTM Tech3 -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Red Bull KTM Tech3</div><div class="team-moto moto-ktm">KTM</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Honda HRC)</div><div class="rider-name move-in">Luca Marini</div></div>
+          <div class="rider-move"><div class="move-label">In (Da Moto2)</div><div class="rider-name move-in">Senna Agius</div></div>
+        </div>
+      </div>
+      <!-- Trackhouse -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">SuperFile Trackhouse MotoGP Team</div><div class="team-moto moto-aprilia">Aprilia</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Red Bull KTM Tech3)</div><div class="rider-name move-in">Enea Bastianini</div></div>
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Raúl Fernández</div></div>
+        </div>
+      </div>
+      <!-- Gresini -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">BK8 Gresini Racing MotoGP</div><div class="team-moto moto-ducati">Ducati</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Honda HRC)</div><div class="rider-name move-in">Joan Mir</div></div>
+          <div class="rider-move"><div class="move-label">In (Rookie Moto2)</div><div class="rider-name move-in">Daniel Holgado</div></div>
+        </div>
+      </div>
+      <!-- VR46 -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Pertamina Enduro VR46</div><div class="team-moto moto-ducati">Ducati</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (BK8 Gresini Racing MotoGP)</div><div class="rider-name move-in">Fermín Aldeguer</div></div>
+          <div class="rider-move"><div class="move-label">In (Dalla SBK)</div><div class="rider-name move-in">Nicolò Bulega</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MERCATO MOTO2 -->
+  <div class="mercato-section" id="cat-moto2">
+    <div class="mercato-grid">
+      <!-- Aspar -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">CFMOTO Aspar Team Moto2</div><div class="team-moto moto-cfmoto">Kalex</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Rookie Moto3)</div><div class="rider-name move-in">Máximo Quiles</div></div>
+          <div class="rider-move"><div class="move-label">In (SpeedRS Team)</div><div class="rider-name move-in">Celestino Vietti</div></div>
+        </div>
+      </div>
+      <!-- Ajo -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Red Bull KTM Ajo Moto2</div><div class="team-moto moto-kalex">Kalex</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Collin Veijer</div></div>
+        </div>
+      </div>
+      <!-- Italtrans -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Italtrans Racing Team</div><div class="team-moto moto-kalex">Kalex</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Forward Factory Team)</div><div class="rider-name move-in">Álex Escrig</div></div>
+        </div>
+      </div>
+      <!-- Reds -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">REDS Fantic Racing</div><div class="team-moto moto-boscoscuro">Boscoscuro</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Barry Baltus</div></div>
+        </div>
+      </div>
+      <!-- MSI -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">QJMOTOR - Biolec - MSI</div><div class="team-moto moto-boscoscuro">Boscoscuro</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Iván Ortolá</div></div>
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Ángel Piqueras</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MERCATO MOTO3 -->
+  <div class="mercato-section" id="cat-moto3">
+    <div class="mercato-grid">
+      <!-- MSI -->
+       <div class="team-card">
+        <div class="team-header"><div class="team-name">AEON Credit - MT Helmets - MSI</div><div class="team-moto moto-honda">KTM</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Red Bull KTM Tech3 Moto3)</div><div class="rider-name move-in">Valentin Perrone</div></div>
+            <div class="rider-move"><div class="move-label">Confermto</div><div class="rider-name move-in">Hakim Danish</div></div>
+        </div>
+      </div>
+      <!-- MTA -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Level Up MTA</div><div class="team-moto moto-honda">KTM</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">In (Rookie Rookies Cup)</div><div class="rider-name move-in">Beñat Fernández</div></div>
+        </div>
+      </div>
+      <!-- Honda Team Asia -->
+      <div class="team-card">
+        <div class="team-header"><div class="team-name">Honda Team Asia Moto3</div><div class="team-moto moto-honda">Honda</div></div>
+        <div class="team-body">
+          <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Veda Pratama</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<footer>
+  <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+  <p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+  <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+
+<!-- AUDIO PLAYER -->
+<div id="audio-player-widget">
+  <div style="display:flex;gap:.5rem;margin-bottom:.8rem;">
+    <button id="play-btn" onclick="var a=document.getElementById('bg-audio');if(a.paused){a.play();this.textContent='⏸';}else{a.pause();this.textContent='▶';};" style="flex:1;background:#e8001d;color:#f5f5f5;border:0;border-radius:4px;cursor:pointer;padding:.5rem;font-weight:600;">▶</button>
+  </div>
+  <input id="progress-slider" type="range" min="0" max="100" value="0" style="width:100%;cursor:pointer;margin-bottom:.5rem;" oninput="var a=document.getElementById('bg-audio');a.currentTime=(this.value/100)*a.duration;">
+  <input id="vol-slider" type="range" min="0" max="100" value="30" style="width:100%;cursor:pointer;" oninput="document.getElementById('bg-audio').volume=this.value/100;">
+  <audio id="bg-audio" loop style="display:none;"><source src="motogp_intro_26.mp3" type="audio/mpeg"></audio>
+</div>
+
+<script>
+// Theme Toggle
+function initTheme() { const s = localStorage.getItem('moto2026-theme') || 'dark'; document.documentElement.setAttribute('data-theme', s); const ic = document.getElementById('theme-icon'); if(ic) ic.textContent = s === 'dark' ? '☀️' : '🌙'; }
+function toggleTheme() { const cur = document.documentElement.getAttribute('data-theme') || 'dark'; const next = cur === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); localStorage.setItem('moto2026-theme', next); const ic = document.getElementById('theme-icon'); if(ic) ic.textContent = next === 'dark' ? '☀️' : '🌙'; }
+initTheme();
+
+// Tabs Logica
+function switchCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mercato-section').forEach(s => s.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('cat-' + cat).classList.add('active');
+}
+
+// Al caricamento, leggi l'URL per aprire la tab giusta e creare il bottone "Torna a..."
+document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.substring(1); // Rimuove il #
+  let backUrl = 'index.html';
+  let backName = 'Home';
+
+  if (hash === 'moto2') {
+    switchCat('moto2', document.querySelector('.cat-btn[data-cat="moto2"]'));
+    backUrl = 'moto2.html';
+    backName = 'Moto2';
+  } else if (hash === 'moto3') {
+    switchCat('moto3', document.querySelector('.cat-btn[data-cat="moto3"]'));
+    backUrl = 'moto3.html';
+    backName = 'Moto3';
+  } else {
+    // Default: MotoGP (o se arriva da index)
+    switchCat('motogp', document.querySelector('.cat-btn[data-cat="motogp"]'));
+    backUrl = 'motogp.html';
+    backName = 'MotoGP';
+  }
+
+  // Inserisce il bottone dinamico
+  const backWrap = document.getElementById('back-btn-wrap');
+  if (backWrap) {
+    backWrap.innerHTML = `<a class="back-btn" href="${backUrl}">← Torna a ${backName}</a>`;
+  }
+});
+
+// Audio sync
+(function(){ var audio = document.getElementById('bg-audio'); var pSlider = document.getElementById('progress-slider'); var pBtn = document.getElementById('play-btn'); window.addEventListener('beforeunload', function(){ try { sessionStorage.setItem('audio-time', audio.currentTime); sessionStorage.setItem('audio-playing', !audio.paused); } catch(e){} }); audio.addEventListener('loadedmetadata', function(){ try { var t = parseFloat(sessionStorage.getItem('audio-time'))||0; var p = sessionStorage.getItem('audio-playing')==='true'; audio.currentTime=t; if(p) audio.play(); } catch(e){} }); audio.addEventListener('timeupdate', function(){ if(audio.duration) pSlider.value = (audio.currentTime/audio.duration)*100; }); audio.addEventListener('play', function(){ pBtn.textContent='⏸'; }); audio.addEventListener('pause', function(){ pBtn.textContent='▶'; }); })();
+// ── SISTEMA LOGIN / REGISTRAZIONE ──
+(function() {
+  var MODE = 'login'; // 'login' | 'register'
+  var USERS_KEY  = 'moto2026_users';
+  var CURR_KEY   = 'moto2026_current';
+  var FAVS_KEY   = 'moto2026_favs_';
+
+  // ── Helpers storage ────────────────────────────────────────
+  function getUsers() {
+    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+  function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
+  }
+  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
+  function getFavs(username) {
+    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
+  }
+  function saveFavs(username, favs) {
+    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
+  }
+  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
+
+  // ── Inizializzazione UI ─────────────────────────────────────
+  function initAuth() {
+    var user = getCurrentUser();
+    var headerRight = document.querySelector('.header-right');
+    if (!headerRight) return;
+
+    // Rimuovi vecchi btn auth se ci sono
+    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
+    if (old) old.remove();
+
+    if (user) {
+      // Utente loggato: mostra avatar
+      var favs = getFavs(user.username);
+      var initials = user.username.slice(0,2).toUpperCase();
+      var wrap = document.createElement('div');
+      wrap.className = 'user-menu-wrap';
+      wrap.id = 'user-menu-wrap';
+      // Costruisci lista preferiti
+      var favsHTML = '';
+      if (favs.length > 0) {
+        favsHTML += '<div class="user-menu-divider"></div>';
+        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
+        for (var fi = 0; fi < favs.length; fi++) {
+          var fav = favs[fi];
+          var favId   = (typeof fav === 'object') ? fav.id   : fav;
+          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
+        }
+      }
+      wrap.innerHTML =
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
+          initials +
+        '</button>' +
+        '<div class="user-menu" id="user-menu">' +
+          '<div class="user-menu-header">' +
+            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
+            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
+          '</div>' +
+          favsHTML +
+          '<div class="user-menu-divider"></div>' +
+          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<div class="user-menu-divider"></div>' +
+          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
+        '</div>';
+      // Inserisci prima del theme-toggle
+      var themeBtn = headerRight.querySelector('#theme-toggle');
+      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
+      else headerRight.prepend(wrap);
+
+      // Chiudi menu cliccando fuori
+      document.addEventListener('click', function(e) {
+        var w = document.getElementById('user-menu-wrap');
+        if (w && !w.contains(e.target)) {
+          var m = document.getElementById('user-menu');
+          if (m) m.classList.remove('open');
+        }
+      });
+
+      // Inizializza le stelle sui piloti
+      initFavStars(user.username);
+
+      // Mostra sezione preferiti se siamo in piloti.html
+      showFavsSection(user.username);
+
+    } else {
+      // Non loggato: mostra bottone "Accedi"
+      var btn = document.createElement('button');
+      btn.className = 'auth-btn';
+      btn.textContent = '👤 Accedi';
+      btn.onclick = openAuthModal;
+      var themeBtn2 = headerRight.querySelector('#theme-toggle');
+      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
+      else headerRight.prepend(btn);
+    }
+  }
+
+  // ── Modal Auth ──────────────────────────────────────────────
+  window.openAuthModal = function() {
+    MODE = 'login';
+    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
+    document.getElementById('auth-submit-btn').textContent = 'Accedi';
+    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = 'none';
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-username').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-overlay').classList.add('open');
+    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
+  };
+  window.closeAuthModal = function() {
+    document.getElementById('auth-overlay').classList.remove('open');
+  };
+  window.switchAuthMode = function() {
+    MODE = MODE === 'login' ? 'register' : 'login';
+    var isReg = MODE === 'register';
+    document.getElementById('auth-title').innerHTML =
+      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
+             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
+    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
+    document.getElementById('auth-switch').innerHTML = isReg
+      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
+      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
+    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-error').style.display = 'none';
+  };
+
+  function showError(msg) {
+    var el = document.getElementById('auth-error');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  window.submitAuth = function() {
+    var username = document.getElementById('auth-username').value.trim();
+    var password = document.getElementById('auth-password').value;
+    if (!username || !password) { showError('Compila tutti i campi.'); return; }
+    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
+
+    var users = getUsers();
+    if (MODE === 'register') {
+      var confirm = document.getElementById('auth-confirm').value;
+      if (password !== confirm) { showError('Le password non coincidono.'); return; }
+      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
+      if (users[username]) { showError('Username già in uso.'); return; }
+      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
+      saveUsers(users);
+      setCurrentUser({ username: username });
+    } else {
+      if (!users[username]) { showError('Username non trovato.'); return; }
+      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
+      setCurrentUser({ username: username });
+    }
+    closeAuthModal();
+    initAuth();
+    showToast('✅ Benvenuto, ' + username + '!');
+  };
+
+  window.logoutUser = function() {
+    localStorage.removeItem(CURR_KEY);
+    initAuth();
+    showToast('👋 Uscito con successo.');
+  };
+
+  window.toggleUserMenu = function() {
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.toggle('open');
+  };
+
+  // ── Preferiti ───────────────────────────────────────────────
+  window.toggleFav = function(riderId, riderName) {
+    var user = getCurrentUser();
+    if (!user) { openAuthModal(); return; }
+    var favs = getFavs(user.username);
+    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
+    if (idx >= 0) {
+      favs.splice(idx, 1);
+      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
+    } else {
+      favs.push({ id: riderId, name: riderName });
+      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
+    }
+    saveFavs(user.username, favs);
+    // Aggiorna tutte le stelle per questo pilota
+    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
+      star.classList.toggle('active', idx < 0);
+      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+    // Aggiorna badge nel menu
+    var badge = document.querySelector('.user-fav-badge');
+    if (badge) badge.textContent = favs.length;
+    // Aggiorna sezione preferiti
+    showFavsSection(user.username);
+    initAuth();
+  };
+
+  function initFavStars(username) {
+    var favs = getFavs(username);
+    var favIds = new Set(favs.map(function(f){ return f.id; }));
+    document.querySelectorAll('.fav-star').forEach(function(star) {
+      var id = star.getAttribute('data-id');
+      star.classList.toggle('active', favIds.has(id));
+      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
+    });
+  }
+
+  function showFavsSection(username) {
+    var container = document.getElementById('favs-section-container');
+    if (!container) return;
+    var favs = getFavs(username);
+    if (favs.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    var chips = favs.map(function(f) {
+      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
+    }).join('');
+    container.innerHTML =
+      '<div class="favs-section">' +
+        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
+        '<div class="favs-grid">' + chips + '</div>' +
+      '</div>';
+  }
+
+  window.showFavs = function() {
+    var user = getCurrentUser();
+    if (!user) return;
+    var m = document.getElementById('user-menu');
+    if (m) m.classList.remove('open');
+    window.location.href = 'piloti.html#favs';
+  };
+
+  // ── Toast ────────────────────────────────────────────────────
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
+      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
+      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
+      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
+      'animation:fadeInUp .2s ease;white-space:nowrap;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+  }
+
+  // Avvia
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+</script>
+</body>
+</html>

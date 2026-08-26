@@ -567,7 +567,7 @@
 <h3>Problema da risolvere</h3>
 <p>I siti ufficiali del Motomondiale sono spesso lenti, appesantiti da pubblicità e difficili da navigare su mobile. Il progetto vuole offrire un'alternativa leggera, veloce e accessibile che metta al centro l'informazione tecnica: punti, risultati sessione per sessione, palmares dei piloti e storico dell'albo d'oro dal 1949.</p>
 <div class="stats-row">
-<div class="stat-box"><div class="stat-box-val">42</div><div class="stat-box-label">Pagine HTML</div></div>
+<div class="stat-box"><div class="stat-box-val">43</div><div class="stat-box-label">Pagine HTML</div></div>
 <div class="stat-box"><div class="stat-box-val">76 + 16</div><div class="stat-box-label">Piloti Gestiti</div></div>
 <div class="stat-box"><div class="stat-box-val">22</div><div class="stat-box-label">Round stagione</div></div>
 </div>
@@ -643,6 +643,7 @@
 <ul class="feat-list">
 <li><strong>index.html</strong> — Home: notizie, countdown prossimo GP, barra progressione stagione, top-5 classifiche, calendario.</li>
 <li><strong>in-memoria.html</strong> — Pagina commemorativa dedicata ai piloti deceduti. Accessibile dalla Home, presenta uno stile visivo volontariamente "bruttino" e austero (font serif, sfondo grigio) per staccarsi dal design moderno del sito e trasmettere rispetto.</li>
+<li><strong>mercato.html</strong> — Pagina dedicata al mercato piloti (Silly Season) per il 2027. Suddivisa in tab per MotoGP, Moto2 e Moto3, mostra le conferme, gli arrivi e le partenze per ogni team con badge colorati per costruttore. Accessibile tramite pulsanti dedicati nelle pagine delle singole categorie.</li>
 <li><strong>motogp/moto2/moto3.html</strong> — Pagine categoria: notizie filtrate, classifica parziale, entry list per team.</li>
 <li><strong>piloti.html</strong> — Lista completa di 94 piloti con ricerca, filtro categoria, corona 👑 sul leader.</li>
 <li><strong>pilota.html</strong> — Scheda singolo pilota: palmares, tabella stagioni, grafico punti per round, piloti simili.</li>
@@ -834,6 +835,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <li><strong>Pagina In Memoria</strong> — creazione di una sezione commemorativa accessibile tramite bottone nell'hero della Home, con uno styling CSS apposito (font <code>Times New Roman</code>, sfondo grigio piatto, ombre nette) in netto contrasto col design sportivo del sito per dare solennità all'elenco storico dei piloti deceduti.</li>
 <li><strong>Service Worker v3</strong> — strategia stale-while-revalidate: risponde dalla cache istantaneamente mentre aggiorna in background.</li>
 <li><strong>Favicon SVG</strong> — icona scalabile con "M26" rosso su sfondo nero, compatibile con tutti i browser moderni.</li>
+<li><strong>Mercato Piloti</strong> — creazione di una pagina dedicata (<code>mercato.html</code>) che raccoglie i movimenti di mercato per la stagione 2027. La pagina utilizza un sistema di tab per filtrare le categorie (MotoGP, Moto2, Moto3) e card con colori differenziati per costruttore. Include un sistema di routing via hash URL (<code>mercato.html#moto2</code>) per atterraggi diretti dai pulsanti delle pagine di categoria.</li>
 </ul>
 </div>
 </div>
@@ -926,7 +928,7 @@ self.<span class="code-fn">addEventListener</span>(<span class="code-str">'fetch
 <p>Il progetto ha raggiunto tutti gli obiettivi iniziali: un sito informativo completo sul Motomondiale 2026, navigabile da qualsiasi dispositivo, con dati aggiornati al Round 12 (Gran Bretagna, Silverstone) e funzionante anche offline grazie alla tecnologia PWA.</p>
 <h3>Risultati ottenuti</h3>
 <ul class="feat-list">
-<li>42 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro e accesso diretto alle statistiche.</li>
+<li>43 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro e accesso diretto alle statistiche.</li>
 <li>94 piloti con scheda completa, palmares e grafico punti per round.</li>
 <li>Classifiche dinamiche con confronto piloti e filtro costruttore.</li>
 <li>Risultati completi per 12 round con tutte le sessioni, ricerca rapida pilota e medaglie top-3.</li>
@@ -1265,7 +1267,8 @@ function apriPDF() {
     'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
     'classifica.html':'Classifica','risultati.html':'Risultati',
     'calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
-    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'
+    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione',
+    'mercato.html':'Mercato','in-memoria.html':'In Memoria'
   };
   var cur = (location.pathname.split('/').pop() || 'index.html');
   var curName = NAMES[cur] || cur;
