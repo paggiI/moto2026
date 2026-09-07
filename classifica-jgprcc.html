@@ -98,10 +98,10 @@
     /* ── TABS CATEGORIE ── */
     .cat-tabs {
       display: flex; gap: 0; margin-bottom: 2rem;
-      border-bottom: 2px solid var(--border); overflow-x: auto;
+      border-bottom: 1px solid var(--border); overflow-x: auto;
     }
     .tab-btn {
-      flex: 1; padding: 1rem .5rem;
+      flex: 1; padding: .5rem .5rem;
       font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem;
       letter-spacing: .06em; text-transform: uppercase; text-align: center;
       background: transparent; color: var(--muted); border: none; border-bottom: 3px solid transparent;
@@ -540,6 +540,41 @@
     [data-theme="light"] .mobile-menu a {
       color: #555 !important;
     }
+/* ── DUE TABELLE AFFIANCATE ── */
+.standings-tables-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+  background: var(--card);
+}
+
+.standings-table-column {
+  min-width: 0;
+}
+
+.standings-table-column .standings-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.standings-table-column table {
+  width: 100%;
+}
+
+/* Riduciamo leggermente il padding per far stare bene le due tabelle */
+.standings-table-column th,
+.standings-table-column td {
+  padding: .7rem .8rem;
+}
+
+/* Mobile: torna automaticamente a una colonna */
+@media (max-width: 800px) {
+  .standings-tables-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 </style>
 </head>
@@ -623,93 +658,105 @@ const CHAMPIONSHIPS = {
     ]
   },
   jgp_m2: {
-    name: "FIM JuniorGP Moto2", colorClass: "jgp_m2", roundsDone: 4, roundsTotal: 7,
+    name: "FIM JuniorGP Moto2", colorClass: "jgp_m2", roundsDone: 5, roundsTotal: 7,
     riders: [
-      {pos: 1, flag: "🇵🇱", name: "Milan Pawelec", team: "AGR Team", pts: 148},
-      {pos: 2, flag: "🇪🇸", name: "Unai Orradre", team: "Momoven Racing", pts: 132},
-      {pos: 3, flag: "🇪🇸", name: "Eric Fernández", team: "FAU55Teyracing", pts: 98},
-      {pos: 4, flag: "🇮🇹", name: "Francesco Mongiardo", team: "MMR", pts: 88},
-      {pos: 5, flag: "🇮🇹", name: "Alessandro Morosi", team: "Eagle-1", pts: 84},
-      {pos: 6, flag: "🇮🇹", name: "Dennis Foggia", team: "Team Ciatti", pts: 78},
-      {pos: 7, flag: "🇦🇺", name: "Harrison Voight", team: "Cardoso Racing", pts: 56},
-      {pos: 8, flag: "🇪🇸", name: "Javier Palomera", team: "Stylobike", pts: 50},
-      {pos: 9, flag: "🇭🇺", name: "Rossi Moor", team: "RM92 Forward", pts: 49},
-      {pos: 10, flag: "🇦🇺", name: "Jacob Roulstone", team: "Team Ciatti", pts: 39},
-      {pos: 11, flag: "🇪🇸", name: "Marcos Ludeña", team: "Aspar Team", pts: 30},
-      {pos: 12, flag: "🇺🇾", name: "Facundo Llambias", team: "Estrella Galicia", pts: 26},
-      {pos: 13, flag: "🇸🇮", name: "Enej Krsevan", team: "Eagle-1", pts: 16},
-      {pos: 14, flag: "🇮🇹", name: "Pier Francesco Venturini", team: "AC Racing", pts: 15},
-      {pos: 15, flag: "🇦🇺", name: "Jonathan Nahlous", team: "AGR Team", pts: 15},
-      {pos: 16, flag: "🇪🇸", name: "Marco Tapia", team: "FAU55Teyracing", pts: 13},
-      {pos: 17, flag: "🇫🇷", name: "Johan Gimbert", team: "Reds-Eagle-1", pts: 12},
-      {pos: 18, flag: "🇪🇸", name: "Iker Garcia", team: "Aspar Team", pts: 12},
-      {pos: 19, flag: "🇮🇹", name: "Stefano Nepa", team: "Klint Racing Face Forward", pts: 7},
-      {pos: 20, flag: "🇬🇧", name: "Amanuel Brinton", team: "Promoracing Factory", pts: 6},
-      {pos: 21, flag: "🇪🇸", name: "Rubén Romero", team: "SF Racing Yamaha", pts: 3},
-      {pos: 22, flag: "🇺🇸", name: "Maxwell Toth", team: "Cardoso Racing", pts: 2},
-      {pos: 23, flag: "🇪🇸", name: "Joan Santos", team: "GV EBC Racing", pts: 1}
+      {pos: 1, flag: "🇵🇱", name: "Milan Pawelec", team: "AGR TEAM", pts: 173},
+      {pos: 2, flag: "🇪🇸", name: "Unai Orradre", team: "MOMOVEN RACING", pts: 132},
+      {pos: 3, flag: "🇮🇹", name: "Francesco Mongiardo", team: "MMR", pts: 101},
+      {pos: 4, flag: "🇮🇹", name: "Alessandro Morosi", team: "EAGLE-1", pts: 100},
+      {pos: 5, flag: "🇪🇸", name: "Eric Fernandez", team: "FAU55TEYRACING", pts: 98},
+      {pos: 6, flag: "🇮🇹", name: "Dennis Foggia", team: "TEAM CIATTI - BOSCOSCURO", pts: 89},
+      {pos: 7, flag: "🇦🇺", name: "Harrison Voight", team: "CARDOSO RACING", pts: 76},
+      {pos: 8, flag: "🇪🇸", name: "Javier Palomera", team: "TEAM STYLOBIKE YAMAHA PHILIPPINES", pts: 50},
+      {pos: 9, flag: "🇭🇺", name: "Rossi Moor", team: "REVESZ RACING TEAM", pts: 49},
+      {pos: 10, flag: "🇦🇺", name: "Jacob Roulstone", team: "TEAM CIATTI - BOSCOSCURO", pts: 39},
+      {pos: 11, flag: "🇪🇸", name: "Marcos Ludeña", team: "TOP SURFACE ASPAR TEAM", pts: 37},
+      {pos: 12, flag: "🇺🇾", name: "Facundo Llambias", team: "TEAM ESTRELLA GALICIA 0,0", pts: 36},
+      {pos: 13, flag: "🇪🇸", name: "Marco Tapia", team: "FAU55TEYRACING", pts: 21},
+      {pos: 14, flag: "🇪🇸", name: "Iker Garcia", team: "TOP SURFACE ASPAR TEAM", pts: 17},
+      {pos: 15, flag: "🇫🇷", name: "Johan Gimbert", team: "REDS-EAGLE-1", pts: 16},
+      {pos: 16, flag: "🇸🇮", name: "Enej Krsevan", team: "EAGLE-1", pts: 16},
+      {pos: 17, flag: "🇮🇹", name: "Pier Francesco Venturini", team: "AC RACING TEAM", pts: 15},
+      {pos: 18, flag: "🇦🇺", name: "Jonathan Nahlous", team: "AGR TEAM", pts: 15},
+      {pos: 19, flag: "🇪🇸", name: "David Real", team: "TEAM STYLOBIKE YAMAHA PHILIPPINES", pts: 9},
+      {pos: 20, flag: "🇪🇸", name: "Rubén Romero", team: "SF RACING", pts: 9},
+      {pos: 21, flag: "🇮🇹", name: "Stefano Nepa", team: "KLINT RACING TEAM FACE", pts: 7},
+      {pos: 22, flag: "🇬🇧", name: "Amanuel Brinton", team: "PROMORACING FACTORY TEAM", pts: 6},
+      {pos: 23, flag: "🇳🇱", name: "Owen Van Trigt", team: "AGR TEAM", pts: 3},
+      {pos: 24, flag: "🇺🇸", name: "Maxwell Toth", team: "CARDOSO RACING", pts: 2},
+      {pos: 25, flag: "🇷🇴", name: "Demis Mihaila", team: "MDR COMPETICION", pts: 2},
+      {pos: 26, flag: "🇪🇸", name: "Joan Santos", team: "GV EBC RACING", pts: 1},
+      {pos: 27, flag: "🇪🇸", name: "Javier Del Olmo", team: "JDO RACING TEAM", pts: 1}
     ]
   },
   jgp_m3: {
-    name: "FIM JuniorGP Moto3", colorClass: "jgp_m3", roundsDone: 4, roundsTotal: 7,
-    riders: [
-      {pos: 1, flag: "🇪🇸", name: "Carlos Cano", team: "CFMOTO Aspar Junior", pts: 94},
-      {pos: 2, flag: "🇲🇹", name: "Travis Borg", team: "Monlau Motul", pts: 85},
-      {pos: 3, flag: "🇮🇹", name: "Giulio Pugliese", team: "CFMOTO Aspar Junior", pts: 75},
-      {pos: 4, flag: "🇰🇬", name: "Yaroslav Karpushin", team: "CFMOTO Aspar Junior", pts: 69},
-      {pos: 5, flag: "🇮🇩", name: "Kiandra Ramadhipa", team: "Honda Asia-Dream", pts: 64},
-      {pos: 6, flag: "🇪🇸", name: "Fernando Bujosa", team: "AC Racing Team", pts: 60},
-      {pos: 7, flag: "🇯🇵", name: "Ryota Ogiwara", team: "Asia Talent Team", pts: 54},
-      {pos: 8, flag: "🇮🇹", name: "Leonardo Zanni", team: "Momoven Racing", pts: 53},
-      {pos: 9, flag: "🇹🇭", name: "Kiattisak Singhapong", team: "Honda Asia-Dream", pts: 47},
-      {pos: 10, flag: "🇫🇷", name: "Guillem Planques", team: "Momoven Racing", pts: 41},
-      {pos: 11, flag: "🇪🇸", name: "David González", team: "AC Racing Team", pts: 31},
-      {pos: 12, flag: "🇻🇪", name: "Kerman Tinez", team: "Monlau Motul", pts: 26},
-      {pos: 13, flag: "🇫🇷", name: "David Da Costa", team: "JEG Take Off GP", pts: 25},
-      {pos: 14, flag: "🇿🇦", name: "Kgopotso Mononyane", team: "AGR Team", pts: 19},
-      {pos: 15, flag: "🇮🇹", name: "Matteo Gabarrini", team: "MTA Junior Team", pts: 18},
-      {pos: 16, flag: "🇮🇹", name: "Leonardo Abruzzo", team: "FPS Laglisse", pts: 16},
-      {pos: 17, flag: "🇺🇸", name: "Kristian Daniel", team: "Snipers Igax", pts: 15},
-      {pos: 18, flag: "🇫🇷", name: "Enzo Bellon", team: "CIP Green Power", pts: 15},
-      {pos: 19, flag: "🇬🇧", name: "Sullivan Mounsey", team: "CIP Green Power", pts: 9},
-      {pos: 20, flag: "🇫🇷", name: "Rémy Sanjuan", team: "Larresport", pts: 9},
-      {pos: 21, flag: "🇬🇧", name: "Evan Belford", team: "American Talent Team", pts: 8},
-      {pos: 22, flag: "🇮🇹", name: "Erik Michielon", team: "Echoit Pasini", pts: 4},
-      {pos: 23, flag: "🇦🇺", name: "Marianos Nikolis", team: "Monlau Motul", pts: 2},
-      {pos: 24, flag: "🇭🇺", name: "Tibor Varga", team: "MTA Junior Team", pts: 1}
+    name: "FIM JuniorGP Moto3", colorClass: "jgp_m3", roundsDone: 5, roundsTotal: 7,
+   riders: [
+      {pos: 1, flag: "🇪🇸", name: "Carlos Cano", team: "CFMOTO ASPAR JUNIOR TEAM", pts: 144},
+      {pos: 2, flag: "🇰🇬", name: "Yaroslav Karpushin", team: "CFMOTO ASPAR JUNIOR TEAM", pts: 109},
+      {pos: 3, flag: "🇮🇹", name: "Giulio Pugliese", team: "CFMOTO ASPAR JUNIOR TEAM", pts: 101},
+      {pos: 4, flag: "🇲🇹", name: "Travis Borg", team: "TEAM MONLAU MOTUL", pts: 101},
+      {pos: 5, flag: "🇮🇩", name: "Kiandra Ramadhipa", team: "HONDA ASIA-DREAM RACING JUNIOR TEAM", pts: 80},
+      {pos: 6, flag: "🇪🇸", name: "Fernando Bujosa", team: "AC RACING TEAM", pts: 76},
+      {pos: 7, flag: "🇯🇵", name: "Ryota Ogiwara", team: "ASIA TALENT TEAM", pts: 73},
+      {pos: 8, flag: "🇮🇹", name: "Leonardo Zanni", team: "MOMOVEN RACING", pts: 69},
+      {pos: 9, flag: "🇹🇭", name: "Kiattisak Singhapong", team: "HONDA ASIA-DREAM RACING JUNIOR TEAM", pts: 61},
+      {pos: 10, flag: "🇪🇸", name: "David González", team: "AC RACING TEAM", pts: 47},
+      {pos: 11, flag: "🇫🇷", name: "Guillem Planques", team: "MOMOVEN RACING", pts: 45},
+      {pos: 12, flag: "🇫🇷", name: "David Da Costa", team: "JEG TAKE OFF GP", pts: 37},
+      {pos: 13, flag: "🇻🇪", name: "Kerman Tinez", team: "TEAM MONLAU MOTUL", pts: 34},
+      {pos: 14, flag: "🇮🇹", name: "Matteo Gabarrini", team: "MTA JUNIOR TEAM", pts: 32},
+      {pos: 15, flag: "🇿🇦", name: "Kgopotso Mononyane", team: "AGR TEAM", pts: 19},
+      {pos: 16, flag: "🇮🇹", name: "Leonardo Abruzzo", team: "TEAM FPS LAGLISSE", pts: 16},
+      {pos: 17, flag: "🇺🇸", name: "Kristian Daniel", team: "SNIPERS IGAX TEAM", pts: 15},
+      {pos: 18, flag: "🇫🇷", name: "Enzo Bellon", team: "CIP GREEN POWER JUNIOR TEAM", pts: 15},
+      {pos: 19, flag: "🇬🇧", name: "Sullivan Mounsey", team: "CIP GREEN POWER JUNIOR TEAM", pts: 9},
+      {pos: 20, flag: "🇫🇷", name: "Rémy Sanjuan", team: "LARRESPORT", pts: 9},
+      {pos: 21, flag: "🇬🇧", name: "Evan Belford", team: "BRITISH TALENT TEAM - GRYD RACING", pts: 8},
+      {pos: 22, flag: "🇦🇺", name: "Marianos Nikolis", team: "TEAM MONLAU MOTUL", pts: 8},
+      {pos: 23, flag: "🇮🇹", name: "Erik Michielon", team: "TEAM ECHOVIT PASINI RACING", pts: 5},
+      {pos: 24, flag: "🇪🇸", name: "Gonzalo Pérez", team: "FRANDO RACING VHC TEAM MSI", pts: 3},
+      {pos: 25, flag: "🇬🇧", name: "Filip Surowiak", team: "BRITISH TALENT TEAM", pts: 2},
+      {pos: 26, flag: "🇯🇵", name: "Seiryu Ikegami", team: "AGR TEAM", pts: 1},
+      {pos: 27, flag: "🇭🇺", name: "Tibor Varga", team: "MTA JUNIOR TEAM", pts: 1}
     ]
   },
   jgp_m4: {
-    name: "FIM JuniorGP Moto4", colorClass: "jgp_m4", roundsDone: 4, roundsTotal: 7,
+    name: "FIM JuniorGP Moto4", colorClass: "jgp_m4", roundsDone: 5, roundsTotal: 7,
     riders: [
-      {pos: 1, flag: "🇪🇸", name: "Álvaro Lucas", team: "CFMOTO Aspar Junior", pts: 135},
-      {pos: 2, flag: "🇮🇹", name: "Lorenzo Pritelli", team: "Echoit Pasini", pts: 99},
-      {pos: 3, flag: "🇨🇴", name: "Mateo Marulanda", team: "AC Racing Team", pts: 86},
-      {pos: 4, flag: "🇪🇸", name: "Victor Cubeles", team: "Team Impala", pts: 85},
-      {pos: 5, flag: "🇮🇹", name: "Edoardo Savino", team: "Leopard Junior", pts: 80},
-      {pos: 6, flag: "🇲🇾", name: "Qabil Irfan", team: "SIC - Gryd Racing", pts: 61},
-      {pos: 7, flag: "🇪🇸", name: "Ignacio Galán", team: "Frando Racing VHC", pts: 58},
-      {pos: 8, flag: "🇩🇪", name: "Fynn Kratochwil", team: "Snipers Igax", pts: 52},
-      {pos: 9, flag: "🇮🇹", name: "Cristian Borrelli", team: "Echoit Pasini", pts: 39},
-      {pos: 10, flag: "🇪🇸", name: "Jonathan Ramila", team: "Snipers Igax", pts: 35},
-      {pos: 11, flag: "🇪🇸", name: "Eneko Osorio", team: "Frando Racing VHC", pts: 32},
-      {pos: 12, flag: "🇵🇭", name: "Alfonsi Daquigan", team: "Honda Asia-Dream", pts: 29},
-      {pos: 13, flag: "🇮🇹", name: "Leonardo Casadei", team: "Echoit Pasini", pts: 25},
-      {pos: 14, flag: "🇫🇷", name: "Evan Boxberger", team: "JEG Take Off GP", pts: 22},
-      {pos: 15, flag: "🇨🇭", name: "Alessio Arnold", team: "Fullmoto AC Racing", pts: 22},
-      {pos: 16, flag: "🇪🇸", name: "Enzo Zaragoza", team: "CFMOTO Aspar Junior", pts: 19},
-      {pos: 17, flag: "🇺🇸", name: "Mikey Lou Sanchez", team: "AC Racing Team", pts: 19},
-      {pos: 18, flag: "🇬🇧", name: "Ethan Sparks", team: "British Talent Team", pts: 18},
-      {pos: 19, flag: "🇫🇷", name: "Antoine Nativi", team: "JEG Take Off GP", pts: 14},
-      {pos: 20, flag: "🇵🇹", name: "Afonso Almeida", team: "Frando Racing VHC", pts: 12},
-      {pos: 21, flag: "🇪🇸", name: "David Sanchez", team: "Frando Racing VHC", pts: 11},
-      {pos: 22, flag: "🇪🇸", name: "Izan Rodríguez", team: "ETG Racing", pts: 10},
-      {pos: 23, flag: "🇪🇸", name: "David Peris", team: "Team Altogo", pts: 5},
-      {pos: 24, flag: "🇪🇸", name: "Samuel Castiblanques", team: "Futurotel Face", pts: 4},
-      {pos: 25, flag: "🇸🇲", name: "Gabriel Tesini", team: "Buccimoto", pts: 3},
-      {pos: 26, flag: "🇮🇹", name: "Mathias Tamburini", team: "AC Racing Team", pts: 2},
-      {pos: 27, flag: "🇮🇹", name: "Leonardo Martinazzi", team: "AC Racing Team", pts: 2},
-      {pos: 28, flag: "🇪🇸", name: "José Reyes", team: "Team Honda Laglisse FPS", pts: 1}
+      {pos: 1, flag: "🇪🇸", name: "Álvaro Lucas", team: "CFMOTO ASPAR JUNIOR TEAM", pts: 176},
+      {pos: 2, flag: "🇮🇹", name: "Lorenzo Pritelli", team: "TEAM ECHOVIT PASINI RACING", pts: 140},
+      {pos: 3, flag: "🇪🇸", name: "Victor Cubeles", team: "TEAM IMPALA HONDA", pts: 102},
+      {pos: 4, flag: "🇮🇹", name: "Edoardo Savino", team: "LEOPARD JUNIOR", pts: 100},
+      {pos: 5, flag: "🇨🇴", name: "Mateo Marulanda", team: "AC RACING TEAM", pts: 96},
+      {pos: 6, flag: "🇩🇪", name: "Fynn Kratochwil", team: "SNIPERS IGAXTEAM", pts: 85},
+      {pos: 7, flag: "🇪🇸", name: "Ignacio Galán", team: "FRANDO RACING VHC TEAM", pts: 73},
+      {pos: 8, flag: "🇲🇾", name: "Qabil Irfan", team: "SIC - GRYD RACING", pts: 61},
+      {pos: 9, flag: "🇮🇹", name: "Leonardo Casadei", team: "TEAM ECHOVIT PASINI RACING", pts: 44},
+      {pos: 10, flag: "🇪🇸", name: "Jonathan Ramila", team: "SNIPERS IGAXTEAM", pts: 43},
+      {pos: 11, flag: "🇪🇸", name: "Enzo Zaragoza", team: "CFMOTO ASPAR JUNIOR TEAM", pts: 40},
+      {pos: 12, flag: "🇮🇹", name: "Cristian Borrelli", team: "TEAM ECHOVIT PASINI RACING", pts: 39},
+      {pos: 13, flag: "🇪🇸", name: "Eneko Osorio", team: "FRANDO RACING VHC TEAM", pts: 33},
+      {pos: 14, flag: "🇵🇭", name: "Alfonsi Daquigan", team: "HONDA ASIA-DREAM RACING JUNIOR TEAM", pts: 29},
+      {pos: 15, flag: "🇨🇭", name: "Alessio Arnold", team: "FULLMOTO AC RACING JUNIOR TEAM", pts: 25},
+      {pos: 16, flag: "🇫🇷", name: "Evan Boxberger", team: "JEG TAKE OFF GP", pts: 24},
+      {pos: 17, flag: "🇺🇸", name: "Mikey Lou Sanchez", team: "AC RACING TEAM", pts: 24},
+      {pos: 18, flag: "🇬🇧", name: "Ethan Sparks", team: "BRITISH TALENT TEAM - GRYD RACING", pts: 18},
+      {pos: 19, flag: "🇪🇸", name: "David Sanchez", team: "FRANDO RACING VHC TEAM", pts: 17},
+      {pos: 20, flag: "🇫🇷", name: "Antoine Nativi", team: "JEG TAKE OFF GP", pts: 14},
+      {pos: 21, flag: "", name: "Álex Debón", team: "SNIPERS IGAXTEAM", pts: 13},
+      {pos: 22, flag: "🇵🇹", name: "Afonso Almeida", team: "FRANDO RACING VHC TEAM", pts: 12},
+      {pos: 23, flag: "🇪🇸", name: "Izan Rodríguez", team: "AC RACING TEAM", pts: 10},
+      {pos: 24, flag: "🇵🇱", name: "Andrej Kupczynski", team: "ETG RACING", pts: 9},
+      {pos: 25, flag: "🇱🇹", name: "Rafael Budginaite", team: "FUTUROTEL FACE RACING", pts: 7},
+      {pos: 26, flag: "🇪🇸", name: "David Peris", team: "TEAM ALTOGO", pts: 5},
+      {pos: 27, flag: "🇪🇸", name: "Oliver Cantos", team: "LEOPARD JUNIOR", pts: 5},
+      {pos: 28, flag: "🇪🇸", name: "Eric Ruz", team: "TEAM IMPALA HONDA", pts: 4},
+      {pos: 29, flag: "🇪🇸", name: "Samuel Castiblanques", team: "FUTUROTEL FACE RACING", pts: 4},
+      {pos: 30, flag: "🇸🇲", name: "Gabriel Tesini", team: "BUCCIMOTO", pts: 3},
+      {pos: 31, flag: "🇮🇹", name: "Mathias Tamburini", team: "AC RACING TEAM", pts: 2},
+      {pos: 32, flag: "🇮🇹", name: "Leonardo Martinazzi", team: "AC RACING TEAM", pts: 2},
+      {pos: 33, flag: "🇪🇸", name: "José Reyes", team: "TEAM HONDA LAGLISSE FPS", pts: 1}
     ]
   }
 };
@@ -773,33 +820,69 @@ function generateStandings() {
       <input type="text" class="search-input" placeholder="Nome pilota..." oninput="filterRiders(this, '${catKey}')">
     </div>`;
 
-    // 4. TABELLA CLASSIFICA COMPLETA
-    html += `<div class="standings-table-wrap"><table id="table-${catKey}">
-      <thead>
-        <tr>
-          <th class="pos">#</th>
-          <th>Pilota</th>
-          <th class="pts">Punti</th>
-          <th class="gap">Distacco</th>
-        </tr>
-      </thead>
-      <tbody>`;
+    // 4. TABELLE CLASSIFICA AFFIANCATE
+const midpoint = Math.ceil(classifiedRiders.length / 2);
+const firstHalf = classifiedRiders.slice(0, midpoint);
+const secondHalf = classifiedRiders.slice(midpoint);
 
-    classifiedRiders.forEach(r => {
-      const gapVal = r.pos === 1 ? "Leader" : `-${leaderPts - r.pts}`;
-      const topClass = r.pos <= 5 ? 'top-5' : ''; // Evidenzia i primi 5
-      html += `<tr class="${topClass}">
+function generateTable(riders, tableId) {
+  let tableHtml = `
+    <div class="standings-table-wrap">
+      <table id="${tableId}">
+        <thead>
+          <tr>
+            <th class="pos">#</th>
+            <th>Pilota</th>
+            <th class="pts">Punti</th>
+            <th class="gap">Distacco</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  riders.forEach(r => {
+    const gapVal = r.pos === 1 ? "Leader" : `-${leaderPts - r.pts}`;
+    const topClass = r.pos <= 5 ? 'top-5' : '';
+
+    tableHtml += `
+      <tr class="${topClass}">
         <td class="pos">${r.pos}</td>
         <td>
           <div class="rider-cell">
             <span class="rider-flag">${r.flag}</span>
-            <span>${r.name}<span class="rider-team">${r.team}</span></span>
+            <span>
+              ${r.name}
+              <span class="rider-team">${r.team}</span>
+            </span>
           </div>
         </td>
         <td class="pts">${r.pts}</td>
         <td class="gap">${gapVal}</td>
-      </tr>`;
-    });
+      </tr>
+    `;
+  });
+
+  tableHtml += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  return tableHtml;
+}
+
+html += `
+  <div class="standings-tables-grid">
+    <div class="standings-table-column">
+      ${generateTable(firstHalf, `table-${catKey}-1`)}
+    </div>
+
+    <div class="standings-table-column">
+      ${generateTable(secondHalf, `table-${catKey}-2`)}
+    </div>
+  </div>
+`;
+
 
     html += `</tbody></table></div>`;
     html += `</div>`; // Chiudi Card
@@ -811,20 +894,31 @@ function generateStandings() {
 // ── LOGICA RICERCA PILOTI NELLA TABELLA ──
 function filterRiders(input, catKey) {
     var filter = input.value.toUpperCase();
-    var table = document.getElementById("table-" + catKey);
-    var tr = table.getElementsByTagName("tr");
-    
-    for (var i = 1; i < tr.length; i++) { // Parto da 1 per saltare l'header
-        var td = tr[i].getElementsByTagName("td")[1]; // Prendo la colonna "Pilota"
-        if (td) {
-            var txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+
+    var tables = [
+        document.getElementById("table-" + catKey + "-1"),
+        document.getElementById("table-" + catKey + "-2")
+    ];
+
+    tables.forEach(function(table) {
+        if (!table) return;
+
+        var tr = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < tr.length; i++) {
+            var td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
         }
-    }
+    });
 }
 
 // ── LOGICA TABS E DEEP LINKING ──
