@@ -970,7 +970,7 @@ a.timeline-card {
         ← Torna alla pagina dei risultati
       </button>
 <h1>STAGIONE <span>2026</span></h1>
-<p>Statistiche aggregate, vincitori, podii e tendenze dopo 13 round disputati su 22.</p>
+<p>Statistiche aggregate, vincitori, podii e tendenze dopo 14 round disputati su 22.</p>
 </div>
 </section>
 <div class="container">
@@ -1005,11 +1005,11 @@ const ROUNDS_DONE = [
   { num:11, flag:'🇩🇪', name:'GP Germania', circuit:'Sachsenring', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Iván Ortolá', flag:'🇪🇸', team:'QJMOTOR – FRINSA – MSI' }, m3:{ winner:'Brian Uriarte', flag:'🇪🇸', team:'Red Bull KTM Ajo' } },
   { num:12, flag:'🇬🇧', name:'GP Inghilterra', circuit:'Silverstone', gp:{ winner:'Raul Fernández', flag:'🇪🇸', team:'SuperFile Trackhouse MotoGP Team' }, m2:{ winner:'Filip Salač', flag:'🇨🇿', team:'OnlyFans American Racing Team' }, m3:{ winner:'David Almansa', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' } },
   { num:13, flag:'🇪🇸', name:'GP Aragona', circuit:'MotorLand Aragón', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Alonso López', flag:'🇪🇸', team:'ITALJET Gresini Moto2' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } },
-
+  { num:14, flag:'🇮🇹', name:'GP San Marino', circuit:'Misano World Circuit Marco Simoncelli', gp:{ winner:'Marc Márquez', flag:'🇪🇸', team:'Ducati Lenovo Team' }, m2:{ winner:'Manuel González', flag:'🇪🇸', team:'Liqui Moly Dynavolt Intact GP' }, m3:{ winner:'Máximo Quiles', flag:'🇪🇸', team:'CFMOTO Gaviota Aspar Team' } }
 ];
 
 const SPRINT_WINNERS = [
-  { round:1, flag:'🇪🇸', winner:'Pedro Acosta', team:'Red Bull KTM Factory' },
+  { round:1, flag:'🇪🇸', winner:'Pedro Acosta', team:'Red Bull KTM Factory Racing' },
   { round:2, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
   { round:3, flag:'🇪🇸', winner:'Jorge Martín', team:'Aprilia Racing' },
   { round:4, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
@@ -1022,31 +1022,33 @@ const SPRINT_WINNERS = [
   { round:11, flag:'🇩🇪', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
   { round:12, flag:'🇬🇧', winner:'Jorge Martín', team:'Aprilia Racing' },
   { round:13, flag:'🇪🇸', winner:'Marc Márquez', team:'Ducati Lenovo Team' },
+  { round:14, flag:'🇮🇹', winner:'Marc Márquez', team:'Ducati Lenovo Team' }
 ];
 
 const CLASSIFICA = {
   "motogp": [
-    { pos:1, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:256.0 },
-    { pos:2, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:237.0 },
-    { pos:3, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:232.0 },
-    { pos:4, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:208.0 },
-    { pos:5, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:203.0 },
+    { pos:1, flag:"🇪🇸", name:"Marc Márquez", team:"Ducati Lenovo Team", pts:274.0 },
+    { pos:2, flag:"🇪🇸", name:"Jorge Martín", team:"Aprilia Racing", pts:274.0 },
+    { pos:3, flag:"🇮🇹", name:"Marco Bezzecchi", team:"Aprilia Racing", pts:241.0 },
+    { pos:4, flag:"🇮🇹", name:"Fabio Di Giannantonio", team:"Pertamina Enduro VR46", pts:223.0 },
+    { pos:5, flag:"🇪🇸", name:"Pedro Acosta", team:"Red Bull KTM Factory Racing", pts:209.0 },
+    //{ pos:5, flag:"🇯🇵", name:"Ai Ogura", team:"SuperFile Trackhouse MotoGP Team", pts:203.0 },
   ],
   "moto2": [
-    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:207.5 },
-    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:175.0 },
-    { pos:3, flag:"🇦🇺", name:"Senna Agius", team:"Liqui Moly Dynavolt Intact GP", pts:149.0 },
-    { pos:4, flag:"🇪🇸", name:"Iván Ortolá", team:"QJMOTOR – FRINSA – MSI", pts:144.5 },
-    //{ pos:4, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:132.0 },
-    { pos:5, flag:"🇪🇸", name:"Daniel Holgado", team:"CFMOTO Aspar Team", pts:137.0 },
+    { pos:1, flag:"🇪🇸", name:"Manuel González", team:"Liqui Moly Dynavolt Intact GP", pts:232.5 },
+    { pos:2, flag:"🇪🇸", name:"Izan Guevara", team:"BLU CRU Pramac Yamaha Moto2", pts:185.0 },
+    { pos:3, flag:"🇪🇸", name:"Iván Ortolá", team:"QJMOTOR – FRINSA – MSI", pts:157.5 },
+    { pos:4, flag:"🇦🇺", name:"Senna Agius", team:"Liqui Moly Dynavolt Intact GP", pts:149.0 },
+    { pos:5, flag:"🇨🇴", name:"David Alonso", team:"CFMOTO Aspar Team", pts:139.0 },
+    //{ pos:5, flag:"🇪🇸", name:"Daniel Holgado", team:"CFMOTO Aspar Team", pts:137.0 },
     //{ pos:5, flag:"🇮🇹", name:"Celestino Vietti", team:"SpeedRS Team", pts:114.0 },
   ],
   "moto3": [
-    { pos:1, flag:"🇪🇸", name:"Máximo Quiles", team:"CFMOTO Gaviota Aspar Team", pts:256.0 },
-    { pos:2, flag:"🇪🇸", name:"Álvaro Carpe", team:"Red Bull KTM Ajo", pts:159.0 },
-    { pos:4, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:154.0 },
-    { pos:3, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:138.0 },
-    { pos:5, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:131.0 },
+    { pos:1, flag:"🇪🇸", name:"Máximo Quiles", team:"CFMOTO Gaviota Aspar Team", pts:281.0 },
+    { pos:2, flag:"🇪🇸", name:"David Almansa", team:"Liqui Moly Dynavolt Intact GP", pts:174.0 },
+    { pos:3, flag:"🇪🇸", name:"Álvaro Carpe", team:"Red Bull KTM Ajo", pts:159.0 },
+    { pos:4, flag:"🇪🇸", name:"Brian Uriarte", team:"Red Bull KTM Ajo", pts:154.0 },
+    { pos:5, flag:"🇦🇷", name:"Marco Morelli", team:"CFMOTO Gaviota Aspar Team", pts:138.0 },
   ]
 };
 
@@ -1229,8 +1231,8 @@ document.getElementById('main-content').innerHTML = `
     </div>
     <div class="forma-card m2">
       <div class="forma-cat">Moto2 — Vincitore</div>
-      <div class="forma-name">🇪🇸 Alonso López</div>
-      <div class="forma-pts">ITALJET Gresini Moto2 · 25 pt</div>
+      <div class="forma-name">🇪🇸 Manuel González</div>
+      <div class="forma-pts">Liqui Moly Dynavolt Intact GP · 25 pt</div>
     </div>
     <div class="forma-card m3">
       <div class="forma-cat">Moto3 — Vincitore</div>
@@ -1256,6 +1258,7 @@ document.getElementById('main-content').innerHTML = `
       ${buildWinsBar(sprintWins, 'var(--gp)')}
     </div>
   </div>
+${buildSprintTable()}
 
   <!-- VITTORIE MOTO2 (Affiancate) -->
   <h2 class="section-title"><span class="badge badge-m2">Moto2</span> Vittorie della Stagione</h2>
@@ -1284,7 +1287,6 @@ document.getElementById('main-content').innerHTML = `
   </div>
 
   </div>
-  ${buildSprintTable()}
     <!-- TIMELINE VINCITORI -->
   <h2 class="section-title"><span class="badge badge-gp">MotoGP</span> Storia della Stagione</h2>
   <div class="winners-timeline">${buildWinnersTimeline('gp')}</div>
