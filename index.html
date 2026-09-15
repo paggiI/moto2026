@@ -1387,12 +1387,101 @@
   font-family: 'Barlow Condensed', sans-serif; color: var(--muted);
   font-size: .9rem; margin-right: 3rem; text-transform: uppercase;
 }
-.ticker-content span strong { color: var(--white); }
+.ticker-content span strong { color: var(--black); }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
 .ticker-content {
   white-space: nowrap; padding-left: 100%; 
   animation: ticker 80s linear infinite; /* Cambiato da 40s a 60s */
+}
+
+/* =========================================================
+   LINK MERCATO PILOTI - SOLO HOMEPAGE
+   ========================================================= */
+
+.mercato-home-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+.mercato-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 30px;
+
+  background: #ed001c;
+  color: #ffffff;
+
+  border: 1px solid #ed001c;
+  border-radius: 3px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mercato-home-button:hover {
+  background: #ff1632;
+  border-color: #ff1632;
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(237, 0, 28, 0.25);
+}
+
+.mercato-home-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.mercato-home-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   VERSIONE MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .mercato-home-link {
+    padding: 20px 15px;
+  }
+
+  .mercato-home-button {
+    width: 100%;
+    max-width: 360px;
+
+    min-height: 46px;
+    padding: 0 20px;
+
+    font-size: 13px;
+  }
+
 }
 
 </style>
@@ -1445,7 +1534,7 @@
 <!-- SEZIONE IN MEMORIA (Banner Orizzontale) -->
 <div style="background: linear-gradient(135deg, var(--card) 0%, var(--mid) 100%); border: 1px solid var(--border); border-left: 4px solid #555; border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
   <div>
-    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em; color: var(--white); margin-bottom: .2rem;">In Memoria 🕯️</h3>
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em; color: var(--black); margin-bottom: .2rem;">In Memoria 🕯️</h3>
     <p style="font-size: .9rem; color: var(--muted); margin: 0;">Un doveroso omaggio ai piloti che hanno perso la vita inseguendo la loro passione.</p>
   </div>
   <a href="in-memoria.html" class="btn btn-red" style="white-space: nowrap;">
@@ -1468,6 +1557,12 @@
     <span><strong>Honda HRC:</strong> Fabio Quartararo dal 2027. Uno tra David Alonso e Diogo Moreira lo affiancherà nel team ufficiale.</span>
     <span><strong>LCR Honda:</strong> Zarco confermato fino al 2027, con l’altro talento tra Alonso e Moreira destinato al team satellite.</span>
   </div>
+</div>
+<!-- LINK AL MERCATO PILOTI -->
+<div class="mercato-home-link">
+  <a href="mercato.html" class="mercato-home-button">
+    Mercato Piloti 2027
+  </a>
 </div>
 <!-- MAIN CONTENT -->
 <div class="container">
