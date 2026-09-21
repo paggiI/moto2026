@@ -2064,11 +2064,11 @@ table.rt thead tr {
 <span class="rb-flag">🇮🇹</span>
 <span><span class="rb-num">R14 · 11 set</span><span class="rb-name">San Marino</span></span>
 </button>
-<button class="round-btn next" id="btn-r15" onclick="selectRound('r15',this)">
+<button class="round-btn done" id="btn-r15" onclick="selectRound('r15',this)">
 <span class="rb-flag">🇦🇹</span>
 <span><span class="rb-num">R15 · 18 set</span><span class="rb-name">Austria</span></span>
 </button>
-<button class="round-btn future" id="btn-r16" onclick="selectRound('r16',this)">
+<button class="round-btn next" id="btn-r16" onclick="selectRound('r16',this)">
 <span class="rb-flag">🇯🇵</span>
 <span><span class="rb-num">R16 · 2 ott</span><span class="rb-name">Giappone</span></span>
 </button>
@@ -2253,7 +2253,7 @@ table.rt thead tr {
 </div>
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Risultati ufficiali — aggiornati al Gran Premio di Misano</p>
+<p>Risultati ufficiali — aggiornati al Gran Premio d'Austria</p>
 <div class="socials">
 <a href="#">📸 Instagram</a>
 <a href="#">🐦 X / Twitter</a>
@@ -2319,9 +2319,9 @@ table.rt thead tr {
         r11: { name: 'Gran Premio di Germania', circuit: 'Sachsenring · Hohenstein-Ernstthal', date: '10 – 12 lug', flag: '🇩🇪', num: 11, status: 'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
         r12: { name: 'Gran Premio di Gran Bretagna', circuit: 'Silverstone Circuit', date: '7 – 9 ago', flag: '🇬🇧', num: 12, status: 'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.']},
         r13: { name: 'Gran Premio di Aragona', circuit: 'MotorLand Aragón · Alcañiz', date: '28 – 30 ago', flag: '🇪🇸', num: 13, status: 'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
-        r14: { name: 'Gran Premio di San Marino', circuit: 'Misano World Circuit Marco Simoncelli', date: '11 – 13 set', flag: '🇮🇹', num: 14, status: 'next' },
-        r15: { name: 'Gran Premio d\'Austria', circuit: 'Red Bull Ring · Spielberg', date: '18 – 20 set', flag: '🇦🇹', num: 15, status: 'future' },
-        r16: { name: 'Gran Premio del Giappone', circuit: 'Twin Ring Motegi', date: '2 – 4 ott', flag: '🇯🇵', num: 16, status: 'future' },
+        r14: { name: 'Gran Premio di San Marino', circuit: 'Misano World Circuit Marco Simoncelli', date: '11 – 13 set', flag: '🇮🇹', num: 14, status: 'done' , notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
+        r15: { name: 'Gran Premio d\'Austria', circuit: 'Red Bull Ring · Spielberg', date: '18 – 20 set', flag: '🇦🇹', num: 15, status: 'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
+        r16: { name: 'Gran Premio del Giappone', circuit: 'Twin Ring Motegi', date: '2 – 4 ott', flag: '🇯🇵', num: 16, status: 'next' },
         r17: { name: 'Gran Premio d\'Indonesia', circuit: 'Pertamina Mandalika Street Circuit', date: '9 – 11 ott', flag: '🇮🇩', num: 17, status: 'future' },
         r18: { name: 'Gran Premio d\'Australia', circuit: 'Phillip Island Grand Prix Circuit', date: '23 – 25 ott', flag: '🇦🇺', num: 18, status: 'future' },
         r19: { name: 'Gran Premio della Malesia', circuit: 'Sepang International Circuit', date: '30 ott – 1 nov', flag: '🇲🇾', num: 19, status: 'future' },
@@ -9439,6 +9439,520 @@ r12: {
       }
     }
   },
+  r15: {
+    gp: {
+      fp1: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '1:29.851', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+0.233' },
+          { pos: 3, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '', gap: '+0.308' },
+          { pos: 4, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+0.335' },
+          { pos: 5, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+0.513' },
+          { pos: 6, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+0.533' },
+          { pos: 7, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.566' },
+          { pos: 8, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+0.631' },
+          { pos: 9, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+0.669' },
+          { pos: 10, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+0.680' },
+          { pos: 11, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+0.709' },
+          { pos: 12, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.800' },
+          { pos: 13, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+0.843' },
+          { pos: 14, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.861' },
+          { pos: 15, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.921' },
+          { pos: 16, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.997' },
+          { pos: 17, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+1.010' },
+          { pos: 18, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+1.122' },
+          { pos: 19, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+1.404' },
+          { pos: 20, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+1.438' },
+          { pos: 21, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+1.487' },
+          { pos: 22, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+2.512' }
+        ]
+      },
+      pq: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '1:28.381', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+0.127' },
+          { pos: 3, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.187' },
+          { pos: 4, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+0.204' },
+          { pos: 5, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '', gap: '+0.222' },
+          { pos: 6, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.252' },
+          { pos: 7, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.269' },
+          { pos: 8, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+0.321' },
+          { pos: 9, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+0.430' },
+          { pos: 10, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.436' },
+          { pos: 11, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+0.440' },
+          { pos: 12, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+0.484' },
+          { pos: 13, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+0.558' },
+          { pos: 14, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+0.680' },
+          { pos: 15, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+0.710' },
+          { pos: 16, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.720' },
+          { pos: 17, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.810' },
+          { pos: 18, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+0.885' },
+          { pos: 19, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.949' },
+          { pos: 20, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+1.215' },
+          { pos: 21, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+1.568' },
+          { pos: 22, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+1.601' }
+        ]
+      },
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '1:29.663', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '', gap: '+0.202' },
+          { pos: 3, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.226' },
+          { pos: 4, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+0.294' },
+          { pos: 5, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+0.430' },
+          { pos: 6, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.577' },
+          { pos: 7, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+0.607' },
+          { pos: 8, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+0.751' },
+          { pos: 9, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+0.789' },
+          { pos: 10, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.800' },
+          { pos: 11, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.899' },
+          { pos: 12, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+0.940' },
+          { pos: 13, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+1.104' },
+          { pos: 14, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+1.246' },
+          { pos: 15, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+1.290' },
+          { pos: 16, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+1.453' },
+          { pos: 17, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+1.485' },
+          { pos: 18, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+1.544' },
+          { pos: 19, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+1.564' },
+          { pos: 20, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+1.704' },
+          { pos: 21, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+1.780' },
+          { pos: 22, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+1.901' }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '1:27.917', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+0.015' },
+          { pos: 3, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.071' },
+          { pos: 4, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+0.249' },
+          { pos: 5, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.533' },
+          { pos: 6, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+0.556' },
+          { pos: 7, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+0.610' },
+          { pos: 8, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.695' },
+          { pos: 9, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.706' },
+          { pos: 10, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+0.715', fromQ1: true },
+          { pos: 11, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.812' },
+          { pos: 12, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+0.945' }
+        ],
+        q1: [
+          { pos: 1, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '1:28.753', gap: '—', toQ2: true },
+          { pos: 2, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+0.000', toQ2: true },
+          { pos: 3, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.118' },
+          { pos: 4, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+0.219' },
+          { pos: 5, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+0.357' },
+          { pos: 6, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+0.401' },
+          { pos: 7, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+0.412' },
+          { pos: 8, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+0.689' },
+          { pos: 9, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.801' },
+          { pos: 10, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+0.910' },
+          { pos: 11, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+0.936' },
+          { pos: 12, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+1.303' }
+        ]
+      },
+      sprint: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '20:57.387', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+1.026' },
+          { pos: 3, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+1.675' },
+          { pos: 4, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+3.495' },
+          { pos: 5, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+4.447' },
+          { pos: 6, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+5.142' },
+          { pos: 7, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+5.895' },
+          { pos: 8, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+6.810' },
+          { pos: 9, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+7.233' },
+          { pos: 10, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+9.228' },
+          { pos: 11, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+11.580' },
+          { pos: 12, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+13.050' },
+          { pos: 13, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+15.076' },
+          { pos: 14, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+18.373' },
+          { pos: 15, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+19.201' },
+          { pos: 16, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+20.503' },
+          { pos: 17, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+20.964' },
+          { pos: 18, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+21.054' },
+          { pos: 19, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+22.646' },
+          { pos: 20, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+26.053' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: 'RIT', gap: 'rit. al giro 13' },
+          { pos: 'RIT', flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: 'RIT', gap: 'rit. al giro 10' }
+        ]
+      },
+      wu: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '1:29.337', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+0.157' },
+          { pos: 3, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '', gap: '+0.209' },
+          { pos: 4, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '', gap: '+0.347' },
+          { pos: 5, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+0.458' },
+          { pos: 6, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+0.526' },
+          { pos: 7, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+0.526' },
+          { pos: 8, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+0.665' },
+          { pos: 9, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+0.669' },
+          { pos: 10, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+0.737' },
+          { pos: 11, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.849' },
+          { pos: 12, flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: '', gap: '+0.880' },
+          { pos: 13, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+0.939' },
+          { pos: 14, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+1.040' },
+          { pos: 15, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+1.061' },
+          { pos: 16, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+1.065' },
+          { pos: 17, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+1.145' },
+          { pos: 18, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+1.193' },
+          { pos: 19, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+1.567' },
+          { pos: 20, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+1.642' },
+          { pos: 21, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+2.637' }
+        ]
+      },
+      race: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: '42:16.996', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: '', gap: '+1.017' },
+          { pos: 3, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: '', gap: '+1.209' },
+          { pos: 4, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: '', gap: '+2.139' },
+          { pos: 5, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: '', gap: '+7.339' },
+          { pos: 6, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: '', gap: '+8.720' },
+          { pos: 7, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: '', gap: '+9.686' },
+          { pos: 8, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'Gresini Racing MotoGP', time: '', gap: '+12.365' },
+          { pos: 9, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+14.869' },
+          { pos: 10, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: '', gap: '+16.266' },
+          { pos: 11, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: '', gap: '+16.640' },
+          { pos: 12, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: '', gap: '+20.940' },
+          { pos: 13, flag: '🇯🇵', name: 'Takaaki Nakagami', team: 'Castrol Honda Team', time: '', gap: '+21.032' },
+          { pos: 14, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: '', gap: '+22.391' },
+          { pos: 15, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: '', gap: '+24.949' },
+          { pos: 16, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: '', gap: '+25.148' },
+          { pos: 17, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+30.140' },
+          { pos: 18, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46 Ducati', time: '', gap: '+34.200' },
+          { pos: 19, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: '', gap: '+34.413' },
+          { pos: 20, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Racing', time: '', gap: '+46.724' },
+          { pos: 21, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Racing', time: '', gap: '+1:07.530' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Álex Márquez', team: 'Gresini Racing MotoGP', time: 'RIT', gap: 'rit. al giro 12' }
+        ]
+      }
+    },
+    m2: {
+      fp1: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Tony Arbolino', team: 'Fantic Racing', time: '1:33.074', gap: '—' },
+          { pos: 2, flag: '🇨🇴', name: 'David Alonso', team: 'CFMoto Aspar Team', time: '', gap: '+0.042' },
+          { pos: 3, flag: '🇪🇸', name: 'Izan Guevara', team: 'Pramac Yamaha', time: '', gap: '+0.095' },
+          { pos: 4, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.197' },
+          { pos: 5, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedUp Racing', time: '', gap: '+0.357' },
+          { pos: 6, flag: '🇨🇿', name: 'Filip Salač', team: 'American Racing', time: '', gap: '+0.377' },
+          { pos: 7, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: '', gap: '+0.406' },
+          { pos: 8, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMoto Aspar Team', time: '', gap: '+0.411' },
+          { pos: 9, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+0.628' },
+          { pos: 10, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '', gap: '+0.640' },
+          { pos: 11, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: '', gap: '+0.660' },
+          { pos: 12, flag: '🇳🇱', name: 'Collin Veijer', team: 'Red Bull KTM Ajo', time: '', gap: '+0.760' },
+          { pos: 13, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.985' },
+          { pos: 14, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+1.024' },
+          { pos: 15, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+1.112' },
+          { pos: 16, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'RW Racing GP', time: '', gap: '+1.132' },
+          { pos: 17, flag: '🇪🇸', name: 'Iván Ortolá', team: 'MT Helmets MSI', time: '', gap: '+1.146' },
+          { pos: 18, flag: '🇪🇸', name: 'Alberto Ferrández', team: 'Pramac Yamaha', time: '', gap: '+1.189' },
+          { pos: 19, flag: '🇪🇸', name: 'Marcos Ramírez', team: 'Forward Team', time: '', gap: '+1.195' },
+          { pos: 20, flag: '🇮🇩', name: 'Mario Aji', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+1.274' },
+          { pos: 21, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: '', gap: '+1.327' },
+          { pos: 22, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: '', gap: '+1.457' },
+          { pos: 23, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: '', gap: '+1.544' },
+          { pos: 24, flag: '🇪🇸', name: 'Ángel Piqueras', team: 'MT Helmets MSI', time: '', gap: '+1.804' },
+          { pos: 25, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Team', time: '', gap: '+1.944' },
+          { pos: 26, flag: '🇪🇸', name: 'Alex Escrig', team: 'Forward Team', time: '', gap: '+1.991' },
+          { pos: 27, flag: '🇺🇸', name: 'Joe Roberts', team: 'American Racing', time: '', gap: '+2.182' },
+          { pos: 28, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+2.616' },
+          { pos: 29, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: '', gap: '+3.462' }
+        ]
+      },
+      pq: {
+        rows: [
+          { pos: 1, flag: '🇨🇿', name: 'Filip Salač', team: 'American Racing', time: '1:32.402', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Iván Ortolá', team: 'MT Helmets MSI', time: '', gap: '+0.097' },
+          { pos: 3, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMoto Aspar Team', time: '', gap: '+0.198' },
+          { pos: 4, flag: '🇮🇹', name: 'Tony Arbolino', team: 'Fantic Racing', time: '', gap: '+0.223' },
+          { pos: 5, flag: '🇪🇸', name: 'Izan Guevara', team: 'Pramac Yamaha', time: '', gap: '+0.236' },
+          { pos: 6, flag: '🇨🇴', name: 'David Alonso', team: 'CFMoto Aspar Team', time: '', gap: '+0.254' },
+          { pos: 7, flag: '🇪🇸', name: 'Alex Escrig', team: 'Forward Team', time: '', gap: '+0.272' },
+          { pos: 8, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.359' },
+          { pos: 9, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedUp Racing', time: '', gap: '+0.393' },
+          { pos: 10, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: '', gap: '+0.545' },
+          { pos: 11, flag: '🇮🇩', name: 'Mario Aji', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+0.567' },
+          { pos: 12, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.626' },
+          { pos: 13, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: '', gap: '+0.750' },
+          { pos: 14, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: '', gap: '+0.761' },
+          { pos: 15, flag: '🇪🇸', name: 'Alberto Ferrández', team: 'Pramac Yamaha', time: '', gap: '+0.818' },
+          { pos: 16, flag: '🇺🇸', name: 'Joe Roberts', team: 'American Racing', time: '', gap: '+0.900' },
+          { pos: 17, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: '', gap: '+0.947' },
+          { pos: 18, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Team', time: '', gap: '+1.054' },
+          { pos: 19, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+1.128' },
+          { pos: 20, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'RW Racing GP', time: '', gap: '+1.264' },
+          { pos: 21, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '', gap: '+1.266' },
+          { pos: 22, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+1.275' },
+          { pos: 23, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+1.285' },
+          { pos: 24, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: '', gap: '+1.369' },
+          { pos: 25, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+1.400' },
+          { pos: 26, flag: '🇪🇸', name: 'Marcos Ramírez', team: 'Forward Team', time: '', gap: '+1.401' },
+          { pos: 27, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: '', gap: '+1.405' }
+        ]
+      },
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Tony Arbolino', team: 'Fantic Racing', time: '1:41.066', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Team', time: '', gap: '+0.801' },
+          { pos: 3, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: '', gap: '+1.675' },
+          { pos: 4, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '', gap: '+2.497' },
+          { pos: 5, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: '', gap: '+3.266' },
+          { pos: 6, flag: '🇪🇸', name: 'Marcos Ramírez', team: 'Forward Team', time: '', gap: '+3.597' },
+          { pos: 7, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+5.257' },
+          { pos: 8, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+5.658' },
+          { pos: 9, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMoto Aspar Team', time: '', gap: '+5.897' },
+          { pos: 10, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: '', gap: '+6.569' },
+          { pos: 11, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+7.254' },
+          { pos: 12, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: '', gap: '+7.834' },
+          { pos: 13, flag: '🇪🇸', name: 'Alberto Ferrández', team: 'Pramac Yamaha', time: '', gap: '+17.697' },
+          { pos: 14, flag: '🇪🇸', name: 'Iván Ortolá', team: 'MT Helmets MSI', time: '', gap: '+1:41.066' },
+          { pos: 15, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+1:41.066' },
+          { pos: 16, flag: '🇪🇸', name: 'Alex Escrig', team: 'Forward Team', time: '', gap: '+1:41.066' },
+          { pos: 17, flag: '🇨🇿', name: 'Filip Salač', team: 'American Racing', time: '', gap: '+1:41.066' },
+          { pos: 18, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedUp Racing', time: '', gap: '+1:41.066' },
+          { pos: 19, flag: '🇺🇸', name: 'Joe Roberts', team: 'American Racing', time: '', gap: '+1:41.066' },
+          { pos: 20, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: '', gap: '+1:41.066' },
+          { pos: 21, flag: '🇪🇸', name: 'Izan Guevara', team: 'Pramac Yamaha', time: '', gap: '+1:41.066' },
+          { pos: 22, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+1:41.066' },
+          { pos: 23, flag: '🇮🇩', name: 'Mario Aji', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+1:41.066' },
+          { pos: 24, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'RW Racing GP', time: '', gap: '+1:41.066' },
+          { pos: 25, flag: '🇨🇴', name: 'David Alonso', team: 'CFMoto Aspar Team', time: '', gap: '+1:41.066' },
+          { pos: 26, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+1:41.066' },
+          { pos: 27, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: '', gap: '+1:41.066' }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇨🇿', name: 'Filip Salač', team: 'American Racing', time: '1:32.381', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.121' },
+          { pos: 3, flag: '🇪🇸', name: 'Alex Escrig', team: 'Forward Team', time: '', gap: '+0.146' },
+          { pos: 4, flag: '🇪🇸', name: 'Iván Ortolá', team: 'MT Helmets MSI', time: '', gap: '+0.213' },
+          { pos: 5, flag: '🇪🇸', name: 'Izan Guevara', team: 'Pramac Yamaha', time: '', gap: '+0.288' },
+          { pos: 6, flag: '🇨🇴', name: 'David Alonso', team: 'CFMoto Aspar Team', time: '', gap: '+0.373' },
+          { pos: 7, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: '', gap: '+0.461' },
+          { pos: 8, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+0.462', fromQ1: true },
+          { pos: 9, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: '', gap: '+0.504' },
+          { pos: 10, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMoto Aspar Team', time: '', gap: '+0.511' },
+          { pos: 11, flag: '🇮🇹', name: 'Tony Arbolino', team: 'Fantic Racing', time: '', gap: '+0.673' },
+          { pos: 12, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '', gap: '+0.725', fromQ1: true },
+          { pos: 13, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedUp Racing', time: '', gap: '+0.738' },
+          { pos: 14, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+0.823', fromQ1: true },
+          { pos: 15, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.928' },
+          { pos: 16, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+0.932', fromQ1: true },
+          { pos: 17, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: '', gap: '+1.046' },
+          { pos: 18, flag: '🇮🇩', name: 'Mario Aji', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+1.058', fromQ1: true }
+        ],
+        q1: [
+          { pos: 1, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '1:32.930', gap: '—', toQ2: true },
+          { pos: 2, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+0.142', toQ2: true },
+          { pos: 3, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+0.275', toQ2: true },
+          { pos: 4, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+0.298', toQ2: true },
+          { pos: 5, flag: '🇪🇸', name: 'Alberto Ferrández', team: 'Pramac Yamaha', time: '', gap: '+0.318' },
+          { pos: 6, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: '', gap: '+0.342' },
+          { pos: 7, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+0.488' },
+          { pos: 8, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: '', gap: '+0.531' },
+          { pos: 9, flag: '🇺🇸', name: 'Joe Roberts', team: 'American Racing', time: '', gap: '+0.535' },
+          { pos: 10, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Team', time: '', gap: '+0.556' },
+          { pos: 11, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'RW Racing GP', time: '', gap: '+0.618' },
+          { pos: 12, flag: '🇪🇸', name: 'Marcos Ramírez', team: 'Forward Team', time: '', gap: '+0.894' },
+          { pos: 13, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: '', gap: '+1.349' }
+        ]
+      },
+      race: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Izan Guevara', team: 'Pramac Yamaha', time: '35:53.421', gap: '—' },
+          { pos: 2, flag: '🇨🇿', name: 'Filip Salač', team: 'American Racing', time: '', gap: '+1.728' },
+          { pos: 3, flag: '🇨🇴', name: 'David Alonso', team: 'CFMoto Aspar Team', time: '', gap: '+2.945' },
+          { pos: 4, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+4.289' },
+          { pos: 5, flag: '🇪🇸', name: 'Iván Ortolá', team: 'MT Helmets MSI', time: '', gap: '+4.868' },
+          { pos: 6, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: '', gap: '+12.137' },
+          { pos: 7, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMoto Aspar Team', time: '', gap: '+13.673' },
+          { pos: 8, flag: '🇧🇪', name: 'Barry Baltus', team: 'Fantic Racing', time: '', gap: '+14.302' },
+          { pos: 9, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: '', gap: '+14.865' },
+          { pos: 10, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedUp Racing', time: '', gap: '+17.263' },
+          { pos: 11, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: '', gap: '+17.278' },
+          { pos: 12, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: '', gap: '+21.628' },
+          { pos: 13, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: '', gap: '+23.439' },
+          { pos: 14, flag: '🇮🇹', name: 'Tony Arbolino', team: 'Fantic Racing', time: '', gap: '+25.424' },
+          { pos: 15, flag: '🇺🇸', name: 'Joe Roberts', team: 'American Racing', time: '', gap: '+26.685' },
+          { pos: 16, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Team', time: '', gap: '+27.783' },
+          { pos: 17, flag: '🇮🇩', name: 'Mario Aji', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+27.982' },
+          { pos: 18, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'IDEMITSU Honda Team Asia', time: '', gap: '+29.507' },
+          { pos: 19, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: '', gap: '+29.611' },
+          { pos: 20, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'RW Racing GP', time: '', gap: '+29.971' },
+          { pos: 21, flag: '🇪🇸', name: 'Marcos Ramírez', team: 'Forward Team', time: '', gap: '+30.639' },
+          { pos: 22, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'RW Racing GP', time: '', gap: '+31.037' },
+          { pos: 23, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedUp Racing', time: '', gap: '+40.939' },
+          { pos: 24, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: '', gap: '+1:20.354' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Alberto Ferrández', team: 'Pramac Yamaha', time: 'RIT', gap: '+23 giri' },
+          { pos: 'RIT', flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Husqvarna Intact GP', time: 'RIT', gap: 'rit. al giro 11' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Alex Escrig', team: 'Forward Team', time: 'RIT', gap: 'rit. al giro 9' }
+        ]
+      }
+    },
+    m3: {
+      fp1: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Husqvarna Intact GP', time: '1:40.595', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMoto Aspar Team', time: '', gap: '+0.648' },
+          { pos: 3, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: '', gap: '+0.694' },
+          { pos: 4, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: '', gap: '+0.705' },
+          { pos: 5, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '', gap: '+0.754' },
+          { pos: 6, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech 3', time: '', gap: '+0.961' },
+          { pos: 7, flag: '🇪🇸', name: 'Joel Esteban', team: 'Level UP-MTA', time: '', gap: '+1.090' },
+          { pos: 8, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+1.184' },
+          { pos: 9, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+1.188' },
+          { pos: 10, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '', gap: '+1.253' },
+          { pos: 11, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'Level UP-MTA', time: '', gap: '+1.345' },
+          { pos: 12, flag: '🇦🇺', name: 'Joel Kelso', team: 'MLav Racing', time: '', gap: '+1.346' },
+          { pos: 13, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP - Green Power', time: '', gap: '+1.511' },
+          { pos: 14, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+1.682' },
+          { pos: 15, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: '', gap: '+1.717' },
+          { pos: 16, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+1.965' },
+          { pos: 17, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+2.067' },
+          { pos: 18, flag: '🇲🇾', name: 'Hakim Danish', team: 'MT Helmets-MSI', time: '', gap: '+2.165' },
+          { pos: 19, flag: '🇿🇦', name: 'Ruche Moodley', team: 'Boe Motorsports', time: '', gap: '+2.208' },
+          { pos: 20, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP - Green Power', time: '', gap: '+2.271' },
+          { pos: 21, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: '', gap: '+2.374' },
+          { pos: 22, flag: '🇪🇸', name: 'Marcos Uriarte', team: 'Boe Motorsports', time: '', gap: '+2.477' },
+          { pos: 23, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+2.860' },
+          { pos: 24, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMoto Aspar Team', time: '', gap: '+2.963' },
+          { pos: 25, flag: '🇮🇹', name: 'Nicola Carraro', team: 'Rivacold Snipers Team', time: '', gap: '+3.397' },
+          { pos: 26, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+3.561' }
+        ]
+      },
+      pq: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Husqvarna Intact GP', time: '1:39.668', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMoto Aspar Team', time: '', gap: '+0.195' },
+          { pos: 3, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: '', gap: '+0.503' },
+          { pos: 4, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'Level UP-MTA', time: '', gap: '+0.522' },
+          { pos: 5, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '', gap: '+0.610' },
+          { pos: 6, flag: '🇲🇾', name: 'Hakim Danish', team: 'MT Helmets-MSI', time: '', gap: '+0.621' },
+          { pos: 7, flag: '🇪🇸', name: 'Joel Esteban', team: 'Level UP-MTA', time: '', gap: '+0.648' },
+          { pos: 8, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech 3', time: '', gap: '+0.722' },
+          { pos: 9, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP - Green Power', time: '', gap: '+0.725' },
+          { pos: 10, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+0.752' },
+          { pos: 11, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP - Green Power', time: '', gap: '+0.810' },
+          { pos: 12, flag: '🇦🇺', name: 'Joel Kelso', team: 'MLav Racing', time: '', gap: '+0.815' },
+          { pos: 13, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: '', gap: '+0.824' },
+          { pos: 14, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: '', gap: '+0.863' },
+          { pos: 15, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.904' },
+          { pos: 16, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+0.994' },
+          { pos: 17, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '', gap: '+1.084' },
+          { pos: 18, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+1.105' },
+          { pos: 19, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMoto Aspar Team', time: '', gap: '+1.232' },
+          { pos: 20, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+1.368' },
+          { pos: 21, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+1.546' },
+          { pos: 22, flag: '🇿🇦', name: 'Ruche Moodley', team: 'Boe Motorsports', time: '', gap: '+1.724' },
+          { pos: 23, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+1.798' },
+          { pos: 24, flag: '🇪🇸', name: 'Marcos Uriarte', team: 'Boe Motorsports', time: '', gap: '+1.803' },
+          { pos: 25, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: '', gap: '+1.998' },
+          { pos: 26, flag: '🇮🇹', name: 'Nicola Carraro', team: 'Rivacold Snipers Team', time: '', gap: '+3.121' }
+        ]
+      },      
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '1:47.740', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Joel Esteban', team: 'Level UP-MTA', time: '', gap: '+0.270' },
+          { pos: 3, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: '', gap: '+0.558' },
+          { pos: 4, flag: '🇲🇾', name: 'Hakim Danish', team: 'MT Helmets-MSI', time: '', gap: '+0.844' },
+          { pos: 5, flag: '🇪🇸', name: 'Marcos Uriarte', team: 'Boe Motorsports', time: '', gap: '+1.038' },
+          { pos: 6, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+1.104' },
+          { pos: 7, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'Level UP-MTA', time: '', gap: '+1.174' },
+          { pos: 8, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: '', gap: '+1.437' },
+          { pos: 9, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMoto Aspar Team', time: '', gap: '+2.205' },
+          { pos: 10, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+2.566' },
+          { pos: 11, flag: '🇮🇹', name: 'Nicola Carraro', team: 'Rivacold Snipers Team', time: '', gap: '+2.575' },
+          { pos: 12, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP - Green Power', time: '', gap: '+2.702' },
+          { pos: 13, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: '', gap: '+2.705' },
+          { pos: 14, flag: '🇿🇦', name: 'Ruche Moodley', team: 'Boe Motorsports', time: '', gap: '+2.838' },
+          { pos: 15, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech 3', time: '', gap: '+3.364' },
+          { pos: 16, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+3.411' },
+          { pos: 17, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+3.453' },
+          { pos: 18, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '', gap: '+3.842' },
+          { pos: 19, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+5.069' },
+          { pos: 20, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+1:47.740' },
+          { pos: 21, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP - Green Power', time: '', gap: '+1:47.740' },
+          { pos: 22, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+1:47.740' },
+          { pos: 23, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMoto Aspar Team', time: '', gap: '+1:47.740' },
+          { pos: 24, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+1:47.740' },
+          { pos: 25, flag: '🇦🇺', name: 'Joel Kelso', team: 'MLav Racing', time: '', gap: '+1:47.740' },
+          { pos: 26, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: '', gap: '+1:47.740' }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '1:39.544', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.064' },
+          { pos: 3, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: '', gap: '+0.315' },
+          { pos: 4, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMoto Aspar Team', time: '', gap: '+0.437' },
+          { pos: 5, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'Level UP-MTA', time: '', gap: '+0.773' },
+          { pos: 6, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP - Green Power', time: '', gap: '+0.783' },
+          { pos: 7, flag: '🇦🇺', name: 'Joel Kelso', team: 'MLav Racing', time: '', gap: '+0.967' },
+          { pos: 8, flag: '🇪🇸', name: 'Joel Esteban', team: 'Level UP-MTA', time: '', gap: '+1.020' },
+          { pos: 9, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+1.058', fromQ1: true },
+          { pos: 10, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech 3', time: '', gap: '+1.063' },
+          { pos: 11, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+1.180', fromQ1: true },
+          { pos: 12, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '', gap: '+1.220', fromQ1: true },
+          { pos: 13, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: '', gap: '+1.234' },
+          { pos: 14, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: '', gap: '+1.257' },
+          { pos: 15, flag: '🇲🇾', name: 'Hakim Danish', team: 'MT Helmets-MSI', time: '', gap: '+1.440' },
+          { pos: 16, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP - Green Power', time: '', gap: '+1.533' },
+          { pos: 17, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+1.631', fromQ1: true },
+          { pos: 18, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+1.688', fromQ1: true }
+        ],
+        q1: [
+          { pos: 1, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '1:40.502', gap: '—', toQ2: true },
+          { pos: 2, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: '', gap: '+0.372', toQ2: true },
+          { pos: 3, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+0.428', toQ2: true },
+          { pos: 4, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+0.638', toQ2: true },
+          { pos: 5, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+0.752', toQ2: true },
+          { pos: 6, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+0.857' },
+          { pos: 7, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: '', gap: '+0.920' },
+          { pos: 8, flag: '🇪🇸', name: 'Marcos Uriarte', team: 'Boe Motorsports', time: '', gap: '+1.009' },
+          { pos: 9, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+1.025' },
+          { pos: 10, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMoto Aspar Team', time: '', gap: '+1.118' },
+          { pos: 11, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+1.183' },
+          { pos: 12, flag: '🇿🇦', name: 'Ruche Moodley', team: 'Boe Motorsports', time: '', gap: '+1.221' },
+          { pos: 13, flag: '🇮🇹', name: 'Nicola Carraro', team: 'Rivacold Snipers Team', time: '', gap: '+1.709' }
+        ]
+      },
+      race: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMoto Aspar Team', time: '33:24.323', gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '', gap: '+2.334' },
+          { pos: 3, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: '', gap: '+7.394' },
+          { pos: 4, flag: '🇬🇧', name: "Eddie O'Shea", team: 'MLav Racing', time: '', gap: '+20.717' },
+          { pos: 5, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+20.822' },
+          { pos: 6, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: '', gap: '+20.948' },
+          { pos: 7, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP - Green Power', time: '', gap: '+21.065' },
+          { pos: 8, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMoto Aspar Team', time: '', gap: '+21.118' },
+          { pos: 9, flag: '🇲🇾', name: 'Hakim Danish', team: 'MT Helmets-MSI', time: '', gap: '+21.594' },
+          { pos: 10, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'MT Helmets-MSI', time: '', gap: '+21.701' },
+          { pos: 11, flag: '🇦🇺', name: 'Joel Kelso', team: 'MLav Racing', time: '', gap: '+21.880' },
+          { pos: 12, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech 3', time: '', gap: '+23.852' },
+          { pos: 13, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+26.821' },
+          { pos: 14, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'Level UP-MTA', time: '', gap: '+28.016' },
+          { pos: 15, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP - Green Power', time: '', gap: '+28.936' },
+          { pos: 16, flag: '🇪🇸', name: 'Joel Esteban', team: 'Level UP-MTA', time: '', gap: '+31.044' },
+          { pos: 17, flag: '🇪🇸', name: 'Marcos Uriarte', team: 'Boe Motorsports', time: '', gap: '+32.381' },
+          { pos: 18, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+38.006' },
+          { pos: 19, flag: '🇿🇦', name: 'Ruche Moodley', team: 'Boe Motorsports', time: '', gap: '+41.064' },
+          { pos: 20, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: '', gap: '+41.192' },
+          { pos: 21, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+57.773' },
+          { pos: 22, flag: '🇮🇹', name: 'Nicola Carraro', team: 'Rivacold Snipers Team', time: '', gap: '+1:17.045' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: 'RIT', gap: 'rit. al giro 16' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Husqvarna Intact GP', time: 'RIT', gap: 'rit. al giro 16' },
+          { pos: 'RIT', flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech 3', time: 'RIT', gap: 'rit. al giro 8' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Husqvarna Intact GP', time: 'RIT', gap: 'rit. al giro 7' }
+        ]
+      }
+    }
+  },
+
   }
 
       // ══════════════════════════════════════════
@@ -10649,8 +11163,121 @@ m2: `<p>Moto2</p>
 <p><strong>Giovedì – La Moto2 arriva a Misano con González ancora al comando</strong></p> <p>La Moto2 è arrivata al Misano World Circuit Marco Simoncelli con Manuel González ancora saldamente al comando della classifica mondiale. Il pilota spagnolo aveva ritrovato competitività nelle ultime gare e si presentava in Romagna con l'obiettivo di rafforzare ulteriormente la propria leadership.</p> <p>Alle sue spalle Izan Guevara rappresentava il principale inseguitore, mentre Daniel Holgado, Senna Agius, Ivan Ortolá e David Alonso erano pronti a inserirsi nella lotta per il podio.</p> <p>Misano rappresentava inoltre un appuntamento importante per Alonso López e per diversi piloti italiani, chiamati a sfruttare il fattore pista in una categoria ancora caratterizzata da distacchi molto ridotti.</p> <p>Il circuito romagnolo, con le sue numerose frenate e i continui cambi di direzione, avrebbe premiato soprattutto la stabilità della moto e la gestione degli pneumatici. La lotta per il campionato prometteva quindi di essere ancora una volta molto equilibrata.</p> <p><strong>Venerdì – Agius firma il record, González si mantiene tra i protagonisti</strong></p> <p>La prima giornata di attività ha visto Senna Agius imporsi come uno dei grandi protagonisti del weekend. Il pilota australiano ha mostrato un passo estremamente competitivo e ha chiuso la giornata davanti a tutti, confermando il grande potenziale della propria Moto2 sul tracciato di Misano.</p> <p>Manuel González ha lavorato soprattutto in ottica gara, concentrandosi sulla costanza del ritmo e sulla gestione degli pneumatici. Il leader del Mondiale ha comunque mantenuto il contatto con i migliori, mostrando un passo sufficiente per puntare alle prime posizioni.</p> <p>Izan Guevara e Daniel Holgado hanno completato il gruppo dei principali protagonisti, mentre Ivan Ortolá ha continuato a mostrare una buona velocità sul giro secco.</p> <p>Il venerdì ha quindi lasciato una situazione ancora molto aperta. Agius sembrava avere qualcosa in più sul giro singolo, ma González aveva mostrato una solidità che poteva diventare decisiva nella gara lunga.</p> <p><strong>Sabato – Agius conquista la pole, González prepara la gara</strong></p> <p>Qualifiche</p> <p>Senna Agius ha confermato il grande stato di forma conquistando la pole position del Gran Premio di San Marino. Il pilota Liqui Moly Dynavolt Intact GP ha preceduto i principali protagonisti della classifica, assicurandosi la posizione ideale per affrontare la gara domenicale.</p> <p>Daniel Holgado e Angel Piqueras hanno completato la prima fila, mentre Manuel González si è posizionato nelle prime file della griglia. Izan Guevara ha invece dovuto fare i conti con una penalizzazione che ne ha complicato la posizione di partenza.</p> <p>La qualifica sembrava quindi preparare una gara favorevole ad Agius, ma il passo mostrato da González lasciava presagire una sfida molto più equilibrata sulla distanza.</p> <p><strong>Domenica – González domina dopo il caos alla prima curva</strong></p> <p>La gara Moto2 è iniziata con un incidente clamoroso alla prima curva. Tutti e tre i piloti della prima fila sono finiti a terra dopo un contatto: Angel Piqueras ha commesso un errore entrando in curva e ha colpito Daniel Holgado, coinvolgendo anche il poleman Senna Agius.</p> <p>Il caos iniziale ha completamente modificato la composizione del gruppo di testa. Manuel González si è ritrovato nelle posizioni di vertice insieme a Collin Veijer e Ivan Ortolá, mentre diversi dei principali protagonisti del campionato erano già fuori dalla lotta per la vittoria.</p> <p>Al quinto giro González ha sferrato il sorpasso decisivo su Veijer alla curva 8, prendendo il comando della gara. Da quel momento il pilota spagnolo ha iniziato a costruire progressivamente il proprio vantaggio.</p> <p>Alle sue spalle Barry Baltus è entrato nella lotta per il podio, riuscendo a superare Ortolá. Il belga ha però ricevuto una penalità Long Lap per aver superato i limiti della pista e ha dovuto scontarla nella seconda metà della gara.</p> <p>Veijer è rimasto l'unico vero rivale di González per la vittoria. Lo spagnolo ha però mantenuto un ritmo estremamente costante e, negli ultimi giri, ha portato il proprio vantaggio oltre i due secondi.</p> <p>González ha così conquistato una vittoria pesantissima in chiave mondiale, precedendo Collin Veijer e Barry Baltus. Ivan Ortolá ha chiuso quarto davanti a Tony Arbolino, autore di una grande rimonta dalla sedicesima posizione.</p> <p>Izan Guevara ha terminato sesto dopo essere partito molto più indietro, mentre Celestino Vietti e Alonso López hanno completato le posizioni successive. David Alonso ha chiuso nono.</p> <p>Il successo ha permesso a González di rafforzare ulteriormente la propria leadership. Il vantaggio su Guevara è ora di 47,5 punti, mentre Agius ha perso terreno pesante dopo il ritiro alla prima curva.</p> <p><strong>Lettura tecnica</strong></p> <p>Misano ha premiato ancora una volta la gestione della gara e la capacità di rimanere concentrati nei momenti decisivi. Manuel González ha sfruttato perfettamente il caos iniziale e, una volta conquistata la testa della corsa, ha imposto un ritmo che nessuno è riuscito a mantenere.</p> <p>La caduta della prima fila ha invece rappresentato un duro colpo per Senna Agius e Daniel Holgado. Entrambi avevano dimostrato un grande potenziale durante il weekend, ma hanno visto la propria gara terminare praticamente ancora prima di iniziare.</p> <p>Collin Veijer ha confermato la propria solidità con un secondo posto importante, mentre Barry Baltus ha completato il podio nonostante la penalità. Molto positiva anche la rimonta di Arbolino, quinto al traguardo.</p> <p>Per González si tratta soprattutto di una vittoria dal valore mondiale. Con 47,5 punti di vantaggio su Guevara, il pilota spagnolo arriva alla parte conclusiva della stagione con un margine importante, ma non ancora sufficiente per poter gestire il campionato.</p>`,
 m3: `<p>Moto3</p>
 
-<p><strong>Giovedì – Quiles arriva a Misano da leader, Almansa vuole accorciare il distacco</strong></p> <p>La Moto3 è arrivata al Gran Premio di San Marino con Máximo Quiles ancora saldamente al comando del campionato. Il giovane pilota CFMOTO Gaviota Aspar Team aveva vissuto una seconda parte di stagione straordinaria, riuscendo a tornare immediatamente alla vittoria dopo la frattura alla clavicola rimediata a Silverstone.</p> <p>Il suo principale rivale era diventato David Almansa, reduce da prestazioni sempre più convincenti e pronto a sfruttare ogni occasione per ridurre il distacco nella classifica iridata.</p> <p>Alle loro spalle Álvaro Carpe, Brian Uriarte, Valentín Perrone e gli altri protagonisti della categoria erano pronti a inserirsi nella lotta per il podio. Come sempre a Misano, la gestione delle scie e la posizione nel gruppo sarebbero state fondamentali in vista della gara domenicale.</p> <p>Il weekend si presentava quindi come un nuovo capitolo della sfida Quiles-Almansa, già protagonista di diversi duelli nella stagione 2026.</p> <p><strong>Venerdì – Almansa parte forte, Quiles studia gli avversari</strong></p> <p>David Almansa ha iniziato il weekend di Misano mostrando immediatamente un ritmo da protagonista. Il pilota Intact GP ha lavorato sul passo e sulla velocità sul giro singolo, confermandosi tra i riferimenti della prima giornata.</p> <p>Máximo Quiles ha invece adottato un approccio più prudente, concentrandosi soprattutto sulla preparazione della gara. Il leader del Mondiale ha mostrato comunque un ritmo sufficiente per rimanere vicino ai migliori e ha continuato a lavorare sulla gestione degli pneumatici.</p> <p>Brian Uriarte e Valentín Perrone si sono inseriti nel gruppo dei protagonisti, mentre Marco Morelli e Matteo Bertelle hanno mostrato un passo particolarmente interessante davanti al pubblico italiano.</p> <p>La prima giornata ha quindi confermato le premesse della vigilia: Almansa sembrava intenzionato ad attaccare la leadership di Quiles, mentre il pilota Aspar sembrava già concentrato sulla gestione del campionato.</p> <p><strong>Sabato – Almansa conquista la pole, Quiles parte quinto</strong></p> <p>Qualifiche</p> <p>David Almansa ha conquistato la pole position del Gran Premio di San Marino con un ottimo 1'40.612. Il pilota Intact GP ha preceduto Brian Uriarte e Joel Kelso, completando una prima fila particolarmente competitiva.</p> <p>Valentín Perrone ha ottenuto il quarto tempo, mentre Máximo Quiles ha chiuso quinto. Il leader del Mondiale non è riuscito a conquistare la prima fila, ma ha comunque assicurato una posizione di partenza favorevole in vista della gara.</p> <p>Alle sue spalle si sono piazzati Matteo Bertelle e Casey O'Gorman, mentre Álvaro Carpe è stato costretto a partire molto più indietro a causa delle penalità accumulate nel corso del weekend.</p> <p>Almansa partiva quindi con l'occasione ideale per ridurre il distacco in campionato, ma Quiles aveva già dimostrato più volte di essere particolarmente efficace nelle fasi finali delle gare.</p> <p><strong>Domenica – Quiles beffa Almansa sul traguardo e conquista una vittoria incredibile</strong></p> <p>La gara di Moto3 ha regalato uno dei finali più spettacolari della stagione. David Almansa è partito dalla pole e ha preso immediatamente il comando, riuscendo a mantenere la prima posizione per quasi tutta la gara.</p> <p>Máximo Quiles ha invece sfruttato perfettamente la partenza e si è inserito rapidamente nel gruppo di testa. Dopo aver superato Valentín Perrone e Brian Uriarte, il leader del Mondiale si è portato stabilmente alle spalle di Almansa.</p> <p>Per gran parte della gara Almansa ha mantenuto il comando, mentre Quiles ha preferito osservare e attendere il momento giusto. Uriarte è rimasto a sua volta nella lotta per il podio, pronto ad approfittare di qualsiasi errore dei due principali contendenti.</p> <p>Nel corso della seconda metà della gara il duello tra Almansa e Quiles è diventato sempre più intenso. Quiles ha più volte provato a portarsi davanti, ma Almansa ha risposto difendendosi alla perfezione e riuscendo a mantenere la testa.</p> <p>Si è arrivati così all'ultimo giro con Almansa ancora davanti e Quiles incollato alla sua ruota. Il pilota Intact GP ha difeso ogni possibile traiettoria, ma nella parte finale ha dovuto stringere particolarmente le linee per impedire l'attacco del rivale.</p> <p>Quiles ha così preparato il sorpasso decisivo negli ultimi metri. All'uscita dell'ultima curva è riuscito a sfruttare la scia e ha lanciato la propria moto verso il traguardo, superando Almansa proprio sulla linea d'arrivo.</p> <p>Il distacco finale è stato di appena 0,021 secondi. Almansa aveva condotto praticamente ogni curva della gara, ma Quiles è riuscito a conquistare la vittoria negli ultimi metri. Brian Uriarte ha completato il podio, mentre Matteo Bertelle ha chiuso quarto davanti a Valentín Perrone.</p> <p>La vittoria rappresenta l'ottavo successo stagionale di Quiles e la sua seconda affermazione consecutiva dopo il rientro dall'infortunio. Il risultato gli permette inoltre di portare il vantaggio in classifica a 107 punti su Almansa, che sale al secondo posto del Mondiale.</p> <p>Álvaro Carpe ha invece vissuto una domenica complicata. Partito dalla ventunesima posizione a causa delle penalità, è caduto già nel primo giro e ha perso terreno prezioso nella classifica, scivolando fuori dalla seconda posizione iridata.</p> <p><strong>Lettura tecnica</strong></p> <p>Misano ha confermato ancora una volta la capacità di Máximo Quiles di leggere perfettamente le gare di Moto3. Il pilota Aspar non ha avuto bisogno di guidare in testa per costruire la vittoria: ha seguito Almansa, ha studiato le sue traiettorie e ha aspettato fino agli ultimi metri per sferrare l'attacco decisivo.</p> <p>Almansa può comunque considerare il weekend estremamente positivo. La pole position e il ritmo mostrato durante la gara hanno confermato che il pilota Intact GP è ormai il principale rivale di Quiles nella lotta al titolo.</p> <p>Brian Uriarte ha completato un altro podio importante nella sua stagione da rookie, mentre Bertelle ha regalato al pubblico italiano un ottimo quarto posto.</p> <p>Il vero vincitore del weekend è però Quiles. Dopo il rientro dall'infortunio, il leader del campionato ha conquistato due vittorie consecutive e ora dispone di un vantaggio di 107 punti. Con otto round ancora da disputare, la lotta per il titolo è tutt'altro che finita, ma il giovane pilota Aspar ha compiuto un altro passo enorme verso il Mondiale.</p>` },
-      };
+<p><strong>Giovedì – Quiles arriva a Misano da leader, Almansa vuole accorciare il distacco</strong></p> <p>La Moto3 è arrivata al Gran Premio di San Marino con Máximo Quiles ancora saldamente al comando del campionato. Il giovane pilota CFMOTO Gaviota Aspar Team aveva vissuto una seconda parte di stagione straordinaria, riuscendo a tornare immediatamente alla vittoria dopo la frattura alla clavicola rimediata a Silverstone.</p> <p>Il suo principale rivale era diventato David Almansa, reduce da prestazioni sempre più convincenti e pronto a sfruttare ogni occasione per ridurre il distacco nella classifica iridata.</p> <p>Alle loro spalle Álvaro Carpe, Brian Uriarte, Valentín Perrone e gli altri protagonisti della categoria erano pronti a inserirsi nella lotta per il podio. Come sempre a Misano, la gestione delle scie e la posizione nel gruppo sarebbero state fondamentali in vista della gara domenicale.</p> <p>Il weekend si presentava quindi come un nuovo capitolo della sfida Quiles-Almansa, già protagonista di diversi duelli nella stagione 2026.</p> <p><strong>Venerdì – Almansa parte forte, Quiles studia gli avversari</strong></p> <p>David Almansa ha iniziato il weekend di Misano mostrando immediatamente un ritmo da protagonista. Il pilota Intact GP ha lavorato sul passo e sulla velocità sul giro singolo, confermandosi tra i riferimenti della prima giornata.</p> <p>Máximo Quiles ha invece adottato un approccio più prudente, concentrandosi soprattutto sulla preparazione della gara. Il leader del Mondiale ha mostrato comunque un ritmo sufficiente per rimanere vicino ai migliori e ha continuato a lavorare sulla gestione degli pneumatici.</p> <p>Brian Uriarte e Valentín Perrone si sono inseriti nel gruppo dei protagonisti, mentre Marco Morelli e Matteo Bertelle hanno mostrato un passo particolarmente interessante davanti al pubblico italiano.</p> <p>La prima giornata ha quindi confermato le premesse della vigilia: Almansa sembrava intenzionato ad attaccare la leadership di Quiles, mentre il pilota Aspar sembrava già concentrato sulla gestione del campionato.</p> <p><strong>Sabato – Almansa conquista la pole, Quiles parte quinto</strong></p> <p>Qualifiche</p> <p>David Almansa ha conquistato la pole position del Gran Premio di San Marino con un ottimo 1'40.612. Il pilota Intact GP ha preceduto Brian Uriarte e Joel Kelso, completando una prima fila particolarmente competitiva.</p> <p>Valentín Perrone ha ottenuto il quarto tempo, mentre Máximo Quiles ha chiuso quinto. Il leader del Mondiale non è riuscito a conquistare la prima fila, ma ha comunque assicurato una posizione di partenza favorevole in vista della gara.</p> <p>Alle sue spalle si sono piazzati Matteo Bertelle e Casey O'Gorman, mentre Álvaro Carpe è stato costretto a partire molto più indietro a causa delle penalità accumulate nel corso del weekend.</p> <p>Almansa partiva quindi con l'occasione ideale per ridurre il distacco in campionato, ma Quiles aveva già dimostrato più volte di essere particolarmente efficace nelle fasi finali delle gare.</p> <p><strong>Domenica – Quiles beffa Almansa sul traguardo e conquista una vittoria incredibile</strong></p> <p>La gara di Moto3 ha regalato uno dei finali più spettacolari della stagione. David Almansa è partito dalla pole e ha preso immediatamente il comando, riuscendo a mantenere la prima posizione per quasi tutta la gara.</p> <p>Máximo Quiles ha invece sfruttato perfettamente la partenza e si è inserito rapidamente nel gruppo di testa. Dopo aver superato Valentín Perrone e Brian Uriarte, il leader del Mondiale si è portato stabilmente alle spalle di Almansa.</p> <p>Per gran parte della gara Almansa ha mantenuto il comando, mentre Quiles ha preferito osservare e attendere il momento giusto. Uriarte è rimasto a sua volta nella lotta per il podio, pronto ad approfittare di qualsiasi errore dei due principali contendenti.</p> <p>Nel corso della seconda metà della gara il duello tra Almansa e Quiles è diventato sempre più intenso. Quiles ha più volte provato a portarsi davanti, ma Almansa ha risposto difendendosi alla perfezione e riuscendo a mantenere la testa.</p> <p>Si è arrivati così all'ultimo giro con Almansa ancora davanti e Quiles incollato alla sua ruota. Il pilota Intact GP ha difeso ogni possibile traiettoria, ma nella parte finale ha dovuto stringere particolarmente le linee per impedire l'attacco del rivale.</p> <p>Quiles ha così preparato il sorpasso decisivo negli ultimi metri. All'uscita dell'ultima curva è riuscito a sfruttare la scia e ha lanciato la propria moto verso il traguardo, superando Almansa proprio sulla linea d'arrivo.</p> <p>Il distacco finale è stato di appena 0,021 secondi. Almansa aveva condotto praticamente ogni curva della gara, ma Quiles è riuscito a conquistare la vittoria negli ultimi metri. Brian Uriarte ha completato il podio, mentre Matteo Bertelle ha chiuso quarto davanti a Valentín Perrone.</p> <p>La vittoria rappresenta l'ottavo successo stagionale di Quiles e la sua seconda affermazione consecutiva dopo il rientro dall'infortunio. Il risultato gli permette inoltre di portare il vantaggio in classifica a 107 punti su Almansa, che sale al secondo posto del Mondiale.</p> <p>Álvaro Carpe ha invece vissuto una domenica complicata. Partito dalla ventunesima posizione a causa delle penalità, è caduto già nel primo giro e ha perso terreno prezioso nella classifica, scivolando fuori dalla seconda posizione iridata.</p> <p><strong>Lettura tecnica</strong></p> <p>Misano ha confermato ancora una volta la capacità di Máximo Quiles di leggere perfettamente le gare di Moto3. Il pilota Aspar non ha avuto bisogno di guidare in testa per costruire la vittoria: ha seguito Almansa, ha studiato le sue traiettorie e ha aspettato fino agli ultimi metri per sferrare l'attacco decisivo.</p> <p>Almansa può comunque considerare il weekend estremamente positivo. La pole position e il ritmo mostrato durante la gara hanno confermato che il pilota Intact GP è ormai il principale rivale di Quiles nella lotta al titolo.</p> <p>Brian Uriarte ha completato un altro podio importante nella sua stagione da rookie, mentre Bertelle ha regalato al pubblico italiano un ottimo quarto posto.</p> <p>Il vero vincitore del weekend è però Quiles. Dopo il rientro dall'infortunio, il leader del campionato ha conquistato due vittorie consecutive e ora dispone di un vantaggio di 107 punti. Con otto round ancora da disputare, la lotta per il titolo è tutt'altro che finita, ma il giovane pilota Aspar ha compiuto un altro passo enorme verso il Mondiale.</p>` 
+},
+r15: {
+  gp: `<p>MotoGP</p>
+
+<p><strong>Giovedì – Martín e Márquez arrivano in Austria appaiati in testa al Mondiale</strong></p>
+<p>Il Motomondiale è arrivato al quindicesimo appuntamento della stagione 2026 al Red Bull Ring di Spielberg, uno dei tracciati più caratteristici del calendario. Il Gran Premio d'Austria si presentava con Jorge Martín e Marc Márquez perfettamente appaiati in vetta alla classifica mondiale a quota 274 punti, mentre Marco Bezzecchi occupava la terza posizione.</p>
+<p>Martín arrivava in Austria dopo aver perso la leadership a Misano, dove il successo di Marc Márquez aveva permesso al pilota Ducati di portarsi davanti grazie al maggior numero di vittorie. L'Aprilia era quindi chiamata a reagire proprio su un circuito particolarmente favorevole alla velocità e all'accelerazione.</p>
+<p>Marc Márquez si presentava invece al Red Bull Ring da leader virtuale del campionato e con l'obiettivo di consolidare il vantaggio. Dopo la vittoria di Misano, il pilota Ducati poteva contare su un momento particolarmente positivo nella lotta per il titolo.</p>
+<p>Marco Bezzecchi rappresentava il terzo incomodo. Il pilota Aprilia, dopo lo zero pesantissimo del Gran Premio di San Marino, aveva bisogno di una reazione immediata per rimanere agganciato alla lotta per il titolo.</p>
+
+<p><strong>Venerdì – Acosta parte fortissimo, Martín e Márquez restano vicinissimi</strong></p>
+<p>La prima giornata al Red Bull Ring ha confermato immediatamente l'equilibrio tra i principali protagonisti del campionato. Pedro Acosta è stato il grande protagonista del venerdì, mostrando un ritmo estremamente competitivo sulla pista di casa della KTM.</p>
+<p>Jorge Martín ha lavorato soprattutto sulla ricerca del miglior assetto in vista della gara, mentre Marc Márquez ha concentrato parte del lavoro sulla gestione degli pneumatici e sul passo. I due contendenti al titolo sono rimasti separati da pochissimi millesimi, confermando quanto il confronto fosse ancora aperto.</p>
+<p>Marco Bezzecchi ha mostrato un ritmo competitivo dopo il difficile weekend di Misano e ha continuato a lavorare per recuperare terreno nella classifica mondiale.</p>
+<p>Pedro Acosta è apparso particolarmente efficace nei lunghi tratti di accelerazione del Red Bull Ring, sfruttando al meglio le caratteristiche della KTM. Il pilota spagnolo arrivava in Austria ancora matematicamente coinvolto nella corsa al titolo e cercava una risposta importante davanti al pubblico della squadra di casa.</p>
+<p>La prima giornata ha quindi confermato le premesse della vigilia: Martín e Márquez erano nuovamente vicinissimi, Bezzecchi cercava di rientrare nella lotta e Acosta poteva rappresentare il terzo grande protagonista del weekend.</p>
+
+<p><strong>Sabato – Martín conquista la pole, Acosta domina la Sprint ma cade</strong></p>
+<p>Qualifiche</p>
+<p>Jorge Martín ha conquistato la pole position del Gran Premio d'Austria al termine di una qualifica estremamente combattuta. Il pilota Aprilia ha preceduto Marc Márquez di appena pochi millesimi, mentre Pedro Acosta ha completato la prima fila.</p>
+<p>Marco Bezzecchi ha ottenuto il quarto tempo davanti agli altri protagonisti della classifica, confermandosi nuovamente nelle posizioni di vertice.</p>
+<p>La qualifica ha quindi confermato il duello diretto tra Martín e Márquez. Il pilota Aprilia ha ritrovato la pole proprio nel momento più importante della lotta mondiale, mentre Acosta ha dimostrato di avere il passo per inserirsi nella sfida.</p>
+
+<p>Sprint Race</p>
+<p>La Tissot Sprint ha regalato uno dei colpi di scena più importanti del weekend. Jorge Martín è partito dalla pole, ma già nelle prime curve è entrato in un confronto ravvicinato con Marc Márquez, perdendo terreno e ritrovandosi addirittura ottavo al termine del primo giro.</p>
+<p>Pedro Acosta ha approfittato del caos iniziale per portarsi al comando e ha rapidamente costruito un vantaggio importante. Il pilota KTM sembrava avviato verso la sua prima vittoria nella Sprint, mentre Martín iniziava una rimonta attraverso il gruppo.</p>
+<p>Il pilota Aprilia ha recuperato posizione dopo posizione, riuscendo a riportarsi davanti a tutti. Acosta aveva però ancora un margine di circa due secondi quando, nelle fasi finali della gara, ha perso il controllo della KTM ed è finito a terra.</p>
+<p>Martín ha così completato una rimonta straordinaria e ha conquistato la Sprint davanti a Marc Márquez e Marco Bezzecchi. Il risultato ha permesso al pilota Aprilia di tornare al comando della classifica mondiale.</p>
+<p>Alla vigilia della gara lunga Martín aveva quindi 286 punti, contro i 283 di Márquez. Bezzecchi rimaneva invece in terza posizione.</p>
+
+<p><strong>Domenica – Acosta conquista la prima vittoria in MotoGP, Martín torna ad allungare</strong></p>
+<p>La gara lunga del Gran Premio d'Austria ha regalato un'altra svolta importante nella lotta per il titolo. Jorge Martín è partito dalla pole e ha mantenuto inizialmente la prima posizione, ma Pedro Acosta ha mostrato ancora una volta un ritmo estremamente competitivo.</p>
+<p>Il pilota KTM è rimasto vicino a Martín nelle prime fasi della gara e al nono giro è riuscito a conquistare la testa della corsa. Da quel momento Acosta ha iniziato a costruire progressivamente il proprio vantaggio.</p>
+<p>Martín ha provato a rimanere agganciato al pilota KTM, ma il degrado degli pneumatici gli ha impedito di rispondere con efficacia. Il pilota Aprilia ha quindi scelto di gestire il secondo posto, fondamentale per la classifica mondiale.</p>
+<p>Alle loro spalle Marco Bezzecchi ha disputato una gara molto solida. Il pilota italiano è riuscito a mantenere un ritmo costante e ha conquistato il terzo posto, completando il podio tutto composto da piloti Aprilia e KTM.</p>
+<p>Marc Márquez ha invece vissuto una gara più complicata. Il pilota Ducati non è riuscito a tenere il ritmo dei primi e ha concluso al quinto posto, perdendo ulteriormente terreno nella classifica.</p>
+<p>Pedro Acosta ha così conquistato la prima vittoria della propria carriera in MotoGP. Il pilota KTM ha preceduto Jorge Martín e Marco Bezzecchi, mentre Ai Ogura ha ottenuto un ottimo quarto posto davanti a Marc Márquez.</p>
+<p>Francesco Bagnaia ha chiuso settimo, mentre Alex Márquez è stato costretto al ritiro. La gara ha quindi prodotto un nuovo importante cambiamento nella lotta per il campionato.</p>
+<p>Jorge Martín è salito a quota 306 punti, portando il proprio vantaggio su Marc Márquez a 12 lunghezze. Marco Bezzecchi è rimasto terzo con 264 punti, mentre Pedro Acosta è salito a 234.</p>
+
+<p><strong>Lettura tecnica</strong></p>
+<p>L'Austria ha confermato ancora una volta la totale imprevedibilità della MotoGP 2026. Jorge Martín è arrivato al Red Bull Ring da secondo in classifica, ha conquistato la pole e ha vinto la Sprint dopo una rimonta spettacolare, per poi chiudere secondo nella gara lunga e riconquistare un margine importante in campionato.</p>
+<p>Pedro Acosta ha invece trasformato la delusione della Sprint in una delle giornate più importanti della propria carriera. Dopo la caduta mentre era al comando della gara breve, il pilota KTM ha reagito dominando la gara domenicale e conquistando il primo successo in MotoGP.</p>
+<p>Marco Bezzecchi ha completato un weekend molto più positivo rispetto a Misano, tornando sul podio e mantenendo la terza posizione nel campionato. Marc Márquez ha invece limitato i danni con il quinto posto, ma ha visto Martín allungare nuovamente in classifica.</p>
+<p>Dopo il quindicesimo round, Martín guida il Mondiale con 306 punti davanti a Márquez a 294 e Bezzecchi a 264. La lotta per il titolo arriva quindi alla fase finale con 12 punti tra i primi due.</p>`,
+
+  m2: `<p>Moto2</p>
+
+<p><strong>Giovedì – González difende la leadership, Guevara vuole riaprire il Mondiale</strong></p>
+<p>La Moto2 è arrivata al Red Bull Ring per il quindicesimo appuntamento della stagione con Manuel González ancora al comando della classifica. Dopo la vittoria di Misano, il pilota spagnolo aveva portato il proprio vantaggio su Izan Guevara a 47,5 punti.</p>
+<p>Guevara rappresentava quindi il principale inseguitore e arrivava in Austria con l'obiettivo di reagire immediatamente. Alle loro spalle Ivan Ortolá, David Alonso, Senna Agius e Daniel Holgado erano pronti a inserirsi nella lotta per il podio.</p>
+<p>Il Red Bull Ring, con i suoi lunghi rettilinei e le violente frenate, avrebbe premiato soprattutto la velocità di punta e la capacità di sfruttare al meglio l'accelerazione in uscita dalle curve. La gestione degli pneumatici sarebbe stata comunque fondamentale nella gara lunga.</p>
+
+<p><strong>Venerdì – Salač firma il miglior tempo e si candida tra i protagonisti</strong></p>
+<p>Filip Salač è stato uno dei grandi protagonisti della prima giornata di attività. Il pilota ceco ha mostrato immediatamente un ritmo molto competitivo, portandosi davanti a tutti e confermando il grande potenziale della propria Moto2 sul tracciato austriaco.</p>
+<p>Manuel González ha lavorato soprattutto in ottica campionato, concentrandosi sulla costanza del ritmo e sulla preparazione della gara. Izan Guevara è rimasto a contatto con i migliori, mentre Ivan Ortolá e David Alonso hanno completato il gruppo dei principali protagonisti.</p>
+<p>La giornata ha quindi lasciato una situazione molto equilibrata. Salač sembrava avere un vantaggio sul giro singolo, ma González e Guevara avevano mostrato un passo sufficiente per giocarsi la vittoria sulla distanza.</p>
+
+<p><strong>Sabato – Salač conquista la pole, González parte dalla prima fila</strong></p>
+<p>Qualifiche</p>
+<p>Filip Salač ha confermato il grande stato di forma conquistando la pole position del Gran Premio d'Austria. Il pilota ceco ha trovato il giro decisivo al termine di una sessione molto combattuta.</p>
+<p>Manuel González ha chiuso secondo, conquistando una posizione di partenza fondamentale in ottica mondiale. Alex Escrig ha completato la prima fila, mentre Ivan Ortolá, Izan Guevara e David Alonso hanno occupato le posizioni immediatamente successive.</p>
+<p>La qualifica ha quindi preparato una gara particolarmente interessante, con Salač chiamato a difendere la prima posizione e González pronto a sfruttare la partenza dalla prima fila per aumentare ulteriormente il proprio vantaggio in campionato.</p>
+
+<p><strong>Domenica – Guevara domina e riduce il distacco da González</strong></p>
+<p>La gara della Moto2 è iniziata con Manuel González subito protagonista dalla prima fila. Il leader del Mondiale ha però perso terreno nelle prime fasi, mentre Filip Salač e Izan Guevara si sono portati rapidamente nelle posizioni di vertice.</p>
+<p>Guevara ha trovato il ritmo migliore e ha conquistato la testa della gara, iniziando progressivamente ad aumentare il proprio vantaggio. Salač è rimasto il principale inseguitore, mentre David Alonso e Manuel González si sono inseriti nella lotta per il podio.</p>
+<p>González ha dovuto rimontare dopo un avvio complicato, riuscendo comunque a risalire fino alla quarta posizione. Il pilota spagnolo ha così limitato i danni nella corsa al titolo.</p>
+<p>Izan Guevara ha gestito perfettamente la parte finale della gara e ha conquistato la seconda vittoria della stagione. Filip Salač ha chiuso secondo davanti a David Alonso, mentre González ha terminato quarto.</p>
+<p>Ivan Ortolá ha concluso quinto davanti ad Alonso López e Daniel Holgado. Barry Baltus, Deniz Öncü e Luca Lunetta hanno completato la top ten.</p>
+<p>La vittoria ha permesso a Guevara di recuperare 12 punti in una sola gara. Il pilota spagnolo sale così a 210 punti, mentre González rimane leader con 245,5 punti. Il distacco tra i due si riduce quindi da 47,5 a 35,5 punti.</p>
+
+<p><strong>Lettura tecnica</strong></p>
+<p>Il Gran Premio d'Austria ha premiato la velocità e la costanza di Izan Guevara. Il pilota spagnolo ha trasformato una posizione di partenza non ideale in una vittoria costruita con un ritmo superiore nella seconda parte della gara.</p>
+<p>Filip Salač ha confermato l'ottimo potenziale mostrato durante tutto il weekend con pole position e secondo posto. Manuel González ha invece dovuto gestire una gara più complicata, ma il quarto posto gli ha permesso di mantenere un margine importante in classifica.</p>
+<p>David Alonso ha completato il podio, mentre Ivan Ortolá ha consolidato la propria posizione tra i protagonisti del campionato.</p>
+<p>Per González la situazione rimane favorevole, ma il recupero di Guevara rende la fase finale del campionato molto più interessante. Dopo l'Austria González guida con 245,5 punti davanti a Guevara con 210 e Ortolá con 168,5.</p>`,
+
+  m3: `<p>Moto3</p>
+
+<p><strong>Giovedì – Quiles arriva in Austria con un vantaggio enorme, Almansa cerca la rimonta</strong></p>
+<p>La Moto3 è arrivata al Red Bull Ring con Máximo Quiles saldamente al comando del campionato. Dopo la spettacolare vittoria di Misano, conquistata al fotofinish contro David Almansa, il pilota CFMOTO Gaviota Aspar Team aveva ulteriormente rafforzato la propria leadership.</p>
+<p>Almansa rappresentava ancora una volta il principale rivale del leader del Mondiale. Il pilota Intact GP aveva mostrato una velocità impressionante nelle ultime gare e cercava in Austria l'occasione per trasformare la propria competitività in una vittoria.</p>
+<p>Alle loro spalle Álvaro Carpe, Brian Uriarte, Marco Morelli e Valentín Perrone erano pronti a inserirsi nella lotta per il podio. Il Red Bull Ring, con i suoi lunghi rettilinei, avrebbe inoltre reso particolarmente importante la gestione delle scie.</p>
+
+<p><strong>Venerdì – Almansa domina la Practice, Quiles resta vicino</strong></p>
+<p>David Almansa ha iniziato il weekend austriaco nel migliore dei modi, mostrando immediatamente un ritmo da protagonista. Il pilota Intact GP ha lavorato sul passo e sulla velocità sul giro singolo, confermandosi tra i riferimenti della prima giornata.</p>
+<p>Máximo Quiles è rimasto vicino ai migliori, continuando a lavorare soprattutto sulla preparazione della gara. Il leader del Mondiale ha mostrato ancora una volta una grande costanza, mantenendo sotto controllo la situazione in vista delle sessioni decisive.</p>
+<p>Brian Uriarte, Álvaro Carpe e Matteo Bertelle si sono inseriti nel gruppo dei protagonisti, preparando un'altra gara potenzialmente molto combattuta.</p>
+<p>Il venerdì ha quindi riproposto il duello visto a Misano: Almansa appariva velocissimo sul giro secco, mentre Quiles continuava a mostrare la consueta solidità e una grande capacità di gestione della gara.</p>
+
+<p><strong>Sabato – Uriarte sorprende tutti e conquista la pole davanti ad Almansa</strong></p>
+<p>Qualifiche</p>
+<p>Brian Uriarte ha conquistato la pole position del Gran Premio d'Austria al termine di una qualifica molto combattuta. Il rookie del Red Bull KTM Ajo ha trovato il giro decisivo proprio nelle fasi finali della sessione.</p>
+<p>David Almansa ha chiuso secondo, mentre Álvaro Carpe ha completato la prima fila. Máximo Quiles ha ottenuto il quarto tempo, confermandosi ancora una volta nelle prime posizioni.</p>
+<p>La qualifica ha quindi messo nuovamente Almansa e Quiles nelle posizioni di vertice, ma con Uriarte pronto a inserirsi nella lotta per la vittoria dalla pole.</p>
+
+<p><strong>Domenica – Quiles domina dopo la caduta di Almansa e si avvicina al titolo</strong></p>
+<p>David Almansa è partito dalla seconda posizione e ha preso rapidamente il comando della gara, provando a costruire un margine nei confronti di Máximo Quiles. I due piloti sono riusciti a staccare progressivamente il resto del gruppo, trasformando ancora una volta il Gran Premio in un duello diretto.</p>
+<p>Quiles è rimasto alle spalle di Almansa nelle prime fasi della gara, cercando di non consumare eccessivamente gli pneumatici. Almansa ha continuato a spingere e sembrava avere il ritmo per giocarsi la vittoria fino alla fine.</p>
+<p>La svolta è arrivata all'ottavo giro. Almansa ha perso il controllo della moto alla chicane di curva 2 mentre era al comando, finendo a terra e lasciando a Quiles un enorme vantaggio sul resto del gruppo.</p>
+<p>Il leader del Mondiale ha gestito con attenzione la parte conclusiva della gara, soprattutto dopo aver ricevuto un avvertimento per i track limits. Brian Uriarte ha provato a ridurre il distacco nelle ultime tornate, ma Quiles ha mantenuto il controllo fino alla bandiera a scacchi.</p>
+<p>Máximo Quiles ha così conquistato la nona vittoria stagionale, precedendo Brian Uriarte e Álvaro Carpe. Eddie O'Shea ha chiuso quarto davanti a Guido Pini, Casey O'Gorman, Adrián Cruces e Marco Morelli.</p>
+<p>Matteo Bertelle ha terminato quattordicesimo, mentre David Almansa è stato costretto al ritiro dopo la caduta.</p>
+<p>Il risultato ha portato Quiles a quota 306 punti, con Álvaro Carpe secondo a 175 e David Almansa e Brian Uriarte appaiati a 174. Il pilota Aspar ha quindi costruito un vantaggio enorme nella classifica mondiale.</p>
+
+<p><strong>Lettura tecnica</strong></p>
+<p>Il Gran Premio d'Austria ha confermato il dominio di Máximo Quiles nella stagione 2026. Ancora una volta il pilota Aspar ha trasformato una situazione non necessariamente favorevole in una vittoria pesantissima per il campionato.</p>
+<p>Almansa aveva mostrato il ritmo migliore nelle prove e aveva preso il comando della gara, ma la caduta all'ottavo giro ha cancellato ogni possibilità di lottare per la vittoria. Quiles ha invece mantenuto la calma e ha approfittato dell'errore del rivale per conquistare il nono successo dell'anno.</p>
+<p>Brian Uriarte ha completato un weekend eccellente con la pole position e il secondo posto, mentre Álvaro Carpe ha conquistato il terzo gradino del podio.</p>
+<p>Quiles ha ora 306 punti e dispone di un vantaggio di 131 lunghezze su Carpe. Il titolo potrebbe quindi essere deciso già nei prossimi appuntamenti, mentre Almansa e Uriarte sono appaiati a 174 punti alle spalle del pilota Aspar.</p>`
+},
+
+};
 
       function getReportContent() {
         const label = curClass === 'gp' ? 'MotoGP' : (curClass === 'm2' ? 'Moto2' : 'Moto3');

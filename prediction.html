@@ -536,7 +536,7 @@
 <a class="btn ghost" href="stats.html">📊 Vai alle statistiche</a>
 </div>
 <div class="meta">
-<span class="pill" id="meta-rounds">9 GP rimanenti</span>
+<span class="pill" id="meta-rounds">7 GP rimanenti</span>
 <span class="pill" id="meta-saved">0 pronostici salvati</span>
 <span class="pill">Dati stagionali già caricati</span>
 </div>
@@ -546,9 +546,9 @@
 <br/>
 <div class="container">
 <div class="summary">
-<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">8</div><div class="card-desc">Round ancora da correre</div></div>
-<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">14</div><div class="card-desc">Su 22 totali</div></div>
-<div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Marc Márquez</div><div class="card-desc">Leader attuale della classe regina</div></div>
+<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">7</div><div class="card-desc">Round ancora da correre</div></div>
+<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">15</div><div class="card-desc">Su 22 totali</div></div>
+<div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Jorge Martín</div><div class="card-desc">Leader attuale della classe regina</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto2</div><div class="card-value">Manuel González</div><div class="card-desc">Leader attuale Moto2</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto3</div><div class="card-value">Máximo Quiles</div><div class="card-desc">Leader attuale Moto3</div></div>
 </div>
@@ -597,7 +597,7 @@
 </div>
 </div>
 <script>
-const FUTURE_ROUNDS = [{"num": 15, "name": "Gran Premio d'Austria", "circuit": "Red Bull Ring · Spielberg", "date": "18 – 20 set", "flag": "🇦🇹", "status": "next"}, {"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "future"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
+const FUTURE_ROUNDS = [{"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "next"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
 const RIDER_OPTIONS = {
   "motogp": [
     { "name": "Francesco Bagnaia", "flag": "🇮🇹", "team": "Ducati Desmosedici GP26", "note": "" },
@@ -626,7 +626,7 @@ const RIDER_OPTIONS = {
     { "name": "Augusto Fernández", "flag": "🇪🇸", "team": "Yamaha Racing Factory", "note": "Wildcard Round 10-12" }, //WildCard R4-R6-R10-R12
     { "name": "Joan Mir", "flag": "🇪🇸", "team": "Honda RC213V", "note": "⚠️ Assente Round 15 (infortunio)" },//Assente R15
     { "name": "Luca Marini", "flag": "🇮🇹", "team": "Honda RC213V", "note": "" }, 
-    { "name": "Takaaki Nakagami", "flag": "🇯🇵", "team": "Honda RC213V", "note": "SOSTITUTO R15 Sub. Mir al Round 15" }, //WildCard R16
+    { "name": "Takaaki Nakagami", "flag": "🇯🇵", "team": "Honda RC213V", "note": "WILDCARD R16" }, // Sostituto Mir R15 WildCard R16
     { "name": "Johann Zarco", "flag": "🇫🇷", "team": "Honda RC213V", "note": "⚠️ Assente Round 11-12 (infortunio)" }, //Assente R7-R8-R9-R10-R11-R12-R13
     { "name": "Cal Crutchlow", "flag": "🇬🇧", "team": "Honda RC213V", "note": "SOSTITUTO R8-R9-R10-R11-R12 Sub. Zarco ai Round 9-10-11-12" },
     { "name": "Diogo Moreira", "flag": "🇧🇷", "team": "Honda RC213V", "note": "" }
