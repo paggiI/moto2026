@@ -1169,6 +1169,21 @@
   .time-box span { font-size: 1.6rem; } /* Ridotto da 2.5rem a 1.6rem su mobile */
   .time-box small { font-size: 0.6rem; }
 }
+/* ── FRECCE VARIAZIONE POSIZIONE ── */
+.pos-diff {
+  display: inline-block;
+  width: 32px;
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: 4px;
+  vertical-align: middle;
+  line-height: 1;
+}
+.diff-up { color: #00ff88; }
+.diff-down { color: #ff4444; }
+.diff-same { color: var(--muted); }
     </style>
 </link>
 <style id="audio-player-responsive">
@@ -9829,7 +9844,7 @@ function normName(n) {
 const M2_R1_PTS = [12.5,10,8,6.5,5.5,5,4.5,4,3.5,3,2.5,2,1.5,1,0.5];
 
 // Calcola punteggi per tutti i piloti da RESULTS
-function calcPtsFromResults() {
+function calcPtsFromResults(upToRound) {
   const ptsMap   = {};
   const teamMap  = {};
   const flagMap  = {};
@@ -9856,6 +9871,10 @@ function calcPtsFromResults() {
     const rData = RESULTS[rKey];
     if (!rData) continue;
 
+    if (upToRound) {
+      const rNum = parseInt(rKey.replace('r', ''));
+      if (rNum >= upToRound) continue;
+    }
     for (const [clsKey, clsData] of Object.entries(rData)) {
       const isGP = (clsKey === 'gp');
       // Usa punteggi dimezzati per R1 Moto2 (bandiera rossa)
@@ -10800,13 +10819,29 @@ function buildDataFromResults() {
     moto3: calcolaCostruttori('moto3'),
   };
 
+function getPrevPositions(upToRound, category) {
+  const { ptsMap } = calcPtsFromResults(upToRound);
+  
+  // Prendi SOLO i piloti della categoria attuale dal tuo oggetto DATA
+  const catData = DATA[category] || [];
+  let categoryRiders = catData.map(r => {
+    const k = normName(r.name);
+    return [k, ptsMap[k] || 0]; // Se non ha punti, metti 0
+  });
+
+  // Ordina per punti decrescenti
+  let sorted = categoryRiders.sort((a, b) => b[1] - a[1]);
+  let positions = {};
+  sorted.forEach((item, index) => {
+    positions[item[0]] = index + 1;
+  });
+  return positions;
+}
 // ── RENDER ────────────────────────────────────────────────────────────
 function renderStandings(data, tbodyId, cls) {
   const tbody = document.getElementById(tbodyId);
   if (!tbody) return;
 
-  // ✅ ORDINA PER PUNTI e ricalcola pos automaticamente
-  // → Modifica solo il campo pts nel DATA[], la posizione si aggiorna da sola
   data = [...data]
     .sort((a, b) => b.pts - a.pts)
     .map((r, i) => ({
@@ -10819,6 +10854,21 @@ function renderStandings(data, tbodyId, cls) {
   const barClass = { motogp:'bar-gp', moto2:'bar-m2', moto3:'bar-m3' }[cls];
   const ptsClass  = { motogp:'pts-gp', moto2:'pts-m2', moto3:'pts-m3' }[cls];
 
+    // Calcola le posizioni precedenti in modo sicuro
+  let prevPositions = {};
+  try {
+    // Trova dinamicamente l'ultimo round disponibile in RESULTS
+    let maxRound = 0;
+    for (let rKey in RESULTS) {
+      let num = parseInt(rKey.replace('r', ''));
+      if (num > maxRound) maxRound = num;
+    }
+    // Passa maxRound e cls (la categoria) alla funzione
+    prevPositions = getPrevPositions(maxRound, cls);
+  } catch(e) {
+    console.error("Errore nel calcolo posizioni precedenti:", e);
+  }
+
   tbody.innerHTML = data.map((r, i) => {
 
     const isSub = !!r.sostituto;
@@ -10827,6 +10877,17 @@ function renderStandings(data, tbodyId, cls) {
       i === 0 ? 'pos-1' :
       i === 1 ? 'pos-2' :
       i === 2 ? 'pos-3' : '';
+
+    // ✅ CALCOLO FRECCIA POSIZIONE
+    const currentPos = i + 1;
+    const riderKey = normName(r.name); // <--- QUESTA RIGA È FONDAMENTALE
+    const prevPos = prevPositions[riderKey] || currentPos;
+    const diff = prevPos - currentPos; 
+
+    let diffHTML = '';
+    if (diff > 0) diffHTML = `<span class="pos-diff diff-up">▲${diff}</span>`;
+    else if (diff < 0) diffHTML = `<span class="pos-diff diff-down">▼${Math.abs(diff)}</span>`;
+    else diffHTML = `<span class="pos-diff diff-same">–</span>`;
 
     // ✅ GAP con "-"
     const gap = i === 0 ? '—' : `-${(data[0].pts - r.pts).toFixed(1)}`;
@@ -10865,7 +10926,8 @@ function renderStandings(data, tbodyId, cls) {
     return `
     <tr${rowStyle}>
       <td class="pos-cell">
-        <span class="pos-num ${pClass}">${i + 1}</span>
+        <span class="pos-num ${pClass}">${currentPos}</span>
+        ${diffHTML}
       </td>
       <td class="flag-cell">${r.flag}</td>
       <td>
