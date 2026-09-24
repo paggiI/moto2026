@@ -931,15 +931,104 @@ a.timeline-card {
   display: flex;         /* Mantiene il layout interno allineato */
   flex-direction: column;
 }
+/* ── Controlli header light ── */
+
+[data-theme="light"] .nav-dropdown-btn,
+[data-theme="light"] .auth-btn,
+[data-theme="light"] .user-avatar-btn,
+[data-theme="light"] #theme-toggle{
+  color:#111!important;
+  border-color:#d8d8d8!important;
+  background:#fff!important;
+}
+
+[data-theme="light"] .nav-dropdown-btn:hover,
+[data-theme="light"] .nav-dropdown-btn.open,
+[data-theme="light"] .auth-btn:hover,
+[data-theme="light"] .user-avatar-btn:hover,
+[data-theme="light"] #theme-toggle:hover{
+  background:rgba(0,0,0,.03)!important;
+}
+
+/* ── Dropdown navigazione light ── */
+
+[data-theme="light"] .nav-dropdown-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .nav-dropdown-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .nav-dropdown-item:hover{
+  color:var(--red)!important;
+  background:rgba(232,0,29,.08)!important;
+}
+
+/* ── USER MENU LIGHT ──
+   IMPORTANTE: ogni selettore è correttamente
+   contenuto dentro [data-theme="light"]
+*/
+
+[data-theme="light"] .user-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .user-menu-name{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-sub{
+  color:#666!important;
+}
+
+[data-theme="light"] .user-menu-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-fav{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-item:hover{
+  background:rgba(232,0,29,.08)!important;
+  color:var(--red)!important;
+}
+
+[data-theme="light"] .user-menu-fav:hover{
+  color:var(--red)!important;
+}
+
+/* ── Auth modal light ── */
+
+[data-theme="light"] .auth-modal{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .auth-modal-title{
+  color:#111!important;
+}
+
+[data-theme="light"] .auth-field input{
+  background:#f5f5f5!important;
+  border-color:#d0d0d0!important;
+  color: #111, !important;
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a class="active" href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -1339,32 +1428,6 @@ initTheme();
 <div id="shortcut-toast">⌨️ Premi <kbd style="background:#333;padding:.1rem .3rem;border-radius:3px;border:1px solid #555;font-family:monospace;font-size:.9em;">/</kbd> per cercare un pilota</div>
 
 
-<!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field">
-<label>Username</label>
-<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
-</div>
-<div class="auth-field">
-<label>Password</label>
-<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
-<label>Conferma password</label>
-<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">
-        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
-</div>
-</div>
-</div>
-
-
 
 <!-- AUDIO PLAYER -->
  <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna su" class="visible">↑</button>
@@ -1387,6 +1450,41 @@ initTheme();
   <audio id="bg-audio" loop style="display:none;">
     <source src="motogp_intro_26.mp3" type="audio/mpeg">
   </audio>
+</div>
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
 </div>
 <script>
 (function(){
@@ -1440,6 +1538,6 @@ window.addEventListener('scroll', function() {
   if (btn) btn.classList.toggle('visible', window.scrollY > 400);
 });
 </script>
-
+<script src="auth.js"></script>
 </body>
 </html>

@@ -1485,6 +1485,7 @@
 }
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1513,11 +1514,10 @@
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-<span></span><span></span><span></span>
-</div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a class="active" href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -1581,7 +1581,7 @@
 <h2 class="section-title">Ultime Notizie</h2>
 <div class="news-grid" id="news-container"></div>
 <div style="text-align:center; margin-bottom:3rem;">
-  <a href="notizie.html" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:.5rem;">
+  <a href="notizie.html" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:.5rem; color: var(--black);">
     Vedi tutte le notizie
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
   </a>
@@ -2123,27 +2123,38 @@
 
 <!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field">
-<label>Username</label>
-<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
-</div>
-<div class="auth-field">
-<label>Password</label>
-<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
-</div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
-<label>Conferma password</label>
-<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
-</div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">
-        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
-</div>
-</div>
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
 </div>
 
 <!-- AUDIO PLAYER -->
@@ -2199,7 +2210,7 @@ function toggleMenu() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNews(); });
 
 const NEWS_INDEX = [
-  {cat:'Motomondiale',tagCls:'tag-gen',title:'MotoGP, le 850cc volano in Austria: Moreira sorprende tutti nel test Pirelli',excerpt:'Il secondo e ultimo test collettivo della stagione dedicato alle MotoGP 850 regala indicazioni importanti in vista del 2027. Diogo Moreira è il più veloce con un 1’28.4, davanti a Pedro Acosta e Marco Bezzecchi. Honda, KTM, Aprilia e Ducati mostrano già un ottimo potenziale, mentre Yamaha continua il proprio lavoro di sviluppo.',date:'21 set 2026',author:'Redazione',meta:'📅 21 set 2026 · ✍️ Redazione',body:'Il futuro della MotoGP prende sempre più forma. Il Red Bull Ring ha ospitato oggi il secondo e ultimo test collettivo della stagione dedicato alle nuove MotoGP 850cc e agli pneumatici Pirelli che debutteranno ufficialmente nel Mondiale dal 2027. In pista sono scesi i prototipi di tutte e cinque le Case, insieme ad alcune MotoGP 1000cc adattate per permettere un confronto diretto tra le due generazioni.<br><br><strong>Moreira davanti a tutti</strong><br><br>La sorpresa più grande della giornata arriva da Diogo Moreira. Il brasiliano della Honda ha fatto segnare, secondo i tempi emersi dal test, un incredibile 1’28.4, risultando il più veloce della giornata. Un risultato particolarmente significativo perché Moreira era al debutto sulla nuova Honda 850 e ha immediatamente mostrato un ritmo da vertice.<br><br>Alle sue spalle Pedro Acosta ha fermato il cronometro in 1’28.9, mentre Marco Bezzecchi ha chiuso in 1’29.1. Anche Johann Zarco è stato protagonista con la Honda, facendo segnare 1’29.1 e confermando le buone indicazioni arrivate dal progetto giapponese.<br><br><strong>Honda subito protagonista</strong><br><br>La prestazione di Moreira è particolarmente interessante anche per il percorso del pilota brasiliano verso il 2027. Honda ha infatti deciso di schierare a Spielberg Moreira insieme a Johann Zarco e al collaudatore Takaaki Nakagami, permettendo al giovane brasiliano di accumulare esperienza sulla nuova generazione di MotoGP.<br><br>Il suo 1’28.4 lo porta a meno di mezzo secondo dal riferimento della pole del weekend appena concluso, dando un primo segnale concreto sul livello prestazionale che le nuove 850cc possono raggiungere.<br><br><strong>Acosta e KTM rispondono</strong><br><br>Pedro Acosta ha chiuso al secondo posto in 1’28.9, confermando anche con la nuova moto la velocità mostrata durante il Gran Premio d’Austria. Il pilota KTM ha avuto il permesso della Casa austriaca di provare la 850 nonostante il suo passaggio in Ducati previsto per il 2027.<br><br>Alle sue spalle si è inserito Marco Bezzecchi con l’Aprilia in 1’29.1. Il pilota italiano ha lavorato anche sulle nuove soluzioni Pirelli, raccogliendo dati importanti sul comportamento delle gomme e della moto con il nuovo regolamento.<br><br><strong>Ducati lavora sulle tre mescole</strong><br><br>La migliore Ducati è stata quella di Fermín Aldeguer, anch’egli in 1’29.1. Il pilota ha svolto un programma particolarmente intenso lavorando con tutte e tre le mescole disponibili, fornendo ai tecnici Ducati una grande quantità di dati per lo sviluppo della nuova moto.<br><br>Franco Morbidelli ha chiuso in 1’29.4, mentre Marc Márquez ha fatto segnare 1’29.5. Il campione Ducati ha però seguito un programma differente, caratterizzato da run brevi e non esclusivamente orientato alla ricerca del giro veloce.<br><br>Morbidelli era presente al posto di Nicolò Bulega, inizialmente previsto per il test ma costretto a rinunciare dopo la recente caduta nei test privati di Mugello.<br><br><strong>Il confronto tra 850 e 1000</strong><br><br>Uno degli aspetti più interessanti della giornata è stato il confronto diretto tra le nuove 850cc e alcune 1000cc adattate. Maverick Viñales ha potuto girare con entrambe le configurazioni, fornendo un riferimento importante sul comportamento delle due generazioni.<br><br>Secondo i tempi emersi dal test, Viñales ha ottenuto un 1’29.2 con la 1000cc depotenziata e un 1’29.9 con la nuova 850cc. Il confronto deve naturalmente essere interpretato con cautela, perché programmi di lavoro, gomme e condizioni possono essere differenti, ma il dato mostra come le nuove MotoGP siano già molto vicine alle prestazioni delle attuali 1000cc.<br><br>Il nuovo regolamento ridurrà la cilindrata da 1000 a 850cc, limiterà l’aerodinamica ed eliminerà i dispositivi di regolazione dell’altezza. Nonostante questo, attraverso il lavoro sul telaio, sull’elettronica e soprattutto sugli pneumatici Pirelli, le nuove moto sembrano poter mantenere velocità sul giro molto elevate.<br><br><strong>Yamaha deve ancora recuperare terreno</strong><br><br>La graduatoria vede invece Yamaha più lontana dalle prime posizioni. Toprak Razgatlıoğlu avrebbe chiuso in 1’30.0, Jack Miller e Izan Guevara in 1’30.5, mentre Augusto Fernández ha fatto segnare 1’31.3.<br><br>La Casa giapponese continua quindi a raccogliere dati sulla nuova piattaforma, mentre Honda sembra aver trovato immediatamente un buon livello con Moreira e Zarco e KTM, Aprilia e Ducati hanno risposto rispettivamente con Acosta, Bezzecchi e Aldeguer.<br><br><strong>Il ritorno di Viñales</strong><br><br>Tra le note positive della giornata c’è anche il rientro di Maverick Viñales. Il pilota KTM ha potuto tornare in pista e lavorare sia sulla 1000cc adattata sia sulla nuova 850cc. Il suo ritorno è particolarmente importante anche in vista del Gran Premio del Giappone, dove è previsto nuovamente al via con la KTM Tech3.<br><br><strong>Un nuovo equilibrio per il 2027?</strong><br><br>Il test di Spielberg non permette ancora di stabilire i valori definitivi della prossima stagione. I tempi non costituiscono infatti una classifica ufficiale e ogni Casa ha seguito programmi di lavoro differenti. Pirelli ha utilizzato il test per continuare lo sviluppo delle proprie mescole in vista del debutto come fornitore unico nel 2027.<br><br>Il quadro emerso dall’Austria è però particolarmente interessante. Honda è stata protagonista con Moreira e Zarco, KTM ha risposto con Acosta, Aprilia ha mostrato un ottimo livello con Bezzecchi e Ducati ha lavorato intensamente con Aldeguer, mentre Yamaha sembra avere ancora maggiore lavoro da svolgere.<br><br>Il dato più importante resta comunque quello del cronometro: le nuove 850cc sono già capaci di avvicinarsi sensibilmente alle prestazioni delle attuali 1000cc. La riduzione della cilindrata, quindi, non sembra destinata a trasformare la MotoGP in una categoria molto più lenta.<br><br>Il prossimo grande appuntamento sarà il test di Valencia di dicembre, quando le nuove MotoGP torneranno in pista e sarà possibile avere un quadro ancora più chiaro dei valori in campo in vista dell’inizio della nuova era 850cc.<br><br><strong>Tempi del test 850cc</strong><br><br>1. Diogo Moreira — Honda — 1’28.4<br>2. Pedro Acosta — KTM — 1’28.9<br>3. Marco Bezzecchi — Aprilia — 1’29.1<br>4. Fermín Aldeguer — Ducati — 1’29.1<br>5. Johann Zarco — Honda — 1’29.1<br>6. Maverick Viñales — KTM — 1’29.2<br>7. Franco Morbidelli — Ducati — 1’29.4<br>8. Raúl Fernández — Aprilia — 1’29.4<br>9. Marc Márquez — Ducati — 1’29.5<br>10. Senna Agius — KTM — 1’29.6<br>11. Takaaki Nakagami — Honda — 1’29.7<br>12. Brad Binder — KTM — 1’29.9<br>13. Pol Espargaró — KTM — 1’29.9<br>14. Toprak Razgatlıoğlu — Yamaha — 1’30.0<br>15. Jack Miller — Yamaha — 1’30.5<br>16. Izan Guevara — Yamaha — 1’30.5<br>17. Augusto Fernández — Yamaha — 1’31.3<br>18. Lorenzo Savadori — Aprilia — 1’31.5'},  
+  {cat:'Motomondiale',tagCls:'tag-gen',title:'MotoGP, le 850cc volano in Austria: Moreira sorprende tutti nel test Pirelli',excerpt:'Il secondo e ultimo test collettivo della stagione dedicato alle MotoGP 850 regala indicazioni importanti in vista del 2027. Diogo Moreira è il più veloce con un 1’28.4, davanti a Pedro Acosta e Marco Bezzecchi. Honda, KTM, Aprilia e Ducati mostrano già un ottimo potenziale, mentre Yamaha continua il proprio lavoro di sviluppo.',date:'21 set 2026',author:'Redazione',meta:'📅 21 set 2026 · ✍️ Redazione',body:'Il futuro della MotoGP prende sempre più forma. Il Red Bull Ring ha ospitato oggi il secondo e ultimo test collettivo della stagione dedicato alle nuove MotoGP 850cc e agli pneumatici Pirelli che debutteranno ufficialmente nel Mondiale dal 2027. In pista sono scesi i prototipi di tutte e cinque le Case, insieme ad alcune MotoGP 1000cc adattate per permettere un confronto diretto tra le due generazioni.<br><br><strong>Moreira davanti a tutti</strong><br><br>La sorpresa più grande della giornata arriva da Diogo Moreira. Il brasiliano della Honda ha fatto segnare, secondo i tempi emersi dal test, un incredibile 1’28.4, risultando il più veloce della giornata. Un risultato particolarmente significativo perché Moreira era al debutto sulla nuova Honda 850 e ha immediatamente mostrato un ritmo da vertice.<br><br>Alle sue spalle Pedro Acosta ha fermato il cronometro in 1’28.9, mentre Marco Bezzecchi ha chiuso in 1’29.1. Anche Johann Zarco è stato protagonista con la Honda, facendo segnare 1’29.1 e confermando le buone indicazioni arrivate dal progetto giapponese.<br><br><strong>Honda subito protagonista</strong><br><br>La prestazione di Moreira è particolarmente interessante anche per il percorso del pilota brasiliano verso il 2027. Honda ha infatti deciso di schierare a Spielberg Moreira insieme a Johann Zarco e al collaudatore Takaaki Nakagami, permettendo al giovane brasiliano di accumulare esperienza sulla nuova generazione di MotoGP.<br><br>Il suo 1’28.4 lo porta a meno di mezzo secondo dal riferimento della pole del weekend appena concluso, dando un primo segnale concreto sul livello prestazionale che le nuove 850cc possono raggiungere.<br><br><strong>Acosta e KTM rispondono</strong><br><br>Pedro Acosta ha chiuso al secondo posto in 1’28.9, confermando anche con la nuova moto la velocità mostrata durante il Gran Premio d’Austria. Il pilota KTM ha avuto il permesso della Casa austriaca di provare la 850 nonostante il suo passaggio in Ducati previsto per il 2027.<br><br>Alle sue spalle si è inserito Marco Bezzecchi con l’Aprilia in 1’29.1. Il pilota italiano ha lavorato anche sulle nuove soluzioni Pirelli, raccogliendo dati importanti sul comportamento delle gomme e della moto con il nuovo regolamento.<br><br><strong>Ducati lavora sulle tre mescole</strong><br><br>La migliore Ducati è stata quella di Fermín Aldeguer, anch’egli in 1’29.1. Il pilota ha svolto un programma particolarmente intenso lavorando con tutte e tre le mescole disponibili, fornendo ai tecnici Ducati una grande quantità di dati per lo sviluppo della nuova moto.<br><br>Franco Morbidelli ha chiuso in 1’29.4, mentre Marc Márquez ha fatto segnare 1’29.5. Il campione Ducati ha però seguito un programma differente, caratterizzato da run brevi e non esclusivamente orientato alla ricerca del giro veloce.<br><br>Morbidelli era presente al posto di Nicolò Bulega, inizialmente previsto per il test ma costretto a rinunciare dopo la recente caduta nei test privati di Mugello.<br><br><strong>Il confronto tra 850 e 1000</strong><br><br>Uno degli aspetti più interessanti della giornata è stato il confronto diretto tra le nuove 850cc e alcune 1000cc adattate. Maverick Viñales ha potuto girare con entrambe le configurazioni, fornendo un riferimento importante sul comportamento delle due generazioni.<br><br>Secondo i tempi emersi dal test, Viñales ha ottenuto un 1’29.2 con la 1000cc depotenziata e un 1’29.9 con la nuova 850cc. Il confronto deve naturalmente essere interpretato con cautela, perché programmi di lavoro, gomme e condizioni possono essere differenti, ma il dato mostra come le nuove MotoGP siano già molto vicine alle prestazioni delle attuali 1000cc.<br><br>Il nuovo regolamento ridurrà la cilindrata da 1000 a 850cc, limiterà l’aerodinamica ed eliminerà i dispositivi di regolazione dell’altezza. Nonostante questo, attraverso il lavoro sul telaio, sull’elettronica e soprattutto sugli pneumatici Pirelli, le nuove moto sembrano poter mantenere velocità sul giro molto elevate.<br><br><strong>Yamaha deve ancora recuperare terreno</strong><br><br>La graduatoria vede invece Yamaha più lontana dalle prime posizioni. Toprak Razgatlıoğlu avrebbe chiuso in 1’30.0, Jack Miller e Izan Guevara in 1’30.5, mentre Augusto Fernández ha fatto segnare 1’31.3.<br><br>La Casa giapponese continua quindi a raccogliere dati sulla nuova piattaforma, mentre Honda sembra aver trovato immediatamente un buon livello con Moreira e Zarco e KTM, Aprilia e Ducati hanno risposto rispettivamente con Acosta, Bezzecchi e Aldeguer.<br><br><strong>Il ritorno di Viñales</strong><br><br>Tra le note positive della giornata c’è anche il rientro di Maverick Viñales. Il pilota KTM ha potuto tornare in pista e lavorare sia sulla 1000cc adattata sia sulla nuova 850cc. Il suo ritorno è particolarmente importante anche in vista del Gran Premio del Giappone, dove è previsto nuovamente al via con la KTM Tech3.<br><br><strong>Un nuovo equilibrio per il 2027?</strong><br><br>Il test di Spielberg non permette ancora di stabilire i valori definitivi della prossima stagione. I tempi non costituiscono infatti una classifica ufficiale e ogni Casa ha seguito programmi di lavoro differenti. Pirelli ha utilizzato il test per continuare lo sviluppo delle proprie mescole in vista del debutto come fornitore unico nel 2027.<br><br>Il quadro emerso dall’Austria è però particolarmente interessante. Honda è stata protagonista con Moreira e Zarco, KTM ha risposto con Acosta, Aprilia ha mostrato un ottimo livello con Bezzecchi e Ducati ha lavorato intensamente con Aldeguer, mentre Yamaha sembra avere ancora maggiore lavoro da svolgere.<br><br>Il dato più importante resta comunque quello del cronometro: le nuove 850cc sono già capaci di avvicinarsi sensibilmente alle prestazioni delle attuali 1000cc. La riduzione della cilindrata, quindi, non sembra destinata a trasformare la MotoGP in una categoria molto più lenta.<br><br>Il prossimo grande appuntamento sarà il test di Valencia di dicembre, quando le nuove MotoGP torneranno in pista e sarà possibile avere un quadro ancora più chiaro dei valori in campo in vista dell’inizio della nuova era 850cc.<br><br><strong>Tempi del test 850cc</strong><br><br>1. Diogo Moreira — Honda — 1’28.4<br>2. Pedro Acosta — KTM — 1’28.9<br>3. Marco Bezzecchi — Aprilia — 1’29.1<br>4. Fermín Aldeguer — Ducati — 1’29.1<br>5. Johann Zarco — Honda — 1’29.1<br>6. Maverick Viñales — KTM — 1’29.28 (1000 cc)<br>7. Franco Morbidelli — Ducati — 1’29.4<br>8. Raúl Fernández — Aprilia — 1’29.4<br>9. Marc Márquez — Ducati — 1’29.5<br>10. Senna Agius — KTM — 1’29.6 (1000 cc)<br>11. Takaaki Nakagami — Honda — 1’29.7 (1000 cc)<br>12. Brad Binder — KTM — 1’29.9 (1000 cc)<br>13. Pol Espargaró — KTM — 1’29.9<br>14. Toprak Razgatlıoğlu — Yamaha — 1’30.0<br>15. Jack Miller — Yamaha — 1’30.5<br>16. Izan Guevara — Yamaha — 1’30.5 (1000 cc)<br>17. Augusto Fernández — Yamaha — 1’31.3<br>18. Lorenzo Savadori — Aprilia — 1’31.5'},  
   {cat:'MotoGP',tagCls:'tag-gp',title:'Marquez lancia la sfida ad Acosta per il 2027: “Può battermi, ma io sono Marc”',excerpt:'Durante il GP d’Austria, Marc Marquez ha parlato a ServusTV della futura convivenza con Pedro Acosta nel team Ducati ufficiale. Il campione spagnolo ammette che il connazionale può essere il primo compagno in grado di batterlo, ma rilancia: “Avrò 34 anni l’anno prossimo. Io sono Marc, darò il mio 100%”.',date:'21 set 2026',author:'Redazione',meta:'📅 21 set 2026 · ✍️ Redazione',body:'Il futuro della Ducati passa anche dalla sfida generazionale tra Marc Marquez e Pedro Acosta. Nel corso del GP d’Austria, il pilota catalano ha parlato ai microfoni di ServusTV della sua futura convivenza con il connazionale, che dal 2027 sarà il suo compagno di squadra nel team ufficiale Ducati.<br><br>La domanda rivolta a Marquez parte da una statistica impressionante: il numero 93, nelle stagioni disputate in MotoGP, è riuscito a chiudere davanti a tutti i suoi compagni di squadra in campionato, ad eccezione del 2020, stagione nella quale non ha corso. Tra i piloti affrontati ci sono stati nomi come Dani Pedrosa, Jorge Lorenzo e Francesco Bagnaia.<br><br>Con Pedro Acosta, però, Marc si aspetta qualcosa di diverso. Alla domanda se pensa di poter mantenere lo stesso dominio anche con il giovane connazionale, Marquez non si nasconde: “No. Penso che lui sia il pilota in grado di battermi”.<br><br>Il campione del mondo in carica ha poi raccontato di aver accolto positivamente la possibilità di avere Acosta come compagno di squadra. “La prima volta che mi hanno detto che stavano valutando questa possibilità, ho subito detto: ‘È lui il pilota giusto’”, ha spiegato Marc, sottolineando come consideri Pedro uno dei grandi nomi del futuro della MotoGP.<br><br>Secondo Marquez, Acosta avrà inoltre la possibilità di imparare molto sulla Ducati, pur mantenendo il proprio stile di guida. “Avrà il suo stile, ma io non cambierò il mio”, ha aggiunto il pilota Ducati.<br><br>Poi arriva la frase che ha attirato maggiormente l’attenzione: “Avrò 34 anni l’anno prossimo. Io sono Marc, darò il mio 100% e vedremo”. Una risposta che mette insieme consapevolezza dell’età e fiducia nelle proprie capacità, senza nascondere la possibilità che Acosta possa rappresentare una sfida mai affrontata prima da Marquez a parità di moto.<br><br>Il contesto rende il confronto ancora più interessante. Acosta arriverà in Ducati dopo aver conquistato la sua prima vittoria in MotoGP proprio al Red Bull Ring, interrompendo un digiuno che durava dall’ingresso nella classe regina. Nel 2027 i due saranno quindi chiamati a condividere la stessa struttura ufficiale, con il nuovo regolamento tecnico che introdurrà le MotoGP da 850 cc.<br><br>La sfida tra i due, dunque, è già iniziata a parole. Marquez riconosce apertamente il potenziale di Acosta, ma allo stesso tempo chiarisce di non avere intenzione di modificare il proprio approccio: a 34 anni, sarà ancora Marc a dare tutto quello che ha per difendere il proprio posto al vertice.'},
   {cat:'Motomondiale',tagCls:'tag-gen',title:'MERCATO MotoGP, Moto2 e Moto3: Rammerstorfer in MTA, Öncü verso Momoven, Almansa e González insieme. TUTTE LE NOVITÀ per il 2027',excerpt:'Il mercato del Motomondiale entra sempre più nel vivo dopo il GP d’Austria: Rammerstorfer passa a LevelUp MTA, Öncü firma con Momoven, Almansa sale in Moto2 con Intact GP insieme a González, mentre Muñoz, Escrig e Huertas cambiano squadra. In Moto3 anche Pugliese approda a Boé e Fernando Bujosa si guadagna il salto nel Mondiale grazie al secondo posto nella Rookies Cup.',date:'21 set 2026',author:'Redazione',meta:'📅 21 set 2026 · ✍️ Redazione',body:'Il mercato del Motomondiale entra sempre più nel vivo dopo il GP d’Austria. Tra annunci ufficiali, accordi ormai definiti e trattative ancora da completare, la griglia 2027 di Moto2 e Moto3 continua a prendere forma. Leo Rammerstorfer ha trovato posto in LevelUp MTA, Deniz Öncü ha ufficializzato il passaggio a Momoven in Moto2, mentre Intact GP ha definito la propria coppia con Manuel González e David Almansa. Si muovono anche Italtrans, Forward e Boé, mentre resta da chiarire la situazione di alcuni piloti come Ayumu Sasaki.<br><br><strong>Moto3 – Rammerstorfer resta nel Mondiale e passa a LevelUp MTA</strong><br><br>Una delle novità già ufficializzate nel weekend del Red Bull Ring riguarda Leo Rammerstorfer. L’austriaco, protagonista nel 2026 del suo debutto nel Mondiale Moto3 con SIC58 Squadra Corse, continuerà a correre nella categoria anche nel 2027, ma cambierà squadra.<br><br>Rammerstorfer entrerà infatti in LevelUp MTA, formazione legata a KTM, dove sarà compagno di squadra di Beñat Fernández. Il team ha ufficializzato la propria line-up per il 2027, chiudendo così il progetto con due nuovi piloti rispetto alla stagione in corso.<br><br>Per il pilota austriaco si tratta di una nuova opportunità dopo la prima stagione completa nel Mondiale. Il passaggio a MTA rappresenta anche un ritorno nell’ambiente KTM, già conosciuto da Rammerstorfer durante il percorso nelle categorie propedeutiche.<br><br><strong>Moto3 – Salmela verso Red Bull KTM Ajo</strong><br><br>Un altro movimento importante riguarda Rico Salmela. Il finlandese, attualmente in forza a Red Bull KTM Tech3, sarebbe destinato a passare nel 2027 alla struttura Red Bull KTM Ajo.<br><br>L’indiscrezione è stata riportata nelle ultime settimane secondo cui il trasferimento sarebbe già definito. Salmela andrebbe così a inserirsi nel percorso ufficiale di crescita KTM, con il passaggio alla squadra Ajo dopo la stagione d’esordio nel Mondiale.<br><br>Il finlandese, classe 2008, è arrivato nel Mondiale proprio nel 2026 con Tech3 dopo il percorso nella European Talent Cup e nel JuniorGP. La sua crescita è quindi destinata a proseguire all’interno della struttura KTM.<br><br><strong>Moto2 – Öncü firma con Momoven</strong><br><br>Uno degli accordi più importanti del mercato Moto2 è invece ufficiale. Deniz Öncü correrà con Momoven Idrofoglia RW Racing Team nel 2027.<br><br>Il pilota turco, già vincitore di cinque Gran Premi e autore di diciassette podi nel Motomondiale, lascerà quindi la struttura Marc VDS e inizierà una nuova esperienza con la squadra olandese, che gli affiderà una Kalex.<br><br>L’arrivo di Öncü rappresenta uno dei principali tasselli del progetto 2027 di Momoven. Il team ha inoltre annunciato l’arrivo di diverse figure tecniche provenienti dalla struttura Marc VDS, con l’obiettivo di rafforzare il proprio progetto Moto2.<br><br>Resta invece ancora da definire il secondo pilota. Tra i nomi accostati alla squadra c’è Ayumu Sasaki, attuale compagno di Zonta van den Goorbergh, ma al momento Momoven non ha ufficializzato il secondo componente della line-up 2027.<br><br><strong>Moto2 – Intact GP conferma González e promuove Almansa</strong><br><br>La coppia più importante ufficializzata nel weekend austriaco è quella di Intact GP.<br><br>Manuel González resterà con la squadra tedesca anche nel 2027, affrontando così la terza stagione consecutiva con Intact GP. Al suo fianco arriverà David Almansa, promosso dalla Moto3 dopo una sola stagione all’interno della struttura.<br><br>Almansa sta vivendo un 2026 da protagonista nella categoria cadetta: il pilota spagnolo ha conquistato sei pole position e due vittorie e occupa attualmente la seconda posizione nel Mondiale Moto3. Intact ha quindi deciso di accompagnarlo direttamente nel salto di categoria.<br><br>La promozione di Almansa libera inoltre una casella nella squadra Moto3 e completa uno dei movimenti più interessanti del mercato interno della struttura tedesca.<br><br><strong>Moto2 – Muñoz verso Gresini</strong><br><br>Il futuro di David Muñoz sarà invece lontano da Intact GP. Il pilota spagnolo ha raggiunto un accordo per il passaggio in Moto2 con Gresini Racing, dove dovrebbe affiancare Alonso López.<br><br>Muñoz aveva già un accordo con Intact per il futuro, ma le parti hanno deciso di separarsi dopo il mancato accordo sulla promozione immediata in Moto2. Gresini ha quindi rappresentato la soluzione per permettere al pilota di effettuare il salto di categoria già dal 2027.<br><br>Il suo trasferimento apre dunque una delle caselle che hanno contribuito a ridisegnare completamente il mercato della Moto2 nelle ultime settimane.<br><br><strong>Moto2 – Italtrans conferma Muñoz e prende Escrig</strong><br><br>Italtrans ha invece definito la propria coppia per il 2027 con Daniel Muñoz e Álex Escrig.<br><br>Escrig lascerà Forward al termine della stagione e approderà alla squadra bergamasca con un contratto biennale. Lo spagnolo ha conquistato quest’anno il primo podio della propria carriera in Moto2 a Silverstone e continuerà quindi la propria esperienza nella categoria con Italtrans.<br><br>Daniel Muñoz, da non confondere con il connazionale David, resterà invece con Italtrans. La squadra avrà quindi ancora una coppia interamente spagnola.<br><br><strong>Moto2 – Huertas passa a Forward</strong><br><br>Il movimento di Escrig porta a un vero e proprio incrocio di selle con Forward.<br><br>Adrián Huertas lascerà infatti Italtrans per trasferirsi nel team Forward a partire dal 2027. L’accordo è stato definito dopo i test di Aragón, dove lo spagnolo aveva già avuto modo di provare la Moto2 del progetto Forward in vista della nuova stagione.<br><br>Il due volte campione del mondo nelle derivate di serie affronterà così una nuova fase della propria esperienza in Moto2, prendendo il posto lasciato libero da Escrig.<br><br><strong>Moto3 – Giulio Pugliese debutta con Boé</strong><br><br>Tra le novità italiane del mercato c’è anche Giulio Pugliese.<br><br>Il giovane pilota di Legnano, attualmente impegnato nel MotoJunior con Aspar, farà il proprio debutto nel Campionato del Mondo Moto3 nel 2027 con Boé Motorsports. L’accordo è stato riportato come definito nel weekend del GP d’Austria.<br><br>Pugliese sarà quindi uno dei nuovi volti italiani della Moto3 2027 e completerà il salto dal percorso JuniorGP al Mondiale.<br><br><strong>Moto3 – Fernando Bujosa si guadagna il salto nel Mondiale</strong><br><br>Tra i nomi da tenere d’occhio per la Moto3 2027 c’è anche Fernando Bujosa. Lo spagnolo ha chiuso la stagione 2026 della Red Bull MotoGP Rookies Cup al secondo posto, conquistando 170 punti alle spalle del campione Beñat Fernández.<br><br>Bujosa è arrivato all’ultima gara di Spielberg ancora in corsa per il titolo dopo una stagione da protagonista. Il pilota spagnolo aveva già ottenuto la certezza di chiudere il campionato nella top 3, risultato che gli permette di accedere al percorso verso il Campionato del Mondo Moto3 nel 2027.<br><br>Nella gara conclusiva del Red Bull Ring Bujosa ha chiuso al sesto posto, riuscendo comunque a confermare la seconda posizione assoluta. Il campionato si conclude quindi con due vittorie e il titolo di vicecampione della Red Bull MotoGP Rookies Cup.<br><br>Per Bujosa il prossimo passo sarà dunque il debutto nel Mondiale Moto3 nel 2027. Resta ancora da definire la squadra con cui affronterà la nuova avventura, ma il suo nome entra a tutti gli effetti nel mercato della categoria cadetta.<br><br><strong>Il mercato Moto2 e Moto3 prende forma</strong><br><br>Il weekend del Red Bull Ring ha quindi accelerato ulteriormente il mercato del Motomondiale.<br><br>In Moto2, Intact GP ha chiuso la propria formazione con Manuel González e David Almansa, mentre Italtrans ha definito la coppia con Álex Escrig e Daniel Muñoz. Adrián Huertas si sposterà a Forward e Deniz Öncü ha già firmato con Momoven, che deve ancora annunciare il secondo pilota.<br><br>In Moto3, invece, LevelUp MTA ha ufficializzato Beñat Fernández e Leo Rammerstorfer, mentre Rico Salmela è indicato verso Red Bull KTM Ajo. Giulio Pugliese sarà al via con Boé nel 2027, mentre Fernando Bujosa ha conquistato sul campo il diritto di compiere il salto nel Mondiale grazie al secondo posto finale nella Red Bull MotoGP Rookies Cup.<br><br>Con ancora diverse caselle da completare, soprattutto in Moto2 e Moto3, il mercato è destinato a regalare ulteriori annunci nelle prossime settimane. La griglia 2027 prende forma sempre più velocemente e molti dei movimenti che fino a pochi giorni fa erano soltanto indiscrezioni stanno ormai diventando ufficiali.'},
   {cat:'RedBullRookiesCup',tagCls:'tag-rrc',title:'Red Bull Rookies Cup, Austria: Fernández campione! Bujosa vince Gara 1, González trionfa nel finale',excerpt:'Beñat Fernández conquista la Red Bull MotoGP Rookies Cup 2026 al termine di un finale incandescente al Red Bull Ring. Fernando Bujosa vince Gara 1 dopo la penalità inflitta a Kristian Daniel, mentre David González chiude la sua esperienza nella categoria con il successo in Gara 2. Fernández termina sesto e quinto e difende il titolo per appena 5 punti su Bujosa.',date:'21 set 2026',author:'Redazione',meta:'📅 21 set 2026 · ✍️ Redazione',body:'Il settimo e ultimo round della Red Bull MotoGP Rookies Cup 2026 al Red Bull Ring ha regalato un finale degno di una stagione combattutissima. Beñat Fernández si è laureato campione della categoria al termine di un weekend vissuto sul filo dei punti, riuscendo a difendere la leadership nonostante la pressione di Fernando Bujosa e Ryota Ogiwara. Lo spagnolo ha chiuso il campionato con 175 punti, appena cinque in più di Bujosa, mentre Ogiwara ha terminato terzo a quota 159.<br><br>Alla vigilia del finale erano ancora tre i piloti matematicamente in lotta per il titolo. Fernández arrivava in Austria con 154 punti, seguito da Bujosa a 151 e Ogiwara a 146. La prima gara ha subito rimescolato la situazione: Kristian Daniel ha tagliato il traguardo davanti a tutti, ma una penalità di una posizione per aver oltrepassato i limiti della pista all’ultima curva ha consegnato la vittoria a Fernando Bujosa. Lo spagnolo, partito quinto, ha recuperato dopo essere scivolato nelle retrovie ed è riuscito a imporsi al termine di una gara estremamente combattuta.<br><br>Daniel ha dovuto quindi accontentarsi del secondo posto, mentre Fynn Kratochwil ha completato il podio. Ryota Ogiwara ha firmato una grande rimonta: partito dalla ventiquattresima posizione dopo una qualifica complicata, il giapponese ha recuperato fino al quarto posto, mantenendo vive le proprie speranze iridate. Beñat Fernández ha invece concluso sesto, conquistando 10 punti e portandosi a quota 164. Bujosa è salito così a 160, mentre Ogiwara è arrivato a 159: alla vigilia dell’ultima gara c’erano soltanto cinque punti tra il leader e il terzo classificato.<br><br>La Gara 2 ha però cambiato nuovamente lo scenario. David González ha dominato la seconda parte della corsa e ha conquistato la vittoria nell’ultima gara della sua carriera in Rookies Cup, costruendo un margine di oltre un secondo e mezzo su Fynn Kratochwil. Kristian Daniel ha completato il podio dopo un altro arrivo combattuto.<br><br>Alle loro spalle si è consumato il duello decisivo per il campionato. Fernández e Bujosa hanno battagliato per le posizioni di vertice fino all’ultimo giro. Il leader della classifica ha anche rischiato una penalità dopo essere finito sul verde all’ultima curva, ma ha lasciato volontariamente la posizione a Ethan Sparks per evitare conseguenze regolamentari. Il quinto posto è stato comunque sufficiente per conquistare il titolo, con Bujosa sesto a soli 16 millesimi dal connazionale.<br><br>Il colpo di scena più pesante ha riguardato invece Ryota Ogiwara. Il giapponese, partito dalla ventitreesima posizione, è caduto alla prima tornata alla chicane, coinvolgendo anche l’australiano Archie Schmidt. Dopo essere rientrato in pista ha ricevuto una doppia penalità Long Lap e ha concluso solamente diciannovesimo, vedendo sfumare definitivamente le proprie possibilità di titolo. Ogiwara ha comunque mantenuto il terzo posto nella classifica generale con 159 punti.<br><br>Beñat Fernández chiude così una stagione iniziata con la vittoria a Jerez e caratterizzata da tre successi e altri tre podi nelle prime otto gare. Dopo il difficile periodo tra Sachsenring e Misano, nel quale aveva raccolto appena sei punti, il pilota spagnolo ha reagito nel momento decisivo con il sesto e il quinto posto al Red Bull Ring, conquistando i 21 punti necessari per difendere la vetta.<br><br>Fernando Bujosa ha invece chiuso una straordinaria prima stagione in Rookies Cup al secondo posto con 170 punti. Lo spagnolo ha recuperato ben 46 punti nelle ultime quattro gare grazie a due vittorie, un quarto e un sesto posto, arrivando a soli cinque punti dal titolo. Kristian Daniel ha terminato quarto con 146 punti, davanti a Fynn Kratochwil, quinto a quota 144. David González, grazie alla vittoria nella gara conclusiva, ha chiuso sesto con 130 punti.<br><br>Il sipario cala quindi sulla stagione 2026 della Red Bull MotoGP Rookies Cup con Beñat Fernández campione, Fernando Bujosa vicecampione e Ryota Ogiwara sul terzo gradino della classifica. Un finale deciso per appena cinque punti dopo un ultimo round in Austria nel quale il titolo è rimasto in bilico fino alla bandiera a scacchi.'},
@@ -2818,262 +2829,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE = 'login'; // 'login' | 'register'
-  var USERS_KEY  = 'moto2026_users';
-  var CURR_KEY   = 'moto2026_current';
-  var FAVS_KEY   = 'moto2026_favs_';
-
-  // ── Helpers storage ────────────────────────────────────────
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getCurrentUser() {
-    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
-  }
-  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
-  function getFavs(username) {
-    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
-  }
-  function saveFavs(username, favs) {
-    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
-  }
-  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
-
-  // ── Inizializzazione UI ─────────────────────────────────────
-  function initAuth() {
-    var user = getCurrentUser();
-    var headerRight = document.querySelector('.header-right');
-    if (!headerRight) return;
-
-    // Rimuovi vecchi btn auth se ci sono
-    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
-    if (old) old.remove();
-
-    if (user) {
-      // Utente loggato: mostra avatar
-      var favs = getFavs(user.username);
-      var initials = user.username.slice(0,2).toUpperCase();
-      var wrap = document.createElement('div');
-      wrap.className = 'user-menu-wrap';
-      wrap.id = 'user-menu-wrap';
-      // Costruisci lista preferiti
-      var favsHTML = '';
-      if (favs.length > 0) {
-        favsHTML += '<div class="user-menu-divider"></div>';
-        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
-        for (var fi = 0; fi < favs.length; fi++) {
-          var fav = favs[fi];
-          var favId   = (typeof fav === 'object') ? fav.id   : fav;
-          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
-          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
-        }
-      }
-      wrap.innerHTML =
-        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
-          initials +
-        '</button>' +
-        '<div class="user-menu" id="user-menu">' +
-          '<div class="user-menu-header">' +
-            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
-            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
-          '</div>' +
-          favsHTML +
-          '<div class="user-menu-divider"></div>' +
-          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
-          '<div class="user-menu-divider"></div>' +
-          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
-        '</div>';
-      // Inserisci prima del theme-toggle
-      var themeBtn = headerRight.querySelector('#theme-toggle');
-      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
-      else headerRight.prepend(wrap);
-
-      // Chiudi menu cliccando fuori
-      document.addEventListener('click', function(e) {
-        var w = document.getElementById('user-menu-wrap');
-        if (w && !w.contains(e.target)) {
-          var m = document.getElementById('user-menu');
-          if (m) m.classList.remove('open');
-        }
-      });
-
-      // Inizializza le stelle sui piloti
-      initFavStars(user.username);
-
-      // Mostra sezione preferiti se siamo in piloti.html
-      showFavsSection(user.username);
-
-    } else {
-      // Non loggato: mostra bottone "Accedi"
-      var btn = document.createElement('button');
-      btn.className = 'auth-btn';
-      btn.textContent = '👤 Accedi';
-      btn.onclick = openAuthModal;
-      var themeBtn2 = headerRight.querySelector('#theme-toggle');
-      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
-      else headerRight.prepend(btn);
-    }
-  }
-
-  // ── Modal Auth ──────────────────────────────────────────────
-  window.openAuthModal = function() {
-    MODE = 'login';
-    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
-    document.getElementById('auth-submit-btn').textContent = 'Accedi';
-    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = 'none';
-    document.getElementById('auth-error').style.display = 'none';
-    document.getElementById('auth-username').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
-  };
-  window.closeAuthModal = function() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  };
-  window.switchAuthMode = function() {
-    MODE = MODE === 'login' ? 'register' : 'login';
-    var isReg = MODE === 'register';
-    document.getElementById('auth-title').innerHTML =
-      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
-             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
-    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
-    document.getElementById('auth-switch').innerHTML = isReg
-      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
-      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
-    document.getElementById('auth-error').style.display = 'none';
-  };
-
-  function showError(msg) {
-    var el = document.getElementById('auth-error');
-    el.textContent = msg; el.style.display = 'block';
-  }
-
-  window.submitAuth = function() {
-    var username = document.getElementById('auth-username').value.trim();
-    var password = document.getElementById('auth-password').value;
-    if (!username || !password) { showError('Compila tutti i campi.'); return; }
-    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
-
-    var users = getUsers();
-    if (MODE === 'register') {
-      var confirm = document.getElementById('auth-confirm').value;
-      if (password !== confirm) { showError('Le password non coincidono.'); return; }
-      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
-      if (users[username]) { showError('Username già in uso.'); return; }
-      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
-      saveUsers(users);
-      setCurrentUser({ username: username });
-    } else {
-      if (!users[username]) { showError('Username non trovato.'); return; }
-      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
-      setCurrentUser({ username: username });
-    }
-    closeAuthModal();
-    initAuth();
-    showToast('✅ Benvenuto, ' + username + '!');
-  };
-
-  window.logoutUser = function() {
-    localStorage.removeItem(CURR_KEY);
-    initAuth();
-    showToast('👋 Uscito con successo.');
-  };
-
-  window.toggleUserMenu = function() {
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.toggle('open');
-  };
-
-  // ── Preferiti ───────────────────────────────────────────────
-  window.toggleFav = function(riderId, riderName) {
-    var user = getCurrentUser();
-    if (!user) { openAuthModal(); return; }
-    var favs = getFavs(user.username);
-    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
-    if (idx >= 0) {
-      favs.splice(idx, 1);
-      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
-    } else {
-      favs.push({ id: riderId, name: riderName });
-      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
-    }
-    saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
-    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
-      star.classList.toggle('active', idx < 0);
-      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-    // Aggiorna badge nel menu
-    var badge = document.querySelector('.user-fav-badge');
-    if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
-    showFavsSection(user.username);
-    initAuth();
-  };
-
-  function initFavStars(username) {
-    var favs = getFavs(username);
-    var favIds = new Set(favs.map(function(f){ return f.id; }));
-    document.querySelectorAll('.fav-star').forEach(function(star) {
-      var id = star.getAttribute('data-id');
-      star.classList.toggle('active', favIds.has(id));
-      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-  }
-
-  function showFavsSection(username) {
-    var container = document.getElementById('favs-section-container');
-    if (!container) return;
-    var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var chips = favs.map(function(f) {
-      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
-    }).join('');
-    container.innerHTML =
-      '<div class="favs-section">' +
-        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
-        '<div class="favs-grid">' + chips + '</div>' +
-      '</div>';
-  }
-
-  window.showFavs = function() {
-    var user = getCurrentUser();
-    if (!user) return;
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.remove('open');
-    window.location.href = 'piloti.html#favs';
-  };
-
-  // ── Toast ────────────────────────────────────────────────────
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
-      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;white-space:nowrap;';
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
-    setTimeout(function(){ t.remove(); }, 2600);
-  }
-
-  // Avvia
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuth);
-  } else {
-    initAuth();
-  }
-})();
-
 // ── AUDIO PLAYER LOGIC ──
 (function(){
   var audio = document.getElementById('bg-audio');
@@ -3132,5 +2887,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+<script src="auth.js"></script>
 </body>
 </html>

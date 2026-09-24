@@ -346,6 +346,469 @@
     }
     #scroll-top-btn.visible { opacity:1; pointer-events:all; }
     #scroll-top-btn:hover { transform:translateY(-3px); }
+
+    /* ═══════════════════════════════════════════════
+   FAVORITI PILOTI
+═══════════════════════════════════════════════ */
+
+.fav-star{
+  background:none;
+  border:none;
+  font-size:1.1rem;
+  cursor:pointer;
+  opacity:.4;
+  transition:opacity .2s,transform .2s;
+  padding:0;
+  line-height:1;
+}
+
+.fav-star:hover{
+  opacity:.8;
+  transform:scale(1.2);
+}
+
+.fav-star.active{
+  opacity:1;
+}
+
+.favs-section{
+  background:rgba(247,166,0,.07);
+  border:1px solid rgba(247,166,0,.25);
+  border-radius:10px;
+  padding:1.2rem 1.4rem;
+  margin-bottom:2rem;
+}
+
+.favs-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;
+  letter-spacing:.06em;
+  color:#f7a600;
+  margin-bottom:.8rem;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.favs-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+
+.fav-chip{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:.3rem .8rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--white);
+  text-decoration:none;
+  transition:border-color .15s,color .15s;
+}
+
+.fav-chip:hover{
+  border-color:var(--red);
+  color:var(--red);
+}
+/* ═══════════════════════════════════════════════
+   LOGIN / AUTH
+═══════════════════════════════════════════════ */
+
+.auth-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+  cursor:pointer;
+  border-radius:6px;
+  padding:.28rem .65rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  transition:border-color .15s,color .15s,background .15s;
+  white-space:nowrap;
+}
+
+.auth-btn:hover{
+  border-color:var(--red);
+  color:var(--white);
+}
+
+/* Avatar utente */
+
+.user-avatar-btn{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:var(--red)!important;
+  color:#fff!important;
+  border:none!important;
+  cursor:pointer;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;
+  letter-spacing:.04em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  transition:transform .15s;
+}
+
+.user-avatar-btn:hover{
+  transform:scale(1.1);
+}
+
+.user-fav-badge{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  background:#f7a600;
+  color:#000;
+  border-radius:50%;
+  width:14px;
+  height:14px;
+  font-size:.55rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Modal auth */
+
+.auth-modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:800;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s;
+}
+
+.auth-modal-overlay.open{
+  opacity:1;
+  pointer-events:all;
+}
+
+.auth-modal{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:2rem;
+  width:100%;
+  max-width:360px;
+  margin:1rem;
+  transform:translateY(-12px);
+  transition:transform .22s;
+  position:relative;
+}
+
+.auth-modal-overlay.open .auth-modal{
+  transform:translateY(0);
+}
+
+.auth-modal-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;
+  letter-spacing:.06em;
+  margin-bottom:1.4rem;
+  color:var(--white);
+}
+
+.auth-modal-title span{
+  color:var(--red);
+}
+
+.auth-field{
+  margin-bottom:.9rem;
+}
+
+.auth-field label{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.3rem;
+}
+
+.auth-field input{
+  width:100%;
+  box-sizing:border-box;
+  background:var(--mid);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--white);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.95rem;
+  padding:.55rem .8rem;
+  outline:none;
+  transition:border-color .15s;
+}
+
+.auth-field input:focus{
+  border-color:var(--red);
+}
+
+.auth-submit{
+  width:100%;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:.95rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.65rem;
+  cursor:pointer;
+  margin-top:.4rem;
+  transition:background .15s;
+}
+
+.auth-submit:hover{
+  background:#c4001a;
+}
+
+.auth-switch{
+  text-align:center;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem;
+  color:var(--muted);
+  margin-top:.8rem;
+}
+
+.auth-switch a{
+  color:var(--red);
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.auth-switch a:hover{
+  text-decoration:underline;
+}
+
+.auth-error{
+  background:rgba(232,0,29,.1);
+  border:1px solid rgba(232,0,29,.3);
+  border-radius:6px;
+  padding:.45rem .7rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem;
+  color:#ff6b6b;
+  margin-bottom:.8rem;
+  display:none;
+}
+
+.auth-close{
+  position:absolute;
+  top:.8rem;
+  right:.9rem;
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-size:1.1rem;
+  cursor:pointer;
+  line-height:1;
+}
+
+/* ═══════════════════════════════════════════════
+   USER MENU
+═══════════════════════════════════════════════ */
+
+.user-menu-wrap{
+  position:relative;
+}
+
+.user-menu{
+  position:absolute;
+  top:calc(100% + .5rem);
+  right:0;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  min-width:200px;
+  box-shadow:0 12px 40px rgba(0,0,0,.4);
+  z-index:500;
+  overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .18s,transform .18s;
+}
+
+.user-menu.open{
+  opacity:1;
+  pointer-events:all;
+  transform:translateY(0);
+}
+
+.user-menu-header{
+  padding:.8rem 1rem;
+  border-bottom:1px solid var(--border);
+  font-family:'Barlow Condensed',sans-serif;
+}
+
+.user-menu-name{
+  font-weight:700;
+  font-size:1rem;
+  color:var(--white);
+}
+
+.user-menu-sub{
+  font-size:.75rem;
+  color:var(--muted);
+  margin-top:.1rem;
+}
+
+.user-menu-item{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.55rem 1rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.88rem;
+  font-weight:700;
+  color:var(--white)!important;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .12s,color .12s;
+}
+
+.user-menu-item:hover{
+  background:rgba(232,0,29,.1);
+  color:var(--red)!important;
+}
+
+.user-menu-item.logout{
+  color:#ff6b6b!important;
+}
+
+.user-menu-divider{
+  height:1px;
+  background:var(--border);
+  margin:.3rem 0;
+}
+
+.user-menu-section{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:.4rem .9rem .2rem;
+}
+
+.user-menu-fav{
+  font-size:.82rem!important;
+  padding:.35rem .9rem!important;
+  color:var(--white)!important;
+  text-decoration:none!important;
+}
+
+.user-menu-fav:hover{
+  color:var(--red)!important;
+}
+/* ── Controlli header light ── */
+
+[data-theme="light"] .nav-dropdown-btn,
+[data-theme="light"] .auth-btn,
+[data-theme="light"] .user-avatar-btn,
+[data-theme="light"] #theme-toggle{
+  color:#111!important;
+  border-color:#d8d8d8!important;
+  background:#fff!important;
+}
+
+[data-theme="light"] .nav-dropdown-btn:hover,
+[data-theme="light"] .nav-dropdown-btn.open,
+[data-theme="light"] .auth-btn:hover,
+[data-theme="light"] .user-avatar-btn:hover,
+[data-theme="light"] #theme-toggle:hover{
+  background:rgba(0,0,0,.03)!important;
+}
+
+/* ── Dropdown navigazione light ── */
+
+[data-theme="light"] .nav-dropdown-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .nav-dropdown-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .nav-dropdown-item:hover{
+  color:var(--red)!important;
+  background:rgba(232,0,29,.08)!important;
+}
+
+/* ── USER MENU LIGHT ──
+   IMPORTANTE: ogni selettore è correttamente
+   contenuto dentro [data-theme="light"]
+*/
+
+[data-theme="light"] .user-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .user-menu-name{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-sub{
+  color:#666!important;
+}
+
+[data-theme="light"] .user-menu-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-fav{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-item:hover{
+  background:rgba(232,0,29,.08)!important;
+  color:var(--red)!important;
+}
+
+[data-theme="light"] .user-menu-fav:hover{
+  color:var(--red)!important;
+}
+
+/* ── Auth modal light ── */
+
+[data-theme="light"] .auth-modal{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .auth-modal-title{
+  color:#111!important;
+}
+
+[data-theme="light"] .auth-field input{
+  background:#f5f5f5!important;
+  border-color:#d0d0d0!important;
+  color: #111, !important;
+}
 </style>
 <script>
   (function() {
@@ -360,6 +823,7 @@
 });
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -368,8 +832,10 @@
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 
@@ -1499,6 +1965,42 @@ window.addEventListener('DOMContentLoaded', () => {
   </audio>
 </div>
 
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   var audio = document.getElementById('bg-audio');
@@ -1653,5 +2155,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 </script>
+<script src="auth.js"></script>
 </body>
 </html>

@@ -309,17 +309,17 @@
 .gauge-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: .5rem; }
 .gauge-desc { font-family: 'Barlow Condensed', sans-serif; font-size: .9rem; color: var(--muted); line-height: 1.5; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-<span></span><span></span><span></span>
-</div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a class="active" href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -393,16 +393,40 @@
 
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
 
+<!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span style="color:var(--red)">Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field"><label>Username</label><input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/></div>
-<div class="auth-field"><label>Password</label><input id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/></div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;"><label>Conferma password</label><input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" type="password"/></div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">Non hai un account? <a onclick="switchAuthMode()">Registrati</a></div>
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -582,41 +606,6 @@ function toggleNavDropdown() { var btn=document.getElementById('nav-dropdown-btn
 function closeNavDropdown() { var btn=document.getElementById('nav-dropdown-btn'); var menu=document.getElementById('nav-dropdown-menu'); if(btn)btn.classList.remove('open'); if(menu)menu.classList.remove('open'); }
 document.addEventListener('click', function(e) { var wrap=document.getElementById('nav-dropdown-wrap'); if(wrap&&!wrap.contains(e.target))closeNavDropdown(); });
 
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE='login'; var USERS_KEY='moto2026_users'; var CURR_KEY='moto2026_current'; var FAVS_KEY='moto2026_favs_';
-  function getUsers(){try{return JSON.parse(localStorage.getItem(USERS_KEY))||{}}catch(e){return{}}}
-  function saveUsers(u){localStorage.setItem(USERS_KEY,JSON.stringify(u))}
-  function getCurrentUser(){try{return JSON.parse(localStorage.getItem(CURR_KEY))}catch(e){return null}}
-  function setCurrentUser(u){localStorage.setItem(CURR_KEY,JSON.stringify(u))}
-  function getFavs(un){try{return JSON.parse(localStorage.getItem(FAVS_KEY+un))||[]}catch(e){return[]}}
-  function saveFavs(un,f){localStorage.setItem(FAVS_KEY+un,JSON.stringify(f))}
-  function hashPwd(p){return btoa(encodeURIComponent(p+'moto2026_salt'))}
-  function initAuth(){
-    var user=getCurrentUser(); var hr=document.querySelector('.header-right'); if(!hr)return;
-    var old=hr.querySelector('.auth-btn,.user-menu-wrap'); if(old)old.remove();
-    if(user){
-      var favs=getFavs(user.username); var initials=user.username.slice(0,2).toUpperCase();
-      var wrap=document.createElement('div'); wrap.className='user-menu-wrap'; wrap.id='user-menu-wrap';
-      var favsHTML='';
-      if(favs.length>0){favsHTML+='<div class="user-menu-divider"></div><div class="user-menu-section">★ PREFERITI</div>';for(var i=0;i<favs.length;i++){var f=favs[i];var fId=(typeof f==='object')?f.id:f;var fName=(typeof f==='object')?f.name:f.replace(/_/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()});favsHTML+='<a href="pilota.html?id='+fId+'" class="user-menu-item user-menu-fav">'+fName+'</a>';}}
-      wrap.innerHTML='<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="'+user.username+'">'+initials+'</button><div class="user-menu" id="user-menu"><div class="user-menu-header"><div class="user-menu-name">👋 '+user.username+'</div><div class="user-menu-sub">'+favs.length+' piloti preferiti</div></div>'+favsHTML+'<div class="user-menu-divider"></div><a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a><div class="user-menu-divider"></div><div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div></div>';
-      var tb=hr.querySelector('#theme-toggle'); if(tb)hr.insertBefore(wrap,tb); else hr.prepend(wrap);
-    } else {
-      var btn=document.createElement('button'); btn.className='auth-btn'; btn.textContent='👤 Accedi'; btn.onclick=openAuthModal;
-      var tb2=hr.querySelector('#theme-toggle'); if(tb2)hr.insertBefore(btn,tb2); else hr.prepend(btn);
-    }
-  }
-  window.openAuthModal=function(){MODE='login';document.getElementById('auth-title').innerHTML='Accedi a <span style="color:var(--red)">Moto2026</span>';document.getElementById('auth-submit-btn').textContent='Accedi';document.getElementById('auth-switch').innerHTML='Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';document.getElementById('auth-confirm-wrap').style.display='none';document.getElementById('auth-error').style.display='none';document.getElementById('auth-username').value='';document.getElementById('auth-password').value='';document.getElementById('auth-overlay').classList.add('open');setTimeout(function(){document.getElementById('auth-username').focus()},100)};
-  window.closeAuthModal=function(){document.getElementById('auth-overlay').classList.remove('open')};
-  window.switchAuthMode=function(){MODE=MODE==='login'?'register':'login';var isReg=MODE==='register';document.getElementById('auth-title').innerHTML=(isReg?'Crea account <span style="color:var(--red)">Moto2026</span>':'Accedi a <span style="color:var(--red)">Moto2026</span>');document.getElementById('auth-submit-btn').textContent=isReg?'Crea account':'Accedi';document.getElementById('auth-switch').innerHTML=isReg?'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>':'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';document.getElementById('auth-confirm-wrap').style.display=isReg?'block':'none';document.getElementById('auth-error').style.display='none'};
-  function showError(msg){var el=document.getElementById('auth-error');el.textContent=msg;el.style.display='block'}
-  window.submitAuth=function(){var un=document.getElementById('auth-username').value.trim();var pw=document.getElementById('auth-password').value;if(!un||!pw){showError('Compila tutti i campi.');return}if(un.length<3){showError('Username min. 3 caratteri.');return}var users=getUsers();if(MODE==='register'){var cf=document.getElementById('auth-confirm').value;if(pw!==cf){showError('Le password non coincidono.');return}if(pw.length<6){showError('Password min. 6 caratteri.');return}if(users[un]){showError('Username già in uso.');return}users[un]={username:un,pwd:hashPwd(pw),createdAt:Date.now()};saveUsers(users);setCurrentUser({username:un})}else{if(!users[un]){showError('Username non trovato.');return}if(users[un].pwd!==hashPwd(pw)){showError('Password errata.');return}setCurrentUser({username:un})}closeAuthModal();initAuth();showToast('✅ Benvenuto, '+un+'!')};
-  window.logoutUser=function(){localStorage.removeItem(CURR_KEY);initAuth();showToast('👋 Uscito con successo.')};
-  window.toggleUserMenu=function(){var m=document.getElementById('user-menu');if(m)m.classList.toggle('open')};
-  function showToast(msg){var t=document.createElement('div');t.textContent=msg;t.style.cssText='position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.04em;z-index:9999;pointer-events:none;white-space:nowrap;';document.body.appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .3s'},2200);setTimeout(function(){t.remove()},2600)}
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initAuth)}else{initAuth()}
-})();
 
 // ── TORNA INDIETRO ──
 (function(){var NAMES={'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2','moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota','classifica.html':'Classifica','risultati.html':'Risultati','calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction','albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'};var cur=(location.pathname.split('/').pop()||'index.html');var curName=NAMES[cur]||cur;function showBackBtn(){var prev=sessionStorage.getItem('moto_from_url');var prevName=sessionStorage.getItem('moto_from_name');if(prev&&prevName&&prevName!==curName){var wrap=document.querySelector('.back-btn-wrap');if(wrap)wrap.innerHTML='<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>'}}function saveAndGo(href){var dest=href.split('/').pop().split('?')[0].split('#')[0];if(NAMES[dest]){sessionStorage.setItem('moto_from_url',location.href);sessionStorage.setItem('moto_from_name',curName)}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',showBackBtn)}else{showBackBtn()}document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href')||'';if(href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto'))return;saveAndGo(href)},true)})();
@@ -759,5 +748,6 @@ document.addEventListener('click', function(e) { var wrap=document.getElementByI
   });
 })();
 </script>
+<script src="auth.js"></script>
 </body>
 </html>

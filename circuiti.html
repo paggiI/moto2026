@@ -684,67 +684,6 @@
       background: rgba(255, 255, 255, 0.08);
       color: var(--red);
     }
-  
-    /* ── NOTIFICHE IN-APP ── */
-    #notif-container {
-      position: fixed;
-      top: 70px; right: 1rem;
-      z-index: 600;
-      display: flex; flex-direction: column; gap: .5rem;
-      max-width: 320px; width: calc(100% - 2rem);
-    }
-    .notif-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--red);
-      border-radius: 8px;
-      padding: .75rem 1rem;
-      display: flex; align-items: flex-start; gap: .6rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,.3);
-      animation: notifSlideIn .3s ease;
-    }
-    .notif-card.breaking { border-left-color: #f7a600; }
-    .notif-card.info { border-left-color: #60b4ff; }
-    @keyframes notifSlideIn {
-      from { opacity:0; transform:translateX(20px); }
-      to   { opacity:1; transform:translateX(0); }
-    }
-    .notif-icon { font-size: 1.1rem; flex-shrink:0; margin-top:.05rem; }
-    .notif-body { flex:1; min-width:0; }
-    .notif-title {
-      font-family:'Barlow Condensed',sans-serif;
-      font-weight:700; font-size:.85rem;
-      color:var(--white); margin-bottom:.1rem;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-    .notif-text {
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:.78rem; color:var(--muted); line-height:1.35;
-    }
-    .notif-close {
-      background:none; border:none; color:var(--muted);
-      cursor:pointer; font-size:.9rem; padding:0; line-height:1;
-      flex-shrink:0; transition:color .15s;
-    }
-    .notif-close:hover { color:var(--white); }
-    /* Campanella nell'header */
-    .notif-bell-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer; border-radius: 6px;
-      padding: .28rem .5rem; line-height:1;
-      position: relative;
-      transition: border-color .15s, color .15s;
-    }
-    .notif-bell-btn:hover { border-color:var(--red); color:var(--white); }
-    .notif-bell-badge {
-      position:absolute; top:-4px; right:-4px;
-      background:var(--red); color:#fff;
-      border-radius:50%; width:14px; height:14px;
-      font-size:.55rem; font-family:'Barlow Condensed',sans-serif;
-      font-weight:700; display:flex; align-items:center; justify-content:center;
-    }
 
     .back-btn-wrap { margin: 0 0 .5rem; min-height: 0; display:block; position:relative; z-index:2; }
     .back-btn {
@@ -1022,17 +961,115 @@
 [data-theme="light"] .qj-num {
   color: #666666;
 }
+/* ── Controlli header light ── */
+
+[data-theme="light"] .nav-dropdown-btn,
+[data-theme="light"] .auth-btn,
+[data-theme="light"] .user-avatar-btn,
+[data-theme="light"] #theme-toggle{
+  color:#111!important;
+  border-color:#d8d8d8!important;
+  background:#fff!important;
+}
+
+[data-theme="light"] .nav-dropdown-btn:hover,
+[data-theme="light"] .nav-dropdown-btn.open,
+[data-theme="light"] .auth-btn:hover,
+[data-theme="light"] .user-avatar-btn:hover,
+[data-theme="light"] #theme-toggle:hover{
+  background:rgba(0,0,0,.03)!important;
+}
+
+/* ── Dropdown navigazione light ── */
+
+[data-theme="light"] .nav-dropdown-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .nav-dropdown-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .nav-dropdown-item:hover{
+  color:var(--red)!important;
+  background:rgba(232,0,29,.08)!important;
+}
+
+/* ── USER MENU LIGHT ──
+   IMPORTANTE: ogni selettore è correttamente
+   contenuto dentro [data-theme="light"]
+*/
+
+[data-theme="light"] .user-menu{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .user-menu-name{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-sub{
+  color:#666!important;
+}
+
+[data-theme="light"] .user-menu-item{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-fav{
+  color:#111!important;
+}
+
+[data-theme="light"] .user-menu-item:hover{
+  background:rgba(232,0,29,.08)!important;
+  color:var(--red)!important;
+}
+
+[data-theme="light"] .user-menu-fav:hover{
+  color:var(--red)!important;
+}
+
+/* ── Auth modal light ── */
+
+[data-theme="light"] .auth-modal{
+  background:#fff!important;
+  border-color:#d8d8d8!important;
+}
+
+[data-theme="light"] .auth-modal-title{
+  color:#111!important;
+}
+
+[data-theme="light"] .auth-field input{
+  background:#f5f5f5!important;
+  border-color:#d0d0d0!important;
+  color:#111!important;
+}
+.back-btn-wrap { margin: 0 0 .5rem; min-height: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .8rem; border-radius: 4px;
+      background: rgba(255,255,255,.07); border: 1px solid var(--border);
+      color: #aaa; text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; font-size: .76rem;
+      transition: .15s;
+    }
+    
+    .back-btn:hover { border-color: var(--red); color: var(--white); }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <body>
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-<span></span><span></span><span></span>
-</div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a class="active" href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -1911,17 +1948,40 @@
   </p>
 </footer>
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
+<!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span style="color:var(--red)">Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field"><label>Username</label><input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/></div>
-<div class="auth-field"><label>Password</label><input id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/></div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;"><label>Conferma password</label><input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" type="password"/></div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">Non hai un account? <a onclick="switchAuthMode()">Registrati</a></div>
-</div>
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
 </div>
 <script>
 // ── TEMA ──
@@ -2083,261 +2143,6 @@ document.addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeNavDropdown();
 });
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE = 'login'; // 'login' | 'register'
-  var USERS_KEY  = 'moto2026_users';
-  var CURR_KEY   = 'moto2026_current';
-  var FAVS_KEY   = 'moto2026_favs_';
-
-  // ── Helpers storage ────────────────────────────────────────
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getCurrentUser() {
-    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
-  }
-  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
-  function getFavs(username) {
-    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
-  }
-  function saveFavs(username, favs) {
-    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
-  }
-  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
-
-  // ── Inizializzazione UI ─────────────────────────────────────
-  function initAuth() {
-    var user = getCurrentUser();
-    var headerRight = document.querySelector('.header-right');
-    if (!headerRight) return;
-
-    // Rimuovi vecchi btn auth se ci sono
-    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
-    if (old) old.remove();
-
-    if (user) {
-      // Utente loggato: mostra avatar
-      var favs = getFavs(user.username);
-      var initials = user.username.slice(0,2).toUpperCase();
-      var wrap = document.createElement('div');
-      var favsHTML = '';
-      if (favs.length > 0) {
-        favsHTML += '<div class="user-menu-divider"></div>';
-        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
-        for (var fi = 0; fi < favs.length; fi++) {
-          var fav = favs[fi];
-          var favId   = (typeof fav === 'object') ? fav.id   : fav;
-          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
-          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
-        }
-      }
-      wrap.className = 'user-menu-wrap';
-      wrap.id = 'user-menu-wrap';
-      wrap.innerHTML =
-        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
-          initials +
-        '</button>' +
-        '<div class="user-menu" id="user-menu">' +
-          '<div class="user-menu-header">' +
-            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
-            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
-          '</div>' +
-          favsHTML +
-          '<div class="user-menu-divider"></div>' +
-          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
-          '<div class="user-menu-divider"></div>' +
-          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
-        '</div>';
-      // Inserisci prima del theme-toggle
-      var themeBtn = headerRight.querySelector('#theme-toggle');
-      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
-      else headerRight.prepend(wrap);
-
-      // Chiudi menu cliccando fuori
-      document.addEventListener('click', function(e) {
-        var w = document.getElementById('user-menu-wrap');
-        if (w && !w.contains(e.target)) {
-          var m = document.getElementById('user-menu');
-          if (m) m.classList.remove('open');
-        }
-      });
-
-      // Inizializza le stelle sui piloti
-      initFavStars(user.username);
-
-      // Mostra sezione preferiti se siamo in piloti.html
-      showFavsSection(user.username);
-
-    } else {
-      // Non loggato: mostra bottone "Accedi"
-      var btn = document.createElement('button');
-      btn.className = 'auth-btn';
-      btn.textContent = '👤 Accedi';
-      btn.onclick = openAuthModal;
-      var themeBtn2 = headerRight.querySelector('#theme-toggle');
-      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
-      else headerRight.prepend(btn);
-    }
-  }
-
-  // ── Modal Auth ──────────────────────────────────────────────
-  window.openAuthModal = function() {
-    MODE = 'login';
-    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
-    document.getElementById('auth-submit-btn').textContent = 'Accedi';
-    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = 'none';
-    document.getElementById('auth-error').style.display = 'none';
-    document.getElementById('auth-username').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
-  };
-  window.closeAuthModal = function() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  };
-  window.switchAuthMode = function() {
-    MODE = MODE === 'login' ? 'register' : 'login';
-    var isReg = MODE === 'register';
-    document.getElementById('auth-title').innerHTML =
-      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
-             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
-    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
-    document.getElementById('auth-switch').innerHTML = isReg
-      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
-      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
-    document.getElementById('auth-error').style.display = 'none';
-  };
-
-  function showError(msg) {
-    var el = document.getElementById('auth-error');
-    el.textContent = msg; el.style.display = 'block';
-  }
-
-  window.submitAuth = function() {
-    var username = document.getElementById('auth-username').value.trim();
-    var password = document.getElementById('auth-password').value;
-    if (!username || !password) { showError('Compila tutti i campi.'); return; }
-    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
-
-    var users = getUsers();
-    if (MODE === 'register') {
-      var confirm = document.getElementById('auth-confirm').value;
-      if (password !== confirm) { showError('Le password non coincidono.'); return; }
-      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
-      if (users[username]) { showError('Username già in uso.'); return; }
-      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
-      saveUsers(users);
-      setCurrentUser({ username: username });
-    } else {
-      if (!users[username]) { showError('Username non trovato.'); return; }
-      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
-      setCurrentUser({ username: username });
-    }
-    closeAuthModal();
-    initAuth();
-    showToast('✅ Benvenuto, ' + username + '!');
-  };
-
-  window.logoutUser = function() {
-    localStorage.removeItem(CURR_KEY);
-    initAuth();
-    showToast('👋 Uscito con successo.');
-  };
-
-  window.toggleUserMenu = function() {
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.toggle('open');
-  };
-
-  // ── Preferiti ───────────────────────────────────────────────
-  window.toggleFav = function(riderId, riderName) {
-    var user = getCurrentUser();
-    if (!user) { openAuthModal(); return; }
-    var favs = getFavs(user.username);
-    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
-    if (idx >= 0) {
-      favs.splice(idx, 1);
-      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
-    } else {
-      favs.push({ id: riderId, name: riderName });
-      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
-    }
-    saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
-    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
-      star.classList.toggle('active', idx < 0);
-      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-    // Aggiorna badge nel menu
-    var badge = document.querySelector('.user-fav-badge');
-    if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
-    showFavsSection(user.username);
-    initAuth();
-  };
-
-  function initFavStars(username) {
-    var favs = getFavs(username);
-    var favIds = new Set(favs.map(function(f){ return f.id; }));
-    document.querySelectorAll('.fav-star').forEach(function(star) {
-      var id = star.getAttribute('data-id');
-      star.classList.toggle('active', favIds.has(id));
-      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-  }
-
-  function showFavsSection(username) {
-    var container = document.getElementById('favs-section-container');
-    if (!container) return;
-    var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var chips = favs.map(function(f) {
-      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
-    }).join('');
-    container.innerHTML =
-      '<div class="favs-section">' +
-        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
-        '<div class="favs-grid">' + chips + '</div>' +
-      '</div>';
-  }
-
-  window.showFavs = function() {
-    var user = getCurrentUser();
-    if (!user) return;
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.remove('open');
-    window.location.href = 'piloti.html#favs';
-  };
-
-  // ── Toast ────────────────────────────────────────────────────
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
-      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;white-space:nowrap;';
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
-    setTimeout(function(){ t.remove(); }, 2600);
-  }
-
-  // Avvia
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuth);
-  } else {
-    initAuth();
-  }
-})();
-
 // ══ FILTRO, RICERCA E ORDINAMENTO CIRCUITI ══
 (function() {
   const grid = document.getElementById('circuit-grid');
@@ -2478,187 +2283,6 @@ document.addEventListener('keydown', function(e) {
     body.insertBefore(badge, body.firstChild);
   });
 })();
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE = 'login'; // 'login' | 'register'
-  var USERS_KEY  = 'moto2026_users';
-  var CURR_KEY   = 'moto2026_current';
-  var FAVS_KEY   = 'moto2026_favs_';
-
-  // ── Helpers storage ────────────────────────────────────────
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getCurrentUser() {
-    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
-  }
-  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
-  function getFavs(username) {
-    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
-  }
-  function saveFavs(username, favs) {
-    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
-  }
-  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
-
-
-  // ── Modal Auth ──────────────────────────────────────────────
-  window.openAuthModal = function() {
-    MODE = 'login';
-    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
-    document.getElementById('auth-submit-btn').textContent = 'Accedi';
-    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = 'none';
-    document.getElementById('auth-error').style.display = 'none';
-    document.getElementById('auth-username').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
-  };
-  window.closeAuthModal = function() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  };
-  window.switchAuthMode = function() {
-    MODE = MODE === 'login' ? 'register' : 'login';
-    var isReg = MODE === 'register';
-    document.getElementById('auth-title').innerHTML =
-      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
-             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
-    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
-    document.getElementById('auth-switch').innerHTML = isReg
-      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
-      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
-    document.getElementById('auth-error').style.display = 'none';
-  };
-
-  function showError(msg) {
-    var el = document.getElementById('auth-error');
-    el.textContent = msg; el.style.display = 'block';
-  }
-
-  window.submitAuth = function() {
-    var username = document.getElementById('auth-username').value.trim();
-    var password = document.getElementById('auth-password').value;
-    if (!username || !password) { showError('Compila tutti i campi.'); return; }
-    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
-
-    var users = getUsers();
-    if (MODE === 'register') {
-      var confirm = document.getElementById('auth-confirm').value;
-      if (password !== confirm) { showError('Le password non coincidono.'); return; }
-      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
-      if (users[username]) { showError('Username già in uso.'); return; }
-      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
-      saveUsers(users);
-      setCurrentUser({ username: username });
-    } else {
-      if (!users[username]) { showError('Username non trovato.'); return; }
-      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
-      setCurrentUser({ username: username });
-    }
-    closeAuthModal();
-    initAuth();
-    showToast('✅ Benvenuto, ' + username + '!');
-  };
-
-  window.logoutUser = function() {
-    localStorage.removeItem(CURR_KEY);
-    initAuth();
-    showToast('👋 Uscito con successo.');
-  };
-
-  window.toggleUserMenu = function() {
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.toggle('open');
-  };
-
-  // ── Preferiti ───────────────────────────────────────────────
-  window.toggleFav = function(riderId, riderName) {
-    var user = getCurrentUser();
-    if (!user) { openAuthModal(); return; }
-    var favs = getFavs(user.username);
-    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
-    if (idx >= 0) {
-      favs.splice(idx, 1);
-      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
-    } else {
-      favs.push({ id: riderId, name: riderName });
-      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
-    }
-    saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
-    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
-      star.classList.toggle('active', idx < 0);
-      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-    // Aggiorna badge nel menu
-    var badge = document.querySelector('.user-fav-badge');
-    if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
-    showFavsSection(user.username);
-    initAuth();
-  };
-
-  function initFavStars(username) {
-    var favs = getFavs(username);
-    var favIds = new Set(favs.map(function(f){ return f.id; }));
-    document.querySelectorAll('.fav-star').forEach(function(star) {
-      var id = star.getAttribute('data-id');
-      star.classList.toggle('active', favIds.has(id));
-      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-  }
-
-  function showFavsSection(username) {
-    var container = document.getElementById('favs-section-container');
-    if (!container) return;
-    var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var chips = favs.map(function(f) {
-      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
-    }).join('');
-    container.innerHTML =
-      '<div class="favs-section">' +
-        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
-        '<div class="favs-grid">' + chips + '</div>' +
-      '</div>';
-  }
-
-  window.showFavs = function() {
-    var user = getCurrentUser();
-    if (!user) return;
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.remove('open');
-    window.location.href = 'piloti.html#favs';
-  };
-
-  // ── Toast ────────────────────────────────────────────────────
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
-      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;white-space:nowrap;';
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
-    setTimeout(function(){ t.remove(); }, 2600);
-  }
-
-  // Avvia
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuth);
-  } else {
-    initAuth();
-  }
-})();
-
   function filterCircuits(q) {
     q = q.toLowerCase().trim();
     var cards = document.querySelectorAll('.circuit-card');
@@ -2859,86 +2483,8 @@ document.addEventListener('keydown', function(e) {
     }
   }
 
-  function showNotifs() {
-    var container = document.getElementById('notif-container');
-    if (!container) return;
-    var seen = getSeen();
-    var toShow = NOTIFS.filter(function(n){ return !seen.includes(n.id); });
-    
-    container.innerHTML = '';
-    toShow.forEach(function(n, i) {
-      var card = document.createElement('div');
-      card.className = 'notif-card ' + (n.type || '');
-      card.id = 'notif-' + n.id;
-      card.style.animationDelay = (i * 150) + 'ms';
-      card.innerHTML =
-        '<div class="notif-icon">' + n.icon + '</div>' +
-        '<div class="notif-body">' +
-          '<div class="notif-title">' + n.title + '</div>' +
-          '<div class="notif-text">' + n.text + '</div>' +
-        '</div>' +
-        '<button class="notif-close" onclick="dismissNotif(\'' + n.id + '\')" title="Chiudi">✕</button>';
-      container.appendChild(card);
-    });
-    updateBell();
-  }
 
-  window.dismissNotif = function(id) {
-    markSeen(id);
-    var card = document.getElementById('notif-' + id);
-    if (card) {
-      card.style.transition = 'opacity .25s, transform .25s';
-      card.style.opacity = '0';
-      card.style.transform = 'translateX(20px)';
-      setTimeout(function(){ card.remove(); }, 280);
-    }
-  };
-
-  // Aggiungi campanella nell'header
-  function addBell() {
-    var headerRight = document.querySelector('.header-right');
-    if (!headerRight || headerRight.querySelector('.notif-bell-btn')) return;
-    var seen = getSeen();
-    var unseen = NOTIFS.filter(function(n){ return !seen.includes(n.id); }).length;
-    var btn = document.createElement('button');
-    btn.className = 'notif-bell-btn';
-    btn.title = 'Notifiche';
-    btn.innerHTML = '🔔' +
-      '<div class="notif-bell-badge" style="display:' + (unseen>0?'flex':'none') + '">' + unseen + '</div>';
-    btn.onclick = function() {
-      var container = document.getElementById('notif-container');
-      if (!container) return;
-      // Toggle visibilità
-      if (container.style.display === 'none') {
-        container.style.display = 'flex';
-        showNotifs();
-      } else {
-        container.style.display = 'none';
-      }
-    };
-    var themeBtn = headerRight.querySelector('#theme-toggle');
-    if (themeBtn) headerRight.insertBefore(btn, themeBtn);
-    else headerRight.prepend(btn);
-  }
-
-  // Mostra notifiche dopo 1.5s dal caricamento
-  function init() {
-    addBell();
-    setTimeout(function() {
-      showNotifs();
-      // Auto-hide dopo 8 secondi
-      setTimeout(function() {
-        var container = document.getElementById('notif-container');
-        if (container) container.style.display = 'none';
-      }, 8000);
-    }, 1500);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  
 })();
 </script>
 <!-- NOTIFICHE CONTAINER -->
@@ -3014,7 +2560,7 @@ document.addEventListener('keydown', function(e) {
   });
 })();
 </script>
-
+<script src="auth.js"></script>
 </body>
 </link><style id="audio-player-responsive">
 #audio-player-widget {
@@ -3085,4 +2631,5 @@ document.addEventListener('keydown', function(e) {
   }
 }
 </style>
-</head></html>
+</head>
+</html>

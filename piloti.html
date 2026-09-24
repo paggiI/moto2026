@@ -911,6 +911,7 @@
   background: linear-gradient(to left, #e8e8e8, transparent);
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <!-- HEADER -->
@@ -918,11 +919,10 @@
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
 <nav><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></nav>
 <div class="header-right">
-<button class="auth-btn" id="auth-btn" onclick="openAuth()">PA</button>
-<button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
-<div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-<span></span><span></span><span></span>
-</div>
+  <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu"><a href="index.html">Home</a><a href="motogp.html">MotoGP</a><a href="moto2.html">Moto2</a><a href="moto3.html">Moto3</a><a href="calendario.html">Calendario</a><a class="active" href="piloti.html">Piloti</a><a href="team.html">Team</a><a href="classifica.html">Classifica</a><a href="risultati.html">Risultati</a><a href="stagione.html">Stagione</a><a href="prediction.html">Prediction</a><a href="stats.html">Statistiche</a><a href="circuiti.html">Circuiti</a><a href="albo_doro.html">Albo d'oro</a><a href="guida.html">Guida</a><a href="relazione.html">Relazione</a></div>
@@ -957,7 +957,7 @@
 <button class="tab-btn active-all" onclick="filterClass('all',this)">🏁 Tutte le classi</button>
 <button class="tab-btn" onclick="filterClass('motogp',this)">🟠 MotoGP (22+8)</button>
 <button class="tab-btn" onclick="filterClass('moto2',this)">🟡 Moto2 (28+6)</button>
-<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+5)</button>
+<button class="tab-btn" onclick="filterClass('moto3',this)">🔵 Moto3 (26+6)</button>
 </div>
 </div>
 <div style="background:var(--mid);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:1rem;">
@@ -987,6 +987,7 @@
 <div class="rider-card"><div class="rider-flag">🇪🇸</div><div class="rider-name">Marc Márquez</div><div class="rider-meta">Ducati Desmosedici GP26</div>
 <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
             ⚠️ Assente Round 6 (infortunio)<br/></div>
+</div>
 </div>
 </div>
 <!-- Prima Pramac Yamaha -->
@@ -1191,7 +1192,6 @@
 <div class="rider-meta">Honda RC213V — Sub. Zarco al Round 7-8-9-10-11-12</div>
 </div>
 <div class="rider-card"><div class="rider-flag">🇧🇷</div><div class="rider-name">Diogo Moreira</div><div class="rider-meta">Honda RC213V</div><span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);vertical-align:middle;">ROOKIE</span></div>
-</div>
 </div>
 </div></section>
 <!-- ═══════════════ MOTO2 ═══════════════ -->
@@ -1456,8 +1456,8 @@
   <div class="rider-name">Cormac Buchanan</div>
   <div class="rider-meta">KTM</div>
   <div style="margin-top:.5rem;font-size:.7rem;font-family:'Barlow Condensed',sans-serif;color:#f7a600;line-height:1.3;">
-        ⚠️ Assente Round 14-15 (infortunio)<br/>
-        <span style="color:var(--muted);">Sostituito da Marcos Uriarte</span>
+        ⚠️ Assente Round 14-15-16 (infortunio)<br/>
+        <span style="color:var(--muted);">Sostituito da Marcos Uriarte ai Round 14 e 15, da R. Ogiwara al Round 16</span>
     </div>
 </div>
 <div class="rider-card">
@@ -1482,7 +1482,12 @@
 <div class="rider-card" style="border-left:3px solid #f700d6;">
 <div class="rider-flag">🇪🇸</div>
 <div class="rider-name">Marcos Uriarte <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R14-R15</span></div>
-<div class="rider-meta">KTM — Sub. Buchanan al Round 14-15</div>
+<div class="rider-meta">KTM — Sub. Buchanan ai Round 14-15</div>
+</div>
+<div class="rider-card" style="border-left:3px solid #f700d6;">
+<div class="rider-flag">🇯🇵</div>
+<div class="rider-name">Ryota Ogiwara <span style="display:inline-block;font-size:.6rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;background:rgba(247,166,0,.15);color:#f7a600;border:1px solid rgba(247,166,0,.4);vertical-align:middle;">SOSTITUTO R16</span></div>
+<div class="rider-meta">KTM — Sub. Buchanan al Round 16</div>
 </div>
 </div>
 </div>
@@ -1692,7 +1697,8 @@
     'Eduardo Gutiérrez Cobo': '41', 'Matteo Bertelle': '18', 'Joel Esteban': '78',
     'David Almansa': '22', 'David Muñoz': '64', 'Marcos Uriarte': '88',
     'Brian Uriarte': '51', 'Álvaro Carpe': '83', 'Rico Salmela': '27',
-    'Valentín Perrone': '73', 'Leonardo Abruzzo': '25', 'Kiattisak Singhapong': '85', 'David González': '71',
+    'Valentín Perrone': '73', 'Leonardo Abruzzo': '25', 'Kiattisak Singhapong': '85', 
+    'David González': '71', 'Ryota Ogiwara': 'X',
   };
 
   // Aggiorna tutte le rider-card con bandiera+codice e NUMERO di gara
@@ -2153,264 +2159,9 @@ document.addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeNavDropdown();
 });
-// ── SISTEMA LOGIN / REGISTRAZIONE ──
-(function() {
-  var MODE = 'login'; // 'login' | 'register'
-  var USERS_KEY  = 'moto2026_users';
-  var CURR_KEY   = 'moto2026_current';
-  var FAVS_KEY   = 'moto2026_favs_';
-
-  // ── Helpers storage ────────────────────────────────────────
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getCurrentUser() {
-    try { return JSON.parse(localStorage.getItem(CURR_KEY)); } catch(e) { return null; }
-  }
-  function setCurrentUser(u) { localStorage.setItem(CURR_KEY, JSON.stringify(u)); }
-  function getFavs(username) {
-    try { return JSON.parse(localStorage.getItem(FAVS_KEY + username)) || []; } catch(e) { return []; }
-  }
-  function saveFavs(username, favs) {
-    localStorage.setItem(FAVS_KEY + username, JSON.stringify(favs));
-  }
-  function hashPwd(p) { return btoa(encodeURIComponent(p + 'moto2026_salt')); }
-
-  // ── Inizializzazione UI ─────────────────────────────────────
-  function initAuth() {
-    var user = getCurrentUser();
-    var headerRight = document.querySelector('.header-right');
-    if (!headerRight) return;
-
-    // Rimuovi vecchi btn auth se ci sono
-    var old = headerRight.querySelector('.auth-btn, .user-menu-wrap');
-    if (old) old.remove();
-
-    if (user) {
-      // Utente loggato: mostra avatar
-      var favs = getFavs(user.username);
-      var initials = user.username.slice(0,2).toUpperCase();
-      var wrap = document.createElement('div');
-      wrap.className = 'user-menu-wrap';
-      wrap.id = 'user-menu-wrap';
-      // Costruisci lista preferiti
-      var favsHTML = '';
-      if (favs.length > 0) {
-        favsHTML += '<div class="user-menu-divider"></div>';
-        favsHTML += '<div class="user-menu-section">★ PREFERITI</div>';
-        for (var fi = 0; fi < favs.length; fi++) {
-          var fav = favs[fi];
-          var favId   = (typeof fav === 'object') ? fav.id   : fav;
-          var favName = (typeof fav === 'object') ? fav.name : fav.replace(/_/g,' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
-          favsHTML += '<a href="pilota.html?id=' + favId + '" class="user-menu-item user-menu-fav">' + favName + '</a>';
-        }
-      }
-      wrap.innerHTML =
-        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + user.username + '">' +
-          initials +
-        '</button>' +
-        '<div class="user-menu" id="user-menu">' +
-          '<div class="user-menu-header">' +
-            '<div class="user-menu-name">👋 ' + user.username + '</div>' +
-            '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
-          '</div>' +
-          favsHTML +
-          '<div class="user-menu-divider"></div>' +
-          '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
-          '<div class="user-menu-divider"></div>' +
-          '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
-        '</div>';
-      // Inserisci prima del theme-toggle
-      var themeBtn = headerRight.querySelector('#theme-toggle');
-      if (themeBtn) headerRight.insertBefore(wrap, themeBtn);
-      else headerRight.prepend(wrap);
-
-      // Chiudi menu cliccando fuori
-      document.addEventListener('click', function(e) {
-        var w = document.getElementById('user-menu-wrap');
-        if (w && !w.contains(e.target)) {
-          var m = document.getElementById('user-menu');
-          if (m) m.classList.remove('open');
-        }
-      });
-
-      // Inizializza le stelle sui piloti
-      initFavStars(user.username);
-
-      // Mostra sezione preferiti se siamo in piloti.html
-      showFavsSection(user.username);
-
-    } else {
-      // Non loggato: mostra bottone "Accedi"
-      var btn = document.createElement('button');
-      btn.className = 'auth-btn';
-      btn.textContent = '👤 Accedi';
-      btn.onclick = openAuthModal;
-      var themeBtn2 = headerRight.querySelector('#theme-toggle');
-      if (themeBtn2) headerRight.insertBefore(btn, themeBtn2);
-      else headerRight.prepend(btn);
-    }
-  }
-
-  // ── Modal Auth ──────────────────────────────────────────────
-  window.openAuthModal = function() {
-    MODE = 'login';
-    document.getElementById('auth-title').innerHTML = 'Accedi a <span style="color:var(--red)">Moto2026</span>';
-    document.getElementById('auth-submit-btn').textContent = 'Accedi';
-    document.getElementById('auth-switch').innerHTML = 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = 'none';
-    document.getElementById('auth-error').style.display = 'none';
-    document.getElementById('auth-username').value = '';
-    document.getElementById('auth-password').value = '';
-    document.getElementById('auth-overlay').classList.add('open');
-    setTimeout(function(){ document.getElementById('auth-username').focus(); }, 100);
-  };
-  window.closeAuthModal = function() {
-    document.getElementById('auth-overlay').classList.remove('open');
-  };
-  window.switchAuthMode = function() {
-    MODE = MODE === 'login' ? 'register' : 'login';
-    var isReg = MODE === 'register';
-    document.getElementById('auth-title').innerHTML =
-      (isReg ? 'Crea account <span style="color:var(--red)">Moto2026</span>'
-             : 'Accedi a <span style="color:var(--red)">Moto2026</span>');
-    document.getElementById('auth-submit-btn').textContent = isReg ? 'Crea account' : 'Accedi';
-    document.getElementById('auth-switch').innerHTML = isReg
-      ? 'Hai già un account? <a onclick="switchAuthMode()">Accedi</a>'
-      : 'Non hai un account? <a onclick="switchAuthMode()">Registrati</a>';
-    document.getElementById('auth-confirm-wrap').style.display = isReg ? 'block' : 'none';
-    document.getElementById('auth-error').style.display = 'none';
-  };
-
-  function showError(msg) {
-    var el = document.getElementById('auth-error');
-    el.textContent = msg; el.style.display = 'block';
-  }
-
-  window.submitAuth = function() {
-    var username = document.getElementById('auth-username').value.trim();
-    var password = document.getElementById('auth-password').value;
-    if (!username || !password) { showError('Compila tutti i campi.'); return; }
-    if (username.length < 3) { showError('Username min. 3 caratteri.'); return; }
-
-    var users = getUsers();
-    if (MODE === 'register') {
-      var confirm = document.getElementById('auth-confirm').value;
-      if (password !== confirm) { showError('Le password non coincidono.'); return; }
-      if (password.length < 6) { showError('Password min. 6 caratteri.'); return; }
-      if (users[username]) { showError('Username già in uso.'); return; }
-      users[username] = { username: username, pwd: hashPwd(password), createdAt: Date.now() };
-      saveUsers(users);
-      setCurrentUser({ username: username });
-    } else {
-      if (!users[username]) { showError('Username non trovato.'); return; }
-      if (users[username].pwd !== hashPwd(password)) { showError('Password errata.'); return; }
-      setCurrentUser({ username: username });
-    }
-    closeAuthModal();
-    initAuth();
-    showToast('✅ Benvenuto, ' + username + '!');
-  };
-
-  window.logoutUser = function() {
-    localStorage.removeItem(CURR_KEY);
-    initAuth();
-    showToast('👋 Uscito con successo.');
-  };
-
-  window.toggleUserMenu = function() {
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.toggle('open');
-  };
-
-  // ── Preferiti ───────────────────────────────────────────────
-  window.toggleFav = function(riderId, riderName) {
-    var user = getCurrentUser();
-    if (!user) { openAuthModal(); return; }
-    var favs = getFavs(user.username);
-    var idx  = favs.findIndex(function(f){ return f.id === riderId; });
-    if (idx >= 0) {
-      favs.splice(idx, 1);
-      showToast('⭐ ' + riderName + ' rimosso dai preferiti.');
-    } else {
-      favs.push({ id: riderId, name: riderName });
-      showToast('⭐ ' + riderName + ' aggiunto ai preferiti!');
-    }
-    saveFavs(user.username, favs);
-    // Aggiorna tutte le stelle per questo pilota
-    document.querySelectorAll('.fav-star[data-id="' + riderId + '"]').forEach(function(star) {
-      star.classList.toggle('active', idx < 0);
-      star.title = idx < 0 ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-    // Aggiorna badge nel menu
-    var badge = document.querySelector('.user-fav-badge');
-    if (badge) badge.textContent = favs.length;
-    // Aggiorna sezione preferiti
-    showFavsSection(user.username);
-    initAuth();
-  };
-
-  function initFavStars(username) {
-    var favs = getFavs(username);
-    var favIds = new Set(favs.map(function(f){ return f.id; }));
-    document.querySelectorAll('.fav-star').forEach(function(star) {
-      var id = star.getAttribute('data-id');
-      star.classList.toggle('active', favIds.has(id));
-      star.title = favIds.has(id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti';
-    });
-  }
-
-  function showFavsSection(username) {
-    var container = document.getElementById('favs-section-container');
-    if (!container) return;
-    var favs = getFavs(username);
-    if (favs.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-    var chips = favs.map(function(f) {
-      return '<a href="pilota.html?id=' + f.id + '" class="fav-chip">' + f.name + '</a>';
-    }).join('');
-    container.innerHTML =
-      '<div class="favs-section">' +
-        '<div class="favs-title">⭐ I miei piloti preferiti</div>' +
-        '<div class="favs-grid">' + chips + '</div>' +
-      '</div>';
-  }
-
-  window.showFavs = function() {
-    var user = getCurrentUser();
-    if (!user) return;
-    var m = document.getElementById('user-menu');
-    if (m) m.classList.remove('open');
-    window.location.href = 'piloti.html#favs';
-  };
-
-  // ── Toast ────────────────────────────────────────────────────
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);' +
-      'background:#222;color:#fff;padding:.5rem 1.2rem;border-radius:20px;' +
-      'font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.88rem;' +
-      'letter-spacing:.04em;z-index:9999;pointer-events:none;' +
-      'animation:fadeInUp .2s ease;white-space:nowrap;';
-    document.body.appendChild(t);
-    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
-    setTimeout(function(){ t.remove(); }, 2600);
-  }
-
-  // Avvia
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuth);
-  } else {
-    initAuth();
-  }
-})();
 // ── STELLE PREFERITI IN PILOTI.HTML ──
 (function() {
-  // Mappa nome → id pilota (corrispondente ai dati in pilota.html)
+  // Mappa nome → id pilota
   var NAME_TO_ID = {
     'Francesco Bagnaia':      'francesco_bagnaia',
     'Marc Márquez':           'marc_marquez',
@@ -2435,7 +2186,6 @@ document.addEventListener('keydown', function(e) {
     'Johann Zarco':           'johann_zarco',
     'Diogo Moreira':          'diogo_moreira',
     'Pol Espargaró':          'pol_espargaro',
-    // Moto2
     'Joe Roberts':            'joe_roberts',
     'Filip Salač':            'filip_salac',
     'Daniel Holgado':         'daniel_holgado',
@@ -2449,7 +2199,6 @@ document.addEventListener('keydown', function(e) {
     'Sergio García':          'sergio_garcia',
     'Alonso López':           'alonso_lopez',
     'Marcos Ramírez':         'marcos_ramirez',
-    // Moto3
     'Máximo Quiles':          'maximo_quiles',
     'Álvaro Carpe':           'alvaro_carpe',
     'Valentin Perrone':       'valentin_perrone',
@@ -2461,36 +2210,26 @@ document.addEventListener('keydown', function(e) {
     'David González':         'david_gonzalez',
   };
 
-  function getFavs() {
-    var user;
-    try { user = JSON.parse(localStorage.getItem('moto2026_current')); } catch(e) { return []; }
-    if (!user) return [];
-    try { return JSON.parse(localStorage.getItem('moto2026_favs_' + user.username)) || []; } catch(e) { return []; }
-  }
-
-  function initStars() {
-    var favs = getFavs();
+  async function initStars() {
+    // Chiede ad auth.js i preferiti presi da Supabase
+    var favs = (typeof getFavs === 'function') ? await getFavs() : [];
     var favIds = new Set(favs.map(function(f){ return f.id; }));
 
     document.querySelectorAll('.rider-card').forEach(function(card) {
       var nameEl = card.querySelector('.rider-name');
       if (!nameEl) return;
-      // Prendi solo il testo (ignora eventuali badge span)
       var name = nameEl.firstChild ? nameEl.firstChild.textContent.trim() : nameEl.textContent.trim();
       var rid  = NAME_TO_ID[name];
       if (!rid) return;
 
-      // Stella già aggiunta?
       if (card.querySelector('.fav-star')) return;
 
-      // Rendi la card cliccabile → scheda pilota
       card.style.cursor = 'pointer';
       card.onclick = function(e) {
         if (e.target.classList.contains('fav-star')) return;
         window.location.href = 'pilota.html?id=' + rid;
       };
 
-      // Aggiungi stella
       var star = document.createElement('button');
       star.className = 'fav-star' + (favIds.has(rid) ? ' active' : '');
       star.setAttribute('data-id', rid);
@@ -2499,11 +2238,6 @@ document.addEventListener('keydown', function(e) {
       star.onclick = function(e) {
         e.stopPropagation();
         if (typeof toggleFav === 'function') toggleFav(rid, name);
-        else {
-          var user;
-          try { user = JSON.parse(localStorage.getItem('moto2026_current')); } catch(e) {}
-          if (!user) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
-        }
       };
       card.appendChild(star);
     });
@@ -2523,30 +2257,40 @@ input, button { pointer-events: auto !important; }
 .category-btn, .filter-btn { z-index:5 !important; position:relative; }
 </style>
 
-
 <!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
-<div class="auth-modal">
-<button class="auth-close" onclick="closeAuthModal()">✕</button>
-<div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
-<div class="auth-error" id="auth-error"></div>
-<div class="auth-field">
-<label>Username</label>
-<input autocomplete="username" id="auth-username" placeholder="Il tuo username" type="text"/>
-</div>
-<div class="auth-field">
-<label>Password</label>
-<input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<div class="auth-field" id="auth-confirm-wrap" style="display:none;">
-<label>Conferma password</label>
-<input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="••••••••" type="password"/>
-</div>
-<button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
-<div class="auth-switch" id="auth-switch">
-        Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
-</div>
-</div>
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
+    <div class="auth-error" id="auth-error"></div>
+    
+    <!-- CAMPO USERNAME (Solo in registrazione) -->
+    <div class="auth-field" id="auth-username-wrap" style="display:none;">
+      <label>Username</label>
+      <input autocomplete="username" id="auth-username" placeholder="Scegli un username" type="text"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Email</label>
+      <input autocomplete="email" id="auth-email" placeholder="La tua email" type="email"/>
+    </div>
+    
+    <div class="auth-field">
+      <label>Password</label>
+      <input autocomplete="current-password" id="auth-password" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <div class="auth-field" id="auth-confirm-wrap" style="display:none;">
+      <label>Conferma password</label>
+      <input id="auth-confirm" onkeydown="if(event.key==='Enter')submitAuth()" placeholder="•••••••••" type="password"/>
+    </div>
+    
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">Accedi</button>
+    
+    <div class="auth-switch" id="auth-switch">
+      Non hai un account? <a onclick="switchAuthMode()">Registrati</a>
+    </div>
+  </div>
 </div>
 
 
@@ -2625,6 +2369,6 @@ window.addEventListener('scroll', function() {
   });
 })();
 </script>
-
+<script src="auth.js"></script>
 </body>
 </html>
