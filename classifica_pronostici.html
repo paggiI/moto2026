@@ -45,8 +45,7 @@
 <body>
 
 <div class="container">
-    <a href="index.html" class="back-btn">← Torna alla Home</a>
-    
+    <div class="back-btn-wrap" style="margin-bottom: 2rem;"></div>    
     <h1>Classifica <span>Pronostici</span></h1>
     <p class="subtitle">Scopri chi ha indovinato più vincitori!</p>
 
@@ -168,6 +167,67 @@ async function loadLeaderboard() {
 
 // Avvia il caricamento
 loadLeaderboard();
+</script>
+<script>
+// ── TORNA INDIETRO DINAMICO ──
+(function(){
+  var NAMES = {
+    'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
+    'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
+    'classifica.html':'Classifica','risultati.html':'Risultati',
+    'calendario.html':'Calendario','stagione.html':'Stagione',
+    'prediction.html':'Prediction','stats.html':'Statistiche',
+    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'team.html':'Team',
+    'profilo.html':'Profilo', 'classifica_pronostici.html':'Classifica Pronostici'
+  };
+  var cur = (location.pathname.split('/').pop() || 'index.html');
+  var curName = NAMES[cur] || cur;
+
+  function showBackBtn() {
+    var prev = sessionStorage.getItem('moto_from_url');
+    var prevName = sessionStorage.getItem('moto_from_name');
+    if ((!prev || !prevName) && document.referrer) {
+      try {
+        var ref = new URL(document.referrer);
+        if (ref.origin === location.origin) {
+          prev = ref.pathname.split('/').pop() || 'index.html';
+          prevName = NAMES[prev] || prevName || prev;
+        }
+      } catch (e) {}
+    }
+    if (!prev) {
+      prev = 'index.html';
+      prevName = 'Home';
+    }
+    if (prev && prevName && prevName !== curName) {
+      var wrap = document.querySelector('.back-btn-wrap');
+      if (wrap) wrap.innerHTML = '<a class="back-btn" href="'+prev+'">← Torna a '+prevName+'</a>';
+    }
+  }
+
+  function saveAndGo(href) {
+    var dest = href.split('/').pop().split('?')[0].split('#')[0];
+    if (NAMES[dest]) {
+      sessionStorage.setItem('moto_from_url', location.href);
+      sessionStorage.setItem('moto_from_name', curName);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBackBtn);
+  } else {
+    showBackBtn();
+  }
+  window.addEventListener('pageshow', showBackBtn);
+
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    saveAndGo(href);
+  }, true);
+})();
 </script>
 </body>
 </html>

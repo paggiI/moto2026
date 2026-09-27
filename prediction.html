@@ -630,6 +630,9 @@ footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1
 <button class="btn primary" onclick="saveAll()">💾 Salva tutto</button>
 <button class="btn ghost" onclick="clearAll()">🧹 Cancella pronostici</button>
 <a class="btn ghost" href="stats.html">📊 Vai alle statistiche</a>
+<div style="display: flex; gap: .5rem; flex-wrap: wrap;">
+    <a href="classifica_pronostici.html" class="btn" style="white-space: nowrap; background: transparent; border: 1px solid var(--border); color: var(--white);">🏆 Classifica</a>
+  </div>
 </div>
 <div class="meta">
 <span class="pill" id="meta-rounds">7 GP rimanenti</span>
@@ -1087,13 +1090,14 @@ function initPredictionPage() {
 
 /* ── TORNA INDIETRO ── */
 (function(){
-  var NAMES = {
+   var NAMES = {
     'index.html':'Home','motogp.html':'MotoGP','moto2.html':'Moto2',
     'moto3.html':'Moto3','piloti.html':'Piloti','pilota.html':'Pilota',
     'classifica.html':'Classifica','risultati.html':'Risultati',
     'calendario.html':'Calendario','stagione.html':'Stagione',
     'prediction.html':'Prediction','stats.html':'Statistiche',
-    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'profilo.html':'Profilo'
+    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'team.html':'Team',
+    'profilo.html':'Profilo', 'classifica_pronostici.html':'Classifica Pronostici'
   };
   var cur = (location.pathname.split('/').pop() || 'index.html');
   var curName = NAMES[cur] || cur;
