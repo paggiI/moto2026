@@ -1483,6 +1483,36 @@
   }
 
 }
+/* LAYOUT MODAL NOTIZIE */
+.news-modal-layout {
+    max-width: 900px;
+    width: 95%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+.news-modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: row !important; /* FORZA LE DUE COLONNE AFFIANCATE SUL PC */
+    overflow: hidden;
+}
+.news-col-left {
+    flex: 2;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.news-col-right {
+    flex: 1;
+    min-width: 300px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background: var(--mid);
+}
+
 /* SMARTPHONE: Le colonne si impilano! */
 @media (max-width: 768px) {
     .news-modal-layout {
@@ -1492,19 +1522,18 @@
         border-radius: 0; 
     }
     .news-modal-body {
-        flex-direction: column; 
+        flex-direction: column !important; /* SUL TELEFONO TORNA UNA SOPRA L'ALTRA */
         overflow-y: auto; 
     }
     .news-col-left {
         overflow-y: auto;
-        max-height: 50vh; /* IL TESTO DELLA NOTIZIA OCCUPA AL MASSIMO META SCHERMO, POI INIZIANO I COMMENTI */
+        max-height: 50vh; 
         padding: 1.2rem;
         border-bottom: 2px solid var(--border);
     }
     .news-col-right {
         min-width: 0;
         border-left: none;
-        border-top: none; /* Leviamo il bordo rosso doppio */
         background: var(--dark);
     }
     #comments-list {
