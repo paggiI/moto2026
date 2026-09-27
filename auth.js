@@ -4,7 +4,51 @@
   const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
+  // Inietta il CSS per la campanellina in tutte le pagine automaticamente
+// Inietta il CSS per la campanellina in tutte le pagine automaticamente
+var notifStyle = document.createElement('style');
+notifStyle.innerHTML = `
+  .user-menu-wrap { 
+    position: relative !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    gap: .3rem !important; 
+  }
+  .notif-bell-btn { 
+    background: transparent !important; 
+    border: 1px solid #2a2a2a !important; 
+    color: #8a8a8a !important; 
+    cursor: pointer !important; 
+    border-radius: 6px !important; 
+    padding: .28rem .55rem !important; 
+    font-size: 1rem !important; 
+    line-height: 1 !important; 
+    position: relative !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    transition: border-color .15s, color .15s !important; 
+  } 
+  .notif-bell-btn:hover { 
+    border-color: #e8001d !important; 
+    color: #f5f5f5 !important; 
+  } 
+    .notif-badge { 
+    position: absolute !important; 
+    top: -5px !important; 
+    right: -5px !important; 
+    background: #e8001d !important; 
+    color: #fff !important; 
+    border-radius: 50% !important; 
+    width: 16px !important; 
+    height: 16px !important; 
+    font-size: .6rem !important; 
+    font-family: 'Barlow Condensed', sans-serif !important; 
+    font-weight: 700 !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+  }
+`;
+document.head.appendChild(notifStyle);
   var MODE = 'login'; // 'login' | 'register'
   var currentUser = null;
 
@@ -47,8 +91,8 @@
       }
       
       wrap.innerHTML =
-        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + username + '">' + initials + '</button>' +
-        '<div class="user-menu" id="user-menu">' +
+        '<button class="notif-bell-btn" id="notif-bell-btn" onclick="toggleNotifMenu()" title="Notifiche">🔔<span class="notif-badge" id="notif-badge" style="display:none;"></span></button>' +
+        '<button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleUserMenu()" title="' + username + '">' + initials + '</button>' +        '<div class="user-menu" id="user-menu">' +
           '<div class="user-menu-header">' +
             '<div class="user-menu-name">👋 ' + username + '</div>' +
             '<div class="user-menu-sub">' + favs.length + ' piloti preferiti</div>' +
@@ -56,6 +100,8 @@
           favsHTML +
           '<div class="user-menu-divider"></div>' +
           '<a href="piloti.html" class="user-menu-item">👤 Tutti i piloti</a>' +
+          '<a href="prediction.html" class="user-menu-item">🎯 Pronostici</a>' +
+          '<a href="profilo.html" class="user-menu-item">⚙️ Impostazioni</a>' +
           '<div class="user-menu-divider"></div>' +
           '<div class="user-menu-item logout" onclick="logoutUser()">⊘ Esci</div>' +
         '</div>';
@@ -66,6 +112,32 @@
 
       initFavStars(favs);
       showFavsSection(favs);
+
+      // ══════════════════════════════════════
+      //  PUNTO 3: MENU NOTIFICHE
+      // ══════════════════════════════════════
+      var notifMenu = document.createElement('div');
+      notifMenu.className = 'user-menu';
+      notifMenu.id = 'notif-menu';
+      notifMenu.style.right = '38px'; // Allineato sotto la campanellina
+      notifMenu.innerHTML = '<div class="user-menu-header" style="display:flex; justify-content:space-between; align-items:center;"><div class="user-menu-name">🔔 Notifiche</div></div><div id="notif-list" style="padding:.5rem 1rem;"><p style="color:var(--muted);font-size:.8rem;">Caricamento...</p></div>';
+      
+      var menuWrap = document.getElementById('user-menu-wrap');
+      if (menuWrap) {
+          menuWrap.appendChild(notifMenu);
+      }
+
+      // Chiudi menu notifiche cliccando fuori
+      document.addEventListener('click', function(e) {
+          var b = document.getElementById('notif-bell-btn');
+          var m = document.getElementById('notif-menu');
+          if (b && m && !b.contains(e.target) && !m.contains(e.target)) {
+              m.classList.remove('open');
+          }
+      });
+
+      // Carica le notifiche dal database!
+      loadUserNotifications(currentUser.id);
 
     } else {
       // Non loggato: mostra bottone "Accedi"
@@ -372,6 +444,45 @@
       if (m) m.classList.remove('open');
     }
   });
+
+   // ══════════════════════════════════════════════════════════════════════
+  //  PUNTO 4: LOGICA NOTIFICHE
+  // ══════════════════════════════════════════════════════════════════════
+  window.toggleNotifMenu = function() {
+    var m = document.getElementById('notif-menu');
+    var um = document.getElementById('user-menu');
+    if (um) um.classList.remove('open'); // Chiude l'altro menu
+    if (m) m.classList.toggle('open');
+  };
+
+  async function loadUserNotifications(userId) {
+    const { data, error } = await supabase.rpc('get_user_notifications', { p_user_id: userId });
+    const listEl = document.getElementById('notif-list');
+    const badge = document.getElementById('notif-badge');
+    
+    if (error || !data || data.length === 0) {
+        if (listEl) listEl.innerHTML = '<p style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem 0;">Nessuna nuova notifica.</p>';
+        if (badge) badge.style.display = 'none';
+        return;
+    }
+    
+    // Mostra il bollino rosso col numero!
+    if (badge) {
+        badge.textContent = data.length;
+        badge.style.display = 'flex';
+    }
+    
+    // Riempi la lista
+    if (listEl) {
+        listEl.innerHTML = data.map(n => {
+            const date = new Date(n.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short' });
+            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border);">' +
+                   '<div style="font-size:.75rem; color:var(--muted); margin-bottom:.2rem;">' + date + '</div>' +
+                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4;">' + n.text + '</div>' +
+                   '</div>';
+        }).join('');
+    }
+  }
 
   // UNICA fonte di verità per l'aggiornamento della UI
   // Supabase lancia questo evento all'avvio e ad ogni login/logout

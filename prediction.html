@@ -597,6 +597,14 @@
   border-color:#d0d0d0!important;
   color:#111!important;
 }
+footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; }
+    footer .socials a {
+      color: var(--muted); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .85rem; letter-spacing: .06em;
+      text-transform: uppercase; transition: color .2s;
+    }
+    footer .socials a:hover { color: var(--white); }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -669,8 +677,11 @@
 </div>
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Prediction room — pronostici personali sui Gran Premi rimanenti.</p>
-</footer>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+<div class="socials">
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
+</div>
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
 <script>
 const FUTURE_ROUNDS = [{"num": 16, "name": "Gran Premio del Giappone", "circuit": "Twin Ring Motegi", "date": "2 – 4 ott", "flag": "🇯🇵", "status": "next"}, {"num": 17, "name": "Gran Premio d'Indonesia", "circuit": "Pertamina Mandalika Street Circuit", "date": "9 – 11 ott", "flag": "🇮🇩", "status": "future"}, {"num": 18, "name": "Gran Premio d'Australia", "circuit": "Phillip Island Grand Prix Circuit", "date": "23 – 25 ott", "flag": "🇦🇺", "status": "future"}, {"num": 19, "name": "Gran Premio della Malesia", "circuit": "Sepang International Circuit", "date": "30 ott – 1 nov", "flag": "🇲🇾", "status": "future"}, {"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
@@ -847,12 +858,10 @@ function riderAvailableForRound(r, roundNum) {
 function ridersMarkup(cat, roundNum) { const riders = (RIDER_OPTIONS[cat] || []).filter(r => riderAvailableForRound(r, roundNum)); return ['<option value="">Seleziona…</option>'].concat(riders.map(r => `<option value="${escapeHtml(r.name)}">${escapeHtml(r.name)} — ${escapeHtml(r.team || '')}</option>`)).join(''); }
 function loadPredictions() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; } }
 function refreshSidebar() {
-  const data = loadPredictions();
-  const items = Object.entries(data).sort((a,b) => Number(a[0]) - Number(b[0]));
+  const items = Object.entries(PREDICTIONS_STATE).sort((a,b) => Number(a[0]) - Number(b[0]));
   document.getElementById('saved-count').textContent = `${items.length} salvati`;
   document.getElementById('meta-saved').textContent = `${items.length} pronostici salvati`;
   
-  // --- NUOVA LOGICA: Calcola il pilota più scelto ---
   const counts = {};
   items.forEach(([round, r]) => {
     ['motogp', 'moto2', 'moto3'].forEach(cat => {
@@ -864,7 +873,6 @@ function refreshSidebar() {
   
   let favHtml = '';
   if (Object.keys(counts).length > 0) {
-    // Trova il pilota con il numero più alto di pronostici
     const topFav = Object.entries(counts).sort((a,b) => b[1] - a[1])[0];
     favHtml = `
       <div style="background:rgba(232,0,29,.1); border:1px solid rgba(232,0,29,.25); padding:.8rem; border-radius:10px; margin-bottom:1rem; text-align:center;">
@@ -874,7 +882,6 @@ function refreshSidebar() {
       </div>
     `;
   }
-  // ------------------------------------------------
 
   document.getElementById('saved-list').innerHTML = 
     favHtml + 
@@ -887,9 +894,137 @@ function refreshSidebar() {
       </div>
     `).join('') : '<p class="tip">Nessun pronostico salvato al momento.</p>');
 }
-function savePredictions(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); refreshSidebar(); }
+// Inizializza Supabase direttamente qui (come in profilo.html)
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
+const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let PREDICTIONS_STATE = {};
+let CURRENT_USER_PRED = null;
+
+// 1. Carica i pronostici dal Database
+async function loadPredictions() {
+    const { data: { session } } = await s.auth.getSession();
+    CURRENT_USER_PRED = session?.user || null;
+    
+    if (!CURRENT_USER_PRED) {
+        PREDICTIONS_STATE = {};
+        refreshSidebar();
+        return;
+    }
+    
+    const { data, error } = await s.from('predictions')
+        .select('round_id, motogp_winner, moto2_winner, moto3_winner')
+        .eq('user_id', CURRENT_USER_PRED.id);
+    
+    if (data) {
+        PREDICTIONS_STATE = {};
+        data.forEach(pred => {
+            PREDICTIONS_STATE[pred.round_id] = {
+                motogp: pred.motogp_winner,
+                moto2: pred.moto2_winner,
+                moto3: pred.moto3_winner
+            };
+        });
+        applyPredictionsToUI();
+        refreshSidebar();
+    }
+}
+
+// 2. Salva un singolo round nel Database
+async function saveRound(num) {
+    if (!CURRENT_USER_PRED) { 
+        if (window.openAuthModal) window.openAuthModal(); 
+        else alert('Devi essere loggato per salvare i pronostici!'); 
+        return; 
+    }
+    
+    const roundData = {};
+    document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => { 
+        roundData[sel.dataset.cat] = sel.value; 
+    });
+
+    const { error } = await s.from('predictions').upsert({ 
+        user_id: CURRENT_USER_PRED.id, 
+        round_id: String(num), 
+        motogp_winner: roundData.motogp || null, 
+        moto2_winner: roundData.moto2 || null, 
+        moto3_winner: roundData.moto3 || null 
+    }, { onConflict: 'user_id,round_id' });
+        
+    if (error) { 
+        console.error('Errore salvataggio:', error); 
+        showToast('❌ Errore nel salvataggio nel database.', true);
+    } else { 
+        PREDICTIONS_STATE[num] = roundData;
+        refreshSidebar();
+        showToast('✅ Pronostico salvato nel cloud!');
+    }
+}
+
+// 3. Cancella un singolo round dal Database
+async function clearRound(num) {
+    if (!CURRENT_USER_PRED) return;
+    
+    const { error } = await s.from('predictions')
+        .delete()
+        .match({ user_id: CURRENT_USER_PRED.id, round_id: String(num) });
+      
+    if (error) {
+        alert('Errore nella cancellazione.');
+    } else {
+        delete PREDICTIONS_STATE[num];
+        document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => sel.value = '');
+        refreshSidebar();
+    }
+}
+
+// 4. Salva tutto
+async function saveAll() {
+    if (!CURRENT_USER_PRED) { 
+        if (window.openAuthModal) window.openAuthModal(); 
+        else alert('Devi essere loggato per salvare i pronostici!');
+        return; 
+    }
+    
+    for (const r of FUTURE_ROUNDS) {
+        await saveRound(r.num);
+    }
+    showToast('✅ Tutti i pronostici sono stati salvati nel cloud!');
+}
+
+// 5. Cancella tutto dal Database
+async function clearAll() { 
+    if (!CURRENT_USER_PRED) return;
+    if (!confirm('Vuoi cancellare tutti i pronostici salvati nel cloud?')) return; 
+    
+    const { error } = await s.from('predictions')
+        .delete()
+        .eq('user_id', CURRENT_USER_PRED.id);
+      
+    if (error) {
+        showToast('Errore nella cancellazione.', true);
+    } else {
+        PREDICTIONS_STATE = {};
+        document.querySelectorAll('select').forEach(sel => sel.value = '');
+        refreshSidebar();
+    }
+}
+
+// 6. Applica lo stato locale alle <select> dell'HTML
+function applyPredictionsToUI() {
+    FUTURE_ROUNDS.forEach(r => {
+        const data = PREDICTIONS_STATE[r.num];
+        if (!data) return;
+        document.querySelectorAll(`select[data-round="${r.num}"]`).forEach(sel => {
+            const key = sel.dataset.cat;
+            if (data[key]) sel.value = data[key];
+        });
+    });
+}
+
+// 7. Renderizza le card dei GP
 function renderRounds() {
-  const saved = loadPredictions();
   const root = document.getElementById('rounds');
   root.innerHTML = FUTURE_ROUNDS.map(r => `
     <details class="round" open>
@@ -917,23 +1052,14 @@ function renderRounds() {
       </div>
     </details>
   `).join('');
-  FUTURE_ROUNDS.forEach(r => {
-    const data = saved[r.num];
-    if (!data) return;
-    document.querySelectorAll(`select[data-round="${r.num}"]`).forEach(sel => {
-      const key = sel.dataset.cat;
-      if (data[key]) sel.value = data[key];
-    });
-  });
+  
+  applyPredictionsToUI();
   refreshSidebar();
 }
-function saveRound(num) { const data = loadPredictions(); const roundData = {}; document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => { roundData[sel.dataset.cat] = sel.value; }); data[num] = roundData; savePredictions(data); }
-function clearRound(num) { const data = loadPredictions(); delete data[num]; localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => sel.value = ''); refreshSidebar(); }
-function saveAll() { FUTURE_ROUNDS.forEach(r => saveRound(r.num)); alert('Pronostici salvati nel browser.'); }
-function clearAll() { if (!confirm('Vuoi cancellare tutti i pronostici salvati?')) return; localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('select').forEach(sel => sel.value = ''); refreshSidebar(); }
+
+// 8. Generatore casuale
 function randomFillRound(num) {
   document.querySelectorAll(`select[data-round="${num}"]`).forEach(sel => {
-    // Prendi tutte le opzioni tranne la prima (che di solito è "Seleziona...")
     const options = Array.from(sel.options).filter(o => o.value !== '');
     if (options.length > 0) {
       const randomOption = options[Math.floor(Math.random() * options.length)];
@@ -941,8 +1067,23 @@ function randomFillRound(num) {
     }
   });
 }
-renderRounds();
 
+// 9. Avvio della pagina
+function initPredictionPage() {
+    renderRounds();
+    loadPredictions();
+    
+    // Se l'utente fa login mentre la pagina è aperta, ricarica i dati
+    s.auth.onAuthStateChange((event, session) => {
+        if (session) {
+            loadPredictions();
+        } else {
+            PREDICTIONS_STATE = {};
+            document.querySelectorAll('select').forEach(sel => sel.value = '');
+            refreshSidebar();
+        }
+    });
+}
 
 /* ── TORNA INDIETRO ── */
 (function(){
@@ -952,7 +1093,7 @@ renderRounds();
     'classifica.html':'Classifica','risultati.html':'Risultati',
     'calendario.html':'Calendario','stagione.html':'Stagione',
     'prediction.html':'Prediction','stats.html':'Statistiche',
-    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione'
+    'albo_doro.html':"Albo d'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'profilo.html':'Profilo'
   };
   var cur = (location.pathname.split('/').pop() || 'index.html');
   var curName = NAMES[cur] || cur;
@@ -1002,6 +1143,18 @@ renderRounds();
     saveAndGo(href);
   }, true);
 })();
+
+function showToast(msg, isError = false) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:' + (isError ? '#e8001d' : '#222') + ';color:#fff;padding:.5rem 1.2rem;border-radius:20px;font-family:"Barlow Condensed",sans-serif;font-weight:700;z-index:9999;pointer-events:none;animation:fadeInUp .2s ease;';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .3s'; }, 2200);
+    setTimeout(function(){ t.remove(); }, 2600);
+}
+
+// Avvia la pagina
+initPredictionPage();
 </script>
 
 <!-- AUDIO PLAYER -->
@@ -1027,7 +1180,7 @@ renderRounds();
 </div>
 
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>

@@ -270,6 +270,11 @@
     }
     
     .back-btn:hover { border-color: var(--red); color: var(--white); }
+    footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted);}
+    footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
+    footer .socials{display:flex;justify-content:center;gap:1.2rem;margin:1rem 0;}
+    footer .socials a{color:var(--muted);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+  
 </style>
 </head>
 <body>
@@ -401,15 +406,16 @@
 <a class="circ-nav-btn" href="../circuiti.html" style="margin-bottom:3rem;">← Torna a tutti i circuiti</a>
 </div>
 </main>
-<footer style="background:var(--mid);border-top:1px solid var(--border);padding:2rem;text-align:center;">
-<a href="../index.html" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:var(--white);text-decoration:none;">MOTO<span style="color:var(--red)">2026</span></a>
-<p style="font-family:'Barlow Condensed',sans-serif;font-size:.78rem;color:var(--muted);margin:.4rem 0 0;">
-    Circuiti · 22 tracciati · Stagione 2026
-  </p>
-</footer>
+<footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+<div class="socials">
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
+</div>
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
 <!-- AUTH MODAL (Gestito da auth.js) -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span style="color:var(--red)">Moto2026</span></div>

@@ -1002,42 +1002,11 @@
       color: var(--white);
     }
 
-    footer {
-      background: var(--mid);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      font-size: .85rem;
-      color: var(--muted);
-    }
-
-    footer .logo {
-      font-size: 1.5rem;
-      display: block;
-      margin-bottom: .5rem;
-    }
-
-    footer .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    footer .socials a {
-      color: var(--muted);
-      text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: .85rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      transition: color .2s;
-    }
-
-    footer .socials a:hover {
-      color: var(--white);
-    }
+    footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted);}
+    footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
+    footer .socials{display:flex;justify-content:center;gap:1.2rem;margin:1rem 0;}
+    footer .socials a{color:var(--muted);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+  
 
     /* LAYOUT GP */
     .gp-layout {
@@ -2253,15 +2222,11 @@ table.rt thead tr {
 </div>
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Risultati ufficiali — aggiornati al Gran Premio d'Austria</p>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
 <div class="socials">
-<a href="#">📸 Instagram</a>
-<a href="#">🐦 X / Twitter</a>
-<a href="#">▶️ YouTube</a>
-<a href="#">📘 Facebook</a>
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
 </div>
-<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
-</footer>
 <script>
       // ══════════════════════════════════════════
       // CONFIGURAZIONE TRACCIATI
@@ -12144,7 +12109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       per cercare un pilota</div>
 
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>

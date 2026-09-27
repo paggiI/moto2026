@@ -138,8 +138,11 @@
     .team-badge.m3-badge{background:rgba(0,180,216,.12);color:#00b4d8;border:1px solid rgba(0,180,216,.3);}
 
     /* ══ FOOTER ══ */
-    footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;}
-    footer a{color:var(--muted);text-decoration:none;}
+    footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted);}
+    footer .logo{font-size:1.5rem;display:block;margin-bottom:.5rem;}
+    footer .socials{display:flex;justify-content:center;gap:1.2rem;margin:1rem 0;}
+    footer .socials a{color:var(--muted);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+  
     .socials{display:flex;gap:1rem;justify-content:center;margin:.5rem 0;}
 
     @media(max-width:600px){
@@ -1853,16 +1856,12 @@
   </div>
 </div>
 <footer>
-<a class="logo" href="index.html" style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:var(--white);text-decoration:none;">MOTO<span style="color:var(--red);">2026</span></a>
-<p style="margin-top:.4rem;">Team — Motomondiale 2026</p>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
 <div class="socials">
-<a href="#">📸 Instagram</a>
-<a href="#">🐦 X / Twitter</a>
-<a href="#">▶️ YouTube</a>
-<a href="#">📘 Facebook</a>
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
 </div>
-<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
-</footer>
 
 <script>
 // ══ TABS ══
@@ -1966,7 +1965,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>

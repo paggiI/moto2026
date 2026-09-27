@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Impostazioni Profilo — Motomondiale 2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Libreria Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    :root { --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a; --border:#2a2a2a; --muted:#8a8a8a; --white:#f5f5f5; }
+    [data-theme="light"] { --dark:#f5f5f5; --mid:#ececec; --card:#fff; --border:#d8d8d8; --muted:#666; --white:#111; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; min-height:100vh; display:flex; justify-content:center; padding:2rem 1rem; transition: background .3s, color .3s; }
+    .profile-container { width:100%; max-width:600px; }
+    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; transition:.2s; }
+    .back-btn:hover { border-color:var(--red); color:var(--white); }
+    h1 { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.04em; margin-bottom:.5rem; }
+    h1 span { color:var(--red); }
+    .subtitle { color:var(--muted); margin-bottom:2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; box-shadow:0 8px 30px rgba(0,0,0,.08); }
+    .card-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin-bottom:1.2rem; border-bottom:1px solid var(--border); padding-bottom:.5rem; letter-spacing:.04em; }
+    .info-row { display:flex; justify-content:space-between; align-items:center; padding:.6rem 0; }
+    .info-label { color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; font-size:.8rem; letter-spacing:.1em; }
+    .info-value { font-weight:600; }
+    .form-group { margin-bottom:1.2rem; }
+    label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.4rem; letter-spacing:.1em; }
+    input { width:100%; background:var(--mid); border:1px solid var(--border); border-radius:6px; color:var(--white); font-family:'Barlow',sans-serif; font-size:1rem; padding:.7rem; outline:none; transition:.2s; }
+    input:focus { border-color:var(--red); }
+    .btn { width:100%; background:var(--red); color:#fff; border:none; border-radius:6px; padding:.8rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; text-transform:uppercase; letter-spacing:.05em; cursor:pointer; transition:.2s; margin-top:.5rem; }
+    .btn:hover { background:#c4001a; }
+    .btn.secondary { background:transparent; border:1px solid var(--border); color:var(--white); }
+    .btn.secondary:hover { border-color:var(--red); color:var(--red); background:rgba(232,0,29,.05); }
+    .btn.danger { background:transparent; border:1px solid rgba(255,0,0,.3); color:#ff6b6b; }
+    .btn.danger:hover { background:rgba(255,0,0,.1); }
+    .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:1rem 1.5rem; border-radius:8px; font-family:'Barlow Condensed',sans-serif; font-weight:700; box-shadow:0 8px 30px rgba(0,0,0,.3); z-index:9999; display:none; border:1px solid var(--border); }
+    .loading { text-align:center; color:var(--muted); padding:3rem 0; }
+</style>
+</head>
+<body>
+
+<div class="profile-container">
+    <a href="index.html" class="back-btn">← Torna alla Home</a>
+    
+    <h1>Impostazioni <span>Profilo</span></h1>
+    <p class="subtitle">Gestisci il tuo account e le tue preferenze.</p>
+
+    <div id="profile-content">
+        <p class="loading">Caricamento dati profilo...</p>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="auth.js"></script>
+<script>
+// Inizializziamo Supabase direttamente qui (la chiave publishable è sicura nel frontend)
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
+const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function initProfilePage() {
+    // Leggiamo la sessione attiva direttamente dal database locale di Supabase (istantaneo)
+    const { data: { session } } = await s.auth.getSession();
+    const user = session?.user || null;
+    
+    if (!user) {
+        document.getElementById('profile-content').innerHTML = '<p class="loading">Devi essere loggato per vedere questa pagina. <br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">← Torna alla Home</a></p>';
+        return;
+    }
+    
+    await loadProfileData(user);
+}
+
+async function loadProfileData(user) {
+    const username = user.user_metadata?.username || user.email.split('@')[0];
+    
+    // Scarica preferiti e pronostici insieme
+    const { data: favsData } = await s.from('favorites').select('rider_id, rider_name').eq('user_id', user.id);
+    const { data: predsData } = await s.from('predictions').select('round_id, motogp_winner, moto2_winner, moto3_winner').eq('user_id', user.id);
+    
+    const favCount = favsData ? favsData.length : 0;
+    const predCount = predsData ? predsData.length : 0;
+    
+    // Prepara la lista preferiti
+    var favsListHtml = '';
+    if (favCount > 0) {
+        favsListHtml = favsData.map(function(fav) {
+            return '<a href="pilota.html?id=' + fav.rider_id + '" style="display:block; padding:.5rem 0; color:var(--white); text-decoration:none; border-bottom:1px solid var(--border); font-family:Barlow Condensed, sans-serif; font-size:1rem;">⭐ ' + fav.rider_name + '</a>';
+        }).join('');
+    } else {
+        favsListHtml = '<p style="color:var(--muted); font-size:.9rem; margin-top:1rem;">Nessun pilota preferito.</p>';
+    }
+    
+    // Prepara la lista pronostici
+    var predsListHtml = '';
+    if (predCount > 0) {
+        predsListHtml = predsData.map(function(p) {
+            return '<div style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:Barlow Condensed, sans-serif;">' +
+                   '<strong>GP #' + p.round_id + '</strong><br>' +
+                   '<span style="color:var(--muted);">MotoGP: ' + (p.motogp_winner || '—') + '</span><br>' +
+                   '<span style="color:var(--muted);">Moto2: ' + (p.moto2_winner || '—') + '</span><br>' +
+                   '<span style="color:var(--muted);">Moto3: ' + (p.moto3_winner || '—') + '</span>' +
+                   '</div>';
+        }).join('');
+    } else {
+        predsListHtml = '<p style="color:var(--muted); font-size:.9rem; margin-top:1rem;">Nessun pronostico salvato.</p>';
+    }
+    
+    document.getElementById('profile-content').innerHTML = `
+        <div class="card">
+            <div class="card-title">📊 Informazioni Account</div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value">${user.email}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Username Attuale</span>
+                <span class="info-value" id="current-username">${username}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Piloti Preferiti</span>
+                <span class="info-value">
+                    ${favCount} 
+                    ${favCount > 0 ? '<button onclick="toggleFavsList(this)" style="margin-left:.5rem; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:.2rem .6rem; border-radius:4px; cursor:pointer; font-family:inherit; font-size:.8rem;">Mostra</button>' : ''}
+                </span>
+            </div>
+            <div id="favs-list" style="display:none; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+                ${favsListHtml}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎯 I tuoi Pronostici</div>
+            <div class="info-row">
+                <span class="info-label">GP Pronosticati</span>
+                <span class="info-value">${predCount}</span>
+            </div>
+            <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+                ${predsListHtml}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">✏️ Cambia Username</div>
+            <div class="form-group">
+                <label>Nuovo Username</label>
+                <input type="text" id="new-username" placeholder="Inserisci un nuovo username" />
+            </div>
+            <button class="btn" onclick="updateUsername()">Aggiorna Username</button>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔒 Cambia Password</div>
+            <div class="form-group">
+                <label>Nuova Password</label>
+                <input type="password" id="new-password" placeholder="Minimo 8 caratteri, 1 maiuscola, 1 numero" />
+            </div>
+            <div class="form-group">
+                <label>Conferma Nuova Password</label>
+                <input type="password" id="confirm-password" placeholder="Ripeti la password" />
+            </div>
+            <button class="btn" onclick="updatePassword()">Aggiorna Password</button>
+        </div>
+
+        <div class="card" style="border-color: rgba(255,0,0,.2);">
+            <div class="card-title" style="color:#ff6b6b;">⚠️ Zona Pericolosa</div>
+            <button class="btn secondary" onclick="logoutUser()" style="margin-bottom:1rem;">📤 Logout</button>
+            <button class="btn danger" onclick="deleteAccount()">🗑 Cancella Account</button>
+        </div>
+    `;
+    
+    setupPasswordToggles();
+}
+
+// Funzione per mostrare/nascondere la lista dei preferiti
+function toggleFavsList(btn) {
+    var listEl = document.getElementById('favs-list');
+    
+    if (listEl.style.display === 'none') {
+        listEl.style.display = 'block';
+        btn.textContent = 'Nascondi';
+    } else {
+        listEl.style.display = 'none';
+        btn.textContent = 'Mostra';
+    }
+}
+
+async function updateUsername() {
+    const newUsername = document.getElementById('new-username').value.trim();
+    if (!newUsername || newUsername.length < 3) { showToast('Username troppo corto (min 3 caratteri).', true); return; }
+    
+    // CONTROLLA SE STAI USANDO LO STESSO USERNAME
+    const currentUsername = document.getElementById('current-username').textContent;
+    if (newUsername === currentUsername) {
+        showToast('Stai già usando questo username!', true);
+        return;
+    }
+    
+    const { data, error } = await s.auth.updateUser({ data: { username: newUsername } });
+    
+    if (error) { showToast('Errore durante l\'aggiornamento.', true); }
+    else {
+        document.getElementById('current-username').textContent = newUsername;
+        document.getElementById('new-username').value = '';
+        showToast('✅ Username aggiornato con successo!');
+    }
+}
+
+async function updatePassword() {
+    const newPass = document.getElementById('new-password').value;
+    const confirmPass = document.getElementById('confirm-password').value;
+    
+    if (newPass !== confirmPass) { showToast('Le password non coincidono.', true); return; }
+    if (newPass.length < 8 || !/[A-Z]/.test(newPass) || !/\d/.test(newPass)) {
+        showToast('La password deve avere 8 caratteri, una maiuscola e un numero.', true);
+        return;
+    }
+    
+    const { error } = await s.auth.updateUser({ password: newPass });
+    
+    if (error) {
+        // INTERCETTA L'ERRORE DI SUPABASE SE LA PASSWORD È UGUALE ALLA VECCHIA
+        var errMessage = error.message.toLowerCase();
+        if (errMessage.includes('different') || errMessage.includes('same') || errMessage.includes('identical')) {
+            showToast('La nuova password deve essere diversa da quella attuale!', true);
+        } else {
+            showToast('Errore durante il cambio password.', true);
+        }
+    } else {
+        document.getElementById('new-password').value = '';
+        document.getElementById('confirm-password').value = '';
+        showToast('✅ Password aggiornata con successo!');
+    }
+}
+
+async function logoutUser() {
+    await s.auth.signOut();
+    window.location.href = 'index.html';
+}
+
+async function deleteAccount() {
+    if (!confirm('Sei sicuro? Questa azione è irreversibile.')) return;
+    showToast('ℹ️ Per cancellare l\'account, contatta l\'amministratore del sito.', true);
+}
+
+function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = isError ? '#e8001d' : '#222';
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+// Funzione per aggiungere l'occhietto ai campi password
+function setupPasswordToggles() {
+    var inputs = document.querySelectorAll('#profile-content input[type="password"]');
+    inputs.forEach(function(input) {
+        if (input.dataset.toggleAdded) return; 
+        input.dataset.toggleAdded = 'true';
+        
+        input.style.paddingRight = '2.2rem'; 
+        input.parentElement.style.position = 'relative';
+        
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.innerHTML = '👁️';
+        btn.style.cssText = 'position:absolute;right:.7rem;bottom:.55rem;background:none;border:none;cursor:pointer;font-size:1rem;padding:0;line-height:1;color:var(--muted);z-index:10;';
+        
+        btn.addEventListener('click', function() {
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = '🙈';
+            } else {
+                input.type = 'password';
+                btn.innerHTML = '👁️';
+            }
+        });
+        
+        input.parentElement.appendChild(btn);
+    });
+}
+
+// Per far comparire il bottone "Torna al Profilo" nelle altre pagine
+document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    
+    // Salva che stiamo partendo dal profilo
+    sessionStorage.setItem('moto_from_url', location.href);
+    sessionStorage.setItem('moto_from_name', 'Profilo');
+}, true);
+
+// Avvia la pagina
+initProfilePage();
+
+// Ricarica i dati se l'utente torna alla pagina col tasto "Indietro"
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        initProfilePage();
+    }
+});
+</script>
+</body>
+</html>

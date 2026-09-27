@@ -407,6 +407,14 @@
       color: var(--muted); font-size: 1.1rem;
       cursor: pointer; line-height: 1;
     }
+    footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; }
+    footer .socials a {
+      color: var(--muted); text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .85rem; letter-spacing: .06em;
+      text-transform: uppercase; transition: color .2s;
+    }
+    footer .socials a:hover { color: var(--white); }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -601,6 +609,8 @@
       </div>
       <div class="team-body">
         <div class="rider-move"><div class="move-label">Confermato</div><div class="rider-name move-in">Filip Salač</div></div>
+        <div class="rider-move"><div class="move-label">Rumor (Moto2 JuniorGP)</div><div class="rider-name move">Milan Pawelec</div></div>
+        <div class="rider-move"><div class="move-label">Rumor</div><div class="rider-name move">Joe Roberts</div></div>
       </div>
     </div>
 
@@ -695,6 +705,7 @@
       </div>
       <div class="team-body">
           <div class="rider-move"><div class="move-label">In (ELF Marc VDS Racing Team)</div><div class="rider-name move-in">Deniz Öncü</div></div>
+          <div class="rider-move"><div class="move-label">Rumor (Moto2 JuniorGP)</div><div class="rider-name move">Unai Orradre</div></div>
           <div class="rider-move"><div class="move-label">Rumor (Moto2 JuniorGP)</div><div class="rider-name move">Milan Pawelec</div></div>
           <div class="rider-move"><div class="move-label">Rumor</div><div class="rider-name move">Ayumu Sasaki</div></div>
         </div>
@@ -885,12 +896,14 @@
 </div>
 
 <footer>
-  <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-  <p>Il tuo portale di riferimento per il Motomondiale 2026</p>
-  <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
-</footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+<div class="socials">
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
+</div>
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>

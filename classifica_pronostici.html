@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Classifica Pronostici — Motomondiale 2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    :root { --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a; --border:#2a2a2a; --muted:#8a8a8a; --white:#f5f5f5; --gold:#ffd700; --silver:#c0c0c0; --bronze:#cd7f32; }
+    [data-theme="light"] { --dark:#f5f5f5; --mid:#ececec; --card:#fff; --border:#d8d8d8; --muted:#666; --white:#111; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; min-height:100vh; display:flex; justify-content:center; padding:2rem 1rem; }
+    .container { width:100%; max-width:600px; }
+    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; transition:.2s; }
+    .back-btn:hover { border-color:var(--red); color:var(--white); }
+    h1 { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.04em; margin-bottom:.5rem; }
+    h1 span { color:var(--red); }
+    .subtitle { color:var(--muted); margin-bottom:2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; box-shadow:0 8px 30px rgba(0,0,0,.08); }
+    .card-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin-bottom:1.2rem; border-bottom:1px solid var(--border); padding-bottom:.5rem; letter-spacing:.04em; }
+    
+    /* NUOVO STILE CLASSIFICA ESPANDIBILE */
+    .lb-user-card { border-bottom:1px solid var(--border); padding:.8rem 0; }
+    .lb-user-card:last-child { border-bottom:none; }
+    .lb-summary { display:flex; align-items:center; gap:1rem; cursor:pointer; list-style:none; }
+    .lb-summary::-webkit-details-marker { display:none; }
+    .lb-pos { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; width:40px; text-align:center; color:var(--muted); flex-shrink:0; }
+    .lb-pos.top1 { color:var(--gold); }
+    .lb-pos.top2 { color:var(--silver); }
+    .lb-pos.top3 { color:var(--bronze); }
+    .lb-name { flex:1; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.2rem; display:flex; align-items:center; gap:.5rem; }
+    .lb-arrow { color:var(--muted); font-size:.8rem; transition:transform .2s; }
+    details[open] .lb-arrow { transform:rotate(90deg); }
+    .lb-score { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; }
+    
+    .lb-details { margin-top:1rem; padding-left:1.5rem; border-left:2px solid var(--border); margin-left:1.5rem; }
+    .lb-pred-row { margin-bottom:.8rem; font-family:'Barlow Condensed', sans-serif; font-size:.95rem; }
+    .lb-pred-row strong { color:var(--white); }
+    .lb-pred-row span { color:var(--muted); }
+    .loading { text-align:center; color:var(--muted); padding:3rem 0; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-btn">← Torna alla Home</a>
+    
+    <h1>Classifica <span>Pronostici</span></h1>
+    <p class="subtitle">Scopri chi ha indovinato più vincitori!</p>
+
+    <div class="card">
+        <div class="card-title">🏆 Top Players</div>
+        <div id="leaderboard-body">
+            <p class="loading">Caricamento classifica...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Inizializza Supabase
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
+const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ==========================================
+// INSERISCI QUI I RISULTATI REALI DELLE GARE
+// ==========================================
+const ACTUAL_RESULTS = {
+  // Esempio: se al round 1 ha vinto Martin in MotoGP, Alonso in Moto2, ecc.
+  '1': { motogp: 'Jorge Martín', moto2: 'David Alonso', moto3: 'Máximo Quiles' },
+  '2': { motogp: 'Jorge Martín', moto2: 'Izan Guevara', moto3: 'Máximo Quiles' },
+  // Aggiungi righe qui man mano che le gare si disputano!
+  // Se un round non è qui, non viene calcolato.
+};
+
+async function loadLeaderboard() {
+    const { data, error } = await s.rpc('get_all_predictions');
+    
+    if (error) {
+        document.getElementById('leaderboard-body').innerHTML = '<p class="loading">Errore di caricamento.</p>';
+        return;
+    }
+    
+    if (!data || data.length === 0) {
+        document.getElementById('leaderboard-body').innerHTML = '<p class="loading">Nessun pronostico ancora salvato dagli utenti.</p>';
+        return;
+    }
+    
+    const scores = {};
+    
+    // Calcola punti e salva i pronostici per ogni utente
+    data.forEach(pred => {
+        if (!scores[pred.user_id]) {
+            scores[pred.user_id] = { username: pred.username, points: 0, preds: [] };
+        }
+        
+        let isCorrectMgp = ACTUAL_RESULTS[pred.round_id] && pred.motogp_winner === ACTUAL_RESULTS[pred.round_id].motogp;
+        let isCorrectM2 = ACTUAL_RESULTS[pred.round_id] && pred.moto2_winner === ACTUAL_RESULTS[pred.round_id].moto2;
+        let isCorrectM3 = ACTUAL_RESULTS[pred.round_id] && pred.moto3_winner === ACTUAL_RESULTS[pred.round_id].moto3;
+
+        // Assegna i punti (3 per ogni indovinato)
+        if (isCorrectMgp) scores[pred.user_id].points += 3;
+        if (isCorrectM2) scores[pred.user_id].points += 3;
+        if (isCorrectM3) scores[pred.user_id].points += 3;
+        
+        // Salva il pronostico per mostrarlo poi
+        scores[pred.user_id].preds.push({
+            round: pred.round_id,
+            motogp: pred.motogp_winner,
+            moto2: pred.moto2_winner,
+            moto3: pred.moto3_winner,
+            correctMgp: isCorrectMgp,
+            correctM2: isCorrectM2,
+            correctM3: isCorrectM3,
+            hasResult: !!ACTUAL_RESULTS[pred.round_id] // true se la gara è già stata corsa
+        });
+    });
+    
+    // Ordina per punteggio
+    const ranking = Object.values(scores).sort((a, b) => b.points - a.points);
+    
+    // Crea l'HTML
+    let html = '';
+    if (ranking.length === 0) {
+        html = '<p class="loading">Nessun punteggio calcolabile.</p>';
+    } else {
+        ranking.forEach((user, index) => {
+            const pos = index + 1;
+            const posClass = pos === 1 ? 'top1' : (pos === 2 ? 'top2' : (pos === 3 ? 'top3' : ''));
+            const medal = pos === 1 ? '🥇' : (pos === 2 ? '🥈' : (pos === 3 ? '🥉' : ''));
+            
+            // Inizia la card espandibile
+            html += `
+                <details class="lb-user-card">
+                    <summary class="lb-summary">
+                        <div class="lb-pos ${posClass}">${pos}</div>
+                        <div class="lb-name">${medal} ${user.username}</div>
+                        <div class="lb-arrow">▶</div>
+                        <div class="lb-score">${user.points} pt</div>
+                    </summary>
+                    <div class="lb-details">
+            `;
+            
+            // Aggiunge i pronostici di ogni round
+            user.preds.forEach(p => {
+                let mgpIcon = p.correctMgp ? '✅' : (p.hasResult ? '❌' : '⏳');
+                let m2Icon = p.correctM2 ? '✅' : (p.hasResult ? '❌' : '⏳');
+                let m3Icon = p.correctM3 ? '✅' : (p.hasResult ? '❌' : '⏳');
+                
+                html += `
+                    <div class="lb-pred-row">
+                        <strong>GP #${p.round}</strong><br>
+                        <span>MotoGP:</span> ${mgpIcon} ${p.motogp || '—'}<br>
+                        <span>Moto2:</span> ${m2Icon} ${p.moto2 || '—'}<br>
+                        <span>Moto3:</span> ${m3Icon} ${p.moto3 || '—'}
+                    </div>
+                `;
+            });
+            
+            html += `</div></details>`;
+        });
+    }
+    
+    document.getElementById('leaderboard-body').innerHTML = html;
+}
+
+// Avvia il caricamento
+loadLeaderboard();
+</script>
+</body>
+</html>

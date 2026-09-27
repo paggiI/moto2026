@@ -282,7 +282,7 @@
           </div>
           <div class="guide-body">
             <p><span class="hl">Motomondiale 2026</span> è un sito di informazione e statistiche sul campionato mondiale di motociclismo 2026, aggiornato manualmente dopo ogni round. Copre tutte e tre le categorie — <span class="page-tag tag-gp">MotoGP</span> <span class="page-tag tag-m2">Moto2</span> <span class="page-tag tag-m3">Moto3</span> — con classifiche piloti e costruttori, risultati gara per gara e sessione per sessione, schede complete di tutti i piloti in griglia, pronostici GP e statistiche avanzate.</p>
-            <p>Il sito è composto da <span class="hl">43 pagine</span> collegate tra loro. Puoi partire da qualunque punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due click.</p>
+            <p>Il sito è composto da <span class="hl">45 pagine</span> collegate tra loro. Puoi partire da qualunque punto — la home, la classifica, la pagina di un pilota — e da lì raggiungere tutto il resto in uno o due click.</p>
             <div class="tip"><strong>💡 Suggerimento:</strong> Premi <kbd>/</kbd> da qualsiasi pagina per aprire subito la lista piloti con il campo di ricerca attivo.</div>
           </div>
         </section>
@@ -321,7 +321,10 @@
               <li><span class="fl-icon">📝</span><div><span class="hl">Registrazione</span> — Cliccando su "Accedi" in alto a destra, puoi creare un account inserendo una <span class="hl">Email</span>, uno <span class="hl">Username</span> e una password. L'username verrà mostrato nel menu utente.</div></li>
               <li><span class="fl-icon">🔑</span><div><span class="hl">Login</span> — Puoi effettuare l'accesso inserendo la tua Email oppure direttamente il tuo Username, insieme alla password.</div></li>
               <li><span class="fl-icon">⭐</span><div><span class="hl">Piloti Preferiti</span> — Una volta loggato, sulle card dei piloti (in <a class="internal-link" href="piloti.html">Lista Piloti</a>) appariranno delle stelline. Cliccandole, il pilota viene salvato nel tuo account. Puoi ritrovarli rapidamente nel menu a tendina in alto a destra.</div></li>
+              <li><span class="fl-icon">⚙️</span><div><span class="hl">Impostazioni Profilo</span> — Cliccando sul proprio avatar in alto a destra, si può accedere alla pagina <a class="internal-link" href="profilo.html">Profilo</a> per cambiare username, password e visualizzare le proprie statistiche.</div></li>
+              <li><span class="fl-icon">🏆</span><div><span class="hl">Classifica Pronostici</span> — Se hai fatto i pronostici, puoi confrontare i tuoi punteggi con gli altri utenti nella <a class="internal-link" href="classifica_pronostici.html">Classifica Globale</a>.</div></li>
               <li><span class="fl-icon">📱</span><div><span class="hl">Multi-Dispositivo</span> — Se salvi un preferito sul PC, lo ritroverai anche se accedi dal telefono o da un altro browser.</div></li>
+              <li><span class="fl-icon">🔔</span><div><span class="hl">Notifiche Personalizzate</span> — Una campanellina nell'header ti avvisa se un tuo pilota preferito ha vinto, ha fatto pole o è stato protagonista di notizie di mercato.</div></li>
               <li><span class="fl-icon">🔒</span><div><span class="hl">Sicurezza</span> — Le password sono gestite in modo sicuro e crittografato dal backend. Il sito non salva password in chiaro nel browser.</div></li>
             </ul>
             <div class="tip"><strong>💡</strong> Se provi a cliccare una stellina senza essere loggato, si aprirà automaticamente il popup di login!</div>
@@ -374,28 +377,29 @@
           </div>
         </section>
 
-        <section class="guide-section" id="notizie">
-          <div class="guide-section-header">
-            <div class="guide-icon" aria-hidden="true">📰</div>
-            <div>
-              <h2 class="guide-section-title">Notizie</h2>
-              <div class="guide-section-sub">notizie.html • Solo dalla Home</div>
-            </div>
+       <section class="guide-section" id="notizie">
+        <div class="guide-section-header">
+          <div class="guide-icon" aria-hidden="true">📰</div>
+          <div>
+            <h2 class="guide-section-title">Notizie</h2>
+            <div class="guide-section-sub">notizie.html • Solo dalla Home</div>
           </div>
-          <div class="guide-body">
-            <p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
-            <ul class="feature-list">
-              <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div></li>
-              <li><span class="fl-icon">🏷️</span><div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · <span class="page-tag tag-jgp">JuniorGP</span> · <span class="page-tag tag-rrc">RedBull RookiesCup</span> · <span class="page-tag tag-gen">Motomondiale</span>) filtrano istantaneamente le notizie per classe.</div></li>
-              <li><span class="fl-icon">🖼️</span><div><span class="hl">Miniature dinamiche</span> — ogni card mostra un'anteprima grafica generata automaticamente, con icone, colori e gradienti specifici per la categoria di appartenenza.</div></li>
-              <li><span class="fl-icon">♾️</span><div><span class="hl">Scroll Infinito</span> — le notizie vengono caricate automaticamente in gruppi di 6 man mano che scorri verso il basso, senza dover cliccare alcun pulsante.</div></li>
-              <li><span class="fl-icon">🔢</span><div><span class="hl">Contatore dinamico</span> — un indicatore in alto mostra il numero totale di notizie trovate con i filtri attuali.</div></li>
-              <li><span class="fl-icon">🚫</span><div><span class="hl">Stato "Nessun risultato"</span> — se una ricerca non produce articoli, compare un messaggio chiaro con un pulsante per resettare i filtri con un click.</div></li>
-              <li><span class="fl-icon">🔲</span><div><span class="hl">Modal di lettura</span> — l'articolo si apre in un pannello centrato con sfondo sfocato. Si chiude cliccando fuori, sul pulsante ✕ o premendo <kbd>Esc</kbd>.</div></li>
-            </ul>
-            <div class="note">Questa pagina non ha un link diretto nel menu perché è pensata come <strong>estensione della sezione notizie della Home</strong>. Per tornarci, basta passare dalla Home e cliccare "Vedi tutte le notizie".</div>
-          </div>
-        </section>
+        </div>
+        <div class="guide-body">
+          <p>La pagina Notizie raccoglie <span class="hl">tutti gli articoli e aggiornamenti</span> dal Motomondiale 2026 in un unico luogo. Non è linkata nel menu di navigazione: <span class="hl">si raggiunge esclusivamente dalla Home</span>, cliccando su "Vedi tutte le notizie" nella sezione news della pagina principale.</p>
+          <ul class="feature-list">
+            <li><span class="fl-icon">🔍</span><div><span class="hl">Ricerca libera</span> — la barra in alto filtra le notizie in tempo reale per titolo e contenuto mentre digiti.</div></li>
+            <li><span class="fl-icon">🏷️</span><div><span class="hl">Filtro per categoria</span> — i tab colorati (Tutte · <span class="page-tag tag-gp">MotoGP</span> · <span class="page-tag tag-m2">Moto2</span> · <span class="page-tag tag-m3">Moto3</span> · <span class="page-tag tag-jgp">JuniorGP</span> · <span class="page-tag tag-rrc">RedBull RookiesCup</span> · <span class="page-tag tag-gen">Motomondiale</span>) filtrano istantaneamente le notizie per classe.</div></li>
+            <li><span class="fl-icon">🖼️</span><div><span class="hl">Miniature dinamiche</span> — ogni card mostra un'anteprima grafica generata automaticamente, con icone, colori e gradienti specifici per la categoria di appartenenza.</div></li>
+            <li><span class="fl-icon">♾️</span><div><span class="hl">Scroll Infinito</span> — le notizie vengono caricate automaticamente in gruppi di 6 man mano che scorri verso il basso, senza dover cliccare alcun pulsante.</div></li>
+            <li><span class="fl-icon">🔢</span><div><span class="hl">Contatore dinamico</span> — un indicatore in alto mostra il numero totale di notizie trovate con i filtri attuali.</div></li>
+            <li><span class="fl-icon">🚫</span><div><span class="hl">Stato "Nessun risultato"</span> — se una ricerca non produce articoli, compare un messaggio chiaro con un pulsante per resettare i filtri con un click.</div></li>
+            <li><span class="fl-icon">🔲</span><div><span class="hl">Modal di lettura a due colonne</span> — l'articolo si apre in un pannello centrato. A sinistra leggi il testo, a destra trovi la sezione commenti sempre aperta.</div></li>
+            <li><span class="fl-icon">💬</span><div><span class="hl">Sistema di Commenti</span> — Gli utenti loggati possono lasciare un commento sotto le notizie. È possibile eliminare i propri interventi cliccando sull'icona del cestino. I commenti sono salvati nel database Supabase.</div></li>
+          </ul>
+          <div class="note">Questa pagina non ha un link diretto nel menu perché è pensata come <strong>estensione della sezione notizie della Home</strong>. Per tornarci, basta passare dalla Home e cliccare "Vedi tutte le notizie".</div>
+        </div>
+      </section>
 
         <section class="guide-section" id="categorie">
           <div class="guide-section-header">
@@ -773,21 +777,17 @@
 </div>
 
 <footer>
-  <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-  <p>Risultati ufficiali — aggiornati al Round 15</p>
-  <div class="socials">
-    <a href="#" rel="noopener">📸 Instagram</a>
-    <a href="#" rel="noopener">🐦 X / Twitter</a>
-    <a href="#" rel="noopener">▶️ YouTube</a>
-    <a href="#" rel="noopener">📘 Facebook</a>
-  </div>
-  <p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
-</footer>
+<a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
+<div class="socials">
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
+</div>
 
 <button aria-label="Torna in cima" id="scroll-top-btn">↑</button>
 
 <!-- AUTH MODAL (Gestito da auth.js) -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>

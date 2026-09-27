@@ -1639,15 +1639,11 @@
 <!-- FOOTER -->
 <footer>
 <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
-<p>Entry list ufficiale FIM/Dorna</p>
+<p>Il tuo portale di riferimento per il Motomondiale 2026</p>
 <div class="socials">
-<a href="#">📸 Instagram</a>
-<a href="#">🐦 X / Twitter</a>
-<a href="#">▶️ YouTube</a>
-<a href="#">📘 Facebook</a>
+<a href="https://www.instagram.com/moto2026mondiale?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==">📸 Instagram</a>
+<a href="https://youtube.com/@moto2026mondiale?si=xc7wpzdm3978Hj7m">▶️ YouTube</a>
 </div>
-<p style="margin-top:1rem;font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
-</footer>
 <script>
   // Mappa emoji bandiera → codice nazione
   const flagToCode = {
@@ -2019,6 +2015,7 @@ setTimeout(updateRiderCount, 200);
     'classifica.html':'Classifica','risultati.html':'Risultati',
     'calendario.html':'Calendario','stagione.html':'Stagione','stats.html':'Statistiche','prediction.html':'Prediction',
     'albo_doro.html':"Albo d\'oro",'circuiti.html':'Circuiti','guida.html':'Guida','relazione.html':'Relazione', 'team.html':'Team',
+    'profilo.html':"Profilo",
   };
   var cur = (location.pathname.split('/').pop() || 'index.html');
   var curName = NAMES[cur] || cur;
@@ -2258,7 +2255,7 @@ input, button { pointer-events: auto !important; }
 </style>
 
 <!-- AUTH MODAL -->
-<div class="auth-modal-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+<div class="auth-modal-overlay" id="auth-overlay">
   <div class="auth-modal">
     <button class="auth-close" onclick="closeAuthModal()">✕</button>
     <div class="auth-modal-title" id="auth-title">Accedi a <span>Moto2026</span></div>
