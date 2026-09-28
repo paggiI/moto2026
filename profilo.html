@@ -6,7 +6,7 @@
 <title>Impostazioni Profilo — Motomondiale 2026</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Libreria Supabase -->
+<!-- Libreria Supabase necessaria -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     :root { --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a; --border:#2a2a2a; --muted:#8a8a8a; --white:#f5f5f5; }
@@ -26,7 +26,7 @@
     .info-value { font-weight:600; }
     .form-group { margin-bottom:1.2rem; }
     label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.4rem; letter-spacing:.1em; }
-    input { width:100%; background:var(--mid); border:1px solid var(--border); border-radius:6px; color:var(--white); font-family:'Barlow',sans-serif; font-size:1rem; padding:.7rem; outline:none; transition:.2s; }
+    input { width:100%; background:var(--mid); border:1px solid var(--border); border-radius:6px; color:var(--white); font-family:'Barlow',sans-serif; font-size:1rem; padding:.7rem; outline:none; transition:.2s; box-sizing:border-box; }
     input:focus { border-color:var(--red); }
     .btn { width:100%; background:var(--red); color:#fff; border:none; border-radius:6px; padding:.8rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; text-transform:uppercase; letter-spacing:.05em; cursor:pointer; transition:.2s; margin-top:.5rem; }
     .btn:hover { background:#c4001a; }
@@ -41,7 +41,7 @@
 <body>
 
 <div class="profile-container">
-    <a href="index.html" class="back-btn">← Torna alla Home</a>
+    <div class="back-btn-wrap" style="margin-bottom: 2rem;"></div>  
     
     <h1>Impostazioni <span>Profilo</span></h1>
     <p class="subtitle">Gestisci il tuo account e le tue preferenze.</p>
@@ -53,15 +53,15 @@
 
 <div id="toast" class="toast"></div>
 
-<script src="auth.js"></script>
 <script>
-// Inizializziamo Supabase direttamente qui (la chiave publishable è sicura nel frontend)
+// Inizializza Supabase autonomamente
 const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
 const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+let CURRENT_USER_PROF = null;
+
 async function initProfilePage() {
-    // Leggiamo la sessione attiva direttamente dal database locale di Supabase (istantaneo)
     const { data: { session } } = await s.auth.getSession();
     const user = session?.user || null;
     
@@ -70,20 +70,24 @@ async function initProfilePage() {
         return;
     }
     
+    CURRENT_USER_PROF = user;
     await loadProfileData(user);
 }
 
 async function loadProfileData(user) {
     const username = user.user_metadata?.username || user.email.split('@')[0];
     
-    // Scarica preferiti e pronostici insieme
+    // Scarica preferiti, pronostici E voto DOTW
     const { data: favsData } = await s.from('favorites').select('rider_id, rider_name').eq('user_id', user.id);
     const { data: predsData } = await s.from('predictions').select('round_id, motogp_winner, moto2_winner, moto3_winner').eq('user_id', user.id);
+    const { data: dotwData } = await s.from('dotw_votes').select('rider_voted, round_id').eq('user_id', user.id).order('round_id', { ascending: false }).limit(1);
     
     const favCount = favsData ? favsData.length : 0;
     const predCount = predsData ? predsData.length : 0;
     
-    // Prepara la lista preferiti
+    const bio = ''; // Lasciamo vuoto per ora, gestito da un'altra funzione se attiva
+    const team = '';
+    
     var favsListHtml = '';
     if (favCount > 0) {
         favsListHtml = favsData.map(function(fav) {
@@ -93,7 +97,18 @@ async function loadProfileData(user) {
         favsListHtml = '<p style="color:var(--muted); font-size:.9rem; margin-top:1rem;">Nessun pilota preferito.</p>';
     }
     
-    // Prepara la lista pronostici
+    // Prepara HTML per il voto
+    var dotwHtml = '';
+    if (dotwData && dotwData.length > 0) {
+        var vote = dotwData[0];
+        dotwHtml = '<div style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:Barlow Condensed, sans-serif; display:flex; justify-content:space-between; align-items:center;">' +
+                   '<span>Hai votato: <strong style="color:var(--red)">' + vote.rider_voted + '</strong> (GP #' + vote.round_id + ')</span>' +
+                   '<button onclick="deleteDotwVote(\'' + vote.round_id + '\')" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; padding:.2rem .5rem; border-radius:4px; cursor:pointer; font-size:.75rem; text-transform:uppercase; font-family:Barlow Condensed;">Annulla</button>' +
+                   '</div>';
+    } else {
+        dotwHtml = '<p style="color:var(--muted); font-size:.9rem; margin-top:1rem;">Non hai ancora votato il pilota del weekend.<br><a href="vota-pilota.html" style="color:var(--red); text-decoration:none; font-weight:700;">Vai alla votazione →</a></p>';
+    }
+    
     var predsListHtml = '';
     if (predCount > 0) {
         predsListHtml = predsData.map(function(p) {
@@ -111,56 +126,33 @@ async function loadProfileData(user) {
     document.getElementById('profile-content').innerHTML = `
         <div class="card">
             <div class="card-title">📊 Informazioni Account</div>
-            <div class="info-row">
-                <span class="info-label">Email</span>
-                <span class="info-value">${user.email}</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Username Attuale</span>
-                <span class="info-value" id="current-username">${username}</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Piloti Preferiti</span>
-                <span class="info-value">
-                    ${favCount} 
-                    ${favCount > 0 ? '<button onclick="toggleFavsList(this)" style="margin-left:.5rem; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:.2rem .6rem; border-radius:4px; cursor:pointer; font-family:inherit; font-size:.8rem;">Mostra</button>' : ''}
-                </span>
-            </div>
-            <div id="favs-list" style="display:none; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
-                ${favsListHtml}
-            </div>
+            <div class="info-row"><span class="info-label">Email</span> <span class="info-value">${user.email}</span></div>
+            <div class="info-row"><span class="info-label">Username</span> <span class="info-value" id="current-username">${username}</span></div>
+            <div class="info-row"><span class="info-label">Piloti Preferiti</span> <span class="info-value">${favCount} ${favCount > 0 ? '<button onclick="toggleFavsList(this)" style="margin-left:.5rem; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:.2rem .6rem; border-radius:4px; cursor:pointer; font-family:inherit; font-size:.8rem;">Mostra</button>' : ''}</span></div>
+            <div id="favs-list" style="display:none; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">${favsListHtml}</div>
         </div>
 
         <div class="card">
             <div class="card-title">🎯 I tuoi Pronostici</div>
-            <div class="info-row">
-                <span class="info-label">GP Pronosticati</span>
-                <span class="info-value">${predCount}</span>
-            </div>
-            <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
-                ${predsListHtml}
-            </div>
+            <div class="info-row"><span class="info-label">GP Pronosticati</span> <span class="info-value">${predCount}</span></div>
+            <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">${predsListHtml}</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🏆 Pilota del Weekend</div>
+            ${dotwHtml}
         </div>
 
         <div class="card">
             <div class="card-title">✏️ Cambia Username</div>
-            <div class="form-group">
-                <label>Nuovo Username</label>
-                <input type="text" id="new-username" placeholder="Inserisci un nuovo username" />
-            </div>
+            <div class="form-group"><label>Nuovo Username</label><input type="text" id="new-username" placeholder="Inserisci un nuovo username" /></div>
             <button class="btn" onclick="updateUsername()">Aggiorna Username</button>
         </div>
 
         <div class="card">
             <div class="card-title">🔒 Cambia Password</div>
-            <div class="form-group">
-                <label>Nuova Password</label>
-                <input type="password" id="new-password" placeholder="Minimo 8 caratteri, 1 maiuscola, 1 numero" />
-            </div>
-            <div class="form-group">
-                <label>Conferma Nuova Password</label>
-                <input type="password" id="confirm-password" placeholder="Ripeti la password" />
-            </div>
+            <div class="form-group"><label>Nuova Password</label><input type="password" id="new-password" placeholder="Minimo 8 caratteri, 1 maiuscola, 1 numero" /></div>
+            <div class="form-group"><label>Conferma Nuova Password</label><input type="password" id="confirm-password" placeholder="Ripeti la password" /></div>
             <button class="btn" onclick="updatePassword()">Aggiorna Password</button>
         </div>
 
@@ -174,10 +166,21 @@ async function loadProfileData(user) {
     setupPasswordToggles();
 }
 
-// Funzione per mostrare/nascondere la lista dei preferiti
+// Funzione per annullare il voto
+window.deleteDotwVote = async function(roundId) {
+    if (!confirm('Sei sicuro di voler annullare il tuo voto per il GP #' + roundId + '?')) return;
+    
+    const { error } = await s.from('dotw_votes').delete().eq('user_id', CURRENT_USER_PROF.id).eq('round_id', roundId);
+    
+    if (error) { showToast('Errore durante la cancellazione.', true); }
+    else { 
+        showToast('✅ Voto annullato!'); 
+        loadProfileData(CURRENT_USER_PROF); // Ricarica la pagina 
+    }
+};
+
 function toggleFavsList(btn) {
     var listEl = document.getElementById('favs-list');
-    
     if (listEl.style.display === 'none') {
         listEl.style.display = 'block';
         btn.textContent = 'Nascondi';
@@ -187,43 +190,60 @@ function toggleFavsList(btn) {
     }
 }
 
+window.copyPublicLink = function() {
+    var copyText = document.getElementById('public-link');
+    copyText.select();
+    document.execCommand('copy');
+    showToast('✅ Link copiato negli appunti!');
+};
+
+window.savePublicProfile = async function() {
+    const bio = document.getElementById('bio-input').value.trim();
+    const team = document.getElementById('team-input').value.trim();
+    const user = CURRENT_USER_PROF;
+    
+    if (!user) return;
+    
+    const { error } = await s.from('profiles').upsert({
+        user_id: user.id,
+        username: user.user_metadata?.username || user.email.split('@')[0],
+        bio: bio,
+        favorite_team: team,
+        is_public: true
+    });
+    
+    if (error) { showToast('Errore nel salvataggio.', true); }
+    else { showToast('✅ Profilo pubblico aggiornato!'); }
+};
+
 async function updateUsername() {
     const newUsername = document.getElementById('new-username').value.trim();
-    if (!newUsername || newUsername.length < 3) { showToast('Username troppo corto (min 3 caratteri).', true); return; }
+    if (!newUsername || newUsername.length < 3) { showToast('Username troppo corto.', true); return; }
     
-    // CONTROLLA SE STAI USANDO LO STESSO USERNAME
     const currentUsername = document.getElementById('current-username').textContent;
-    if (newUsername === currentUsername) {
-        showToast('Stai già usando questo username!', true);
-        return;
-    }
+    if (newUsername === currentUsername) { showToast('Stai già usando questo username.', true); return; }
     
     const { data, error } = await s.auth.updateUser({ data: { username: newUsername } });
-    
-    if (error) { showToast('Errore durante l\'aggiornamento.', true); }
+    if (error) { showToast('Errore.', true); }
     else {
         document.getElementById('current-username').textContent = newUsername;
         document.getElementById('new-username').value = '';
-        showToast('✅ Username aggiornato con successo!');
+        document.getElementById('public-link').value = 'https://paggii.github.io/moto2026/utente.html?username=' + newUsername;
+        showToast('✅ Username aggiornato!');
     }
 }
 
 async function updatePassword() {
     const newPass = document.getElementById('new-password').value;
     const confirmPass = document.getElementById('confirm-password').value;
-    
     if (newPass !== confirmPass) { showToast('Le password non coincidono.', true); return; }
     if (newPass.length < 8 || !/[A-Z]/.test(newPass) || !/\d/.test(newPass)) {
-        showToast('La password deve avere 8 caratteri, una maiuscola e un numero.', true);
-        return;
+        showToast('La password deve avere 8 caratteri, una maiuscola e un numero.', true); return;
     }
-    
     const { error } = await s.auth.updateUser({ password: newPass });
-    
     if (error) {
-        // INTERCETTA L'ERRORE DI SUPABASE SE LA PASSWORD È UGUALE ALLA VECCHIA
         var errMessage = error.message.toLowerCase();
-        if (errMessage.includes('different') || errMessage.includes('same') || errMessage.includes('identical')) {
+        if (errMessage.includes('different') || errMessage.includes('same')) {
             showToast('La nuova password deve essere diversa da quella attuale!', true);
         } else {
             showToast('Errore durante il cambio password.', true);
@@ -245,29 +265,17 @@ async function deleteAccount() {
     showToast('ℹ️ Per cancellare l\'account, contatta l\'amministratore del sito.', true);
 }
 
-function showToast(msg, isError = false) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.background = isError ? '#e8001d' : '#222';
-    t.style.display = 'block';
-    setTimeout(() => { t.style.display = 'none'; }, 3000);
-}
-
-// Funzione per aggiungere l'occhietto ai campi password
 function setupPasswordToggles() {
     var inputs = document.querySelectorAll('#profile-content input[type="password"]');
     inputs.forEach(function(input) {
         if (input.dataset.toggleAdded) return; 
         input.dataset.toggleAdded = 'true';
-        
         input.style.paddingRight = '2.2rem'; 
         input.parentElement.style.position = 'relative';
-        
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.innerHTML = '👁️';
         btn.style.cssText = 'position:absolute;right:.7rem;bottom:.55rem;background:none;border:none;cursor:pointer;font-size:1rem;padding:0;line-height:1;color:var(--muted);z-index:10;';
-        
         btn.addEventListener('click', function() {
             if (input.type === 'password') {
                 input.type = 'text';
@@ -277,32 +285,31 @@ function setupPasswordToggles() {
                 btn.innerHTML = '👁️';
             }
         });
-        
         input.parentElement.appendChild(btn);
     });
 }
 
-// Per far comparire il bottone "Torna al Profilo" nelle altre pagine
-document.addEventListener('click', function(e) {
-    var a = e.target.closest('a[href]');
-    if (!a) return;
-    var href = a.getAttribute('href') || '';
-    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
-    
-    // Salva che stiamo partendo dal profilo
-    sessionStorage.setItem('moto_from_url', location.href);
-    sessionStorage.setItem('moto_from_name', 'Profilo');
-}, true);
+function showToast(msg, isError = false) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = isError ? '#e8001d' : '#222';
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
 
-// Avvia la pagina
-initProfilePage();
-
-// Ricarica i dati se l'utente torna alla pagina col tasto "Indietro"
+// Ricarica i dati se l'utente torna indietro
 window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
         initProfilePage();
     }
 });
+  // Inietta il bottone "Torna indietro" usando la cronologia del browser
+var backWrap = document.querySelector('.back-btn-wrap');
+if (backWrap) {
+    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna alla pagina precedente</a>';
+}
+// Avvia la pagina
+initProfilePage();
 </script>
 </body>
 </html>

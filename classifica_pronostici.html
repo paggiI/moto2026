@@ -46,8 +46,8 @@
 
 <div class="container">
     <div class="back-btn-wrap" style="margin-bottom: 2rem;"></div>    
-    <h1>Classifica <span>Pronostici</span></h1>
-    <p class="subtitle">Scopri chi ha indovinato più vincitori!</p>
+    <h1>Classifica <span>Globale</span></h1>
+    <p class="subtitle">Il punteggio totale unisce i punti dei Pronostici GP e del Quiz Mid-Week!</p>
 
     <div class="card">
         <div class="card-title">🏆 Top Players</div>
@@ -67,60 +67,71 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // INSERISCI QUI I RISULTATI REALI DELLE GARE
 // ==========================================
 const ACTUAL_RESULTS = {
-  // Esempio: se al round 1 ha vinto Martin in MotoGP, Alonso in Moto2, ecc.
-  '1': { motogp: 'Jorge Martín', moto2: 'David Alonso', moto3: 'Máximo Quiles' },
-  '2': { motogp: 'Jorge Martín', moto2: 'Izan Guevara', moto3: 'Máximo Quiles' },
-  // Aggiungi righe qui man mano che le gare si disputano!
-  // Se un round non è qui, non viene calcolato.
+  // Inserisci qui i risultati reali man mano che le gare si corrono
+  '15': { 
+    motogp_win: 'Jorge Martín', motogp_p2: 'Francesco Bagnaia', motogp_p3: 'Marco Bezzecchi', motogp_pole: 'Marco Bezzecchi',
+    moto2_win: 'David Alonso', moto2_p2: 'Izan Guevara', moto2_p3: 'Manuel González', moto2_pole: 'Filip Salač',
+    moto3_win: 'Máximo Quiles', moto3_p2: 'David Almansa', moto3_p3: 'Álvaro Carpe', moto3_pole: 'David Almansa'
+  }
+  // Aggiungi righe qui per i prossimi round!
 };
 
 async function loadLeaderboard() {
-    const { data, error } = await s.rpc('get_all_predictions');
+    // Scarica sia i pronostici che i punteggi del quiz
+    const { data: predData, error: predError } = await s.rpc('get_all_predictions');
+    const { data: quizData, error: quizError } = await s.rpc('get_quiz_scores');
     
-    if (error) {
+    if (predError && quizError) {
         document.getElementById('leaderboard-body').innerHTML = '<p class="loading">Errore di caricamento.</p>';
-        return;
-    }
-    
-    if (!data || data.length === 0) {
-        document.getElementById('leaderboard-body').innerHTML = '<p class="loading">Nessun pronostico ancora salvato dagli utenti.</p>';
         return;
     }
     
     const scores = {};
     
-    // Calcola punti e salva i pronostici per ogni utente
-    data.forEach(pred => {
-        if (!scores[pred.user_id]) {
-            scores[pred.user_id] = { username: pred.username, points: 0, preds: [] };
-        }
-        
-        let isCorrectMgp = ACTUAL_RESULTS[pred.round_id] && pred.motogp_winner === ACTUAL_RESULTS[pred.round_id].motogp;
-        let isCorrectM2 = ACTUAL_RESULTS[pred.round_id] && pred.moto2_winner === ACTUAL_RESULTS[pred.round_id].moto2;
-        let isCorrectM3 = ACTUAL_RESULTS[pred.round_id] && pred.moto3_winner === ACTUAL_RESULTS[pred.round_id].moto3;
-
-        // Assegna i punti (3 per ogni indovinato)
-        if (isCorrectMgp) scores[pred.user_id].points += 3;
-        if (isCorrectM2) scores[pred.user_id].points += 3;
-        if (isCorrectM3) scores[pred.user_id].points += 3;
-        
-        // Salva il pronostico per mostrarlo poi
-        scores[pred.user_id].preds.push({
-            round: pred.round_id,
-            motogp: pred.motogp_winner,
-            moto2: pred.moto2_winner,
-            moto3: pred.moto3_winner,
-            correctMgp: isCorrectMgp,
-            correctM2: isCorrectM2,
-            correctM3: isCorrectM3,
-            hasResult: !!ACTUAL_RESULTS[pred.round_id] // true se la gara è già stata corsa
+    // 1. Inseriamo prima i punti del quiz (così chi ha fatto SOLO il quiz appare in classifica)
+    if (quizData) {
+        quizData.forEach(q => {
+            scores[q.user_id] = { username: q.username, points: Number(q.correct_count), rounds: [], quizPts: Number(q.correct_count) };
         });
-    });
+    }
     
-    // Ordina per punteggio
+    // 2. Aggiungiamo i punti dei pronostici
+    if (predData) {
+        predData.forEach(pred => {
+            // Se l'utente non è ancora nella classifica, inizializzalo
+            if (!scores[pred.user_id]) {
+                scores[pred.user_id] = { username: pred.username, points: 0, rounds: [], quizPts: 0 };
+            }
+            
+            let roundPoints = 0;
+            
+            if (ACTUAL_RESULTS[pred.round_id]) {
+                const real = ACTUAL_RESULTS[pred.round_id];
+                
+                if (pred.motogp_winner === real.motogp_win) roundPoints += 5;
+                if (pred.motogp_p2 === real.motogp_p2) roundPoints += 3;
+                if (pred.motogp_p3 === real.motogp_p3) roundPoints += 2;
+                if (pred.motogp_pole === real.motogp_pole) roundPoints += 3;
+                
+                if (pred.moto2_winner === real.moto2_win) roundPoints += 5;
+                if (pred.moto2_p2 === real.moto2_p2) roundPoints += 3;
+                if (pred.moto2_p3 === real.moto2_p3) roundPoints += 2;
+                if (pred.moto2_pole === real.moto2_pole) roundPoints += 3;
+                
+                if (pred.moto3_winner === real.moto3_win) roundPoints += 5;
+                if (pred.moto3_p2 === real.moto3_p2) roundPoints += 3;
+                if (pred.moto3_p3 === real.moto3_p3) roundPoints += 2;
+                if (pred.moto3_pole === real.moto3_pole) roundPoints += 3;
+            }
+            
+            scores[pred.user_id].points += roundPoints;
+            scores[pred.user_id].rounds.push({ round: pred.round_id, points: roundPoints, hasResult: !!ACTUAL_RESULTS[pred.round_id] });
+        });
+    }
+    
+    // 3. Ordina per punteggio totale
     const ranking = Object.values(scores).sort((a, b) => b.points - a.points);
     
-    // Crea l'HTML
     let html = '';
     if (ranking.length === 0) {
         html = '<p class="loading">Nessun punteggio calcolabile.</p>';
@@ -130,7 +141,14 @@ async function loadLeaderboard() {
             const posClass = pos === 1 ? 'top1' : (pos === 2 ? 'top2' : (pos === 3 ? 'top3' : ''));
             const medal = pos === 1 ? '🥇' : (pos === 2 ? '🥈' : (pos === 3 ? '🥉' : ''));
             
-            // Inizia la card espandibile
+            var roundsHtml = user.rounds.map(r => {
+                if (r.hasResult) {
+                    return '<div style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:Barlow Condensed, sans-serif; font-size:1rem; display:flex; justify-content:space-between;">GP #' + r.round + ' <span style="color:var(--red); font-weight:700;">' + r.points + ' pt</span></div>';
+                } else {
+                    return '<div style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:Barlow Condensed, sans-serif; font-size:1rem; display:flex; justify-content:space-between; color:var(--muted);">GP #' + r.round + ' <span>⏳ In attesa di gara</span></div>';
+                }
+            }).join('');
+            
             html += `
                 <details class="lb-user-card">
                     <summary class="lb-summary">
@@ -140,25 +158,12 @@ async function loadLeaderboard() {
                         <div class="lb-score">${user.points} pt</div>
                     </summary>
                     <div class="lb-details">
-            `;
-            
-            // Aggiunge i pronostici di ogni round
-            user.preds.forEach(p => {
-                let mgpIcon = p.correctMgp ? '✅' : (p.hasResult ? '❌' : '⏳');
-                let m2Icon = p.correctM2 ? '✅' : (p.hasResult ? '❌' : '⏳');
-                let m3Icon = p.correctM3 ? '✅' : (p.hasResult ? '❌' : '⏳');
-                
-                html += `
-                    <div class="lb-pred-row">
-                        <strong>GP #${p.round}</strong><br>
-                        <span>MotoGP:</span> ${mgpIcon} ${p.motogp || '—'}<br>
-                        <span>Moto2:</span> ${m2Icon} ${p.moto2 || '—'}<br>
-                        <span>Moto3:</span> ${m3Icon} ${p.moto3 || '—'}
+                        <div style="font-family:'Barlow Condensed', sans-serif; font-size:.75rem; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; letter-spacing:.1em;">Dettaglio Punteggi GP</div>
+                        ${roundsHtml}
+                        <div style="padding:.5rem 0; margin-top:.5rem; font-family:Barlow Condensed, sans-serif; font-size:1rem; display:flex; justify-content:space-between; color:var(--m2);">🧠 Punti Quiz <span style="font-weight:700;">${user.quizPts} pt</span></div>
                     </div>
-                `;
-            });
-            
-            html += `</div></details>`;
+                </details>
+            `;
         });
     }
     

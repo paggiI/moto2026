@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quiz Motociclismo — Moto2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    :root { --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a; --border:#2a2a2a; --muted:#8a8a8a; --white:#f5f5f5; --green:#2ecc71; }
+    [data-theme="light"] { --dark:#f5f5f5; --mid:#ececec; --card:#fff; --border:#d8d8d8; --muted:#666; --white:#111; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; min-height:100vh; display:flex; justify-content:center; padding:2rem 1rem; }
+    .container { width:100%; max-width:600px; }
+    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; }
+    h1 { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.04em; margin-bottom:.5rem; }
+    h1 span { color:var(--red); }
+    .subtitle { color:var(--muted); margin-bottom:2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem; margin-bottom:1.5rem; box-shadow:0 8px 30px rgba(0,0,0,.08); }
+    .q-title { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; margin-bottom:1.5rem; line-height:1.3; }
+    .q-option { display:block; width:100%; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:1rem; border-radius:8px; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:1.1rem; margin-bottom:.8rem; transition:.2s; text-align:left; }
+    .q-option:hover { border-color:var(--red); background:rgba(232,0,29,.05); }
+    .q-option.correct { border-color:var(--green); color:var(--green); background:rgba(46,204,113,.1); pointer-events:none; }
+    .q-option.wrong { border-color:#ff6b6b; color:#ff6b6b; background:rgba(255,107,107,.1); pointer-events:none; }
+    .q-option.disabled { pointer-events:none; opacity:0.7; }
+    .next-btn { display:none; margin-top:1.5rem; width:100%; background:var(--red); color:#fff; border:none; padding:.8rem; border-radius:6px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; text-transform:uppercase; cursor:pointer; }
+    .next-btn.show { display:block; }
+    .result-score { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:var(--red); text-align:center; margin:1rem 0; }
+    .loading { text-align:center; color:var(--muted); padding:3rem 0; }
+    .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:1rem 1.5rem; border-radius:8px; font-family:'Barlow Condensed',sans-serif; font-weight:700; z-index:9999; display:none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="back-btn-wrap" style="margin-bottom: 1rem;"></div>
+    <h1>Quiz <span>Motociclismo</span></h1>
+    <p class="subtitle">Metti alla prova la tua conoscenza! 1 punto per ogni risposta esatta.</p>
+
+    <div class="card" id="quiz-card">
+        <p class="loading">Caricamento domande...</p>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// Inizializza Supabase
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
+const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// =======================================================
+// INSERISCI QUI LE DOMANDE DELLA SETTIMANA
+// Per creare una nuova domanda, copia un blocco { ... } e modificalo.
+// 'correct' parte da 0. (0 = prima opzione, 1 = seconda, ecc.)
+// =======================================================
+const QUIZ_QUESTIONS = [
+    {
+        id: 'w38_q1',
+        question: 'Quanti titoli mondiali ha vinto Marc Márquez nella classe MotoGP?',
+        options: ['6 titoli', '8 titoli', '5 titoli', '7 titoli'],
+        correct: 3
+    },
+    {
+        id: 'w38_q2',
+        question: 'Quale costruttore ha vinto più titoli costruttori in MotoGP dal 2007?',
+        options: ['Yamaha', 'Honda', 'Ducati', 'Suzuki'],
+        correct: 2
+    },
+    {
+        id: 'w38_q3',
+        question: 'In quale anno ha debuttato Valentino Rossi nella classe regina, allora 500cc?',
+        options: ['2000', '2002', '1998', '2004'],
+        correct: 0
+    },
+    {
+        id: 'w38_q4',
+        question: 'Chi detiene il record di vittorie consecutive in una singola stagione della classe regina nell’era MotoGP?',
+        options: ['Valentino Rossi', 'Marc Márquez', 'Giacomo Agostini', 'Francesco Bagnaia'],
+        correct: 1
+    },
+
+    {
+        id: 'w38_q5',
+        question: 'In quale anno è stata introdotta la MotoGP, sostituendo la 500cc come denominazione della classe regina?',
+        options: ['1999', '2000', '2002', '2004'],
+        correct: 2
+    },
+    {
+        id: 'w38_q6',
+        question: 'Chi è stato il primo campione del mondo della classe regina nel 1949?',
+        options: ['Geoff Duke', 'Leslie Graham', 'John Surtees', 'Giacomo Agostini'],
+        correct: 1
+    },
+    {
+        id: 'w38_q7',
+        question: 'Quale pilota ha conquistato il titolo mondiale della 500cc nel 2000?',
+        options: ['Valentino Rossi', 'Alex Crivillé', 'Kenny Roberts Jr.', 'Max Biaggi'],
+        correct: 2
+    },
+    {
+        id: 'w38_q8',
+        question: 'Quale pilota ha vinto il titolo mondiale MotoGP nel 2020?',
+        options: ['Joan Mir', 'Fabio Quartararo', 'Franco Morbidelli', 'Andrea Dovizioso'],
+        correct: 0
+    },
+    {
+        id: 'w38_q9',
+        question: 'Quale pilota ha vinto il titolo MotoGP nel 2021?',
+        options: ['Joan Mir', 'Fabio Quartararo', 'Pecco Bagnaia', 'Jorge Martín'],
+        correct: 1
+    },
+    {
+        id: 'w38_q10',
+        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2022?',
+        options: ['Fabio Quartararo', 'Francesco Bagnaia', 'Enea Bastianini', 'Aleix Espargaró'],
+        correct: 1
+    },
+
+    {
+        id: 'w38_q11',
+        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2023?',
+        options: ['Francesco Bagnaia', 'Jorge Martín', 'Marco Bezzecchi', 'Brad Binder'],
+        correct: 0
+    },
+    {
+        id: 'w38_q12',
+        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2024?',
+        options: ['Francesco Bagnaia', 'Jorge Martín', 'Marc Márquez', 'Enea Bastianini'],
+        correct: 1
+    },
+    {
+        id: 'w38_q13',
+        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2025?',
+        options: ['Jorge Martín', 'Francesco Bagnaia', 'Marc Márquez', 'Fabio Quartararo'],
+        correct: 2
+    },
+    {
+        id: 'w38_q14',
+        question: 'Quante vittorie consecutive ottenne Marc Márquez all’inizio della stagione MotoGP 2014?',
+        options: ['8', '9', '10', '11'],
+        correct: 2
+    },
+    {
+        id: 'w38_q15',
+        question: 'Quale pilota ha vinto il titolo mondiale della 250cc nel 2005?',
+        options: ['Dani Pedrosa', 'Jorge Lorenzo', 'Casey Stoner', 'Andrea Dovizioso'],
+        correct: 0
+    },
+
+    {
+        id: 'w38_q16',
+        question: 'Quale pilota ha vinto due titoli consecutivi nella 250cc nel 2006 e nel 2007?',
+        options: ['Dani Pedrosa', 'Jorge Lorenzo', 'Hiroshi Aoyama', 'Casey Stoner'],
+        correct: 1
+    },
+    {
+        id: 'w38_q17',
+        question: 'Quale pilota ha conquistato il titolo mondiale 250cc nel 2002?',
+        options: ['Marco Melandri', 'Manuel Poggiali', 'Daijiro Kato', 'Toni Elías'],
+        correct: 2
+    },
+    {
+        id: 'w38_q18',
+        question: 'Quale pilota ha conquistato il titolo mondiale 125cc nel 2004?',
+        options: ['Andrea Dovizioso', 'Casey Stoner', 'Dani Pedrosa', 'Thomas Lüthi'],
+        correct: 0
+    },
+    {
+        id: 'w38_q19',
+        question: 'Quale pilota ha conquistato il titolo mondiale 125cc nel 2005?',
+        options: ['Thomas Lüthi', 'Mika Kallio', 'Álvaro Bautista', 'Gábor Talmácsi'],
+        correct: 0
+    },
+    {
+        id: 'w38_q20',
+        question: 'Quale pilota ha conquistato il primo titolo mondiale della Moto3 nel 2012?',
+        options: ['Maverick Viñales', 'Sandro Cortese', 'Luis Salom', 'Alex Rins'],
+        correct: 1
+    },
+
+    {
+        id: 'w38_q21',
+        question: 'Quale pilota ha conquistato il primo titolo mondiale Moto2 nel 2010?',
+        options: ['Toni Elías', 'Andrea Iannone', 'Jules Cluzel', 'Stefan Bradl'],
+        correct: 0
+    },
+    {
+        id: 'w38_q22',
+        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2012?',
+        options: ['Pol Espargaró', 'Marc Márquez', 'Andrea Iannone', 'Scott Redding'],
+        correct: 1
+    },
+    {
+        id: 'w38_q23',
+        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2018?',
+        options: ['Franco Morbidelli', 'Miguel Oliveira', 'Francesco Bagnaia', 'Álex Márquez'],
+        correct: 2
+    },
+    {
+        id: 'w38_q24',
+        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2023?',
+        options: ['Pedro Acosta', 'Tony Arbolino', 'Fermín Aldeguer', 'Ai Ogura'],
+        correct: 0
+    },
+    {
+        id: 'w38_q25',
+        question: 'Quale pilota ha conquistato il titolo Moto3 nel 2017?',
+        options: ['Joan Mir', 'Jorge Martín', 'Marco Bezzecchi', 'Romano Fenati'],
+        correct: 0
+    }
+];
+
+
+let currentUser = null;
+let answeredMap = {}; // Mappa delle domande già risposte (question_id -> is_correct)
+let currentQIndex = 0;
+
+let activeQuestions = []; // Creiamo un array vuoto per le domande da fare
+
+async function initQuizPage() {
+    const { data: { session } } = await s.auth.getSession();
+    currentUser = session?.user || null;
+    
+    if (!currentUser) {
+        document.getElementById('quiz-card').innerHTML = '<p class="loading">Devi essere loggato per giocare.<br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">← Torna alla Home</a></p>';
+        return;
+    }
+    
+    // Scarica le risposte già date
+    const { data: existingAnswers } = await s.from('quiz_answers').select('question_id, is_correct').eq('user_id', currentUser.id);
+    
+    if (existingAnswers) {
+        existingAnswers.forEach(a => { answeredMap[a.question_id] = a.is_correct; });
+    }
+    
+    // Filtra solo le domande NON ancora risposte e mescolale
+    activeQuestions = QUIZ_QUESTIONS.filter(q => answeredMap[q.id] === undefined);
+    shuffleArray(activeQuestions);
+    
+    if (activeQuestions.length === 0) {
+        showFinalResults();
+    } else {
+        currentQIndex = 0;
+        renderQuestion(currentQIndex);
+    }
+}
+
+// Funzione per mescolare l'array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function renderQuestion(index) {
+    if (index >= activeQuestions.length) {
+        showFinalResults();
+        return;
+    }
+    
+    const q = activeQuestions[index];
+    let optionsHtml = '';
+    q.options.forEach((opt, i) => {
+        optionsHtml += `<button class="q-option" onclick="submitAnswer('${q.id}', ${i}, ${q.correct})">${opt}</button>`;
+    });
+    
+    document.getElementById('quiz-card').innerHTML = `
+        <div style="font-size:.8rem; color:var(--muted); font-family:'Barlow Condensed'; text-transform:uppercase; margin-bottom:.5rem;">Domanda ${index + 1} di ${activeQuestions.length}</div>
+        <div class="q-title">${q.question}</div>
+        <div id="options-wrap">${optionsHtml}</div>
+        <button class="next-btn" id="next-btn" onclick="renderQuestion(${index + 1})">Prossima domanda →</button>
+    `;
+}
+
+async function submitAnswer(qId, selectedIdx, correctIdx) {
+    const isCorrect = selectedIdx === correctIdx;
+    
+    // Disabilita i bottoni e colora le risposte
+    const wrap = document.getElementById('options-wrap');
+    const btns = wrap.querySelectorAll('.q-option');
+    btns.forEach((btn, i) => {
+        btn.classList.add('disabled');
+        if (i === correctIdx) btn.classList.add('correct');
+        if (i === selectedIdx && !isCorrect) btn.classList.add('wrong');
+    });
+    
+    // Mostra il bottone "Prossima"
+    document.getElementById('next-btn').classList.add('show');
+    
+    // Salva nel database
+    const { error } = await s.from('quiz_answers').insert({
+        user_id: currentUser.id,
+        question_id: qId,
+        is_correct: isCorrect
+    });
+    
+    if (error) {
+        showToast('Errore nel salvataggio della risposta.', true);
+    } else {
+        answeredMap[qId] = isCorrect;
+        if (isCorrect) showToast('✅ Risposta correta! +1 punto');
+        else showToast('❌ Risposta sbagliata.');
+    }
+}
+
+function showFinalResults() {
+    let correctCount = 0;
+    for (let key in answeredMap) {
+        if (answeredMap[key] === true) correctCount++;
+    }
+    
+    const total = QUIZ_QUESTIONS.length;
+    const percentage = Math.round((correctCount / total) * 100);
+    
+    let msg = '';
+    if (percentage === 100) msg = '🥇 Perfetto! Sei un esperto di MotoGP!';
+    else if (percentage >= 75) msg = '🥈 Ottimo lavoro! Conosci bene il Motomondiale.';
+    else if (percentage >= 50) msg = '🥉 Discreto, ma c\'è margine di miglioramento!';
+    else msg = '📚 Meglio ripassare un po\' di storia del Motomondiale!';
+    
+    document.getElementById('quiz-card').innerHTML = `
+        <div style="text-align:center;">
+            <h2 style="font-family:'Bebas Neue'; font-size:1.8rem; margin-bottom:1rem;">Risultato Quiz</h2>
+            <div class="result-score">${correctCount} / ${total}</div>
+            <p style="color:var(--muted); font-size:1.1rem; margin-bottom:1.5rem;">${msg}</p>
+            <p style="font-size:.9rem; color:var(--muted);">I tuoi punti sono stati aggiunti alla Classifica Globale!</p>
+            <a href="classifica_pronostici.html" style="display:inline-block; margin-top:1.5rem; background:var(--red); color:#fff; padding:.6rem 1.5rem; border-radius:6px; text-decoration:none; font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;">🏆 Vedi Classifica</a>
+            
+            <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border);">
+                <p style="font-size:.85rem; color:var(--muted); margin-bottom:.8rem;">Vuoi rigiocare? Cliccando qui cancellerai le tue risposte precedenti per ripartire da zero.</p>
+                <button onclick="resetQuiz()" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; padding:.5rem 1.2rem; border-radius:6px; cursor:pointer; font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase; font-size:.85rem;">🔄 Ricomincia il Quiz</button>
+            </div>
+        </div>
+    `;
+}
+
+// Funzione per azzerare tutte le risposte
+async function resetQuiz() {
+    if (!confirm('Sei sicuro di voler azzerare tutte le tue risposte? Perderai i punti acquisiti finora nel quiz!')) return;
+    
+    const { error } = await s.from('quiz_answers').delete().eq('user_id', currentUser.id);
+    
+    if (error) {
+        showToast('Errore durante il reset.', true);
+    } else {
+        // Svuota la mappa delle risposte in locale
+        for (let key in answeredMap) { delete answeredMap[key]; }
+        
+        // Ricarica le domande
+        activeQuestions = QUIZ_QUESTIONS.filter(q => answeredMap[q.id] === undefined);
+        shuffleArray(activeQuestions);
+        
+        if (activeQuestions.length > 0) {
+            currentQIndex = 0;
+            renderQuestion(currentQIndex);
+        } else {
+            showFinalResults();
+        }
+        showToast('✅ Quiz azzerato! Puoi ricominciare.');
+    }
+}
+
+function showToast(msg, isError = false) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = isError ? '#e8001d' : '#222';
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+// BOTTONE TORNA INDIETRO
+var backWrap = document.querySelector('.back-btn-wrap');
+if (backWrap) {
+    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna alla pagina precedente</a>';
+}
+
+initQuizPage();
+</script>
+</body>
+</html>

@@ -362,7 +362,7 @@
 <h3>Problema da risolvere</h3>
 <p>I siti ufficiali sono spesso lenti e appesantiti. Il progetto vuole offrire un'alternativa veloce che metta al centro l'informazione tecnica. Inoltre, rispetto a un classico sito statico, si voleva superare il limite del salvataggio locale dei dati (cookie/localStorage) introducendo un sistema di autenticazione reale, che permetta all'utente di ritrovare i propri preferiti su qualsiasi browser o telefono.</p>
 <div class="stats-row">
-<div class="stat-box"><div class="stat-box-val">45</div><div class="stat-box-label">Pagine HTML</div></div>
+<div class="stat-box"><div class="stat-box-val">47</div><div class="stat-box-label">Pagine HTML</div></div>
 <div class="stat-box"><div class="stat-box-val">76 + 21</div><div class="stat-box-label">Piloti Gestiti</div></div>
 <div class="stat-box"><div class="stat-box-val">22</div><div class="stat-box-label">Round stagione</div></div>
 </div>
@@ -451,6 +451,9 @@
   <li><strong>guida.html</strong> — Manuale utente: spiega come navigare e come funziona il sistema di Account, Preferiti e Notifiche.</li>
   <li><strong>relazione.html</strong> — Documentazione tecnica del progetto.</li>
   <li><strong>profilo.html</strong> — Pagina di gestione account (cambio username, password, visualizzazione preferiti e pronostici salvati).</li>
+  <li><strong>utente.html</strong> — Pagina di profilo pubblico (vetrina social condivisibile).</li>
+  <li><strong>vota-pilota.html</strong> — Sistema di votazione Pilot of the Weekend con risultati live.</li>
+  <li><strong>quiz.html</strong> — Quiz a risposta multipla con punteggio per la Classifica Globale.</li>
 </ul>
 <h3>Struttura dei dati JavaScript (Frontend)</h3>
 <p>I dati informativi (classifiche, risultati) sono organizzati in oggetti JavaScript costanti:</p>
@@ -577,6 +580,11 @@
 <li><strong>Campanellina Notifiche Personale</strong> — Un sistema di notifiche iniettato dinamicamente da <code>auth.js</code>. Sfrutta una funzione RPC (Remote Procedure Call) su Supabase per incrociare le notifiche inserite dall'admin con i piloti preferiti dell'utente. Se c'è un riscontro, compare un bollino rosso sulla campanella nell'header.</li>
 <li><strong>Sistema di Commenti</strong> — Modale notizie a due colonne: il testo a sinistra e i commenti sempre visibili a destra. Sfrutta una RPC sicura per mostrare gli username senza esporre gli ID, e il salvataggio avviene in tempo reale su Supabase.</li>
 <li><strong>Classifica Pronostici (Leaderboard)</strong> — Pagina che scarica tutti i pronostici degli utenti tramite un'apposita RPC sicura, li confronta con un array locale di risultati reali e assegna 3 punti per ogni vincitore indovinato, mostrando la classifica finale.</li>
+<li><strong>Profili Pubblici Condivisibili</strong> — Gli utenti possono compilare una bio e un team del cuore. Il sistema genera un link pubblico univoco (<code>utente.html?username=...</code>) che mostra le statistiche dell'utente, favorendo la crescita organica tramite social.</li>
+<li><strong>Gamification Avanzata</strong> — Il sistema di pronostici è stato espanso: oltre al vincitore (5 pt), gli utenti indovinano Pole (3 pt), 2° (3 pt) e 3° (2 pt) posto per tutte e tre le categorie, per un totale di 12 pronostici a GP.</li>
+<li><strong>Classifica Globale Unificata</strong> — Una singola leaderboard che somma i punti dei Pronostici GP con quelli del Quiz Mid-Week, incentivando gli utenti a giocare durante tutta la settimana.</li>
+<li><strong>Votazione Pilota del Weekend</strong> — Pagina dedicata alla votazione post-gara. Usa una RPC per aggregare i voti e mostrarli in tempo reale con barre di progressione.</li>
+<li><strong>Quiz Mid-Week</strong> — Pagina interattiva con domande a risposta multipla. Le domande vengono mescolate casualmente ad ogni accesso. Gli utenti possono ricominciare il quiz azzerando le proprie risposte.</li>
 </ul>
 </div>
 </div>
@@ -639,7 +647,7 @@
 <p>Il progetto ha raggiunto tutti gli obiettivi: un sito informativo completo, navigabile da qualsiasi dispositivo, e dotato di un sistema di account cloud sicuro e funzionante su più dispositivi grazie a Supabase.</p>
 <h3>Risultati ottenuti</h3>
 <ul class="feat-list">
-<li>45 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro.</li>
+<li>47 pagine HTML funzionanti con navigazione coerente, tema scuro/chiaro.</li>
 <li>97 piloti con scheda completa, palmares e grafico punti per round.</li>
 <li>Sistema di Login/Registrazione con email/username sicuro, basato su Supabase e PostgreSQL.</li>
 <li>Tabella preferiti protetta da Row Level Security (RLS).</li>

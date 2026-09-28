@@ -734,7 +734,7 @@ const RIDER_OPTIONS = {
     { "name": "Tony Arbolino", "flag": "🇮🇹", "team": "Kalex", "note": "" },
     { "name": "Sergio García", "flag": "🇪🇸", "team": "Kalex", "note": "" },
     { "name": "Alonso López", "flag": "🇪🇸", "team": "Kalex", "note": "⚠️ Assente Round 10-11" }, //Assente R9 Da sabato-R10-11
-    { "name": "Milan Pawelec", "flag": "🇵🇱", "team":"Kalex","note":"SOSTITUTO IN CORSO R9-R10-11 Sub. A.Lopez al Round 9"},
+    { "name": "Milan Pawelec", "flag": "🇵🇱", "team":"Kalex","note":"SOSTITUTO R9-R10-11 Sub. A.Lopez al Round 9"},
     { "name": "Mario Aji", "flag": "🇮🇩", "team": "Kalex", "note": "⚠️ Assente Round 8-9 (infortunio)" }, //Assente R6-R7-R8-R9
     { "name": "Jacob Roulstone", "flag": "🇦🇺", "team": "Kalex", "note": "SOSTITUTO R8-9 Sub. Aji al Round 8-9" },
     { "name": "Taiyo Furusato", "flag": "🇯🇵", "team": "Kalex", "note": "" },
@@ -747,8 +747,9 @@ const RIDER_OPTIONS = {
     { "name": "Iván Ortolá", "flag": "🇪🇸", "team": "Kalex", "note": "" },
     { "name": "Angel Piqueras", "flag": "🇪🇸", "team": "Kalex", "note": "" }, //Assente anche R2-R3-R4-R5-R6-R7
     { "name": "Unai Orradre", "flag": "🇪🇸", "team": "Kalex", "note": "SOSTITUTO R6-R7 Sub. Piqueras al Round 6-7" },
-    { "name": "José Antonio Rueda", "flag": "🇪🇸", "team": "KTM", "note": "" },
-    { "name": "Collin Veijer", "flag": "🇳🇱", "team": "KTM", "note": "" },
+    { "name": "José Antonio Rueda", "flag": "🇪🇸", "team": "Kalex", "note": "" },
+    { "name": "Collin Veijer", "flag": "🇳🇱", "team": "Kalex", "note": "⚠️ Assente Round 16 (infortunio)" },
+    { "name": "Milan Pawelec", "flag": "🇵🇱", "team":"Kalex","note":"SOSTITUTO R16 Sub. C.Veijer al Round 16"}, // Sub R16
     { "name": "Xabi Zurutuza", "flag": "🇪🇸", "team": "Forward", "note": "" }, //Titolare da R6 a R22, al posto di J.Navarro
     { "name": "Alex Escrig", "flag": "🇪🇸", "team": "Forward", "note": "" },
     { "name": "Marcos Ramirez", "flag": "🇪🇸", "team": "Forward", "note": "Wildcard R14-15" }, //SOSTITUTO R4-R5 Sub. Piqueras ai Round 4-5 - WildCard R13-14-15
@@ -917,7 +918,7 @@ async function loadPredictions() {
     }
     
     const { data, error } = await s.from('predictions')
-        .select('round_id, motogp_winner, moto2_winner, moto3_winner')
+        .select('round_id, motogp_winner, moto2_winner, moto3_winner, motogp_pole, motogp_p2, motogp_p3, moto2_pole, moto2_p2, moto2_p3, moto3_pole, moto3_p2, moto3_p3')
         .eq('user_id', CURRENT_USER_PRED.id);
     
     if (data) {
@@ -925,8 +926,17 @@ async function loadPredictions() {
         data.forEach(pred => {
             PREDICTIONS_STATE[pred.round_id] = {
                 motogp: pred.motogp_winner,
+                motogp_pole: pred.motogp_pole,
+                motogp_p2: pred.motogp_p2,
+                motogp_p3: pred.motogp_p3,
                 moto2: pred.moto2_winner,
-                moto3: pred.moto3_winner
+                moto2_pole: pred.moto2_pole,
+                moto2_p2: pred.moto2_p2,
+                moto2_p3: pred.moto2_p3,
+                moto3: pred.moto3_winner,
+                moto3_pole: pred.moto3_pole,
+                moto3_p2: pred.moto3_p2,
+                moto3_p3: pred.moto3_p3
             };
         });
         applyPredictionsToUI();
@@ -952,16 +962,25 @@ async function saveRound(num) {
         round_id: String(num), 
         motogp_winner: roundData.motogp || null, 
         moto2_winner: roundData.moto2 || null, 
-        moto3_winner: roundData.moto3 || null 
+        moto3_winner: roundData.moto3 || null,
+        motogp_pole: roundData.motogp_pole || null,
+        motogp_p2: roundData.motogp_p2 || null,
+        motogp_p3: roundData.motogp_p3 || null,
+        moto2_pole: roundData.moto2_pole || null,
+        moto2_p2: roundData.moto2_p2 || null,
+        moto2_p3: roundData.moto2_p3 || null,
+        moto3_pole: roundData.moto3_pole || null,
+        moto3_p2: roundData.moto3_p2 || null,
+        moto3_p3: roundData.moto3_p3 || null
     }, { onConflict: 'user_id,round_id' });
         
     if (error) { 
         console.error('Errore salvataggio:', error); 
-        showToast('❌ Errore nel salvataggio nel database.', true);
+        showToast('❌ Errore nel salvataggio nel database.', true); 
     } else { 
         PREDICTIONS_STATE[num] = roundData;
         refreshSidebar();
-        showToast('✅ Pronostico salvato nel cloud!');
+        showToast('✅ Pronostico salvato nel cloud!'); 
     }
 }
 
@@ -1042,11 +1061,40 @@ function renderRounds() {
         <span class="status">${r.status === 'next' ? 'Prossimo GP' : 'In programma'}</span>
       </summary>
       <div class="round-body">
-        <div class="choices">
-          <div class="field"><label>MotoGP vincitore</label><select data-round="${r.num}" data-cat="motogp">${ridersMarkup('motogp', r.num)}</select></div>
-          <div class="field"><label>Moto2 vincitore</label><select data-round="${r.num}" data-cat="moto2">${ridersMarkup('moto2', r.num)}</select></div>
-          <div class="field"><label>Moto3 vincitore</label><select data-round="${r.num}" data-cat="moto3">${ridersMarkup('moto3', r.num)}</select></div>
+        
+        <!-- MotoGP -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+          <h4 style="color: var(--gp); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🔴 MotoGP</h4>
+          <div class="choices">
+            <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="motogp">${ridersMarkup('motogp', r.num)}</select></div>
+            <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="motogp_p2">${ridersMarkup('motogp', r.num)}</select></div>
+            <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="motogp_p3">${ridersMarkup('motogp', r.num)}</select></div>
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="motogp_pole">${ridersMarkup('motogp', r.num)}</select></div>
+          </div>
         </div>
+
+        <!-- Moto2 -->
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+          <h4 style="color: var(--m2); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🟡 Moto2</h4>
+          <div class="choices">
+            <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="moto2">${ridersMarkup('moto2', r.num)}</select></div>
+            <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="moto2_p2">${ridersMarkup('moto2', r.num)}</select></div>
+            <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="moto2_p3">${ridersMarkup('moto2', r.num)}</select></div>
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto2_pole">${ridersMarkup('moto2', r.num)}</select></div>
+          </div>
+        </div>
+
+        <!-- Moto3 -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: var(--m3); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🔵 Moto3</h4>
+          <div class="choices">
+            <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="moto3">${ridersMarkup('moto3', r.num)}</select></div>
+            <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="moto3_p2">${ridersMarkup('moto3', r.num)}</select></div>
+            <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="moto3_p3">${ridersMarkup('moto3', r.num)}</select></div>
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto3_pole">${ridersMarkup('moto3', r.num)}</select></div>
+          </div>
+        </div>
+
         <div class="actions">
           <button class="btn small ok" onclick="saveRound(${r.num})">💾 Salva GP</button>
           <button class="btn small warn" onclick="clearRound(${r.num})">🧹 Reset GP</button>  

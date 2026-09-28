@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pilota del Weekend — Moto2026</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    :root { --red:#e8001d; --dark:#0a0a0a; --mid:#141414; --card:#1a1a1a; --border:#2a2a2a; --muted:#8a8a8a; --white:#f5f5f5; }
+    [data-theme="light"] { --dark:#f5f5f5; --mid:#ececec; --card:#fff; --border:#d8d8d8; --muted:#666; --white:#111; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; min-height:100vh; display:flex; justify-content:center; padding:2rem 1rem; }
+    .container { width:100%; max-width:500px; }
+    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; }
+    h1 { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.04em; margin-bottom:.5rem; }
+    h1 span { color:var(--red); }
+    .subtitle { color:var(--muted); margin-bottom:2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; }
+    .card-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin-bottom:1.2rem; border-bottom:1px solid var(--border); padding-bottom:.5rem; letter-spacing:.04em; }
+    .vote-btn { display:block; width:100%; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:1rem; border-radius:8px; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.8rem; transition:.2s; text-align:left; }
+    .vote-btn:hover { border-color:var(--red); background:rgba(232,0,29,.05); }
+    .vote-btn.voted { border-color:var(--red); color:var(--red); }
+    .results-bar { height:8px; background:var(--mid); border-radius:4px; margin-top:.5rem; overflow:hidden; }
+    .results-fill { height:100%; background:var(--red); width:0%; transition:width .5s ease; }
+    .results-text { font-size:.8rem; color:var(--muted); margin-top:.2rem; }
+    .loading { text-align:center; color:var(--muted); padding:3rem 0; }
+    .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:1rem 1.5rem; border-radius:8px; font-family:'Barlow Condensed',sans-serif; font-weight:700; z-index:9999; display:none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="back-btn-wrap" style="margin-bottom: 1rem;"></div>
+    
+    <h1>Pilota del <span>Weekend</span></h1>
+    <p class="subtitle">Vote per il migliore in pista nel GP appena concluso!</p>
+
+    <div class="card">
+        <div class="card-title">🏆 GP del Giappone (Round 16)</div>
+        <div id="vote-content">
+            <p class="loading">Caricamento...</p>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// Inizializza Supabase
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
+const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// IMPOSTAZIONI ROUND
+const CURRENT_ROUND = '16';
+const CANDIDATES = [
+    { id: 'Pedro Acosta', name: 'Pedro Acosta', team: 'KTM' },
+    { id: 'Francesco Bagnaia', name: 'Francesco Bagnaia', team: 'Ducati' },
+    { id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia' },
+    { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia' }
+];
+
+let currentUser = null;
+let hasVoted = false;
+
+async function initVotingPage() {
+    const { data: { session } } = await s.auth.getSession();
+    currentUser = session?.user || null;
+    
+    if (!currentUser) {
+        document.getElementById('vote-content').innerHTML = '<p style="color:var(--muted); text-align:center; padding:2rem 0;">Devi essere loggato per votare.<br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">← Torna alla Home</a></p>';
+        return;
+    }
+    
+    // Controlla se ha già votato
+    const { data: existingVote } = await s.from('dotw_votes').select('rider_voted').eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND).maybeSingle();
+    
+    if (existingVote) {
+        hasVoted = true;
+        showResults(existingVote.rider_voted);
+    } else {
+        showVotingForm();
+    }
+}
+
+function showVotingForm() {
+    let html = '';
+    CANDIDATES.forEach(c => {
+        html += `<button class="vote-btn" onclick="castVote('${c.id}')">${c.name} <span style="color:var(--muted); font-size:.9rem;">(${c.team})</span></button>`;
+    });
+    document.getElementById('vote-content').innerHTML = html;
+}
+
+async function castVote(riderId) {
+    const { error } = await s.from('dotw_votes').insert({
+        user_id: currentUser.id,
+        round_id: CURRENT_ROUND,
+        rider_voted: riderId
+    });
+    
+    if (error) {
+        showToast('Errore durante il voto.', true);
+    } else {
+        showToast('✅ Voto registrato!');
+        hasVoted = true;
+        showResults(riderId);
+    }
+}
+
+async function showResults(userVote) {
+    // Prendi i risultati aggregati
+    const { data: results } = await s.rpc('get_dotw_results', { p_round_id: CURRENT_ROUND });
+    
+    const totalVotes = results ? results.reduce((sum, r) => sum + Number(r.vote_count), 0) : 0;
+    
+    let html = '<p style="color:var(--muted); font-size:.9rem; margin-bottom:1.5rem;">Hai votato per: <strong style="color:var(--red)">' + userVote + '</strong></p>';
+    
+    // Ordina i risultati per voti
+    if (results) results.sort((a, b) => b.vote_count - a.vote_count);
+    
+    if (results && results.length > 0) {
+        results.forEach(r => {
+            const percentage = totalVotes > 0 ? Math.round((Number(r.vote_count) / totalVotes) * 100) : 0;
+            const isUserVote = r.rider_voted === userVote;
+            
+            html += `
+                <div style="margin-bottom:1.2rem;">
+                    <div style="display:flex; justify-content:space-between; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem;">
+                        <span>${r.rider_voted} ${isUserVote ? '✓' : ''}</span>
+                        <span style="color:var(--muted);">${r.vote_count} voti (${percentage}%)</span>
+                    </div>
+                    <div class="results-bar">
+                        <div class="results-fill" style="width:${percentage}%; ${isUserVote ? 'background:var(--red);' : 'background:var(--muted);'}"></div>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        html += '<p style="color:var(--muted); text-align:center; padding:2rem 0;">Nessun voto ancora registrato.</p>';
+    }
+    
+    // AGGIUNGI IL BOTTONE PER CAMBIARE VOTO
+    html += '<div style="margin-top:2rem; text-align:center;">' +
+            '<button onclick="deleteVote()" style="background:transparent; border:1px solid var(--border); color:var(--muted); padding:.5rem 1rem; border-radius:6px; cursor:pointer; font-family:Barlow Condensed,sans-serif; font-weight:700; text-transform:uppercase; font-size:.85rem; transition:.2s;">Cambia il tuo voto</button>' +
+            '</div>';
+    
+    document.getElementById('vote-content').innerHTML = html;
+}
+
+// FUNZIONE PER CANCELLARE IL VOTO
+async function deleteVote() {
+    if (!confirm('Sei sicuro di voler annullare il tuo voto per poter votare di nuovo?')) return;
+    
+    const { error } = await s.from('dotw_votes').delete().eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND);
+    
+    if (error) {
+        showToast('Errore durante la cancellazione.', true);
+    } else {
+        hasVoted = false;
+        showToast('✅ Voto cancellato! Scegli un nuovo pilota.');
+        showVotingForm(); // Mostra di nuovo i bottoni per votare
+    }
+}
+
+function showToast(msg, isError = false) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = isError ? '#e8001d' : '#222';
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+// BOTTONE TORNA INDIETRO
+var backWrap = document.querySelector('.back-btn-wrap');
+if (backWrap) {
+    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna alla pagina precedente</a>';
+}
+
+initVotingPage();
+</script>
+</body>
+</html>
