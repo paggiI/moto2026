@@ -1683,6 +1683,72 @@
 <div class="cd-cell"><div class="cd-val" id="cd-s">--</div><div class="cd-lbl">Sec</div></div>
 </div>
 </div>
+<!-- ORARI GP (Accordion) -->
+<details class="card" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem;">
+  <summary style="font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--white); cursor: pointer; display: flex; align-items: center; gap: .5rem; list-style: none;">
+    ⏱️ Orari GP Giappone <span style="font-size: .7rem; color: var(--muted); font-family: 'Barlow Condensed'; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-left: auto;">(Ora Italiana)</span>
+  </summary>
+  <div id="schedule-list" style="display: flex; flex-direction: column; gap: .1rem; margin-top: 1rem;">
+    <!-- Il JS riempirà qui dentro -->
+  </div>
+</details>
+
+<script>
+const GP_SCHEDULE = [
+  { day: 'Venerdì 2 Ott', time: '02:00', cat: 'moto3', session: 'FP1' },
+  { day: 'Venerdì 2 Ott', time: '02:50', cat: 'moto2', session: 'FP1' },
+  { day: 'Venerdì 2 Ott', time: '03:45', cat: 'motogp', session: 'FP1' },
+  { day: 'Venerdì 2 Ott', time: '06:15', cat: 'moto3', session: 'Practice 1' },
+  { day: 'Venerdì 2 Ott', time: '07:05', cat: 'moto2', session: 'Practice 1' },
+  { day: 'Venerdì 2 Ott', time: '08:00', cat: 'motogp', session: 'Practice' },
+  { day: 'Sabato 3 Ott', time: '01:40', cat: 'moto3', session: 'Practice 2' },
+  { day: 'Sabato 3 Ott', time: '02:25', cat: 'moto2', session: 'Practice 2' },
+  { day: 'Sabato 3 Ott', time: '03:10', cat: 'motogp', session: 'FP2' },
+  { day: 'Sabato 3 Ott', time: '03:50', cat: 'motogp', session: 'Q1' },
+  { day: 'Sabato 3 Ott', time: '04:15', cat: 'motogp', session: 'Q2' },
+  { day: 'Sabato 3 Ott', time: '05:45', cat: 'moto3', session: 'Q1' },
+  { day: 'Sabato 3 Ott', time: '06:10', cat: 'moto3', session: 'Q2' },
+  { day: 'Sabato 3 Ott', time: '06:40', cat: 'moto2', session: 'Q1' },
+  { day: 'Sabato 3 Ott', time: '07:05', cat: 'moto2', session: 'Q2' },
+  { day: 'Sabato 3 Ott', time: '08:00', cat: 'motogp', session: 'Sprint Race' },
+  { day: 'Domenica 4 Ott', time: '02:40', cat: 'motogp', session: 'Warm-Up' },
+  { day: 'Domenica 4 Ott', time: '04:00', cat: 'moto3', session: 'Gara' },
+  { day: 'Domenica 4 Ott', time: '05:15', cat: 'moto2', session: 'Gara' },
+  { day: 'Domenica 4 Ott', time: '07:00', cat: 'motogp', session: 'Gara' }
+];
+
+const CAT_COLORS = { motogp: 'var(--gp)', moto2: 'var(--m2)', moto3: 'var(--m3)' };
+const CAT_NAMES = { motogp: 'MotoGP', moto2: 'Moto2', moto3: 'Moto3' };
+
+function renderSchedule() {
+  const list = document.getElementById('schedule-list');
+  let html = '';
+  let currentDay = '';
+  
+  GP_SCHEDULE.forEach(item => {
+    if (item.day !== currentDay) {
+      html += `<div style="font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .8rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: .2rem;">${item.day}</div>`;
+      currentDay = item.day;
+    }
+    
+    // Riga compatta
+    html += `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: .35rem 0;">
+        <div style="display: flex; align-items: center; gap: .5rem;">
+          <div style="width: 3px; height: 14px; background: ${CAT_COLORS[item.cat]}; border-radius: 2px;"></div>
+          <span style="font-weight: 600; color: ${CAT_COLORS[item.cat]}; font-size: .85rem; width: 45px;">${CAT_NAMES[item.cat]}</span>
+          <span style="color: var(--muted); font-size: .85rem;">${item.session}</span>
+        </div>
+        <span style="font-family: 'Bebas Neue'; font-size: 1rem; color: var(--white); letter-spacing: .04em;">${item.time}</span>
+      </div>
+    `;
+  });
+  
+  list.innerHTML = html;
+}
+
+renderSchedule();
+</script>
 <!-- FOCUS CIRCUITO -->
 <div style="display: flex; gap: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; align-items: center; flex-wrap: wrap;">
   <a href="circuiti/circuito_motegi.html" style="flex: 1; min-width: 200px; text-align: center; background: #fff; padding: .5rem; border-radius: 6px;">
