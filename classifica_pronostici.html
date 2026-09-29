@@ -69,9 +69,9 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const ACTUAL_RESULTS = {
   // Inserisci qui i risultati reali man mano che le gare si corrono
   '15': { 
-    motogp_win: 'Jorge Martín', motogp_p2: 'Francesco Bagnaia', motogp_p3: 'Marco Bezzecchi', motogp_pole: 'Marco Bezzecchi',
-    moto2_win: 'David Alonso', moto2_p2: 'Izan Guevara', moto2_p3: 'Manuel González', moto2_pole: 'Filip Salač',
-    moto3_win: 'Máximo Quiles', moto3_p2: 'David Almansa', moto3_p3: 'Álvaro Carpe', moto3_pole: 'David Almansa'
+    motogp_pole: 'Jorge Martín', motogp_sprint: 'Jorge Martín',motogp_win: 'Pedro Acosta', motogp_p2: 'Jorge Martín', motogp_p3: 'Marco Bezzecchi',
+    moto2_pole: 'Filip Salač', moto2_win: 'Izan Guevara', moto2_p2: 'Filip Salač', moto2_p3: 'David Alonso',
+    moto3_pole: 'Brian Uriarte', moto3_win: 'Máximo Quiles', moto3_p2: 'Brian Uriarte', moto3_p3: 'Álvaro Carpe'
   }
   // Aggiungi righe qui per i prossimi round!
 };
@@ -112,6 +112,7 @@ async function loadLeaderboard() {
                 if (pred.motogp_p2 === real.motogp_p2) roundPoints += 3;
                 if (pred.motogp_p3 === real.motogp_p3) roundPoints += 2;
                 if (pred.motogp_pole === real.motogp_pole) roundPoints += 3;
+                if (pred.motogp_sprint === real.motogp_sprint) roundPoints += 3; 
                 
                 if (pred.moto2_winner === real.moto2_win) roundPoints += 5;
                 if (pred.moto2_p2 === real.moto2_p2) roundPoints += 3;

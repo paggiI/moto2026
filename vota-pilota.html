@@ -38,7 +38,7 @@
     <p class="subtitle">Vote per il migliore in pista nel GP appena concluso!</p>
 
     <div class="card">
-        <div class="card-title">🏆 GP del Giappone (Round 16)</div>
+        <div class="card-title">🏆 GP dell'Austria (Round 15)</div>
         <div id="vote-content">
             <p class="loading">Caricamento...</p>
         </div>
@@ -53,17 +53,37 @@ const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
 const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// IMPOSTAZIONI ROUND
-const CURRENT_ROUND = '16';
-const CANDIDATES = [
-    { id: 'Pedro Acosta', name: 'Pedro Acosta', team: 'KTM' },
-    { id: 'Francesco Bagnaia', name: 'Francesco Bagnaia', team: 'Ducati' },
-    { id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia' },
-    { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia' }
+// IMPOSTAZIONI ROUND E CANDIDATI (Modifica questi dati ogni nuovo GP!)
+const CURRENT_ROUND = '15';
+const CATEGORIES = [
+    { id: 'motogp', name: 'MotoGP', color: 'var(--gp)' },
+    { id: 'moto2', name: 'Moto2', color: 'var(--m2)' },
+    { id: 'moto3', name: 'Moto3', color: 'var(--m3)' }
 ];
 
+const CANDIDATES = {
+    motogp: [
+        { id: 'Pedro Acosta', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing' },
+        { id: 'Ai Ogura', name: 'Ai Ogura', team: 'SuperFile Trackhouse MotoGP Team' },
+        { id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia Racing' },
+        { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia Racing' }
+    ],
+    moto2: [
+        { id: 'Izan Guevara', name: 'Izan Guevara', team: 'BLU CRU Pramac Yamaha Moto2' },
+        { id: 'Filip Salač', name: 'Filip Salač', team: 'OnlyFans American Racing Team' },
+        { id: 'David Alonso', name: 'David Alonso', team: 'CFMOTO Aspar Team Moto2' },
+        { id: 'Manuel González', name: 'Manuel González', team: 'LIQUI MOLY Dynavolt Intact GP' }
+    ],
+    moto3: [
+        { id: 'Máximo Quiles', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team Moto3' },
+        { id: 'David Almansa', name: 'David Almansa', team: 'LIQUI MOLY Dynavolt Intact GP Moto3' },
+        { id: 'Brian Uriarte', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo Moto3' },
+        { id: 'Eddie O’Shea', name: 'Eddie O’Shea', team: 'GRYD – MLav Racing' }
+    ]
+};
+
 let currentUser = null;
-let hasVoted = false;
+let votesMap = {}; // es. { motogp: 'Pedro Acosta', moto2: null, moto3: null }
 
 async function initVotingPage() {
     const { data: { session } } = await s.auth.getSession();
@@ -74,93 +94,93 @@ async function initVotingPage() {
         return;
     }
     
-    // Controlla se ha già votato
-    const { data: existingVote } = await s.from('dotw_votes').select('rider_voted').eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND).maybeSingle();
+    // Scarica i voti già dati per questo round
+    const { data: existingVotes } = await s.from('dotw_votes').select('category, rider_voted').eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND);
     
-    if (existingVote) {
-        hasVoted = true;
-        showResults(existingVote.rider_voted);
-    } else {
-        showVotingForm();
+    if (existingVotes) {
+        existingVotes.forEach(v => { votesMap[v.category] = v.rider_voted; });
     }
+    
+    renderVotingSections();
 }
 
-function showVotingForm() {
+async function renderVotingSections() {
+    // Scarica i risultati aggregati per tutte le categorie
+    const { data: results } = await s.rpc('get_dotw_results', { p_round_id: CURRENT_ROUND });
+    
     let html = '';
-    CANDIDATES.forEach(c => {
-        html += `<button class="vote-btn" onclick="castVote('${c.id}')">${c.name} <span style="color:var(--muted); font-size:.9rem;">(${c.team})</span></button>`;
+    
+    CATEGORIES.forEach(cat => {
+        const userVote = votesMap[cat.id];
+        const catResults = results ? results.filter(r => r.category === cat.id) : [];
+        const totalVotes = catResults.reduce((sum, r) => sum + Number(r.vote_count), 0);
+        
+        html += `<div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">`;
+        html += `<h4 style="color: ${cat.color}; margin-bottom: 1rem; font-family: 'Barlow Condensed'; font-size: 1.2rem; text-transform: uppercase; letter-spacing: .05em;">${cat.name}</h4>`;
+        
+        if (userVote) {
+            // Ha già votato in questa categoria: mostra risultati
+            html += `<p style="color:var(--muted); font-size:.85rem; margin-bottom:1rem;">Hai votato: <strong style="color:var(--red)">${userVote}</strong> <button onclick="deleteVote('${cat.id}')" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; padding:.2rem .5rem; border-radius:4px; cursor:pointer; font-size:.7rem; margin-left:.5rem;">Cambia</button></p>`;
+            
+            catResults.sort((a, b) => b.vote_count - a.vote_count);
+            catResults.forEach(r => {
+                const percentage = totalVotes > 0 ? Math.round((Number(r.vote_count) / totalVotes) * 100) : 0;
+                const isUserVote = r.rider_voted === userVote;
+                
+                html += `
+                    <div style="margin-bottom:.8rem;">
+                        <div style="display:flex; justify-content:space-between; font-family:'Barlow Condensed',sans-serif; font-size:1rem;">
+                            <span>${r.rider_voted} ${isUserVote ? '✓' : ''}</span>
+                            <span style="color:var(--muted);">${r.vote_count} (${percentage}%)</span>
+                        </div>
+                        <div class="results-bar">
+                            <div class="results-fill" style="width:${percentage}%; ${isUserVote ? 'background:var(--red);' : 'background:var(--muted);'}"></div>
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            // Non ha ancora votato in questa categoria: mostra i bottoni
+            CANDIDATES[cat.id].forEach(c => {
+                html += `<button class="vote-btn" onclick="castVote('${cat.id}', '${c.id}')">${c.name} <span style="color:var(--muted); font-size:.85rem; display:block; margin-top:.2rem;">${c.team}</span></button>`;
+            });
+        }
+        
+        html += `</div>`;
     });
+    
     document.getElementById('vote-content').innerHTML = html;
 }
 
-async function castVote(riderId) {
-    const { error } = await s.from('dotw_votes').insert({
+async function castVote(category, riderId) {
+    // Usa upsert: se esiste aggiorna, se no crea
+    const { error } = await s.from('dotw_votes').upsert({
         user_id: currentUser.id,
         round_id: CURRENT_ROUND,
+        category: category,
         rider_voted: riderId
-    });
+    }, { onConflict: 'user_id,round_id,category' });
     
     if (error) {
         showToast('Errore durante il voto.', true);
     } else {
+        votesMap[category] = riderId;
         showToast('✅ Voto registrato!');
-        hasVoted = true;
-        showResults(riderId);
+        renderVotingSections(); // Aggiorna la UI
     }
 }
 
-async function showResults(userVote) {
-    // Prendi i risultati aggregati
-    const { data: results } = await s.rpc('get_dotw_results', { p_round_id: CURRENT_ROUND });
+async function deleteVote(category) {
+    if (!confirm('Vuoi cambiare il tuo voto per questa categoria?')) return;
     
-    const totalVotes = results ? results.reduce((sum, r) => sum + Number(r.vote_count), 0) : 0;
-    
-    let html = '<p style="color:var(--muted); font-size:.9rem; margin-bottom:1.5rem;">Hai votato per: <strong style="color:var(--red)">' + userVote + '</strong></p>';
-    
-    // Ordina i risultati per voti
-    if (results) results.sort((a, b) => b.vote_count - a.vote_count);
-    
-    if (results && results.length > 0) {
-        results.forEach(r => {
-            const percentage = totalVotes > 0 ? Math.round((Number(r.vote_count) / totalVotes) * 100) : 0;
-            const isUserVote = r.rider_voted === userVote;
-            
-            html += `
-                <div style="margin-bottom:1.2rem;">
-                    <div style="display:flex; justify-content:space-between; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem;">
-                        <span>${r.rider_voted} ${isUserVote ? '✓' : ''}</span>
-                        <span style="color:var(--muted);">${r.vote_count} voti (${percentage}%)</span>
-                    </div>
-                    <div class="results-bar">
-                        <div class="results-fill" style="width:${percentage}%; ${isUserVote ? 'background:var(--red);' : 'background:var(--muted);'}"></div>
-                    </div>
-                </div>
-            `;
-        });
-    } else {
-        html += '<p style="color:var(--muted); text-align:center; padding:2rem 0;">Nessun voto ancora registrato.</p>';
-    }
-    
-    // AGGIUNGI IL BOTTONE PER CAMBIARE VOTO
-    html += '<div style="margin-top:2rem; text-align:center;">' +
-            '<button onclick="deleteVote()" style="background:transparent; border:1px solid var(--border); color:var(--muted); padding:.5rem 1rem; border-radius:6px; cursor:pointer; font-family:Barlow Condensed,sans-serif; font-weight:700; text-transform:uppercase; font-size:.85rem; transition:.2s;">Cambia il tuo voto</button>' +
-            '</div>';
-    
-    document.getElementById('vote-content').innerHTML = html;
-}
-
-// FUNZIONE PER CANCELLARE IL VOTO
-async function deleteVote() {
-    if (!confirm('Sei sicuro di voler annullare il tuo voto per poter votare di nuovo?')) return;
-    
-    const { error } = await s.from('dotw_votes').delete().eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND);
+    const { error } = await s.from('dotw_votes').delete().eq('user_id', currentUser.id).eq('round_id', CURRENT_ROUND).eq('category', category);
     
     if (error) {
         showToast('Errore durante la cancellazione.', true);
     } else {
-        hasVoted = false;
-        showToast('✅ Voto cancellato! Scegli un nuovo pilota.');
-        showVotingForm(); // Mostra di nuovo i bottoni per votare
+        delete votesMap[category];
+        showToast('✅ Voto cancellato!');
+        renderVotingSections();
     }
 }
 
@@ -175,7 +195,7 @@ function showToast(msg, isError = false) {
 // BOTTONE TORNA INDIETRO
 var backWrap = document.querySelector('.back-btn-wrap');
 if (backWrap) {
-    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna alla pagina precedente</a>';
+    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna indietro</a>';
 }
 
 initVotingPage();

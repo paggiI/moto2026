@@ -917,24 +917,25 @@ async function loadPredictions() {
         return;
     }
     
-    const { data, error } = await s.from('predictions')
-        .select('round_id, motogp_winner, moto2_winner, moto3_winner, motogp_pole, motogp_p2, motogp_p3, moto2_pole, moto2_p2, moto2_p3, moto3_pole, moto3_p2, moto3_p3')
-        .eq('user_id', CURRENT_USER_PRED.id);
+   const { data, error } = await s.from('predictions')
+    .select('round_id, motogp_winner, moto2_winner, moto3_winner, motogp_pole, motogp_p2, motogp_p3, motogp_sprint, moto2_pole, moto2_p2, moto2_p3, moto3_pole, moto3_p2, moto3_p3')
+    .eq('user_id', CURRENT_USER_PRED.id);
     
     if (data) {
         PREDICTIONS_STATE = {};
         data.forEach(pred => {
             PREDICTIONS_STATE[pred.round_id] = {
-                motogp: pred.motogp_winner,
                 motogp_pole: pred.motogp_pole,
+                motogp_sprint: pred.motogp_sprint, 
+                motogp: pred.motogp_winner,
                 motogp_p2: pred.motogp_p2,
                 motogp_p3: pred.motogp_p3,
-                moto2: pred.moto2_winner,
                 moto2_pole: pred.moto2_pole,
+                moto2: pred.moto2_winner,
                 moto2_p2: pred.moto2_p2,
                 moto2_p3: pred.moto2_p3,
-                moto3: pred.moto3_winner,
                 moto3_pole: pred.moto3_pole,
+                moto3: pred.moto3_winner,
                 moto3_p2: pred.moto3_p2,
                 moto3_p3: pred.moto3_p3
             };
@@ -960,16 +961,17 @@ async function saveRound(num) {
     const { error } = await s.from('predictions').upsert({ 
         user_id: CURRENT_USER_PRED.id, 
         round_id: String(num), 
-        motogp_winner: roundData.motogp || null, 
-        moto2_winner: roundData.moto2 || null, 
-        moto3_winner: roundData.moto3 || null,
         motogp_pole: roundData.motogp_pole || null,
+        motogp_sprint: roundData.motogp_sprint || null,
+        motogp_winner: roundData.motogp || null, 
         motogp_p2: roundData.motogp_p2 || null,
         motogp_p3: roundData.motogp_p3 || null,
         moto2_pole: roundData.moto2_pole || null,
+        moto2_winner: roundData.moto2 || null, 
         moto2_p2: roundData.moto2_p2 || null,
         moto2_p3: roundData.moto2_p3 || null,
         moto3_pole: roundData.moto3_pole || null,
+        moto3_winner: roundData.moto3 || null,
         moto3_p2: roundData.moto3_p2 || null,
         moto3_p3: roundData.moto3_p3 || null
     }, { onConflict: 'user_id,round_id' });
@@ -1066,10 +1068,11 @@ function renderRounds() {
         <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
           <h4 style="color: var(--gp); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🔴 MotoGP</h4>
           <div class="choices">
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="motogp_pole">${ridersMarkup('motogp', r.num)}</select></div>
+            <div class="field"><label>Sprint Race (3pt)</label><select data-round="${r.num}" data-cat="motogp_sprint">${ridersMarkup('motogp', r.num)}</select></div>
             <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="motogp">${ridersMarkup('motogp', r.num)}</select></div>
             <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="motogp_p2">${ridersMarkup('motogp', r.num)}</select></div>
             <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="motogp_p3">${ridersMarkup('motogp', r.num)}</select></div>
-            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="motogp_pole">${ridersMarkup('motogp', r.num)}</select></div>
           </div>
         </div>
 
@@ -1077,10 +1080,10 @@ function renderRounds() {
         <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
           <h4 style="color: var(--m2); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🟡 Moto2</h4>
           <div class="choices">
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto2_pole">${ridersMarkup('moto2', r.num)}</select></div>
             <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="moto2">${ridersMarkup('moto2', r.num)}</select></div>
             <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="moto2_p2">${ridersMarkup('moto2', r.num)}</select></div>
             <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="moto2_p3">${ridersMarkup('moto2', r.num)}</select></div>
-            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto2_pole">${ridersMarkup('moto2', r.num)}</select></div>
           </div>
         </div>
 
@@ -1088,10 +1091,10 @@ function renderRounds() {
         <div style="margin-bottom: 1.5rem;">
           <h4 style="color: var(--m3); margin-bottom: .5rem; font-family: 'Barlow Condensed', sans-serif;">🔵 Moto3</h4>
           <div class="choices">
+            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto3_pole">${ridersMarkup('moto3', r.num)}</select></div>
             <div class="field"><label>1° Vincitore (5pt)</label><select data-round="${r.num}" data-cat="moto3">${ridersMarkup('moto3', r.num)}</select></div>
             <div class="field"><label>2° Posto (3pt)</label><select data-round="${r.num}" data-cat="moto3_p2">${ridersMarkup('moto3', r.num)}</select></div>
             <div class="field"><label>3° Posto (2pt)</label><select data-round="${r.num}" data-cat="moto3_p3">${ridersMarkup('moto3', r.num)}</select></div>
-            <div class="field"><label>Pole Position (3pt)</label><select data-round="${r.num}" data-cat="moto3_pole">${ridersMarkup('moto3', r.num)}</select></div>
           </div>
         </div>
 
