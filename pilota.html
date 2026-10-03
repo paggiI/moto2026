@@ -1313,7 +1313,7 @@ const RIDERS = {
     "bike": "KTM RC16",
     "note": "Campione del mondo Moto2 nel 2020, è passato in MotoGP nel 2021 con Avintia Ducati. Con Gresini Ducati ha conquistato quattro vittorie nel 2022, poi è passato al team ufficiale Ducati e nel 2025 a KTM Tech3.",
     "points": 34,
-    "position": 12,
+    "position": 11,
     "birth": "1998-12-30",
     "city": "Rimini",
     "debut": 2014
@@ -1381,7 +1381,7 @@ const RIDERS = {
     "bike": "Honda RC213V",
     "note": "Vicecampione del mondo Moto2 nel 2020, è passato in MotoGP nel 2021 con VR46 Ducati. Dal 2024 corre con Honda HRC, dopo aver ottenuto diversi podi in Moto2 e MotoGP.",
     "points": 35,
-    "position": 11,
+    "position": 12,
     "birth": "1997-08-10",
     "city": "Urbino",
     "debut": 2013
@@ -3212,8 +3212,8 @@ const ROUNDS = {
   r13: { name:'Gran Premio di Aragona', circuit:'MotorLand Aragón · Alcañiz', date:'28 – 30 ago', flag:'🇪🇸', num:13, status:'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
   r14: { name:'Gran Premio di San Marino', circuit:'Misano World Circuit Marco Simoncelli', date:'11 – 13 set', flag:'🇮🇹', num:14, status:'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
   r15: { name:'Gran Premio d\'Austria', circuit:'Red Bull Ring · Spielberg', date:'18 – 20 set', flag:'🇦🇹', num:15, status:'done', notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
-  r16: { name:'Gran Premio del Giappone', circuit:'Twin Ring Motegi', date:'2 – 4 ott', flag:'🇯🇵', num:16, status:'next' },
-  r17: { name:'Gran Premio d\'Indonesia', circuit:'Pertamina Mandalika Street Circuit', date:'9 – 11 ott', flag:'🇮🇩', num:17, status:'future' },
+  r16: { name:'Gran Premio del Giappone', circuit:'Twin Ring Motegi', date:'2 – 4 ott', flag:'🇯🇵', num:16, status:'done',notes:['MotoGP: 0 bandiere rosse.', 'Moto2: 0 bandiere rosse.', 'Moto3: 0 bandiere rosse.'] },
+  r17: { name:'Gran Premio d\'Indonesia', circuit:'Pertamina Mandalika Street Circuit', date:'9 – 11 ott', flag:'🇮🇩', num:17, status:'next' },
   r18: { name:'Gran Premio d\'Australia', circuit:'Phillip Island Grand Prix Circuit', date:'23 – 25 ott', flag:'🇦🇺', num:18, status:'future' },
   r19: { name:'Gran Premio della Malesia', circuit:'Sepang International Circuit', date:'30 ott – 1 nov', flag:'🇲🇾', num:19, status:'future' },
   r20: { name:'Gran Premio del Qatar', circuit:'Lusail International Circuit', date:'6 – 8 nov', flag:'🇶🇦', num:20, status:'future' },
@@ -10892,6 +10892,88 @@ r12: {
           { pos: 21, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+1.600" },
           { pos: 22, flag: '🇪🇸', name: 'Maverick Viñales', team: 'Red Bull KTM Tech3', time: "", gap: "+2.025" }
         ]
+      },
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "1:43.321", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "", gap: "+0.080" },
+          { pos: 3, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.180" },
+          { pos: 4, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "", gap: "+0.243" },
+          { pos: 5, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: "", gap: "+0.269" },
+          { pos: 6, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.325" },
+          { pos: 7, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+0.370" },
+          { pos: 8, flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.397" },
+          { pos: 9, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.427" },
+          { pos: 10, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+0.428" },
+          { pos: 11, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.466" },
+          { pos: 12, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: "", gap: "+0.479" },
+          { pos: 13, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: "", gap: "+0.484" },
+          { pos: 14, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: "", gap: "+0.541" },
+          { pos: 15, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+0.691" },
+          { pos: 16, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+0.869" },
+          { pos: 17, flag: '🇪🇸', name: 'Maverick Viñales', team: 'Red Bull KTM Tech3', time: "", gap: "+1.013" },
+          { pos: 18, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+1.168" },
+          { pos: 19, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+1.194" },
+          { pos: 20, flag: '🇹🇭', name: 'Somkiat Chantra', team: 'Castrol Honda Team', time: "", gap: "+1.203" },
+          { pos: 21, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+1.562" },
+          { pos: 22, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+1.589" }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "1:42.371", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "", gap: "+0.110" },
+          { pos: 3, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.122" },
+          { pos: 4, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "", gap: "+0.159" },
+          { pos: 5, flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.175" },
+          { pos: 6, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: "", gap: "+0.257" },
+          { pos: 7, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+0.298" },
+          { pos: 8, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.370", fromQ1: true },
+          { pos: 9, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: "", gap: "+0.545" },
+          { pos: 10, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: "", gap: "+0.547" },
+          { pos: 11, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.562", fromQ1: true },
+          { pos: 12, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+0.688" }
+        ],
+        q1: [
+          { pos: 1, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "1:42.883", gap: '—', toQ2: true },
+          { pos: 2, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.001", toQ2: true },
+          { pos: 3, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: "", gap: "+0.124" },
+          { pos: 4, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+0.253" },
+          { pos: 5, flag: '🇹🇭', name: 'Somkiat Chantra', team: 'Castrol Honda Team', time: "", gap: "+0.313" },
+          { pos: 6, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+0.395" },
+          { pos: 7, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.516" },
+          { pos: 8, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.536" },
+          { pos: 9, flag: '🇪🇸', name: 'Maverick Viñales', team: 'Red Bull KTM Tech3', time: "", gap: "+0.722" },
+          { pos: 10, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+0.928" },
+          { pos: 11, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+1.013" },
+          { pos: 12, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+1.148" }
+        ]
+      },
+      sprint: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "20:50.376", gap: '—' },
+          { pos: 2, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: "", gap: "+2.754" },
+          { pos: 3, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "", gap: "+2.466" },
+          { pos: 4, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+2.508" },
+          { pos: 5, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+5.992" },
+          { pos: 6, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "", gap: "+6.984" },
+          { pos: 7, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: "", gap: "+8.088" },
+          { pos: 8, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+8.817" },
+          { pos: 9, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+10.586" },
+          { pos: 10, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+11.129" },
+          { pos: 11, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+13.632" },
+          { pos: 12, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+15.209" },
+          { pos: 13, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+19.873" },
+          { pos: 14, flag: '🇹🇭', name: 'Somkiat Chantra', team: 'Castrol Honda Team', time: "", gap: "+19.983" },
+          { pos: 15, flag: '🇪🇸', name: 'Maverick Viñales', team: 'Red Bull KTM Tech3', time: "", gap: "+20.469" },
+          { pos: 16, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+21.894" },
+          { pos: 17, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+38.442" },
+          { pos: 18, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+41.284" },
+          { pos: 'RIT', flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: 'RIT', gap: 'giro 11' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: 'RIT', gap: 'giro 0' },
+          { pos: 'RIT', flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: 'RIT', gap: 'giro 0' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: 'RIT', gap: 'giro 0' }
+        ]
       }
     },
     m2: {
@@ -10923,7 +11005,7 @@ r12: {
           { pos: 24, flag: '🇮🇩', name: 'Mario Aji', team: 'Idemitsu Honda Team Asia', time: "", gap: "+1.445" },
           { pos: 25, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: "", gap: "+1.450" },
           { pos: 26, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'Idemitsu Honda Team Asia', time: "", gap: "+2.028" },
-          { pos: 27, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Italjet Gresini Moto2', time: "", gap: "+2.203" }
+          { pos: 27, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Red Bull KTM Ajo', time: "", gap: "+2.203" }
         ]
       },
       pq: {
@@ -10954,7 +11036,75 @@ r12: {
           { pos: 24, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: "", gap: "+1.078" },
           { pos: 25, flag: '🇮🇩', name: 'Mario Aji', team: 'Idemitsu Honda Team Asia', time: "", gap: "+1.094" },
           { pos: 26, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: "", gap: "+1.332" },
-          { pos: 27, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Italjet Gresini Moto2', time: "", gap: "+2.386" }
+          { pos: 27, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Red Bull KTM Ajo', time: "", gap: "+2.386" }
+        ]
+      },
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Izan Guevara', team: 'BLU CRU Pramac Yamaha Moto2', time: "1:46.950", gap: '—' },
+          { pos: 2, flag: '🇨🇿', name: 'Filip Salač', team: 'OnlyFans American Racing Team', time: "", gap: "+0.271" },
+          { pos: 3, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.334" },
+          { pos: 4, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: "", gap: "+0.377" },
+          { pos: 5, flag: '🇮🇹', name: 'Tony Arbolino', team: 'REDS Fantic Racing', time: "", gap: "+0.494" },
+          { pos: 6, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.522" },
+          { pos: 7, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: "", gap: "+0.528" },
+          { pos: 8, flag: '🇧🇪', name: 'Barry Baltus', team: 'REDS Fantic Racing', time: "", gap: "+0.558" },
+          { pos: 9, flag: '🇪🇸', name: 'Álex Escrig', team: 'Forward Factory Team', time: "", gap: "+0.574" },
+          { pos: 10, flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: "", gap: "+0.676" },
+          { pos: 11, flag: '🇺🇸', name: 'Joe Roberts', team: 'OnlyFans American Racing Team', time: "", gap: "+0.678" },
+          { pos: 12, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMOTO Aspar Team', time: "", gap: "+0.754" },
+          { pos: 13, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedRS Team', time: "", gap: "+0.770" },
+          { pos: 14, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: "", gap: "+0.777" },
+          { pos: 15, flag: '🇪🇸', name: 'Iván Ortolá', team: 'QJMOTOR – PONT GRUP – MSI', time: "", gap: "+0.823" },
+          { pos: 16, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'Momoven Idrofoglia RW Racing Team', time: "", gap: "+0.906" },
+          { pos: 17, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: "", gap: "+0.915" },
+          { pos: 18, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'Momoven Idrofoglia RW Racing Team', time: "", gap: "+0.918" },
+          { pos: 19, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: "", gap: "+1.026" },
+          { pos: 20, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'Idemitsu Honda Team Asia', time: "", gap: "+1.054" },
+          { pos: 21, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: "", gap: "+1.057" },
+          { pos: 22, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedRS Team', time: "", gap: "+1.128" },
+          { pos: 23, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Factory Team', time: "", gap: "+1.167" },
+          { pos: 24, flag: '🇨🇴', name: 'David Alonso', team: 'CFMOTO Aspar Team', time: "", gap: "+1.220" },
+          { pos: 25, flag: '🇪🇸', name: 'Unai Orradre', team: 'QJMOTOR – PONT GRUP – MSI', time: "", gap: "+1.596" },
+          { pos: 26, flag: '🇮🇩', name: 'Mario Aji', team: 'Idemitsu Honda Team Asia', time: "", gap: "+1.633" },
+          { pos: 27, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Red Bull KTM Ajo', time: "", gap: "+1.949" }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Izan Guevara', team: 'BLU CRU Pramac Yamaha Moto2', time: "1:46.851", gap: '—' },
+          { pos: 2, flag: '🇨🇿', name: 'Filip Salač', team: 'OnlyFans American Racing Team', time: "", gap: "+0.051" },
+          { pos: 3, flag: '🇪🇸', name: 'Manuel González', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.110" },
+          { pos: 4, flag: '🇪🇸', name: 'Daniel Holgado', team: 'CFMOTO Aspar Team', time: "", gap: "+0.116" },
+          { pos: 5, flag: '🇮🇹', name: 'Tony Arbolino', team: 'REDS Fantic Racing', time: "", gap: "+0.193" },
+          { pos: 6, flag: '🇨🇴', name: 'David Alonso', team: 'CFMOTO Aspar Team', time: "", gap: "+0.252" },
+          { pos: 7, flag: '🇪🇸', name: 'Iván Ortolá', team: 'QJMOTOR – PONT GRUP – MSI', time: "", gap: "+0.438" },
+          { pos: 8, flag: '🇪🇸', name: 'Adrián Huertas', team: 'Italtrans Racing Team', time: "", gap: "+0.453" },
+          { pos: 9, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedRS Team', time: "", gap: "+0.536", fromQ1: true },
+          { pos: 10, flag: '🇦🇺', name: 'Senna Agius', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.555" },
+          { pos: 11, flag: '🇹🇷', name: 'Deniz Öncü', team: 'ELF Marc VDS Racing Team', time: "", gap: "+0.610" },
+          { pos: 12, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'Momoven Idrofoglia RW Racing Team', time: "", gap: "+0.628", fromQ1: true },
+          { pos: 13, flag: '🇯🇵', name: 'Ayumu Sasaki', team: 'Momoven Idrofoglia RW Racing Team', time: "", gap: "+0.708" },
+          { pos: 14, flag: '🇪🇸', name: 'Alonso López', team: 'Italjet Gresini Moto2', time: "", gap: "+0.755" },
+          { pos: 15, flag: '🇪🇸', name: 'José Antonio Rueda', team: 'Red Bull KTM Ajo', time: "", gap: "+0.768" },
+          { pos: 16, flag: '🇪🇸', name: 'Álex Escrig', team: 'Forward Factory Team', time: "", gap: "+0.842" },
+          { pos: 17, flag: '🇪🇸', name: 'Unai Orradre', team: 'QJMOTOR – PONT GRUP – MSI', time: "", gap: "+1.124" },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Daniel Muñoz', team: 'Italtrans Racing Team', time: 'RIT', gap: 'giro 0' }
+        ],
+        q1: [
+          { pos: 1, flag: '🇮🇹', name: 'Celestino Vietti', team: 'SpeedRS Team', time: "1:47.378", gap: '—', toQ2: true },
+          { pos: 2, flag: '🇳🇱', name: 'Zonta van den Goorbergh', team: 'Momoven Idrofoglia RW Racing Team', time: "", gap: "+0.105", toQ2: true },
+          { pos: 3, flag: '🇪🇸', name: 'Unai Orradre', team: 'QJMOTOR – PONT GRUP – MSI', time: "", gap: "+0.135" },
+          { pos: 4, flag: '🇪🇸', name: 'Álex Escrig', team: 'Forward Factory Team', time: "", gap: "+0.224" },
+          { pos: 5, flag: '🇺🇸', name: 'Joe Roberts', team: 'OnlyFans American Racing Team', time: "", gap: "+0.237" },
+          { pos: 6, flag: '🇯🇵', name: 'Taiyo Furusato', team: 'Idemitsu Honda Team Asia', time: "", gap: "+0.306" },
+          { pos: 7, flag: '🇮🇩', name: 'Mario Aji', team: 'Idemitsu Honda Team Asia', time: "", gap: "+0.394" },
+          { pos: 8, flag: '🇪🇸', name: 'Aron Canet', team: 'ELF Marc VDS Racing Team', time: "", gap: "+0.446" },
+          { pos: 9, flag: '🇪🇸', name: 'Sergio García', team: 'Italjet Gresini Moto2', time: "", gap: "+0.571" },
+          { pos: 10, flag: '🇧🇪', name: 'Barry Baltus', team: 'REDS Fantic Racing', time: "", gap: "+0.629" },
+          { pos: 11, flag: '🇮🇹', name: 'Luca Lunetta', team: 'SpeedRS Team', time: "", gap: "+0.639" },
+          { pos: 12, flag: '🇪🇸', name: 'Xabi Zurutuza', team: 'Forward Factory Team', time: "", gap: "+0.781" },
+          { pos: 13, flag: '🇵🇱', name: 'Milan Pawelec', team: 'Red Bull KTM Ajo', time: "", gap: "+2.319" }
         ]
       }
     },
@@ -11017,6 +11167,72 @@ r12: {
           { pos: 24, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: "", gap: "+1.667" },
           { pos: 25, flag: '🇹🇭', name: 'Kiattisak Singhapong', team: 'Honda Team Asia', time: "", gap: "+2.399" },
           { pos: 26, flag: '🇿🇦', name: 'Ruche Moodley', team: 'BOE Motorsports', time: "", gap: "+2.794" }
+        ]
+      },
+      fp2: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Dynavolt Intact GP', time: "1:54.745", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team', time: "", gap: "+0.032" },
+          { pos: 3, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: "", gap: "+0.396" },
+          { pos: 4, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: "", gap: "+0.411" },
+          { pos: 5, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'LevelUp – MTA', time: "", gap: "+0.496" },
+          { pos: 6, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: "", gap: "+0.537" },
+          { pos: 7, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech3', time: "", gap: "+0.616" },
+          { pos: 8, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.667" },
+          { pos: 9, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech3', time: "", gap: "+0.687" },
+          { pos: 10, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMOTO Gaviota Aspar Team', time: "", gap: "+0.763" },
+          { pos: 11, flag: '🇲🇾', name: 'Hakim Danish', team: 'FRINSA – MT Helmets – MSI', time: "", gap: "+0.849" },
+          { pos: 12, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: "", gap: "+1.035" },
+          { pos: 13, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP Green Power', time: "", gap: "+1.126" },
+          { pos: 14, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: "", gap: "+1.161" },
+          { pos: 15, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP Green Power', time: "", gap: "+1.180" },
+          { pos: 16, flag: '🇯🇵', name: 'Ryota Ogiwara', team: 'BOE Motorsports', time: "", gap: "+1.221" },
+          { pos: 17, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: "", gap: "+1.248" },
+          { pos: 18, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'FRINSA – MT Helmets – MSI', time: "", gap: "+1.272" },
+          { pos: 19, flag: '🇪🇸', name: 'Joel Esteban', team: 'LevelUp – MTA', time: "", gap: "+1.325" },
+          { pos: 20, flag: '🇬🇧', name: "Eddie O'Shea", team: 'GRYD – MLav Racing', time: "", gap: "+1.434" },
+          { pos: 21, flag: '🇦🇺', name: 'Joel Kelso', team: 'GRYD – MLav Racing', time: "", gap: "+1.454" },
+          { pos: 22, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: "", gap: "+1.490" },
+          { pos: 23, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: "", gap: "+1.518" },
+          { pos: 24, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: "", gap: "+1.620" },
+          { pos: 25, flag: '🇹🇭', name: 'Kiattisak Singhapong', team: 'Honda Team Asia', time: "", gap: "+1.798" },
+          { pos: 26, flag: '🇿🇦', name: 'Ruche Moodley', team: 'BOE Motorsports', time: "", gap: "+2.229" }
+        ]
+      },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Dynavolt Intact GP', time: "1:54.572", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: "", gap: "+0.045" },
+          { pos: 3, flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: "", gap: "+0.075" },
+          { pos: 4, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team', time: "", gap: "+0.282" },
+          { pos: 5, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'LevelUp – MTA', time: "", gap: "+0.346" },
+          { pos: 6, flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Dynavolt Intact GP', time: "", gap: "+0.575" },
+          { pos: 7, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech3', time: "", gap: "+0.675", fromQ1: true },
+          { pos: 8, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech3', time: "", gap: "+0.882" },
+          { pos: 9, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMOTO Gaviota Aspar Team', time: "", gap: "+0.897" },
+          { pos: 10, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'FRINSA – MT Helmets – MSI', time: "", gap: "+0.945" },
+          { pos: 11, flag: '🇪🇸', name: 'Joel Esteban', team: 'LevelUp – MTA', time: "", gap: "+0.965" },
+          { pos: 12, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: "", gap: "+0.976" },
+          { pos: 13, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP Green Power', time: "", gap: "+1.075" },
+          { pos: 14, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: "", gap: "+1.075" },
+          { pos: 15, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: "", gap: "+1.159", fromQ1: true },
+          { pos: 16, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: "", gap: "+1.411" },
+          { pos: 17, flag: '🇦🇺', name: 'Joel Kelso', team: 'GRYD – MLav Racing', time: "", gap: "+1.482" },
+          { pos: 18, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: "", gap: "+1.845" }
+        ],
+        q1: [
+          { pos: 1, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: "1:55.322", gap: '—', toQ2: true },
+          { pos: 2, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech3', time: "", gap: "+0.045", toQ2: true },
+          { pos: 3, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: "", gap: "+0.317" },
+          { pos: 4, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: "", gap: "+0.414" },
+          { pos: 5, flag: '🇯🇵', name: 'Ryota Ogiwara', team: 'BOE Motorsports', time: "", gap: "+0.417" },
+          { pos: 6, flag: '🇬🇧', name: "Eddie O'Shea", team: 'GRYD – MLav Racing', time: "", gap: "+0.466" },
+          { pos: 7, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP Green Power', time: "", gap: "+0.468" },
+          { pos: 8, flag: '🇲🇾', name: 'Hakim Danish', team: 'FRINSA – MT Helmets – MSI', time: "", gap: "+0.534" },
+          { pos: 9, flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: "", gap: "+0.583" },
+          { pos: 10, flag: '🇹🇭', name: 'Kiattisak Singhapong', team: 'Honda Team Asia', time: "", gap: "+0.729" },
+          { pos: 11, flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: "", gap: "+1.288" },
+          { pos: 12, flag: '🇿🇦', name: 'Ruche Moodley', team: 'BOE Motorsports', time: "", gap: "+1.620" }
         ]
       }
     }
