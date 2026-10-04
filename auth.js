@@ -537,7 +537,7 @@ document.head.appendChild(notifStyle);
   }
   // ── SISTEMA DI MANUTENZIONE SITO ──────────────────
   // Cambia a 'true' quando devi aggiornare i risultati, poi rimetti a 'false'
-  const MAINTENANCE_MODE = true; 
+  const MAINTENANCE_MODE = false; 
 
   if (MAINTENANCE_MODE && !sessionStorage.getItem('maintenance_bypass')) {
     var overlay = document.createElement('div');
