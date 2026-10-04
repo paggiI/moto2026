@@ -535,5 +535,32 @@ document.head.appendChild(notifStyle);
   } else {
     setupToggles();
   }
+  // ── SISTEMA DI MANUTENZIONE SITO ──────────────────
+  // Cambia a 'true' quando devi aggiornare i risultati, poi rimetti a 'false'
+  const MAINTENANCE_MODE = true; 
+
+  if (MAINTENANCE_MODE && !sessionStorage.getItem('maintenance_bypass')) {
+    var overlay = document.createElement('div');
+    overlay.id = 'maintenance-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;';
+    
+    overlay.innerHTML = `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2.5rem 2rem;max-width:400px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
+        <div style="font-size:3rem;margin-bottom:1rem;">🛠️</div>
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem;">Sito in Aggiornamento</h2>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5;">Stiamo caricando i risultati e i punteggi dell'ultimo GP. Torna a trovarci tra poco!</p>
+        <button id="bypass-maintenance" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:.2s;">Accedi comunque (Dati non aggiornati)</button>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    document.getElementById('bypass-maintenance').addEventListener('click', function() {
+      sessionStorage.setItem('maintenance_bypass', 'true');
+      overlay.remove();
+      document.body.style.overflow = '';
+    });
+  }
 })();
 

@@ -38,7 +38,7 @@
     <p class="subtitle">Vote per il migliore in pista nel GP appena concluso!</p>
 
     <div class="card">
-        <div class="card-title">🏆 GP dell'Austria (Round 15)</div>
+        <div class="card-title">🏆 GP del Giappone (Round 16)</div>
         <div id="vote-content">
             <p class="loading">Caricamento...</p>
         </div>
@@ -54,7 +54,7 @@ const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
 const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // IMPOSTAZIONI ROUND E CANDIDATI (Modifica questi dati ogni nuovo GP!)
-const CURRENT_ROUND = '15';
+const CURRENT_ROUND = '16';
 const CATEGORIES = [
     { id: 'motogp', name: 'MotoGP', color: 'var(--gp)' },
     { id: 'moto2', name: 'Moto2', color: 'var(--m2)' },
@@ -63,22 +63,28 @@ const CATEGORIES = [
 
 const CANDIDATES = {
     motogp: [
-        { id: 'Pedro Acosta', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing' },
-        { id: 'Ai Ogura', name: 'Ai Ogura', team: 'SuperFile Trackhouse MotoGP Team' },
+        //{ id: 'Pedro Acosta', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing' },
+        //{ id: 'Ai Ogura', name: 'Ai Ogura', team: 'SuperFile Trackhouse MotoGP Team' },
+        { id: 'Marc Márquez', name: 'Marc Márquez', team: 'Ducati Lenovo Team' },
         { id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia Racing' },
-        { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia Racing' }
+        { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia Racing' },
+        { id: 'Enea Bastianini', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3' }
     ],
     moto2: [
         { id: 'Izan Guevara', name: 'Izan Guevara', team: 'BLU CRU Pramac Yamaha Moto2' },
+        { id: 'Tony Arbolino', name: 'Tony Arbolino', team: 'REDS Fantic Racing' },
         { id: 'Filip Salač', name: 'Filip Salač', team: 'OnlyFans American Racing Team' },
-        { id: 'David Alonso', name: 'David Alonso', team: 'CFMOTO Aspar Team Moto2' },
-        { id: 'Manuel González', name: 'Manuel González', team: 'LIQUI MOLY Dynavolt Intact GP' }
+        { id: 'Iván Ortolá', name: 'Iván Ortolá', team: 'QJMOTOR - Biolec - MSI' }
+        //{ id: 'David Alonso', name: 'David Alonso', team: 'CFMOTO Aspar Team Moto2' },
+        //{ id: 'Manuel González', name: 'Manuel González', team: 'LIQUI MOLY Dynavolt Intact GP' }
     ],
     moto3: [
         { id: 'Máximo Quiles', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team Moto3' },
         { id: 'David Almansa', name: 'David Almansa', team: 'LIQUI MOLY Dynavolt Intact GP Moto3' },
-        { id: 'Brian Uriarte', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo Moto3' },
-        { id: 'Eddie O’Shea', name: 'Eddie O’Shea', team: 'GRYD – MLav Racing' }
+        { id: 'Álvaro Carpe', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo Moto3' },
+        { id: 'Matteo Bertelle', name: 'Matteo Bertelle', team: 'LEVEL UP - MTA' }
+        //{ id: 'Brian Uriarte', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo Moto3' },
+        //{ id: 'Eddie O’Shea', name: 'Eddie O’Shea', team: 'GRYD – MLav Racing' }
     ]
 };
 
@@ -193,10 +199,39 @@ function showToast(msg, isError = false) {
 }
 
 // BOTTONE TORNA INDIETRO
-var backWrap = document.querySelector('.back-btn-wrap');
-if (backWrap) {
-    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna indietro</a>';
-}
+document.addEventListener('DOMContentLoaded', function () {
+
+    const backWrap = document.querySelector('.back-btn-wrap');
+
+    if (!backWrap) return;
+
+    // Crea il bottone
+    const backBtn = document.createElement('button');
+
+    backBtn.className = 'back-btn';
+    backBtn.type = 'button';
+    backBtn.textContent = '← TORNA INDIETRO';
+
+    // Click sul bottone
+    backBtn.addEventListener('click', function () {
+
+        // Se esiste una pagina precedente
+        if (window.history.length > 1) {
+            window.history.back();
+        } 
+        
+        // Altrimenti torna alla home
+        else {
+            window.location.href = 'index.html';
+        }
+
+    });
+
+    // Inserisce il bottone nel contenitore
+    backWrap.appendChild(backBtn);
+
+});
+
 
 initVotingPage();
 </script>

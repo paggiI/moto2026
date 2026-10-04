@@ -1673,8 +1673,8 @@
 <div class="countdown-wrap" id="countdown-section">
 <div class="countdown-header">
 <span class="countdown-label">⏱️ Prossimo GP</span>
-<span class="countdown-race">🇯🇵 Round 16 — GP Giappone · Twin Ring Motegi</span>
-<span style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;color:var(--muted);">02–04 ottobre 2026</span>
+<span class="countdown-race">🇮🇩 Round 17 — GP Indonesia · Pertamina Mandalika Circuit</span>
+<span style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;color:var(--muted);">09–11 ottobre 2026</span>
 </div>
 <div class="countdown-cells" id="countdown-cells">
 <div class="cd-cell"><div class="cd-val" id="cd-d">--</div><div class="cd-lbl">Giorni</div></div>
@@ -1686,7 +1686,7 @@
 <!-- ORARI GP (Accordion) -->
 <details class="card" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem;">
   <summary style="font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--white); cursor: pointer; display: flex; align-items: center; gap: .5rem; list-style: none;">
-    ⏱️ Orari GP Giappone <span style="font-size: .7rem; color: var(--muted); font-family: 'Barlow Condensed'; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-left: auto;">(Ora Italiana)</span>
+    ⏱️ Orari GP Indonesia <span style="font-size: .7rem; color: var(--muted); font-family: 'Barlow Condensed'; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-left: auto;">(Ora Italiana)</span>
   </summary>
   <div id="schedule-list" style="display: flex; flex-direction: column; gap: .1rem; margin-top: 1rem;">
     <!-- Il JS riempirà qui dentro -->
@@ -1695,26 +1695,28 @@
 
 <script>
 const GP_SCHEDULE = [
-  { day: 'Venerdì 2 Ott', time: '02:00', cat: 'moto3', session: 'FP1' },
-  { day: 'Venerdì 2 Ott', time: '02:50', cat: 'moto2', session: 'FP1' },
-  { day: 'Venerdì 2 Ott', time: '03:45', cat: 'motogp', session: 'FP1' },
-  { day: 'Venerdì 2 Ott', time: '06:15', cat: 'moto3', session: 'Practice 1' },
-  { day: 'Venerdì 2 Ott', time: '07:05', cat: 'moto2', session: 'Practice 1' },
-  { day: 'Venerdì 2 Ott', time: '08:00', cat: 'motogp', session: 'Practice' },
-  { day: 'Sabato 3 Ott', time: '01:40', cat: 'moto3', session: 'Practice 2' },
-  { day: 'Sabato 3 Ott', time: '02:25', cat: 'moto2', session: 'Practice 2' },
-  { day: 'Sabato 3 Ott', time: '03:10', cat: 'motogp', session: 'FP2' },
-  { day: 'Sabato 3 Ott', time: '03:50', cat: 'motogp', session: 'Q1' },
-  { day: 'Sabato 3 Ott', time: '04:15', cat: 'motogp', session: 'Q2' },
-  { day: 'Sabato 3 Ott', time: '05:45', cat: 'moto3', session: 'Q1' },
-  { day: 'Sabato 3 Ott', time: '06:10', cat: 'moto3', session: 'Q2' },
-  { day: 'Sabato 3 Ott', time: '06:40', cat: 'moto2', session: 'Q1' },
-  { day: 'Sabato 3 Ott', time: '07:05', cat: 'moto2', session: 'Q2' },
-  { day: 'Sabato 3 Ott', time: '08:00', cat: 'motogp', session: 'Sprint Race' },
-  { day: 'Domenica 4 Ott', time: '02:40', cat: 'motogp', session: 'Warm-Up' },
-  { day: 'Domenica 4 Ott', time: '04:00', cat: 'moto3', session: 'Gara' },
-  { day: 'Domenica 4 Ott', time: '05:15', cat: 'moto2', session: 'Gara' },
-  { day: 'Domenica 4 Ott', time: '07:00', cat: 'motogp', session: 'Gara' }
+  { day: 'Venerdì 9 Ott', time: '03:00-03:35', cat: 'moto3', session: 'FP1' },
+  { day: 'Venerdì 9 Ott', time: '03:50-04:30', cat: 'moto2', session: 'FP1' },
+  { day: 'Venerdì 9 Ott', time: '04:45-05:30', cat: 'motogp', session: 'FP1' },
+  { day: 'Venerdì 9 Ott', time: '07:15-07:50', cat: 'moto3', session: 'Practice 1' },
+  { day: 'Venerdì 9 Ott', time: '08:05-08:45', cat: 'moto2', session: 'Practice 1' },
+  { day: 'Venerdì 9 Ott', time: '09:00-10:00', cat: 'motogp', session: 'Practice' },
+
+  { day: 'Sabato 10 Ott', time: '02:40-03:10', cat: 'moto3', session: 'FP2' },
+  { day: 'Sabato 10 Ott', time: '03:25-03:55', cat: 'moto2', session: 'FP2' },
+  { day: 'Sabato 10 Ott', time: '04:10-04:40', cat: 'motogp', session: 'FP2' },
+  { day: 'Sabato 10 Ott', time: '04:50-05:05', cat: 'motogp', session: 'Q1' },
+  { day: 'Sabato 10 Ott', time: '05:15-05:30', cat: 'motogp', session: 'Q2' },
+  { day: 'Sabato 10 Ott', time: '06:45-07:00', cat: 'moto3', session: 'Q1' },
+  { day: 'Sabato 10 Ott', time: '07:10-07:25', cat: 'moto3', session: 'Q2' },
+  { day: 'Sabato 10 Ott', time: '07:40-07:55', cat: 'moto2', session: 'Q1' },
+  { day: 'Sabato 10 Ott', time: '08:05-08:20', cat: 'moto2', session: 'Q2' },
+  { day: 'Sabato 10 Ott', time: '09:00', cat: 'motogp', session: 'Sprint Race' },
+
+  { day: 'Domenica 11 Ott', time: '04:40-04:50', cat: 'motogp', session: 'Warm Up' },
+  { day: 'Domenica 11 Ott', time: '06:00', cat: 'moto3', session: 'Gara' },
+  { day: 'Domenica 11 Ott', time: '07:15', cat: 'moto2', session: 'Gara' },
+  { day: 'Domenica 11 Ott', time: '09:00', cat: 'motogp', session: 'Gara' }
 ];
 
 const CAT_COLORS = { motogp: 'var(--gp)', moto2: 'var(--m2)', moto3: 'var(--m3)' };
@@ -1751,22 +1753,22 @@ renderSchedule();
 </script>
 <!-- FOCUS CIRCUITO -->
 <div style="display: flex; gap: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; align-items: center; flex-wrap: wrap;">
-  <a href="circuiti/circuito_motegi.html" style="flex: 1; min-width: 200px; text-align: center; background: #fff; padding: .5rem; border-radius: 6px;">
-    <img src="img/tracciati/giappone.png" alt="Mappa Circuito del GP Giappone" style="max-width: 100%; height: auto; border-radius: 4px;">
+  <a href="circuiti/circuito_mandalika.html" style="flex: 1; min-width: 200px; text-align: center; background: #fff; padding: .5rem; border-radius: 6px;">
+    <img src="img/tracciati/indonesia.png" alt="Mappa Circuito del GP Mandalika" style="max-width: 100%; height: auto; border-radius: 4px;">
   </a>
   <div style="flex: 2; min-width: 250px;">
-    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem;">🏁 Focus Circuito: Twin Ring Motegi</h3>
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem;">🏁 Focus Circuito: Pertamina Mandalika Circuit</h3>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
       <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
-        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">4.8 Km</div>
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">4.32 Km</div>
         <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Lunghezza</div>
       </div>
       <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
-        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">14</div>
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">17</div>
         <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Curve</div>
       </div>
       <div style="background: var(--mid); padding: .8rem; border-radius: 6px;">
-        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">1'42.911 - Francesco Bagnaia 2025</div>
+        <div style="font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red);">1'28.832 - Marco Bezzecchi 2025</div>
         <div style="font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em;">Record Giro</div>
       </div>
     </div>
@@ -1775,14 +1777,14 @@ renderSchedule();
 <!-- ULTIMO GP RISULTATI -->
 <div class="last-race-wrap" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
   <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;">
-    🏁 Risultati GP Austria
+    🏁 Risultati GP Giappone
   </h3>
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
     <!-- MotoGP -->
     <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--gp);">
       <div style="font-family: 'Barlow Condensed'; color: var(--gp); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">MotoGP</div>
       <div style="font-size: .9rem; line-height: 1.5;">
-        🥇 🇪🇸 P. Acosta<br>
+        🥇 🇪🇸 M. Márquez<br>
         🥈 🇪🇸 J. Martín<br>
         🥉 🇮🇹 M. Bezzecchi
       </div>
@@ -1792,16 +1794,16 @@ renderSchedule();
       <div style="font-family: 'Barlow Condensed'; color: var(--m2); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto2</div>
       <div style="font-size: .9rem; line-height: 1.5;">
         🥇 🇪🇸 I. Guevara<br>
-        🥈 🇨🇿 F. Salač<br>
-        🥉 🇨🇴 D. Alonso
+        🥈 🇮🇹 T. Arbolino<br>
+        🥉 🇨🇿 F. Salač
       </div>
     </div>
     <!-- Moto3 -->
     <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--m3);">
       <div style="font-family: 'Barlow Condensed'; color: var(--m3); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto3</div>
       <div style="font-size: .9rem; line-height: 1.5;">
-        🥇 🇪🇸 M. Quiles<br>
-        🥈 🇪🇸 B. Uriarte<br>
+        🥇 🇪🇸 D. Almansa<br>
+        🥈 🇪🇸 M. Quiles<br>
         🥉 🇪🇸 Á Carpe
       </div>
     </div>
@@ -1813,14 +1815,14 @@ renderSchedule();
   </div>
 
   <div style="text-align: right; margin-top: 1rem;">
-    <a href="risultati.html?round=r15" class="btn btn-outline" style="font-size: .75rem; padding: .4rem 1rem;">Vedi Risultati Completi →</a>
+    <a href="risultati.html?round=r16" class="btn btn-outline" style="font-size: .75rem; padding: .4rem 1rem;">Vedi Risultati Completi →</a>
   </div>
 </div>
 <!-- BARRA PROGRESSIONE STAGIONE -->
 <div class="season-progress-wrap">
 <div class="season-progress-header">
 <span>⚡ Stagione 2026</span>
-<span>15 / 22 round completati</span>
+<span>16 / 22 round completati</span>
 </div>
 <div class="season-progress-track">
 <div class="season-progress-fill" id="season-fill"></div>
@@ -1836,9 +1838,9 @@ renderSchedule();
 <div class="top3-cat" style="background:rgba(255,107,53,.15);color:#ff6b35;border:1px solid rgba(255,107,53,.3);">MotoGP</div>
 <div class="top3-flag">🇪🇸</div>
 <div class="top3-name">Jorge Martín</div>
-<div class="top3-pts" style="color:#ff6b35;">305</div>
-<div class="top3-pts-label">punti · 15 round</div>
-<div class="top3-gap">+12 su M. Márquez</div>
+<div class="top3-pts" style="color:#ff6b35;">333</div>
+<div class="top3-pts-label">punti · 16 round</div>
+<div class="top3-gap">+2 su M. Márquez</div>
 </a>
 <a class="top3-card"
    href="classifica.html"
@@ -1848,8 +1850,8 @@ renderSchedule();
 <div class="top3-flag">🇪🇸</div>
 <div class="top3-name">Manuel González</div>
 <div class="top3-pts" style="color:#f7a600;">245.5</div>
-<div class="top3-pts-label">punti · 15 round</div>
-<div class="top3-gap">+35.5 su I. Guevara</div>
+<div class="top3-pts-label">punti · 16 round</div>
+<div class="top3-gap">+10.5 su I. Guevara</div>
 </a>
 <a class="top3-card"
    href="classifica.html"
@@ -1858,9 +1860,9 @@ renderSchedule();
 <div class="top3-cat" style="background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.3);">Moto3</div>
 <div class="top3-flag">🇪🇸</div>
 <div class="top3-name">Máximo Quiles</div>
-<div class="top3-pts" style="color:#00b4d8;">306</div>
-<div class="top3-pts-label">punti · 15 round</div>
-<div class="top3-gap">+131 su A. Carpe</div>
+<div class="top3-pts" style="color:#00b4d8;">326</div>
+<div class="top3-pts-label">punti · 16 round</div>
+<div class="top3-gap">+127 su D. Almansa</div>
 </a>
 </div>
 <!-- PILOTI DEL WEEKEND (MotoGP, Moto2, Moto3) -->
@@ -1902,60 +1904,80 @@ renderSchedule();
   <h3
     style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;">
     🌟 Piloti del Weekend </h3>
-  <div class="spotlight-grid"> <!-- MotoGP -->
-    <div class="spotlight-item" style="border-top: 3px solid var(--gp);">
-      <div>
-        <div class="spotlight-cat" style="color: var(--gp);">MotoGP</div>
-        <div class="spotlight-name">Pedro Acosta</div>
-      </div>
-      <p class="spotlight-desc">Pedro Acosta firma al Red Bull Ring la prima vittoria della sua carriera in MotoGP. Il
-        pilota KTM ha reagito alla delusione della Sprint, chiudendo una gara impeccabile e resistendo al ritorno di
-        Jorge Martín. Il successo arriva proprio nel GP di casa della KTM e permette ad Acosta di conquistare finalmente
-        quel primo trionfo nella classe regina dopo 15 podi senza una vittoria. Alle sue spalle Martín e Marco Bezzecchi
-        completano il podio, mentre Marc Márquez chiude quinto e lascia l'Austria secondo nel Mondiale, a 12 punti dal
-        leader Martín.</p>
-    </div> <!-- Moto2 -->
-    <div class="spotlight-item" style="border-top: 3px solid var(--m2);">
-      <div>
-        <div class="spotlight-cat" style="color: var(--m2);">Moto2</div>
-        <div class="spotlight-name">Izan Guevara</div>
-      </div>
-      <p class="spotlight-desc">Izan Guevara domina il GP d'Austria e conquista una vittoria fondamentale nella corsa al
-        titolo Moto2. Partito dalla quinta posizione, lo spagnolo è riuscito a portarsi rapidamente al comando e a
-        costruire un margine importante su Filip Salac e David Alonso. Un brivido nel finale, con un lungo alla curva 9
-        che ha quasi compromesso il vantaggio, non gli ha impedito di ritrovare il ritmo e chiudere la gara davanti a
-        tutti. Manuel González, leader del Mondiale, termina quarto, mentre Guevara accorcia ulteriormente le distanze
-        in classifica.</p>
-    </div> <!-- Moto3 -->
-    <div class="spotlight-item" style="border-top: 3px solid var(--m3);">
-      <div>
-        <div class="spotlight-cat" style="color: var(--m3);">Moto3</div>
-        <div class="spotlight-name">Máximo Quiles</div>
-      </div>
-      <p class="spotlight-desc">Máximo Quiles conquista una nuova vittoria al Red Bull Ring e continua il suo
-        straordinario momento di forma. Il leader del Mondiale ha seguito da vicino David Almansa nelle prime fasi, con
-        i due piloti capaci di staccare il gruppo. La gara è però cambiata all'ottavo giro, quando Almansa è caduto
-        mentre era al comando, lasciando a Quiles un enorme vantaggio. Lo spagnolo ha gestito il margine fino al
-        traguardo, precedendo Brian Uriarte di 2,334 secondi e Álvaro Carpe di 7,394. Un altro successo pesante nella
-        sua corsa al titolo iridato.</p>
+  <div class="spotlight-grid">
+
+  <!-- MotoGP -->
+  <div class="spotlight-item" style="border-top: 3px solid var(--gp);">
+    <div>
+      <div class="spotlight-cat" style="color: var(--gp);">MotoGP</div>
+      <div class="spotlight-name">Marc Márquez</div>
     </div>
+    <p class="spotlight-desc">
+      Marc Márquez trionfa nel GP del Giappone a Motegi e completa un weekend
+      perfetto dopo la vittoria nella Sprint. Il pilota Ducati, partito dalla
+      seconda posizione, ha seguito Jorge Martín nelle prime fasi della gara
+      prima di attaccarlo all'11° giro e prendere il comando. Márquez ha poi
+      gestito il vantaggio fino alla bandiera a scacchi, precedendo Martín di
+      1,363 secondi. Marco Bezzecchi completa il podio davanti a Enea Bastianini.
+      Con questa vittoria Márquez riduce a soli 2 punti il distacco da Martín
+      nella classifica del Mondiale.
+    </p>
   </div>
+
+  <!-- Moto2 -->
+  <div class="spotlight-item" style="border-top: 3px solid var(--m2);">
+    <div>
+      <div class="spotlight-cat" style="color: var(--m2);">Moto2</div>
+      <div class="spotlight-name">Izan Guevara</div>
+    </div>
+    <p class="spotlight-desc">
+      Izan Guevara conquista una vittoria pesantissima nel GP del Giappone e
+      riapre completamente la lotta per il titolo Moto2. Lo spagnolo approfitta
+      del problema tecnico di Manuel González, costretto a partire dalla pit
+      lane dopo che la sua moto si è spenta sulla griglia, e prende il comando
+      della gara. Guevara resiste alla pressione di Tony Arbolino e taglia il
+      traguardo davanti all'italiano, con Filip Salač al terzo posto. Per
+      Guevara è la seconda vittoria consecutiva e il successo porta il suo
+      distacco da González a soli 10,5 punti.
+    </p>
+  </div>
+
+  <!-- Moto3 -->
+  <div class="spotlight-item" style="border-top: 3px solid var(--m3);">
+    <div>
+      <div class="spotlight-cat" style="color: var(--m3);">Moto3</div>
+      <div class="spotlight-name">David Almansa</div>
+    </div>
+    <p class="spotlight-desc">
+      David Almansa vince il GP del Giappone al termine di un emozionante duello
+      con il leader del Mondiale Máximo Quiles. Il pilota spagnolo, scattato
+      dalla pole position, è rimasto nel gruppo di testa per tutta la gara e
+      ha dovuto difendersi dagli attacchi di Quiles fino all'ultimo giro.
+      Almansa riesce a mantenere la prima posizione e conquista la sua terza
+      vittoria della stagione, precedendo Quiles di appena 0,046 secondi.
+      Álvaro Carpe completa il podio. Quiles deve quindi rimandare la
+      conquista matematica del titolo alla prossima gara in Indonesia.
+    </p>
+  </div>
+
+</div>
+
 
 
 
 </div>
-<!-- CLASSIFICA PILOTI — dati reali dopo Round 134 -->
-<h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 15 round</span></h2>
+<!-- CLASSIFICA PILOTI — dati reali dopo Round 16 -->
+<h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 16 round</span></h2>
 <div class="standings-row">
 <div class="standings-card">
 <div class="sc-header gp">MotoGP</div>
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
-<tr><td class="pos">1</td><td>J. Martín</td><td class="pts">306</td></tr>
-<tr><td class="pos">2</td><td>M. Márquez</td><td class="pts">294</td></tr>
-<tr><td class="pos">3</td><td>M. Bezzecchi</td><td class="pts">264</td></tr>
-<tr><td class="pos">4</td><td>P. Acosta</td><td class="pts">234</td></tr>
-<tr><td class="pos">5</td><td>F. Di Giannantonio</td><td class="pts">230</td></tr>
+<tr><td class="pos">1</td><td>J. Martín</td><td class="pts">333</td></tr>
+<tr><td class="pos">2</td><td>M. Márquez</td><td class="pts">331</td></tr>
+<tr><td class="pos">3</td><td>M. Bezzecchi</td><td class="pts">284</td></tr>
+<tr><td class="pos">4</td><td>P. Acosta</td><td class="pts">243</td></tr>
+<tr><td class="pos">5</td><td>Ai Ogura</td><td class="pts">237</td></tr>
 </table>
 </div>
 <div class="standings-card">
@@ -1963,21 +1985,21 @@ renderSchedule();
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
 <tr><td class="pos">1</td><td>M. González</td><td class="pts">245.5</td></tr>
-<tr><td class="pos">2</td><td>I. Guevara</td><td class="pts">210</td></tr>
-<tr><td class="pos">3</td><td>I. Ortolá</td><td class="pts">168.5</td></tr>
-<tr><td class="pos">4</td><td>D. Alonso</td><td class="pts">155</td></tr>
-<!--<tr><td class="pos">4</td><td>D. Holgado</td><td class="pts">137</td></tr> -->
-<tr><td class="pos">5</td><td>S. Agius</td><td class="pts">149</td></tr>
+<tr><td class="pos">2</td><td>I. Guevara</td><td class="pts">235</td></tr>
+<tr><td class="pos">3</td><td>I. Ortolá</td><td class="pts">181.5</td></tr>
+<tr><td class="pos">4</td><td>D. Alonso</td><td class="pts">166</td></tr>
+<tr><td class="pos">5</td><td>D. Holgado</td><td class="pts">154</td></tr> 
+<!--<tr><td class="pos">5</td><td>S. Agius</td><td class="pts">149</td></tr>-->
 </table>
 </div>
 <div class="standings-card">
 <div class="sc-header m3">Moto3</div>
 <table>
 <tr><th class="pos">#</th><th>Pilota</th><th>Pts</th></tr>
-<tr><td class="pos">1</td><td>M. Quiles</td><td class="pts">306</td></tr>
-<tr><td class="pos">2</td><td>A. Carpe</td><td class="pts">175</td></tr>
-<tr><td class="pos">3</td><td>D. Almansa</td><td class="pts">174</td></tr>
-<tr><td class="pos">4</td><td>B. Uriarte</td><td class="pts">174</td></tr>
+<tr><td class="pos">1</td><td>M. Quiles</td><td class="pts">326</td></tr>
+<tr><td class="pos">2</td><td>D. Almansa</td><td class="pts">199</td></tr>
+<tr><td class="pos">3</td><td>A. Carpe</td><td class="pts">191</td></tr>
+<tr><td class="pos">4</td><td>B. Uriarte</td><td class="pts">187</td></tr>
 <tr><td class="pos">5</td><td>M. Morelli</td><td class="pts">146</td></tr>
 </table>
 </div>
@@ -2082,19 +2104,19 @@ renderSchedule();
   <div class="rc-date">18–20 set</div>
   <div class="rc-status">✓ Risultati →</div>
 </a>
-<div class="race-card">
+<a class="race-card done" href="risultati.html?round=r16" style="text-decoration:none;color:inherit;">
   <div class="rc-round">Round 16</div>
   <div class="rc-flag">🇯🇵</div>
   <div class="rc-name">GP Giappone</div>
   <div class="rc-date">2–4 ott</div>
-  <div class="rc-status">⚡ Prossimo →</div>
-</div>
-<div class="race-card">
+  <div class="rc-status">✓ Risultati →</div>
+</a>
+<div class="race-card next">
   <div class="rc-round">Round 17</div>
   <div class="rc-flag">🇮🇩</div>
   <div class="rc-name">GP Indonesia</div>
   <div class="rc-date">9–11 ott</div>
-  <div class="rc-status">In programma</div>
+  <div class="rc-status">⚡ Prossimo →</div>
 </div>
 <div class="race-card">
   <div class="rc-round">Round 18</div>
@@ -2136,7 +2158,7 @@ renderSchedule();
 <div style="background: linear-gradient(135deg, rgba(247,166,0,.1) 0%, rgba(232,0,29,.1) 100%); border: 1px solid var(--border); border-left: 4px solid var(--m2); border-radius: 8px; padding: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
   <div>
     <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); margin-bottom: .3rem;">🎯 Gioca alla MotoGP Prediction!</h3>
-    <p style="font-size: .9rem; color: var(--muted); margin: 0;">Pronostica i vincitori del prossimo GP del Giappone.</p>
+    <p style="font-size: .9rem; color: var(--muted); margin: 0;">Pronostica i vincitori del prossimo GP dell'Indonesia.</p>
   </div>
   <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
     <a href="quiz.html" class="btn" style="white-space: nowrap; background: transparent; border: 1px solid var(--border); color: var(--white);">🧠 Quiz Mid-Week</a>
@@ -2811,7 +2833,7 @@ if (!localStorage.getItem('moto2026-shortcut-seen')) {
 // Anima barra progressione stagione
 setTimeout(() => {
   const fill = document.getElementById('season-fill');
-  if (fill) fill.style.width = Math.round((15/22)*100) + '%';
+  if (fill) fill.style.width = Math.round((16/22)*100) + '%';
 }, 300);
 
 // ── TORNA INDIETRO ──

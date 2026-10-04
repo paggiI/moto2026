@@ -1340,16 +1340,16 @@
     ← Torna alla pagina principale
   </button>
 <h1>CLASSIFICA <span>2026</span></h1>
-<p>⚡ Classifica aggiornata dopo il Gran Premio dell'Austria · Red Bull Ring · Spielberg (Round 15). I punti saranno aggiornati dopo ogni gara.</p>
+<p>⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.</p>
 </div>
 </section>
 <!-- STATUS BAR -->
 <div class="status-bar">
 <span class="status-label">Aggiornata dopo:</span>
-<span class="status-val">Round 15 / 22 — GP Austria</span>
+<span class="status-val">Round 16 / 22 — GP Giappone</span>
 <span class="status-sep">|</span>
 <span class="status-label">Prossimo:</span>
-<span class="status-val">🇯🇵 Gran Premio del Giappone 02-04 ott</span>
+<span class="status-val">🇮🇩 Gran Premio dell'Indonesia 09-11 ott</span>
 <span class="status-note">⚠️ I risultati dei singoli GP saranno aggiornati dopo ogni gara</span>
 </div>
 <!-- GP SELECTOR BAR — tutti 22 round scorrevoli -->
@@ -1369,8 +1369,8 @@
 <button class="gp-sel-btn" id="gp-sel-r13" onclick="selectGP('r13',this)">🇪🇸 R13 · Aragona</button>
 <button class="gp-sel-btn" id="gp-sel-r14" onclick="selectGP('r14',this)">🇮🇹 R14 · San Marino</button>
 <button class="gp-sel-btn" id="gp-sel-r15" onclick="selectGP('r15',this)">🇦🇹 R15 · Austria</button>
-<button class="gp-sel-btn gp-sel-next">🇯🇵 R16 · Giappone ⚡</button>
-<button class="gp-sel-btn gp-sel-future">🇮🇩 R17 · Indonesia</button>
+<button class="gp-sel-btn" id="gp-sel-r16" onclick="selectGP('r16',this)">🇯🇵 R16 · Giappone</button>
+<button class="gp-sel-btn gp-sel-next">🇮🇩 R17 · Indonesia ⚡</button>
 <button class="gp-sel-btn gp-sel-future">🇦🇺 R18 · Australia</button>
 <button class="gp-sel-btn gp-sel-future">🇲🇾 R19 · Malesia</button>
 <button class="gp-sel-btn gp-sel-future">🇶🇦 R20 · Qatar</button>
@@ -1414,7 +1414,7 @@
 <!-- ═══════ MOTOGP PANEL ═══════ -->
 <div class="panel active" id="panel-motogp">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio dell'Austria · Red Bull Ring · Spielberg (Round 15). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1456,11 +1456,11 @@
 <div class="standings-wrap">
 <div class="standings-header sh-gp">
 <span class="sh-title">Classifica Piloti — MotoGP</span>
-<span class="sh-sub">Dopo 15 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 16 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
-<tr class="rider-row" onclick="openRQV('Jorge Martín','Aprilia Racing','306',1,'—','🇪🇸','jorge_martin')">
+<tr class="rider-row" onclick="openRQV('Jorge Martín','Aprilia Racing','333',1,'—','🇪🇸','jorge_martin')">
 <th class="pos-cell">#</th>
 <th>Pilota</th>
 <th>Team</th>
@@ -1657,13 +1657,25 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇮🇹</span><span class="p-name">Marco Bezzecchi</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=r16')" onmousedown="handleMouse(event,'risultati.html?round=r16')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 16</span>
+<span class="rrc-name">GP Giappone</span>
+<span class="rrc-flag">🇯🇵</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag">🇪🇸</span><span class="p-name">Marc Márquez</span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag">🇪🇸</span><span class="p-name">Jorge Martín</span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇮🇹</span><span class="p-name">Marco Bezzecchi</span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
 </div><!-- /panel-motogp -->
 <div class="panel" id="panel-moto2">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio dell'Austria · Red Bull Ring · Spielberg (Round 15). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1703,7 +1715,7 @@
 <div class="standings-wrap">
 <div class="standings-header sh-m2" style="color:#111">
 <span class="sh-title">Classifica Piloti — Moto2</span>
-<span class="sh-sub">Dopo 15 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 16 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
@@ -1885,13 +1897,25 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇨🇴</span><span class="p-name">David Alonso</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=r16')" onmousedown="handleMouse(event,'risultati.html?round=r16')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 16</span>
+<span class="rrc-name">GP Giappone</span>
+<span class="rrc-flag">🇯🇵</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag">🇪🇸</span><span class="p-name">Izan Guevara</span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag">🇮🇹</span><span class="p-name">Tony Arbolino</span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇨🇿</span><span class="p-name">Filip Salač</span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
 </div><!-- /panel-moto2 -->
 <div class="panel" id="panel-moto3">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio dell'Austria · Red Bull Ring · Spielberg (Round 15). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1930,11 +1954,11 @@
 <div class="standings-wrap">
 <div class="standings-header sh-m3">
 <span class="sh-title">Classifica Piloti — Moto3</span>
-<span class="sh-sub">Dopo 15 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 16 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
-<tr class="rider-row" onclick="openRQV('Máximo Quiles','CFMOTO Gaviota Aspar Team','306',1,'—','🇪🇸','maximo_quiles')">
+<tr class="rider-row" onclick="openRQV('Máximo Quiles','CFMOTO Gaviota Aspar Team','326',1,'—','🇪🇸','maximo_quiles')">
 <th class="pos-cell">#</th>
 <th>Pilota</th>
 <th>Team</th>
@@ -2112,6 +2136,18 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Álvaro Carpe</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=r16')" onmousedown="handleMouse(event,'risultati.html?round=r16')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 16</span>
+<span class="rrc-name">GP del Giappone</span>
+<span class="rrc-flag">🇯🇵</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag">🇪🇸</span><span class="p-name">David Almansa</span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag">🇪🇸</span><span class="p-name">Máximo Quiles</span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Álvaro Carpe</span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
@@ -2119,7 +2155,7 @@
 <!-- ═══════ COSTRUTTORI PANEL ═══════ -->
 <div class="panel" id="panel-costruttori">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio dell'Austria · Red Bull Ring · Spielberg (Round 15). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
 </div>
 <h2 class="section-title">Costruttori — MotoGP</h2>
 <div class="costruttori-grid" id="cos-motogp"></div>
@@ -10458,7 +10494,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Marco Bezzecchi",
       "team": "Aprilia Racing",
-      "pts": 264.0,
+      "pts": 284.0,
       "sostituto": null
     },
     {
@@ -10474,7 +10510,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Jorge Martín",
       "team": "Aprilia Racing",
-      "pts": 306.0,
+      "pts": 333.0,
       "sostituto": null
     },
     {
@@ -10482,7 +10518,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Pedro Acosta",
       "team": "Red Bull KTM Factory Racing",
-      "pts": 234.0,
+      "pts": 243.0,
       "sostituto": null
     },
     {
@@ -10490,7 +10526,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Raúl Fernández",
       "team": "Trackhouse MotoGP Team",
-      "pts": 203.0,
+      "pts": 216.0,
       "sostituto": null
     },
     {
@@ -10498,7 +10534,7 @@ function buildDataFromResults() {
       "flag": "🇯🇵",
       "name": "Ai Ogura",
       "team": "Trackhouse MotoGP Team",
-      "pts": 222.0,
+      "pts": 237.0,
       "sostituto": null
     },
     {
@@ -10506,7 +10542,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Marc Márquez",
       "team": "Ducati Lenovo Team",
-      "pts": 294.0,
+      "pts": 331.0,
       "sostituto": null
     },
     {
@@ -10522,7 +10558,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Fermín Aldeguer",
       "team": "BK8 Gresini Racing MotoGP",
-      "pts": 115.0,
+      "pts": 122.0,
       "sostituto": null
     },
     {
@@ -10530,7 +10566,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Francesco Bagnaia",
       "team": "Ducati Lenovo Team",
-      "pts": 156.0,
+      "pts": 164.0,
       "sostituto": null
     },
     {
@@ -10538,7 +10574,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Luca Marini",
       "team": "Honda HRC Castrol",
-      "pts": 98.0,
+      "pts": 104.0,
       "sostituto": null
     },
     {
@@ -10546,7 +10582,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Enea Bastianini",
       "team": "Red Bull KTM Tech3",
-      "pts": 97.0,
+      "pts": 116.0,
       "sostituto": null
     },
     {
@@ -10554,7 +10590,7 @@ function buildDataFromResults() {
       "flag": "🇿🇦",
       "name": "Brad Binder",
       "team": "Red Bull KTM Factory Racing",
-      "pts": 96.0,
+      "pts": 99.0,
       "sostituto": null
     },
     {
@@ -10562,7 +10598,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Franco Morbidelli",
       "team": "Pertamina Enduro VR46",
-      "pts": 56.0,
+      "pts": 57.0,
       "sostituto": null
     },
     {
@@ -10570,7 +10606,7 @@ function buildDataFromResults() {
       "flag": "🇫🇷",
       "name": "Johann Zarco",
       "team": "Castrol Honda LCR",
-      "pts": 45.0,
+      "pts": 48.0,
       "sostituto": null
     },
     {
@@ -10578,7 +10614,7 @@ function buildDataFromResults() {
       "flag": "🇫🇷",
       "name": "Fabio Quartararo",
       "team": "Monster Energy Yamaha MotoGP",
-      "pts": 61.0,
+      "pts": 66.0,
       "sostituto": null
     },
     {
@@ -10586,7 +10622,7 @@ function buildDataFromResults() {
       "flag": "🇧🇷",
       "name": "Diogo Moreira",
       "team": "Pro Honda LCR",
-      "pts": 65.0,
+      "pts": 74.0,
       "sostituto": null
     },
     {
@@ -10634,7 +10670,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Maverick Viñales",
       "team": "Red Bull KTM Tech3",
-      "pts": 10.0,
+      "pts": 12.0,
       "sostituto": null
     },
     {
@@ -10698,7 +10734,7 @@ function buildDataFromResults() {
       "flag": "🇹🇭",
       "name": "Somkiat Chantra",
       "team": "Honda HRC Castrol",
-      "pts": 0.0,
+      "pts": 3.0,
       "sostituto": "Sub J.Mir \u00b7 R16"
     }
   ],
@@ -10716,7 +10752,7 @@ function buildDataFromResults() {
       "flag": "🇦🇺",
       "name": "Senna Agius",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 149.0,
+      "pts": 152.0,
       "sostituto": null
     },
     {
@@ -10724,7 +10760,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Izan Guevara",
       "team": "BLU CRU Pramac Yamaha Moto2",
-      "pts": 210.0,
+      "pts": 235.0,
       "sostituto": null
     },
     {
@@ -10732,7 +10768,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Celestino Vietti",
       "team": "SpeedRS Team",
-      "pts": 123.0,
+      "pts": 133.0,
       "sostituto": null
     },
     {
@@ -10740,7 +10776,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Iván Ortolá",
       "team": "QJMOTOR – FRINSA – MSI",
-      "pts": 168.5,
+      "pts": 181.5,
       "sostituto": null
     },
     {
@@ -10748,7 +10784,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Daniel Holgado",
       "team": "CFMOTO Aspar Team",
-      "pts": 146.0,
+      "pts": 154.0,
       "sostituto": null
     },
     {
@@ -10764,7 +10800,7 @@ function buildDataFromResults() {
       "flag": "🇨🇴",
       "name": "David Alonso",
       "team": "CFMOTO Aspar Team",
-      "pts": 155.0,
+      "pts": 166.0,
       "sostituto": null
     },
     {
@@ -10780,7 +10816,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Tony Arbolino",
       "team": "REDS Fantic Racing",
-      "pts": 55.5,
+      "pts": 75.5,
       "sostituto": null
     },
     {
@@ -10796,7 +10832,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Alonso López",
       "team": "ITALJET Team Gresini Moto2",
-      "pts": 110.5,
+      "pts": 117.5,
       "sostituto": null
     },
     {
@@ -10812,7 +10848,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Adrián Huertas",
       "team": "Italtrans Racing Team",
-      "pts": 37.0,
+      "pts": 42.0,
       "sostituto": null
     },
     {
@@ -10828,7 +10864,7 @@ function buildDataFromResults() {
       "flag": "🇹🇷",
       "name": "Deniz Öncü",
       "team": "ELF Marc VDS Racing Team",
-      "pts": 38.5,
+      "pts": 47.5,
       "sostituto": null
     },
     {
@@ -10836,7 +10872,7 @@ function buildDataFromResults() {
       "flag": "🇯🇵",
       "name": "Ayumu Sasaki",
       "team": "Momoven Idrofoglia RW Racing Team",
-      "pts": 19.0,
+      "pts": 21.0,
       "sostituto": null
     },
     {
@@ -10844,7 +10880,7 @@ function buildDataFromResults() {
       "flag": "🇨🇿",
       "name": "Filip Salač",
       "team": "OnlyFans American Racing Team",
-      "pts": 128.0,
+      "pts": 144.0,
       "sostituto": null
     },
     {
@@ -10852,7 +10888,7 @@ function buildDataFromResults() {
       "flag": "🇳🇱",
       "name": "Zonta van den Goorbergh",
       "team": "Momoven Idrofoglia RW Racing Team",
-      "pts": 12.0,
+      "pts": 13.0,
       "sostituto": null
     },
     {
@@ -10860,7 +10896,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Daniel Muñoz",
       "team": "Italtrans Racing Team",
-      "pts": 68.0,
+      "pts": 72.0,
       "sostituto": null
     },
     {
@@ -10884,7 +10920,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "José Antonio Rueda",
       "team": "Red Bull KTM Ajo",
-      "pts": 31.0,
+      "pts": 37.0,
       "sostituto": null
     },
     {
@@ -10982,7 +11018,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Máximo Quiles",
       "team": "CFMOTO Gaviota Aspar Team",
-      "pts": 306.0,
+      "pts": 326.0,
       "sostituto": null
     },
     {
@@ -10990,7 +11026,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Álvaro Carpe",
       "team": "Red Bull KTM Ajo",
-      "pts": 175.0,
+      "pts": 191.0,
       "sostituto": null
     },
     {
@@ -10998,7 +11034,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Adrián Fernández",
       "team": "Leopard Racing",
-      "pts": 59.0,
+      "pts": 62.0,
       "sostituto": null
     },
     {
@@ -11006,7 +11042,7 @@ function buildDataFromResults() {
       "flag": "🇦🇷",
       "name": "Valentin Perrone",
       "team": "Red Bull KTM Tech3",
-      "pts": 118.0,
+      "pts": 120.0,
       "sostituto": null
     },
     {
@@ -11022,7 +11058,7 @@ function buildDataFromResults() {
       "flag": "🇮🇩",
       "name": "Veda Pratama",
       "team": "Honda Team Asia",
-      "pts": 100.0,
+      "pts": 105.0,
       "sostituto": null
     },
     {
@@ -11038,7 +11074,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Brian Uriarte",
       "team": "Red Bull KTM Ajo",
-      "pts": 174.0,
+      "pts": 187.0,
       "sostituto": null
     },
     {
@@ -11046,7 +11082,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "David Muñoz",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 52.0,
+      "pts": 61.0,
       "sostituto": null
     },
     {
@@ -11054,7 +11090,7 @@ function buildDataFromResults() {
       "flag": "🇫🇮",
       "name": "Rico Salmela",
       "team": "Red Bull KTM Tech3",
-      "pts": 70.0,
+      "pts": 81.0,
       "sostituto": null
     },
     {
@@ -11062,7 +11098,7 @@ function buildDataFromResults() {
       "flag": "🇮🇪",
       "name": "Casey O'Gorman",
       "team": "SIC58 Squadra Corse",
-      "pts": 69.0,
+      "pts": 70.0,
       "sostituto": null
     },
     {
@@ -11070,7 +11106,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Matteo Bertelle",
       "team": "LevelUp – MTA",
-      "pts": 86.0,
+      "pts": 96.0,
       "sostituto": null
     },
     {
@@ -11078,7 +11114,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Adrián Cruces",
       "team": "CIP Green Power",
-      "pts": 73.0,
+      "pts": 79.0,
       "sostituto": null
     },
     {
@@ -11094,7 +11130,7 @@ function buildDataFromResults() {
       "flag": "🇲🇾",
       "name": "Hakim Danish",
       "team": "FRINSA – MT Helmets – MSI",
-      "pts": 101.0,
+      "pts": 105.0,
       "sostituto": null
     },
     {
@@ -11102,7 +11138,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Joel Esteban",
       "team": "LevelUp – MTA",
-      "pts": 59.0,
+      "pts": 66.0,
       "sostituto": null
     },
     {
@@ -11134,7 +11170,7 @@ function buildDataFromResults() {
       "flag": "🇯🇵",
       "name": "Ryusei Yamanaka",
       "team": "FRINSA – MT Helmets – MSI",
-      "pts": 31.0,
+      "pts": 39.0,
       "sostituto": null
     },
     {
@@ -11190,7 +11226,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "David Almansa",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 174.0,
+      "pts": 199.0,
       "sostituto": null
     },
     {
@@ -11299,20 +11335,20 @@ function buildDataFromResults() {
   // Punteggi costruttori ufficiali (aggiornati manualmente dopo ogni round)
   const COSTRUTTORI_STATIC = {
     motogp: [
-      { pos:1, brand:'Aprilia',  pts:442 },
-      { pos:2, brand:'Ducati', pts:432 },
-      { pos:3, brand:'KTM',     pts:277  },
-      { pos:4, brand:'Honda',   pts:146  },
-      { pos:5, brand:'Yamaha',  pts:84  },
+      { pos:1, brand:'Ducati',  pts:469 },
+      { pos:2, brand:'Aprilia', pts:469 },
+      { pos:3, brand:'KTM',     pts:296  },
+      { pos:4, brand:'Honda',   pts:161  },
+      { pos:5, brand:'Yamaha',  pts:89  },
     ],
     moto2: [
-      { pos:1, brand:'Kalex',      pts:352.5 },
-      { pos:2, brand:'Boscoscuro', pts:231  },
+      { pos:1, brand:'Kalex',      pts:3722.5 },
+      { pos:2, brand:'Boscoscuro', pts:256  },
       { pos:3, brand:'Forward',    pts:63   },
     ],
     moto3: [
-      { pos:1, brand:'KTM',    pts:370 },
-      { pos:2, brand:'Honda',  pts:185 },
+      { pos:1, brand:'KTM',    pts:395 },
+      { pos:2, brand:'Honda',  pts:190 },
     ],
   };
 
@@ -12225,24 +12261,25 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
 function initTitleBattles() {
   // Dati top 3 per ogni categoria
   const data = {
-    gp: [
-  { name: 'Jorge Martín', pts: 306, width: 100 },
-  { name: 'Marc Márquez', pts: 294, width: 96 },
-  { name: 'Marco Bezzecchi', pts: 264, width: 86 }
-],
+  gp: [
+    { name: 'Jorge Martín', pts: 333, width: 100 },
+    { name: 'Marc Márquez', pts: 331, width: 99.4 },
+    { name: 'Marco Bezzecchi', pts: 284, width: 85.3 }
+  ],
 
-m2: [
-  { name: 'Manuel González', pts: 245.5, width: 100 },
-  { name: 'Izan Guevara', pts: 210, width: 86 },
-  { name: 'Iván Ortolá', pts: 168.5, width: 69 }
-],
+  m2: [
+    { name: 'Manuel González', pts: 245.5, width: 100 },
+    { name: 'Izan Guevara', pts: 235, width: 95.7 },
+    { name: 'Iván Ortolá', pts: 181.5, width: 73.9 }
+  ],
 
-m3: [
-  { name: 'Máximo Quiles', pts: 306, width: 100 },
-  { name: 'Álvaro Carpe', pts: 175, width: 57 },
-  { name: 'David Almansa', pts: 174, width: 57 }
-],
-  };
+  m3: [
+    { name: 'Máximo Quiles', pts: 326, width: 100 },
+    { name: 'David Almansa', pts: 199, width: 61.0 },
+    { name: 'Álvaro Carpe', pts: 191, width: 58.6 }
+  ]
+};
+
 
   const categories = ['gp', 'm2', 'm3'];
   
