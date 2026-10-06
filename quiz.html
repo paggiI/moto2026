@@ -58,158 +58,168 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // =======================================================
 const QUIZ_QUESTIONS = [
     {
-        id: 'w38_q1',
-        question: 'Quanti titoli mondiali ha vinto Marc Márquez nella classe MotoGP?',
-        options: ['6 titoli', '8 titoli', '5 titoli', '7 titoli'],
-        correct: 3
+    id: 'mandalika_mgp_q1',
+    question: 'Con quanti punti di vantaggio arriva Jorge Martín su Marc Márquez a Mandalika?',
+    options: ['2 punti', '5 punti', '7 punti', '10 punti'],
+    correct: 0
     },
     {
-        id: 'w38_q2',
-        question: 'Quale costruttore ha vinto più titoli costruttori in MotoGP dal 2007?',
-        options: ['Yamaha', 'Honda', 'Ducati', 'Suzuki'],
+        id: 'mandalika_mgp_q2',
+        question: 'Quale pilota occupa il terzo posto nella classifica MotoGP prima del GP di Indonesia?',
+        options: ['Pedro Acosta', 'Marco Bezzecchi', 'Fabio Di Giannantonio', 'Francesco Bagnaia'],
+        correct: 1
+    },
+    {
+        id: 'mandalika_mgp_q3',
+        question: 'Quale costruttore rappresenta Jorge Martín nel 2026?',
+        options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
         correct: 2
     },
     {
-        id: 'w38_q3',
-        question: 'In quale anno ha debuttato Valentino Rossi nella classe regina, allora 500cc?',
-        options: ['2000', '2002', '1998', '2004'],
-        correct: 0
+        id: 'mandalika_mgp_q4',
+        question: 'Quanti giri prevede la gara MotoGP di Mandalika 2026?',
+        options: ['25', '26', '27', '28'],
+        correct: 2
     },
     {
-        id: 'w38_q4',
-        question: 'Chi detiene il record di vittorie consecutive in una singola stagione della classe regina nell’era MotoGP?',
-        options: ['Valentino Rossi', 'Marc Márquez', 'Giacomo Agostini', 'Francesco Bagnaia'],
+        id: 'mandalika_mgp_q5',
+        question: 'Quante curve ha il circuito di Mandalika?',
+        options: ['15', '16', '17', '18'],
+        correct: 2
+    },
+    {
+        id: 'mandalika_mgp_q6',
+        question: 'Quale pilota italiano arriva a Mandalika al quarto posto nel campionato MotoGP?',
+        options: ['Francesco Bagnaia', 'Marco Bezzecchi', 'Fabio Di Giannantonio', 'Enea Bastianini'],
+        correct: 2
+    },
+    {
+        id: 'mandalika_mgp_q7',
+        question: 'Quale pilota ha vinto il GP del Giappone 2026, arrivando a Mandalika in piena lotta per il titolo?',
+        options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Pedro Acosta'],
         correct: 1
+    },
+    {
+        id: 'mandalika_mgp_q8',
+        question: 'Qual è la lunghezza del rettilineo più lungo di Mandalika?',
+        options: ['623 metri', '723 metri', '823 metri', '923 metri'],
+        correct: 1
+    },
+    {
+        id: 'mandalika_mgp_q9',
+        question: 'Quale pilota KTM arriva a Mandalika al quinto posto della classifica MotoGP?',
+        options: ['Brad Binder', 'Pedro Acosta', 'Enea Bastianini', 'Maverick Viñales'],
+        correct: 1
+    },
+    {
+        id: 'mandalika_mgp_q10',
+        question: 'In quale anno si è disputato per la prima volta il GP MotoGP a Mandalika?',
+        options: ['2020', '2021', '2022', '2023'],
+        correct: 2
     },
 
     {
-        id: 'w38_q5',
-        question: 'In quale anno è stata introdotta la MotoGP, sostituendo la 500cc come denominazione della classe regina?',
-        options: ['1999', '2000', '2002', '2004'],
+        id: 'mandalika_moto2_q1',
+        question: 'Quanti giri prevede la gara Moto2 a Mandalika 2026?',
+        options: ['20', '21', '22', '23'],
         correct: 2
     },
     {
-        id: 'w38_q6',
-        question: 'Chi è stato il primo campione del mondo della classe regina nel 1949?',
-        options: ['Geoff Duke', 'Leslie Graham', 'John Surtees', 'Giacomo Agostini'],
+        id: 'mandalika_moto2_q2',
+        question: 'Chi ha vinto la gara Moto2 del GP del Giappone prima di arrivare a Mandalika?',
+        options: ['Manuel González', 'Izan Guevara', 'Tony Arbolino', 'Filip Salač'],
         correct: 1
     },
     {
-        id: 'w38_q7',
-        question: 'Quale pilota ha conquistato il titolo mondiale della 500cc nel 2000?',
-        options: ['Valentino Rossi', 'Alex Crivillé', 'Kenny Roberts Jr.', 'Max Biaggi'],
-        correct: 2
-    },
-    {
-        id: 'w38_q8',
-        question: 'Quale pilota ha vinto il titolo mondiale MotoGP nel 2020?',
-        options: ['Joan Mir', 'Fabio Quartararo', 'Franco Morbidelli', 'Andrea Dovizioso'],
+        id: 'mandalika_moto2_q3',
+        question: 'Chi completa il podio Moto2 del GP del Giappone 2026 insieme a Izan Guevara?',
+        options: ['Tony Arbolino e Filip Salač', 'Manuel González e Aron Canet', 'Pedro Acosta e Tony Arbolino', 'Ai Ogura e Filip Salač'],
         correct: 0
     },
     {
-        id: 'w38_q9',
-        question: 'Quale pilota ha vinto il titolo MotoGP nel 2021?',
-        options: ['Joan Mir', 'Fabio Quartararo', 'Pecco Bagnaia', 'Jorge Martín'],
+        id: 'mandalika_moto2_q4',
+        question: 'Quale pilota indonesiano corre in Moto2 nel 2026 e sarà particolarmente atteso dal pubblico di Mandalika?',
+        options: ['Veda Pratama', 'Mario Suryo Aji', 'Rheza Danica', 'Dimas Ekky'],
         correct: 1
     },
     {
-        id: 'w38_q10',
-        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2022?',
-        options: ['Fabio Quartararo', 'Francesco Bagnaia', 'Enea Bastianini', 'Aleix Espargaró'],
+        id: 'mandalika_moto2_q5',
+        question: 'Quale pilota era al comando della classifica Moto2 prima del GP di Indonesia?',
+        options: ['Izan Guevara', 'Manuel González', 'Tony Arbolino', 'Filip Salač'],
         correct: 1
+    },
+    {
+        id: 'mandalika_moto2_q6',
+        question: 'Quanti giri misura la gara Moto2 di Mandalika 2026?',
+        options: ['20', '21', '22', '24'],
+        correct: 2
     },
 
     {
-        id: 'w38_q11',
-        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2023?',
-        options: ['Francesco Bagnaia', 'Jorge Martín', 'Marco Bezzecchi', 'Brad Binder'],
-        correct: 0
-    },
-    {
-        id: 'w38_q12',
-        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2024?',
-        options: ['Francesco Bagnaia', 'Jorge Martín', 'Marc Márquez', 'Enea Bastianini'],
+        id: 'mandalika_moto3_q1',
+        question: 'Chi ha vinto la gara Moto3 del GP del Giappone 2026 prima di Mandalika?',
+        options: ['Máximo Quiles', 'David Almansa', 'Álvaro Carpe', 'Veda Pratama'],
         correct: 1
     },
     {
-        id: 'w38_q13',
-        question: 'Quale pilota ha conquistato il titolo MotoGP nel 2025?',
-        options: ['Jorge Martín', 'Francesco Bagnaia', 'Marc Márquez', 'Fabio Quartararo'],
+        id: 'mandalika_moto3_q2',
+        question: 'Chi ha concluso secondo nella gara Moto3 di Motegi 2026?',
+        options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Veda Pratama'],
         correct: 2
     },
     {
-        id: 'w38_q14',
-        question: 'Quante vittorie consecutive ottenne Marc Márquez all’inizio della stagione MotoGP 2014?',
-        options: ['8', '9', '10', '11'],
+        id: 'mandalika_moto3_q3',
+        question: 'Quale pilota non ha ancora potuto chiudere matematicamente il titolo Moto3 dopo il GP del Giappone?',
+        options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Veda Pratama'],
+        correct: 1
+    },
+    {
+        id: 'mandalika_moto3_q4',
+        question: 'Quale pilota indonesiano corre in Moto3 nel 2026 con Honda Team Asia?',
+        options: ['Mario Suryo Aji', 'Veda Pratama', 'Rheza Danica', 'Andi Farid Izdihar'],
+        correct: 1
+    },
+    {
+        id: 'mandalika_moto3_q5',
+        question: 'Quanti giri prevede la gara Moto3 a Mandalika 2026?',
+        options: ['18', '19', '20', '21'],
         correct: 2
     },
     {
-        id: 'w38_q15',
-        question: 'Quale pilota ha vinto il titolo mondiale della 250cc nel 2005?',
-        options: ['Dani Pedrosa', 'Jorge Lorenzo', 'Casey Stoner', 'Andrea Dovizioso'],
+        id: 'mandalika_moto3_q6',
+        question: 'Chi ha completato il podio Moto3 a Motegi 2026 alle spalle di David Almansa e Máximo Quiles?',
+        options: ['Álvaro Carpe', 'Veda Pratama', 'José Antonio Rueda', 'Ángel Piqueras'],
         correct: 0
     },
 
     {
-        id: 'w38_q16',
-        question: 'Quale pilota ha vinto due titoli consecutivi nella 250cc nel 2006 e nel 2007?',
-        options: ['Dani Pedrosa', 'Jorge Lorenzo', 'Hiroshi Aoyama', 'Casey Stoner'],
+        id: 'mandalika_extra_q1',
+        question: 'Quante curve a destra e quante a sinistra ha il circuito di Mandalika?',
+        options: [
+            '10 a destra e 7 a sinistra',
+            '11 a destra e 6 a sinistra',
+            '12 a destra e 5 a sinistra',
+            '9 a destra e 8 a sinistra'
+        ],
         correct: 1
     },
     {
-        id: 'w38_q17',
-        question: 'Quale pilota ha conquistato il titolo mondiale 250cc nel 2002?',
-        options: ['Marco Melandri', 'Manuel Poggiali', 'Daijiro Kato', 'Toni Elías'],
+        id: 'mandalika_extra_q2',
+        question: 'Quanti chilometri percorrono complessivamente i piloti MotoGP durante la gara di Mandalika 2026?',
+        options: ['106,13 km', '111,13 km', '116,13 km', '121,13 km'],
         correct: 2
     },
     {
-        id: 'w38_q18',
-        question: 'Quale pilota ha conquistato il titolo mondiale 125cc nel 2004?',
-        options: ['Andrea Dovizioso', 'Casey Stoner', 'Dani Pedrosa', 'Thomas Lüthi'],
-        correct: 0
-    },
-    {
-        id: 'w38_q19',
-        question: 'Quale pilota ha conquistato il titolo mondiale 125cc nel 2005?',
-        options: ['Thomas Lüthi', 'Mika Kallio', 'Álvaro Bautista', 'Gábor Talmácsi'],
-        correct: 0
-    },
-    {
-        id: 'w38_q20',
-        question: 'Quale pilota ha conquistato il primo titolo mondiale della Moto3 nel 2012?',
-        options: ['Maverick Viñales', 'Sandro Cortese', 'Luis Salom', 'Alex Rins'],
-        correct: 1
-    },
-
-    {
-        id: 'w38_q21',
-        question: 'Quale pilota ha conquistato il primo titolo mondiale Moto2 nel 2010?',
-        options: ['Toni Elías', 'Andrea Iannone', 'Jules Cluzel', 'Stefan Bradl'],
-        correct: 0
-    },
-    {
-        id: 'w38_q22',
-        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2012?',
-        options: ['Pol Espargaró', 'Marc Márquez', 'Andrea Iannone', 'Scott Redding'],
-        correct: 1
-    },
-    {
-        id: 'w38_q23',
-        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2018?',
-        options: ['Franco Morbidelli', 'Miguel Oliveira', 'Francesco Bagnaia', 'Álex Márquez'],
+        id: 'mandalika_extra_q3',
+        question: 'Quale categoria percorre 20 giri durante la gara di Mandalika?',
+        options: ['MotoGP', 'Moto2', 'Moto3', 'Tutte e tre'],
         correct: 2
     },
     {
-        id: 'w38_q24',
-        question: 'Quale pilota ha conquistato il titolo Moto2 nel 2023?',
-        options: ['Pedro Acosta', 'Tony Arbolino', 'Fermín Aldeguer', 'Ai Ogura'],
-        correct: 0
-    },
-    {
-        id: 'w38_q25',
-        question: 'Quale pilota ha conquistato il titolo Moto3 nel 2017?',
-        options: ['Joan Mir', 'Jorge Martín', 'Marco Bezzecchi', 'Romano Fenati'],
-        correct: 0
+        id: 'mandalika_extra_q4',
+        question: 'Qual è il distacco tra Jorge Martín e Marc Márquez nella classifica MotoGP prima di Mandalika?',
+        options: ['1 punto', '2 punti', '3 punti', '5 punti'],
+        correct: 1
     }
 ];
 
