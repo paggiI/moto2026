@@ -1127,16 +1127,18 @@
       color: #555 !important;
     }
 
-    /* ═══════════════════════════════════
-       WELCOME MODAL (Benvenuto) - CORRETTO
-    ═══════════════════════════════════ */
+    /* ═════════════════════════════════════
+       WELCOME MODAL (Benvenuto) - CORRETTO E MOBILE-FRIENDLY
+    ═════════════════════════════════════ */
     .welcome-overlay {
       position: fixed; inset: 0; z-index: 9999;
-      background: rgba(10, 10, 10, 0.85); /* Fondo scuro semi-trasparente */
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none;
       transition: opacity 0.4s ease;
+      padding: 1rem; /* Spazio dai bordi del telefono */
+      overflow-y: auto; /* Permette lo scroll se il modal è più alto dello schermo */
     }
     .welcome-overlay.open {
       opacity: 1; pointer-events: auto;
@@ -1145,27 +1147,30 @@
     .welcome-box {
       background: var(--card);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--red); /* Dettaglio rosso in alto */
+      border-top: 3px solid var(--red);
       border-radius: 12px;
-      padding: 2.5rem 2rem;
+      padding: 2rem 1.5rem; /* Padding ridotto per fare stare tutto dentro */
       max-width: 420px;
-      width: 90%;
+      width: 100%; /* Prende tutta la larghezza disponibile */
+      max-height: 90vh; /* Altezza massima al 90% dello schermo */
+      overflow-y: auto; /* Scroll interno se il testo è troppo lungo */
       text-align: center;
       transform: translateY(20px);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       position: relative;
+      margin: auto; /* Centra perfettamente anche con lo scroll attivo */
     }
     .welcome-overlay.open .welcome-box {
       transform: translateY(0);
     }
 
     .welcome-close-btn {
-      position: absolute; top: 1rem; right: 1rem;
+      position: absolute; top: 0.5rem; right: 0.5rem; /* Più vicino al bordo per essere sempre raggiungibile */
       background: transparent; border: none;
       color: var(--muted); font-size: 1.2rem; cursor: pointer;
       transition: color 0.2s;
-      line-height: 1; padding: 5px; z-index: 10;
+      line-height: 1; padding: 8px; z-index: 10;
     }
     .welcome-close-btn:hover { color: var(--red); }
 
