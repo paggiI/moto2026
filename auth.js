@@ -1,3 +1,19 @@
+// ── INIEZIONE GOOGLE ANALYTICS (GA4) ──
+(function() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HT8S6HH3QP';
+  document.head.appendChild(s);
+  
+  var inline = document.createElement('script');
+  inline.textContent = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HT8S6HH3QP');
+  `;
+  document.head.appendChild(inline);
+})();
 // ── SISTEMA LOGIN / REGISTRAZIONE (SUPABASE) ──
 (function() {
   // Configurazione Supabase
