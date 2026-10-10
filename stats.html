@@ -445,19 +445,20 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 const CHART_DATA = {
   motogp: {
     pilots: [
-      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333]},
-      { name:'M.Márquez', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331]}, 
-      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284]},
-      { name:'P.Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132,132,133,148,163,189,209,234,243]},
+      { name:'M.Márquez', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331,343]}, 
+      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333,339]},
+      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284,284]},
+      { name:'P.Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132,132,133,148,163,189,209,234,243,247]},
       //{ name:'Di Giann.', color:'#a855f7', pts:[0,12,37,50,71,84,116,134,138,157,177,184,199,208,223,230,230]},
-      { name:'Ai Ogura', color:'#60b4ff', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237]}, 
+      { name:'Ai Ogura', color:'#60b4ff', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237,246]}, 
+      // DOMANI CAMBIARE SOLO ULTIMO PUNTEGGIO, NON AGGIUNGERE
     ],
     constructors: [
-      {name:'Ducati', pts:469, color:'#dc2626'},
-      {name:'Aprilia', pts:469, color:'#af02ff'}, 
-      {name:'KTM', pts:296, color:'#f97316'}, 
+      {name:'Ducati', pts:481, color:'#dc2626'},
+      {name:'Aprilia', pts:478, color:'#af02ff'}, 
+      {name:'KTM', pts:300, color:'#f97316'}, 
       {name:'Honda', pts:161, color:'#ef4444'},
-      {name:'Yamaha', pts:89, color:'#0502d3'}
+      {name:'Yamaha', pts:90, color:'#0502d3'}
     ]
   },
   moto2: {
@@ -491,7 +492,7 @@ const CHART_DATA = {
     ]
   }
 };
-const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺','R9 🇨🇿','R10 🇳🇱','R11 🇩🇪','R12 🇬🇧','R13 🇪🇸','R14 🇮🇹','R15 🇦🇹','R16 🇯🇵'];
+const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺','R9 🇨🇿','R10 🇳🇱','R11 🇩🇪','R12 🇬🇧','R13 🇪🇸','R14 🇮🇹','R15 🇦🇹','R16 🇯🇵','R17 🇮🇩'];
 let activeCat = 'motogp';
 
 // ── TEMA ──
