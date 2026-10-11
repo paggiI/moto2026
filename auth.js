@@ -553,7 +553,7 @@ document.head.appendChild(notifStyle);
   }
   // ── SISTEMA DI MANUTENZIONE SITO ──────────────────
   // Cambia a 'true' quando devi aggiornare i risultati, poi rimetti a 'false'
-  const MAINTENANCE_MODE = false; 
+  const MAINTENANCE_MODE = true; 
 
   if (MAINTENANCE_MODE && !sessionStorage.getItem('maintenance_bypass')) {
     var overlay = document.createElement('div');
@@ -565,7 +565,7 @@ document.head.appendChild(notifStyle);
         <div style="font-size:3rem;margin-bottom:1rem;">🛠️</div>
         <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem;">Sito in Aggiornamento</h2>
         <p style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5;">Stiamo caricando i risultati e i punteggi dell'ultimo GP. Torna a trovarci tra poco!</p>
-        <button id="bypass-maintenance" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:.2s;">Accedi comunque (Dati non aggiornati)</button>
+        <button id="bypass-maintenance" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:.85rem;transition:.2s;">Accedi comunque (Dati completi non aggiornati)</button>
       </div>
     `;
     
