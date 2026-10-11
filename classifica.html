@@ -1340,16 +1340,16 @@
     ← Torna alla pagina principale
   </button>
 <h1>CLASSIFICA <span>2026</span></h1>
-<p>⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.</p>
+<p>Classifica aggiornata dopo il Gran Premio dell'Indonesia · Pertamina Mandalika Circuit (Round 17). I punti saranno aggiornati dopo ogni gara.</p>
 </div>
 </section>
 <!-- STATUS BAR -->
 <div class="status-bar">
 <span class="status-label">Aggiornata dopo:</span>
-<span class="status-val">Round 16 / 22 — GP Giappone</span>
+<span class="status-val">Round 17 / 22 — GP Indonesia</span>
 <span class="status-sep">|</span>
 <span class="status-label">Prossimo:</span>
-<span class="status-val">🇮🇩 Gran Premio dell'Indonesia 09-11 ott</span>
+<span class="status-val">🇦🇺 Gran Premio dell'Australia 23-25 ott</span>
 <span class="status-note">⚠️ I risultati dei singoli GP saranno aggiornati dopo ogni gara</span>
 </div>
 <!-- GP SELECTOR BAR — tutti 22 round scorrevoli -->
@@ -1370,8 +1370,8 @@
 <button class="gp-sel-btn" id="gp-sel-r14" onclick="selectGP('r14',this)">🇮🇹 R14 · San Marino</button>
 <button class="gp-sel-btn" id="gp-sel-r15" onclick="selectGP('r15',this)">🇦🇹 R15 · Austria</button>
 <button class="gp-sel-btn" id="gp-sel-r16" onclick="selectGP('r16',this)">🇯🇵 R16 · Giappone</button>
-<button class="gp-sel-btn gp-sel-next">🇮🇩 R17 · Indonesia ⚡</button>
-<button class="gp-sel-btn gp-sel-future">🇦🇺 R18 · Australia</button>
+<button class="gp-sel-btn" id="gp-sel-r17" onclick="selectGP('r17',this)">🇮🇩 R17 · Indonesia</button>
+<button class="gp-sel-btn gp-sel-next">🇦🇺 R18 · Australia ⚡</button>
 <button class="gp-sel-btn gp-sel-future">🇲🇾 R19 · Malesia</button>
 <button class="gp-sel-btn gp-sel-future">🇶🇦 R20 · Qatar</button>
 <button class="gp-sel-btn gp-sel-future">🇵🇹 R21 · Portogallo</button>
@@ -1915,7 +1915,7 @@
 </div><!-- /panel-moto2 -->
 <div class="panel" id="panel-moto3">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio dell'Indonesia · Pertamina Mandalika Circuit (Round 17). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1954,11 +1954,11 @@
 <div class="standings-wrap">
 <div class="standings-header sh-m3">
 <span class="sh-title">Classifica Piloti — Moto3</span>
-<span class="sh-sub">Dopo 16 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 17 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
-<tr class="rider-row" onclick="openRQV('Máximo Quiles','CFMOTO Gaviota Aspar Team','326',1,'—','🇪🇸','maximo_quiles')">
+<tr class="rider-row" onclick="openRQV('Máximo Quiles','CFMOTO Gaviota Aspar Team','351',1,'—','🇪🇸','maximo_quiles')">
 <th class="pos-cell">#</th>
 <th>Pilota</th>
 <th>Team</th>
@@ -2148,6 +2148,18 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Álvaro Carpe</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=r17')" onmousedown="handleMouse(event,'risultati.html?round=r17')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 17</span>
+<span class="rrc-name">GP dell'Indonesia</span>
+<span class="rrc-flag">🇮🇩</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag">🇪🇸</span><span class="p-name">Máximo Quiles</span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag">🇪🇸</span><span class="p-name">David Almansa</span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Brian Uriarte</span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
@@ -2155,7 +2167,7 @@
 <!-- ═══════ COSTRUTTORI PANEL ═══════ -->
 <div class="panel" id="panel-costruttori">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio del Giappone · Twin Ring Motegi (Round 16). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio dell'Indonesia · Pertamina Mandalika Circuit (Round 17). I punti saranno aggiornati dopo ogni gara.
 </div>
 <h2 class="section-title">Costruttori — MotoGP</h2>
 <div class="costruttori-grid" id="cos-motogp"></div>
@@ -10494,7 +10506,31 @@ q: {
           { pos: 'RIT', flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: 'RIT', gap: 'giro 1' }
         ]
       },
-
+       wu: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "1:29.610", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.043" },
+          { pos: 3, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "", gap: "+0.128" },
+          { pos: 4, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.198" },
+          { pos: 5, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "", gap: "+0.269" },
+          { pos: 6, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: "", gap: "+0.519" },
+          { pos: 7, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.557" },
+          { pos: 8, flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.666" },
+          { pos: 9, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+0.752" },
+          { pos: 10, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.762" },
+          { pos: 11, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+0.931" },
+          { pos: 12, flag: '🇮🇹', name: 'Francesco Bagnaia', team: 'Ducati Lenovo Team', time: "", gap: "+0.945" },
+          { pos: 13, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+0.960" },
+          { pos: 14, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+1.058" },
+          { pos: 15, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: "", gap: "+1.178" },
+          { pos: 16, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+1.222" },
+          { pos: 17, flag: '🇪🇸', name: 'Maverick Viñales', team: 'Red Bull KTM Tech3', time: "", gap: "+1.405" },
+          { pos: 18, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+1.418" },
+          { pos: 19, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+1.783" },
+          { pos: 20, flag: '🇹🇷', name: 'Toprak Razgatlıoğlu', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+1.845" },
+          { pos: 21, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: "", gap: "+2.256" }
+        ]
+      },
     },
     m2: {
       fp1: {
@@ -10760,7 +10796,36 @@ q: {
           { pos: 12, flag: '🇿🇦', name: 'Ruche Moodley', team: 'BOE Motorsports', time: "", gap: "+1.397" }
         ]
       },
-      
+      race: {
+        rows: [
+          { pos: 1, flag: '🇪🇸', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team', time: "32:36.821", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'David Almansa', team: 'Liqui Moly Dynavolt Intact GP', time: '', gap: '+2.994' },
+          { pos: 3, flag: '🇪🇸', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo', time: '', gap: '+5.156' },
+          { pos: 4, flag: '🇮🇹', name: 'Matteo Bertelle', team: 'LevelUp – MTA', time: '', gap: '+5.250' },
+          { pos: 5, flag: '🇫🇮', name: 'Rico Salmela', team: 'Red Bull KTM Tech3', time: '', gap: '+10.967' },
+          { pos: 6, flag: '🇮🇩', name: 'Veda Pratama', team: 'Honda Team Asia', time: '', gap: '+12.017' },
+          { pos: 7, flag: '🇪🇸', name: 'Adrián Fernández', team: 'Leopard Racing', time: '', gap: '+12.890' },
+          { pos: 8, flag: '🇮🇹', name: 'Guido Pini', team: 'Leopard Racing', time: '', gap: '+15.317' },
+          { pos: 9, flag: '🇪🇸', name: 'Joel Esteban', team: 'LevelUp – MTA', time: '', gap: '+17.608' },
+          { pos: 10, flag: '🇬🇧', name: 'Scott Ogden', team: 'CIP Green Power', time: '', gap: '+17.659' },
+          { pos: 11, flag: '🇯🇵', name: 'Ryusei Yamanaka', team: 'FRINSA – MT Helmets – MSI', time: '', gap: '+22.978' },
+          { pos: 12, flag: '🇪🇸', name: 'Adrián Cruces', team: 'CIP Green Power', time: '', gap: '+25.772' },
+          { pos: 13, flag: '🇦🇷', name: 'Valentin Perrone', team: 'Red Bull KTM Tech3', time: '', gap: '+25.933' },
+          { pos: 14, flag: '🇲🇾', name: 'Hakim Danish', team: 'FRINSA – MT Helmets – MSI', time: '', gap: '+26.059' },
+          { pos: 15, flag: '🇪🇸', name: 'Jesús Ríos', team: 'Rivacold Snipers Team', time: '', gap: '+26.067' },
+          { pos: 16, flag: '🇯🇵', name: 'Zen Mitani', team: 'Honda Team Asia', time: '', gap: '+26.206' },
+          { pos: 17, flag: '🇹🇭', name: 'Kiattisak Singhapong', team: 'Rivacold Snipers Team', time: '', gap: '+26.536' },
+          { pos: 18, flag: '🇦🇷', name: 'Marco Morelli', team: 'CFMOTO Gaviota Aspar Team', time: '', gap: '+26.776' },
+          { pos: 19, flag: '🇬🇧', name: "Eddie O'Shea", team: 'GRYD – MLav Racing', time: '', gap: '+27.989' },
+          { pos: 20, flag: '🇿🇦', name: 'Ruche Moodley', team: 'BOE Motorsports', time: '', gap: "+1'00.520" },
+          { pos: 'RIT', flag: '🇦🇺', name: 'Joel Kelso', team: 'GRYD – MLav Racing', time: 'RIT', gap: 'giro 19' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'David Muñoz', team: 'Liqui Moly Dynavolt Intact GP', time: 'RIT', gap: 'giro 10' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo', time: 'RIT', gap: 'giro 10' },
+          { pos: 'RIT', flag: '🇦🇹', name: 'Leo Rammerstorfer', team: 'SIC58 Squadra Corse', time: 'RIT', gap: 'giro 2' },
+          { pos: 'RIT', flag: '🇮🇪', name: "Casey O'Gorman", team: 'SIC58 Squadra Corse', time: 'RIT', gap: 'giro 2' },
+          { pos: 'RIT', flag: '🇯🇵', name: 'Ryota Ogiwara', team: 'BOE Motorsports', time: 'RIT', gap: 'giro 2' }
+        ]
+      }
     }
   },
 
@@ -11431,7 +11496,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Máximo Quiles",
       "team": "CFMOTO Gaviota Aspar Team",
-      "pts": 326.0,
+      "pts": 351.0,
       "sostituto": null
     },
     {
@@ -11447,7 +11512,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Adrián Fernández",
       "team": "Leopard Racing",
-      "pts": 62.0,
+      "pts": 67.0,
       "sostituto": null
     },
     {
@@ -11455,7 +11520,7 @@ function buildDataFromResults() {
       "flag": "🇦🇷",
       "name": "Valentin Perrone",
       "team": "Red Bull KTM Tech3",
-      "pts": 120.0,
+      "pts": 123.0,
       "sostituto": null
     },
     {
@@ -11471,7 +11536,7 @@ function buildDataFromResults() {
       "flag": "🇮🇩",
       "name": "Veda Pratama",
       "team": "Honda Team Asia",
-      "pts": 105.0,
+      "pts": 115.0,
       "sostituto": null
     },
     {
@@ -11479,7 +11544,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Guido Pini",
       "team": "Leopard Racing",
-      "pts": 70.0,
+      "pts": 78.0,
       "sostituto": null
     },
     {
@@ -11487,7 +11552,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Brian Uriarte",
       "team": "Red Bull KTM Ajo",
-      "pts": 187.0,
+      "pts": 203.0,
       "sostituto": null
     },
     {
@@ -11503,7 +11568,7 @@ function buildDataFromResults() {
       "flag": "🇫🇮",
       "name": "Rico Salmela",
       "team": "Red Bull KTM Tech3",
-      "pts": 81.0,
+      "pts": 92.0,
       "sostituto": null
     },
     {
@@ -11519,7 +11584,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Matteo Bertelle",
       "team": "LevelUp – MTA",
-      "pts": 96.0,
+      "pts": 109.0,
       "sostituto": null
     },
     {
@@ -11527,7 +11592,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Adrián Cruces",
       "team": "CIP Green Power",
-      "pts": 79.0,
+      "pts": 83.0,
       "sostituto": null
     },
     {
@@ -11543,7 +11608,7 @@ function buildDataFromResults() {
       "flag": "🇲🇾",
       "name": "Hakim Danish",
       "team": "FRINSA – MT Helmets – MSI",
-      "pts": 105.0,
+      "pts": 107.0,
       "sostituto": null
     },
     {
@@ -11551,7 +11616,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Joel Esteban",
       "team": "LevelUp – MTA",
-      "pts": 66.0,
+      "pts": 73.0,
       "sostituto": null
     },
     {
@@ -11559,7 +11624,7 @@ function buildDataFromResults() {
       "flag": "🇬🇧",
       "name": "Scott Ogden",
       "team": "CIP Green Power",
-      "pts": 30.0,
+      "pts": 36.0,
       "sostituto": null
     },
     {
@@ -11567,7 +11632,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Jesús Ríos",
       "team": "Rivacold Snipers Team",
-      "pts": 49.0,
+      "pts": 50.0,
       "sostituto": null
     },
     {
@@ -11583,7 +11648,7 @@ function buildDataFromResults() {
       "flag": "🇯🇵",
       "name": "Ryusei Yamanaka",
       "team": "FRINSA – MT Helmets – MSI",
-      "pts": 39.0,
+      "pts": 44.0,
       "sostituto": null
     },
     {
@@ -11639,7 +11704,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "David Almansa",
       "team": "Liqui Moly Dynavolt Intact GP",
-      "pts": 199.0,
+      "pts": 219.0,
       "sostituto": null
     },
     {
@@ -11760,8 +11825,8 @@ function buildDataFromResults() {
       { pos:3, brand:'Forward',    pts:63   },
     ],
     moto3: [
-      { pos:1, brand:'KTM',    pts:395 },
-      { pos:2, brand:'Honda',  pts:190 },
+      { pos:1, brand:'KTM',    pts:420 },
+      { pos:2, brand:'Honda',  pts:200 },
     ],
   };
 
@@ -12528,7 +12593,7 @@ document.addEventListener('keydown', function(e) {
 });
 // === COUNTDOWN LOGIC ===
 // Imposta la data del prossimo GP (Formato: Anno-Mese-GiornoTOra:Minuti:Secondi)
-const raceDate = new Date("2026-10-09T03:00:00").getTime();
+const raceDate = new Date("2026-10-23T00:00:00").getTime();
 
 // Aggiorna il countdown ogni secondo
 const countdownFunction = setInterval(() => {
@@ -12687,9 +12752,9 @@ function initTitleBattles() {
   ],
 
   m3: [
-    { name: 'Máximo Quiles', pts: 326, width: 100 },
-    { name: 'David Almansa', pts: 199, width: 61.0 },
-    { name: 'Álvaro Carpe', pts: 191, width: 58.6 }
+    { name: 'Máximo Quiles', pts: 351, width: 100 },
+    { name: 'David Almansa', pts: 219, width: 62.4 },
+    { name: 'Brian Uriarte', pts: 203, width: 57.8 }
   ]
 };
 

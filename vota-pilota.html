@@ -38,7 +38,7 @@
     <p class="subtitle">Vote per il migliore in pista nel GP appena concluso!</p>
 
     <div class="card">
-        <div class="card-title">🏆 GP del Giappone (Round 16)</div>
+        <div class="card-title">🏆 GP dell'Indonesia (Round 17)</div>
         <div id="vote-content">
             <p class="loading">Caricamento...</p>
         </div>
@@ -54,7 +54,7 @@ const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
 const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // IMPOSTAZIONI ROUND E CANDIDATI (Modifica questi dati ogni nuovo GP!)
-const CURRENT_ROUND = '16';
+const CURRENT_ROUND = '17';
 const CATEGORIES = [
     { id: 'motogp', name: 'MotoGP', color: 'var(--gp)' },
     { id: 'moto2', name: 'Moto2', color: 'var(--m2)' },
@@ -81,9 +81,9 @@ const CANDIDATES = {
     moto3: [
         { id: 'Máximo Quiles', name: 'Máximo Quiles', team: 'CFMOTO Gaviota Aspar Team Moto3' },
         { id: 'David Almansa', name: 'David Almansa', team: 'LIQUI MOLY Dynavolt Intact GP Moto3' },
-        { id: 'Álvaro Carpe', name: 'Álvaro Carpe', team: 'Red Bull KTM Ajo Moto3' },
+        { id: 'Brian Uriarte', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo Moto3' },
         { id: 'Matteo Bertelle', name: 'Matteo Bertelle', team: 'LEVEL UP - MTA' }
-        //{ id: 'Brian Uriarte', name: 'Brian Uriarte', team: 'Red Bull KTM Ajo Moto3' },
+        //{ id: 'Alvaro Carpe', name: 'Alvaro Carpe', team: 'Red Bull KTM Ajo Moto3' },
         //{ id: 'Eddie O’Shea', name: 'Eddie O’Shea', team: 'GRYD – MLav Racing' }
     ]
 };
