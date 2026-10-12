@@ -58,169 +58,166 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // =======================================================
 const QUIZ_QUESTIONS = [
     {
-    id: 'mandalika_mgp_q1',
-    question: 'Con quanti punti di vantaggio arriva Jorge Martín su Marc Márquez a Mandalika?',
-    options: ['2 punti', '5 punti', '7 punti', '10 punti'],
+    id: 'australia_mgp_q1',
+    question: 'Con quanti punti di vantaggio arriva Jorge Martín su Marc Márquez al GP d’Australia?',
+    options: ['1 punto', '2 punti', '5 punti', '10 punti'],
+    correct: 1
+  },
+  {
+    id: 'australia_mgp_q2',
+    question: 'Quale pilota occupa il terzo posto nella classifica MotoGP dopo il GP d’Indonesia?',
+    options: ['Pedro Acosta', 'Marco Bezzecchi', 'Ai Ogura', 'Fabio Di Giannantonio'],
+    correct: 1
+  },
+  {
+    id: 'australia_mgp_q3',
+    question: 'Quale costruttore rappresenta Jorge Martín nel 2026?',
+    options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
+    correct: 2
+  },
+  {
+    id: 'australia_mgp_q4',
+    question: 'Quanti giri prevede la gara MotoGP di Phillip Island nel 2026?',
+    options: ['25', '26', '27', '28'],
+    correct: 2
+  },
+  {
+    id: 'australia_mgp_q5',
+    question: 'Chi ha vinto il GP d’Indonesia 2026 prima di arrivare in Australia?',
+    options: ['Marc Márquez', 'Raúl Fernández', 'Jorge Martín', 'Marco Bezzecchi'],
+    correct: 3
+  },
+  {
+    id: 'australia_mgp_q6',
+    question: 'Quale pilota occupa il quarto posto nella classifica MotoGP dopo il GP d’Indonesia?',
+    options: ['Pedro Acosta', 'Fabio Di Giannantonio', 'Ai Ogura', 'Francesco Bagnaia'],
+    correct: 2
+  },
+  {
+    id: 'australia_mgp_q7',
+    question: 'Chi ha vinto la Sprint MotoGP in Indonesia il 10 ottobre 2026?',
+    options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Raúl Fernández'],
+    correct: 1
+  },
+  {
+    id: 'australia_mgp_q8',
+    question: 'Qual è la distanza totale della gara MotoGP a Phillip Island?',
+    options: ['111,1 km', '116,1 km', '120,1 km', '125,1 km'],
+    correct: 2
+  },
+  {
+    id: 'australia_mgp_q9',
+    question: 'Quale pilota KTM occupa il quinto posto in classifica dopo il GP d’Indonesia?',
+    options: ['Brad Binder', 'Pedro Acosta', 'Enea Bastianini', 'Maverick Viñales'],
+    correct: 1
+  },
+  {
+    id: 'australia_mgp_q10',
+    question: 'Quale pilota ha chiuso secondo nel GP d’Indonesia 2026?',
+    options: ['Ai Ogura', 'Marc Márquez', 'Raúl Fernández', 'Jorge Martín'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto2_q1',
+    question: 'Quanti giri prevede la gara Moto2 a Phillip Island nel 2026?',
+    options: ['21', '22', '23', '24'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto2_q2',
+    question: 'Chi ha vinto la gara Moto2 del GP del Giappone 2026?',
+    options: ['Manuel González', 'Izan Guevara', 'Tony Arbolino', 'Filip Salač'],
+    correct: 1
+  },
+  {
+    id: 'australia_moto2_q3',
+    question: 'Chi ha vinto la gara Moto2 del GP d’Indonesia 2026?',
+    options: ['Daniel Holgado', 'Manuel González', 'Izan Guevara', 'Alex Escrig'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto2_q4',
+    question: 'Quale pilota guida la classifica Moto2 dopo il GP d’Indonesia?',
+    options: ['Izan Guevara', 'Manuel González', 'Ivan Ortolá', 'Daniel Holgado'],
+    correct: 1
+  },
+  {
+    id: 'australia_moto2_q5',
+    question: 'Quale pilota ha chiuso secondo nella gara Moto2 in Indonesia?',
+    options: ['Filip Salač', 'Senna Agius', 'Daniel Holgado', 'Manuel González'],
+    correct: 3
+  },
+  {
+    id: 'australia_moto2_q6',
+    question: 'Quale pilota australiano occupa il sesto posto nella classifica Moto2 dopo il GP d’Indonesia?',
+    options: ['Senna Agius', 'Daniel Holgado', 'David Alonso', 'Ivan Ortolá'],
     correct: 0
-    },
-    {
-        id: 'mandalika_mgp_q2',
-        question: 'Quale pilota occupa il terzo posto nella classifica MotoGP prima del GP di Indonesia?',
-        options: ['Pedro Acosta', 'Marco Bezzecchi', 'Fabio Di Giannantonio', 'Francesco Bagnaia'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_mgp_q3',
-        question: 'Quale costruttore rappresenta Jorge Martín nel 2026?',
-        options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_mgp_q4',
-        question: 'Quanti giri prevede la gara MotoGP di Mandalika 2026?',
-        options: ['25', '26', '27', '28'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_mgp_q5',
-        question: 'Quante curve ha il circuito di Mandalika?',
-        options: ['15', '16', '17', '18'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_mgp_q6',
-        question: 'Quale pilota italiano arriva a Mandalika al quarto posto nel campionato MotoGP?',
-        options: ['Francesco Bagnaia', 'Marco Bezzecchi', 'Fabio Di Giannantonio', 'Enea Bastianini'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_mgp_q7',
-        question: 'Quale pilota ha vinto il GP del Giappone 2026, arrivando a Mandalika in piena lotta per il titolo?',
-        options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Pedro Acosta'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_mgp_q8',
-        question: 'Qual è la lunghezza del rettilineo più lungo di Mandalika?',
-        options: ['623 metri', '723 metri', '823 metri', '923 metri'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_mgp_q9',
-        question: 'Quale pilota KTM arriva a Mandalika al quinto posto della classifica MotoGP?',
-        options: ['Brad Binder', 'Pedro Acosta', 'Enea Bastianini', 'Maverick Viñales'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_mgp_q10',
-        question: 'In quale anno si è disputato per la prima volta il GP MotoGP a Mandalika?',
-        options: ['2020', '2021', '2022', '2023'],
-        correct: 2
-    },
-
-    {
-        id: 'mandalika_moto2_q1',
-        question: 'Quanti giri prevede la gara Moto2 a Mandalika 2026?',
-        options: ['20', '21', '22', '23'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_moto2_q2',
-        question: 'Chi ha vinto la gara Moto2 del GP del Giappone prima di arrivare a Mandalika?',
-        options: ['Manuel González', 'Izan Guevara', 'Tony Arbolino', 'Filip Salač'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto2_q3',
-        question: 'Chi completa il podio Moto2 del GP del Giappone 2026 insieme a Izan Guevara?',
-        options: ['Tony Arbolino e Filip Salač', 'Manuel González e Aron Canet', 'Pedro Acosta e Tony Arbolino', 'Ai Ogura e Filip Salač'],
-        correct: 0
-    },
-    {
-        id: 'mandalika_moto2_q4',
-        question: 'Quale pilota indonesiano corre in Moto2 nel 2026 e sarà particolarmente atteso dal pubblico di Mandalika?',
-        options: ['Veda Pratama', 'Mario Suryo Aji', 'Rheza Danica', 'Dimas Ekky'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto2_q5',
-        question: 'Quale pilota era al comando della classifica Moto2 prima del GP di Indonesia?',
-        options: ['Izan Guevara', 'Manuel González', 'Tony Arbolino', 'Filip Salač'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto2_q6',
-        question: 'Quanti giri misura la gara Moto2 di Mandalika 2026?',
-        options: ['20', '21', '22', '24'],
-        correct: 2
-    },
-
-    {
-        id: 'mandalika_moto3_q1',
-        question: 'Chi ha vinto la gara Moto3 del GP del Giappone 2026 prima di Mandalika?',
-        options: ['Máximo Quiles', 'David Almansa', 'Álvaro Carpe', 'Veda Pratama'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto3_q2',
-        question: 'Chi ha concluso secondo nella gara Moto3 di Motegi 2026?',
-        options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Veda Pratama'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_moto3_q3',
-        question: 'Quale pilota non ha ancora potuto chiudere matematicamente il titolo Moto3 dopo il GP del Giappone?',
-        options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Veda Pratama'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto3_q4',
-        question: 'Quale pilota indonesiano corre in Moto3 nel 2026 con Honda Team Asia?',
-        options: ['Mario Suryo Aji', 'Veda Pratama', 'Rheza Danica', 'Andi Farid Izdihar'],
-        correct: 1
-    },
-    {
-        id: 'mandalika_moto3_q5',
-        question: 'Quanti giri prevede la gara Moto3 a Mandalika 2026?',
-        options: ['18', '19', '20', '21'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_moto3_q6',
-        question: 'Chi ha completato il podio Moto3 a Motegi 2026 alle spalle di David Almansa e Máximo Quiles?',
-        options: ['Álvaro Carpe', 'Veda Pratama', 'José Antonio Rueda', 'Ángel Piqueras'],
-        correct: 0
-    },
-
-    {
-        id: 'mandalika_extra_q1',
-        question: 'Quante curve a destra e quante a sinistra ha il circuito di Mandalika?',
-        options: [
-            '10 a destra e 7 a sinistra',
-            '11 a destra e 6 a sinistra',
-            '12 a destra e 5 a sinistra',
-            '9 a destra e 8 a sinistra'
-        ],
-        correct: 1
-    },
-    {
-        id: 'mandalika_extra_q2',
-        question: 'Quanti chilometri percorrono complessivamente i piloti MotoGP durante la gara di Mandalika 2026?',
-        options: ['106,13 km', '111,13 km', '116,13 km', '121,13 km'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_extra_q3',
-        question: 'Quale categoria percorre 20 giri durante la gara di Mandalika?',
-        options: ['MotoGP', 'Moto2', 'Moto3', 'Tutte e tre'],
-        correct: 2
-    },
-    {
-        id: 'mandalika_extra_q4',
-        question: 'Qual è il distacco tra Jorge Martín e Marc Márquez nella classifica MotoGP prima di Mandalika?',
-        options: ['1 punto', '2 punti', '3 punti', '5 punti'],
-        correct: 1
-    }
+  },
+  {
+    id: 'australia_moto3_q1',
+    question: 'Quanti giri prevede la gara Moto3 a Phillip Island nel 2026?',
+    options: ['19', '20', '21', '22'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto3_q2',
+    question: 'Chi ha vinto la gara Moto3 del GP del Giappone 2026?',
+    options: ['Máximo Quiles', 'David Almansa', 'Álvaro Carpe', 'Brian Uriarte'],
+    correct: 1
+  },
+  {
+    id: 'australia_moto3_q3',
+    question: 'Chi ha conquistato il titolo mondiale Moto3 2026 in Indonesia?',
+    options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Brian Uriarte'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto3_q4',
+    question: 'Chi ha vinto la gara Moto3 del GP d’Indonesia 2026?',
+    options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Brian Uriarte'],
+    correct: 1
+  },
+  {
+    id: 'australia_moto3_q5',
+    question: 'Quale pilota ha chiuso secondo nella gara Moto3 di Motegi 2026?',
+    options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Brian Uriarte'],
+    correct: 2
+  },
+  {
+    id: 'australia_moto3_q6',
+    question: 'Quanti appuntamenti del Mondiale restavano da disputare quando Máximo Quiles ha conquistato il titolo Moto3 in Indonesia?',
+    options: ['Tre', 'Quattro', 'Cinque', 'Sei'],
+    correct: 2
+  },
+  {
+    id: 'australia_extra_q1',
+    question: 'Quante curve a destra e a sinistra ha il circuito di Phillip Island?',
+    options: [
+      '5 a destra e 7 a sinistra',
+      '6 a destra e 6 a sinistra',
+      '7 a destra e 5 a sinistra',
+      '8 a destra e 4 a sinistra'
+    ],
+    correct: 0
+  },
+  {
+    id: 'australia_extra_q2',
+    question: 'Qual è la lunghezza del circuito di Phillip Island?',
+    options: ['4,25 km', '4,45 km', '4,65 km', '4,85 km'],
+    correct: 1
+  },
+  {
+    id: 'australia_extra_q3',
+    question: 'Quanto misura il rettilineo più lungo di Phillip Island?',
+    options: ['700 metri', '800 metri', '900 metri', '1.000 metri'],
+    correct: 2
+  },
+  {
+    id: 'australia_extra_q4',
+    question: 'In quale anno il GP d’Australia è tornato stabilmente a Phillip Island, dove si disputa tuttora?',
+    options: ['1995', '1996', '1997', '1998'],
+    correct: 2
+  }
 ];
 
 
