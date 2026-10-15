@@ -1471,18 +1471,20 @@ async function generateShareCard(roundNum) {
 </script>
 <script src="auth.js"></script>
 <!-- SHARE CARD MODAL -->
+<!-- SHARE CARD MODAL -->
 <div id="share-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); backdrop-filter:blur(8px); z-index:9000; align-items:center; justify-content:center; padding:1rem;">
     <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; max-width:400px; width:100%; text-align:center; position:relative;">
         <button onclick="closeShareModal()" style="position:absolute; top:.5rem; right:.8rem; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer;">✕</button>
         <h3 style="font-family:'Bebas Neue', sans-serif; font-size:1.5rem; color:var(--white); margin-bottom:1rem;">Condividi i tuoi pronostici! 📸</h3>
         
-        <!-- Istruzioni per iPhone/Android -->
-        <p style="font-size:.9rem; color:var(--red); font-weight:700; margin-bottom:.8rem;">
+        <!-- Istruzione universale per salvare -->
+        <p style="font-size:1.1rem; color:var(--red); font-weight:700; margin-bottom:.8rem; line-height:1.4;">
             📱 Tieni premuto il dito sull'immagine e seleziona "Salva immagine"
         </p>
         
         <img id="share-preview" src="" style="width:100%; border-radius:8px; margin-bottom:1rem; border:1px solid var(--border); -webkit-touch-callout: default;" />
         
+        <!-- Questo bottone si nasconde automaticamente su iPhone -->
         <button id="download-share-btn" class="btn" style="background:transparent; border:1px solid var(--border); color:var(--white); text-decoration:none; display:block; margin-bottom:.5rem;">⬇️ Scarica (Per Android/PC)</button>
         
         <p style="font-size:.8rem; color:var(--muted);">Pubblicala nelle tue Storie di Instagram o su TikTok!</p>
@@ -1491,5 +1493,14 @@ async function generateShareCard(roundNum) {
 
 <!-- Canvas nascosto per disegnare l'immagine -->
 <canvas id="share-canvas" width="1080" height="1350" style="display:none;"></canvas>
+
+<script>
+// Nascondi il bottone scarica su iPhone/iPad (perché non funziona e confonde)
+var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+if (isIOS) {
+    var dlBtn = document.getElementById('download-share-btn');
+    if (dlBtn) dlBtn.style.display = 'none';
+}
+</script>
 </body>
 </html>
