@@ -1110,6 +1110,7 @@ function renderRounds() {
           <button class="btn small ok" onclick="saveRound(${r.num})">💾 Salva GP</button>
           <button class="btn small warn" onclick="clearRound(${r.num})">🧹 Reset GP</button>  
           <button class="btn small lucky" onclick="randomFillRound(${r.num})">🎲 Casuale</button>
+          <button class="btn small" style="background:transparent; border:1px solid var(--border); color:var(--white);" onclick="generateShareCard(${r.num})">📷 Condividi</button>
         </div>
       </div>
     </details>
@@ -1319,7 +1320,143 @@ initPredictionPage();
     } catch(e){}
   });
 })();
+
+// ── FUNZIONI SHARE CARD ──
+function closeShareModal() {
+    document.getElementById('share-modal').style.display = 'none';
+}
+
+async function generateShareCard(roundNum) {
+    if (!CURRENT_USER_PRED) { 
+        alert('Devi essere loggato per condividere i tuoi pronostici!'); 
+        return; 
+    }
+
+    var canvas = document.getElementById('share-canvas');
+    var ctx = canvas.getContext('2d');
+    var W = 1080, H = 1350;
+
+    // Sfondo
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, W, H);
+
+    // Striscia rossa in alto
+    ctx.fillStyle = '#e8001d';
+    ctx.fillRect(0, 0, W, 20);
+
+    // Loghi e Titoli
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#f5f5f5';
+    ctx.font = 'bold 80px Arial, sans-serif';
+    ctx.fillText('MOTO2026', W/2, 140);
+    
+    ctx.fillStyle = '#e8001d';
+    ctx.font = 'bold 40px Arial, sans-serif';
+    ctx.fillText('PRONOSTICI GP', W/2, 200);
+
+    // Info Round
+    var round = FUTURE_ROUNDS.find(r => r.num == roundNum);
+    if (round) {
+        ctx.fillStyle = '#888888';
+        ctx.font = 'bold 35px Arial, sans-serif';
+        ctx.fillText(round.name + ' ' + (round.flag || ''), W/2, 260);
+        ctx.fillStyle = '#666666';
+        ctx.font = '25px Arial, sans-serif';
+        ctx.fillText(round.date, W/2, 300);
+    }
+
+    // Username
+    var username = CURRENT_USER_PRED.user_metadata?.username || CURRENT_USER_PRED.email.split('@')[0];
+    ctx.fillStyle = '#f5f5f5';
+    ctx.font = 'bold 30px Arial, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('Inviato da: ' + username, 80, 370);
+
+    // Linea separatrice
+    ctx.strokeStyle = '#2a2a2a';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(80, 400);
+    ctx.lineTo(W - 80, 400);
+    ctx.stroke();
+
+    // Prendi i piloti scelti dal DOM
+    var motogpVal = document.querySelector(`select[data-round="${roundNum}"][data-cat="motogp"]`).value || '—';
+    var moto2Val = document.querySelector(`select[data-round="${roundNum}"][data-cat="moto2"]`).value || '—';
+    var moto3Val = document.querySelector(`select[data-round="${roundNum}"][data-cat="moto3"]`).value || '—';
+
+    // Disegna le categorie
+    var yPos = 480;
+    var cats = [
+        { name: 'MotoGP', color: '#ff6b35', val: motogpVal },
+        { name: 'Moto2', color: '#f7a600', val: moto2Val },
+        { name: 'Moto3', color: '#00b4d8', val: moto3Val }
+    ];
+
+    cats.forEach(cat => {
+        // Pallino colore
+        ctx.beginPath();
+        ctx.arc(110, yPos + 15, 12, 0, Math.PI * 2);
+        ctx.fillStyle = cat.color;
+        ctx.fill();
+
+        // Nome Cat
+        ctx.fillStyle = cat.color;
+        ctx.font = 'bold 40px Arial, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText(cat.name, 140, yPos + 30);
+
+        // Pilota scelto
+        ctx.fillStyle = '#f5f5f5';
+        ctx.font = 'bold 45px Arial, sans-serif';
+        ctx.fillText(cat.val, 140, yPos + 100);
+
+        yPos += 180;
+    });
+
+    // Footer
+    ctx.fillStyle = '#2a2a2a';
+    ctx.fillRect(0, H - 120, W, 120);
+    ctx.fillStyle = '#e8001d';
+    ctx.font = 'bold 40px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Fai i tuoi pronostici su:', W/2, H - 65);
+    ctx.fillStyle = '#f5f5f5';
+    ctx.font = 'bold 30px Arial, sans-serif';
+    ctx.fillText('paggii.github.io/moto2026', W/2, H - 25);
+
+        // Converti il canvas in immagine
+    var dataURL = canvas.toDataURL('image/png');
+    document.getElementById('share-preview').src = dataURL;
+    
+    // Forza il download al click del bottone (più affidabile sui cellulari)
+    var downloadBtn = document.getElementById('download-share-btn');
+    downloadBtn.onclick = function() {
+        var a = document.createElement('a');
+        a.href = dataURL;
+        a.download = 'Moto2026-Pronostici.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    };
+    
+    // Mostra il modal
+    document.getElementById('share-modal').style.display = 'flex';
+}
 </script>
 <script src="auth.js"></script>
+<!-- SHARE CARD MODAL -->
+<div id="share-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); backdrop-filter:blur(8px); z-index:9000; align-items:center; justify-content:center; padding:1rem;">
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; max-width:400px; width:100%; text-align:center; position:relative;">
+        <button onclick="closeShareModal()" style="position:absolute; top:.5rem; right:.8rem; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer;">✕</button>
+        <h3 style="font-family:'Bebas Neue', sans-serif; font-size:1.5rem; color:var(--white); margin-bottom:1rem;">Condividi i tuoi pronostici! 📸</h3>
+        <img id="share-preview" src="" style="width:100%; border-radius:8px; margin-bottom:1rem; border:1px solid var(--border);" />
+        <button id="download-share-btn" class="btn" style="background:var(--red); color:#fff; text-decoration:none; display:block; margin-bottom:.5rem; border:none;">⬇️ Scarica Immagine</button>
+        <p style="font-size:.8rem; color:var(--muted);">Salva l'immagine e pubblicala nelle tue Storie di Instagram!</p>
+    </div>
+</div>
+
+<!-- Canvas nascosto per disegnare l'immagine -->
+<canvas id="share-canvas" width="1080" height="1350" style="display:none;"></canvas>
 </body>
 </html>
