@@ -464,14 +464,40 @@ document.head.appendChild(notifStyle);
    // ══════════════════════════════════════════════════════════════════════
   //  PUNTO 4: LOGICA NOTIFICHE
   // ══════════════════════════════════════════════════════════════════════
-  window.toggleNotifMenu = function() {
+window.toggleNotifMenu = async function() {
     var m = document.getElementById('notif-menu');
     var um = document.getElementById('user-menu');
     if (um) um.classList.remove('open');
     if (m) m.classList.toggle('open');
-    // AGGIUNTO: quando si APRE il menu, ricarica le notifiche fresche dal DB
-    if (m && m.classList.contains('open') && window.currentUser) {
-        loadUserNotifications(window.currentUser.id);
+    
+    // Se stiamo APRENDO il menu (non chiudendo)
+    if (m && m.classList.contains('open')) {
+        try {
+            // Prendi la sessione in modo affidabile (non dipende da variabili globali)
+            const { data: { session }, error: sessErr } = await supabase.auth.getSession();
+            if (!session || !session.user) {
+                console.warn('Nessuna sessione attiva — campanellina aperta ma utente non loggato');
+                return;
+            }
+            const userId = session.user.id;
+            
+            // 1. Mostra le notifiche (fetch + render lista + setta badge "1")
+            await loadUserNotifications(userId);
+            
+            // 2. Marca tutte come lette nel DB
+            const { error: markErr } = await supabase.rpc('mark_notifications_read', { 
+                p_user_id: userId 
+            });
+            if (markErr) {
+                console.error('Errore mark_notifications_read:', markErr);
+            }
+            
+            // 3. Nascondi il badge
+            var badge = document.getElementById('notif-badge');
+            if (badge) badge.style.display = 'none';
+        } catch (e) {
+            console.error('Errore toggleNotifMenu:', e);
+        }
     }
 };
 
@@ -497,23 +523,23 @@ document.head.appendChild(notifStyle);
         }
     }
 
-    // Render della lista (tutte, anche già lette, ma magari evidenziate diversamente)
+    // Render della lista — TUTTE a piena opacità, NESSUN dimming
     if (listEl) {
         listEl.innerHTML = data.map(n => {
             const date = new Date(n.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short' });
-            const opacity = n.is_read ? '0.5' : '1';
-            const fontWeight = n.is_read ? '400' : '700';
-            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border); opacity:' + opacity + ';">' +
-                   '<div style="font-size:.75rem; color:var(--muted); margin-bottom:.2rem;">' + date + '</div>' +
-                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4; font-weight:' + fontWeight + ';">' + n.text + '</div>' +
+            const readIndicator = n.is_read 
+                ? ' · <span style="color:var(--muted);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;">letta</span>' 
+                : ' · <span style="color:var(--red);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;">nuova</span>';
+            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border);">' +
+                   '<div style="font-size:.75rem; color:var(--muted); margin-bottom:.2rem;">' + date + readIndicator + '</div>' +
+                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4;">' + n.text + '</div>' +
                    '</div>';
         }).join('');
     }
-
-    // Segna tutte come lette (dopo averle mostrate)
-    await supabase.rpc('mark_notifications_read', { p_user_id: userId });
-    // Aggiorna il badge a 0 dopo averle segnate
-    if (badge) badge.style.display = 'none';
+    
+    // ATTENZIONE: NON chiamare mark_notifications_read qui!
+    // La marcatura come "letta" avviene SOLO quando l'utente apre la campanellina,
+    // gestita in toggleNotifMenu sopra. Così il badge "1" persiste finché non apri.
 }
 
   // UNICA fonte di verità per l'aggiornamento della UI

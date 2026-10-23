@@ -162,6 +162,35 @@
       border-color: var(--red);
     }
     .form-field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+    
+    /* Multi-select styling */
+    .form-field select[multiple] {
+      padding: .4rem;
+    }
+    .form-field select[multiple] option {
+      padding: .35rem .5rem;
+      margin: 2px 0;
+      border-radius: 4px;
+    }
+    .form-field select[multiple] option:checked {
+      background: var(--red) linear-gradient(var(--red), var(--red));
+      color: #fff;
+    }
+    .form-field select[multiple] optgroup {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      color: var(--muted);
+      font-size: .85rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .form-field select[multiple] optgroup option {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      text-transform: none;
+      color: var(--white);
+      font-size: .95rem;
+    }
 
     /* Quick templates */
     .templates-row {
@@ -180,6 +209,126 @@
     .template-chip:hover {
       background: var(--red); color: #fff; border-color: var(--red);
     }
+    
+    /* Chip piloti selezionati (con X per rimuovere) */
+    .selected-rider-chip {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(232,0,29,.15); border: 1px solid rgba(232,0,29,.4);
+      color: var(--red);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .04em;
+      padding: .25rem .4rem .25rem .7rem; border-radius: 100px;
+      animation: chipIn .15s ease;
+    }
+    @keyframes chipIn { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+    .selected-rider-chip button {
+      background: transparent; border: none; color: var(--red);
+      cursor: pointer; font-size: 1rem; line-height: 1;
+      padding: 0; display: flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      transition: all .15s;
+    }
+    .selected-rider-chip button:hover {
+      background: var(--red); color: #fff;
+    }
+    
+    /* Bottone deseleziona tutti */
+    #deselect-all-btn:hover {
+      background: var(--red) !important; color: #fff !important; border-color: var(--red) !important;
+    }
+    
+    /* Filtri categoria */
+    .cat-filter-row {
+      display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .6rem;
+    }
+    .cat-filter {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 100px;
+      padding: .3rem .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: all .15s;
+    }
+    .cat-filter:hover:not(.active) {
+      background: var(--card);
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .cat-filter.active {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+    
+    /* Lista checkbox piloti */
+    .rider-category-group {
+      margin-bottom: .4rem;
+    }
+    .rider-category-group h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .5rem .5rem .25rem;
+      margin: 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--mid); z-index: 1;
+    }
+    .rider-checkbox-row {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .3rem .5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .1s;
+    }
+    .rider-checkbox-row:hover {
+      background: var(--card);
+    }
+    .rider-checkbox-row input[type="checkbox"] {
+      margin: 0;
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--red);
+      flex-shrink: 0;
+    }
+    .rider-checkbox-row label {
+      margin: 0;
+      cursor: pointer;
+      color: var(--white);
+      font-size: .9rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      flex: 1;
+    }
+    
+    /* Ricerca */
+    #rider-search {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: .95rem;
+      padding: .55rem .8rem;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color .15s;
+    }
+    #rider-search:focus { border-color: var(--red); }
+    #rider-search::placeholder { color: var(--muted); }
 
     /* Preview box */
     .preview-box {
@@ -366,10 +515,37 @@
 
       <form id="notif-form">
         <div class="form-field">
-          <label for="rider-select">Pilota destinatario</label>
-          <select id="rider-select" required>
-            <option value="">— Seleziona un pilota —</option>
-          </select>
+          <label for="rider-search">Pilota/i destinatario</label>
+          
+          <!-- Campo ricerca -->
+          <input type="text" id="rider-search" placeholder="🔍 Cerca pilota per nome..." 
+                 oninput="filterRiders(this.value)" style="margin-bottom: .6rem;">
+          
+          <!-- Filtri per categoria -->
+          <div class="cat-filter-row">
+            <button type="button" class="cat-filter active" data-cat="all" onclick="filterByCategory('all')">Tutte (188)</button>
+            <button type="button" class="cat-filter" data-cat="motogp" onclick="filterByCategory('motogp')">MotoGP</button>
+            <button type="button" class="cat-filter" data-cat="moto2" onclick="filterByCategory('moto2')">Moto2</button>
+            <button type="button" class="cat-filter" data-cat="moto3" onclick="filterByCategory('moto3')">Moto3</button>
+            <button type="button" class="cat-filter" data-cat="juniorgp_moto2" onclick="filterByCategory('juniorgp_moto2')">JrGP Moto2</button>
+            <button type="button" class="cat-filter" data-cat="juniorgp_moto3" onclick="filterByCategory('juniorgp_moto3')">JrGP Moto3</button>
+            <button type="button" class="cat-filter" data-cat="juniorgp_moto4" onclick="filterByCategory('juniorgp_moto4')">JrGP Moto4</button>
+            <button type="button" class="cat-filter" data-cat="rookies" onclick="filterByCategory('rookies')">Rookies</button>
+          </div>
+          
+          <!-- Lista checkbox raggruppati -->
+          <div id="riders-checkbox-list" style="max-height: 360px; overflow-y: auto; background: var(--mid); border: 1px solid var(--border); border-radius: 6px; padding: .4rem;">
+            <p style="color: var(--muted); padding: 1rem; text-align: center;">Caricamento piloti...</p>
+          </div>
+          
+          <!-- Contatore + Deseleziona tutti -->
+          <div style="margin-top: .5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div id="rider-count" style="font-size: .82rem; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: .04em; flex: 1; min-width: 200px;">⚠️ Seleziona almeno un pilota</div>
+            <button type="button" id="deselect-all-btn" onclick="deselectAllRiders()" style="background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; border-radius: 4px; padding: .3rem .7rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; transition: all .15s;">✕ Deseleziona tutti</button>
+          </div>
+          
+          <!-- Chips dei piloti selezionati -->
+          <div id="selected-riders-list" style="margin-top: .5rem; display: flex; flex-wrap: wrap; gap: .4rem; min-height: 0;"></div>
         </div>
 
         <div class="form-field">
@@ -381,7 +557,7 @@
             <span class="template-chip" onclick="useTemplate('🎯 Pole position al GP di ')">🎯 Pole</span>
             <span class="template-chip" onclick="useTemplate('🥇 Podio al GP di ')">🥇 Podio</span>
             <span class="template-chip" onclick="useTemplate('⚡ Sprint Race vinta al GP di ')">⚡ Sprint</span>
-            <span class="template-chip" onclick="useTemplate('📋 Firma contratto per il ')">📋 Mercato</span>
+            <span class="template-chip" onclick="useTemplate('📰 ')">📰 Notizia</span>
           </div>
         </div>
 
@@ -418,7 +594,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/@sb/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // ============================================================
 // ⚠️ CONFIGURAZIONE — sostituisci con i TUOI valori Supabase
@@ -541,30 +717,168 @@ function showAccessDenied(title, message) {
 }
 
 // ============================================================
-// Carica i nomi piloti dal DB → popola il dropdown
+// GESTIONE PILOTI — Checkbox list con ricerca + filtri categoria
+// Source of truth: selectedRidersSet (Set di nomi)
 // ============================================================
+
+let allRiders = [];              // cache di tutti i piloti dal DB
+let activeCategoryFilter = 'all'; // filtro categoria attivo
+let selectedRidersSet = new Set(); // nomi dei piloti selezionati (source of truth)
+
+const CATEGORY_LABELS = {
+  'motogp': 'MotoGP',
+  'moto2': 'Moto2',
+  'moto3': 'Moto3',
+  'juniorgp_moto2': 'JuniorGP Moto2',
+  'juniorgp_moto3': 'JuniorGP Moto3',
+  'juniorgp_moto4': 'JuniorGP Moto4',
+  'rookies': 'Red Bull Rookies Cup'
+};
+
+// Carica tutti i piloti dal DB → renderizza la lista checkbox
 async function loadRiders() {
-  const select = document.getElementById('rider-select');
-  const { data, error } = await sb.rpc('get_all_favorite_rider_names');
+  const container = document.getElementById('riders-checkbox-list');
+  const { data, error } = await sb.rpc('get_all_riders_grouped');
 
   if (error) {
     console.error('Errore caricamento piloti:', error);
-    select.innerHTML = '<option value="">Errore caricamento</option>';
+    container.innerHTML = '<p style="color:#ff6b6b; padding: 1rem;">Errore caricamento: ' + error.message + '</p>';
     return;
   }
 
   if (!data || data.length === 0) {
-    select.innerHTML = '<option value="">Nessun pilota nei preferiti</option>';
+    container.innerHTML = '<p style="color: var(--muted); padding: 1rem; text-align: center;">Nessun pilota disponibile nel database.</p>';
     return;
   }
 
-  // Aggiungi le option (la prima option "Seleziona..." è già nell'HTML)
-  data.forEach(row => {
-    const opt = document.createElement('option');
-    opt.value = row.rider_name;
-    opt.textContent = row.rider_name;
-    select.appendChild(opt);
+  allRiders = data;
+  renderRiders();
+}
+
+// Renderizza la lista di checkbox, filtrando per ricerca e categoria
+function renderRiders() {
+  const container = document.getElementById('riders-checkbox-list');
+  const searchTerm = (document.getElementById('rider-search').value || '').toLowerCase().trim();
+
+  // Filtra + raggruppa per categoria
+  const grouped = {};
+  allRiders.forEach(r => {
+    if (activeCategoryFilter !== 'all' && r.category !== activeCategoryFilter) return;
+    if (searchTerm && !r.rider_name.toLowerCase().includes(searchTerm)) return;
+    if (!grouped[r.category]) grouped[r.category] = [];
+    grouped[r.category].push(r);
   });
+
+  if (Object.keys(grouped).length === 0) {
+    container.innerHTML = '<p style="color: var(--muted); padding: 1.5rem; text-align: center;">Nessun pilota trovato per la ricerca.</p>';
+    return;
+  }
+
+  // Costruisci HTML con gruppi + checkbox
+  let html = '';
+  Object.keys(grouped).forEach(cat => {
+    const label = CATEGORY_LABELS[cat] || cat;
+    html += '<div class="rider-category-group">';
+    html += '<h4>' + label + ' (' + grouped[cat].length + ')</h4>';
+    grouped[cat].forEach(r => {
+      const safeName = String(r.rider_name).replace(/"/g, '&quot;');
+      const isChecked = selectedRidersSet.has(r.rider_name) ? 'checked' : '';
+      const safeForOnclick = String(r.rider_name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      const riderId = 'rider-' + cat + '-' + Math.abs(hashCode(r.rider_name));
+      html += '<div class="rider-checkbox-row">';
+      html += '<input type="checkbox" id="' + riderId + '" value="' + safeName + '" ' + isChecked + ' onchange="toggleRiderSelection(\'' + safeForOnclick + '\')">';
+      html += '<label for="' + riderId + '">' + r.rider_name + '</label>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// Funzione helper: hash semplice per generare id HTML univoci
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return hash;
+}
+
+// Aggiungi/rimuovi un pilota dalla selezione (chiamata dal checkbox)
+function toggleRiderSelection(riderName) {
+  if (selectedRidersSet.has(riderName)) {
+    selectedRidersSet.delete(riderName);
+  } else {
+    selectedRidersSet.add(riderName);
+  }
+  updateSelectedDisplay();
+}
+
+// Ricalcola contatore + chips
+function updateSelectedDisplay() {
+  const selectedRiders = Array.from(selectedRidersSet);
+  const count = selectedRiders.length;
+  const countEl = document.getElementById('rider-count');
+
+  if (count === 0) {
+    countEl.textContent = '⚠️ Seleziona almeno un pilota';
+    countEl.style.color = 'var(--muted)';
+  } else if (count === 1) {
+    countEl.textContent = '✓ 1 pilota selezionato';
+    countEl.style.color = 'var(--red)';
+  } else {
+    countEl.textContent = '✓ ' + count + ' piloti selezionati — la notifica andrà a TUTTI i fan di questi piloti';
+    countEl.style.color = 'var(--red)';
+  }
+
+  // Aggiorna chips
+  const chipsContainer = document.getElementById('selected-riders-list');
+  if (count === 0) {
+    chipsContainer.innerHTML = '';
+    return;
+  }
+  chipsContainer.innerHTML = selectedRiders.map(name => {
+    const safeName = String(name).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const escapedForOnclick = String(name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return '<span class="selected-rider-chip">' + 
+           name + 
+           '<button type="button" onclick="removeRiderFromSelection(\'' + escapedForOnclick + '\')" aria-label="Rimuovi ' + name + '">✕</button>' +
+           '</span>';
+  }).join('');
+}
+
+// Rimuovi singolo pilota (dalla ✕ sul chip)
+function removeRiderFromSelection(riderName) {
+  selectedRidersSet.delete(riderName);
+  // Uncheck il checkbox corrispondente se visibile
+  document.querySelectorAll('#riders-checkbox-list input[type="checkbox"]').forEach(cb => {
+    if (cb.value === riderName) cb.checked = false;
+  });
+  updateSelectedDisplay();
+}
+
+// Deseleziona TUTTI
+function deselectAllRiders() {
+  selectedRidersSet.clear();
+  document.querySelectorAll('#riders-checkbox-list input[type="checkbox"]').forEach(cb => cb.checked = false);
+  updateSelectedDisplay();
+}
+
+// Filtro ricerca (live)
+function filterRiders(searchTerm) {
+  renderRiders();
+}
+
+// Filtro categoria
+function filterByCategory(cat) {
+  activeCategoryFilter = cat;
+  document.querySelectorAll('.cat-filter').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  renderRiders();
 }
 
 // ============================================================
@@ -605,17 +919,19 @@ async function loadRecent() {
 }
 
 // ============================================================
-// Submit form → crea notifica
+// Submit form → crea notifica (SINGOLA o MULTIPLA)
 // ============================================================
 document.getElementById('notif-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   
-  const riderName = document.getElementById('rider-select').value;
+  // Prendi i piloti dal Set (source of truth) — non dal DOM
+  const selectedRiders = Array.from(selectedRidersSet);
+  
   const text = document.getElementById('notif-text').value.trim();
   const submitBtn = document.getElementById('submit-btn');
 
-  if (!riderName) {
-    showToast('⚠️ Seleziona un pilota', true);
+  if (selectedRiders.length === 0) {
+    showToast('⚠️ Seleziona almeno un pilota', true);
     return;
   }
   if (!text) {
@@ -623,30 +939,60 @@ document.getElementById('notif-form').addEventListener('submit', async (e) => {
     return;
   }
 
+  // Conferma se sono più di 3 (per evitare casini involontari)
+  if (selectedRiders.length > 3) {
+    const ok = confirm(`Stai per creare ${selectedRiders.length} notifiche (${selectedRiders.slice(0,3).join(', ')}${selectedRiders.length > 3 ? ', ...' : ''}).\n\nTutti i fan di questi piloti riceveranno il messaggio:\n"${text}"\n\nConfermi?`);
+    if (!ok) return;
+  }
+
   submitBtn.disabled = true;
-  submitBtn.textContent = '⏳ Invio in corso...';
 
-  const { data, error } = await sb.rpc('create_notification', {
-    p_rider_name: riderName,
-    p_text: text
-  });
+  let success = 0;
+  let errors = 0;
+  let errorMessages = [];
 
+  for (let i = 0; i < selectedRiders.length; i++) {
+    const riderName = selectedRiders[i];
+    submitBtn.textContent = `⏳ Creazione ${i+1}/${selectedRiders.length}: ${riderName}...`;
+    
+    const { data, error } = await sb.rpc('create_notification', {
+      p_rider_name: riderName,
+      p_text: text
+    });
+    
+    if (error) {
+      errors++;
+      errorMessages.push(`${riderName}: ${error.message}`);
+      console.error(`Errore per ${riderName}:`, error);
+    } else {
+      success++;
+    }
+  }
+  
   submitBtn.disabled = false;
   submitBtn.textContent = '📢 Crea notifica';
 
-  if (error) {
-    showToast('❌ Errore: ' + error.message, true);
-    return;
+  if (success > 0 && errors === 0) {
+    // Tutto ok
+    const msg = success === 1 
+      ? `✅ Notifica creata per ${selectedRiders[0]}!` 
+      : `✅ ${success} notifiche create! Saranno visibili ai fan di tutti i piloti selezionati.`;
+    showToast(msg);
+    document.getElementById('notif-text').value = '';
+    updatePreview();
+    // Deseleziona tutti i piloti usando la funzione che aggiorna anche i chips
+    deselectAllRiders();
+    await loadRecent();
+  } else if (success > 0 && errors > 0) {
+    // Parziale: alcune ok, alcune fallite
+    showToast(`⚠️ ${success} ok, ${errors} errori. Vedi console per dettagli.`, true);
+    console.error('Errori dettagliati:', errorMessages);
+    await loadRecent();
+  } else {
+    // Tutto fallito
+    showToast(`❌ Errore: nessuna notifica creata. Vedi console.`, true);
+    console.error('Errori dettagliati:', errorMessages);
   }
-
-  showToast('✅ Notifica creata! Sarà visibile agli utenti con ' + riderName + ' nei preferiti.');
-  
-  // Reset form
-  document.getElementById('notif-text').value = '';
-  updatePreview();
-  
-  // Ricarica la lista recenti
-  await loadRecent();
 });
 
 // ============================================================
