@@ -418,7 +418,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@sb/supabase-js@2"></script>
 <script>
 // ============================================================
 // ⚠️ CONFIGURAZIONE — sostituisci con i TUOI valori Supabase
@@ -429,15 +429,10 @@ const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
 
 // Init client
-let supabase = null;
+// Variabile rinominata `sb` per evitare conflitto col global `supabase` della libreria CDN
+let sb = null;
 try {
-  if (window.supabase && window.supabase.createClient) {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  } else if (window.supabaseClient && window.supabaseClient.createClient) {
-    supabase = window.supabaseClient.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  } else {
-    supabase = supbsb.createClient ? supbsb.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-  }
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 } catch (e) {
   console.error('Errore init Supabase:', e);
 }
@@ -502,15 +497,15 @@ document.getElementById('notif-text').addEventListener('input', updatePreview);
 // MAIN LOGIC — al caricamento della pagina
 // ============================================================
 document.addEventListener('DOMContentLoaded', async () => {
-  // Verifica che supabase sia inizializzato
-  if (!supabase) {
+  // Verifica che sb sia inizializzato
+  if (!sb) {
     showAccessDenied('Errore di configurazione', 
       'Supabase non inizializzato. Configura SUPABASE_URL e SUPABASE_ANON_KEY nello script.');
     return;
   }
 
   // Verifica sessione
-  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+  const { data: { session }, error: sessionError } = await sb.auth.getSession();
 
   if (!session) {
     showAccessDenied('Devi essere loggato', 
@@ -519,7 +514,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Verifica che sia admin
-  const { data: isAdmin, error: adminError } = await supabase.rpc('is_current_user_admin');
+  const { data: isAdmin, error: adminError } = await sb.rpc('is_current_user_admin');
   
   if (adminError || !isAdmin) {
     showAccessDenied('Accesso negato', 
@@ -550,7 +545,7 @@ function showAccessDenied(title, message) {
 // ============================================================
 async function loadRiders() {
   const select = document.getElementById('rider-select');
-  const { data, error } = await supabase.rpc('get_all_favorite_rider_names');
+  const { data, error } = await sb.rpc('get_all_favorite_rider_names');
 
   if (error) {
     console.error('Errore caricamento piloti:', error);
@@ -577,7 +572,7 @@ async function loadRiders() {
 // ============================================================
 async function loadRecent() {
   const listEl = document.getElementById('recent-list');
-  const { data, error } = await supabase.rpc('get_recent_notifications', { p_limit: 10 });
+  const { data, error } = await sb.rpc('get_recent_notifications', { p_limit: 10 });
 
   if (error) {
     listEl.innerHTML = '<p style="color:#ff6b6b;">Errore caricamento: ' + error.message + '</p>';
@@ -631,7 +626,7 @@ document.getElementById('notif-form').addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = '⏳ Invio in corso...';
 
-  const { data, error } = await supabase.rpc('create_notification', {
+  const { data, error } = await sb.rpc('create_notification', {
     p_rider_name: riderName,
     p_text: text
   });
@@ -660,7 +655,7 @@ document.getElementById('notif-form').addEventListener('submit', async (e) => {
 async function deleteNotif(id) {
   if (!confirm('Eliminare definitivamente questa notifica? L\'azione è irreversibile.')) return;
 
-  const { error } = await supabase.rpc('delete_notification', { p_notification_id: id });
+  const { error } = await sb.rpc('delete_notification', { p_notification_id: id });
 
   if (error) {
     showToast('❌ Errore eliminazione: ' + error.message, true);
