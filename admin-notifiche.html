@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<title>Admin Notifiche — Moto2026</title>
+<link rel="manifest" href="manifest.json">
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --red:    #e8001d;
+      --dark:   #0a0a0a;
+      --mid:    #141414;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --muted:  #888;
+      --white:  #f5f5f5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Header — uguale a index.html */
+    header {
+      position: sticky !important; top: 0 !important; z-index: 200 !important;
+      background: rgba(10,10,10,.96) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 2px solid var(--red) !important;
+      display: flex !important; align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important; height: 60px !important;
+      flex-wrap: nowrap !important; gap: .8rem !important;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 1.6rem !important; letter-spacing: .08em !important;
+      color: var(--white) !important; text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+    .logo span { color: var(--red) !important; }
+    nav {
+      display: flex !important; align-items: center !important;
+      flex: 1 !important; min-width: 0 !important;
+      gap: 0 !important; flex-wrap: nowrap !important;
+    }
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif !important;
+      font-weight: 700 !important; font-size: .8rem !important;
+      letter-spacing: .06em !important; text-transform: uppercase !important;
+      color: var(--muted) !important; text-decoration: none !important;
+      padding: 0 .8rem !important; height: 60px !important;
+      display: flex !important; align-items: center !important;
+      white-space: nowrap !important; flex-shrink: 1 !important;
+      border-bottom: 2px solid transparent !important;
+      margin-bottom: -2px !important; transition: color .15s !important;
+    }
+    nav a:hover { color: var(--white) !important; background: rgba(255,255,255,.04) !important; }
+    nav a.active { color: var(--white) !important; border-bottom-color: var(--red) !important; }
+    .header-right {
+      display: flex !important; align-items: center !important;
+      gap: .5rem !important; flex-shrink: 0 !important;
+    }
+    #theme-toggle {
+      background: transparent !important; border: 1px solid var(--border) !important;
+      color: var(--muted) !important; cursor: pointer !important;
+      border-radius: 6px !important; padding: .3rem .5rem !important;
+      font-size: .9rem !important; line-height: 1 !important;
+      display: flex !important; align-items: center !important;
+      transition: transform .3s ease, background .2s !important;
+    }
+    #theme-toggle:hover { transform: rotate(20deg) scale(1.1) !important; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Container */
+    .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+    main { padding: 3rem 0; min-height: calc(100vh - 60px - 200px); }
+
+    /* Page title */
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; letter-spacing: .04em;
+      color: var(--white);
+      margin-bottom: .3rem;
+    }
+    .page-subtitle {
+      color: var(--muted); font-size: .95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Stati del caricamento */
+    .state-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 3rem 2rem;
+      text-align: center;
+    }
+    .state-box h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; color: var(--white);
+      margin-bottom: .8rem;
+    }
+    .state-box p { color: var(--muted); margin-bottom: 1.5rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .9rem; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: .7rem 1.6rem; border-radius: 3px;
+      transition: all .2s;
+      cursor: pointer; border: none;
+    }
+    .btn-red   { background: var(--red);   color: #fff; }
+    .btn-red:hover { background: #c4001a; }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid #444; }
+    .btn-outline:hover { border-color: var(--white); }
+
+    /* Form */
+    .admin-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .admin-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; color: var(--white);
+      margin-bottom: 1.5rem;
+      padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+    }
+    .form-field { margin-bottom: 1.5rem; }
+    .form-field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .5rem;
+    }
+    .form-field select, .form-field textarea, .form-field input {
+      width: 100%; box-sizing: border-box;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      padding: .65rem .8rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .form-field select:focus, .form-field textarea:focus, .form-field input:focus {
+      border-color: var(--red);
+    }
+    .form-field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+
+    /* Quick templates */
+    .templates-row {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-top: .4rem;
+    }
+    .template-chip {
+      background: var(--mid); border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .04em;
+      padding: .35rem .7rem; border-radius: 4px;
+      cursor: pointer; transition: all .15s;
+    }
+    .template-chip:hover {
+      background: var(--red); color: #fff; border-color: var(--red);
+    }
+
+    /* Preview box */
+    .preview-box {
+      background: var(--mid); border: 1px dashed var(--border);
+      border-radius: 6px; padding: 1rem 1.2rem;
+      margin: 1rem 0;
+    }
+    .preview-box h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .5rem;
+    }
+    #preview-text {
+      color: var(--white); font-size: .95rem;
+      line-height: 1.5;
+    }
+    #preview-text:empty::before {
+      content: 'Scrivi un messaggio per vedere l\'anteprima...';
+      color: var(--muted); font-style: italic;
+    }
+
+    /* Submit button full width */
+    .submit-btn {
+      width: 100%;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .8rem; cursor: pointer;
+      margin-top: 1rem;
+      transition: background .15s;
+    }
+    .submit-btn:hover { background: #c4001a; }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* Recent list */
+    .notif-item {
+      background: var(--mid); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1rem 1.2rem;
+      margin-bottom: .8rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .notif-item-content { flex: 1; min-width: 200px; }
+    .notif-item-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; color: var(--muted);
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+    .notif-item-text {
+      color: var(--white); font-size: .95rem;
+      line-height: 1.5;
+    }
+    .notif-item-rider {
+      display: inline-block;
+      background: rgba(232,0,29,.15); color: var(--red);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .15rem .5rem; border-radius: 3px;
+      margin-right: .5rem;
+    }
+    .notif-delete-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer;
+      border-radius: 4px; padding: .35rem .6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+    .notif-delete-btn:hover {
+      background: var(--red); color: #fff; border-color: var(--red);
+    }
+
+    /* Toast notifica */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: 6px; padding: 1rem 1.5rem;
+      color: var(--white); font-size: .9rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      transform: translateX(120%);
+      transition: transform .3s ease;
+    }
+    .toast.show { transform: translateX(0); }
+    .toast.error { border-left-color: #ff4444; }
+
+    /* Footer */
+    footer {
+      background: var(--mid); border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center;
+      font-size: .85rem; color: var(--muted);
+    }
+    footer .logo { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+
+    /* ── LIGHT MODE ── */
+    [data-theme="light"] {
+      --dark:   #f4f4f4;
+      --mid:    #e8e8e8;
+      --card:   #ffffff;
+      --border: #d0d0d0;
+      --muted:  #666;
+      --white:  #1a1a1a;
+    }
+    [data-theme="light"] body { background:#f4f4f4; color:#111; }
+    [data-theme="light"] header { background: rgba(248,248,248,.97) !important; }
+    [data-theme="light"] nav a { color: #555 !important; }
+    [data-theme="light"] nav a:hover, [data-theme="light"] nav a.active { color: #111 !important; }
+    [data-theme="light"] .logo { color:#111 !important; }
+    [data-theme="light"] #theme-toggle { background:#fff !important; border-color:#d0d0d0 !important; color:#111 !important; }
+    [data-theme="light"] .form-field select,
+    [data-theme="light"] .form-field textarea,
+    [data-theme="light"] .form-field input {
+      background: #fff; color: #111; border-color: #d0d0d0;
+    }
+    [data-theme="light"] .preview-box { background: #f5f5f5; border-style: dashed; border-color: #ccc; }
+    [data-theme="light"] #preview-text { color: #111; }
+    [data-theme="light"] .notif-item { background: #f5f5f5; border-color: #d0d0d0; }
+    [data-theme="light"] .notif-item-text { color: #111; }
+    [data-theme="light"] .template-chip { background: #f5f5f5; color: #111; border-color: #d0d0d0; }
+    [data-theme="light"] .notif-delete-btn { background: transparent; color: #666; border-color: #d0d0d0; }
+    [data-theme="light"] .toast { background: #fff; color: #111; }
+
+    /* Transizione fluida cambio tema */
+    *, *::before, *::after {
+      transition: background-color .25s ease, color .2s ease, border-color .2s ease !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .page-title { font-size: 2rem; }
+      .admin-card { padding: 1.5rem 1.2rem; }
+      .notif-item { padding: .8rem 1rem; }
+      .toast { bottom: 1rem; right: 1rem; left: 1rem; }
+    }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="index.html">MOTO<span>2026</span></a>
+  <nav>
+    <a href="index.html">← Torna alla Home</a>
+    <a href="admin-notifiche.html" class="active">Admin</a>
+  </nav>
+  <div class="header-right">
+    <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="container">
+<main>
+
+  <h1 class="page-title">Admin · Notifiche</h1>
+  <p class="page-subtitle">Crea notifiche che appariranno nella campanellina degli utenti che hanno il pilota tra i preferiti.</p>
+
+  <!-- Loading state -->
+  <div class="state-box" id="loading">
+    <h2>Caricamento...</h2>
+    <p>Verifica dell'accesso in corso.</p>
+  </div>
+
+  <!-- Access denied -->
+  <div class="state-box" id="access-denied" style="display:none;">
+    <h2 id="denied-title">Accesso negato</h2>
+    <p id="denied-message">Questa pagina è riservata all'amministratore del sito.</p>
+    <a href="index.html" class="btn btn-red">← Torna alla Home</a>
+  </div>
+
+  <!-- Admin content -->
+  <div id="admin-content" style="display:none;">
+
+    <!-- Form creazione -->
+    <div class="admin-card">
+      <h2>➕ Crea nuova notifica</h2>
+
+      <form id="notif-form">
+        <div class="form-field">
+          <label for="rider-select">Pilota destinatario</label>
+          <select id="rider-select" required>
+            <option value="">— Seleziona un pilota —</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="notif-text">Messaggio</label>
+          <textarea id="notif-text" placeholder="🏆 Ha vinto il GP di..." required></textarea>
+
+          <div class="templates-row">
+            <span class="template-chip" onclick="useTemplate('🏆 Ha vinto il GP di ')">🏆 Vittoria gara</span>
+            <span class="template-chip" onclick="useTemplate('🎯 Pole position al GP di ')">🎯 Pole</span>
+            <span class="template-chip" onclick="useTemplate('🥇 Podio al GP di ')">🥇 Podio</span>
+            <span class="template-chip" onclick="useTemplate('⚡ Sprint Race vinta al GP di ')">⚡ Sprint</span>
+            <span class="template-chip" onclick="useTemplate('📋 Firma contratto per il ')">📋 Mercato</span>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <h4>Anteprima notifica</h4>
+          <div id="preview-text"></div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">📢 Crea notifica</button>
+      </form>
+    </div>
+
+    <!-- Lista recenti -->
+    <div class="admin-card">
+      <h2>📋 Notifiche recenti <span style="font-size: .8rem; color: var(--muted); margin-left: .5rem;">(ultime 10)</span></h2>
+      <div id="recent-list">
+        <p style="color: var(--muted); text-align: center; padding: 2rem 0;">Caricamento...</p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="logo" href="index.html">MOTO<span style="color:var(--red)">2026</span></a>
+  <p>Pannello admin · Accesso riservato</p>
+  <p style="margin-top:1rem; font-size:.75rem;">© 2026 Moto2026 — Sito amatoriale, non affiliato a Dorna Sports</p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ============================================================
+// ⚠️ CONFIGURAZIONE — sostituisci con i TUOI valori Supabase
+// Questi valori sono pubblici (anon key), vanno bene nel JS client-side
+// Li trovi su: Supabase → Project Settings → API
+// ============================================================
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
+
+// Init client
+let supabase = null;
+try {
+  if (window.supabase && window.supabase.createClient) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } else if (window.supabaseClient && window.supabaseClient.createClient) {
+    supabase = window.supabaseClient.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } else {
+    supabase = supbsb.createClient ? supbsb.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+  }
+} catch (e) {
+  console.error('Errore init Supabase:', e);
+}
+
+// ============================================================
+// THEME TOGGLE — stesso comportamento di index.html
+// ============================================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  if (next === 'light') html.setAttribute('data-theme', 'light');
+  else html.removeAttribute('data-theme');
+  try { localStorage.setItem('moto2026-theme', next); } catch(e) {}
+  document.getElementById('theme-icon').textContent = next === 'light' ? '🌙' : '☀️';
+}
+
+// Init theme da localStorage
+(function initTheme() {
+  try {
+    const saved = localStorage.getItem('moto2026-theme') || 'dark';
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.getElementById('theme-icon').textContent = '🌙';
+    }
+  } catch(e) {}
+})();
+
+// ============================================================
+// Toast helper
+// ============================================================
+function showToast(message, isError = false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(() => { toast.className = 'toast' + (isError ? ' error' : ''); }, 3500);
+}
+
+// ============================================================
+// Quick templates
+// ============================================================
+function useTemplate(prefix) {
+  const ta = document.getElementById('notif-text');
+  ta.value = prefix;
+  ta.focus();
+  // Sposta cursore alla fine
+  ta.setSelectionRange(ta.value.length, ta.value.length);
+  updatePreview();
+}
+
+// ============================================================
+// Live preview
+// ============================================================
+function updatePreview() {
+  const text = document.getElementById('notif-text').value.trim();
+  document.getElementById('preview-text').textContent = text;
+}
+
+document.getElementById('notif-text').addEventListener('input', updatePreview);
+
+// ============================================================
+// MAIN LOGIC — al caricamento della pagina
+// ============================================================
+document.addEventListener('DOMContentLoaded', async () => {
+  // Verifica che supabase sia inizializzato
+  if (!supabase) {
+    showAccessDenied('Errore di configurazione', 
+      'Supabase non inizializzato. Configura SUPABASE_URL e SUPABASE_ANON_KEY nello script.');
+    return;
+  }
+
+  // Verifica sessione
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+  if (!session) {
+    showAccessDenied('Devi essere loggato', 
+      'Per accedere al pannello admin devi prima effettuare il login dal sito principale.');
+    return;
+  }
+
+  // Verifica che sia admin
+  const { data: isAdmin, error: adminError } = await supabase.rpc('is_current_user_admin');
+  
+  if (adminError || !isAdmin) {
+    showAccessDenied('Accesso negato', 
+      'Il tuo account non ha i permessi di amministratore. Solo l\'admin può creare notifiche.');
+    return;
+  }
+
+  // ✅ È admin — mostra il pannello
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('admin-content').style.display = 'block';
+
+  // Carica i nomi piloti per il dropdown
+  await loadRiders();
+  // Carica la lista recenti
+  await loadRecent();
+});
+
+function showAccessDenied(title, message) {
+  document.getElementById('loading').style.display = 'none';
+  const box = document.getElementById('access-denied');
+  box.style.display = 'block';
+  document.getElementById('denied-title').textContent = title;
+  document.getElementById('denied-message').textContent = message;
+}
+
+// ============================================================
+// Carica i nomi piloti dal DB → popola il dropdown
+// ============================================================
+async function loadRiders() {
+  const select = document.getElementById('rider-select');
+  const { data, error } = await supabase.rpc('get_all_favorite_rider_names');
+
+  if (error) {
+    console.error('Errore caricamento piloti:', error);
+    select.innerHTML = '<option value="">Errore caricamento</option>';
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    select.innerHTML = '<option value="">Nessun pilota nei preferiti</option>';
+    return;
+  }
+
+  // Aggiungi le option (la prima option "Seleziona..." è già nell'HTML)
+  data.forEach(row => {
+    const opt = document.createElement('option');
+    opt.value = row.rider_name;
+    opt.textContent = row.rider_name;
+    select.appendChild(opt);
+  });
+}
+
+// ============================================================
+// Carica la lista delle notifiche recenti
+// ============================================================
+async function loadRecent() {
+  const listEl = document.getElementById('recent-list');
+  const { data, error } = await supabase.rpc('get_recent_notifications', { p_limit: 10 });
+
+  if (error) {
+    listEl.innerHTML = '<p style="color:#ff6b6b;">Errore caricamento: ' + error.message + '</p>';
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    listEl.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem 0;">Nessuna notifica creata per ora.</p>';
+    return;
+  }
+
+  listEl.innerHTML = data.map(n => {
+    const date = new Date(n.created_at).toLocaleString('it-IT', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+    const safeText = String(n.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const safeRider = String(n.rider_name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return '<div class="notif-item">' +
+           '<div class="notif-item-content">' +
+             '<div class="notif-item-meta">' +
+               '<span class="notif-item-rider">' + safeRider + '</span>' +
+               date +
+             '</div>' +
+             '<div class="notif-item-text">' + safeText + '</div>' +
+           '</div>' +
+           '<button class="notif-delete-btn" onclick="deleteNotif(\'' + n.id + '\')">🗑 Elimina</button>' +
+           '</div>';
+  }).join('');
+}
+
+// ============================================================
+// Submit form → crea notifica
+// ============================================================
+document.getElementById('notif-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const riderName = document.getElementById('rider-select').value;
+  const text = document.getElementById('notif-text').value.trim();
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (!riderName) {
+    showToast('⚠️ Seleziona un pilota', true);
+    return;
+  }
+  if (!text) {
+    showToast('⚠️ Scrivi un messaggio', true);
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '⏳ Invio in corso...';
+
+  const { data, error } = await supabase.rpc('create_notification', {
+    p_rider_name: riderName,
+    p_text: text
+  });
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = '📢 Crea notifica';
+
+  if (error) {
+    showToast('❌ Errore: ' + error.message, true);
+    return;
+  }
+
+  showToast('✅ Notifica creata! Sarà visibile agli utenti con ' + riderName + ' nei preferiti.');
+  
+  // Reset form
+  document.getElementById('notif-text').value = '';
+  updatePreview();
+  
+  // Ricarica la lista recenti
+  await loadRecent();
+});
+
+// ============================================================
+// Elimina notifica
+// ============================================================
+async function deleteNotif(id) {
+  if (!confirm('Eliminare definitivamente questa notifica? L\'azione è irreversibile.')) return;
+
+  const { error } = await supabase.rpc('delete_notification', { p_notification_id: id });
+
+  if (error) {
+    showToast('❌ Errore eliminazione: ' + error.message, true);
+    return;
+  }
+
+  showToast('🗑 Notifica eliminata.');
+  await loadRecent();
+}
+</script>
+
+</body>
+</html>

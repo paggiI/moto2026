@@ -467,38 +467,54 @@ document.head.appendChild(notifStyle);
   window.toggleNotifMenu = function() {
     var m = document.getElementById('notif-menu');
     var um = document.getElementById('user-menu');
-    if (um) um.classList.remove('open'); // Chiude l'altro menu
+    if (um) um.classList.remove('open');
     if (m) m.classList.toggle('open');
-  };
+    // AGGIUNTO: quando si APRE il menu, ricarica le notifiche fresche dal DB
+    if (m && m.classList.contains('open') && window.currentUser) {
+        loadUserNotifications(window.currentUser.id);
+    }
+};
 
   async function loadUserNotifications(userId) {
     const { data, error } = await supabase.rpc('get_user_notifications', { p_user_id: userId });
     const listEl = document.getElementById('notif-list');
     const badge = document.getElementById('notif-badge');
-    
+
     if (error || !data || data.length === 0) {
         if (listEl) listEl.innerHTML = '<p style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem 0;">Nessuna nuova notifica.</p>';
         if (badge) badge.style.display = 'none';
         return;
     }
-    
-    // Mostra il bollino rosso col numero!
+
+    // Conta solo le NON lette per il badge
+    const unreadCount = data.filter(n => !n.is_read).length;
     if (badge) {
-        badge.textContent = data.length;
-        badge.style.display = 'flex';
+        if (unreadCount > 0) {
+            badge.textContent = unreadCount;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
     }
-    
-    // Riempi la lista
+
+    // Render della lista (tutte, anche già lette, ma magari evidenziate diversamente)
     if (listEl) {
         listEl.innerHTML = data.map(n => {
             const date = new Date(n.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short' });
-            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border);">' +
+            const opacity = n.is_read ? '0.5' : '1';
+            const fontWeight = n.is_read ? '400' : '700';
+            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border); opacity:' + opacity + ';">' +
                    '<div style="font-size:.75rem; color:var(--muted); margin-bottom:.2rem;">' + date + '</div>' +
-                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4;">' + n.text + '</div>' +
+                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4; font-weight:' + fontWeight + ';">' + n.text + '</div>' +
                    '</div>';
         }).join('');
     }
-  }
+
+    // Segna tutte come lette (dopo averle mostrate)
+    await supabase.rpc('mark_notifications_read', { p_user_id: userId });
+    // Aggiorna il badge a 0 dopo averle segnate
+    if (badge) badge.style.display = 'none';
+}
 
   // UNICA fonte di verità per l'aggiornamento della UI
   // Supabase lancia questo evento all'avvio e ad ogni login/logout

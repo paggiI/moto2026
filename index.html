@@ -1533,21 +1533,25 @@
     background: var(--mid);
 }
 
-/* SMARTPHONE: Le colonne si impilano! */
+/* SMARTPHONE: Modal FULL-SCREEN, scroll unico per tutto */
 @media (max-width: 768px) {
+    .news-modal-overlay {
+        padding: 0 !important;
+    }
     .news-modal-layout {
-        height: auto;
-        max-height: 90vh;
+        height: 100vh;
+        max-height: 100vh;
         width: 100%;
-        border-radius: 0; 
+        border-radius: 0;
+        border: none;
     }
     .news-modal-body {
-        flex-direction: column !important; /* SUL TELEFONO TORNA UNA SOPRA L'ALTRA */
-        overflow-y: auto; 
+        flex-direction: column !important;
+        overflow-y: auto;
     }
     .news-col-left {
-        overflow-y: auto;
-        max-height: 50vh; 
+        overflow-y: visible;
+        max-height: none;
         padding: 1.2rem;
         border-bottom: 2px solid var(--border);
     }
@@ -1561,7 +1565,7 @@
         max-height: none;
     }
     .nm-img {
-        height: 180px !important; 
+        height: 180px !important;
     }
 }
 
