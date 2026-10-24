@@ -407,6 +407,26 @@
     .notif-delete-btn:hover {
       background: var(--red); color: #fff; border-color: var(--red);
     }
+    
+    /* Checkbox selezione notifica (multi-delete) */
+    .notif-select-checkbox {
+      width: 18px; height: 18px;
+      cursor: pointer;
+      accent-color: var(--red);
+      flex-shrink: 0;
+      margin: 0;
+    }
+    
+    /* Stato attivo per il bulk-delete button */
+    #bulk-delete-btn:not(:disabled) {
+      background: var(--red) !important;
+      color: #fff !important;
+      border-color: var(--red) !important;
+      cursor: pointer !important;
+    }
+    #bulk-delete-btn:not(:disabled):hover {
+      background: #c4001a !important;
+    }
 
     /* Toast notifica */
     .toast {
@@ -573,6 +593,21 @@
     <!-- Lista recenti -->
     <div class="admin-card">
       <h2>📋 Notifiche recenti <span style="font-size: .8rem; color: var(--muted); margin-left: .5rem;">(ultime 10)</span></h2>
+      
+      <!-- Barra multi-azione (seleziona tutte + elimina selezionate) -->
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: .8rem; flex-wrap: wrap; margin-bottom: 1rem; padding: .5rem .7rem; background: var(--mid); border: 1px solid var(--border); border-radius: 6px;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <label style="display: flex; align-items: center; gap: .4rem; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase;">
+            <input type="checkbox" id="select-all-notifs" onchange="toggleSelectAllNotifs(this.checked)" style="width: 16px; height: 16px; cursor: pointer; accent-color: var(--red);">
+            Seleziona tutte
+          </label>
+          <span id="notif-selected-count" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase;">0 selezionate</span>
+        </div>
+        <button type="button" id="bulk-delete-btn" onclick="deleteSelectedNotifications()" disabled style="background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: not-allowed; border-radius: 4px; padding: .35rem .8rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; transition: all .15s;">
+          🗑 Elimina selezionate (0)
+        </button>
+      </div>
+      
       <div id="recent-list">
         <p style="color: var(--muted); text-align: center; padding: 2rem 0;">Caricamento...</p>
       </div>
@@ -882,6 +917,97 @@ function filterByCategory(cat) {
 }
 
 // ============================================================
+// MULTI-DELETE NOTIFICHE — Set per tracciare selezione + funzioni
+// ============================================================
+let selectedNotifsSet = new Set(); // ID delle notifiche selezionate per eliminazione multipla
+
+function toggleNotifSelection(id) {
+  if (selectedNotifsSet.has(id)) {
+    selectedNotifsSet.delete(id);
+  } else {
+    selectedNotifsSet.add(id);
+  }
+  updateNotifSelectionUI();
+}
+
+function updateNotifSelectionUI() {
+  const count = selectedNotifsSet.size;
+  const countEl = document.getElementById('notif-selected-count');
+  if (countEl) {
+    countEl.textContent = count + ' selezionat' + (count === 1 ? 'a' : 'e');
+    countEl.style.color = count > 0 ? 'var(--red)' : 'var(--muted)';
+  }
+  const bulkBtn = document.getElementById('bulk-delete-btn');
+  if (bulkBtn) {
+    bulkBtn.textContent = '🗑 Elimina selezionate (' + count + ')';
+    bulkBtn.disabled = count === 0;
+  }
+  // Update "select all" checkbox state
+  const selectAllCb = document.getElementById('select-all-notifs');
+  if (selectAllCb) {
+    const visibleCheckboxes = document.querySelectorAll('.notif-select-checkbox');
+    if (visibleCheckboxes.length === 0) {
+      selectAllCb.checked = false;
+      selectAllCb.indeterminate = false;
+    } else {
+      const checkedCount = Array.from(visibleCheckboxes).filter(cb => cb.checked).length;
+      selectAllCb.checked = checkedCount === visibleCheckboxes.length;
+      selectAllCb.indeterminate = checkedCount > 0 && checkedCount < visibleCheckboxes.length;
+    }
+  }
+}
+
+function toggleSelectAllNotifs(checked) {
+  document.querySelectorAll('.notif-select-checkbox').forEach(cb => {
+    cb.checked = checked;
+    const id = cb.dataset.id;
+    if (checked) {
+      selectedNotifsSet.add(id);
+    } else {
+      selectedNotifsSet.delete(id);
+    }
+  });
+  updateNotifSelectionUI();
+}
+
+async function deleteSelectedNotifications() {
+  const count = selectedNotifsSet.size;
+  if (count === 0) return;
+  
+  if (!confirm('Eliminare ' + count + ' notifiche? L\'operazione è irreversibile.')) return;
+  
+  const ids = Array.from(selectedNotifsSet);
+  let success = 0;
+  let errors = 0;
+  
+  const bulkBtn = document.getElementById('bulk-delete-btn');
+  bulkBtn.disabled = true;
+  
+  for (let i = 0; i < ids.length; i++) {
+    bulkBtn.textContent = '⏳ Eliminazione ' + (i+1) + '/' + ids.length + '...';
+    const { error } = await sb.rpc('delete_notification', { p_notification_id: ids[i] });
+    if (error) {
+      errors++;
+      console.error('Errore eliminazione ' + ids[i] + ':', error);
+    } else {
+      success++;
+    }
+  }
+  
+  selectedNotifsSet.clear();
+  
+  if (success > 0 && errors === 0) {
+    showToast('✅ ' + success + ' notifiche eliminate!');
+  } else if (success > 0) {
+    showToast('⚠️ ' + success + ' eliminate, ' + errors + ' errori', true);
+  } else {
+    showToast('❌ Errore: nessuna eliminata', true);
+  }
+  
+  await loadRecent();
+}
+
+// ============================================================
 // Carica la lista delle notifiche recenti
 // ============================================================
 async function loadRecent() {
@@ -895,6 +1021,9 @@ async function loadRecent() {
 
   if (!data || data.length === 0) {
     listEl.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem 0;">Nessuna notifica creata per ora.</p>';
+    // Pulisci anche la UI multi-selezione
+    selectedNotifsSet.clear();
+    updateNotifSelectionUI();
     return;
   }
 
@@ -905,7 +1034,10 @@ async function loadRecent() {
     });
     const safeText = String(n.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const safeRider = String(n.rider_name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const isChecked = selectedNotifsSet.has(n.id) ? 'checked' : '';
     return '<div class="notif-item">' +
+           // Checkbox per selezione multipla
+           '<input type="checkbox" class="notif-select-checkbox" data-id="' + n.id + '" ' + isChecked + ' onchange="toggleNotifSelection(\'' + n.id + '\')" aria-label="Seleziona notifica">' +
            '<div class="notif-item-content">' +
              '<div class="notif-item-meta">' +
                '<span class="notif-item-rider">' + safeRider + '</span>' +
@@ -916,6 +1048,8 @@ async function loadRecent() {
            '<button class="notif-delete-btn" onclick="deleteNotif(\'' + n.id + '\')">🗑 Elimina</button>' +
            '</div>';
   }).join('');
+  
+  updateNotifSelectionUI();
 }
 
 // ============================================================
@@ -996,7 +1130,7 @@ document.getElementById('notif-form').addEventListener('submit', async (e) => {
 });
 
 // ============================================================
-// Elimina notifica
+// Elimina notifica SINGOLA
 // ============================================================
 async function deleteNotif(id) {
   if (!confirm('Eliminare definitivamente questa notifica? L\'azione è irreversibile.')) return;
@@ -1008,6 +1142,9 @@ async function deleteNotif(id) {
     return;
   }
 
+  // Rimuovi anche dal Set di selezione multipla se era selezionata
+  selectedNotifsSet.delete(id);
+  
   showToast('🗑 Notifica eliminata.');
   await loadRecent();
 }

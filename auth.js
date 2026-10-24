@@ -512,7 +512,6 @@ window.toggleNotifMenu = async function() {
         return;
     }
 
-    // Conta solo le NON lette per il badge
     const unreadCount = data.filter(n => !n.is_read).length;
     if (badge) {
         if (unreadCount > 0) {
@@ -523,23 +522,29 @@ window.toggleNotifMenu = async function() {
         }
     }
 
-    // Render della lista — TUTTE a piena opacità, NESSUN dimming
     if (listEl) {
-        listEl.innerHTML = data.map(n => {
+        listEl.innerHTML = data.map(function(n) {
             const date = new Date(n.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short' });
-            const readIndicator = n.is_read 
-                ? ' · <span style="color:var(--muted);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;">letta</span>' 
-                : ' · <span style="color:var(--red);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;">nuova</span>';
-            return '<div style="padding:.8rem 0; border-bottom:1px solid var(--border);">' +
-                   '<div style="font-size:.75rem; color:var(--muted); margin-bottom:.2rem;">' + date + readIndicator + '</div>' +
-                   '<div style="font-size:.9rem; color:var(--white); line-height:1.4;">' + n.text + '</div>' +
-                   '</div>';
+            const readText = n.is_read ? 'letta' : 'nuova';
+            const readColor = n.is_read ? 'var(--muted)' : 'var(--red)';
+            const readWeight = n.is_read ? '400' : '700';
+            const riderName = n.rider_name || '';
+            const text = n.text || '';
+            
+            let html = '<div style="padding:.8rem 0; border-bottom:1px solid var(--border);">';
+            html += '<div style="font-size:.72rem; color:var(--muted); margin-bottom:.35rem;">';
+            html += date + ' · <span style="color:' + readColor + '; font-weight:' + readWeight + '; font-size:.65rem; letter-spacing:.06em; text-transform:uppercase;">' + readText + '</span>';
+            html += '</div>';
+            if (riderName) {
+                html += '<div style="margin-bottom:.35rem;">';
+                html += '<span style="display:inline-block; background:rgba(232,0,29,.15); color:var(--red); font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.2rem .55rem; border-radius:3px; border:1px solid rgba(232,0,29,.3);">🏍️ ' + riderName + '</span>';
+                html += '</div>';
+            }
+            html += '<div style="font-size:.9rem; color:var(--white); line-height:1.4;">' + text + '</div>';
+            html += '</div>';
+            return html;
         }).join('');
     }
-    
-    // ATTENZIONE: NON chiamare mark_notifications_read qui!
-    // La marcatura come "letta" avviene SOLO quando l'utente apre la campanellina,
-    // gestita in toggleNotifMenu sopra. Così il badge "1" persiste finché non apri.
 }
 
   // UNICA fonte di verità per l'aggiornamento della UI
