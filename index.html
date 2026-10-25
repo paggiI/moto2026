@@ -1752,7 +1752,7 @@
 <!-- ORARI GP (Accordion) -->
 <details class="card" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem;">
   <summary style="font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--white); cursor: pointer; display: flex; align-items: center; gap: .5rem; list-style: none;">
-    ⏱️ Orari GP Australia [LEGGERE LA NOTIZIA] <span style="font-size: .7rem; color: var(--muted); font-family: 'Barlow Condensed'; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-left: auto;">(Ora Italiana)</span>
+    ⏱️ Orari GP Malesia<span style="font-size: .7rem; color: var(--muted); font-family: 'Barlow Condensed'; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-left: auto;">(Ora Italiana)</span>
   </summary>
   <div id="schedule-list" style="display: flex; flex-direction: column; gap: .1rem; margin-top: 1rem;">
     <!-- Il JS riempirà qui dentro -->
@@ -1762,7 +1762,7 @@
 <!-- DOVE VEDERE LA GARA (Accordion) -->
 <details class="card" style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem;">
   <summary style="font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--white); cursor: pointer; display: flex; align-items: center; gap: .5rem; list-style: none;">
-    📺 Dove vedere il GP Australia 2026
+    📺 Dove vedere il GP di Malesia 2026
   </summary>
 
   <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
@@ -1822,30 +1822,32 @@
 
 <script>
 const GP_SCHEDULE = [
-  //{ day: 'Venerdì 23 Ott', time: '00:00-00:35', cat: 'moto3', session: 'FP1' },
-  //{ day: 'Venerdì 23 Ott', time: '00:50-01:30', cat: 'moto2', session: 'FP1' },
-  //{ day: 'Venerdì 23 Ott', time: '01:45-02:30', cat: 'motogp', session: 'FP1' },
-  //{ day: 'Venerdì 23 Ott', time: '04:15-04:50', cat: 'moto3', session: 'Practice 1' },
-  //{ day: 'Venerdì 23 Ott', time: '05:05-05:45', cat: 'moto2', session: 'Practice 1' },
-  //{ day: 'Venerdì 23 Ott', time: '06:00-07:00', cat: 'motogp', session: 'Practice' },
+  // Venerdì 30 Ottobre
+  { day: 'Venerdì 30 Ott', time: '02:00-02:35', cat: 'moto3', session: 'FP1' },
+  { day: 'Venerdì 30 Ott', time: '02:50-03:30', cat: 'moto2', session: 'FP1' },
+  { day: 'Venerdì 30 Ott', time: '03:45-04:30', cat: 'motogp', session: 'FP1' },
+  { day: 'Venerdì 30 Ott', time: '06:15-06:50', cat: 'moto3', session: 'Practice' },
+  { day: 'Venerdì 30 Ott', time: '07:05-07:45', cat: 'moto2', session: 'Practice' },
+  { day: 'Venerdì 30 Ott', time: '08:00-09:00', cat: 'motogp', session: 'Practice' },
 
-  //{ day: 'Sabato 24 Ott', time: '23:40-00:10', cat: 'moto3', session: 'FP2' },
-  //{ day: 'Sabato 24 Ott', time: '00:25-00:55', cat: 'moto2', session: 'FP2' },
-  //{ day: 'Sabato 24 Ott', time: '01:10-01:40', cat: 'motogp', session: 'FP2' },
-  //{ day: 'Sabato 24 Ott', time: '01:50-02:05', cat: 'motogp', session: 'Q1' },
-  //{ day: 'Sabato 24 Ott', time: '02:15-02:30', cat: 'motogp', session: 'Q2' },
-  //{ day: 'Sabato 24 Ott', time: '03:45-04:00', cat: 'moto3', session: 'Q1' },
-  //{ day: 'Sabato 24 Ott', time: '04:10-04:25', cat: 'moto3', session: 'Q2' },
-  //{ day: 'Sabato 24 Ott', time: '04:40-04:55', cat: 'moto2', session: 'Q1' },
-  //{ day: 'Sabato 24 Ott', time: '05:05-05:20', cat: 'moto2', session: 'Q2' },
-  //{ day: 'Sabato 24 Ott', time: '06:00', cat: 'motogp', session: 'Sprint Race' },
+  // Sabato 31 Ottobre
+  { day: 'Sabato 31 Ott', time: '01:40-02:10', cat: 'moto3', session: 'FP2' },
+  { day: 'Sabato 31 Ott', time: '02:25-02:55', cat: 'moto2', session: 'FP2' },
+  { day: 'Sabato 31 Ott', time: '03:10-03:40', cat: 'motogp', session: 'FP2' },
+  { day: 'Sabato 31 Ott', time: '03:50-04:05', cat: 'motogp', session: 'Q1' },
+  { day: 'Sabato 31 Ott', time: '04:15-04:30', cat: 'motogp', session: 'Q2' },
+  { day: 'Sabato 31 Ott', time: '05:45-06:00', cat: 'moto3', session: 'Q1' },
+  { day: 'Sabato 31 Ott', time: '06:10-06:25', cat: 'moto3', session: 'Q2' },
+  { day: 'Sabato 31 Ott', time: '06:40-06:55', cat: 'moto2', session: 'Q1' },
+  { day: 'Sabato 31 Ott', time: '07:05-07:20', cat: 'moto2', session: 'Q2' },
+  { day: 'Sabato 31 Ott', time: '08:00', cat: 'motogp', session: 'Sprint Race' },
 
-  //{ day: 'Domenica 25 Ott', time: '00:40-00:50', cat: 'motogp', session: 'Warm Up' },
-  { day: 'Domenica 25 Ott', time: '02:30', cat: 'moto3', session: 'Gara' },
-  { day: 'Domenica 25 Ott', time: '03:15', cat: 'moto2', session: 'Gara [*in Italia scatterà l’ora solare.]' },
-  { day: 'Domenica 25 Ott', time: '05:00', cat: 'motogp', session: 'Gara [*in Italia scatterà l’ora solare.]' },
+  // Domenica 1 Novembre
+  { day: 'Domenica 1 Nov', time: '03:40-03:50', cat: 'motogp', session: 'Warm Up' },
+  { day: 'Domenica 1 Nov', time: '05:00', cat: 'moto3', session: 'Gara' },
+  { day: 'Domenica 1 Nov', time: '06:15', cat: 'moto2', session: 'Gara' },
+  { day: 'Domenica 1 Nov', time: '08:00', cat: 'motogp', session: 'Gara' },
 ];
-
 const CAT_COLORS = { motogp: 'var(--gp)', moto2: 'var(--m2)', moto3: 'var(--m3)' };
 const CAT_NAMES = { motogp: 'MotoGP', moto2: 'Moto2', moto3: 'Moto3' };
 
@@ -1911,27 +1913,27 @@ renderSchedule();
     <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--gp);">
       <div style="font-family: 'Barlow Condensed'; color: var(--gp); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">MotoGP</div>
       <div style="font-size: .9rem; line-height: 1.5;">
-        🥇 <br>
-        🥈 <br>
-        🥉 
+        🥇 GARA ANNULLATA<br>
+        🥈 GARA ANNULLATA<br>
+        🥉 GARA ANNULLATA
       </div>
     </div>
     <!-- Moto2 -->
     <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--m2);">
       <div style="font-family: 'Barlow Condensed'; color: var(--m2); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto2</div>
       <div style="font-size: .9rem; line-height: 1.5;">
-        🥇 <br>
-        🥈 <br>
-        🥉 
+        🥇 GARA ANNULLATA <br>
+        🥈 GARA ANNULLATA <br>
+        🥉 GARA ANNULLATA 
       </div>
     </div>
     <!-- Moto3 -->
     <div style="background: var(--mid); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--m3);">
       <div style="font-family: 'Barlow Condensed'; color: var(--m3); font-weight: 700; text-transform: uppercase; font-size: .8rem; margin-bottom: .5rem;">Moto3</div>
       <div style="font-size: .9rem; line-height: 1.5;">
-        🥇 <br>
-        🥈 <br>
-        🥉 
+        🥇 GARA ANNULLATA <br>
+        🥈 GARA ANNULLATA <br>
+        🥉 GARA ANNULLATA 
       </div>
     </div>
   </div>
@@ -2033,75 +2035,61 @@ renderSchedule();
     🌟 Piloti del Weekend </h3>
   <div class="spotlight-grid">
 
-  <!-- MotoGP -->
-  <div class="spotlight-item" style="border-top: 3px solid var(--gp);">
-  <div>
-    <div class="spotlight-cat" style="color: var(--gp);">MotoGP</div>
-    <div class="spotlight-name">Marco Bezzecchi</div>
-  </div>
-  <p class="spotlight-desc">
-    Marco Bezzecchi conquista il Gran Premio d’Indonesia a Mandalika
-    al termine di una gara combattuta e regala all’Aprilia una vittoria
-    fondamentale. Il pilota italiano supera Raúl Fernández a nove giri
-    dalla fine, approfittando del calo dello spagnolo, che correva
-    nonostante una frattura a un dito rimediata nella Sprint.
-    Fernández chiude al secondo posto, mentre Jorge Martín completa
-    il podio tutto Aprilia. Marc Márquez, vincitore della Sprint del
-    sabato, termina soltanto sesto e perde la leadership del Mondiale
-    proprio a favore di Martín, che torna in testa alla classifica
-    con 355 punti, appena due in più del rivale Ducati.
-  </p>
-</div>
+    <!-- MotoGP -->
 
-<!-- Moto2 -->
-<div class="spotlight-item" style="border-top: 3px solid var(--m2);">
-  <div>
-    <div class="spotlight-cat" style="color: var(--m2);">Moto2</div>
-    <div class="spotlight-name">Izan Guevara</div>
-  </div>
-  <p class="spotlight-desc">
-    Izan Guevara trionfa nel GP d’Indonesia al termine di una gara
-    ricca di colpi di scena e riaccende la lotta per il titolo
-    mondiale. Dopo una partenza interrotta dalla bandiera rossa
-    a causa di un incidente alla prima curva, la corsa riparte
-    con un numero di giri ridotto. Alex Escrig sembra avere la
-    vittoria in pugno, ma un problema tecnico lo costringe al
-    ritiro a soli due giri dalla fine. Guevara ne approfitta e
-    taglia il traguardo davanti al leader del campionato Manuel
-    González, con Daniel Holgado in terza posizione. Grazie a
-    questo successo, lo spagnolo riduce a 5,5 punti il distacco
-    da González nella classifica iridata.
-  </p>
-</div>
-
- <!-- Moto3 -->
-  <div class="spotlight-item" style="border-top: 3px solid var(--m3);">
-    <div>
-      <div class="spotlight-cat" style="color: var(--m3);">Moto3</div>
-      <div class="spotlight-name">Máximo Quiles</div>
+    <div class="spotlight-item" style="border-top: 3px solid var(--gp);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--gp);">MotoGP</div>
+        <div class="spotlight-name">Marc Márquez</div>
+      </div>
+      <p class="spotlight-desc"> Marc Márquez è il grande protagonista del sabato australiano. Il pilota Ducati
+        conquista la pole position a Phillip Island nonostante una caduta nelle prime fasi delle qualifiche, riuscendo a
+        tornare in pista e a firmare un giro straordinario. Nel pomeriggio completa l'opera vincendo anche la Sprint
+        dopo un intenso duello con Jorge Martín, che cade all'ottavo giro mentre si trova in lotta per la vittoria. Alle
+        spalle dello spagnolo chiudono il fratello Álex Márquez e Fabio Di Giannantonio, mentre Marco Bezzecchi rimonta
+        fino alla quarta posizione. Con pole e vittoria nella gara breve, Márquez è il riferimento del weekend MotoGP.
+        La domenica, però, il maltempo impedisce lo svolgimento del Gran Premio: resta soltanto la parata finale dietro
+        la safety car per salutare i tifosi e Phillip Island. </p>
     </div>
-    <p class="spotlight-desc">
-      Máximo Quiles vince il GP d’Indonesia a Mandalika e si laurea
-      campione del mondo Moto3 con cinque gare d’anticipo. Lo spagnolo,
-      partito dalla sesta posizione, conquista la testa della gara
-      già al terzo giro e riesce a costruire un vantaggio decisivo
-      sugli avversari. David Almansa prova a rimontare nella seconda
-      parte della corsa, ma deve accontentarsi del secondo posto
-      a 2,994 secondi dal vincitore. Brian Uriarte completa il podio
-      dopo un sorpasso decisivo all’ultimo giro ai danni di Matteo
-      Bertelle. Per Quiles è la decima vittoria stagionale, un
-      successo che gli consegna matematicamente il titolo mondiale
-      e lo consacra campione della categoria.
-    </p>
+
+    <!-- Moto2 -->
+
+    <div class="spotlight-item" style="border-top: 3px solid var(--m2);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--m2);">Moto2</div>
+        <div class="spotlight-name">Manuel González</div>
+      </div>
+      <p class="spotlight-desc"> Manuel González si prende la scena in Moto2 conquistando una pole position importante
+        sul circuito di Phillip Island. Lo spagnolo del team LIQUI MOLY Dynavolt Intact GP firma il miglior tempo in
+        qualifica in 1'30.122, riuscendo a precedere Barry Baltus di appena 106 millesimi e Filip Salac di 115
+        millesimi. Un risultato prezioso anche nella prospettiva del Mondiale, perché González arriva in Australia da
+        leader della classifica e risponde in pista alla pressione degli inseguitori. La pioggia prevista per domenica
+        rende ancora più significativa la prestazione del sabato, ma la situazione meteorologica peggiora fino a
+        costringere gli organizzatori ad annullare la gara. González non può quindi trasformare la pole in una possibile
+        vittoria, ma resta il riferimento della categoria intermedia nelle qualifiche australiane. </p>
+    </div>
+
+    <!-- Moto3 -->
+
+    <div class="spotlight-item" style="border-top: 3px solid var(--m3);">
+      <div>
+        <div class="spotlight-cat" style="color: var(--m3);">Moto3</div>
+        <div class="spotlight-name">Veda Pratama</div>
+      </div>
+      <p class="spotlight-desc"> Veda Pratama firma una delle prestazioni più interessanti del weekend australiano
+        conquistando la sua prima pole position in Moto3. Il pilota indonesiano dell'Honda Team Asia si impone in una
+        qualifica complicata dalle condizioni della pista, fermando il cronometro in 1'35.299. Alle sue spalle si piazza
+        Máximo Quiles, staccato di appena 21 millesimi, mentre l'australiano Joel Kelso completa la prima fila. Pratama
+        riesce a sfruttare al meglio l'evoluzione della pista e il lavoro svolto durante la sessione, trovando il giro
+        decisivo proprio nel momento giusto. La pole gli avrebbe offerto una posizione privilegiata per la gara
+        domenicale, ma la scarsa visibilità e l'impossibilità per l'elicottero medico di volare in sicurezza portano
+        alla cancellazione della competizione. Per il giovane indonesiano resta comunque una qualifica da ricordare a
+        Phillip Island. </p>
+    </div>
+
   </div>
-
 </div>
-
-
-
-
-</div>
-<!-- CLASSIFICA PILOTI — dati reali dopo Round 17 -->
+<!-- CLASSIFICA PILOTI — dati reali dopo Round 18 -->
 <h2 class="section-title">Classifica Piloti <span style="font-size:.9rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em;">dopo 18 round</span></h2>
 <div class="standings-row">
 <div class="standings-card">
@@ -2293,7 +2281,7 @@ renderSchedule();
 <div style="background: linear-gradient(135deg, rgba(247,166,0,.1) 0%, rgba(232,0,29,.1) 100%); border: 1px solid var(--border); border-left: 4px solid var(--m2); border-radius: 8px; padding: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
   <div>
     <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); margin-bottom: .3rem;">🎯 Gioca alla MotoGP Prediction!</h3>
-    <p style="font-size: .9rem; color: var(--muted); margin: 0;">Pronostica i vincitori del prossimo GP dell'Australia.</p>
+    <p style="font-size: .9rem; color: var(--muted); margin: 0;">Pronostica i vincitori del prossimo GP della Malesia.</p>
   </div>
   <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
     <a href="quiz.html" class="btn" style="white-space: nowrap; background: transparent; border: 1px solid var(--border); color: var(--white);">🧠 Quiz Mid-Week</a>

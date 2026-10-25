@@ -57,166 +57,183 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // 'correct' parte da 0. (0 = prima opzione, 1 = seconda, ecc.)
 // =======================================================
 const QUIZ_QUESTIONS = [
-    {
-    id: 'australia_mgp_q1',
-    question: 'Con quanti punti di vantaggio arriva Jorge Martín su Marc Márquez al GP d’Australia?',
-    options: ['1 punto', '2 punti', '5 punti', '10 punti'],
+  // MOTOGP
+  {
+    id: 'malaysia_mgp_q1',
+    question: 'In quale circuito si disputa il GP della Malesia 2026?',
+    options: ['Buriram', 'Sepang', 'Mandalika', 'Motegi'],
     correct: 1
   },
   {
-    id: 'australia_mgp_q2',
-    question: 'Quale pilota occupa il terzo posto nella classifica MotoGP dopo il GP d’Indonesia?',
-    options: ['Pedro Acosta', 'Marco Bezzecchi', 'Ai Ogura', 'Fabio Di Giannantonio'],
+    id: 'malaysia_mgp_q2',
+    question: 'Chi guida il Mondiale MotoGP dopo il GP d’Australia?',
+    options: ['Jorge Martín', 'Marco Bezzecchi', 'Marc Márquez', 'Pedro Acosta'],
+    correct: 2
+  },
+  {
+    id: 'malaysia_mgp_q3',
+    question: 'Quale pilota occupa il secondo posto in classifica MotoGP?',
+    options: ['Pedro Acosta', 'Jorge Martín', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
     correct: 1
   },
   {
-    id: 'australia_mgp_q3',
+    id: 'malaysia_mgp_q4',
     question: 'Quale costruttore rappresenta Jorge Martín nel 2026?',
     options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
     correct: 2
   },
   {
-    id: 'australia_mgp_q4',
-    question: 'Quanti giri prevede la gara MotoGP di Phillip Island nel 2026?',
-    options: ['25', '26', '27', '28'],
-    correct: 2
-  },
-  {
-    id: 'australia_mgp_q5',
-    question: 'Chi ha vinto il GP d’Indonesia 2026 prima di arrivare in Australia?',
-    options: ['Marc Márquez', 'Raúl Fernández', 'Jorge Martín', 'Marco Bezzecchi'],
-    correct: 3
-  },
-  {
-    id: 'australia_mgp_q6',
-    question: 'Quale pilota occupa il quarto posto nella classifica MotoGP dopo il GP d’Indonesia?',
-    options: ['Pedro Acosta', 'Fabio Di Giannantonio', 'Ai Ogura', 'Francesco Bagnaia'],
-    correct: 2
-  },
-  {
-    id: 'australia_mgp_q7',
-    question: 'Chi ha vinto la Sprint MotoGP in Indonesia il 10 ottobre 2026?',
-    options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Raúl Fernández'],
+    id: 'malaysia_mgp_q5',
+    question: 'Quanti punti separano Marc Márquez e Jorge Martín dopo il GP d’Australia?',
+    options: ['5 punti', '10 punti', '15 punti', '20 punti'],
     correct: 1
   },
   {
-    id: 'australia_mgp_q8',
-    question: 'Qual è la distanza totale della gara MotoGP a Phillip Island?',
-    options: ['111,1 km', '116,1 km', '120,1 km', '125,1 km'],
+    id: 'malaysia_mgp_q6',
+    question: 'Quale pilota occupa il terzo posto nella classifica MotoGP?',
+    options: ['Pedro Acosta', 'Ai Ogura', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
     correct: 2
   },
   {
-    id: 'australia_mgp_q9',
-    question: 'Quale pilota KTM occupa il quinto posto in classifica dopo il GP d’Indonesia?',
-    options: ['Brad Binder', 'Pedro Acosta', 'Enea Bastianini', 'Maverick Viñales'],
+    id: 'malaysia_mgp_q7',
+    question: 'Quale pilota ha vinto la Sprint MotoGP in Australia?',
+    options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Álex Márquez'],
     correct: 1
   },
   {
-    id: 'australia_mgp_q10',
-    question: 'Quale pilota ha chiuso secondo nel GP d’Indonesia 2026?',
-    options: ['Ai Ogura', 'Marc Márquez', 'Raúl Fernández', 'Jorge Martín'],
-    correct: 2
-  },
-  {
-    id: 'australia_moto2_q1',
-    question: 'Quanti giri prevede la gara Moto2 a Phillip Island nel 2026?',
-    options: ['21', '22', '23', '24'],
-    correct: 2
-  },
-  {
-    id: 'australia_moto2_q2',
-    question: 'Chi ha vinto la gara Moto2 del GP del Giappone 2026?',
-    options: ['Manuel González', 'Izan Guevara', 'Tony Arbolino', 'Filip Salač'],
-    correct: 1
-  },
-  {
-    id: 'australia_moto2_q3',
-    question: 'Chi ha vinto la gara Moto2 del GP d’Indonesia 2026?',
-    options: ['Daniel Holgado', 'Manuel González', 'Izan Guevara', 'Alex Escrig'],
-    correct: 2
-  },
-  {
-    id: 'australia_moto2_q4',
-    question: 'Quale pilota guida la classifica Moto2 dopo il GP d’Indonesia?',
-    options: ['Izan Guevara', 'Manuel González', 'Ivan Ortolá', 'Daniel Holgado'],
-    correct: 1
-  },
-  {
-    id: 'australia_moto2_q5',
-    question: 'Quale pilota ha chiuso secondo nella gara Moto2 in Indonesia?',
-    options: ['Filip Salač', 'Senna Agius', 'Daniel Holgado', 'Manuel González'],
-    correct: 3
-  },
-  {
-    id: 'australia_moto2_q6',
-    question: 'Quale pilota australiano occupa il sesto posto nella classifica Moto2 dopo il GP d’Indonesia?',
-    options: ['Senna Agius', 'Daniel Holgado', 'David Alonso', 'Ivan Ortolá'],
+    id: 'malaysia_mgp_q8',
+    question: 'Quale caratteristica rende Sepang particolarmente impegnativo?',
+    options: [
+      'Le temperature elevate e le frenate intense',
+      'La presenza di neve',
+      'Le curve esclusivamente lente',
+      'L’assenza di rettilinei'
+    ],
     correct: 0
   },
   {
-    id: 'australia_moto3_q1',
-    question: 'Quanti giri prevede la gara Moto3 a Phillip Island nel 2026?',
-    options: ['19', '20', '21', '22'],
-    correct: 2
-  },
-  {
-    id: 'australia_moto3_q2',
-    question: 'Chi ha vinto la gara Moto3 del GP del Giappone 2026?',
-    options: ['Máximo Quiles', 'David Almansa', 'Álvaro Carpe', 'Brian Uriarte'],
+    id: 'malaysia_mgp_q9',
+    question: 'Quanti giri sono previsti per la gara MotoGP di Sepang nel 2026?',
+    options: ['18', '20', '22', '24'],
     correct: 1
   },
   {
-    id: 'australia_moto3_q3',
+    id: 'malaysia_mgp_q10',
+    question: 'Quanti giri sono previsti per la Sprint MotoGP in Malesia?',
+    options: ['8', '10', '12', '15'],
+    correct: 1
+  },
+
+  // MOTO2
+  {
+    id: 'malaysia_moto2_q1',
+    question: 'Chi guida la classifica mondiale Moto2 dopo il GP d’Australia?',
+    options: ['Izan Guevara', 'Manuel González', 'Daniel Holgado', 'Barry Baltus'],
+    correct: 1
+  },
+  {
+    id: 'malaysia_moto2_q2',
+    question: 'Quale pilota insegue Manuel González nella lotta per il titolo Moto2?',
+    options: ['Senna Agius', 'Filip Salač', 'Izan Guevara', 'Barry Baltus'],
+    correct: 2
+  },
+  {
+    id: 'malaysia_moto2_q3',
+    question: 'Quale team schiera Manuel González nel 2026?',
+    options: [
+      'Red Bull KTM Ajo',
+      'LIQUI MOLY Dynavolt Intact GP',
+      'Elf Marc VDS Racing Team',
+      'Pramac Yamaha'
+    ],
+    correct: 1
+  },
+  {
+    id: 'malaysia_moto2_q4',
+    question: 'Quanti giri sono previsti per la gara Moto2 a Sepang?',
+    options: ['15', '17', '19', '21'],
+    correct: 1
+  },
+  {
+    id: 'malaysia_moto2_q5',
+    question: 'Quale pilota australiano corre in Moto2?',
+    options: ['Joel Kelso', 'Senna Agius', 'Jack Miller', 'Veda Pratama'],
+    correct: 1
+  },
+  {
+    id: 'malaysia_moto2_q6',
+    question: 'Quale sessione assegna la pole position in Moto2?',
+    options: ['FP1', 'Warm Up', 'Qualifiche', 'Sprint'],
+    correct: 2
+  },
+
+  // MOTO3
+  {
+    id: 'malaysia_moto3_q1',
     question: 'Chi ha conquistato il titolo mondiale Moto3 2026 in Indonesia?',
     options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Brian Uriarte'],
     correct: 2
   },
   {
-    id: 'australia_moto3_q4',
-    question: 'Chi ha vinto la gara Moto3 del GP d’Indonesia 2026?',
-    options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Brian Uriarte'],
+    id: 'malaysia_moto3_q2',
+    question: 'Quale pilota ha conquistato la pole position Moto3 in Australia?',
+    options: ['Máximo Quiles', 'David Almansa', 'Veda Pratama', 'Joel Kelso'],
+    correct: 2
+  },
+  {
+    id: 'malaysia_moto3_q3',
+    question: 'Quanti giri sono previsti per la gara Moto3 a Sepang?',
+    options: ['13', '15', '17', '20'],
     correct: 1
   },
   {
-    id: 'australia_moto3_q5',
-    question: 'Quale pilota ha chiuso secondo nella gara Moto3 di Motegi 2026?',
-    options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Brian Uriarte'],
+    id: 'malaysia_moto3_q4',
+    question: 'Quale pilota è il campione del mondo Moto3 in carica nel finale del 2026?',
+    options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Veda Pratama'],
+    correct: 1
+  },
+  {
+    id: 'malaysia_moto3_q5',
+    question: 'Quale sessione determina la posizione in griglia dei piloti Moto3?',
+    options: ['Warm Up', 'FP1', 'Qualifiche', 'Sprint'],
     correct: 2
   },
   {
-    id: 'australia_moto3_q6',
-    question: 'Quanti appuntamenti del Mondiale restavano da disputare quando Máximo Quiles ha conquistato il titolo Moto3 in Indonesia?',
-    options: ['Tre', 'Quattro', 'Cinque', 'Sei'],
+    id: 'malaysia_moto3_q6',
+    question: 'Quale categoria disputa la gara più breve tra MotoGP, Moto2 e Moto3 a Sepang?',
+    options: ['MotoGP', 'Moto2', 'Moto3', 'Hanno tutte la stessa distanza'],
+    correct: 2
+  },
+
+  // CURIOSITÀ SUL CIRCUITO
+  {
+    id: 'malaysia_extra_q1',
+    question: 'Qual è la lunghezza del circuito di Sepang?',
+    options: ['4,45 km', '4,65 km', '5,543 km', '6,1 km'],
     correct: 2
   },
   {
-    id: 'australia_extra_q1',
-    question: 'Quante curve a destra e a sinistra ha il circuito di Phillip Island?',
+    id: 'malaysia_extra_q2',
+    question: 'In quale anno Sepang ha ospitato per la prima volta il GP motociclistico?',
+    options: ['1995', '1997', '1999', '2001'],
+    correct: 2
+  },
+  {
+    id: 'malaysia_extra_q3',
+    question: 'Quale città si trova vicino al circuito di Sepang?',
+    options: ['Bangkok', 'Kuala Lumpur', 'Singapore', 'Giacarta'],
+    correct: 1
+  },
+  {
+    id: 'malaysia_extra_q4',
+    question: 'Qual è il principale fattore climatico che mette alla prova i piloti a Sepang?',
     options: [
-      '5 a destra e 7 a sinistra',
-      '6 a destra e 6 a sinistra',
-      '7 a destra e 5 a sinistra',
-      '8 a destra e 4 a sinistra'
+      'Freddo intenso',
+      'Caldo e umidità elevata',
+      'Vento gelido costante',
+      'Altitudine estrema'
     ],
-    correct: 0
-  },
-  {
-    id: 'australia_extra_q2',
-    question: 'Qual è la lunghezza del circuito di Phillip Island?',
-    options: ['4,25 km', '4,45 km', '4,65 km', '4,85 km'],
     correct: 1
-  },
-  {
-    id: 'australia_extra_q3',
-    question: 'Quanto misura il rettilineo più lungo di Phillip Island?',
-    options: ['700 metri', '800 metri', '900 metri', '1.000 metri'],
-    correct: 2
-  },
-  {
-    id: 'australia_extra_q4',
-    question: 'In quale anno il GP d’Australia è tornato stabilmente a Phillip Island, dove si disputa tuttora?',
-    options: ['1995', '1996', '1997', '1998'],
-    correct: 2
   }
 ];
 
