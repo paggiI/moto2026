@@ -13,7 +13,8 @@
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     body { background:var(--dark); color:var(--white); font-family:'Barlow',sans-serif; line-height:1.6; min-height:100vh; display:flex; justify-content:center; padding:2rem 1rem; }
     .container { width:100%; max-width:600px; }
-    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; }
+    .back-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem 1rem; border-radius:6px; background:var(--mid); border:1px solid var(--border); color:var(--muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; margin-bottom:2rem; transition: all .15s; }
+    .back-btn:hover { border-color:var(--red); color:var(--white); }
     h1 { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.04em; margin-bottom:.5rem; }
     h1 span { color:var(--red); }
     .subtitle { color:var(--muted); margin-bottom:2.5rem; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; }
@@ -29,12 +30,16 @@
     .result-score { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:var(--red); text-align:center; margin:1rem 0; }
     .loading { text-align:center; color:var(--muted); padding:3rem 0; }
     .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:1rem 1.5rem; border-radius:8px; font-family:'Barlow Condensed',sans-serif; font-weight:700; z-index:9999; display:none; }
+    .progress-info { font-size:.75rem; color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem; }
 </style>
 </head>
 <body>
 
 <div class="container">
     <div class="back-btn-wrap" style="margin-bottom: 1rem;"></div>
+    <div id="reset-wrap" style="margin-bottom: 1rem; display: none;">
+    <button onclick="resetQuiz()" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; cursor:pointer; padding:.5rem 1rem; border-radius:6px; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:.8rem; transition:.2s;" onmouseover="this.style.borderColor='#ff6b6b'; this.style.color='#fff';" onmouseout="this.style.borderColor='var(--border)'; this.style.color='#ff6b6b';">🔄 Ricomincia Quiz da capo</button>
+    </div>
     <h1>Quiz <span>Motociclismo</span></h1>
     <p class="subtitle">Metti alla prova la tua conoscenza! 1 punto per ogni risposta esatta.</p>
 
@@ -66,25 +71,25 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 'malaysia_mgp_q2',
-    question: 'Chi guida il Mondiale MotoGP dopo il GP d’Australia?',
-    options: ['Jorge Martín', 'Marco Bezzecchi', 'Marc Márquez', 'Pedro Acosta'],
+    question: 'Chi guida il Mondiale MotoGP dopo il GP d\u2019Australia?',
+    options: ['Jorge Mart\u00edn', 'Marco Bezzecchi', 'Marc M\u00e1rquez', 'Pedro Acosta'],
     correct: 2
   },
   {
     id: 'malaysia_mgp_q3',
     question: 'Quale pilota occupa il secondo posto in classifica MotoGP?',
-    options: ['Pedro Acosta', 'Jorge Martín', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
+    options: ['Pedro Acosta', 'Jorge Mart\u00edn', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
     correct: 1
   },
   {
     id: 'malaysia_mgp_q4',
-    question: 'Quale costruttore rappresenta Jorge Martín nel 2026?',
+    question: 'Quale costruttore rappresenta Jorge Mart\u00edn nel 2026?',
     options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
     correct: 2
   },
   {
     id: 'malaysia_mgp_q5',
-    question: 'Quanti punti separano Marc Márquez e Jorge Martín dopo il GP d’Australia?',
+    question: 'Quanti punti separano Marc M\u00e1rquez e Jorge Mart\u00edn dopo il GP d\u2019Australia?',
     options: ['5 punti', '10 punti', '15 punti', '20 punti'],
     correct: 1
   },
@@ -97,7 +102,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 'malaysia_mgp_q7',
     question: 'Quale pilota ha vinto la Sprint MotoGP in Australia?',
-    options: ['Jorge Martín', 'Marc Márquez', 'Marco Bezzecchi', 'Álex Márquez'],
+    options: ['Jorge Mart\u00edn', 'Marc M\u00e1rquez', 'Marco Bezzecchi', '\u00c1lex M\u00e1rquez'],
     correct: 1
   },
   {
@@ -107,7 +112,7 @@ const QUIZ_QUESTIONS = [
       'Le temperature elevate e le frenate intense',
       'La presenza di neve',
       'Le curve esclusivamente lente',
-      'L’assenza di rettilinei'
+      'L\u2019assenza di rettilinei'
     ],
     correct: 0
   },
@@ -123,23 +128,22 @@ const QUIZ_QUESTIONS = [
     options: ['8', '10', '12', '15'],
     correct: 1
   },
-
   // MOTO2
   {
     id: 'malaysia_moto2_q1',
-    question: 'Chi guida la classifica mondiale Moto2 dopo il GP d’Australia?',
-    options: ['Izan Guevara', 'Manuel González', 'Daniel Holgado', 'Barry Baltus'],
+    question: 'Chi guida la classifica mondiale Moto2 dopo il GP d\u2019Australia?',
+    options: ['Izan Guevara', 'Manuel Gonz\u00e1lez', 'Daniel Holgado', 'Barry Baltus'],
     correct: 1
   },
   {
     id: 'malaysia_moto2_q2',
-    question: 'Quale pilota insegue Manuel González nella lotta per il titolo Moto2?',
-    options: ['Senna Agius', 'Filip Salač', 'Izan Guevara', 'Barry Baltus'],
+    question: 'Quale pilota insegue Manuel Gonz\u00e1lez nella lotta per il titolo Moto2?',
+    options: ['Senna Agius', 'Filip Sala\u010d', 'Izan Guevara', 'Barry Baltus'],
     correct: 2
   },
   {
     id: 'malaysia_moto2_q3',
-    question: 'Quale team schiera Manuel González nel 2026?',
+    question: 'Quale team schiera Manuel Gonz\u00e1lez nel 2026?',
     options: [
       'Red Bull KTM Ajo',
       'LIQUI MOLY Dynavolt Intact GP',
@@ -166,18 +170,17 @@ const QUIZ_QUESTIONS = [
     options: ['FP1', 'Warm Up', 'Qualifiche', 'Sprint'],
     correct: 2
   },
-
   // MOTO3
   {
     id: 'malaysia_moto3_q1',
     question: 'Chi ha conquistato il titolo mondiale Moto3 2026 in Indonesia?',
-    options: ['David Almansa', 'Álvaro Carpe', 'Máximo Quiles', 'Brian Uriarte'],
+    options: ['David Almansa', '\u00c1lvaro Carpe', 'M\u00e1ximo Quiles', 'Brian Uriarte'],
     correct: 2
   },
   {
     id: 'malaysia_moto3_q2',
     question: 'Quale pilota ha conquistato la pole position Moto3 in Australia?',
-    options: ['Máximo Quiles', 'David Almansa', 'Veda Pratama', 'Joel Kelso'],
+    options: ['M\u00e1ximo Quiles', 'David Almansa', 'Veda Pratama', 'Joel Kelso'],
     correct: 2
   },
   {
@@ -188,8 +191,8 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 'malaysia_moto3_q4',
-    question: 'Quale pilota è il campione del mondo Moto3 in carica nel finale del 2026?',
-    options: ['David Almansa', 'Máximo Quiles', 'Álvaro Carpe', 'Veda Pratama'],
+    question: 'Quale pilota \u00e8 il campione del mondo Moto3 in carica nel finale del 2026?',
+    options: ['David Almansa', 'M\u00e1ximo Quiles', '\u00c1lvaro Carpe', 'Veda Pratama'],
     correct: 1
   },
   {
@@ -200,15 +203,14 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 'malaysia_moto3_q6',
-    question: 'Quale categoria disputa la gara più breve tra MotoGP, Moto2 e Moto3 a Sepang?',
+    question: 'Quale categoria disputa la gara pi\u00f9 breve tra MotoGP, Moto2 e Moto3 a Sepang?',
     options: ['MotoGP', 'Moto2', 'Moto3', 'Hanno tutte la stessa distanza'],
     correct: 2
   },
-
-  // CURIOSITÀ SUL CIRCUITO
+  // CURIOSIT\u00c0 SUL CIRCUITO
   {
     id: 'malaysia_extra_q1',
-    question: 'Qual è la lunghezza del circuito di Sepang?',
+    question: 'Qual \u00e8 la lunghezza del circuito di Sepang?',
     options: ['4,45 km', '4,65 km', '5,543 km', '6,1 km'],
     correct: 2
   },
@@ -220,16 +222,16 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 'malaysia_extra_q3',
-    question: 'Quale città si trova vicino al circuito di Sepang?',
+    question: 'Quale citt\u00e0 si trova vicino al circuito di Sepang?',
     options: ['Bangkok', 'Kuala Lumpur', 'Singapore', 'Giacarta'],
     correct: 1
   },
   {
     id: 'malaysia_extra_q4',
-    question: 'Qual è il principale fattore climatico che mette alla prova i piloti a Sepang?',
+    question: 'Qual \u00e8 il principale fattore climatico che mette alla prova i piloti a Sepang?',
     options: [
       'Freddo intenso',
-      'Caldo e umidità elevata',
+      'Caldo e umidit\u00e0 elevata',
       'Vento gelido costante',
       'Altitudine estrema'
     ],
@@ -237,42 +239,121 @@ const QUIZ_QUESTIONS = [
   }
 ];
 
-
 let currentUser = null;
-let answeredMap = {}; // Mappa delle domande già risposte (question_id -> is_correct)
+let answeredMap = {}; // Mappa question_id -> is_correct
 let currentQIndex = 0;
+let activeQuestions = [];
 
-let activeQuestions = []; // Creiamo un array vuoto per le domande da fare
+// ============================================================
+// GESTIONE STATO IN LOCALSTORAGE
+// Salva: lista ID domande nell'ordine corrente + indice domanda attuale
+// Cos\u00ec se l'utente lascia la pagina e torna, riprende da dove era
+// (lo stato scade dopo 30 giorni)
+// ============================================================
+function getStorageKey() {
+    return currentUser ? 'moto2026_quiz_state_' + currentUser.id : null;
+}
+
+function saveQuizState() {
+    if (!currentUser) return;
+    const state = {
+        questionIds: activeQuestions.map(q => q.id),
+        currentIndex: currentQIndex,
+        savedAt: Date.now()
+    };
+    try {
+        localStorage.setItem(getStorageKey(), JSON.stringify(state));
+    } catch (e) {
+        console.warn('Impossibile salvare stato quiz:', e);
+    }
+}
+
+function loadQuizState() {
+    if (!currentUser) return null;
+    try {
+        const raw = localStorage.getItem(getStorageKey());
+        if (!raw) return null;
+        const state = JSON.parse(raw);
+        // Scarta stati pi\u00f9 vecchi di 30 giorni
+        if (state.savedAt && (Date.now() - state.savedAt > 30 * 24 * 60 * 60 * 1000)) {
+            clearQuizState();
+            return null;
+        }
+        return state;
+    } catch (e) {
+        return null;
+    }
+}
+
+function clearQuizState() {
+    if (!currentUser) return;
+    try {
+        localStorage.removeItem(getStorageKey());
+    } catch (e) {}
+}
 
 async function initQuizPage() {
     const { data: { session } } = await s.auth.getSession();
     currentUser = session?.user || null;
-    
+
     if (!currentUser) {
-        document.getElementById('quiz-card').innerHTML = '<p class="loading">Devi essere loggato per giocare.<br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">← Torna alla Home</a></p>';
+        document.getElementById('quiz-card').innerHTML = '<p class="loading">Devi essere loggato per giocare.<br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">\u2190 Torna alla Home</a></p>';
+        if (!currentUser) {
+            document.getElementById('quiz-card').innerHTML = '<p class="loading">Devi essere loggato per giocare.<br><br><a href="index.html" style="color:var(--red); text-decoration:none; font-weight:700;">← Torna alla Home</a></p>';
+            document.getElementById('reset-wrap').style.display = 'none'; // aggiungi questa
+            return;
+        }
         return;
     }
-    
-    // Scarica le risposte già date
+    // Mostra il pulsante reset (l'utente è loggato)
+    document.getElementById('reset-wrap').style.display = 'block';  
+    // Scarica le risposte gi\u00e0 date
     const { data: existingAnswers } = await s.from('quiz_answers').select('question_id, is_correct').eq('user_id', currentUser.id);
-    
+
     if (existingAnswers) {
         existingAnswers.forEach(a => { answeredMap[a.question_id] = a.is_correct; });
     }
-    
-    // Filtra solo le domande NON ancora risposte e mescolale
-    activeQuestions = QUIZ_QUESTIONS.filter(q => answeredMap[q.id] === undefined);
-    shuffleArray(activeQuestions);
-    
-    if (activeQuestions.length === 0) {
-        showFinalResults();
+
+    // Filtra solo le domande NON ancora risposte
+    const unansweredQuestions = QUIZ_QUESTIONS.filter(q => answeredMap[q.id] === undefined);
+
+    // Controlla se c'\u00e8 uno stato salvato in localStorage
+    const savedState = loadQuizState();
+
+    if (savedState && savedState.questionIds && savedState.questionIds.length > 0) {
+        // Ripristina l'ordine salvato, skippando le domande ora gi\u00e0 risposte
+        // (l'utente potrebbe aver risposto a qualche domanda da un altro dispositivo)
+        activeQuestions = savedState.questionIds
+            .map(id => unansweredQuestions.find(q => q.id === id))
+            .filter(q => q !== undefined);
+
+        // Aggiusta currentIndex se necessario
+        if (savedState.currentIndex >= activeQuestions.length) {
+            currentQIndex = 0;
+        } else {
+            currentQIndex = savedState.currentIndex;
+        }
+
+        if (activeQuestions.length === 0) {
+            clearQuizState();
+            showFinalResults();
+        } else {
+            renderQuestion(currentQIndex);
+        }
     } else {
-        currentQIndex = 0;
-        renderQuestion(currentQIndex);
+        // Nessuno stato salvato, inizia fresh
+        activeQuestions = unansweredQuestions;
+        shuffleArray(activeQuestions);
+
+        if (activeQuestions.length === 0) {
+            showFinalResults();
+        } else {
+            currentQIndex = 0;
+            renderQuestion(currentQIndex);
+        }
     }
 }
 
-// Funzione per mescolare l'array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -283,27 +364,30 @@ function shuffleArray(array) {
 
 function renderQuestion(index) {
     if (index >= activeQuestions.length) {
+        clearQuizState(); // Quiz completato, pulisci stato
         showFinalResults();
         return;
     }
-    
+
+    currentQIndex = index;
+    saveQuizState(); // Salva stato corrente (cos\u00ec se l'utente lascia riprende da qui)
+
     const q = activeQuestions[index];
     let optionsHtml = '';
     q.options.forEach((opt, i) => {
-        optionsHtml += `<button class="q-option" onclick="submitAnswer('${q.id}', ${i}, ${q.correct})">${opt}</button>`;
+        optionsHtml += '<button class="q-option" onclick="submitAnswer(\'' + q.id + '\', ' + i + ', ' + q.correct + ')">' + opt + '</button>';
     });
-    
-    document.getElementById('quiz-card').innerHTML = `
-        <div style="font-size:.8rem; color:var(--muted); font-family:'Barlow Condensed'; text-transform:uppercase; margin-bottom:.5rem;">Domanda ${index + 1} di ${activeQuestions.length}</div>
-        <div class="q-title">${q.question}</div>
-        <div id="options-wrap">${optionsHtml}</div>
-        <button class="next-btn" id="next-btn" onclick="renderQuestion(${index + 1})">Prossima domanda →</button>
-    `;
+
+    document.getElementById('quiz-card').innerHTML =
+        '<div class="progress-info">Domanda ' + (index + 1) + ' di ' + activeQuestions.length + '</div>' +
+        '<div class="q-title">' + q.question + '</div>' +
+        '<div id="options-wrap">' + optionsHtml + '</div>' +
+        '<button class="next-btn" id="next-btn" onclick="renderQuestion(' + (index + 1) + ')">Prossima domanda \u2192</button>';
 }
 
 async function submitAnswer(qId, selectedIdx, correctIdx) {
     const isCorrect = selectedIdx === correctIdx;
-    
+
     // Disabilita i bottoni e colora le risposte
     const wrap = document.getElementById('options-wrap');
     const btns = wrap.querySelectorAll('.q-option');
@@ -312,23 +396,25 @@ async function submitAnswer(qId, selectedIdx, correctIdx) {
         if (i === correctIdx) btn.classList.add('correct');
         if (i === selectedIdx && !isCorrect) btn.classList.add('wrong');
     });
-    
+
     // Mostra il bottone "Prossima"
     document.getElementById('next-btn').classList.add('show');
-    
+
     // Salva nel database
-    const { error } = await s.from('quiz_answers').insert({
+    const { error } = await s.from('quiz_answers')
+    .upsert({
         user_id: currentUser.id,
         question_id: qId,
         is_correct: isCorrect
-    });
-    
+    }, { onConflict: 'user_id,question_id' });
+
     if (error) {
         showToast('Errore nel salvataggio della risposta.', true);
     } else {
         answeredMap[qId] = isCorrect;
-        if (isCorrect) showToast('✅ Risposta correta! +1 punto');
-        else showToast('❌ Risposta sbagliata.');
+        saveQuizState(); // Aggiorna stato salvato
+        if (isCorrect) showToast('\u2705 Risposta corretta! +1 punto');
+        else showToast('\u274c Risposta sbagliata.');
     }
 }
 
@@ -337,71 +423,96 @@ function showFinalResults() {
     for (let key in answeredMap) {
         if (answeredMap[key] === true) correctCount++;
     }
-    
+
     const total = QUIZ_QUESTIONS.length;
     const percentage = Math.round((correctCount / total) * 100);
-    
+
     let msg = '';
-    if (percentage === 100) msg = '🥇 Perfetto! Sei un esperto di MotoGP!';
-    else if (percentage >= 75) msg = '🥈 Ottimo lavoro! Conosci bene il Motomondiale.';
-    else if (percentage >= 50) msg = '🥉 Discreto, ma c\'è margine di miglioramento!';
-    else msg = '📚 Meglio ripassare un po\' di storia del Motomondiale!';
-    
-    document.getElementById('quiz-card').innerHTML = `
-        <div style="text-align:center;">
-            <h2 style="font-family:'Bebas Neue'; font-size:1.8rem; margin-bottom:1rem;">Risultato Quiz</h2>
-            <div class="result-score">${correctCount} / ${total}</div>
-            <p style="color:var(--muted); font-size:1.1rem; margin-bottom:1.5rem;">${msg}</p>
-            <p style="font-size:.9rem; color:var(--muted);">I tuoi punti sono stati aggiunti alla Classifica Globale!</p>
-            <a href="classifica_pronostici.html" style="display:inline-block; margin-top:1.5rem; background:var(--red); color:#fff; padding:.6rem 1.5rem; border-radius:6px; text-decoration:none; font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase;">🏆 Vedi Classifica</a>
-            
-            <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border);">
-                <p style="font-size:.85rem; color:var(--muted); margin-bottom:.8rem;">Vuoi rigiocare? Cliccando qui cancellerai le tue risposte precedenti per ripartire da zero.</p>
-                <button onclick="resetQuiz()" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; padding:.5rem 1.2rem; border-radius:6px; cursor:pointer; font-family:'Barlow Condensed'; font-weight:700; text-transform:uppercase; font-size:.85rem;">🔄 Ricomincia il Quiz</button>
-            </div>
-        </div>
-    `;
+    if (percentage === 100) msg = '\ud83e\udd47 Perfetto! Sei un esperto di MotoGP!';
+    else if (percentage >= 75) msg = '\ud83e\udd48 Ottimo lavoro! Conosci bene il Motomondiale.';
+    else if (percentage >= 50) msg = '\ud83e\udd49 Discreto, ma c\u2019\u00e8 margine di miglioramento!';
+    else msg = '\ud83d\udcda Meglio ripassare un po\u2019 di storia del Motomondiale!';
+
+    document.getElementById('quiz-card').innerHTML =
+        '<div style="text-align:center;">' +
+            '<h2 style="font-family:\'Bebas Neue\'; font-size:1.8rem; margin-bottom:1rem;">Risultato Quiz</h2>' +
+            '<div class="result-score">' + correctCount + ' / ' + total + '</div>' +
+            '<p style="color:var(--muted); font-size:1.1rem; margin-bottom:1.5rem;">' + msg + '</p>' +
+            '<p style="font-size:.9rem; color:var(--muted);">I tuoi punti sono stati aggiunti alla Classifica Globale!</p>' +
+            '<a href="classifica_pronostici.html" style="display:inline-block; margin-top:1.5rem; background:var(--red); color:#fff; padding:.6rem 1.5rem; border-radius:6px; text-decoration:none; font-family:\'Barlow Condensed\'; font-weight:700; text-transform:uppercase;">\ud83c\udfc6 Vedi Classifica</a>' +
+            '<div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border);">' +
+                '<p style="font-size:.85rem; color:var(--muted); margin-bottom:.8rem;">Vuoi rigiocare? Cliccando qui cancellerai le tue risposte precedenti per ripartire da zero.</p>' +
+                '<button onclick="resetQuiz()" style="background:transparent; border:1px solid var(--border); color:#ff6b6b; padding:.5rem 1.2rem; border-radius:6px; cursor:pointer; font-family:\'Barlow Condensed\'; font-weight:700; text-transform:uppercase; font-size:.85rem;">\ud83d\udd04 Ricomincia il Quiz</button>' +
+            '</div>' +
+        '</div>';
 }
 
-// Funzione per azzerare tutte le risposte
 async function resetQuiz() {
     if (!confirm('Sei sicuro di voler azzerare tutte le tue risposte? Perderai i punti acquisiti finora nel quiz!')) return;
-    
+
     const { error } = await s.from('quiz_answers').delete().eq('user_id', currentUser.id);
-    
+
     if (error) {
         showToast('Errore durante il reset.', true);
     } else {
-        // Svuota la mappa delle risposte in locale
         for (let key in answeredMap) { delete answeredMap[key]; }
-        
-        // Ricarica le domande
+        clearQuizState(); // Pulisci stato salvato
+
         activeQuestions = QUIZ_QUESTIONS.filter(q => answeredMap[q.id] === undefined);
         shuffleArray(activeQuestions);
-        
+
         if (activeQuestions.length > 0) {
             currentQIndex = 0;
             renderQuestion(currentQIndex);
         } else {
             showFinalResults();
         }
-        showToast('✅ Quiz azzerato! Puoi ricominciare.');
+        showToast('\u2705 Quiz azzerato! Puoi ricominciare.');
     }
 }
 
-function showToast(msg, isError = false) {
+function showToast(msg, isError) {
     var t = document.getElementById('toast');
     t.textContent = msg;
     t.style.background = isError ? '#e8001d' : '#222';
     t.style.display = 'block';
-    setTimeout(() => { t.style.display = 'none'; }, 3000);
+    setTimeout(function() { t.style.display = 'none'; }, 3000);
 }
 
-// BOTTONE TORNA INDIETRO
+// ============================================================
+// BOTTONE TORNA INDIETRO — FIXATO
+// Usa document.referrer per sapere da dove sei venuto:
+// - Se provieni da una pagina dello stesso sito (es. prediction.html o index.html)
+//   → link diretto a quella pagina (pi\u00f9 affidabile di history.back())
+// - Se hai aperto quiz.html direttamente (bookmark, URL digitato)
+//   → link a index.html
+// Lo stato del quiz viene salvato in localStorage prima di lasciare la pagina,
+// cos\u00ec quando torni riprendi dalla domanda esatta in cui eri.
+// ============================================================
 var backWrap = document.querySelector('.back-btn-wrap');
 if (backWrap) {
-    backWrap.innerHTML = '<a href="#" class="back-btn" onclick="event.preventDefault(); window.history.back();">← Torna alla pagina precedente</a>';
+    var referrer = document.referrer;
+    // Verifica che il referrer sia una pagina del nostro sito (e non quiz.html stesso)
+    var isFromSameSite = referrer &&
+                         referrer.indexOf('paggii.github.io') !== -1 &&
+                         referrer.indexOf('quiz.html') === -1;
+
+    if (isFromSameSite) {
+        // Torna direttamente alla pagina di provenienza
+        backWrap.innerHTML = '<a href="' + referrer + '" class="back-btn">\u2190 Torna alla pagina precedente</a>';
+    } else if (referrer && referrer.indexOf('quiz.html') !== -1) {
+        // Provieni da quiz.html stesso (es. refresh) → vai alla Home
+        backWrap.innerHTML = '<a href="index.html" class="back-btn">\u2190 Torna alla Home</a>';
+    } else {
+        // Apertura diretta → vai alla Home
+        backWrap.innerHTML = '<a href="index.html" class="back-btn">\u2190 Torna alla Home</a>';
+    }
 }
+
+// Salva lo stato quando l'utente lascia la pagina (es. click sul back button, chiusura tab)
+window.addEventListener('beforeunload', function() {
+    saveQuizState();
+});
 
 initQuizPage();
 </script>
