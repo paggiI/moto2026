@@ -704,6 +704,53 @@
       transition: border-color .15s;
     }
     .fav-chip:hover { border-color: var(--red); color: var(--red); }
+/* SELETTORE ANNO + MODAL CLASSIFICA */
+.year-selector-wrap { display:flex; gap:.8rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
+.year-select { background:var(--mid); border:1px solid var(--border); border-radius:6px; color:var(--white); font-family:'Barlow Condensed',sans-serif; font-size:1rem; padding:.5rem .8rem; outline:none; cursor:pointer; }
+.year-select:focus { border-color:var(--red); }
+.year-view-btn { background:var(--red); color:#fff; border:none; border-radius:6px; padding:.5rem 1.2rem; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.9rem; text-transform:uppercase; letter-spacing:.06em; transition:background .15s; }
+.year-view-btn:hover { background:#c4001a; }
+.standings-modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.85); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:2rem 1rem; overflow-y:auto; }
+.standings-modal-overlay.open { display:flex; }
+.standings-modal { background:var(--card); border:1px solid var(--border); border-radius:12px; max-width:700px; width:100%; max-height:85vh; overflow-y:auto; animation:modalIn .22s ease; }
+@keyframes modalIn { from { transform:translateY(18px); opacity:0; } to { transform:none; opacity:1; } }
+.standings-modal-header { padding:1.2rem 1.5rem; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; background:var(--card); z-index:1; }
+.standings-modal-title { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:.04em; }
+.standings-modal-title span { color:var(--red); }
+.standings-close-btn { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; border-radius:4px; width:28px; height:28px; font-size:1.2rem; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.standings-close-btn:hover { border-color:var(--white); color:var(--white); }
+.standings-cat-tabs { display:flex; gap:0; border-bottom:1px solid var(--border); overflow-x:auto; position:sticky; top:60px; background:var(--card); }
+.standings-cat-tab { padding:.6rem 1rem; flex-shrink:0; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; background:none; border:none; border-bottom:3px solid transparent; color:var(--muted); cursor:pointer; transition:all .15s; white-space:nowrap; }
+.standings-cat-tab:hover { color:var(--white); }
+.standings-cat-tab.active-gp { color:var(--gp); border-bottom-color:var(--gp); }
+.standings-cat-tab.active-m2 { color:var(--m2); border-bottom-color:var(--m2); }
+.standings-cat-tab.active-m3 { color:var(--m3); border-bottom-color:var(--m3); }
+.standings-cat-tab.active-350 { color:#9c27b0; border-bottom-color:#9c27b0; }
+.standings-cat-tab.active-50 { color:#e67e22; border-bottom-color:#e67e22; }
+.standings-cat-tab.active-80 { color:#27ae60; border-bottom-color:#27ae60; }
+.standings-cat-tab.active-sc { color:#16a085; border-bottom-color:#16a085; }
+.standings-table { width:100%; border-collapse:collapse; }
+.standings-table th { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:.6rem 1rem; text-align:left; border-bottom:1px solid var(--border); position:sticky; top:100px; background:var(--card); }
+.standings-table td { padding:.6rem 1rem; border-bottom:1px solid var(--border); font-size:.9rem; }
+.standings-pos { width:50px; font-family:'Bebas Neue',sans-serif; font-size:1.1rem; color:var(--muted); }
+.standings-pos.top1 { color:var(--gold); }
+.standings-pos.top2 { color:var(--silver); }
+.standings-pos.top3 { color:var(--bronze); }
+.standings-rider { font-family:'Barlow Condensed',sans-serif; font-weight:700; }
+.standings-team { color:var(--muted); font-size:.85rem; }
+.standings-points { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; color:var(--red); text-align:right; width:80px; }
+.standings-loading { text-align:center; color:var(--muted); padding:3rem 0; }
+.standings-empty { text-align:center; color:var(--muted); padding:3rem 1rem; }
+.standings-empty p { font-size:.9rem; line-height:1.6; }
+[data-theme="light"] .standings-modal { background:#fff; }
+[data-theme="light"] .standings-modal-header { background:#fff; }
+[data-theme="light"] .standings-cat-tabs { background:#fff; }
+[data-theme="light"] .standings-table th { background:#fff; }
+[data-theme="light"] .standings-table td { color:#111; }
+[data-theme="light"] .standings-rider { color:#111; }
+[data-theme="light"] .standings-team { color:#999; }
+[data-theme="light"] .year-select { background:#f0f0f0; color:#111; }
+
     </style>
 </link>
 <style id="audio-player-responsive">
@@ -852,6 +899,12 @@
   <button class="decade-btn" data-decade="201">📱 Anni 2010</button>
   <button class="decade-btn" data-decade="202">🚀 Anni 2020</button>
 </div>
+<div class="year-selector-wrap">
+    <select class="year-select" id="year-select">
+        <option value="">— Seleziona anno —</option>
+    </select>
+    <button class="year-view-btn" onclick="openStandingsModal()">📊 Vedi classifica finale</button>
+</div>
 <main>
 <div class="albo-page-layout">
 <!-- SIDEBAR RICERCA -->
@@ -890,7 +943,7 @@
 <div class="section-head"><span class="section-badge badge-gp">MotoGP</span><h2>500cc / MotoGP</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot"></span>500cc  <small style="color:#555;font-size:.8rem;">1949 – 2001</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot"></span>500cc  <small style="color:#555;font-size:.8rem;">1949 – 2001</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1110,7 +1163,7 @@
 </table>
 </div>
 <div class="hall-card-col">
-<div class="hall-col-label era-modern"><span class="era-dot"></span>MotoGP  <small style="color:#555;font-size:.8rem;">2002 – 2025</small></div>
+<div class="hall-col-label era-modern"><span class="era-dot"></span>MotoGP  <small style="color:#555;font-size:.8rem;">2002 – 2025</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1219,7 +1272,7 @@
 <div class="section-head"><span class="section-badge badge-m2">Moto2</span><h2>250cc / Moto2</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot"></span>250cc  <small style="color:#555;font-size:.8rem;">1949 – 2009</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot"></span>250cc  <small style="color:#555;font-size:.8rem;">1949 – 2009</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1471,7 +1524,7 @@
 </table>
 </div>
 <div class="hall-card-col">
-<div class="hall-col-label era-modern-m2"><span class="era-dot"></span>Moto2  <small style="color:#555;font-size:.8rem;">2010 – 2025</small></div>
+<div class="hall-col-label era-modern-m2"><span class="era-dot"></span>Moto2  <small style="color:#555;font-size:.8rem;">2010 – 2025</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1548,7 +1601,7 @@
 <div class="section-head"><span class="section-badge badge-m3">Moto3</span><h2>125cc / Moto3</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot"></span>125cc  <small style="color:#555;font-size:.8rem;">1949 – 2011</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot"></span>125cc  <small style="color:#555;font-size:.8rem;">1949 – 2011</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1808,7 +1861,7 @@
 </table>
 </div>
 <div class="hall-card-col">
-<div class="hall-col-label era-modern-m3"><span class="era-dot"></span>Moto3  <small style="color:#555;font-size:.8rem;">2012 – 2025</small></div>
+<div class="hall-col-label era-modern-m3"><span class="era-dot"></span>Moto3  <small style="color:#555;font-size:.8rem;">2012 – 2025</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1882,7 +1935,7 @@
 <div class="section-head"><span class="section-badge" style="background:#9c27b0;color:#fff;">350cc</span><h2>350cc</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot" style="background:#9c27b0;"></span>350cc  <small style="color:#555;font-size:.8rem;">1949 – 1982</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#9c27b0;"></span>350cc  <small style="color:#555;font-size:.8rem;">1949 – 1982</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1944,7 +1997,7 @@
 <div class="section-head"><span class="section-badge" style="background:#e67e22;color:#fff;">50cc</span><h2>50cc</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot" style="background:#e67e22;"></span>50cc  <small style="color:#555;font-size:.8rem;">1962 – 1983</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#e67e22;"></span>50cc  <small style="color:#555;font-size:.8rem;">1962 – 1983</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -1991,7 +2044,7 @@
 <div class="section-head"><span class="section-badge" style="background:#27ae60;color:#fff;">80cc</span><h2>80cc</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot" style="background:#27ae60;"></span>80cc  <small style="color:#555;font-size:.8rem;">1984 – 1989</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#27ae60;"></span>80cc  <small style="color:#555;font-size:.8rem;">1984 – 1989</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -2022,7 +2075,7 @@
 <div class="section-head"><span class="section-badge" style="background:#16a085;color:#fff;">Sidecar</span><h2>Sidecar</h2></div>
 <div class="hall-two-col">
 <div class="hall-card-col">
-<div class="hall-col-label era-classic"><span class="era-dot" style="background:#16a085;"></span>Sidecar  <small style="color:#555;font-size:.8rem;">1949 – 1996</small></div>
+<div class="hall-col-label era-classic"><span class="era-dot" style="background:#16a085;"></span>Sidecar  <small style="color:#555;font-size:.8rem;">1949 – 1996</small></div>
 <table class="hall">
 <thead><tr><th>Anno</th><th>Campione</th></tr></thead>
 <tbody>
@@ -2560,6 +2613,32 @@ document.getElementById('decade-strip').addEventListener('click', function(e) {
   // Aggiorna la sidebar dei dominatori
   updateDominators();
 });
+
+// ============================================================
+// CLASSIFICHE STORICHE — Selettore anno + modal
+// ============================================================
+var alboSb = null;
+try { alboSb = window.supabase.createClient('https://aysknebyyzljysxpsxdv.supabase.co','sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ'); } catch(e) {}
+
+var standingsActiveCategory = 'motogp';
+var STANDINGS_CAT_LABELS = {'motogp':'MotoGP / 500cc','moto2':'Moto2 / 250cc','moto3':'Moto3 / 125cc','350cc':'350cc','50cc':'50cc','80cc':'80cc','sidecar':'Sidecar'};
+var STANDINGS_CAT_CLASSES = {'motogp':'active-gp','moto2':'active-m2','moto3':'active-m3','350cc':'active-350','50cc':'active-50','80cc':'active-80','sidecar':'active-sc'};
+
+// Popola il dropdown degli anni (1949-2026) raggruppati per decennio
+(function(){var s=document.getElementById('year-select');if(!s)return;var d={};for(var y=2026;y>=1949;y--){var dec=Math.floor(y/10)*10;if(!d[dec])d[dec]=[];d[dec].push(y);}Object.keys(d).sort(function(a,b){return b-a;}).forEach(function(dec){var lb=dec+'s';if(dec==1940)lb="Anni '40";else if(dec==1950)lb="Anni '50";else if(dec==1960)lb="Anni '60";else if(dec==1970)lb="Anni '70";else if(dec==1980)lb="Anni '80";else if(dec==1990)lb="Anni '90";else if(dec==2000)lb='Anni 2000';else if(dec==2010)lb='Anni 2010';else if(dec==2020)lb='Anni 2020';var og=document.createElement('optgroup');og.label=lb;d[dec].forEach(function(y){var o=document.createElement('option');o.value=y;o.textContent=y;og.appendChild(o);});s.appendChild(og);});})();
+
+function openStandingsModal(){var yv=document.getElementById('year-select').value;if(!yv){alert('Seleziona un anno prima di visualizzare la classifica.');return;}var ap=document.querySelector('.panel.active');if(ap){var pi=ap.id.replace('panel-','');if(STANDINGS_CAT_LABELS[pi])standingsActiveCategory=pi;}var th='';Object.keys(STANDINGS_CAT_LABELS).forEach(function(c){var cl=c===standingsActiveCategory?STANDINGS_CAT_CLASSES[c]:'';th+='<button class="standings-cat-tab '+cl+'" onclick="switchStandingsCategory(\''+c+'\')">'+STANDINGS_CAT_LABELS[c]+'</button>';});document.getElementById('standings-tabs').innerHTML=th;document.getElementById('standings-title').innerHTML='Classifica <span>'+STANDINGS_CAT_LABELS[standingsActiveCategory]+' '+yv+'</span>';document.getElementById('standings-overlay').classList.add('open');document.body.style.overflow='hidden';loadStandings(parseInt(yv),standingsActiveCategory);}
+
+function closeStandingsModal(){document.getElementById('standings-overlay').classList.remove('open');document.body.style.overflow='';}
+
+function switchStandingsCategory(cat){standingsActiveCategory=cat;var yv=document.getElementById('year-select').value;document.querySelectorAll('.standings-cat-tab').forEach(function(t){t.className='standings-cat-tab';});var at=null;document.querySelectorAll('.standings-cat-tab').forEach(function(t){if(t.getAttribute('onclick').indexOf(cat)!==-1)at=t;});if(at)at.classList.add(STANDINGS_CAT_CLASSES[cat]);document.getElementById('standings-title').innerHTML='Classifica <span>'+STANDINGS_CAT_LABELS[cat]+' '+yv+'</span>';if(yv)loadStandings(parseInt(yv),cat);}
+
+async function loadStandings(year,cat){var b=document.getElementById('standings-body');b.innerHTML='<p class="standings-loading">Caricamento classifica...</p>';var HIST_CAT_END={'350cc':1982,'50cc':1983,'80cc':1989,'sidecar':1996};
+if(HIST_CAT_END[cat]&&year>HIST_CAT_END[cat]){b.innerHTML='<div class="standings-empty"><p>🚫 Questa categoria non era attiva nel '+year+'.</p><p>La '+STANDINGS_CAT_LABELS[cat]+' è stata disputata fino al '+HIST_CAT_END[cat]+'.</p></div>';return;}if(!alboSb){b.innerHTML='<div class="standings-empty"><p>Errore: Supabase non inizializzato.</p></div>';return;}try{var r=await alboSb.rpc('get_season_standings',{p_year:year,p_category:cat});if(r.error){b.innerHTML='<div class="standings-empty"><p>Errore: '+r.error.message+'</p></div>';return;}if(!r.data||r.data.length===0){b.innerHTML='<div class="standings-empty"><p>📋 Classifica non ancora disponibile per il '+year+'.</p><p>Stiamo lavorando per aggiungerla. Torna a trovarci!</p></div>';return;}var h='<table class="standings-table"><thead><tr><th>#</th><th>Pilota</th><th>Team</th><th style="text-align:right;">Punti</th></tr></thead><tbody>';r.data.forEach(function(row){var pc='';if(row.position===1)pc='top1';else if(row.position===2)pc='top2';else if(row.position===3)pc='top3';var m=row.position===1?'🥇':row.position===2?'🥈':row.position===3?'🥉':'';h+='<tr><td class="standings-pos '+pc+'">'+m+' '+row.position+'</td><td class="standings-rider">'+row.rider_name+'</td><td class="standings-team">'+(row.team||'—')+'</td><td class="standings-points">'+(row.points||'0')+'</td></tr>';});h+='</tbody></table>';b.innerHTML=h;}catch(e){b.innerHTML='<div class="standings-empty"><p>Errore: '+e.message+'</p></div>';}}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeStandingsModal();});
+
+
 </script>
 <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Torna in cima">↑</button>
 <style>
@@ -2673,6 +2752,20 @@ input, button { pointer-events: auto !important; position: relative; z-index: 5 
   });
 })();
 </script>
+<!-- MODAL CLASSIFICA STORICA -->
+<div class="standings-modal-overlay" id="standings-overlay" onclick="if(event.target===this)closeStandingsModal()">
+    <div class="standings-modal">
+        <div class="standings-modal-header">
+            <div class="standings-modal-title" id="standings-title">Classifica <span>—</span></div>
+            <button class="standings-close-btn" onclick="closeStandingsModal()">✕</button>
+        </div>
+        <div class="standings-cat-tabs" id="standings-tabs"></div>
+        <div id="standings-body">
+            <p class="standings-loading">Seleziona un anno per vedere la classifica.</p>
+        </div>
+    </div>
+</div>
+
 <script src="auth.js"></script>
 </body>
 </html>
