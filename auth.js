@@ -600,7 +600,7 @@ window.toggleNotifMenu = async function() {
   }
   // ── SISTEMA DI MANUTENZIONE SITO ──────────────────
   // Cambia a 'true' quando devi aggiornare i risultati, poi rimetti a 'false'
-  const MAINTENANCE_MODE = false; 
+  const MAINTENANCE_MODE = true; 
 
   if (MAINTENANCE_MODE && !sessionStorage.getItem('maintenance_bypass')) {
     var overlay = document.createElement('div');
