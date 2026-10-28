@@ -8,7 +8,7 @@
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
-    :root{--red:#e8001d;--dark:#0a0a0a;--mid:#141414;--card:#1a1a1a;--border:#2a2a2a;--muted:#888;--white:#f5f5f5;--gp:#ff6b35;--m2:#f7a600;--m3:#00b4d8;--gold:#ffd700;--silver:#c0c0c0;--bronze:#cd7f32;}
+    :root{--red:#e8001d;--dark:#0a0a0a;--mid:#141414;--card:#1a1a1a;--border:#2a2a2a;--muted:#888;--white:#f5f5f5;--gp:#ff6b35;--m2:#f7a600;--m3:#00b4d8;--me:#6b6161;--gold:#ffd700;--silver:#c0c0c0;--bronze:#cd7f32;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--dark);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
     .rider-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);min-height:340px;min-width:615px;display:flex;align-items:flex-end;}
@@ -33,6 +33,7 @@
     .tag-cat-gp{background:var(--gp);color:#fff;}
     .tag-cat-m2{background:var(--m2);color:#111;}
     .tag-cat-m3{background:var(--m3);color:#fff;}
+    .tag-cat-me{background:var(--me);color:#fff;}
     .tag-team{background:var(--card);border:1px solid var(--border);color:var(--muted);}
     .tag-bike{background:rgba(255,255,255,.05);border:1px solid var(--border);color:#aaa;}
     .tag-points{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#22c55e;}
@@ -491,7 +492,7 @@
     }
     /* Escludi elementi che non devono transitare */
     .rider-photo, img, video, canvas, svg,
-    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3 {
+    nav a, .tag-cat-gp, .tag-cat-m2, .tag-cat-m3, .tag-cat-m3 {
       transition: none !important;
     }
     
@@ -2157,7 +2158,23 @@ const RIDERS = {
     "city": "Wolsztyn",
     "debut": 2025
   },
-
+  "matteo_ferrari": {
+    "id": "matteo_ferrari",
+    "name": "Matteo Ferrari",
+    "flag": "🇮🇹",
+    "country": "Italia",
+    "number": '',
+    "category": "Moto2",
+    "team": "ITALJET Team Gresini Moto2",
+    "team_bike": "Kalex",
+    "bike": "Kalex",
+    "note": "Campione della FIM MotoE World Cup nel 2019, ha conquistato numerose vittorie e podi nella categoria elettrica. Ha continuato a competere in MotoE con il team Gresini, ottenendo il terzo posto in campionato nel 2021, 2022, 2023 e 2025. Nel 2023 e nel 2024 ha partecipato anche ad alcune gare del Mondiale Moto2 come wild card. Nel 2025 ha esordito nel Mondiale Supersport. Nel 2026 chiamato a sostituire Sergio García al Round 19.",
+    "points": 0,
+    "position": 35,
+    "birth": "1997-02-12",
+    "city": "Cesena",
+    "debut": 2013
+  },
 
   // MOTO 3
 
@@ -2804,6 +2821,8 @@ const RESULTS_2026 = {
   "zurutuza_x":          { gare:1, vit:0, podi:0, pole:0 },  // fisso da R6 a fine stagione
   "jacob_roulstone":    { gare:0, vit:0, podi:0, pole:0 },  // sub R8
   "milan_pawelec" :     { gare:0, vit:0, podi:0, pole:0 },  // sub R9[sabato e domenica]-10
+  "matteo_ferrari" :     { gare:0, vit:0, podi:0, pole:0 },  // sub R19
+
   // ── Moto3 ───────────────────────────────────────────────
   "maximo_quiles":        { gare:6, vit:4, podi:6, pole:1 },
   "alvaro_carpe":         { gare:5, vit:0, podi:2, pole:1 },
@@ -2910,6 +2929,7 @@ const PALMARES = {
   "zurutuza_x":{"titoli":[],"vittorie":0,"podi":0,"pole":0,"gare":21,"stagioni":[{y:2024,cat:"Moto3",pos:23,pt:13},{y:2025, cat:"Moto2", pos:35, pt:0},{y:2026, cat:"Moto2", pos:null, pt:0}]},
   "jacob_roulstone":{"titoli":[],"vittorie":0,"podi":0,"pole":0,"gare":38,"stagioni":[{y:2024, cat:"Moto3", pos:15, pt:66},{y:2025, cat:"Moto3", pos:16, pt:61},{y:2026, cat:"Moto2", pos:null, pt:0}]}, 
   "milan_pawelec":{"titoli":[ "2023 Alpe Adria Superstock 1000 🏆","2025 Moto 2 JuniorGP (Moto Junior FIM World Championship) 🏆", "2026 Moto 2 JuniorGP (Moto Junior FIM World Championship) 🏆"],"vittorie":0,"podi":0,"pole":0,"gare":1,"stagioni":[{y:2025, cat:"Moto2", pos:34, pt:0},{y:2026, cat:"Moto2", pos:null, pt:0}]}, 
+  "matteo_ferrari":{"titoli":["2006 Europeo Junior Categoria 50 🏆","2011 Italiano Mono-marca 🏆","2012 Campionato Europeo Moto3 🏆 🏆","2019 MotoE World Cup 🏆"],"vittorie":0,"podi":0,"pole":0,"gare":3,"stagioni":[{y:2013,cat:"Moto3",pos:27,pt:2},{y:2014,cat:"Moto3",pos:22,pt:12},{y:2015,cat:"Moto3",pos:33,pt:1},{y:2019,cat:"MotoE",pos:1,pt:99},{y:2020,cat:"MotoE",pos:2,pt:97},{y:2021,cat:"MotoE",pos:3,pt:86},{y:2022,cat:"MotoE",pos:3,pt:162.5},{y:2023,cat:"MotoE",pos:3,pt:216},{y:2023,cat:"Moto2",pos:38,pt:0},{y:2024,cat:"MotoE",pos:8,pt:132},{y:2024,cat:"Moto2",pos:30,pt:1},{y:2025,cat:"MotoE",pos:3,pt:168}]},
 
   // ── MOTO3 ──────────────────────────────────────────────────────
   "cormac_buchanan":{"titoli":["2020 NZSBK 🏆","2021 NZSBK 🏆","2021 SuperSport 300 🏆","2022 SuperSport 300 🏆","2022 SuperSport 600 🏆","2024 SuperSport 600 🏆"],"vittorie":0,"podi":0,"pole":0,"gare":21,"stagioni":[{y:2025, cat:"Moto3", pos:20, pt:32},{y:2026, cat:"Moto3", pos:null, pt:0}]},
@@ -12398,8 +12418,8 @@ function calcStats2026(riderData) {
 }
 
 
-const CATEGORY_COLORS = { MotoGP:'#ff6b35', Moto2:'#f7a600', Moto3:'#00b4d8' };
-const CATEGORY_TAG_CLASS = { MotoGP:'tag-cat-gp', Moto2:'tag-cat-m2', Moto3:'tag-cat-m3' };
+const CATEGORY_COLORS = { MotoGP:'#ff6b35', Moto2:'#f7a600', Moto3:'#00b4d8', MotoE:'#6b6161' };
+const CATEGORY_TAG_CLASS = { MotoGP:'tag-cat-gp', Moto2:'tag-cat-m2', Moto3:'tag-cat-m3', MotoE:'tag-cat-me' };
 const API_URL = 'https://api.motogp.pulselive.com/motogp/v1/riders';
 const params = new URLSearchParams(window.location.search);
 const riderId = params.get('id') || '';
@@ -12741,7 +12761,7 @@ function renderSimilarRiders(riderData, riderId) {
   const cat    = riderData.category;
   const myPts  = riderData.points || 0;
   const myTeam = riderData.team || '';
-  const catCol = { MotoGP:'var(--gp)', Moto2:'var(--m2)', Moto3:'var(--m3)' }[cat];
+  const catCol = { MotoGP:'var(--gp)', Moto2:'var(--m2)', Moto3:'var(--m3)', MotoE:'var(--me)' }[cat];
 
   // ── Compagno di team ────────────────────────────────────────
   const teammates = Object.entries(RIDERS)
