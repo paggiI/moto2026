@@ -281,9 +281,6 @@
 
 <header>
   <a class="logo" href="../index.html">MOTO<span>2026</span></a>
-  <nav aria-label="Navigazione principale">
-    <a href="../motogp.html">MotoGP</a><a href="../moto2.html">Moto2</a><a href="../moto3.html">Moto3</a><a href="../calendario.html">Calendario</a><a href="../piloti.html">Piloti</a><a href="../team.html">Team</a><a href="../classifica.html">Classifica</a><a href="../risultati.html">Risultati</a><a href="../stagione.html">Stagione</a><a href="../stats.html">Statistiche</a><a href="../circuiti.html">Circuiti</a><a href="../guida.html">Guida</a>
-  </nav>
   <div class="header-right">
     <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
     <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
@@ -292,9 +289,6 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobile-menu">
-  <a href="../index.html">Home</a><a href="../motogp.html">MotoGP</a><a href="../moto2.html">Moto2</a><a href="../moto3.html">Moto3</a><a href="../calendario.html">Calendario</a><a href="../piloti.html">Piloti</a><a href="../team.html">Team</a><a href="../classifica.html">Classifica</a><a href="../risultati.html">Risultati</a><a href="../stagione.html">Stagione</a><a href="../stats.html">Statistiche</a><a href="../circuiti.html">Circuiti</a><a href="../guida.html">Guida</a>
-</div>
 <section class="page-hero">
 <div class="hero-bg-text">MY</div>
 <div class="container">
@@ -360,11 +354,17 @@
 </div>
 
 <div class="circ-section">
-<div class="circ-section-title">🏆 Ultimi 5 anni di risultati — <span style="font-size:.75rem;color:var(--muted);">2026 · Round 19 · 1 novembre (non ancora disputato)</span></div>
+<div class="circ-section-title">🏆 Ultimi 5 anni di risultati — <span style="font-size:.75rem;color:var(--muted);">2026 · Round 19 · 1 novembre</span></div>
 <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
 <table class="results-table">
 <thead><tr><th>Anno</th><th>🔴 MotoGP</th><th>🟡 Moto2</th><th>🟢 Moto3</th></tr></thead>
 <tbody>
+  <tr style="background:rgba(255,107,53,.07);">
+    <td class="year-td" style="color:var(--red);font-weight:700;">2026</td>
+    <td><span class="cat-gp">Marc Márquez</span></td>
+    <td><span class="cat-m2">David Alonso</span></td>
+    <td><span class="cat-m3">Máximo Quiles</span></td>
+  </tr>
   <tr>
     <td class="year-td">2025</td>
     <td><span class="cat-gp">Alex Márquez</span></td>
@@ -388,12 +388,6 @@
     <td><span class="cat-gp">Francesco Bagnaia</span></td>
     <td><span class="cat-m2">Tony Abolino</span></td>
     <td><span class="cat-m3">John McPhee</span></td>
-  </tr>
-  <tr>
-    <td class="year-td">2019</td>
-    <td><span class="cat-gp">Maverick Viñales</span></td>
-    <td><span class="cat-m2">Brad Binder</span></td>
-    <td><span class="cat-m3">Lorenzo Dalla Porta</span></td>
   </tr>
 </tbody>
 </table>
