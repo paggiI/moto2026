@@ -1823,33 +1823,35 @@
 <script>
 
 
+
 const GP_SCHEDULE = [
   // Venerdì 6 Novembre
-  { day: 'Venerdì 6 Nov', time: '09:00-09:35', cat: 'moto3', session: 'FP1' },
-  { day: 'Venerdì 6 Nov', time: '09:50-10:30', cat: 'moto2', session: 'FP1' },
-  { day: 'Venerdì 6 Nov', time: '10:45-11:30', cat: 'motogp', session: 'FP1' },
-  { day: 'Venerdì 6 Nov', time: '13:15-13:50', cat: 'moto3', session: 'Practice' },
-  { day: 'Venerdì 6 Nov', time: '14:05-14:45', cat: 'moto2', session: 'Practice' },
-  { day: 'Venerdì 6 Nov', time: '15:00-16:00', cat: 'motogp', session: 'Practice' },
+  { day: 'Venerdì 6 Nov', time: '11:00-11:35', cat: 'moto3', session: 'FP1' },
+  { day: 'Venerdì 6 Nov', time: '11:50-12:30', cat: 'moto2', session: 'FP1' },
+  { day: 'Venerdì 6 Nov', time: '12:45-13:30', cat: 'motogp', session: 'FP1' },
+  { day: 'Venerdì 6 Nov', time: '15:15-15:50', cat: 'moto3', session: 'Practice' },
+  { day: 'Venerdì 6 Nov', time: '16:05-16:45', cat: 'moto2', session: 'Practice' },
+  { day: 'Venerdì 6 Nov', time: '17:00-18:00', cat: 'motogp', session: 'Practice' },
 
   // Sabato 7 Novembre
-  { day: 'Sabato 7 Nov', time: '08:30-09:00', cat: 'moto3', session: 'FP2' },
-  { day: 'Sabato 7 Nov', time: '09:15-09:45', cat: 'moto2', session: 'FP2' },
-  { day: 'Sabato 7 Nov', time: '10:00-10:30', cat: 'motogp', session: 'FP2' },
-  { day: 'Sabato 7 Nov', time: '10:40-10:55', cat: 'motogp', session: 'Q1' },
-  { day: 'Sabato 7 Nov', time: '11:05-11:20', cat: 'motogp', session: 'Q2' },
-  { day: 'Sabato 7 Nov', time: '12:50-13:05', cat: 'moto3', session: 'Q1' },
-  { day: 'Sabato 7 Nov', time: '13:15-13:30', cat: 'moto3', session: 'Q2' },
-  { day: 'Sabato 7 Nov', time: '13:45-14:00', cat: 'moto2', session: 'Q1' },
-  { day: 'Sabato 7 Nov', time: '14:10-14:25', cat: 'moto2', session: 'Q2' },
-  { day: 'Sabato 7 Nov', time: '15:00', cat: 'motogp', session: 'Sprint Race' },
+  { day: 'Sabato 7 Nov', time: '10:30-11:00', cat: 'moto3', session: 'FP2' },
+  { day: 'Sabato 7 Nov', time: '11:15-11:45', cat: 'moto2', session: 'FP2' },
+  { day: 'Sabato 7 Nov', time: '12:00-12:30', cat: 'motogp', session: 'FP2' },
+  { day: 'Sabato 7 Nov', time: '12:40-12:55', cat: 'motogp', session: 'Q1' },
+  { day: 'Sabato 7 Nov', time: '13:05-13:20', cat: 'motogp', session: 'Q2' },
+  { day: 'Sabato 7 Nov', time: '14:50-15:05', cat: 'moto3', session: 'Q1' },
+  { day: 'Sabato 7 Nov', time: '15:15-15:30', cat: 'moto3', session: 'Q2' },
+  { day: 'Sabato 7 Nov', time: '15:45-16:00', cat: 'moto2', session: 'Q1' },
+  { day: 'Sabato 7 Nov', time: '16:10-16:25', cat: 'moto2', session: 'Q2' },
+  { day: 'Sabato 7 Nov', time: '17:00', cat: 'motogp', session: 'Sprint Race' },
 
   // Domenica 8 Novembre
-  { day: 'Domenica 8 Nov', time: '10:40-10:50', cat: 'motogp', session: 'Warm Up' },
-  { day: 'Domenica 8 Nov', time: '12:00', cat: 'moto3', session: 'Gara' },
-  { day: 'Domenica 8 Nov', time: '13:15', cat: 'moto2', session: 'Gara' },
-  { day: 'Domenica 8 Nov', time: '15:00', cat: 'motogp', session: 'Gara' },
+  { day: 'Domenica 8 Nov', time: '12:40-12:50', cat: 'motogp', session: 'Warm Up' },
+  { day: 'Domenica 8 Nov', time: '14:00', cat: 'moto3', session: 'Gara' },
+  { day: 'Domenica 8 Nov', time: '15:15', cat: 'moto2', session: 'Gara' },
+  { day: 'Domenica 8 Nov', time: '17:00', cat: 'motogp', session: 'Gara' },
 ];
+
 
 const CAT_COLORS = { motogp: 'var(--gp)', moto2: 'var(--m2)', moto3: 'var(--m3)' };
 const CAT_NAMES = { motogp: 'MotoGP', moto2: 'Moto2', moto3: 'Moto3' };
