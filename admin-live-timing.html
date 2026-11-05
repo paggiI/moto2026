@@ -23,15 +23,20 @@
 body{background:var(--bg);color:var(--text);font-family:var(--f-b);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 a{color:inherit;text-decoration:none;}
 
-/* HEADER */
-.header{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:1px solid var(--red);display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 .8rem;gap:.6rem;}
-.logo{font-family:var(--f-h);font-weight:700;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:.25rem;}
+/* HEADER — identico a index.html (#theme-toggle style) */
+.header{position:sticky;top:0;z-index:200;background:rgba(10,10,10,.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:60px;gap:.8rem;flex-wrap:nowrap;}
+[data-theme="light"] .header{background:rgba(244,244,244,.96);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;color:#fff;text-decoration:none;flex-shrink:0;display:flex;align-items:center;gap:.25rem;}
+[data-theme="light"] .logo{color:#111;}
 .logo span{color:var(--red);}
-.back-link{font-family:var(--f-h);font-size:.66rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
+.back-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#888;text-decoration:none;display:flex;align-items:center;gap:.3rem;}
 .back-link:hover{color:var(--red);}
-.actions{display:flex;align-items:center;gap:.25rem;}
-.actions button{width:30px;height:30px;background:transparent;border:1px solid var(--dim);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.78rem;transition:all .12s;}
-.actions button:hover{border-color:var(--red);color:var(--red);}
+.header-right{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+/* Theme toggle + logout buttons — STESSO STILE DI index.html #theme-toggle */
+.header-btn{background:transparent!important;border:1px solid var(--border)!important;color:#888!important;cursor:pointer;border-radius:6px!important;padding:.3rem .5rem!important;font-size:.9rem!important;line-height:1;display:flex!important;align-items:center;justify-content:center;font-family:inherit;}
+.header-btn:hover{border-color:var(--red)!important;color:var(--red)!important;}
+[data-theme="light"] .header-btn{color:#666!important;}
+[data-theme="light"] .header-btn:hover{color:var(--red)!important;}
 
 /* LOGIN */
 .login-wrap{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;}
@@ -109,6 +114,18 @@ a{color:inherit;text-decoration:none;}
 /* ACTION BUTTONS under table */
 .actions-row{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;justify-content:space-between;}
 .actions-row .left,.actions-row .right{display:flex;gap:.5rem;flex-wrap:wrap;}
+/* Tutti i bottoni in actions-row ereditano lo stesso stile di .admin-bar button */
+.actions-row button{
+  font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:600;padding:.45rem .8rem;
+  background:#1a1a1a;color:#eee;border:1px solid #2a2a2a;cursor:pointer;letter-spacing:.04em;
+  text-transform:uppercase;transition:all .12s;
+}
+[data-theme="light"] .actions-row button{background:#fff;color:#111;border-color:#d0d0d0;}
+.actions-row button:hover{border-color:var(--red);color:var(--red);}
+/* Ghost = sfondo trasparente ma bordo e testo visibili */
+.actions-row button.btn-ghost{background:transparent!important;color:#eee!important;border:1px solid #2a2a2a!important;}
+[data-theme="light"] .actions-row button.btn-ghost{background:transparent!important;color:#111!important;border:1px solid #d0d0d0!important;}
+.actions-row button.btn-ghost:hover{border-color:var(--red)!important;color:var(--red)!important;background:rgba(232,0,29,.05)!important;}
 
 /* Empty state */
 .empty-admin{padding:2rem 1rem;text-align:center;color:var(--muted);}
@@ -165,26 +182,24 @@ a{color:inherit;text-decoration:none;}
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (identico a index.html) -->
 <header class="header">
   <a href="index.html" class="back-link">← Home</a>
-  <a href="#" class="logo">MOTO<span>'26</span> · ADMIN</a>
-  <div class="actions">
-    <button onclick="toggleTheme()" id="themeBtn">☀</button>
-    <button onclick="logout()" title="Logout">⏻</button>
+  <a href="index.html" class="logo">MOTO<span>'26</span> · ADMIN</a>
+  <div class="header-right">
+    <button aria-label="Cambia tema" class="header-btn" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+    <button aria-label="Profilo / Logout" class="header-btn" id="profileBtn" onclick="confirmLogout()" title="Profilo">👤</button>
   </div>
 </header>
 
-<!-- LOGIN -->
+<!-- ACCESS GATE (sostituisce login form — come admin-notifiche.html) -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-card">
-    <h1>Admin Live Timing</h1>
-    <p>Accedi con il tuo account admin per gestire il live timing delle sessioni.</p>
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="admin@esempio.it">
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="••••••••">
-    <button onclick="doLogin()">Accedi</button>
+    <h1 id="gateTitle">Verifica accesso...</h1>
+    <p id="gateMsg">Controllo sessione in corso.</p>
+    <div id="gateActions" style="margin-top:1rem;">
+      <a href="index.html" style="display:inline-block;background:var(--red);color:#fff;padding:.6rem 1.2rem;font-family:var(--f-h);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;">← Vai al sito per fare il login</a>
+    </div>
     <div class="err" id="loginErr"></div>
   </div>
 </div>
@@ -199,7 +214,6 @@ a{color:inherit;text-decoration:none;}
       <option value="MotoGP">MotoGP</option>
       <option value="Moto2">Moto2</option>
       <option value="Moto3">Moto3</option>
-      <option value="MotoE">MotoE</option>
     </select>
     <span class="lbl">Sessione:</span>
     <select id="sessionSelect" onchange="onSelectSession()" style="min-width:200px;"></select>
@@ -225,7 +239,7 @@ a{color:inherit;text-decoration:none;}
       <div>
         <label>Categoria</label>
         <select id="newCat">
-          <option>MotoGP</option><option>Moto2</option><option>Moto3</option><option>MotoE</option>
+          <option>MotoGP</option><option>Moto2</option><option>Moto3</option>
         </select>
       </div>
       <div>
@@ -386,10 +400,9 @@ a{color:inherit;text-decoration:none;}
 </div>
 
 <script>
-// ═══ COSTANTI SUPABASE — SOSTITUISCI CON LE TUE ═══
+// ═══ COSTANTI SUPABASE — STESSO NOME DI admin-notifiche.html ═══
 const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
-
 
 let sb = null;
 let currentUser = null;
@@ -402,63 +415,71 @@ function initSupabase(){
     toast('Errore', 'Supabase SDK non caricato', 'err');
     return false;
   }
-  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: { persistSession: true, autoRefreshToken: true }
   });
   return true;
 }
 
-// ═══ AUTH ═══
-async function doLogin(){
-  const email = document.getElementById('email').value.trim();
-  const pass = document.getElementById('password').value;
-  const errEl = document.getElementById('loginErr');
-  errEl.textContent = '';
+// ═══ AUTH (stesso pattern di admin-notifiche.html) ═══
+// Verifica sessione esistente (login lo fai dal sito principale via auth.js)
+// Se c'è sessione e sei admin → mostra pannello
+// Se non c'è sessione → mostra "vai al sito per fare login"
+// Se c'è sessione ma non sei admin → mostra "accesso negato"
 
-  if(!email || !pass){
-    errEl.textContent = 'Inserisci email e password.';
+async function checkAuth(){
+  if(!sb){
+    showGate('Errore di configurazione', 'Supabase non inizializzato. Configura SUPABASE_URL e SUPABASE_ANON_KEY nello script.');
     return;
   }
 
-  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
-  if(error){
-    errEl.textContent = 'Errore: ' + error.message;
+  // Verifica sessione esistente
+  const { data: { session }, error: sessionErr } = await sb.auth.getSession();
+
+  if(sessionErr){
+    console.error('Errore getSession:', sessionErr);
+    showGate('Errore sessione', sessionErr.message);
     return;
   }
 
-  currentUser = data.user;
-  await checkAdmin();
-}
-
-async function checkAdmin(){
-  if(!currentUser){
-    const { data } = await sb.auth.getSession();
-    if(data.session){
-      currentUser = data.session.user;
-    } else {
-      showLogin();
-      return;
-    }
-  }
-
-  // Verifica admin
-  const { data: isAdmin } = await sb.rpc('is_current_user_admin');
-
-  if(error || !profile || !profile.is_admin){
-    document.getElementById('loginErr').textContent = 'Il tuo account non è admin.';
-    await sb.auth.signOut();
-    currentUser = null;
-    showLogin();
+  if(!session){
+    showGate('Devi essere loggato', 'Per accedere al pannello admin devi prima effettuare il login dal sito principale (index.html).');
     return;
   }
 
+  currentUser = session.user;
+  console.log('Sessione trovata per:', currentUser.email);
+
+  // Verifica admin tramite RPC (stesso metodo di admin-notifiche.html)
+  const { data: isAdmin, error: adminErr } = await sb.rpc('is_current_user_admin');
+
+  if(adminErr){
+    console.error('Errore RPC is_current_user_admin:', adminErr);
+    showGate('Errore verifica admin', 'Dettagli: ' + adminErr.message + ' — Verifica che la funzione is_current_user_admin() sia stata creata (esegui setup_admin_notifiche.sql) e che la tua email sia impostata come admin al suo interno.');
+    return;
+  }
+
+  if(!isAdmin){
+    console.log('RPC is_current_user_admin ha restituito false per:', currentUser.email);
+    showGate('Accesso negato', 'Il tuo account (' + currentUser.email + ') non ha i permessi di amministratore. Verifica che la tua email sia impostata come admin nella funzione is_current_user_admin() nel database.');
+    return;
+  }
+
+  // ✅ È admin — mostra pannello
+  console.log('Admin verificato ✓');
   showAdmin();
   loadSessions();
 }
 
-function showLogin(){
+function showGate(title, msg){
   document.getElementById('loginWrap').style.display = 'flex';
   document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('gateTitle').textContent = title;
+  document.getElementById('gateMsg').textContent = msg;
+  // Se l'utente è loggato ma non admin, mostra anche un bottone logout (con conferma)
+  if(currentUser){
+    document.getElementById('gateActions').innerHTML = '<button onclick="confirmLogout()" style="background:var(--red);color:#fff;border:none;padding:.6rem 1.2rem;font-family:var(--f-h);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;">Logout</button> &nbsp; <a href="index.html" style="color:var(--muted);font-size:.78rem;text-decoration:none;">← Torna alla home</a>';
+  }
 }
 
 function showAdmin(){
@@ -467,10 +488,23 @@ function showAdmin(){
 }
 
 async function logout(){
-  await sb.auth.signOut();
+  if(sb) await sb.auth.signOut();
   currentUser = null;
-  showLogin();
-  toast('Logout', 'Disconnesso', 'warn');
+  showGate('Logout effettuato', 'Sei stato disconnesso. Torna al sito principale per rifare il login.');
+  document.getElementById('gateActions').innerHTML = '<a href="index.html" style="display:inline-block;background:var(--red);color:#fff;padding:.6rem 1.2rem;font-family:var(--f-h);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;">← Vai al sito</a>';
+}
+
+function confirmLogout(){
+  if(!currentUser){
+    // Non loggato — non dovrebbe succedere ma fallback
+    logout();
+    return;
+  }
+  const email = currentUser.email || 'account corrente';
+  const sure = confirm('Sei sicuro di voler uscire?\n\nAccount: ' + email);
+  if(sure){
+    logout();
+  }
 }
 
 // ═══ SESSION MANAGEMENT ═══
@@ -1187,17 +1221,17 @@ function toggleTheme(){
   const c = h.getAttribute('data-theme');
   const n = c === 'dark' ? 'light' : 'dark';
   h.setAttribute('data-theme', n);
-  document.getElementById('themeBtn').textContent = n === 'dark' ? '☀' : '🌙';
+  document.getElementById('theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
 }
 
 // ═══ INIT ═══
 window.addEventListener('DOMContentLoaded', () => {
-  if(SUPABASE_URL === 'TUO_SUPABASE_URL'){
-    document.getElementById('loginErr').textContent = 'Configura SUPABASE_URL e SUPABASE_KEY nel file.';
+  if(SUPABASE_URL === 'PASTE_YOUR_SUPABASE_URL_HERE' || SUPABASE_ANON_KEY === 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE'){
+    showGate('Errore di configurazione', 'Configura SUPABASE_URL e SUPABASE_ANON_KEY nel file (vedi commento in alto nello script).');
     return;
   }
   if(!initSupabase()) return;
-  checkAdmin();
+  checkAuth();
 });
 </script>
 </body>
