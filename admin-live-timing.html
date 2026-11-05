@@ -404,6 +404,27 @@ a{color:inherit;text-decoration:none;}
 const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
 
+// ═══ LISTA TEAM MOTOGP (ordinati per bike: Ducati→Aprilia→KTM→Honda→Yamaha) ═══
+const MOTOGP_TEAMS = [
+  // Ducati
+  'Ducati Lenovo Team',
+  'BK8 Gresini Racing MotoGP',
+  'Pertamina Enduro VR46',
+  // Aprilia
+  'Aprilia Racing',
+  'Trackhouse MotoGP Team',
+  // KTM
+  'Red Bull KTM Factory Racing',
+  'Red Bull KTM Tech3',
+  // Honda
+  'Honda HRC Castrol',
+  'Castrol Honda LCR',
+  'Pro Honda LCR',
+  // Yamaha
+  'Monster Energy Yamaha MotoGP',
+  'Prima Pramac Yamaha MotoGP'
+];
+
 let sb = null;
 let currentUser = null;
 let currentSession = null;
@@ -536,9 +557,12 @@ async function loadSessions(){
     return;
   }
 
-  // Ordina: live > scheduled > finished
-  const order = { live: 0, scheduled: 1, finished: 2, cancelled: 3 };
-  ridersCache.sort((a,b) => (order[a.status] ?? 9) - (order[b.status] ?? 9));
+  // Ordina: per id ASC (così AM viene prima di PM, FP1 prima di FP2)
+  ridersCache.sort((a, b) => {
+    if(a.id < b.id) return -1;
+    if(a.id > b.id) return 1;
+    return 0;
+  });
 
   ridersCache.forEach(s => {
     const opt = document.createElement('option');
@@ -548,9 +572,11 @@ async function loadSessions(){
     sel.appendChild(opt);
   });
 
-  // Auto-seleziona la prima live
-  const live = ridersCache.find(s => s.status === 'live');
-  if(live) sel.value = live.id;
+  // Auto-seleziona la PRIMA sessione nella lista (FP1 di solito)
+  // Non preferiamo più le LIVE — l'admin deve sempre partire dalla sessione più "alta" (FP1)
+  if(ridersCache.length > 0){
+    sel.value = ridersCache[0].id;
+  }
   onSelectSession();
 }
 
@@ -722,10 +748,15 @@ function renderEditor(rows){
       <td><input type="number" class="pos-input" value="${r.position}" data-field="position" min="1"></td>
       <td><input type="number" class="num-input" value="${r.rider_number ?? ''}" data-field="rider_number" min="0"></td>
       <td class="left"><input type="text" class="name-input" value="${r.rider_name}" data-field="rider_name"></td>
-      <td class="hide-mobile"><input type="text" value="${r.team || ''}" data-field="team" style="min-width:90px;"></td>
+      <td class="hide-mobile">
+        <select data-field="team" style="min-width:130px;">
+          <option value="">—</option>
+          ${MOTOGP_TEAMS.map(t => `<option ${r.team === t ? 'selected' : ''}>${t}</option>`).join('')}
+        </select>
+      </td>
       <td class="hide-mobile">
         <select data-field="bike" style="min-width:70px;">
-          ${['Ducati','Aprilia','KTM','Honda','Yamaha','Boscoscuro','CFMoto','Kalex','Husqvarna','GasGas','Other'].map(b => `<option ${r.bike === b ? 'selected' : ''}>${b}</option>`).join('')}
+          ${['Aprilia','Ducati','KTM','Honda','Yamaha'].map(b => `<option ${r.bike === b ? 'selected' : ''}>${b}</option>`).join('')}
         </select>
       </td>
       <td class="hide-mobile"><input type="text" class="gap-input" value="${r.gap || ''}" data-field="gap" placeholder="+0.000"></td>
@@ -840,74 +871,87 @@ async function loadFromRidersDB(){
     }
   }
 
-  // Prova a leggere dalla tabella riders
-  // La tabella esiste già nel tuo Supabase (188 piloti). Verifichiamo le colonne.
-  // Proviamo prima con i campi comuni: name, number, team, bike, category
-  let riders = [];
-  let triedColumns = [];
+  // TENTATIVO 1: query con ilike (case-insensitive exact match)
+  const catLower = currentSession.category.toLowerCase();
+  console.log('[loadFromRidersDB] Tentativo 1: ilike category=', catLower);
+  let { data: riders, error } = await sb
+    .from('riders')
+    .select('id,rider_name,team,category')
+    .ilike('category', catLower)
+    .order('rider_name', { ascending: true })
+    .limit(100);
 
-  // Tentativo 1: query standard con filtri category
-  const queries = [
-    { cols: 'id,name,number,team,bike,category', filter: { col: 'category', op: 'eq', val: currentSession.category } },
-    { cols: 'id,name,number,team,bike,category', filter: { col: 'category', op: 'ilike', val: '%' + currentSession.category + '%' } },
-    // Fallback: tutti i riders, l'admin filtrerà dopo
-    { cols: 'id,name,number,team,bike,category', filter: null }
-  ];
+  console.log('[loadFromRidersDB] Tentativo 1 risultato:', riders ? riders.length : 0, 'righe', riders ? riders.slice(0,3) : null);
 
-  let lastErr = null;
-  for(const q of queries){
-    try {
-      let req = sb.from('riders').select(q.cols);
-      if(q.filter){
-        if(q.filter.op === 'eq') req = req.eq(q.filter.col, q.filter.val);
-        else if(q.filter.op === 'ilike') req = req.ilike(q.filter.col, q.filter.val);
+  // TENTATIVO 2: se 0 risultati, fetch all + filter in JS (perCogliere eventuali mismatch case/whitespace)
+  if((!riders || riders.length === 0) && !error){
+    console.log('[loadFromRidersDB] Tentativo 1 vuoto, provo fetch all + filter JS');
+    const { data: all, error: err2 } = await sb
+      .from('riders')
+      .select('id,rider_name,team,category')
+      .order('rider_name', { ascending: true })
+      .limit(300);
+    if(err2){
+      error = err2;
+    } else {
+      console.log('[loadFromRidersDB] Fetch all:', all ? all.length : 0, 'righe totali');
+      riders = (all || []).filter(r =>
+        r.category && r.category.toLowerCase().trim() === catLower
+      );
+      console.log('[loadFromRidersDB] Dopo filter JS:', riders.length, 'righe');
+      // Se ancora 0, mostra tutte le categorie disponibili per debug
+      if(riders.length === 0 && all){
+        const cats = [...new Set(all.map(r => r.category))];
+        console.log('[loadFromRidersDB] Categorie disponibili nella tabella:', cats);
+        toast('Debug info', 'Categorie nella tabella riders: ' + cats.join(', '), 'warn');
       }
-      req = req.order('name', { ascending: true }).limit(50);
-      const { data, error } = await req;
-      if(!error && data && data.length > 0){
-        riders = data;
-        triedColumns.push(q.cols + ' → OK (' + data.length + ' rows)');
-        break;
-      } else if(error){
-        triedColumns.push(q.cols + ' → ERR: ' + error.message);
-        lastErr = error;
-      }
-    } catch(e){
-      triedColumns.push(q.cols + ' → EXC: ' + e.message);
     }
   }
 
-  if(riders.length === 0){
-    toast('Tabella riders non accessibile', 'Usa "Importa lista testuale". Dettagli: ' + (lastErr?.message || 'nessun dato'), 'err');
-    console.log('Tentativi tabella riders:', triedColumns);
+  if(error){
+    toast('Errore query riders', error.message + ' — verifica che la tabella riders esista nel tuo Supabase', 'err');
     return;
   }
 
-  // Conta quanti piloti running ci sono già per partire dalla posizione giusta
+  if(!riders || riders.length === 0){
+    toast('Nessun pilota trovato', 'Nessun pilota nella tabella riders con category=' + catLower + '. Apri F12 → Console per vedere le categorie disponibili.', 'warn');
+    return;
+  }
+
+  // Conta existing per offset posizione
   const startIdx = existing ? existing.length + 1 : 1;
 
-  // Inserisci
+  // Inserisci — senza number/bike (admin li imposta dopo se vuole)
+  // Usa upsert con ignoreDuplicates per non fallire se ci sono duplicati
   const inserts = riders.map((r, i) => ({
     session_id: currentSession.id,
     category: currentSession.category,
     position: startIdx + i,
-    rider_id: r.id,
-    rider_number: r.number ?? 0,
-    rider_name: r.name || 'Pilota',
+    rider_id: null,
+    rider_number: 0,
+    rider_name: r.rider_name || 'Pilota',
     team: r.team || null,
-    bike: r.bike || null,
+    bike: null,
     laps: 0,
     status: 'running'
   }));
 
-  const { data: inserted, error: insErr } = await sb.from('live_timing').insert(inserts).select();
+  const { data: inserted, error: insErr } = await sb.from('live_timing')
+    .upsert(inserts, { onConflict: 'session_id,category,position', ignoreDuplicates: true })
+    .select();
+
   if(insErr){
     toast('Errore inserimento', insErr.message, 'err');
     return;
   }
 
   await loadRiders();
-  toast('Piloti caricati', `${inserted.length} piloti aggiunti da tabella riders DB`, 'ok');
+  const loadedCount = inserted ? inserted.length : 0;
+  if(loadedCount < inserts.length){
+    toast('Caricamento parziale', `${loadedCount} piloti caricati su ${inserts.length} (${inserts.length - loadedCount} già presenti).`, 'warn');
+  } else {
+    toast('Piloti caricati', `${loadedCount} piloti aggiunti da tabella riders`, 'ok');
+  }
 }
 
 // 2. IMPORTA LISTA TESTUALE
