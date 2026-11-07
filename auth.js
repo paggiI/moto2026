@@ -190,6 +190,7 @@ document.head.appendChild(notifStyle);
     document.getElementById('auth-password').value = '';
     document.getElementById('auth-overlay').classList.add('open');
     setTimeout(function(){ document.getElementById('auth-email').focus(); }, 100);
+    setTimeout(updateForgotPasswordLink, 50);
   };
 
   window.closeAuthModal = function() {
@@ -212,6 +213,7 @@ document.head.appendChild(notifStyle);
     if (usernameWrap) usernameWrap.style.display = isReg ? 'block' : 'none';
     
     document.getElementById('auth-error').style.display = 'none';
+    setTimeout(updateForgotPasswordLink, 50);
   };
 
   function showError(msg) {
@@ -323,6 +325,62 @@ document.head.appendChild(notifStyle);
     }
     
     return 'Si è verificato un errore. Riprova tra poco.';
+  }
+
+    // ── RECUPERO PASSWORD ──────────────────────────────────────
+    window.forgotPassword = async function() {
+    var email = prompt('Inserisci la tua email per recuperare la password:');
+    if (!email) return;
+    email = email.trim();
+    if (!email.includes('@') || email.length < 5) {
+      showToast('⚠️ Inserisci un indirizzo email valido.');
+      return;
+    }
+    
+    var path = window.location.pathname.replace(/[^/]*$/, '');
+    var redirectTo = window.location.origin + path + 'reset-password.html';
+    
+    console.log('[forgotPassword] email:', email);
+    console.log('[forgotPassword] redirectTo:', redirectTo);
+    
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: redirectTo
+    });
+    
+    if (error) {
+      console.error('[forgotPassword] ERRORE SUPABASE:', error);
+      console.error('[forgotPassword] error.message:', error.message);
+      console.error('[forgotPassword] error.status:', error.status);
+      showToast('⚠️ ' + traduciErroreSupabase(error.message));
+      return;
+    }
+    
+    console.log('[forgotPassword] OK, email inviata:', data);
+    closeAuthModal();
+    showToast('✅ Email di reset inviata! Controlla la tua casella di posta (anche spam).');
+  };
+
+  // Inietta link "Password dimenticata?" sotto la form di login
+  function updateForgotPasswordLink() {
+    var switchEl = document.getElementById('auth-switch');
+    if (!switchEl) return;
+    
+    // Rimuovi link esistente
+    var existing = document.getElementById('auth-forgot-link');
+    if (existing) existing.remove();
+    
+    // Mostra il link solo in modalità login (non in registrazione)
+    if (MODE === 'login') {
+      var forgotLink = document.createElement('div');
+      forgotLink.id = 'auth-forgot-link';
+      forgotLink.style.cssText = 'margin-top:.8rem;text-align:center;font-family:"Barlow Condensed",sans-serif;font-size:.82rem;letter-spacing:.03em;';
+      forgotLink.innerHTML = '<a onclick="forgotPassword()" style="color:var(--muted);cursor:pointer;text-decoration:underline;transition:color .15s;" onmouseover="this.style.color=\'var(--red)\'" onmouseout="this.style.color=\'var(--muted)\'">Password dimenticata?</a>';
+      
+      // Inserisci dopo lo switch
+      if (switchEl.parentNode) {
+        switchEl.parentNode.insertBefore(forgotLink, switchEl.nextSibling);
+      }
+    }
   }
 
   window.logoutUser = async function() {
