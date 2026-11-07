@@ -64,180 +64,199 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const QUIZ_QUESTIONS = [
   // MOTOGP
   {
-    id: 'malaysia_mgp_q1',
-    question: 'In quale circuito si disputa il GP della Malesia 2026?',
-    options: ['Buriram', 'Sepang', 'Mandalika', 'Motegi'],
+    id: 'qatar_mgp_q1',
+    question: 'In quale circuito si disputa il GP del Qatar 2026?',
+    options: ['Sakhir', 'Lusail International Circuit', 'Yas Marina', 'Jerez'],
     correct: 1
   },
   {
-    id: 'malaysia_mgp_q2',
-    question: 'Chi guida il Mondiale MotoGP dopo il GP d\u2019Australia?',
-    options: ['Jorge Mart\u00edn', 'Marco Bezzecchi', 'Marc M\u00e1rquez', 'Pedro Acosta'],
+    id: 'qatar_mgp_q2',
+    question: 'Chi ha vinto il GP del Qatar MotoGP nel 2025?',
+    options: ['Francesco Bagnaia', 'Marc Márquez', 'Álex Márquez', 'Franco Morbidelli'],
+    correct: 1
+  },
+  {
+    id: 'qatar_mgp_q3',
+    question: 'Quale pilota ha conquistato il secondo posto nel GP del Qatar 2025?',
+    options: ['Pedro Acosta', 'Franco Morbidelli', 'Francesco Bagnaia', 'Fabio Quartararo'],
     correct: 2
   },
   {
-    id: 'malaysia_mgp_q3',
-    question: 'Quale pilota occupa il secondo posto in classifica MotoGP?',
-    options: ['Pedro Acosta', 'Jorge Mart\u00edn', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
+    id: 'qatar_mgp_q4',
+    question: 'In quale giorno si disputa la Sprint MotoGP in Qatar?',
+    options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
     correct: 1
   },
   {
-    id: 'malaysia_mgp_q4',
-    question: 'Quale costruttore rappresenta Jorge Mart\u00edn nel 2026?',
-    options: ['Ducati', 'KTM', 'Aprilia', 'Yamaha'],
+    id: 'qatar_mgp_q5',
+    question: 'Quanti giri sono previsti per la gara MotoGP a Lusail?',
+    options: ['18', '20', '22', '25'],
     correct: 2
   },
   {
-    id: 'malaysia_mgp_q5',
-    question: 'Quanti punti separano Marc M\u00e1rquez e Jorge Mart\u00edn dopo il GP d\u2019Australia?',
-    options: ['5 punti', '10 punti', '15 punti', '20 punti'],
-    correct: 1
-  },
-  {
-    id: 'malaysia_mgp_q6',
-    question: 'Quale pilota occupa il terzo posto nella classifica MotoGP?',
-    options: ['Pedro Acosta', 'Ai Ogura', 'Marco Bezzecchi', 'Fabio Di Giannantonio'],
-    correct: 2
-  },
-  {
-    id: 'malaysia_mgp_q7',
-    question: 'Quale pilota ha vinto la Sprint MotoGP in Australia?',
-    options: ['Jorge Mart\u00edn', 'Marc M\u00e1rquez', 'Marco Bezzecchi', '\u00c1lex M\u00e1rquez'],
-    correct: 1
-  },
-  {
-    id: 'malaysia_mgp_q8',
-    question: 'Quale caratteristica rende Sepang particolarmente impegnativo?',
+    id: 'qatar_mgp_q6',
+    question: 'Quale caratteristica distingue il GP del Qatar?',
     options: [
-      'Le temperature elevate e le frenate intense',
-      'La presenza di neve',
-      'Le curve esclusivamente lente',
-      'L\u2019assenza di rettilinei'
+      'Si corre sotto la pioggia artificiale',
+      'Si corre in notturna',
+      'Si corre esclusivamente al mattino',
+      'Si corre su un circuito cittadino'
     ],
+    correct: 1
+  },
+  {
+    id: 'qatar_mgp_q7',
+    question: 'Chi ha vinto la gara MotoGP del Qatar nel 2025?',
+    options: ['Marc Márquez', 'Jorge Martín', 'Fabio Di Giannantonio', 'Marco Bezzecchi'],
     correct: 0
   },
   {
-    id: 'malaysia_mgp_q9',
-    question: 'Quanti giri sono previsti per la gara MotoGP di Sepang nel 2026?',
-    options: ['18', '20', '22', '24'],
-    correct: 1
-  },
-  {
-    id: 'malaysia_mgp_q10',
-    question: 'Quanti giri sono previsti per la Sprint MotoGP in Malesia?',
-    options: ['8', '10', '12', '15'],
-    correct: 1
-  },
-  // MOTO2
-  {
-    id: 'malaysia_moto2_q1',
-    question: 'Chi guida la classifica mondiale Moto2 dopo il GP d\u2019Australia?',
-    options: ['Izan Guevara', 'Manuel Gonz\u00e1lez', 'Daniel Holgado', 'Barry Baltus'],
-    correct: 1
-  },
-  {
-    id: 'malaysia_moto2_q2',
-    question: 'Quale pilota insegue Manuel Gonz\u00e1lez nella lotta per il titolo Moto2?',
-    options: ['Senna Agius', 'Filip Sala\u010d', 'Izan Guevara', 'Barry Baltus'],
+    id: 'qatar_mgp_q8',
+    question: 'Quale costruttore ha vinto il GP del Qatar 2025 con Marc Márquez?',
+    options: ['KTM', 'Aprilia', 'Ducati', 'Honda'],
     correct: 2
   },
   {
-    id: 'malaysia_moto2_q3',
-    question: 'Quale team schiera Manuel Gonz\u00e1lez nel 2026?',
+    id: 'qatar_mgp_q9',
+    question: 'Quanto misura il rettilineo principale di Lusail?',
+    options: ['650 metri', '850 metri', '1.068 metri', '1.500 metri'],
+    correct: 2
+  },
+  {
+    id: 'qatar_mgp_q10',
+    question: 'Quale pilota ha vinto il GP del Qatar 2025 nella categoria MotoGP?',
+    options: ['Álex Márquez', 'Marc Márquez', 'Francesco Bagnaia', 'Franco Morbidelli'],
+    correct: 1
+  },
+
+  // MOTO2
+  {
+    id: 'qatar_moto2_q1',
+    question: 'Quale motore viene utilizzato da tutti i piloti della Moto2?',
     options: [
-      'Red Bull KTM Ajo',
-      'LIQUI MOLY Dynavolt Intact GP',
-      'Elf Marc VDS Racing Team',
-      'Pramac Yamaha'
+      'Honda 600 cc',
+      'Triumph 765 cc',
+      'Ducati 1000 cc',
+      'Yamaha 850 cc'
     ],
     correct: 1
   },
   {
-    id: 'malaysia_moto2_q4',
-    question: 'Quanti giri sono previsti per la gara Moto2 a Sepang?',
-    options: ['15', '17', '19', '21'],
+    id: 'qatar_moto2_q2',
+    question: 'Quale categoria rappresenta la classe intermedia del Motomondiale?',
+    options: ['Moto3', 'Moto2', 'MotoGP', 'Superbike'],
     correct: 1
   },
   {
-    id: 'malaysia_moto2_q5',
-    question: 'Quale pilota australiano corre in Moto2?',
-    options: ['Joel Kelso', 'Senna Agius', 'Jack Miller', 'Veda Pratama'],
-    correct: 1
-  },
-  {
-    id: 'malaysia_moto2_q6',
-    question: 'Quale sessione assegna la pole position in Moto2?',
-    options: ['FP1', 'Warm Up', 'Qualifiche', 'Sprint'],
+    id: 'qatar_moto2_q3',
+    question: 'Quale sessione determina la pole position in Moto2?',
+    options: ['Prove libere', 'Warm Up', 'Qualifiche', 'Sprint'],
     correct: 2
   },
+  {
+    id: 'qatar_moto2_q4',
+    question: 'Quale pilota guida la classifica mondiale Moto2 alla vigilia del GP del Qatar 2026?',
+    options: [
+      'Izan Guevara',
+      'Manuel González',
+      'Daniel Holgado',
+      'Senna Agius'
+    ],
+    correct: 1
+  },
+  {
+    id: 'qatar_moto2_q5',
+    question: 'Quale pilota australiano corre in Moto2 nel 2026?',
+    options: [
+      'Jack Miller',
+      'Senna Agius',
+      'Joel Kelso',
+      'Remy Gardner'
+    ],
+    correct: 1
+  },
+  {
+    id: 'qatar_moto2_q6',
+    question: 'In quale giorno si disputa la gara Moto2 in Qatar?',
+    options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
+    correct: 2
+  },
+
   // MOTO3
   {
-    id: 'malaysia_moto3_q1',
-    question: 'Chi ha conquistato il titolo mondiale Moto3 2026 in Indonesia?',
-    options: ['David Almansa', '\u00c1lvaro Carpe', 'M\u00e1ximo Quiles', 'Brian Uriarte'],
-    correct: 2
-  },
-  {
-    id: 'malaysia_moto3_q2',
-    question: 'Quale pilota ha conquistato la pole position Moto3 in Australia?',
-    options: ['M\u00e1ximo Quiles', 'David Almansa', 'Veda Pratama', 'Joel Kelso'],
-    correct: 2
-  },
-  {
-    id: 'malaysia_moto3_q3',
-    question: 'Quanti giri sono previsti per la gara Moto3 a Sepang?',
-    options: ['13', '15', '17', '20'],
+    id: 'qatar_moto3_q1',
+    question: 'Quale cilindrata utilizzano le moto della categoria Moto3?',
+    options: ['125 cc', '250 cc', '600 cc', '765 cc'],
     correct: 1
   },
   {
-    id: 'malaysia_moto3_q4',
-    question: 'Quale pilota \u00e8 il campione del mondo Moto3 in carica nel finale del 2026?',
-    options: ['David Almansa', 'M\u00e1ximo Quiles', '\u00c1lvaro Carpe', 'Veda Pratama'],
-    correct: 1
+    id: 'qatar_moto3_q2',
+    question: 'Quale pilota ha conquistato il titolo mondiale Moto3 2026?',
+    options: [
+      'David Almansa',
+      'Álvaro Carpe',
+      'Máximo Quiles',
+      'Brian Uriarte'
+    ],
+    correct: 2
   },
   {
-    id: 'malaysia_moto3_q5',
+    id: 'qatar_moto3_q3',
     question: 'Quale sessione determina la posizione in griglia dei piloti Moto3?',
     options: ['Warm Up', 'FP1', 'Qualifiche', 'Sprint'],
     correct: 2
   },
   {
-    id: 'malaysia_moto3_q6',
-    question: 'Quale categoria disputa la gara pi\u00f9 breve tra MotoGP, Moto2 e Moto3 a Sepang?',
-    options: ['MotoGP', 'Moto2', 'Moto3', 'Hanno tutte la stessa distanza'],
-    correct: 2
-  },
-  // CURIOSIT\u00c0 SUL CIRCUITO
-  {
-    id: 'malaysia_extra_q1',
-    question: 'Qual \u00e8 la lunghezza del circuito di Sepang?',
-    options: ['4,45 km', '4,65 km', '5,543 km', '6,1 km'],
-    correct: 2
-  },
-  {
-    id: 'malaysia_extra_q2',
-    question: 'In quale anno Sepang ha ospitato per la prima volta il GP motociclistico?',
-    options: ['1995', '1997', '1999', '2001'],
-    correct: 2
-  },
-  {
-    id: 'malaysia_extra_q3',
-    question: 'Quale citt\u00e0 si trova vicino al circuito di Sepang?',
-    options: ['Bangkok', 'Kuala Lumpur', 'Singapore', 'Giacarta'],
+    id: 'qatar_moto3_q4',
+    question: 'Quale caratteristica tecnica hanno i motori della Moto3?',
+    options: [
+      'Sono bicilindrici',
+      'Sono monocilindrici a quattro tempi',
+      'Sono quattro cilindri',
+      'Sono motori elettrici'
+    ],
     correct: 1
   },
   {
-    id: 'malaysia_extra_q4',
-    question: 'Qual \u00e8 il principale fattore climatico che mette alla prova i piloti a Sepang?',
-    options: [
-      'Freddo intenso',
-      'Caldo e umidit\u00e0 elevata',
-      'Vento gelido costante',
-      'Altitudine estrema'
-    ],
+    id: 'qatar_moto3_q5',
+    question: 'Quale categoria disputa normalmente la prima gara della domenica?',
+    options: ['MotoGP', 'Moto2', 'Moto3', 'Superbike'],
+    correct: 2
+  },
+  {
+    id: 'qatar_moto3_q6',
+    question: 'In quale giorno si disputano le qualifiche Moto3 in Qatar?',
+    options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
+    correct: 1
+  },
+
+  // CURIOSITÀ SUL CIRCUITO
+  {
+    id: 'qatar_extra_q1',
+    question: 'Qual è la lunghezza del circuito di Lusail?',
+    options: ['4,2 km', '5,38 km', '6,1 km', '4,65 km'],
+    correct: 1
+  },
+  {
+    id: 'qatar_extra_q2',
+    question: 'In quale anno il Qatar ha ospitato per la prima volta un GP del Motomondiale?',
+    options: ['2000', '2002', '2004', '2008'],
+    correct: 2
+  },
+  {
+    id: 'qatar_extra_q3',
+    question: 'In quale anno si è disputata per la prima volta una gara notturna di MotoGP in Qatar?',
+    options: ['2004', '2006', '2008', '2010'],
+    correct: 2
+  },
+  {
+    id: 'qatar_extra_q4',
+    question: 'Vicino a quale città si trova il circuito di Lusail?',
+    options: ['Dubai', 'Doha', 'Abu Dhabi', 'Riyadh'],
     correct: 1
   }
 ];
+
 
 let currentUser = null;
 let answeredMap = {}; // Mappa question_id -> is_correct
