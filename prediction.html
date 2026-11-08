@@ -635,7 +635,7 @@ footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1
   </div>
 </div>
 <div class="meta">
-<span class="pill" id="meta-rounds">3 GP rimanenti</span>
+<span class="pill" id="meta-rounds">2 GP rimanenti</span>
 <span class="pill" id="meta-saved">0 pronostici salvati</span>
 <span class="pill">Dati stagionali già caricati</span>
 </div>
@@ -645,8 +645,8 @@ footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1
 <br/>
 <div class="container">
 <div class="summary">
-<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">3</div><div class="card-desc">Round ancora da correre</div></div>
-<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">19</div><div class="card-desc">Su 22 totali</div></div>
+<div class="card"><div class="card-label">Gran Premi rimanenti</div><div class="card-value">2</div><div class="card-desc">Round ancora da correre</div></div>
+<div class="card"><div class="card-label">Round già disputati</div><div class="card-value">20</div><div class="card-desc">Su 22 totali</div></div>
 <div class="card"><div class="card-label">PRIMO IN MotoGP</div><div class="card-value">Marc Márquez</div><div class="card-desc">Leader attuale della classe regina</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto2</div><div class="card-value">Manuel González</div><div class="card-desc">Leader attuale Moto2</div></div>
 <div class="card"><div class="card-label">PRIMO IN Moto3</div><div class="card-value">Máximo Quiles</div><div class="card-desc">Leader attuale Moto3</div></div>
@@ -687,14 +687,14 @@ footer .socials { display: flex; justify-content: center; gap: 1.2rem; margin: 1
 </div>
 <button aria-label="Torna in cima" id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,0,29,.4);">↑</button>
 <script>
-const FUTURE_ROUNDS = [  {"num": 20, "name": "Gran Premio del Qatar", "circuit": "Lusail International Circuit · Lusail", "date": "06 - 08 nov", "flag": "🇶🇦", "status": "next"},{"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "future"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
+const FUTURE_ROUNDS = [{"num": 21, "name": "Gran Premio del Portogallo", "circuit": "Autodromo Internacional do Algarve · Portimão", "date": "20 – 22 nov", "flag": "🇵🇹", "status": "next"}, {"num": 22, "name": "Gran Premio della Comunitat Valenciana", "circuit": "Circuit Ricardo Tormo · Cheste", "date": "27 – 29 nov", "flag": "🇪🇸", "status": "future"}];
 const RIDER_OPTIONS = {
   "motogp": [
     { "name": "Francesco Bagnaia", "flag": "🇮🇹", "team": "Ducati Desmosedici GP26", "note": "" },
     { "name": "Marc Márquez", "flag": "🇪🇸", "team": "Ducati Desmosedici GP26", "note": "" }, //Assente R6
     { "name": "Jack Miller", "flag": "🇦🇺", "team": "Yamaha YZR-M1", "note": "⚠️ Assente Round 20" },
-    { "name": "Toprak Razgatlıoğlu", "flag": "🇹🇷", "team": "Yamaha YZR-M1", "note": "⚠️ Assente Round 20-21-22" }, //Assente R18-R19-R20-R21-R22
-    { "name": "Augusto Fernández", "flag": "🇪🇸", "team": "Yamaha YZR-M1", "note": "SOSTITUTO R18-19-21-22 Sub. T. Razgatlıoğlu ai Round 18-19-21-22" }, //Sub. R18-R19-R20-R21-R22
+    { "name": "Toprak Razgatlıoğlu", "flag": "🇹🇷", "team": "Yamaha YZR-M1", "note": "⚠️ Assente Round 21-22" }, //Assente R18-R19-R20-R21-R22
+    { "name": "Augusto Fernández", "flag": "🇪🇸", "team": "Yamaha YZR-M1", "note": "SOSTITUTO 21-22 Sub. T. Razgatlıoğlu ai Round 21-22" }, //Sub. R18-R19-R20-R21-R22
     { "name": "Álex Márquez", "flag": "🇪🇸", "team": "Ducati Desmosedici GP25", "note": "⚠️ Assente Round 8-20 (infortunio)" }, //Assente R7-R8-R20
     { "name": "Fermín Aldeguer", "flag": "🇪🇸", "team": "Ducati Desmosedici GP25", "note": "⚠️ Assente Round 18-19 (infortunio)" }, //Assente R1-R11-R12-R18-R19
     { "name": "Michele Pirro", "flag": "🇮🇹", "team": "Ducati Desmosedici GP25", "note": "SOSTITUTO R1 Sub. F. Aldeguer al Round 1 - SOSTITUTO R7 Sub. Á. Márquez al Round 7" },
