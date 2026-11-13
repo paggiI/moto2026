@@ -542,8 +542,8 @@
 
 <script>
 // ═══ COSTANTI SUPABASE — SOSTITUISCI CON LE TUE ═══
-const SUPABASE_URL = 'TUO_SUPABASE_URL';
-const SUPABASE_KEY = 'TUA_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
 
 // ID sessioni predefinite per i test di Valencia
 const SESSION_IDS = {
@@ -560,7 +560,7 @@ function initSupabase(){
     showError('Supabase SDK non caricato. Controlla la connessione internet.');
     return false;
   }
-  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     realtime: { params: { eventsPerSecond: 5 } }
   });
   return true;
@@ -837,7 +837,7 @@ function toggleTheme(){
 // Init
 window.addEventListener('DOMContentLoaded', () => {
   if(SUPABASE_URL === 'TUO_SUPABASE_URL'){
-    showError('Configura SUPABASE_URL e SUPABASE_KEY nel file (vedi commento in alto nello script).');
+    showError('Configura SUPABASE_URL e SUPABASE_ANON_KEY nel file (vedi commento in alto nello script).');
     return;
   }
   if(!initSupabase()) return;
