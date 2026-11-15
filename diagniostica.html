@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostica Admin · Moto'26</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  body{background:#0b0b0d;color:#ececef;font-family:'JetBrains Mono',monospace;padding:1.5rem;max-width:900px;margin:0 auto;font-size:13px;line-height:1.6;}
+  h1{font-family:sans-serif;font-size:1.3rem;color:#e8001d;margin-bottom:.3rem;}
+  .sub{color:#7a7a82;margin-bottom:1.5rem;font-size:12px;}
+  .step{padding:.8rem 1rem;margin:.5rem 0;border-left:3px solid #333;background:#15151a;border-radius:0 4px 4px 0;}
+  .ok{border-left-color:#22c55e;}
+  .err{border-left-color:#e8001d;}
+  .warn{border-left-color:#eab308;}
+  .step b{color:#fff;}
+  .ok b{color:#22c55e;}
+  .err b{color:#e8001d;}
+  .warn b{color:#eab308;}
+  pre{background:#000;padding:.6rem;border-radius:4px;overflow:auto;font-size:11px;color:#0f0;margin-top:.4rem;white-space:pre-wrap;}
+  .data-table{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:11px;}
+  .data-table th{background:#1a1a20;color:#7a7a82;text-align:left;padding:.3rem .5rem;text-transform:uppercase;font-size:10px;}
+  .data-table td{padding:.3rem .5rem;border-bottom:1px solid #222;}
+</style>
+</head>
+<body>
+<h1>🔍 Diagnostica Admin Live Timing</h1>
+<div class="sub">Controlla passo-passo auth, admin, sessioni e piloti. L'ultimo box rosso/giallo è dove si blocca.</div>
+<div id="out"></div>
+
+<script>
+const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
+
+function log(cls, title, detail){
+  const out = document.getElementById('out');
+  const div = document.createElement('div');
+  div.className = 'step ' + cls;
+  div.innerHTML = '<b>' + title + '</b>' + (detail ? '<pre>' + detail + '</pre>' : '');
+  out.appendChild(div);
+}
+function table(rows, cols){
+  if(!rows || rows.length === 0) return '<i>(nessuna riga)</i>';
+  let h = '<tr>' + cols.map(c => '<th>' + c + '</th>').join('') + '</tr>';
+  let b = rows.map(r => '<tr>' + cols.map(c => '<td>' + (r[c] ?? '—') + '</td>').join('') + '</tr>').join('');
+  return '<table class="data-table">' + h + b + '</table>';
+}
+
+async function run(){
+  let sb;
+  try {
+    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
+    log('ok', '✓ Client Supabase creato', 'URL: ' + SUPABASE_URL);
+  } catch(e){ log('err', '✗ Supabase SDK non caricato', e.message); return; }
+
+  log('', '⏳ Controllo sessione (sb.auth.getSession)...');
+  let session, sessionErr;
+  try { ({ data: { session }, error: sessionErr } = await sb.auth.getSession()); }
+  catch(e){ log('err', '✗ Errore getSession', e.message); return; }
+
+  if(sessionErr){ log('err', '✗ Errore sessione', sessionErr.message); return; }
+
+  if(!session){
+    log('err', '✗ NON SEI LOGGATO',
+      'Non c\'è una sessione attiva.\n\nCOME RISOLVERE:\n' +
+      '1. Apri index.html (la pagina di login del tuo sito)\n' +
+      '2. Fai login con email + password\n' +
+      '3. Torna su admin-live-timing.html\n\n' +
+      'Nota: il login deve avvenire sullo STESSO dominio.\n' +
+      'Se apri il file con file:// il login non persiste — devi usare http:// (GitHub Pages o server locale).');
+    return;
+  }
+
+  log('ok', '✓ Loggato come: ' + session.user.email, 'user.id: ' + session.user.id);
+
+  log('', '⏳ Verifica admin (sb.rpc is_current_user_admin)...');
+  let isAdmin, adminErr;
+  try { ({ data: isAdmin, error: adminErr } = await sb.rpc('is_current_user_admin')); }
+  catch(e){ log('err', '✗ Errore RPC', e.message); return; }
+
+  if(adminErr){
+    log('err', '✗ La funzione is_current_user_admin() non esiste nel DB',
+      'Errore: ' + adminErr.message + '\n\nCOME RISOLVERE:\n' +
+      '1. Supabase Dashboard → SQL Editor\n' +
+      '2. Esegui setup_admin_notifiche.sql\n' +
+      '3. Assicurati che la tua email sia nell\'array admin della funzione');
+    return;
+  }
+
+  if(!isAdmin){
+    log('err', '✗ ACCESSO NEGATO — non sei admin',
+      'is_current_user_admin() ha restituito FALSE.\n\nCOME RISOLVERE:\n' +
+      '1. Supabase Dashboard → SQL Editor\n' +
+      '2. Modifica is_current_user_admin()\n' +
+      '3. Aggiungi la tua email nell\'array admin\n' +
+      '4. Salva e riprova');
+    return;
+  }
+
+  log('ok', '✓ Admin verificato');
+
+  log('', '⏳ Query live_sessions (category ilike MotoGP)...');
+  let sessions, sessErr;
+  try { ({ data: sessions, error: sessErr } = await sb.from('live_sessions').select('*').ilike('category', 'MotoGP').order('started_at', { ascending: false }).limit(30)); }
+  catch(e){ log('err', '✗ Errore query', e.message); return; }
+
+  if(sessErr){ log('err', '✗ Errore query live_sessions', sessErr.message); return; }
+
+  if(!sessions || sessions.length === 0){
+    log('err', '✗ 0 sessioni trovate', 'La tabella live_sessions è vuota o non ha category=\'MotoGP\'.');
+    return;
+  }
+
+  log('ok', '✓ ' + sessions.length + ' sessioni trovate', table(sessions, ['id', 'gp_name', 'category', 'session_type', 'status']));
+
+  for(const s of sessions){
+    let riders, rErr;
+    try { ({ data: riders, error: rErr } = await sb.from('live_timing').select('*').eq('session_id', s.id).order('position', { ascending: true })); }
+    catch(e){ log('err', '✗ Errore live_timing per ' + s.id, e.message); continue; }
+    if(rErr){ log('err', '✗ Errore live_timing per ' + s.id, rErr.message); continue; }
+    if(!riders || riders.length === 0){
+      log('warn', '⚠ ' + s.id + ' → 0 piloti', 'Sessione senza piloti. Se è nuova, usa "Copia da altra sessione".');
+      continue;
+    }
+    log('ok', '✓ ' + s.id + ' → ' + riders.length + ' piloti',
+      table(riders.slice(0, 5), ['position', 'rider_number', 'rider_name', 'team', 'best_lap', 'laps']) +
+      (riders.length > 5 ? '\n... e altre ' + (riders.length - 5) + ' righe' : ''));
+  }
+
+  log('ok', '✅ DIAGNOSTICA COMPLETATA',
+    'Se tutto verde qui sopra, i dati ci sono e le query funzionano.\n\n' +
+    'Il problema in admin-live-timing.html è quindi:\n' +
+    '1. Non hai deployato l\'ultima versione del file (cache browser)\n' +
+    '2. Apri il file con file:// invece di http:// (login non persiste)\n' +
+    '3. Non sei loggato quando apri admin-live-timing.html\n\n' +
+    'SOLUZIONE: deploya su GitHub Pages, apri index.html, fai login, vai su admin-live-timing.html, Ctrl+Shift+R');
+}
+run();
+</script>
+</body>
+</html>

@@ -541,7 +541,7 @@
 </footer>
 
 <script>
-// ═══ COSTANTI SUPABASE — SOSTITUISCI CON LE TUE ═══
+// ═══ COSTANTI SUPABASE — STESSO NOME DI admin-notifiche.html ═══
 const SUPABASE_URL = 'https://aysknebyyzljysxpsxdv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5c2tuZWJ5eXpsanlzeHBzeGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNjgzMDgsImV4cCI6MjEwNTc0NDMwOH0.m9MRUOiZwsr-PsKnPoTF2BBX2NhAQCh7kTeYUuDxslI';
 
@@ -666,31 +666,36 @@ function updateSessionInfo(s){
   const timeWindow = currentSession === 'am' ? '09:00 — 13:00' : '14:00 — 18:00';
   document.getElementById(currentSession === 'am' ? 'tabSubAm' : 'tabSubPm').textContent = timeWindow;
 
-  // Last update
-  if(s.finished_at){
-    document.getElementById('infoUpdated').textContent = new Date(s.finished_at).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-  } else if(s.started_at){
-    document.getElementById('infoUpdated').textContent = new Date(s.started_at).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-  } else {
-    document.getElementById('infoUpdated').textContent = '—';
-  }
+  // "Aggiornato" ora mostra l'ora attuale live (orologio che scorre ogni secondo),
+  // non più il timestamp di sessione fisso. Vedi startLiveClock().
 }
 
 function renderResults(rows, sessionInfo){
-  // Ordina per best_lap (se presente) — il database potrebbe non essere ordinato correttamente
+  // Ordina per position (rispetta l'ordine impostato dall'admin), fallback tempo
   const sorted = [...rows].sort((a, b) => {
-    const ta = parseLapTime(a.best_lap);
-    const tb = parseLapTime(b.best_lap);
-    if(ta === Infinity && tb === Infinity) return (a.position || 99) - (b.position || 99);
+    const pa = a.position || 99;
+    const pb = b.position || 99;
+    if(pa !== pb) return pa - pb;
+    // Stessa posizione → fallback per tempo (best_lap, poi last_lap)
+    const ta = parseLapTime(a.best_lap || a.last_lap);
+    const tb = parseLapTime(b.best_lap || b.last_lap);
     return ta - tb;
   });
 
   // Identifica il tempo più veloce della sessione (per evidenziare FL)
-  const validLaps = sorted.filter(r => r.best_lap && parseLapTime(r.best_lap) !== Infinity);
-  const fastestLap = validLaps.length > 0 ? validLaps[0].best_lap : null;
-
-  // Tempo del primo per calcolo gap
-  const leaderTime = validLaps.length > 0 ? parseLapTime(validLaps[0].best_lap) : null;
+  // Usa best_lap, oppure last_lap come fallback
+  const riderTime = r => r.best_lap || r.last_lap;
+  const validLaps = sorted.filter(r => {
+    const t = riderTime(r);
+    return t && parseLapTime(t) !== Infinity;
+  });
+  let fastestLap = null;
+  let fastestMs = null;
+  if(validLaps.length > 0){
+    fastestMs = Math.min(...validLaps.map(r => parseLapTime(riderTime(r))));
+    const flRow = validLaps.find(r => parseLapTime(riderTime(r)) === fastestMs);
+    fastestLap = flRow ? riderTime(flRow) : null;
+  }
 
   const tbody = document.getElementById('resultsBody');
   tbody.innerHTML = '';
@@ -698,22 +703,20 @@ function renderResults(rows, sessionInfo){
   sorted.forEach((r, idx) => {
     const pos = idx + 1;
     const posClass = pos === 1 ? 'top1' : pos === 2 ? 'top2' : pos === 3 ? 'top3' : '';
-    const isFL = r.best_lap && fastestLap && r.best_lap === fastestLap;
+    const t = riderTime(r);
+    const isFL = t && fastestLap && t === fastestLap;
     const timeClass = isFL ? 'time-cell fl' : 'time-cell';
 
-    // Calcola gap
+    // Gap: usa il valore dal DB se presente (calcolato dall'admin).
+    // Altrimenti calcolalo dal tempo rispetto al leader (fallback automatico).
+    // Leader o pilota senza tempo → "—"
     let gapDisplay = '—';
-    if(leaderTime !== null && r.best_lap){
-      const t = parseLapTime(r.best_lap);
-      if(t !== Infinity && t > leaderTime){
-        const gap = t - leaderTime; // ms
-        if(gap >= 60000){
-          gapDisplay = '+' + (gap / 1000).toFixed(3) + 's';
-        } else {
-          gapDisplay = '+' + (gap / 1000).toFixed(3);
-        }
-      } else if(t === leaderTime){
-        gapDisplay = '—';
+    if(r.gap){
+      gapDisplay = r.gap;
+    } else if(t && fastestMs !== null){
+      const riderMs = parseLapTime(t);
+      if(riderMs !== Infinity && riderMs > fastestMs){
+        gapDisplay = '+' + ((riderMs - fastestMs) / 1000).toFixed(3);
       }
     }
 
@@ -724,7 +727,7 @@ function renderResults(rows, sessionInfo){
       <td class="rider-cell">${escapeHtml(r.rider_name)}</td>
       <td class="team-cell hide-mobile">${escapeHtml(r.team || '—')}</td>
       <td class="bike-cell hide-mobile">${escapeHtml(r.bike || '—')}</td>
-      <td class="${timeClass}">${r.best_lap || '—'}</td>
+      <td class="${timeClass}">${t || '—'}</td>
       <td class="gap-cell hide-mobile">${gapDisplay}</td>
       <td class="laps-cell">${r.laps ?? '—'}</td>
     `;
@@ -737,12 +740,44 @@ function renderResults(rows, sessionInfo){
   document.getElementById('cardSub').textContent = sorted.length + ' piloti · Classifica per miglior tempo';
 }
 
-// Converte "1:58.234" in millisecondi
+// Converte un tempo in millisecondi. Parser robusto:
+// "1:58.234", "1:58", "1.58.234", "1.58", "1'58.234", "58.234", "118.234"
 function parseLapTime(lapStr){
   if(!lapStr || lapStr === '—' || lapStr === '-') return Infinity;
-  const m = String(lapStr).match(/(\d+):(\d+\.\d+)/);
-  if(!m) return Infinity;
-  return parseInt(m[1]) * 60000 + parseFloat(m[2]) * 1000;
+  let s = String(lapStr).trim();
+  if(!s) return Infinity;
+  // Normalizza separatori: apostrofo → ':', quote → '.', virgola decimale → '.'
+  s = s.replace(/'/g, ':').replace(/"/g, '.').replace(/,/g, '.');
+
+  // 1) "M:SS.dec" o "M:SS"
+  let m = s.match(/(\d+):(\d+(?:\.\d+)?)/);
+  if(m) return parseInt(m[1]) * 60000 + parseFloat(m[2]) * 1000;
+
+  // 2) "M.SS.dec" (punto come separatore minuti)
+  m = s.match(/^(\d+)\.(\d+\.\d+)$/);
+  if(m) return parseInt(m[1]) * 60000 + parseFloat(m[2]) * 1000;
+
+  // 3) "M.SS" (minuti 1-3, secondi 00-59, tempo MotoGP tipico)
+  m = s.match(/^([1-3])\.([0-5]\d)$/);
+  if(m) return parseInt(m[1]) * 60000 + parseInt(m[2]) * 1000;
+
+  // 4) Solo secondi con decimali
+  m = s.match(/^(\d+\.\d+)$/);
+  if(m) return parseFloat(m[1]) * 1000;
+
+  // 5) Solo secondi interi
+  m = s.match(/^(\d+)$/);
+  if(m) return parseInt(m[1]) * 1000;
+
+  // 6) Fallback: due numeri separati da non-cifra → min:sec
+  m = s.match(/(\d+)\D+(\d+(?:\.\d+)?)/);
+  if(m) return parseInt(m[1]) * 60000 + parseFloat(m[2]) * 1000;
+
+  // 7) Ultima spiaggia: primo numero → secondi
+  m = s.match(/(\d+(?:\.\d+)?)/);
+  if(m) return parseFloat(m[1]) * 1000;
+
+  return Infinity;
 }
 
 function escapeHtml(s){
@@ -835,12 +870,26 @@ function toggleTheme(){
 }
 
 // Init
+// Orologio live: "Aggiornato" mostra l'ora attuale, aggiornata ogni secondo.
+// Sostituisce il vecchio timestamp di sessione (fisso, sembrava "bloccato").
+let clockInterval = null;
+function startLiveClock(){
+  if(clockInterval) clearInterval(clockInterval);
+  const tick = () => {
+    const el = document.getElementById('infoUpdated');
+    if(el) el.textContent = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+  tick();
+  clockInterval = setInterval(tick, 1000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-  if(SUPABASE_URL === 'TUO_SUPABASE_URL'){
+  if(SUPABASE_URL === 'PASTE_YOUR_SUPABASE_URL_HERE' || SUPABASE_ANON_KEY === 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE'){
     showError('Configura SUPABASE_URL e SUPABASE_ANON_KEY nel file (vedi commento in alto nello script).');
     return;
   }
   if(!initSupabase()) return;
+  startLiveClock();
   loadSessionData();
   subscribeRealtime();
 });
