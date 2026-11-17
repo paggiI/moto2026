@@ -466,7 +466,7 @@
 <!-- INFO BANNER -->
 <div class="info-banner">
   <div class="box">
-    ℹ️ I test ufficiali di Valencia si svolgono il <strong>martedì</strong> successivo al GP di Valencia, in un'unica giornata con due sessioni separate. I piloti testano le moto della stagione 2027 e i nuovi piloti esordiscono con i nuovi team. Le due sessioni (mattina/pomeriggio) sono <strong>indipendenti</strong>: i tempi non si cumulano.
+    ℹ️ I test ufficiali di Valencia si svolgono il <strong>martedì</strong> successivo al GP di Valencia, in un'unica giornata con due sessioni separate. Quest'anno gireranno l'1 Dicembre 2026. I piloti testano le moto della stagione 2027 e i nuovi piloti esordiscono con i nuovi team. Le due sessioni (mattina/pomeriggio) sono <strong>indipendenti</strong>: i tempi non si cumulano.
   </div>
 </div>
 
@@ -474,7 +474,7 @@
 <div class="session-tabs">
   <button class="session-tab active" data-session="am" onclick="swSession('am', this)">
     MATTINA
-    <span class="tab-sub" id="tabSubAm">09:00 — 13:00</span>
+    <span class="tab-sub" id="tabSubAm">10:00 — 13:00</span>
   </button>
   <button class="session-tab" data-session="pm" onclick="swSession('pm', this)">
     POMERIGGIO
@@ -663,7 +663,7 @@ function updateSessionInfo(s){
   document.getElementById('infoTrackTemp').textContent = s.track_temp ? `${s.track_temp}°C` : '—';
 
   // Aggiorna time window nella tab
-  const timeWindow = currentSession === 'am' ? '09:00 — 13:00' : '14:00 — 18:00';
+  const timeWindow = currentSession === 'am' ? '10:00 — 13:00' : '14:00 — 18:00';
   document.getElementById(currentSession === 'am' ? 'tabSubAm' : 'tabSubPm').textContent = timeWindow;
 
   // "Aggiornato" ora mostra l'ora attuale live (orologio che scorre ogni secondo),
@@ -811,7 +811,7 @@ function swSession(sess, btn){
   btn.classList.add('active');
 
   // Reset time windows sulle tab
-  document.getElementById('tabSubAm').textContent = '09:00 — 13:00';
+  document.getElementById('tabSubAm').textContent = '10:00 — 13:00';
   document.getElementById('tabSubPm').textContent = '14:00 — 18:00';
 
   // Unsubscribe dal canale realtime precedente
