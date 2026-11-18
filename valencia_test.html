@@ -7,6 +7,20 @@
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Theme init anti-FOUC: stessa chiave localStorage delle altre pagine (moto2026-theme).
+  (function(){
+    try {
+      var t = localStorage.getItem('moto2026-theme');
+      if (t !== 'light' && t !== 'dark') t = 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.addEventListener('DOMContentLoaded', function(){
+        var ic = document.getElementById('theme-icon');
+        if (ic) ic.textContent = t === 'dark' ? '☀️' : '🌙';
+      });
+    } catch(e){}
+  })();
+</script>
 <style>
     :root {
       --red:    #e8001d;
@@ -80,6 +94,16 @@
       display: flex; align-items: center;
     }
     #theme-toggle:hover { border-color: var(--red); color: var(--red); }
+    .back-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer;
+      border-radius: 6px; padding: .3rem .55rem;
+      font-size: .9rem; line-height: 1;
+      display: flex; align-items: center; text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      letter-spacing: .03em;
+    }
+    .back-btn:hover { border-color: var(--red); color: var(--red); }
     .hamburger {
       display: none; flex-direction: column;
       gap: 5px; cursor: pointer; padding: .3rem;
@@ -445,6 +469,7 @@
     <a href="relazione.html">Relazione</a>
   </nav>
   <div class="header-right">
+    <a href="index.html" class="back-btn" onclick="goBack(); return false;" aria-label="Torna indietro" title="Torna indietro">← Indietro</a>
     <button aria-label="Cambia tema" id="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
     <div class="hamburger" onclick="document.documentElement.classList.toggle('mobile-nav-open')">
       <span></span><span></span><span></span>
@@ -466,7 +491,7 @@
 <!-- INFO BANNER -->
 <div class="info-banner">
   <div class="box">
-    ℹ️ I test ufficiali di Valencia si svolgono il <strong>martedì</strong> successivo al GP di Valencia, in un'unica giornata con due sessioni separate. Quest'anno gireranno l'1 Dicembre 2026. I piloti testano le moto della stagione 2027 e i nuovi piloti esordiscono con i nuovi team. Le due sessioni (mattina/pomeriggio) sono <strong>indipendenti</strong>: i tempi non si cumulano.
+    ℹ️ I test ufficiali di Valencia si svolgono il <strong>martedì</strong> successivo al GP di Valencia, in un'unica giornata con due sessioni separate. I piloti testano le moto della stagione 2027 e i nuovi piloti esordiscono con i nuovi team. Le due sessioni (mattina/pomeriggio) sono <strong>indipendenti</strong>: i tempi non si cumulano.
   </div>
 </div>
 
@@ -863,10 +888,17 @@ function subscribeRealtime(){
 // Theme toggle
 function toggleTheme(){
   const h = document.documentElement;
-  const c = h.getAttribute('data-theme');
+  const c = h.getAttribute('data-theme') || 'dark';
   const n = c === 'dark' ? 'light' : 'dark';
   h.setAttribute('data-theme', n);
+  localStorage.setItem('moto2026-theme', n);
   document.getElementById('theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+}
+
+// Bottone "Indietro": torna alla pagina di provenienza, fallback alla home.
+function goBack(){
+  if (history.length > 1) history.back();
+  else location.href = 'index.html';
 }
 
 // Init

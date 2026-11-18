@@ -1656,7 +1656,35 @@
     </div>
   </div>
 </div>
-
+<!-- VALENCIA TEST POPUP — annuncio automatico (stessa grafica del welcome modal) -->
+<div class="welcome-overlay" id="vtest-modal">
+  <div class="welcome-box">
+    <button class="welcome-close-btn" onclick="closeVTest()" aria-label="Chiudi">✕</button>
+    <span class="welcome-emoji">🏁</span>
+    <h2 class="welcome-title">Valencia Test 2026</h2>
+    <p class="welcome-text" style="margin-bottom:1.2rem;">
+      <strong style="color:var(--white); font-size:1.15rem; display:block;">📅 1 Dicembre 2026</strong>
+      <span style="font-size:.85rem;">Circuit Ricardo Tormo · Cheste</span>
+    </p>
+    <div style="text-align:left; max-width:320px; margin:0 auto 1.5rem;">
+      <div style="background:var(--mid); border:1px solid var(--border); border-left:4px solid var(--red); border-radius:8px; padding:.7rem 1rem; margin-bottom:.7rem;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem; color:var(--muted);">☀️ Sessione mattutina</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; letter-spacing:.04em; color:var(--white); line-height:1.1; margin-top:.15rem;">10:00 — 13:00</div>
+      </div>
+      <div style="background:var(--mid); border:1px solid var(--border); border-left:4px solid var(--red); border-radius:8px; padding:.7rem 1rem;">
+        <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem; color:var(--muted);">🌤️ Sessione pomeridiana</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; letter-spacing:.04em; color:var(--white); line-height:1.1; margin-top:.15rem;">14:00 — 18:00</div>
+      </div>
+    </div>
+    <p class="welcome-text" style="font-size:.85rem; margin-bottom:1.3rem;">
+      Segui il <strong style="color:var(--white);">live timing in diretta</strong>: tempi sul giro, gap e classifiche delle prove MotoGP, sessione per sessione.
+    </p>
+    <div class="welcome-actions">
+      <a href="valencia_test.html" class="w-btn w-btn-primary" onclick="closeVTest()">🔴 Apri il Live Timing</a>
+      <button onclick="closeVTest()" class="w-btn w-btn-secondary">Continua sul sito</button>
+    </div>
+  </div>
+</div>
 <!-- HEADER -->
 <header>
 <a class="logo" href="index.html">MOTO<span>2026</span></a>
@@ -1722,7 +1750,7 @@
     <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .04em; color: var(--black); margin-bottom: .2rem;"><span class="live-dot"></span>LIVE — Test Valencia 2026</h3>
     <p style="font-size: .9rem; color: var(--muted); margin: 0;">Diretta dal Circuit Ricardo Tormo di Cheste: tempi, gap e classifiche delle prove MotoGP in aggiornamento continuo.</p>
   </div>
-  <a href="valencia_test.html" class="btn btn-red" style="white-space: nowrap;">
+  <a href="valencia_test.html" class="btn btn-red" style="white-space: nowrap;" onclick="openVTest(event)">
     Apri il Live Timing
   </a>
 </div>
@@ -3348,7 +3376,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// ── VALENCIA TEST POPUP (interstitial al click sul banner) ──
+// Stessa grafica del welcome modal (riusa .welcome-overlay / .welcome-box).
+// Si apre quando l'utente clicca il pulsante del banner LIVE per andare al live timing:
+// mostra date e orari dei test prima di accedere alla pagina.
+function openVTest(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const modal = document.getElementById('vtest-modal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => modal.classList.add('open'), 10);
+}
 
+function closeVTest() {
+  const modal = document.getElementById('vtest-modal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { modal.style.display = 'none'; }, 400);
+}
 // ── AUDIO PLAYER LOGIC ──
 (function(){
   var audio = document.getElementById('bg-audio');
