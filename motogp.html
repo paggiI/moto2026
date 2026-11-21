@@ -834,7 +834,7 @@
 <div class="hstat"><div class="hstat-num">33</div><div class="hstat-label">Piloti</div></div>
 <div class="hstat"><div class="hstat-num">11</div><div class="hstat-label">Team</div></div>
 <div class="hstat"><div class="hstat-num">22</div><div class="hstat-label">Gare</div></div>
-<div class="hstat"><div class="hstat-num">20</div><div class="hstat-label">Round conclusi</div></div>
+<div class="hstat"><div class="hstat-num">21</div><div class="hstat-label">Round conclusi</div></div>
 </div>
 </div>
 </section>
@@ -872,6 +872,80 @@
 <!-- COLONNA SX: Notizie -->
 <div>
 <div class="news-header">📰 Ultime Notizie</div>
+
+<div class="news-block">
+  <div class="news-card featured" id="nc-aprilia-campione-team-motogp-2026" style="cursor:pointer;">
+    <div class="news-card-body">
+
+      <span class="news-tag tag-gp">MotoGP</span>
+
+      <div class="news-title">Aprilia è Campione del Mondo Team 2026! Bezzecchi trionfa a Portimão e consegna alla squadra di Noale il primo titolo mondiale a squadre della MotoGP</div>
+
+      <div class="news-excerpt">Giornata storica per Aprilia Racing! Il team di Noale conquista matematicamente il Campionato del Mondo Team MotoGP 2026 grazie alla straordinaria vittoria di Marco Bezzecchi nella Sprint del Gran Premio del Portogallo e al quinto posto di Jorge Martín. Un risultato storico che premia il lavoro della squadra ufficiale e segna il primo titolo mondiale a squadre di Aprilia nella classe regina. A completare la festa ci pensa anche Raúl Fernández, secondo al traguardo con la Trackhouse Aprilia, per una giornata indimenticabile a Portimão.</div>
+
+      <div class="news-meta">
+        <span class="news-date">📅 21 nov 2026</span>
+        <span class="news-author">Redazione</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var _cat = "MotoGP",
+      _title = "Aprilia è Campione del Mondo Team 2026! Bezzecchi trionfa a Portimão e consegna alla squadra di Noale il primo titolo mondiale a squadre della MotoGP",
+      _meta = "📅 21 nov 2026 · ✍️ Redazione",
+      _body = `Aprilia entra nella storia della MotoGP! Il team di Noale ha conquistato matematicamente il Campionato del Mondo Team 2026 al termine della Sprint del Gran Premio del Portogallo, centrando un traguardo straordinario e il primo titolo mondiale a squadre nella classe regina.<br><br>
+
+<strong>BEZZECCHI VINCE, MARTÍN COMPLETA L’IMPRESA</strong><br><br>
+
+A consegnare il titolo ad Aprilia Racing è stata una prestazione di squadra eccezionale. Marco Bezzecchi ha dominato la Sprint di Portimão, partendo dalla pole position e mantenendo il comando fino alla bandiera a scacchi. Alle sue spalle ha concluso Raúl Fernández con la Trackhouse Aprilia, mentre Jorge Martín ha tagliato il traguardo in quinta posizione.<br><br>
+
+Una combinazione di risultati che ha permesso alla squadra ufficiale Aprilia Racing di diventare matematicamente irraggiungibile nella classifica riservata ai team, assicurandosi il titolo mondiale.<br><br>
+
+<strong>UN RISULTATO STORICO PER LA CASA DI NOALE</strong><br><br>
+
+Si tratta del primo Campionato del Mondo Team MotoGP nella storia di Aprilia, un successo che rappresenta il punto più alto del progetto RS-GP iniziato nel 2015. Un percorso di crescita costruito attraverso investimenti, sviluppo tecnico e risultati sempre più importanti, fino ad arrivare alla consacrazione mondiale del 2026.<br><br>
+
+Per Aprilia si tratta inoltre del 55° titolo mondiale nella propria storia sportiva, un risultato che conferma il valore e la tradizione della casa italiana nel motociclismo internazionale.<br><br>
+
+<strong>UNA STAGIONE DA INCORNICIARE</strong><br><br>
+
+Il 2026 ha visto Aprilia protagonista assoluta della MotoGP, con Marco Bezzecchi e Jorge Martín capaci di conquistare vittorie, podi e pole position, portando costantemente le RS-GP26 nelle posizioni di vertice.<br><br>
+
+La crescita della moto e il lavoro svolto da tutta la struttura tecnica hanno permesso alla squadra di competere stabilmente contro Ducati e gli altri costruttori, trasformando il progetto di Noale in una delle realtà più competitive della categoria.<br><br>
+
+<strong>LA FESTA DI PORTIMÃO E IL TITOLO MONDIALE</strong><br><br>
+
+La Sprint portoghese ha regalato quindi una doppia soddisfazione ad Aprilia: la vittoria di Bezzecchi e la certezza matematica del titolo Team. Una giornata resa ancora più speciale dal secondo posto di Raúl Fernández, che ha completato una doppietta Aprilia tra team ufficiale e Trackhouse.<br><br>
+
+La caduta di Marc Márquez a circa un giro e mezzo dalla fine ha aggiunto ulteriore tensione a una Sprint già ricca di colpi di scena, ma il risultato più importante per la casa italiana era ormai scritto.<br><br>
+
+Aprilia è Campione del Mondo Team MotoGP 2026! Un traguardo storico per Noale e una consacrazione che premia anni di lavoro e determinazione. La stagione non è ancora finita, ma per Aprilia questa giornata resterà per sempre nella storia.`;
+
+  function initNews() {
+    var el = document.getElementById(
+      'nc-aprilia-campione-team-motogp-2026'
+    );
+
+    if (el) {
+      el.addEventListener('click', function () {
+        if (typeof openNews === 'function') {
+          openNews(_cat, _title, _meta, _body);
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNews);
+  } else {
+    initNews();
+  }
+})();
+</script>
 
 <div class="news-block">
   <div class="news-card featured" id="nc-motogp-marquez-concentrazione-portimao-2026" style="cursor:pointer;">
@@ -977,77 +1051,24 @@ Il messaggio è quindi molto chiaro: Portimão rappresenta una grande occasione,
 })();
 </script>
 
-<div class="news-block">
-  <div class="news-card featured" id="nc-motogp-lecuona-bagnaia-portimao-2026" style="cursor:pointer;">
-    <div class="news-card-body">
 
-      <span class="news-tag tag-gp">MotoGP</span>
-
-      <div class="news-title">MotoGP, ufficiale: Iker Lecuona sostituisce Bagnaia nel GP del Portogallo sulla Ducati ufficiale</div>
-
-      <div class="news-excerpt">Iker Lecuona prenderà il posto di Francesco Bagnaia nel Ducati Lenovo Team per il GP del Portogallo. Lo spagnolo salirà sulla Desmosedici GP a Portimão, mentre il pilota italiano prosegue il recupero dopo l’intervento chirurgico al piede destro. Per Lecuona si tratta di un’occasione importante dopo una stagione da protagonista nel Mondiale Superbike.</div>
-
-      <div class="news-meta">
-        <span class="news-date">📅 16 nov 2026</span>
-        <span class="news-author">Redazione</span>
-      </div>
-
+<div class="news-card news-h-motogp hidden-news"
+  onclick="openNews('MotoGP','MOTOGP, UFFICIALE: IKER LECUONA SOSTITUISCE BAGNAIA SULLA DUCATI UFFICIALE A PORTIMÃO','📅 16 nov 2026 · ✍️ Redazione','È ufficiale: Iker Lecuona sostituirà Francesco Bagnaia nel Ducati Lenovo Team in occasione del Gran Premio del Portogallo, in programma dal 20 al 22 novembre sul circuito di Portimão. Il pilota spagnolo salirà sulla Desmosedici GP della squadra ufficiale di Borgo Panigale per il penultimo appuntamento del Mondiale MotoGP 2026, prendendo il posto del numero 63, costretto a saltare il weekend portoghese per proseguire il recupero dall’infortunio al piede destro.<br><br><strong>LECUONA SULLA DUCATI UFFICIALE A PORTIMÃO</strong><br><br>Per Iker Lecuona si apre una nuova opportunità nella classe regina. Dopo aver disputato cinque gare nel corso della stagione con il team Gresini Racing, lo spagnolo entra ora nel box ufficiale Ducati, dove avrà a disposizione la Desmosedici GP del Ducati Lenovo Team. Una sfida importante, considerando il livello della squadra e le caratteristiche impegnative del tracciato portoghese.<br><br>Lecuona arriva da una stagione particolarmente positiva nel Mondiale Superbike, conclusa al secondo posto in classifica generale con quattro vittorie. Il pilota spagnolo ha inoltre accumulato esperienza in MotoGP grazie alle sostituzioni effettuate durante il 2026, ottenendo come miglior risultato il settimo posto nel Gran Premio d’Ungheria e due piazzamenti nella top 10 in Qatar.<br><br><strong>BAGNAIA SALTA IL GP DEL PORTOGALLO</strong><br><br>La sostituzione nasce dall’impossibilità per Francesco Bagnaia di prendere parte al fine settimana di Portimão. Il pilota italiano si è infortunato durante la Sprint del Gran Premio del Qatar, riportando una doppia frattura al quarto e al quinto metatarso del piede destro. Dopo gli accertamenti medici, il numero 63 è stato sottoposto a un intervento chirurgico a Torino per stabilizzare le fratture attraverso l’inserimento di una placca.<br><br>L’operazione è riuscita e Bagnaia ha iniziato il percorso di recupero e riabilitazione. La priorità è ora recuperare la migliore condizione fisica possibile, senza forzare i tempi dopo un infortunio che richiede particolare attenzione. L’obiettivo è tornare in pista per l’ultimo appuntamento della stagione a Valencia, in programma dal 27 al 29 novembre.<br><br><strong>UNA NUOVA OCCASIONE PER IL PILOTA SPAGNOLO</strong><br><br>Per Lecuona, il fine settimana portoghese rappresenta un passaggio significativo della propria carriera. Dopo le esperienze con Gresini, il pilota avrà la possibilità di lavorare direttamente con la struttura ufficiale Ducati e confrontarsi con i migliori protagonisti della categoria in sella alla moto di Borgo Panigale.<br><br>La sua conoscenza della Desmosedici e la recente esperienza accumulata nel Mondiale Superbike saranno elementi importanti per affrontare un appuntamento che non concede molto tempo per adattarsi. Il circuito dell’Algarve, caratterizzato da forti dislivelli, curve in appoggio e frenate impegnative, rappresenterà un banco di prova interessante per lo spagnolo.<br><br><strong>DUCATI CAMBIA FORMAZIONE PER PORTIMÃO</strong><br><br>Il Ducati Lenovo Team si presenterà dunque al Gran Premio del Portogallo con una formazione modificata. Accanto al lavoro di gestione del campionato e allo sviluppo della Desmosedici GP, la squadra dovrà seguire da vicino l’inserimento di Lecuona nella struttura ufficiale, permettendogli di trovare rapidamente il giusto feeling con la moto.<br><br>Il GP del Portogallo scatterà venerdì 20 novembre e rappresenterà il penultimo appuntamento del calendario 2026. Per Lecuona sarà una grande occasione per mettersi in mostra con i colori ufficiali Ducati, mentre Bagnaia dovrà concentrarsi sul recupero in vista dell’ultimo capitolo della stagione a Valencia.')">
+  <div class="news-card-body">
+    <span class="news-tag tag-gp">MotoGP</span>
+    <div class="news-title">
+      MOTOGP, UFFICIALE: IKER LECUONA SOSTITUISCE BAGNAIA SULLA DUCATI UFFICIALE A PORTIMÃO
+    </div>
+    <div class="news-excerpt">
+      Iker Lecuona prenderà il posto di Francesco Bagnaia nel Ducati Lenovo Team per il GP del Portogallo. Lo spagnolo salirà sulla Desmosedici GP ufficiale a Portimão, mentre Pecco prosegue il recupero dopo l'intervento chirurgico al piede destro. Per Lecuona, reduce dal secondo posto nel Mondiale Superbike con quattro vittorie, sarà una grande occasione per mettersi in mostra con la squadra ufficiale Ducati. Bagnaia punta invece al rientro per l'ultimo appuntamento stagionale a Valencia.
+    </div>
+    <div class="news-meta">
+      <span class="news-date">📅 16 nov 2026</span>
+      <span class="news-author">Redazione</span>
     </div>
   </div>
 </div>
 
-<script>
-(function () {
-  var _cat = "MotoGP",
-      _title = "MotoGP, ufficiale: Iker Lecuona sostituisce Bagnaia nel GP del Portogallo sulla Ducati ufficiale",
-      _meta = "📅 16 nov 2026 · ✍️ Redazione",
-      _body = `È ufficiale: Iker Lecuona sostituirà Francesco Bagnaia nel Ducati Lenovo Team in occasione del Gran Premio del Portogallo, in programma dal 20 al 22 novembre sul circuito di Portimão. Il pilota spagnolo salirà sulla Desmosedici GP della squadra ufficiale di Borgo Panigale per il penultimo appuntamento del Mondiale MotoGP 2026, prendendo il posto del numero 63, costretto a saltare il weekend portoghese per proseguire il recupero dall’infortunio al piede destro.<br><br>
-
-<strong>LECUONA SULLA DUCATI UFFICIALE A PORTIMÃO</strong><br><br>
-
-Per Iker Lecuona si apre una nuova opportunità nella classe regina. Dopo aver disputato diverse gare nel corso della stagione con il team Gresini Racing, lo spagnolo entra ora nel box ufficiale Ducati, dove avrà a disposizione la Desmosedici GP del Ducati Lenovo Team. Una sfida importante, considerando il livello della squadra e le caratteristiche impegnative del tracciato portoghese.<br><br>
-
-Lecuona conosce già l’ambiente Ducati e arriva da una stagione particolarmente positiva nel Mondiale Superbike, conclusa al secondo posto in classifica generale con quattro vittorie. Il pilota spagnolo ha inoltre accumulato esperienza in MotoGP grazie alle sostituzioni effettuate durante il 2026, ottenendo come miglior risultato il settimo posto nel Gran Premio d’Ungheria.<br><br>
-
-<strong>BAGNAIA SALTA IL GP DEL PORTOGALLO</strong><br><br>
-
-La sostituzione nasce dall’impossibilità per Francesco Bagnaia di prendere parte al fine settimana di Portimão. Il pilota italiano si è infortunato durante la Sprint del Gran Premio del Qatar, riportando una doppia frattura al quarto e al quinto metatarso del piede destro. Dopo gli accertamenti medici, il numero 63 è stato sottoposto a un intervento chirurgico a Torino per stabilizzare le fratture attraverso l’inserimento di una placca.<br><br>
-
-L’operazione è riuscita e Bagnaia ha iniziato il percorso di recupero e riabilitazione. La priorità è ora recuperare la migliore condizione fisica possibile, senza forzare i tempi dopo un infortunio che richiede particolare attenzione. L’obiettivo è tornare in pista per l’ultimo appuntamento della stagione a Valencia, in programma la settimana successiva al GP portoghese.<br><br>
-
-<strong>UNA NUOVA OCCASIONE PER IL PILOTA SPAGNOLO</strong><br><br>
-
-Per Lecuona, il fine settimana portoghese rappresenta un passaggio significativo della propria carriera. Dopo le esperienze con Gresini, il pilota avrà la possibilità di lavorare direttamente con la struttura ufficiale Ducati e confrontarsi con i migliori protagonisti della categoria in sella alla moto campione di Borgo Panigale.<br><br>
-
-La sua conoscenza della Desmosedici e la recente esperienza accumulata nel Mondiale Superbike saranno elementi importanti per affrontare un appuntamento che non concede molto tempo per adattarsi. Il circuito dell’Algarve, caratterizzato da forti dislivelli, curve in appoggio e frenate impegnative, rappresenterà un banco di prova interessante per lo spagnolo.<br><br>
-
-<strong>DUCATI CAMBIA FORMAZIONE PER PORTIMÃO</strong><br><br>
-
-Il Ducati Lenovo Team si presenterà dunque al Gran Premio del Portogallo con una formazione modificata. Accanto al lavoro di gestione del campionato e allo sviluppo della Desmosedici GP, la squadra dovrà seguire da vicino l’inserimento di Lecuona nella struttura ufficiale, permettendogli di trovare rapidamente il giusto feeling con la moto.<br><br>
-
-Il GP del Portogallo scatterà venerdì 20 novembre e rappresenterà il penultimo appuntamento del calendario 2026. Per Lecuona sarà una grande occasione per mettersi in mostra con i colori ufficiali Ducati, mentre Bagnaia dovrà concentrarsi sul recupero in vista dell’ultimo capitolo della stagione a Valencia.`;
-
-  function initNews() {
-    var el = document.getElementById(
-      'nc-motogp-lecuona-bagnaia-portimao-2026'
-    );
-
-    if (el) {
-      el.addEventListener('click', function () {
-        if (typeof openNews === 'function') {
-          openNews(_cat, _title, _meta, _body);
-        }
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNews);
-  } else {
-    initNews();
-  }
-})();
-</script>
 
 <div class="news-card news-h-motogp hidden-news"
   onclick="openNews('MotoGP','MOTOGP, MARC MÁRQUEZ A UN PASSO DAL TITOLO: A PORTIMÃO PUÒ DIVENTARE CAMPIONE GIÀ NELLA SPRINT','📅 16 nov 2026 · ✍️ Redazione','Il Mondiale MotoGP 2026 si avvicina al suo momento decisivo e il Gran Premio del Portogallo potrebbe consegnare a Marc Márquez il titolo iridato con una gara di anticipo. Il pilota spagnolo della Ducati arriva a Portimão da leader della classifica, con 431 punti e un vantaggio di 60 lunghezze su Jorge Martín. Marco Bezzecchi occupa invece la terza posizione con 357 punti.<br><br><strong>MÁRQUEZ GUIDA IL MONDIALE CON 60 PUNTI DI VANTAGGIO</strong><br><br>Dopo il Gran Premio del Qatar, Marc Márquez occupa la prima posizione della classifica con 431 punti. Alle sue spalle c’è Jorge Martín, secondo a quota 371, mentre Marco Bezzecchi completa il podio virtuale del campionato con 357 punti. Il vantaggio sul pilota Aprilia è quindi di 60 punti, mentre quello su Bezzecchi è di 74. Con soltanto due appuntamenti ancora da disputare, la situazione è sempre più favorevole al numero 93.<br><br>Il fine settimana in Qatar ha permesso a Márquez di avvicinarsi ulteriormente alla conquista del titolo. La vittoria di Marco Bezzecchi nella gara domenicale ha impedito allo spagnolo di festeggiare in anticipo, ma il secondo posto ottenuto da Marc ha comunque mantenuto saldamente nelle sue mani il destino del campionato. Martín ha concluso settimo, perdendo altro terreno nella corsa iridata.<br><br><strong>LA SPRINT DI PORTIMÃO PUÒ CONSEGNARGLI IL TITOLO</strong><br><br>Il primo appuntamento decisivo sarà la Sprint di sabato 21 novembre. Márquez potrà diventare matematicamente campione del mondo già al termine della gara corta. La vittoria della Sprint gli garantirebbe il titolo indipendentemente dal risultato dei rivali.<br><br>Esistono anche altre combinazioni favorevoli al pilota Ducati. Un secondo posto con Martín terzo o peggio, un terzo posto con il rivale spagnolo quinto o peggio, oppure un quarto posto con Martín fuori dalle prime cinque posizioni permetterebbero a Marc di chiudere anticipatamente il campionato. Anche altri risultati possono essere sufficienti, a seconda dell’ordine di arrivo dei due principali contendenti.<br><br><strong>MARTÍN E BEZZECCHI PROVERANNO A RIMANDARE LA FESTA</strong><br><br>Per Jorge Martín il GP del Portogallo rappresenta una delle ultime occasioni per mantenere aperta la lotta mondiale. Il pilota Aprilia dovrà cercare di recuperare punti fin dalla Sprint, evitando di lasciare ulteriore spazio al rivale.<br><br>La situazione di Bezzecchi è ancora più complicata: il distacco di 74 punti rende la sua rincorsa estremamente difficile, anche se la matematica non lo ha ancora escluso completamente dalla contesa.<br><br>Il pilota italiano arriva comunque in Portogallo con il morale alto dopo il successo conquistato in Qatar. La sua Aprilia ha dimostrato un ottimo potenziale e potrebbe rappresentare una delle principali protagoniste anche sul circuito dell’Algarve.<br><br><strong>UN TRAGUARDO STORICO PER MARC MÁRQUEZ</strong><br><br>La conquista del titolo rappresenterebbe un risultato straordinario per Márquez. Lo spagnolo potrebbe infatti aggiungere l’ottavo Mondiale nella classe regina al proprio palmarès, raggiungendo Giacomo Agostini nel conteggio dei titoli della categoria regina. Considerando anche i successi nelle classi inferiori, arriverebbe a dieci titoli mondiali complessivi.<br><br><strong>PORTIMÃO PRONTA A INCORONARE IL CAMPIONE</strong><br><br>Il Gran Premio del Portogallo si preannuncia quindi come un appuntamento fondamentale per tutta la MotoGP. Sabato 21 novembre, alle ore 16:00 italiane, la Sprint potrebbe già incoronare il nuovo campione del mondo.<br><br>Se il verdetto dovesse essere rimandato, Márquez avrebbe un’altra possibilità nella gara domenicale, in programma alle ore 14:00. Portimão è pronta a diventare il teatro di un possibile nuovo capitolo della storia del motociclismo.')">
@@ -2321,7 +2342,7 @@ onclick="openNews('MotoGP','MotoGP Indonesia, paura per Aldeguer: caduta alla cu
 </div>
 </div>
 </div>
-<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-motogp')">▼ Tutte le notizie (73)</button>
+<button class="news-toggle-btn" onclick="toggleOldNews(this,'news-h-motogp')">▼ Tutte le notizie (74)</button>
 </div>
 <!-- COLONNA DX: Classifica -->
 <div>
