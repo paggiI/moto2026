@@ -61,77 +61,73 @@ const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // Per creare una nuova domanda, copia un blocco { ... } e modificalo.
 // 'correct' parte da 0. (0 = prima opzione, 1 = seconda, ecc.)
 // =======================================================
+
 const QUIZ_QUESTIONS = [
   // MOTOGP
   {
-    id: 'qatar_mgp_q1',
-    question: 'In quale circuito si disputa il GP del Qatar 2026?',
-    options: ['Sakhir', 'Lusail International Circuit', 'Yas Marina', 'Jerez'],
+    id: 'valencia_mgp_q1',
+    question: 'In quale circuito si disputa il GP di Valencia 2026?',
+    options: ['Circuit de Barcelona-Catalunya', 'Circuit Ricardo Tormo', 'MotorLand Aragón', 'Circuito di Jerez'],
     correct: 1
   },
   {
-    id: 'qatar_mgp_q2',
-    question: 'Chi ha vinto il GP del Qatar MotoGP nel 2025?',
-    options: ['Francesco Bagnaia', 'Marc Márquez', 'Álex Márquez', 'Franco Morbidelli'],
-    correct: 1
-  },
-  {
-    id: 'qatar_mgp_q3',
-    question: 'Quale pilota ha conquistato il secondo posto nel GP del Qatar 2025?',
-    options: ['Pedro Acosta', 'Franco Morbidelli', 'Francesco Bagnaia', 'Fabio Quartararo'],
+    id: 'valencia_mgp_q2',
+    question: 'Quale pilota si è laureato Campione del Mondo MotoGP 2026?',
+    options: ['Jorge Martín', 'Marco Bezzecchi', 'Marc Márquez', 'Pedro Acosta'],
     correct: 2
   },
   {
-    id: 'qatar_mgp_q4',
-    question: 'In quale giorno si disputa la Sprint MotoGP in Qatar?',
+    id: 'valencia_mgp_q3',
+    question: 'Con quale costruttore corre Marc Márquez nel 2026?',
+    options: ['Aprilia', 'KTM', 'Honda', 'Ducati'],
+    correct: 3
+  },
+  {
+    id: 'valencia_mgp_q4',
+    question: 'In quale giorno si disputa la Sprint MotoGP a Valencia?',
     options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
     correct: 1
   },
   {
-    id: 'qatar_mgp_q5',
-    question: 'Quanti giri sono previsti per la gara MotoGP a Lusail?',
-    options: ['18', '20', '22', '25'],
-    correct: 2
+    id: 'valencia_mgp_q5',
+    question: 'Quanti giri sono previsti per la gara MotoGP a Valencia?',
+    options: ['20', '22', '25', '27'],
+    correct: 3
   },
   {
-    id: 'qatar_mgp_q6',
-    question: 'Quale caratteristica distingue il GP del Qatar?',
-    options: [
-      'Si corre sotto la pioggia artificiale',
-      'Si corre in notturna',
-      'Si corre esclusivamente al mattino',
-      'Si corre su un circuito cittadino'
-    ],
+    id: 'valencia_mgp_q6',
+    question: 'Quale pilota ha vinto la Sprint MotoGP di Valencia nel 2025?',
+    options: ['Pedro Acosta', 'Álex Márquez', 'Marco Bezzecchi', 'Marc Márquez'],
     correct: 1
   },
   {
-    id: 'qatar_mgp_q7',
-    question: 'Chi ha vinto la gara MotoGP del Qatar nel 2025?',
-    options: ['Marc Márquez', 'Jorge Martín', 'Fabio Di Giannantonio', 'Marco Bezzecchi'],
+    id: 'valencia_mgp_q7',
+    question: 'Quale pilota ha conquistato il titolo MotoGP 2026 prima dell\'ultimo GP di Valencia?',
+    options: ['Francesco Bagnaia', 'Marc Márquez', 'Jorge Martín', 'Fabio Quartararo'],
+    correct: 1
+  },
+  {
+    id: 'valencia_mgp_q8',
+    question: 'Quale pilota ha vinto il GP del Portogallo 2026, prima dell\'appuntamento di Valencia?',
+    options: ['Marc Márquez', 'Jorge Martín', 'Marco Bezzecchi', 'Pedro Acosta'],
+    correct: 2
+  },
+  {
+    id: 'valencia_mgp_q9',
+    question: 'Quanto misura il rettilineo più lungo del Circuit Ricardo Tormo?',
+    options: ['650 metri', '750 metri', '876 metri', '1.068 metri'],
+    correct: 2
+  },
+  {
+    id: 'valencia_mgp_q10',
+    question: 'Quale pilota ha vinto la Sprint di Valencia nel 2025 davanti a Pedro Acosta?',
+    options: ['Álex Márquez', 'Francesco Bagnaia', 'Fabio Di Giannantonio', 'Marc Márquez'],
     correct: 0
-  },
-  {
-    id: 'qatar_mgp_q8',
-    question: 'Quale costruttore ha vinto il GP del Qatar 2025 con Marc Márquez?',
-    options: ['KTM', 'Aprilia', 'Ducati', 'Honda'],
-    correct: 2
-  },
-  {
-    id: 'qatar_mgp_q9',
-    question: 'Quanto misura il rettilineo principale di Lusail?',
-    options: ['650 metri', '850 metri', '1.068 metri', '1.500 metri'],
-    correct: 2
-  },
-  {
-    id: 'qatar_mgp_q10',
-    question: 'Quale pilota ha vinto il GP del Qatar 2025 nella categoria MotoGP?',
-    options: ['Álex Márquez', 'Marc Márquez', 'Francesco Bagnaia', 'Franco Morbidelli'],
-    correct: 1
   },
 
   // MOTO2
   {
-    id: 'qatar_moto2_q1',
+    id: 'valencia_moto2_q1',
     question: 'Quale motore viene utilizzato da tutti i piloti della Moto2?',
     options: [
       'Honda 600 cc',
@@ -142,20 +138,20 @@ const QUIZ_QUESTIONS = [
     correct: 1
   },
   {
-    id: 'qatar_moto2_q2',
+    id: 'valencia_moto2_q2',
     question: 'Quale categoria rappresenta la classe intermedia del Motomondiale?',
     options: ['Moto3', 'Moto2', 'MotoGP', 'Superbike'],
     correct: 1
   },
   {
-    id: 'qatar_moto2_q3',
-    question: 'Quale sessione determina la pole position in Moto2?',
-    options: ['Prove libere', 'Warm Up', 'Qualifiche', 'Sprint'],
+    id: 'valencia_moto2_q3',
+    question: 'Quanti giri sono previsti per la gara Moto2 a Valencia?',
+    options: ['18', '20', '22', '27'],
     correct: 2
   },
   {
-    id: 'qatar_moto2_q4',
-    question: 'Quale pilota guida la classifica mondiale Moto2 alla vigilia del GP del Qatar 2026?',
+    id: 'valencia_moto2_q4',
+    question: 'Quale pilota è al comando della classifica mondiale Moto2 prima del GP di Valencia 2026?',
     options: [
       'Izan Guevara',
       'Manuel González',
@@ -165,32 +161,32 @@ const QUIZ_QUESTIONS = [
     correct: 1
   },
   {
-    id: 'qatar_moto2_q5',
-    question: 'Quale pilota australiano corre in Moto2 nel 2026?',
+    id: 'valencia_moto2_q5',
+    question: 'Quale pilota ha conquistato la sua prima vittoria in Moto2 nel GP del Portogallo 2026?',
     options: [
-      'Jack Miller',
+      'Alonso López',
       'Senna Agius',
-      'Joel Kelso',
-      'Remy Gardner'
+      'Daniel Muñoz',
+      'Ivan Ortolá'
     ],
-    correct: 1
+    correct: 2
   },
   {
-    id: 'qatar_moto2_q6',
-    question: 'In quale giorno si disputa la gara Moto2 in Qatar?',
+    id: 'valencia_moto2_q6',
+    question: 'In quale giorno si disputa la gara Moto2 a Valencia?',
     options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
     correct: 2
   },
 
   // MOTO3
   {
-    id: 'qatar_moto3_q1',
+    id: 'valencia_moto3_q1',
     question: 'Quale cilindrata utilizzano le moto della categoria Moto3?',
     options: ['125 cc', '250 cc', '600 cc', '765 cc'],
     correct: 1
   },
   {
-    id: 'qatar_moto3_q2',
+    id: 'valencia_moto3_q2',
     question: 'Quale pilota ha conquistato il titolo mondiale Moto3 2026?',
     options: [
       'David Almansa',
@@ -201,13 +197,13 @@ const QUIZ_QUESTIONS = [
     correct: 2
   },
   {
-    id: 'qatar_moto3_q3',
-    question: 'Quale sessione determina la posizione in griglia dei piloti Moto3?',
-    options: ['Warm Up', 'FP1', 'Qualifiche', 'Sprint'],
-    correct: 2
+    id: 'valencia_moto3_q3',
+    question: 'Quanti giri sono previsti per la gara Moto3 a Valencia?',
+    options: ['18', '20', '22', '27'],
+    correct: 1
   },
   {
-    id: 'qatar_moto3_q4',
+    id: 'valencia_moto3_q4',
     question: 'Quale caratteristica tecnica hanno i motori della Moto3?',
     options: [
       'Sono bicilindrici',
@@ -218,44 +214,55 @@ const QUIZ_QUESTIONS = [
     correct: 1
   },
   {
-    id: 'qatar_moto3_q5',
+    id: 'valencia_moto3_q5',
     question: 'Quale categoria disputa normalmente la prima gara della domenica?',
     options: ['MotoGP', 'Moto2', 'Moto3', 'Superbike'],
     correct: 2
   },
   {
-    id: 'qatar_moto3_q6',
-    question: 'In quale giorno si disputano le qualifiche Moto3 in Qatar?',
-    options: ['Venerdì', 'Sabato', 'Domenica', 'Giovedì'],
+    id: 'valencia_moto3_q6',
+    question: 'Quanti chilometri misura complessivamente la gara Moto3 a Valencia?',
+    options: ['75,5 km', '80,1 km', '88,11 km', '108,14 km'],
     correct: 1
   },
 
   // CURIOSITÀ SUL CIRCUITO
   {
-    id: 'qatar_extra_q1',
-    question: 'Qual è la lunghezza del circuito di Lusail?',
-    options: ['4,2 km', '5,38 km', '6,1 km', '4,65 km'],
-    correct: 1
-  },
-  {
-    id: 'qatar_extra_q2',
-    question: 'In quale anno il Qatar ha ospitato per la prima volta un GP del Motomondiale?',
-    options: ['2000', '2002', '2004', '2008'],
+    id: 'valencia_extra_q1',
+    question: 'Qual è la lunghezza del Circuit Ricardo Tormo?',
+    options: ['3,25 km', '3,75 km', '4,01 km', '4,80 km'],
     correct: 2
   },
   {
-    id: 'qatar_extra_q3',
-    question: 'In quale anno si è disputata per la prima volta una gara notturna di MotoGP in Qatar?',
-    options: ['2004', '2006', '2008', '2010'],
+    id: 'valencia_extra_q2',
+    question: 'In quale anno è stato inaugurato il Circuit Ricardo Tormo?',
+    options: ['1996', '1998', '1999', '2001'],
     correct: 2
   },
   {
-    id: 'qatar_extra_q4',
-    question: 'Vicino a quale città si trova il circuito di Lusail?',
-    options: ['Dubai', 'Doha', 'Abu Dhabi', 'Riyadh'],
+    id: 'valencia_extra_q3',
+    question: 'In quale direzione si percorre il Circuit Ricardo Tormo?',
+    options: [
+      'In senso orario',
+      'In senso antiorario',
+      'Alternando i due sensi',
+      'Dipende dalla categoria'
+    ],
     correct: 1
+  },
+  {
+    id: 'valencia_extra_q4',
+    question: 'Qual è una delle caratteristiche più particolari delle tribune del circuito?',
+    options: [
+      'Permettono di vedere praticamente tutto il tracciato',
+      'Sono presenti solo sul rettilineo principale',
+      'Possono ospitare al massimo 20.000 spettatori',
+      'Sono tutte situate all’esterno del circuito'
+    ],
+    correct: 0
   }
 ];
+
 
 
 let currentUser = null;

@@ -1461,7 +1461,7 @@
 </div>
 <table class="st">
 <thead>
-<tr class="rider-row" onclick="openRQV('Marc Márquez','Ducati Lenovo Team','431',1,'—','🇪🇸','marc_marquez')">
+<tr class="rider-row" onclick="openRQV('Marc Márquez','Ducati Lenovo Team','439',1,'—','🇪🇸','marc_marquez')">
 <th class="pos-cell">#</th>
 <th>Pilota</th>
 <th>Team</th>
@@ -1713,9 +1713,9 @@
 <span class="rrc-flag">🇵🇹</span>
 </div>
 <div class="rrc-podium">
-<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">25</span></div>
-<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">20</span></div>
-<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">16</span></div>
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag">🇮🇹</span><span class="p-name">Marco Bezzecchi</span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag">🇪🇸</span><span class="p-name">Raúl Fernández</span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Jorge Martín</span><span class="p-pts">16</span></div>
 </div>
 </div>
 </div>
@@ -12894,7 +12894,32 @@ q: {
           { pos: '-', flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: 'NO TIME' }
         ]
       },
-
+      race: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "41:30.802", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "", gap: "+3.845" },
+          { pos: 3, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+5.711" },
+          { pos: 4, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: "", gap: "+8.828" },
+          { pos: 5, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+10.305" },
+          { pos: 6, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+14.107" },
+          { pos: 7, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+17.465" },
+          { pos: 8, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "", gap: "+18.162" },
+          { pos: 9, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+18.599" },
+          { pos: 10, flag: '🇪🇸', name: 'Iker Lecuona', team: 'Ducati Lenovo Team', time: "", gap: "+22.275" },
+          { pos: 11, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+24.028" },
+          { pos: 12, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+25.059" },
+          { pos: 13, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+25.746" },
+          { pos: 14, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+33.146" },
+          { pos: 15, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+34.495" },
+          { pos: 16, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: "", gap: "+34.724" },
+          { pos: 17, flag: '🇬🇧', name: 'Jake Dixon', team: 'Castrol Honda Team', time: "", gap: "+34.951" },
+          { pos: 18, flag: '🇪🇸', name: 'Augusto Fernández', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+63.917" },
+          { pos: 'RIT', flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: 'RIT', gap: '+24 giri' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: 'RIT', gap: '+11 giri' },
+          { pos: 'RIT', flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: 'RIT', gap: '+5 giri' },
+          { pos: 'RIT', flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: 'RIT', gap: 'giro 0' }
+        ]
+      }
     }
   },
 
@@ -13034,7 +13059,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Marco Bezzecchi",
       "team": "Aprilia Racing",
-      "pts": 369.0,
+      "pts": 394.0,
       "sostituto": null
     },
     {
@@ -13042,7 +13067,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Fabio Di Giannantonio",
       "team": "Pertamina Enduro VR46",
-      "pts": 285.0,
+      "pts": 298.0,
       "sostituto": null
     },
     {
@@ -13066,7 +13091,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Raúl Fernández",
       "team": "Trackhouse MotoGP Team",
-      "pts": 267.0,
+      "pts": 283.0,
       "sostituto": null
     },
     {
@@ -13074,7 +13099,7 @@ function buildDataFromResults() {
       "flag": "🇯🇵",
       "name": "Ai Ogura",
       "team": "Trackhouse MotoGP Team",
-      "pts": 298.0,
+      "pts": 309.0,
       "sostituto": null
     },
     {
@@ -13082,7 +13107,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Marc Márquez",
       "team": "Ducati Lenovo Team",
-      "pts": 431.0,
+      "pts": 439.0,
       "sostituto": null
     },
     {
@@ -13098,7 +13123,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Fermín Aldeguer",
       "team": "BK8 Gresini Racing MotoGP",
-      "pts": 129.0,
+      "pts": 139.0,
       "sostituto": null
     },
     {
@@ -13114,7 +13139,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Luca Marini",
       "team": "Honda HRC Castrol",
-      "pts": 117.0,
+      "pts": 124.0,
       "sostituto": null
     },
     {
@@ -13122,7 +13147,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Enea Bastianini",
       "team": "Red Bull KTM Tech3",
-      "pts": 147.0,
+      "pts": 152.0,
       "sostituto": null
     },
     {
@@ -13130,7 +13155,7 @@ function buildDataFromResults() {
       "flag": "🇿🇦",
       "name": "Brad Binder",
       "team": "Red Bull KTM Factory Racing",
-      "pts": 118.0,
+      "pts": 127.0,
       "sostituto": null
     },
     {
@@ -13138,7 +13163,7 @@ function buildDataFromResults() {
       "flag": "🇮🇹",
       "name": "Franco Morbidelli",
       "team": "Pertamina Enduro VR46",
-      "pts": 70.0,
+      "pts": 71.0,
       "sostituto": null
     },
     {
@@ -13154,7 +13179,7 @@ function buildDataFromResults() {
       "flag": "🇫🇷",
       "name": "Fabio Quartararo",
       "team": "Monster Energy Yamaha MotoGP",
-      "pts": 81.0,
+      "pts": 85.0,
       "sostituto": null
     },
     {
@@ -13186,7 +13211,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Álex Rins",
       "team": "Monster Energy Yamaha MotoGP",
-      "pts": 29.0,
+      "pts": 31.0,
       "sostituto": null
     },
     {
@@ -13202,7 +13227,7 @@ function buildDataFromResults() {
       "flag": "🇦🇺",
       "name": "Jack Miller",
       "team": "Prima Pramac Yamaha MotoGP",
-      "pts": 31.0,
+      "pts": 34.0,
       "sostituto": null
     },
     {
@@ -13250,7 +13275,7 @@ function buildDataFromResults() {
       "flag": "🇪🇸",
       "name": "Iker Lecuona",
       "team": "BK8 Gresini Racing MotoGP / Ducati Lenovo Team",
-      "pts": 19.0,
+      "pts": 25.0,
       "sostituto": "Sub A.Marquez \u00b7 R8-R20 - F.Aldeguer R12-R18-R19 - F.Bagnaia R21"
     },
     {
@@ -13923,11 +13948,11 @@ function buildDataFromResults() {
   // Punteggi costruttori ufficiali (aggiornati manualmente dopo ogni round)
   const COSTRUTTORI_STATIC = {
     motogp: [
-      { pos:1, brand:'Ducati',  pts:579 },
-      { pos:2, brand:'Aprilia', pts:573 },
-      { pos:3, brand:'KTM',     pts:369  },
-      { pos:4, brand:'Honda',   pts:190  },
-      { pos:5, brand:'Yamaha',  pts:107  },
+      { pos:1, brand:'Aprilia', pts:598 },
+      { pos:2, brand:'Ducati',  pts:589 },
+      { pos:3, brand:'KTM',     pts:378  },
+      { pos:4, brand:'Honda',   pts:197  },
+      { pos:5, brand:'Yamaha',  pts:111  },
     ],
     moto2: [
       { pos:1, brand:'Kalex',      pts:467.5 },

@@ -345,8 +345,8 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 <div class="stat-cards">
 <div class="stat-card fade-in"><div class="stat-card-val">21</div><div class="stat-card-lbl">Round disputati</div></div>
 <!-- +3 : MOTO3,MOTO2,MOTOGP -->
-<div class="stat-card fade-in"><div class="stat-card-val">80</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div> 
-<div class="stat-card fade-in"><div class="stat-card-val">431</div><div class="stat-card-lbl">Punti leader MotoGP</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">81</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div> 
+<div class="stat-card fade-in"><div class="stat-card-val">439</div><div class="stat-card-lbl">Punti leader MotoGP</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">286.5</div><div class="stat-card-lbl">Punti leader Moto2</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">417</div><div class="stat-card-lbl">Punti leader Moto3</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">24</div><div class="stat-card-lbl">Nazioni rappresentate</div></div>
@@ -375,14 +375,14 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 <div class="records-grid">
 <div class="record-card fade-in"><div class="record-cat">Vittorie consecutive</div><div class="record-val">3</div><div class="record-desc">Marco Bezzecchi [MOTO GP] - Manuel González [MOTO 2] - Izan Guevara [MOTO 2] - 2 x Máximo Quiles [MOTO 3]</div></div>
 <div class="record-card fade-in"><div class="record-cat">Più pole position</div><div class="record-val">8</div><div class="record-desc">David Almansa [MOTO 3]</div></div>
-<div class="record-card fade-in"><div class="record-cat">Punteggio massimo in un round</div><div class="record-val">37 pt</div><div class="record-desc">Martín · R5 Le Mans (gara+sprint) - Márquez · R8 Balaton (gara+sprint) - Márquez · R11 Sachsenring (gara+sprint) - Márquez · R13 Aragona (gara+sprint) - Márquez · R14 San Marino (gara+sprint) - Márquez · R16 Motegi (gara+sprint)</div></div>
+<div class="record-card fade-in"><div class="record-cat">Punteggio massimo in un round</div><div class="record-val">37 pt</div><div class="record-desc">Martín · R5 Le Mans (gara+sprint) - Márquez · R8 Balaton (gara+sprint) - Márquez · R11 Sachsenring (gara+sprint) - Márquez · R13 Aragona (gara+sprint) - Márquez · R14 San Marino (gara+sprint) - Márquez · R16 Giappone (gara+sprint) - Bezzecchi · R21 Giappone (gara+sprint)</div></div>
 <div class="record-card fade-in"><div class="record-cat">Più podi</div><div class="record-val">18</div><div class="record-desc">Máximo Quiles [MOTO3]</div></div>
 </div>
 
 <div class="section-title">🌍 Vittorie per nazione</div>
 <div class="nations-grid">
 <div class="nation-card fade-in"><div class="nation-flag">🇪🇸</div><div class="nation-wins">44</div><div class="nation-name">Spagna</div></div>
-<div class="nation-card fade-in"><div class="nation-flag">🇮🇹</div><div class="nation-wins">8</div><div class="nation-name">Italia</div></div>
+<div class="nation-card fade-in"><div class="nation-flag">🇮🇹</div><div class="nation-wins">9</div><div class="nation-name">Italia</div></div>
 <div class="nation-card fade-in"><div class="nation-flag">🇨🇴</div><div class="nation-wins">2</div><div class="nation-name">Colombia</div></div>
 <div class="nation-card fade-in"><div class="nation-flag">🇦🇺</div><div class="nation-wins">2</div><div class="nation-name">Australia</div></div>
 <div class="nation-card fade-in"><div class="nation-flag">🇲🇾</div><div class="nation-wins">1</div><div class="nation-name">Malesia</div></div>
@@ -446,20 +446,20 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 const CHART_DATA = {
   motogp: {
     pilots: [
-      { name:'M.Márquez', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331,353,365,399,431,431]}, 
-      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333,355,355,355,371,376]},
-      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284,309,315,332,357,369]},
+      { name:'M.Márquez 🏆', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331,353,365,399,431,439]}, 
+      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333,355,355,355,371,396]},
+      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284,309,315,332,357,394]},
       { name:'P.Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132,132,133,148,163,189,209,234,243,258,263,295,309,315]},
-      { name:'Ai Ogura', color:'#a855f7', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237,259,263,278,294,298]}, 
+      { name:'Ai Ogura', color:'#a855f7', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237,259,263,278,294,309]}, 
       //{ name:'Di Giann.', color:'#a855f7', pts:[0,12,37,50,71,84,116,134,138,157,177,184,199,208,223,230,230,245,252,265,282]},
       //CAMBIA ULTIMO NUMERO 
     ],
     constructors: [
-      {name:'Ducati', pts:579, color:'#dc2626'},  
-      {name:'Aprilia', pts:573, color:'#af02ff'}, 
-      {name:'KTM', pts:369, color:'#f97316'}, 
-      {name:'Honda', pts:190, color:'#ef4444'},
-      {name:'Yamaha', pts:107, color:'#0502d3'}
+      {name:'Aprilia', pts:598, color:'#af02ff'}, 
+      {name:'Ducati', pts:589, color:'#dc2626'},  
+      {name:'KTM', pts:378, color:'#f97316'}, 
+      {name:'Honda', pts:197, color:'#ef4444'},
+      {name:'Yamaha', pts:111, color:'#0502d3'}
     ]
   },
   moto2: {
@@ -481,7 +481,7 @@ const CHART_DATA = {
   },
   moto3: {
     pilots: [
-      { name:'Quiles 👑', color:'#00b4d8', pts:[0,20,45,65,90,115,140,145,170,186,211,231,231,256,281,306,326,351,351,376,392,417]},
+      { name:'Quiles 🏆', color:'#00b4d8', pts:[0,20,45,65,90,115,140,145,170,186,211,231,231,256,281,306,326,351,351,376,392,417]},
       { name:'Almansa', color:'#e8001d', pts:[0,25,25,25,33,41,54,54,74,87,107,107,132,152,172,172,197,217,217,228,253,266]},
       { name:'Carpe', color:'#f7a600', pts:[0,13,26,42,53,53,73,93,109,119,119,124,144,157,157,173,189,189,189,205,216,224]},
       { name:'B.Uriarte', color:'#a855f7', pts:[0,9,14,23,28,29,29,54,67,87,97,122,122,133,149,169,182,198,198,205,207,217]},

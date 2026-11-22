@@ -38,7 +38,7 @@
     <p class="subtitle">Vote per il migliore in pista nel GP appena concluso!</p>
 
     <div class="card">
-        <div class="card-title">🏆 GP del Qatar (Round 20)</div>
+        <div class="card-title">🏆 GP del Portogallo (Round 21)</div>
         <div id="vote-content">
             <p class="loading">Caricamento...</p>
         </div>
@@ -54,7 +54,7 @@ const SUPABASE_KEY = 'sb_publishable_M1dPlowaVyeMJ1PXYl0uNw_Ha4GR_wZ';
 const s = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // IMPOSTAZIONI ROUND E CANDIDATI (Modifica questi dati ogni nuovo GP!)
-const CURRENT_ROUND = '20';
+const CURRENT_ROUND = '21';
 const CATEGORIES = [
     { id: 'motogp', name: 'MotoGP', color: 'var(--gp)' },
     { id: 'moto2', name: 'Moto2', color: 'var(--m2)' },
@@ -67,10 +67,10 @@ const CANDIDATES = {
         { id: 'Marc Márquez', name: 'Marc Márquez', team: 'Ducati Lenovo Team' },
         //{ id: 'Alex Márquez', name: 'Alex Márquez', team: 'BK8 Gresini Racing MotoGP' },
         //{ id: 'Fabio di Giannantonio', name: 'Fabio di Giannantonio', team:'Pertamina Enduro VR46'},
-        //{ id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia Racing' },
+        { id: 'Jorge Martín', name: 'Jorge Martín', team: 'Aprilia Racing' },
         { id: 'Marco Bezzecchi', name: 'Marco Bezzecchi', team: 'Aprilia Racing' },
         { id: 'Raúl Fernández', name: 'Raúl Fernández', team: 'SuperFile Trackhouse MotoGP Team' },
-        { id: 'Ai Ogura', name: 'Ai Ogura', team: 'SuperFile Trackhouse MotoGP Team' },
+        //{ id: 'Ai Ogura', name: 'Ai Ogura', team: 'SuperFile Trackhouse MotoGP Team' },
     ],
     moto2: [
         //{ id: 'Izan Guevara', name: 'Izan Guevara', team: 'BLU CRU Pramac Yamaha Moto2' },
