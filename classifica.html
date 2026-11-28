@@ -1340,17 +1340,17 @@
     ← Torna alla pagina principale
   </button>
 <h1>CLASSIFICA <span>2026</span></h1>
-<p>Classifica aggiornata dopo il Gran Premio del Portogallo · Circuit Ricardo Tormo (Round 21). I punti saranno aggiornati dopo ogni gara.</p>
+<p>Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 22). I punti saranno aggiornati dopo ogni gara.</p>
 </div>
 </section>
 <!-- STATUS BAR -->
 <div class="status-bar">
 <span class="status-label">Aggiornata dopo:</span>
-<span class="status-val">Round 21 / 22 — GP Portimao
+<span class="status-val">Round 22 / 22 — GP Valencia
 </span>
 <span class="status-sep">|</span>
 <span class="status-label">Prossimo:</span>
-<span class="status-val">🇪🇸 Gran Premio di Valencia 27-29 nov</span>
+<span class="status-val">🇪🇸 Test di Valencia 01 dic</span>
 <span class="status-note">⚠️ I risultati dei singoli GP saranno aggiornati dopo ogni gara</span>
 </div>
 <!-- GP SELECTOR BAR — tutti 22 round scorrevoli -->
@@ -1376,7 +1376,7 @@
 <button class="gp-sel-btn" id="gp-sel-r19" onclick="selectGP('r19',this)">🇲🇾 R19 · Malesia</button>
 <button class="gp-sel-btn" id="gp-sel-r20" onclick="selectGP('r20',this)">🇶🇦 R20 · Qatar</button>
 <button class="gp-sel-btn" id="gp-sel-r21" onclick="selectGP('r21',this)">🇵🇹 R21 · Portogallo</button>
-<button class="gp-sel-btn gp-sel-next">🇪🇸 R22 · Valencia ⚡🏆</button>
+<button class="gp-sel-btn" id="gp-sel-r22" onclick="selectGP('r22',this)">🇪🇸 R22 · Valencia ⚡🏆</button>
 </div>
 <!-- TAB BAR -->
 <div class="tab-bar">
@@ -1390,8 +1390,8 @@
 
 <!-- COUNTDOWN PROSSIMA GARA -->
 <section class="countdown-section">
-  <h2 class="countdown-title">Prossima Gara</h2>
-  <p class="countdown-subtitle">Gran Premio di Valencia - Circuit Ricardo Tormo</p>
+  <h2 class="countdown-title">Prossimo Test</h2>
+  <p class="countdown-subtitle">Test di Valencia 850 - Circuit Ricardo Tormo</p>
   
   <div class="countdown-timer" id="countdown">
     <div class="time-box">
@@ -1415,7 +1415,7 @@
 <!-- ═══════ MOTOGP PANEL ═══════ -->
 <div class="panel active" id="panel-motogp">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 21). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 22). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1457,7 +1457,7 @@
 <div class="standings-wrap">
 <div class="standings-header sh-gp">
 <span class="sh-title">Classifica Piloti — MotoGP</span>
-<span class="sh-sub">Dopo 21 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 22 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
@@ -1718,13 +1718,25 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Jorge Martín</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=22')" onmousedown="handleMouse(event,'risultati.html?round=22')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 22</span>
+<span class="rrc-name">GP Valencia</span>
+<span class="rrc-flag">🇪🇸</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
 </div><!-- /panel-motogp -->
 <div class="panel" id="panel-moto2">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 21). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 22). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -1764,7 +1776,7 @@
 <div class="standings-wrap">
 <div class="standings-header sh-m2" style="color:#111">
 <span class="sh-title">Classifica Piloti — Moto2</span>
-<span class="sh-sub">Dopo 20 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 22 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
@@ -2006,13 +2018,25 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇦🇺</span><span class="p-name">Senna Agius</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=22')" onmousedown="handleMouse(event,'risultati.html?round=22')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 22</span>
+<span class="rrc-name">GP Valencia</span>
+<span class="rrc-flag">🇪🇸</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
 </div><!-- /panel-moto2 -->
 <div class="panel" id="panel-moto3">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 21). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 22). I punti saranno aggiornati dopo ogni gara.
 </div>
 <div class="panel-two-col">
 <!-- Sinistra 28% -->
@@ -2051,7 +2075,7 @@
 <div class="standings-wrap">
 <div class="standings-header sh-m3">
 <span class="sh-title">Classifica Piloti — Moto3</span>
-<span class="sh-sub">Dopo 20 gare · 22 round totali</span>
+<span class="sh-sub">Dopo 22 gare · 22 round totali</span>
 </div>
 <table class="st">
 <thead>
@@ -2293,6 +2317,18 @@
 <div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag">🇪🇸</span><span class="p-name">Adrián Fernández</span><span class="p-pts">16</span></div>
 </div>
 </div>
+<div class="race-result-card" onclick="goTo('risultati.html?round=22')" onmousedown="handleMouse(event,'risultati.html?round=22')" style="cursor:pointer;">
+<div class="rrc-header">
+<span class="rrc-round">Round 22</span>
+<span class="rrc-name">GP Valencia</span>
+<span class="rrc-flag">🇪🇸</span>
+</div>
+<div class="rrc-podium">
+<div class="podium-row"><span class="p-medal">🥇</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">25</span></div>
+<div class="podium-row"><span class="p-medal">🥈</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">20</span></div>
+<div class="podium-row"><span class="p-medal">🥉</span><span class="p-flag"></span><span class="p-name"></span><span class="p-pts">16</span></div>
+</div>
+</div>
 </div>
 </div><!-- /right -->
 </div><!-- /two-col -->
@@ -2300,7 +2336,7 @@
 <!-- ═══════ COSTRUTTORI PANEL ═══════ -->
 <div class="panel" id="panel-costruttori">
 <div class="notice">
-    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 21). I punti saranno aggiornati dopo ogni gara.
+    ⚡ Classifica aggiornata dopo il Gran Premio di Valencia · Circuit Ricardo Tormo (Round 22). I punti saranno aggiornati dopo ogni gara.
 </div>
 <h2 class="section-title">Costruttori — MotoGP</h2>
 <div class="costruttori-grid" id="cos-motogp"></div>
@@ -13194,6 +13230,36 @@ q: {
           { pos: 22, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+1.592" }
         ]
       },
+      q: {
+        rows: [
+          { pos: 1, flag: '🇮🇹', name: 'Marco Bezzecchi', team: 'Aprilia Racing', time: "1:27.844", gap: '—' },
+          { pos: 2, flag: '🇪🇸', name: 'Marc Márquez', team: 'Ducati Lenovo Team', time: "", gap: "+0.463" },
+          { pos: 3, flag: '🇪🇸', name: 'Raúl Fernández', team: 'Aprilia Trackhouse Racing', time: "", gap: "+0.589" },
+          { pos: 4, flag: '🇪🇸', name: 'Álex Márquez', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+0.736" },
+          { pos: 5, flag: '🇪🇸', name: 'Jorge Martín', team: 'Aprilia Racing', time: "", gap: "+0.795" },
+          { pos: 6, flag: '🇮🇹', name: 'Fabio Di Giannantonio', team: 'Pertamina Enduro VR46', time: "", gap: "+0.851" },
+          { pos: 7, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "", gap: "+0.936", fromQ1: true },
+          { pos: 8, flag: '🇪🇸', name: 'Pol Espargaró', team: 'Red Bull KTM Tech3', time: "", gap: "+1.009" },
+          { pos: 9, flag: '🇪🇸', name: 'Fermín Aldeguer', team: 'BK8 Gresini Racing MotoGP', time: "", gap: "+1.026" },
+          { pos: 10, flag: '🇪🇸', name: 'Pedro Acosta', team: 'Red Bull KTM Factory Racing', time: "", gap: "+1.040" },
+          { pos: 11, flag: '🇯🇵', name: 'Ai Ogura', team: 'Aprilia Trackhouse Racing', time: "", gap: "+1.306" },
+          { pos: 12, flag: '🇪🇸', name: 'Joan Mir', team: 'Castrol Honda Team', time: "", gap: "+1.572", fromQ1: true }
+        ],
+        q1: [
+          { pos: 1, flag: '🇮🇹', name: 'Enea Bastianini', team: 'Red Bull KTM Tech3', time: "1:29.053", gap: '—', toQ2: true },
+          { pos: 2, flag: '🇪🇸', name: 'Joan Mir', team: 'Castrol Honda Team', time: "", gap: "+0.151", toQ2: true },
+          { pos: 3, flag: '🇿🇦', name: 'Brad Binder', team: 'Red Bull KTM Factory Racing', time: "", gap: "+0.180" },
+          { pos: 4, flag: '🇪🇸', name: 'Iker Lecuona', team: 'Ducati Lenovo Team', time: "", gap: "+0.207" },
+          { pos: 5, flag: '🇫🇷', name: 'Johann Zarco', team: 'LCR Honda', time: "", gap: "+0.233" },
+          { pos: 6, flag: '🇫🇷', name: 'Fabio Quartararo', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+0.354" },
+          { pos: 7, flag: '🇮🇹', name: 'Franco Morbidelli', team: 'Pertamina Enduro VR46', time: "", gap: "+0.382" },
+          { pos: 8, flag: '🇧🇷', name: 'Diogo Moreira', team: 'LCR Honda', time: "", gap: "+0.531" },
+          { pos: 9, flag: '🇮🇹', name: 'Luca Marini', team: 'Castrol Honda Team', time: "", gap: "+0.570" },
+          { pos: 10, flag: '🇦🇺', name: 'Jack Miller', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+0.587" },
+          { pos: 11, flag: '🇪🇸', name: 'Augusto Fernández', team: 'Prima Pramac Yamaha MotoGP', time: "", gap: "+0.668" },
+          { pos: 12, flag: '🇪🇸', name: 'Álex Rins', team: 'Monster Energy Yamaha MotoGP', time: "", gap: "+1.095" }
+        ]
+      },
 
     }
   },
@@ -15003,7 +15069,7 @@ document.addEventListener('keydown', function(e) {
 });
 // === COUNTDOWN LOGIC ===
 // Imposta la data del prossimo GP (Formato: Anno-Mese-GiornoTOra:Minuti:Secondi)
-const raceDate = new Date("2026-11-27T09:00:00").getTime();
+const raceDate = new Date("2026-12-01T10:00:00").getTime();
 
 // Aggiorna il countdown ogni secondo
 const countdownFunction = setInterval(() => {

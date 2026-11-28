@@ -1021,15 +1021,15 @@
 <div class="stat-label">Gran Premi</div>
 </div>
 <div class="stat-item">
-<div class="stat-num green">20</div>
+<div class="stat-num green">22</div>
 <div class="stat-label">Conclusi</div>
 </div>
 <div class="stat-item">
-<div class="stat-num red">1</div>
+<div class="stat-num red">0</div>
 <div class="stat-label">Prossimo</div>
 </div>
 <div class="stat-item">
-<div class="stat-num">2</div>
+<div class="stat-num">0</div>
 <div class="stat-label">In programma</div>
 </div>
 <div class="stat-item">
@@ -1041,11 +1041,11 @@
 <div class="season-progress-wrap">
 <div class="season-progress-header">
 <span class="season-progress-title">⚡ Progressione stagionale 2026</span>
-<span class="season-progress-pct">21 / 22 Round</span>
+<span class="season-progress-pct">22 / 22 Round</span>
 </div>
 <div class="season-progress-track">
 <div class="season-progress-done" style="width:100.00%"></div>
-<div class="season-progress-next" style="left:95.24%;width:5%"></div>
+<div class="season-progress-next" style="left:100.00%;"></div>
 </div>
 <div class="season-progress-dots" style="position:relative;height:28px;">
 <div class="spd-item done" style="position:absolute;left:calc(0.00% - 0px)">
@@ -1111,7 +1111,7 @@
 <div class="spd-item done" style="position:absolute;left:calc(95.24% - 0px)">
   <div class="spd-dot"></div>21
 </div>
-<div class="spd-item next milestone" style="position:absolute;left:calc(100.00% - 0px)">
+<div class="spd-item done milestone" style="position:absolute;left:calc(100.00% - 0px)">
   <div class="spd-dot"></div>22
 </div>
 </div>
@@ -1127,10 +1127,10 @@
 <div class="next-race-card" onclick="goTo('risultati.html?round=r22')" onmousedown="handleMouse(event,'risultati.html?round=r22')" style="cursor:pointer;">
   <div class="nrc-flag">🇵🇹</div>
   <div class="nrc-body">
-    <div class="nrc-label">⚡ Prossima gara — Round 22</div>
+    <div class="nrc-label">⚡ Prossimo Test — 850</div>
     <div class="nrc-name">Gran Premio di Valencia</div>
     <div class="nrc-circuit">Circuit Ricardo Tormo</div>
-    <div class="nrc-date">📅 27 – 29 novembre 2026</div>
+    <div class="nrc-date">📅 01 dicembre 2026</div>
     
     <!-- COUNTDOWN LIVE -->
     <div class="countdown-cells" id="countdown-cells" style="display:flex; gap:.5rem; margin-top:1rem;">
@@ -1141,7 +1141,7 @@
     </div>
 
     <!-- ADD TO GOOGLE CALENDAR -->
-<a href="https://www.google.com/calendar/render?action=TEMPLATE&text=MotoGP%20-%20Gran%20Premio%20di%20Valencia%202026&dates=20261127T080000Z%2F20261129T130000Z&details=GP%20di%20Valencia%202026%20-%20Circuit%20Ricardo%20Tormo&location=Circuit%20Ricardo%20Tormo%2C%20Cheste%2C%20Valencia%2C%20Spain"
+<a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Test%20MotoGP%20850%20-%20Valencia&dates=20261201T090000Z%2F20261201T160000Z&details=Test%20MotoGP%20850%20-%20Circuit%20Ricardo%20Tormo&location=Circuit%20Ricardo%20Tormo%2C%20Cheste%2C%20Valencia%2C%20Spain"
   target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
   style="display:inline-block; margin-top:1rem; padding:.4rem .8rem; background:var(--card); border:1px solid var(--border); border-radius:4px; color:var(--muted); text-decoration:none; font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; transition:background .2s, color .2s, border-color .2s;"
   onmouseover="this.style.color='var(--text)'; this.style.borderColor='var(--accent)'"
@@ -1535,7 +1535,7 @@ function filterCalendar(filterValue) {
 }
 // Countdown prossimo GP Portogallo (Autódromo Internacional do Algarve 2026)
 (function() {
-  const target = new Date('2026-11-27T09:00:00');
+  const target = new Date('2026-12-01T10:00:00');
   function update() {
     const now = new Date();
     const diff = target - now;
