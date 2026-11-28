@@ -343,9 +343,9 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 <div class="container">
 <div class="section-title">📊 Numeri chiave</div>
 <div class="stat-cards">
-<div class="stat-card fade-in"><div class="stat-card-val">21</div><div class="stat-card-lbl">Round disputati</div></div>
+<div class="stat-card fade-in"><div class="stat-card-val">22</div><div class="stat-card-lbl">Round disputati</div></div>
 <!-- +3 : MOTO3,MOTO2,MOTOGP -->
-<div class="stat-card fade-in"><div class="stat-card-val">81</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div> 
+<div class="stat-card fade-in"><div class="stat-card-val">82</div><div class="stat-card-lbl">Gare completate [Gara + Sprint]</div></div> 
 <div class="stat-card fade-in"><div class="stat-card-val">439</div><div class="stat-card-lbl">Punti leader MotoGP</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">286.5</div><div class="stat-card-lbl">Punti leader Moto2</div></div>
 <div class="stat-card fade-in"><div class="stat-card-val">417</div><div class="stat-card-lbl">Punti leader Moto3</div></div>
@@ -446,18 +446,18 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:2.5rem 1
 const CHART_DATA = {
   motogp: {
     pilots: [
-      { name:'M.Márquez 🏆', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331,353,365,399,431,439]}, 
-      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333,355,355,355,371,396]},
-      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284,309,315,332,357,394]},
-      { name:'P.Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132,132,133,148,163,189,209,234,243,258,263,295,309,315]},
-      { name:'Ai Ogura', color:'#a855f7', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237,259,263,278,294,309]}, 
+      { name:'M.Márquez 🏆', color:'#22c55e', pts:[0,9,34,45,57,57,57,71,108,140,153,190,200,237,274,294,331,353,365,399,431,439,439]},
+      { name:'M.Bezzecchi', color:'#e8001d', pts:[0,25,56,81,101,128,142,173,180,180,186,186,209,232,241,264,284,309,315,332,357,394,406]}, 
+      { name:'J.Martín', color:'#f7a600', pts:[0,18,45,77,90,127,127,156,160,172,193,208,240,256,274,306,333,355,355,355,371,396,405]},
+      { name:'P.Acosta', color:'#60b4ff', pts:[0,32,42,60,66,83,92,103,132,132,133,148,163,189,209,234,243,258,263,295,309,315,318]},
+      { name:'Ai Ogura', color:'#a855f7', pts:[0,17,33,37,48,67,77,92,105,134,168,194,203,203,203,222,237,259,263,278,294,309,315]}, 
       //{ name:'Di Giann.', color:'#a855f7', pts:[0,12,37,50,71,84,116,134,138,157,177,184,199,208,223,230,230,245,252,265,282]},
       //CAMBIA ULTIMO NUMERO 
     ],
     constructors: [
-      {name:'Aprilia', pts:598, color:'#af02ff'}, 
-      {name:'Ducati', pts:589, color:'#dc2626'},  
-      {name:'KTM', pts:378, color:'#f97316'}, 
+      {name:'Aprilia', pts:610, color:'#af02ff'}, 
+      {name:'Ducati', pts:594, color:'#dc2626'},  
+      {name:'KTM', pts:385, color:'#f97316'}, 
       {name:'Honda', pts:197, color:'#ef4444'},
       {name:'Yamaha', pts:111, color:'#0502d3'}
     ]
@@ -494,8 +494,9 @@ const CHART_DATA = {
     ]
   }
 };
-const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺','R9 🇨🇿','R10 🇳🇱','R11 🇩🇪',
-                        'R12 🇬🇧','R13 🇪🇸','R14 🇮🇹','R15 🇦🇹','R16 🇯🇵','R17 🇮🇩','R18 🇦🇺','R19 🇲🇾','R20 🇶🇦','R21 🇵🇹'];
+const ROUNDS = ['Start','R1 🇹🇭','R2 🇧🇷','R3 🇺🇸','R4 🇪🇸','R5 🇫🇷','R6 🇪🇸','R7 🇮🇹','R8 🇭🇺',
+                        'R9 🇨🇿','R10 🇳🇱','R11 🇩🇪','R12 🇬🇧','R13 🇪🇸','R14 🇮🇹','R15 🇦🇹',
+                        'R16 🇯🇵','R17 🇮🇩','R18 🇦🇺','R19 🇲🇾','R20 🇶🇦','R21 🇵🇹','R22 🇪🇸'];
 let activeCat = 'motogp';
 
 // ── TEMA ──
